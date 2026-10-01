@@ -1,0 +1,6 @@
+interface:
+  display_name: "Sync Skills"
+  short_description: "Pull allowlisted skills from the upstream checkout"
+  default_prompt: "Use $sync-skills to sync this repo's allowlisted skills from the upstream checkout."
+policy:
+  allow_implicit_invocation: false

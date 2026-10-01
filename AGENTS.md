@@ -1,17 +1,24 @@
 # AGENTS.md — seed-prompt-studio
 
-Prompt-only workspace for composing Lumina-paste-ready prompts for BytePlus
+Prompt-first workspace for composing Lumina-paste-ready prompts for BytePlus
 Seed-family models (Seedance, Seedream, Seed Audio). It writes and reviews
-prompts; it never generates, uploads, or persists media.
+prompts. Generation is optional: only when the user explicitly asks and has
+`ark-mcp` or `arkcli` connected.
 
 ## Scope and authority
 
-This workspace produces copy-paste prompt blocks. The user pastes them into
-Lumina or another Seed-model UI, where generation happens. There is no
-generation transport of any kind here — no model API access, no agent tool
-servers, no command-line generation. Deterministic rendering, 3D, and assembly
-capabilities are out of scope in this standalone workspace. Local
-`ffmpeg`/`ffprobe` are permitted for read-only analysis frame extraction only.
+This workspace produces copy-paste prompt blocks. By default the user pastes
+them into Lumina or another Seed-model UI, where generation happens. When the
+user explicitly asks to generate and a usable `ark-mcp` or `arkcli` is
+connected, follow [Generation transport](.agents/contracts/generation-transport.md):
+review first, confirm each submit, use one transport per job. With neither
+connected, stay prompt-only and say so. The workspace never assumes, configures,
+or stores generation credentials.
+
+Deterministic rendering, 3D, and assembly capabilities are out of scope in this
+standalone workspace, including the 3D, VOD, and Blender tools that `ark-mcp`
+exposes. Local `ffmpeg`/`ffprobe` are permitted for read-only analysis frame
+extraction only.
 
 Deliver prompts in chat by default. Save a draft under
 `projects/<name>/prompts/` only when the user explicitly asks.
@@ -34,6 +41,7 @@ Load only the contract relevant to the current request:
 | Requested camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [Directorial axes](.agents/contracts/seedance-reference.md) |
 | Canon, props, screens and reference roles | [Element identification](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [Audio-video alignment](.agents/contracts/audio-video-alignment.md) |
+| Explicit request to generate or submit a reviewed prompt | [Generation transport](.agents/contracts/generation-transport.md) |
 
 ## Routing
 
@@ -68,9 +76,13 @@ specialists needed for the current request. `template-factory` is this
 workspace's declared orchestrator for reference-video reverse engineering; it
 sequences the prompt leaves and the `prompt-review` gate.
 
-This workspace ships prompt-composition skills only. Generation pipelines,
-deterministic-graphics renderers, 3D/animation tooling, and media-processing
-skills are not installed here; do not attempt their workflows. Local
+This workspace ships prompt-composition skills only, plus the maintenance-only
+`sync-skills` skill, which runs on explicit request. Generation is a transport
+contract, not a skill: it uses the user's connected `ark-mcp` or `arkcli` and
+adds no pipeline here. Deterministic-graphics renderers, 3D/animation tooling,
+and media-processing skills are not installed; do not attempt their workflows.
+The prompt leaves and `template-factory` stay prompt-only; they never submit.
+Local
 `ffmpeg`/`ffprobe` are analysis-only — never generation, assembly, or
 transcoding. Delivered recipes that mention such tools (e.g. a mux step in a
 music-video handoff) are user-side destination-workflow material, not agent
@@ -85,7 +97,7 @@ modes and examples into focused same-skill references.
   Resolve CRITICAL/MAJOR findings and re-review changed prompts. Missing
   reviewer output is incomplete.
 - Freeze the exact prompt text before handoff; changed inputs invalidate
-  review.
+  review. A generation submit must match the reviewed request byte for byte.
 - Source video is inspected by an agent video pass when the client can watch
   it, or by local `ffmpeg`/`ffprobe` frame extraction read as images when it
   cannot; never claim to have watched footage you could not access.
@@ -113,6 +125,7 @@ staging target.
 | `projects/<project>/project.md` | Optional brief and confirmed choices |
 | `projects/<project>/prompts/prompt_<asset-stem>.md` | Saved prompt drafts, immutable after handoff |
 | `projects/<project>/elements/<element-id>/` | Optional element prompt records and acquired-asset provenance |
+| `projects/<project>/generations/<asset-stem>.md` | Optional generation provenance record, saved on request; no signed URLs |
 | `projects/<project>/frames/` | Analysis-only frame-extraction scratch; never a deliverable |
 
 Folders and IDs use lowercase kebab-case. Prompt snapshots are saved only on
@@ -134,5 +147,6 @@ never revert or discard work you did not create.
 build checks are not applicable.
 
 Shared skills are maintained in an upstream source checkout and pulled in with
-`/sync-skills` (see README Maintenance). The command never overwrites the local
-`template-factory` fork and leaves its changes uncommitted for review.
+`/sync-skills` in Claude Code or opencode, or `$sync-skills` in Codex (see README
+Maintenance). The command never overwrites the local `template-factory` and
+`seed-audio-commercial` forks and leaves its changes uncommitted for review.

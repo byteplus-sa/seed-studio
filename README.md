@@ -1,17 +1,23 @@
 # seed-prompt-studio
 
-> A prompt-only workspace for composing **Lumina-paste-ready prompts** for BytePlus / Volcano Engine Seed models — **Seedance** (video), **Seedream** (images), and **Seed Audio** (audio).
+> A prompt-first workspace for composing **Lumina-paste-ready prompts** for BytePlus / Volcano Engine Seed models — **Seedance** (video), **Seedream** (images), and **Seed Audio** (audio).
 
 This repository ships agent skills, not generation tooling. You describe what you
 want, the agent composes a production-grade prompt from the skill libraries, runs
 it through `prompt-review`, and hands you a copy-paste block for the Lumina UI.
-The agent never calls a generation API, uploads media, or writes production files.
+
+Generation is optional. If you have `ark-mcp` or `arkcli` connected and explicitly
+ask the agent to generate, it submits the reviewed prompt through that transport
+after you confirm the model, references, and cost. Without either connected, or
+without that request, it stays prompt-only. The agent never stores credentials or
+writes production files. See
+[`generation-transport.md`](.agents/contracts/generation-transport.md).
 
 ## What this is / is not
 
 | This repo **is** | This repo **is not** |
 |---|---|
-| Prompt composition skills for Seed-family models | A generation pipeline — you generate by pasting the delivered prompts into the destination UI |
+| Prompt composition skills for Seed-family models | A generation pipeline — you paste prompts into the destination UI, or opt in to a confirmed submit through your own `ark-mcp` / `arkcli` |
 | A review gate (`prompt-review`) for every generation-bound prompt | A renderer — static and motion graphics are out of scope |
 | Chat-first delivery of paste-ready prompt blocks | A 3D or assembly tool — 3D, compositing, and editing are out of scope |
 | Optional local prompt drafts under `projects/` | A production canvas — no stage machinery, no task registry |
@@ -26,6 +32,7 @@ flowchart LR
   C -->|clean| D[Copy-paste block in chat]
   D --> E[Paste into Lumina]
   D -.->|on request| F[(projects/&lt;name&gt;/prompts/)]
+  D -.->|on request, ark-mcp or arkcli connected| G[Confirm, then submit]
 ```
 
 1. The agent routes your request to the relevant skill (grammar, presets,
@@ -76,6 +83,7 @@ flowchart LR
 | Camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [`.agents/contracts/seedance-reference.md`](.agents/contracts/seedance-reference.md) |
 | Canon, props, screens and reference roles | [`.agents/contracts/element-identification.md`](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [`.agents/contracts/audio-video-alignment.md`](.agents/contracts/audio-video-alignment.md) |
+| Optional generation via `ark-mcp` / `arkcli` | [`.agents/contracts/generation-transport.md`](.agents/contracts/generation-transport.md) |
 
 ## Repository structure
 
@@ -84,9 +92,10 @@ seed-prompt-studio/
 ├── AGENTS.md                       # workspace contract for agents
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 27 prompt-composition skills
+│   └── skills/                     # 27 prompt-composition skills + sync-skills (maintenance)
+├── .claude -> .agents              # symlink so Claude Code sees the same skills
 ├── .opencode/command/
-│   └── sync-skills.md              # /sync-skills — pull skill updates from the upstream source
+│   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
 └── projects/                       # local drafts (save-on-request; never a default Git staging target)
     └── <project-name>/
         ├── project.md              # optional brief
@@ -95,10 +104,20 @@ seed-prompt-studio/
 
 ## Maintenance
 
-Shared skills are maintained in an upstream source checkout. Run `/sync-skills`
-inside opencode to mirror the 25 allowlisted skill bundles into this repo; the
-local `template-factory` fork and all contracts are locally maintained and are
-never overwritten by a sync. The command reports changes and leaves them
-uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` —
-syncs one skill only. The sync source defaults to a sibling checkout at
+Shared skills are maintained in an upstream source checkout. Run the sync from
+any supported agent to mirror the 25 allowlisted skill bundles into this repo:
+
+| Agent | Command |
+| --- | --- |
+| Claude Code | `/sync-skills` |
+| Codex | `$sync-skills` |
+| opencode | `/sync-skills` |
+
+All three run the same procedure in
+[`.agents/skills/sync-skills/`](.agents/skills/sync-skills/SKILL.md), which only
+runs when invoked explicitly. The local `template-factory` and
+`seed-audio-commercial` forks and all contracts are locally maintained and are
+never overwritten by a sync. The command previews changes, asks before copying
+unreviewed upstream work, and leaves the result uncommitted for review. A
+scoped run — `/sync-skills seedance-prompt-25` — syncs one skill only. The sync source defaults to a sibling checkout at
 `../ark-director` and can be relocated with `SKILLS_SOURCE`.
