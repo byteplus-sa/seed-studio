@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedream Prop Asset"
+  short_description: "Write Seedream prop and product identity-sheet prompts"
+  default_prompt: "Use $seedream-prop-asset to write a prompt for this prop or product reference sheet."

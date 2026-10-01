@@ -52,6 +52,7 @@ flowchart LR
 | **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — reviewed and paste-ready. |
 | **seedance-prompt-25** | Write production-grade Seedance 2.5 video prompts with the six-part formula, 50-material multimodal referencing, variable-duration staging (4-30s), timestamp pacing, structured editing, extension, keyframes, storyboards, and blockouts. |
 | **seedance-prompt-25-filipino** | Write Filipino and Taglish dialogue direction while preserving exact words and register; evidence-based pronunciation hypotheses and opt-in lip-sync audio. |
+| **filipino-micro-drama** | Write Filipino-market micro-drama episode briefs: proven Pinoy formulas, hook/reveal/cliffhanger beats, light cast, authentic settings, and English-dominant Taglish dialogue with subtitle translations. Story material only. |
 | **seedance-prompt-20** | Legacy Seedance 2.0 prompt skill for 4K output (unsupported by 2.5), Fast/Mini speed variants, or lower cost per generation. |
 | **seedance-acting-console** | Turn playable motives and tactics into observable acting cues appropriate to framing, visibility and intensity. |
 | **seedance-animation-styles** | Write Seedance animation prompts for claymation, needle felt, wood puppets, toy miniatures, rubber hose, painterly 2D, cubist ink, stylized 3D, silicone creatures, and wax crayon. |
@@ -67,6 +68,7 @@ flowchart LR
 | **seedream-prompt** | Write Seedream prompts for synthesized or edited imagery; exact typography, pricing, CTA, product grids, and logos are out of scope in this workspace. |
 | **seedream-character-sheet** | Write structured Seedream prompts for three-panel character sheets and identity references — the face anchors Seedance uses. |
 | **seedream-location-asset** | Write structured Seedream prompts for cinematic location assets and reusable environment sheets. |
+| **seedream-prop-asset** | Write structured Seedream prompts for prop and product identity sheets: prop threshold, acquisition-first order, hero or multi-view layout, neutral background, one canonical state. |
 | **seed-audio-prompt** | Write structured Seed Audio 1.0 prompts for full-soundscape audio generation including dialogue, music, SFX, and ambience. |
 | **seed-audio-commercial** | Compose dramatic, story-driven audio commercial prompts with a five-act arc, multi-character voice profiles, and commercial SFX/music patterns. |
 | **ugc-ad-modes** | Write hooks, scripts and Seedance prompts for nine ad modes using supplied product facts, audience objections, supported claims and accurate CTAs. |
@@ -92,7 +94,7 @@ seed-prompt-studio/
 ├── AGENTS.md                       # workspace contract for agents
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 27 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 29 prompt-composition skills + sync-skills (maintenance)
 ├── .claude -> .agents              # symlink so Claude Code sees the same skills
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -115,9 +117,9 @@ any supported agent to mirror the 25 allowlisted skill bundles into this repo:
 
 All three run the same procedure in
 [`.agents/skills/sync-skills/`](.agents/skills/sync-skills/SKILL.md), which only
-runs when invoked explicitly. The local `template-factory` and
-`seed-audio-commercial` forks and all contracts are locally maintained and are
-never overwritten by a sync. The command previews changes, asks before copying
+runs when invoked explicitly. The local `template-factory`,
+`seed-audio-commercial`, `filipino-micro-drama`, and `seedream-prop-asset` forks
+and all contracts are locally maintained and are never overwritten by a sync. The command previews changes, asks before copying
 unreviewed upstream work, and leaves the result uncommitted for review. A
 scoped run — `/sync-skills seedance-prompt-25` — syncs one skill only. The sync source defaults to a sibling checkout at
 `../ark-director` and can be relocated with `SKILLS_SOURCE`.

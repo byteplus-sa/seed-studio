@@ -112,7 +112,7 @@ may be described in text inside the Seedance prompt.
 | --- | --- | --- |
 | character | `seedream-character-sheet` | `char_<id>` |
 | location | `seedream-location-asset` | `loc_<id>` |
-| prop | `seedream-prompt` | `prop_<id>` |
+| prop | `seedream-prop-asset` | `prop_<id>` |
 | invented or illustrative screen/card imagery | `seedream-prompt` | `screen_<id>` |
 
 Bind the breakdown's flagged keyframe as `@Image 1` (image-to-image) where

@@ -31,7 +31,7 @@ The ordered reference list delivered beside the prompt must match the
 | --- | --- | --- |
 | character | `seedream-character-sheet` | `char_<id>` |
 | location | `seedream-location-asset` | `loc_<id>` |
-| prop | `seedream-prompt` | `prop_<id>` |
+| prop | `seedream-prop-asset` | `prop_<id>` |
 | invented or illustrative screen/card imagery | `seedream-prompt` | `screen_<id>` |
 | exact screen/UI, title card, poster, product layout, price/CTA, logo | Out of scope in this workspace — say so | — |
 

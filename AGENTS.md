@@ -56,11 +56,12 @@ requested choreography needs more.
 | Seedance 2.5 prompt grammar | `seedance-prompt-25` |
 | Seedance 2.0 / 4K legacy grammar | `seedance-prompt-20` |
 | Filipino/Tagalog dialogue direction | `seedance-prompt-25-filipino` |
+| Filipino micro-drama stories and episode briefs | `filipino-micro-drama` |
 | Acting direction and emotional intensity | `seedance-acting-console` |
 | Camera / lens / lighting / pacing presets | `seedance-camera-presets`, `seedance-lens-presets`, `seedance-lighting-presets`, `seedance-pacing-presets` |
 | Animation styles / Blender-video edit prompts | `seedance-animation-styles`, `seedance-graybox-world` |
 | Motion design / music video / restoration / VFX edit prompts | `seedance-motion-design`, `seedance-music-video`, `seedance-restoration`, `seedance-vfx-prompt` |
-| Seedream image prompts, character sheets, location plates | `seedream-prompt`, `seedream-character-sheet`, `seedream-location-asset` |
+| Seedream image prompts, character sheets, location plates, prop sheets | `seedream-prompt`, `seedream-character-sheet`, `seedream-location-asset`, `seedream-prop-asset` |
 | Seed Audio prompts | `seed-audio-prompt` |
 | Audio commercial prompts (story arc, cast, tagline) | `seed-audio-commercial` |
 | UGC ad modes / UGC motion presets | `ugc-ad-modes`, `ugc-motion-presets` |
@@ -148,5 +149,6 @@ build checks are not applicable.
 
 Shared skills are maintained in an upstream source checkout and pulled in with
 `/sync-skills` in Claude Code or opencode, or `$sync-skills` in Codex (see README
-Maintenance). The command never overwrites the local `template-factory` and
-`seed-audio-commercial` forks and leaves its changes uncommitted for review.
+Maintenance). The command never overwrites the local `template-factory`,
+`seed-audio-commercial`, `filipino-micro-drama`, and `seedream-prop-asset`
+forks and leaves its changes uncommitted for review.
