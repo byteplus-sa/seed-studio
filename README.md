@@ -122,7 +122,10 @@ All three run the same procedure in
 runs when invoked explicitly. The local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
 `seedream-storyboard`, and `seedance-motion-recast` forks and all contracts are
-locally maintained and are never overwritten by a sync. The command previews changes, asks before copying
-unreviewed upstream work, and leaves the result uncommitted for review. A
-scoped run — `/sync-skills seedance-prompt-25` — syncs one skill only. The sync source defaults to a sibling checkout at
+locally maintained and are never overwritten by a sync. The command previews
+changes, asks before copying unreviewed upstream work, and leaves the result
+uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs
+one skill only. A sync leaves each skill's `agents/` folder alone and scans the
+result for references to tools and skills this workspace does not ship, stopping
+until they are scrubbed. The sync source defaults to a sibling checkout at
 `../ark-director` and can be relocated with `SKILLS_SOURCE`.

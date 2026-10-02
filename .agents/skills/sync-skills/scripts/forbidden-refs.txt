@@ -1,0 +1,52 @@
+# Names that must not appear in a skill bundle in this prompt-only workspace.
+#
+# One Python regular expression per line; blank lines and lines starting with
+# '#' are ignored. leaks.py (and verify.py) scan every skill except sync-skills
+# for these, so a sync cannot bring upstream tool or skill references back
+# unnoticed. Add a line here when upstream gains a skill or tool this repo does
+# not ship. Plain `ffmpeg`/`ffprobe` are allowed (read-only analysis) and are
+# deliberately not listed.
+
+# --- Skills that are not installed here
+\bblender-to-seedance\b
+\bblender-(animation-rigging|compositing-nodes|geometry-nodes|modeling-modifiers|physics-simulation|python-scripting|scene-rendering|shader-nodes)\b
+\bshowcase-html\b
+\blark-showcase-aigc\b
+\bseedream-character-sheet-cleanup\b
+\bseedream-edit\b
+\bhtml-graphic-render\b
+\bfilm-production\b
+\bseedance-(vfx-pipeline|ai-avatar|avatar-news)\b
+\bffmpeg-(scene-transitions|side-by-side-comparison)\b
+\bmedia-(use|review)\b
+(?i)\bhyperframes
+\baudio-(dubbing|split)\b
+\bsource-subject-map\b
+`micro-drama`
+
+# --- The transport belongs to the generation-transport contract, not to skills
+\bark-mcp\b
+\barkcli\b
+
+# --- Tool and API names a prompt-only skill must not call
+\bmcp__
+\bseedance_(2_5_)?(premium_)?create_task
+\bseedance_(get|list|cancel_or_delete)_tasks?\b
+\bseedream_(generate|edit)_image
+\bark_job_
+\bseed_understand\b
+\bseed_media_
+\bmedia_(upload|presign)
+\bvod_[a-z]
+\bspeech_to_text\b
+\b(hyper3d|hitem3d)_
+
+# --- Upstream scripts and project files this repo does not ship
+\brecord_review\.py\b
+\bvalidate_request\.py\b
+\boperation_store\.py\b
+\bgenerate_showcase\b
+\btask_ids\.json\b
+\bref_cache\.json\b
+\bshowcase\.json\b
+\bsubject_map\b

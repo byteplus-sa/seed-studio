@@ -11,11 +11,22 @@
 # paths intersect the sync scope unless SYNC_ALLOW_DIRTY=1, which is set only
 # after the user confirms.
 #
-# Exit codes: 0 ok, 1 error, 2 usage, 3 dirty source scope needs confirmation.
+# Each skill's agents/ folder is local metadata: it is never copied from the
+# source and never deleted, so local-only agents/ folders and local policy
+# edits (such as prompt-review's implicit-invocation setting) survive a sync.
+#
+# plan previews how many references to tools or skills this workspace does not
+# ship (see forbidden-refs.txt) each updated skill would bring in. apply scans
+# the synced skills for them and exits 4 until they are scrubbed.
+#
+# Exit codes: 0 ok, 1 error, 2 usage, 3 dirty source scope needs confirmation,
+# 4 synced skills contain forbidden references that must be scrubbed.
 set -euo pipefail
 
 ALLOWLIST="brief-intake prompt-review seedance-prompt-25 seedance-prompt-25-filipino seedance-prompt-20 seedance-acting-console seedance-animation-styles seedance-camera-presets seedance-graybox-world seedance-lens-presets seedance-lighting-presets seedance-pacing-presets seedance-motion-design seedance-music-video seedance-restoration seedance-vfx-prompt seedream-prompt seedream-character-sheet seedream-location-asset seed-audio-prompt ugc-ad-modes ugc-motion-presets color-grade-palettes tig-blocking-map tig-scene-engine"
 EXCLUDES=(--exclude='.DS_Store' --exclude='__pycache__')
+DIFF_EXCLUDES=("${EXCLUDES[@]}" --exclude='agents')
+RSYNC_EXCLUDES=("${EXCLUDES[@]}" --exclude='/agents')
 
 MODE="${1:-}"
 case "$MODE" in
@@ -23,7 +34,8 @@ case "$MODE" in
   *) echo "usage: sync.sh plan|apply [all | skill-name ...]" >&2; exit 2 ;;
 esac
 
-ROOT="$(cd "$(dirname "$0")" && git rev-parse --show-toplevel)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$SCRIPT_DIR" && git rev-parse --show-toplevel)"
 cd "$ROOT"
 
 # 1. Preflight
@@ -82,17 +94,31 @@ echo "source dirty paths overall: $OTHER_DIRTY (informational)"
 
 # 4. Diff, and sync when applying
 echo "--- skills:"
+CHANGED=""
 for s in $SKILLS; do
-  if diff -rq "${EXCLUDES[@]}" "$SRC/.agents/skills/$s" ".agents/skills/$s" >/dev/null 2>&1; then
+  if diff -rq "${DIFF_EXCLUDES[@]}" "$SRC/.agents/skills/$s" ".agents/skills/$s" >/dev/null 2>&1; then
     echo "unchanged  $s"
   else
     echo "updated    $s"
-    diff -rq "${EXCLUDES[@]}" "$SRC/.agents/skills/$s" ".agents/skills/$s" 2>/dev/null | sed 's/^/    /' || true
-    if [ "$MODE" = "apply" ]; then
-      rsync -a --delete "${EXCLUDES[@]}" "$SRC/.agents/skills/$s/" ".agents/skills/$s/"
+    diff -rq "${DIFF_EXCLUDES[@]}" "$SRC/.agents/skills/$s" ".agents/skills/$s" 2>/dev/null | sed 's/^/    /' || true
+    CHANGED="$CHANGED $s"
+    if [ "$MODE" = "plan" ]; then
+      N="$(python3 "$SCRIPT_DIR/leaks.py" --count "$SRC/.agents/skills/$s")"
+      [ "$N" != "0" ] && echo "    would bring in $N reference(s) to tools or skills not shipped here; scrub after applying"
+    else
+      rsync -a --delete "${RSYNC_EXCLUDES[@]}" "$SRC/.agents/skills/$s/" ".agents/skills/$s/"
     fi
   fi
 done
+if [ "$MODE" = "apply" ] && [ -n "$CHANGED" ]; then
+  echo "--- scan of synced skills for references this workspace does not ship:"
+  SCAN_ARGS=()
+  for s in $CHANGED; do SCAN_ARGS+=(".agents/skills/$s"); done
+  if ! python3 "$SCRIPT_DIR/leaks.py" "${SCAN_ARGS[@]}"; then
+    echo "SCRUB REQUIRED: remove the references above, then run verify.py" >&2
+    exit 4
+  fi
+fi
 if [ "$MODE" = "plan" ]; then
   echo "plan only: nothing copied"
   if [ "$NEEDS_CONFIRM" = "1" ]; then
