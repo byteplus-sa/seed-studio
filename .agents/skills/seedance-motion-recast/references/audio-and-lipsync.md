@@ -30,7 +30,7 @@ Voice rules:
 - Separate lip-sync audio is opt-in. When the user asks for it, follow the
   [audio-video alignment contract](../../../contracts/audio-video-alignment.md):
   exact dialogue in both prompts, audio duration verified before handoff,
-  and a new review when audio changes.
+  and both prompts updated when the audio changes.
 - When lips are off-screen or not the focus, a voice overlay in post, done in
   the destination workflow, avoids re-rendering the mouth.
 
