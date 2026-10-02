@@ -4,13 +4,13 @@
 
 Draft brief and scene breakdown can identify assets before canon exists. Before dependent prompt authoring, require the appropriate approved recurring/critical element descriptors and declared reference roles. Canon may be defined by prompt-only element sheets (Seedream prompts) or by acquiring and approving real brand/product/logo descriptors; prompt-only authoring may deliver a draft without generating or downloading assets. When the brief borrows visual or motion grammar from a cited brand ad or other footage, obtain a watchable copy first (the user's file, or a link the user can open) and analyze it by agent video pass or local frame extraction; do not treat scripts or article text as the reference.
 
-The normal flow is brief → draft breakdown → required canon → optional storyboard prompts → optional requested lip-sync audio notes → video prompts → review → handoff. Handoff of the reviewed prompt package marks completion; do not infer completion from filenames.
+The normal flow is brief → draft breakdown → required canon → optional storyboard prompts → optional requested lip-sync audio notes → video prompts → handoff. Handoff of the prompt package marks completion; do not infer completion from filenames.
 
 ## Prompt-package memory
 
 Keep one record per authored prompt: the exact prompt text, its ordered reference list, and the parameter block. Save drafts under `projects/<project>/prompts/` only on explicit request; otherwise deliver in chat. Retain earlier revisions, rejected wording, and decisions while adding the current package.
 
-Update the record after every material change to a brief, breakdown, element prompt, storyboard prompt, audio prompt, or video prompt. A handed-off prompt is frozen; changed inputs invalidate its review.
+Update the record after every material change to a brief, breakdown, element prompt, storyboard prompt, audio prompt, or video prompt. A handed-off prompt is frozen; changed inputs need a new prompt version.
 
 Defaults are proposed until the user accepts the displayed set. Store each axis with value, source (proposed/defaulted/user_confirmed), and approval evidence when available. Approval persists across turns within its stated scope. Authoring a prompt does not approve its result.
 
@@ -28,17 +28,19 @@ Never ask the model to render overlay text such as captions, taglines, CTAs or e
 
 Single-person references should preserve the intended identity and avoid cloning. Preserve approved visual descriptors and the face anchor; do not infer gender identity from appearance. Tool-based post-generation pixel cleanup is out of scope here — regenerate from a revised prompt instead. Image-editing prompts (I2I edit instructions) remain prompt deliverables.
 
+Real people and source footage need confirmed rights before a prompt depends on them. A real, identifiable person used as a target (a likeness reference, a voice) needs the user's confirmed consent and, for photoreal likeness generation, a confirmed approval for that use. Source footage needs confirmed rights, and identifiable real performers in it need confirmed consent for reuse of their performance. Note each confirmation in the prompt package. Unknown rights, identity, and consent facts stop the work; a creative choice never supplies them, and calling a job a test does not either. Offer an invented cast or a consenting performer instead. A privacy or sensitive-content rejection the user reports is evidence to diagnose: never crop, blur, stylize, recompose, or swap inputs to get a real likeness or real footage past a check.
+
 An explicitly selected supported conditioning input is a promoted composition or motion reference, not a control-only asset. Record the selected source, its current hash when it is a local file, and the intended reference role. Changing a flag alone does not grant approval.
 
-## Request preflight and review
+## Request preflight and optional review
 
-Before handing off a **generation-bound** prompt, freeze the exact prompt beside its intended asset, list ordered reference bindings/roles, check reference approval, record current hashes for local reference files, and resolve current model/mode capabilities against live documentation. Run prompt-review for generation-bound prompts; CRITICAL/MAJOR findings must be resolved. Documentation or manifest-only edits do not trigger prompt review. A changed worked example is reviewed offline.
+Before handing off a **generation-bound** prompt, freeze the exact prompt beside its intended asset, list ordered reference bindings/roles, check reference approval, record current hashes for local reference files, and resolve current model/mode capabilities against live documentation. Review is not part of the handoff: the user may run `/prompt-review` on any prompt at their own discretion, and nothing waits on it.
 
-Acquired brand, logo, or packshot descriptors that will not be generated do not run prompt-review. They still require explicit user approval before dependent prompts depend on them. See [element-identification.md](element-identification.md).
+Acquired brand, logo, or packshot descriptors that will not be generated still require explicit user approval before dependent prompts depend on them. See [element-identification.md](element-identification.md).
 
-Use explicit prompt type, model, operation, language, requested axes, may_change and must_preserve to route review. A completed review is bound to the request hash and lists applicable rule outcomes and evidence. Missing/empty reviewer output is incomplete. Static image, audio, editing and narrative checks are applied to their relevant artifact types.
+When the user runs `/prompt-review`, use explicit prompt type, model, operation, language, requested axes, may_change and must_preserve to route the review. A completed review is bound to the request hash and lists applicable rule outcomes and evidence. Missing/empty reviewer output is incomplete. Static image, audio, editing and narrative checks are applied to their relevant artifact types.
 
-The request hash covers exact prompt bytes, model/operation/effective parameters and ordered reference roles/bindings. Credentials and timestamps are excluded. Changed request content requires a new review.
+The request hash covers exact prompt bytes, model/operation/effective parameters and ordered reference roles/bindings. Credentials and timestamps are excluded. Changed request content makes an earlier review result stale.
 
 ## Handoff (no provider operations)
 

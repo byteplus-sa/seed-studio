@@ -11,7 +11,7 @@ This workspace produces copy-paste prompt blocks. By default the user pastes
 them into Lumina or another Seed-model UI, where generation happens. When the
 user explicitly asks to generate and a usable `ark-mcp` or `arkcli` is
 connected, follow [Generation transport](.agents/contracts/generation-transport.md):
-review first, confirm each submit, use one transport per job. With neither
+show the exact prompt, confirm each submit, use one transport per job. With neither
 connected, stay prompt-only and say so. The workspace never assumes, configures,
 or stores generation credentials.
 
@@ -37,11 +37,11 @@ Load only the contract relevant to the current request:
 
 | Need | Tracked source |
 | --- | --- |
-| Prompt review policy and stable rule IDs | [rules.json](.agents/contracts/rules.json) and [production policy](.agents/contracts/production-policy.md) |
+| Manual `/prompt-review` policy and stable rule IDs | [rules.json](.agents/contracts/rules.json) and [production policy](.agents/contracts/production-policy.md) |
 | Requested camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [Directorial axes](.agents/contracts/seedance-reference.md) |
 | Canon, props, screens and reference roles | [Element identification](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [Audio-video alignment](.agents/contracts/audio-video-alignment.md) |
-| Explicit request to generate or submit a reviewed prompt | [Generation transport](.agents/contracts/generation-transport.md) |
+| Explicit request to generate or submit a prompt | [Generation transport](.agents/contracts/generation-transport.md) |
 
 ## Routing
 
@@ -53,6 +53,8 @@ requested choreography needs more.
 | --- | --- |
 | Brief shaping | `brief-intake` |
 | Reference-video reverse engineering (breakdown → element, storyboard, Seedance prompts) | `template-factory` |
+| Storyboard panel and grid prompts | `seedream-storyboard` |
+| Motion recast of a source clip (new cast and world, same motion) | `seedance-motion-recast` |
 | Seedance 2.5 prompt grammar | `seedance-prompt-25` |
 | Seedance 2.0 / 4K legacy grammar | `seedance-prompt-20` |
 | Filipino/Tagalog dialogue direction | `seedance-prompt-25-filipino` |
@@ -67,7 +69,7 @@ requested choreography needs more.
 | UGC ad modes / UGC motion presets | `ugc-ad-modes`, `ugc-motion-presets` |
 | Color grade sentence | `color-grade-palettes` |
 | Scene structure / staging references | `tig-scene-engine`, `tig-blocking-map` |
-| Prompt QA | `prompt-review` |
+| Prompt QA (manual; only when the user runs `/prompt-review`) | `prompt-review` |
 
 ## Skills and orchestration
 
@@ -75,7 +77,7 @@ One skill provides one capability. Leaf skills remain independently usable;
 composition hints are prose, not directives to load siblings. Load only the
 specialists needed for the current request. `template-factory` is this
 workspace's declared orchestrator for reference-video reverse engineering; it
-sequences the prompt leaves and the `prompt-review` gate.
+sequences the prompt leaves.
 
 This workspace ships prompt-composition skills only, plus the maintenance-only
 `sync-skills` skill, which runs on explicit request. Generation is a transport
@@ -89,16 +91,17 @@ transcoding. Delivered recipes that mention such tools (e.g. a mux step in a
 music-video handoff) are user-side destination-workflow material, not agent
 actions.
 
+Prompt QA is optional and user-triggered. `prompt-review` runs only when the
+user invokes `/prompt-review`; no prompt-writing skill or workflow runs, loads,
+or waits on it.
+
 Keep skill metadata concise and valid YAML. Move substantial conditional
 modes and examples into focused same-skill references.
 
 ## Prompt invariants
 
-- Run `prompt-review` for every generation-bound prompt before handoff.
-  Resolve CRITICAL/MAJOR findings and re-review changed prompts. Missing
-  reviewer output is incomplete.
-- Freeze the exact prompt text before handoff; changed inputs invalidate
-  review. A generation submit must match the reviewed request byte for byte.
+- Freeze the exact prompt text before handoff. A generation submit must match
+  the prompt the user saw byte for byte.
 - Source video is inspected by an agent video pass when the client can watch
   it, or by local `ffmpeg`/`ffprobe` frame extraction read as images when it
   cannot; never claim to have watched footage you could not access.
@@ -143,12 +146,13 @@ never revert or discard work you did not create.
 
 ## Verification
 
-`prompt-review` is the QA gate for every prompt. For repository changes run
-`git diff --check`; this workspace ships no code, so unit, lint, type, and
+Prompt QA is optional: the user runs `/prompt-review` when they want it. For
+repository changes run `git diff --check`; this workspace ships no code, so unit, lint, type, and
 build checks are not applicable.
 
 Shared skills are maintained in an upstream source checkout and pulled in with
 `/sync-skills` in Claude Code or opencode, or `$sync-skills` in Codex (see README
 Maintenance). The command never overwrites the local `template-factory`,
-`seed-audio-commercial`, `filipino-micro-drama`, and `seedream-prop-asset`
-forks and leaves its changes uncommitted for review.
+`seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
+`seedream-storyboard`, and `seedance-motion-recast` forks and leaves its changes
+uncommitted for review.

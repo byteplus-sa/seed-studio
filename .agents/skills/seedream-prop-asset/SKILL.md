@@ -51,9 +51,8 @@ they conflict.
 This skill writes prompts only. It returns a paste-ready prompt package — or a
 text-only descriptor when the gate below says no sheet is needed — without
 loading sibling skills. It never generates images, submits or polls tasks,
-uploads or downloads files, or edits images. Run `prompt-review` before
-handoff; the user pastes the reviewed block into Lumina or another Seed-model
-UI. A draft does not establish approval.
+uploads or downloads files, or edits images. The user pastes the block into
+Lumina or another Seed-model UI. A draft does not establish approval.
 
 ## Gate: does this prop need a sheet?
 

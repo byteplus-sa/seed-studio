@@ -381,6 +381,3 @@ Before returning the prompt (and before any generation task), verify:
 9. **The design seal** is compact and does not contradict the treatment or the
    text-lock discipline.
 10. **The response contains the prompt**, not an unrelated production workflow.
-
-The calling agent owns the `prompt-review` gate before submission —
-CRITICAL/MAJOR findings must be fixed before generation.

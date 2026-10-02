@@ -19,7 +19,8 @@ they are prompt-composition only and never call the API themselves.
 | Music video | `seedance-music-video` | Song-first Seedance prompts: format (performance/narrative/conceptual/lyric/visualizer/hybrid), song-section map, beat/cut-density contract, black-sync lip-sync timing reference, and a per-genre style lock |
 | Original music / vocal master, audio-first track | `seed-audio-prompt` | Seed Audio prompt structure (T2A/TA2A) for an original music or vocal master |
 | Audio commercial (story arc, cast, tagline) | `seed-audio-commercial` | Five-act commercial soundscape prompt (dialogue + BGM + SFX + ambience in one pass) with multi-character voice profiles |
-| Storyboard prompts | `template-factory` | Panel-plan storyboard prompts within reference-video reverse engineering; full multi-scene production is out of scope in this workspace |
+| Storyboard prompts | `seedream-storyboard`, `template-factory` | Panel and grid prompts (sketch default, single-image grid or separate images); `template-factory` authors them inside a reference-video reverse-engineering package; full multi-scene production is out of scope in this workspace |
+| Motion recast of a source clip | `seedance-motion-recast` | Keep a source clip's motion, camera, cuts and timing; rebuild cast, wardrobe, product, location and style from references |
 
 ## Composition rules
 

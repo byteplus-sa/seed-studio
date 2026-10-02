@@ -51,9 +51,9 @@ explicitly authorized. Unknown or unauthorized brands stay de-identified in
 analysis and may use placeholder descriptors until the user supplies or
 authorizes real identity.
 
-Acquired brand/product assets skip `prompt-review` because there is no
-generation-bound prompt. They still require explicit user selection or
-approval before dependent prompts depend on them.
+Acquired brand/product assets have no generation-bound prompt. They still
+require explicit user selection or approval before dependent prompts depend on
+them.
 
 ## Exact-graphics boundary
 

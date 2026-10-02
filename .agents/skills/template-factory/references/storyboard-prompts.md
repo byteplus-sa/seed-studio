@@ -182,10 +182,8 @@ Panel 2: [one-two sentence decisive moment, staging, camera].
 No speech bubbles, no captions, no watermarks. Preserve identity, wardrobe, screen direction, [key prop] across all panels.
 ```
 
-## Review gate
+## Self-checks
 
-Every storyboard prompt is generation-bound: run `prompt-review` on the exact
-prompt and its ordered reference list before handoff. Check element bindings
-(`@Image N` indices match the reference list), positive-only directing,
-sketch/color consistency, continuity of props and screen direction, and the
-4,000-character budget.
+Before handoff, check element bindings (`@Image N` indices match the reference
+list), positive-only directing, sketch/color consistency, continuity of props
+and screen direction, and the 4,000-character budget.

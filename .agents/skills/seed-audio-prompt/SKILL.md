@@ -30,10 +30,9 @@ mentioned in prose are relative to this skill directory unless a link says other
 
 ## Submission boundary and failure behavior
 
-The caller owns production authorization, the exact request preflight, and the
-complete hash-bound prompt review. A leaf returns its prompt package without
-loading sibling skills. An explicitly declared orchestrator may coordinate the
-review and submission stages. Missing required inputs remain unresolved; a draft
+The caller owns production authorization and the exact request preflight. A
+leaf returns its prompt package without loading sibling skills. An explicitly
+declared orchestrator may coordinate the submission stage. Missing required inputs remain unresolved; a draft
 or technical success does not establish user approval. Preserve optional timing,
 the three-image sampling default where applicable, and the requested delta.
 

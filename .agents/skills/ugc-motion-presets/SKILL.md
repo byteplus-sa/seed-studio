@@ -74,8 +74,7 @@ Every recipe in [motion-presets.md](references/motion-presets.md) provides:
 ## Composition rules
 
 - Recipes fill the six-part formula slots; the caller assembles the full
-  prompt per `seedance-prompt-25` and owns `prompt-review`, submission, and
-  showcase sync.
+  prompt per `seedance-prompt-25` and owns submission and showcase sync.
 - Bind the user's character, wardrobe, or product media using the recipe's
   reference roles. A held or worn product visible in frame follows the
   workspace element policy — canonical props get locked references, incidental

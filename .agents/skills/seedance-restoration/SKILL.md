@@ -77,15 +77,13 @@ Output: a Seedance 2.5 structured-edit prompt with the source bound as `@Video 1
    dedicated framing in [Localized transient defects](#localized-transient-defects-scans-tears-bands-waves) rather than the grain ladder.
 5. **Write the prompt** using the canonical template. Make the dominant defect
    explicit and dominant; never bury it in a mixed list.
-6. **Run `prompt-review`** against the Seedance 2.5 edit checklist before
-   handoff.
-7. **Verify the fix before relying on it — do not trust a reported success.**
+6. **Verify the fix before relying on it — do not trust a reported success.**
    Ask the user to share the generated clip (or frames from it) and re-inspect
    it the same way (video pass, or extracted frames); check the
    same three things: the defect is gone, the people/scene/camera are intact, and
    no new artifacts were introduced. Only build on a verified-clean clip; a
    reported `succeeded` is not proof the tear/wave/grain actually left.
-8. **Original audio re-mux** happens in the destination workflow. Seedance
+7. **Original audio re-mux** happens in the destination workflow. Seedance
    regenerates native audio; for "keep everything the same," the user muxes the
    source audio back onto the restored video outside this workspace.
 
@@ -247,4 +245,4 @@ direction.
     clean margin on both sides — never at the clip boundary.
 11. The Seedance output was **verified by re-inspection** (defect gone, content
     intact, no new artifacts) before splicing.
-12. Prompt-review gate passed before handoff; original audio re-mux happens in the destination workflow.
+12. Original audio re-mux happens in the destination workflow.

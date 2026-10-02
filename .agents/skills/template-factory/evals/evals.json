@@ -4,14 +4,13 @@
     {
       "id": 1,
       "prompt": "Turn this reference video into prompts I can paste into Lumina: I want the same look and motion, the characters and locations as image prompts, a storyboard, and the video prompts.",
-      "expected_output": "A validated full-shot breakdown approved by the user, Seedream element prompts routed by element type, storyboard prompts with one panel per shot, per-shot Seedance 2.5 prompts with ordered @Image bindings, each passed through prompt-review and delivered as labeled copy-paste blocks.",
+      "expected_output": "A validated full-shot breakdown approved by the user, Seedream element prompts routed by element type, storyboard prompts with one panel per shot, per-shot Seedance 2.5 prompts with ordered @Image bindings, delivered as labeled copy-paste blocks.",
       "files": [],
       "assertions": [
         "The breakdown is validated against breakdown-schema.json before any prompt is authored.",
         "The user approves the breakdown before element, storyboard, or Seedance prompts are written.",
         "Character, location, and prop elements route to seedream-character-sheet, seedream-location-asset, and seedream-prompt respectively.",
         "The storyboard defaults to one panel per shot with a monochrome sketch grid.",
-        "Every prompt passes prompt-review before handoff and the review outcome is reported.",
         "Nothing is generated, uploaded, or submitted; prompts are delivered in chat."
       ]
     },
@@ -30,13 +29,12 @@
     {
       "id": 3,
       "prompt": "The last attempt felt static compared with the reference. Fix the motion but keep the approved shot timing.",
-      "expected_output": "A motion review keyed by shot_index merged into a new analysis revision with the approved boundaries unchanged, and updated Seedance Action wording passed through prompt-review.",
+      "expected_output": "A motion review keyed by shot_index merged into a new analysis revision with the approved boundaries unchanged, and updated Seedance Action wording.",
       "files": [],
       "assertions": [
         "Motion merges by shot_index rather than array position.",
         "The approved breakdown revision and its hash are preserved and bound to the motion review.",
-        "Proposed timing changes are re-presented for approval instead of silently applied.",
-        "The revised Seedance prompt passes prompt-review before handoff."
+        "Proposed timing changes are re-presented for approval instead of silently applied."
       ]
     },
     {
@@ -53,7 +51,7 @@
     {
       "id": 5,
       "prompt": "Here's the video file at ~/Downloads/reference-ad.mp4. Build the full prompt package.",
-      "expected_output": "Frame extraction with local ffmpeg: probed duration and resolution, measured scene-cut boundaries, per-shot frames and motion bursts read as images, a breakdown with measured timing, audio set to explicit unknowns unless the user supplies notes, and the full prompt package through prompt-review.",
+      "expected_output": "Frame extraction with local ffmpeg: probed duration and resolution, measured scene-cut boundaries, per-shot frames and motion bursts read as images, a breakdown with measured timing, audio set to explicit unknowns unless the user supplies notes, and the full prompt package.",
       "files": [],
       "assertions": [
         "The agent checks for ffmpeg/ffprobe availability before choosing the extraction mode.",

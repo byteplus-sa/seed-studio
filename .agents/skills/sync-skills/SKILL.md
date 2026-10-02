@@ -22,11 +22,30 @@ sync:
 
 - `template-factory` and `seed-audio-commercial` — deliberate local forks
   whose content diverges upstream.
-- `filipino-micro-drama` and `seedream-prop-asset` — prompt-only local forks
-  of upstream skills, with generation and orchestrator references removed.
+- `filipino-micro-drama`, `seedream-prop-asset`, `seedream-storyboard`, and
+  `seedance-motion-recast` — prompt-only local forks of upstream skills, with
+  generation and orchestrator references removed.
 - `sync-skills` — this maintenance skill is local.
 - Everything under `.agents/contracts/` — locally maintained variants.
 - Every skill not on the allowlist.
+
+## Local edits to re-apply after a sync
+
+Prompt review is manual and isolated in this workspace, so a sync can
+reintroduce review wording that was removed locally. After applying, check
+the diff and restore these:
+
+- `prompt-review`: `disable-model-invocation: true` in `SKILL.md`, the
+  "Manual review (/prompt-review)" description and "When to trigger" section,
+  and `policy: allow_implicit_invocation: false` in `agents/openai.yaml`.
+- `seedance-prompt-25`, `seedance-vfx-prompt`, `seedance-music-video`,
+  `seedream-prompt`, `seed-audio-prompt`: the "Submission boundary" paragraph
+  must not mention a "hash-bound prompt review" or a review stage, and the
+  `seedance-music-video` description must not say the caller "owns review".
+- `seedance-prompt-25-filipino`: the caller-ownership sentence must not say
+  "complete prompt review".
+- Any other synced skill that gains a `prompt-review` reference: remove it.
+  Only the `prompt-review` skill itself may name `prompt-review`.
 
 ## Arguments
 

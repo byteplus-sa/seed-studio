@@ -7,7 +7,7 @@ description: >-
   scene duration into the six-part formula. Cover rap, dance, performance, narrative, abstract, vertical, and custom
   formats. Use for song-driven visual direction, lyric/performance videos, or
   music-video revisions. This prompt-only leaf does not generate media; the caller
-  composes only requested specialist axes and owns review and submission.
+  composes only requested specialist axes and owns submission.
 ---
 
 # Seedance Music Video
@@ -37,10 +37,9 @@ mentioned in prose are relative to this skill directory unless a link says other
 
 ## Submission boundary and failure behavior
 
-The caller owns production authorization, the exact request preflight, and the
-complete hash-bound prompt review. A leaf returns its prompt package without
-loading sibling skills. An explicitly declared orchestrator may coordinate the
-review and submission stages. Missing required inputs remain unresolved; a draft
+The caller owns production authorization and the exact request preflight. A
+leaf returns its prompt package without loading sibling skills. An explicitly
+declared orchestrator may coordinate the submission stage. Missing required inputs remain unresolved; a draft
 or technical success does not establish user approval. Preserve optional timing,
 the three-image sampling default where applicable, and the requested delta.
 

@@ -3,11 +3,12 @@
 > A prompt-first workspace for composing **Lumina-paste-ready prompts** for BytePlus / Volcano Engine Seed models — **Seedance** (video), **Seedream** (images), and **Seed Audio** (audio).
 
 This repository ships agent skills, not generation tooling. You describe what you
-want, the agent composes a production-grade prompt from the skill libraries, runs
-it through `prompt-review`, and hands you a copy-paste block for the Lumina UI.
+want, the agent composes a production-grade prompt from the skill libraries and
+hands you a copy-paste block for the Lumina UI. Want a second opinion? Run
+`/prompt-review` yourself; the agent never runs it on its own.
 
 Generation is optional. If you have `ark-mcp` or `arkcli` connected and explicitly
-ask the agent to generate, it submits the reviewed prompt through that transport
+ask the agent to generate, it submits the prompt you saw through that transport
 after you confirm the model, references, and cost. Without either connected, or
 without that request, it stays prompt-only. The agent never stores credentials or
 writes production files. See
@@ -18,7 +19,7 @@ writes production files. See
 | This repo **is** | This repo **is not** |
 |---|---|
 | Prompt composition skills for Seed-family models | A generation pipeline — you paste prompts into the destination UI, or opt in to a confirmed submit through your own `ark-mcp` / `arkcli` |
-| A review gate (`prompt-review`) for every generation-bound prompt | A renderer — static and motion graphics are out of scope |
+| An optional, user-invoked review (`/prompt-review`) | A renderer — static and motion graphics are out of scope |
 | Chat-first delivery of paste-ready prompt blocks | A 3D or assembly tool — 3D, compositing, and editing are out of scope |
 | Optional local prompt drafts under `projects/` | A production canvas — no stage machinery, no task registry |
 
@@ -27,20 +28,19 @@ writes production files. See
 ```mermaid
 flowchart LR
   A[Brief or directed request] --> B[Prompt skill composition]
-  B --> C[prompt-review gate]
-  C -->|findings| B
-  C -->|clean| D[Copy-paste block in chat]
+  B --> D[Copy-paste block in chat]
   D --> E[Paste into Lumina]
+  D -.->|you run it, optional| C[/prompt-review/]
   D -.->|on request| F[(projects/&lt;name&gt;/prompts/)]
   D -.->|on request, ark-mcp or arkcli connected| G[Confirm, then submit]
 ```
 
 1. The agent routes your request to the relevant skill (grammar, presets,
    dialogue, acting, sheets, audio) and composes the prompt.
-2. `prompt-review` checks the prompt against the workspace rule catalog before
-   handoff; CRITICAL/MAJOR findings are fixed and re-reviewed.
-3. You receive one copy-paste block — prompt text, ordered reference bindings,
+2. You receive one copy-paste block — prompt text, ordered reference bindings,
    and the parameter block. Paste it into Lumina.
+3. Optionally, run `/prompt-review` to check a prompt against the workspace rule
+   catalog. It is manual only and nothing else depends on it.
 4. Drafts are saved locally only when you ask for them.
 
 ## Skills
@@ -48,9 +48,10 @@ flowchart LR
 | Skill | Summary |
 | --- | --- |
 | **brief-intake** | Shape intent-led briefs and treatments; preserve confirmed decisions. |
-| **prompt-review** | Review and fix prompts written for BytePlus generative models (Seedance, Seed Audio, Seedream) against the repo's skill best practices using a sub-agent review pipeline. |
-| **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — reviewed and paste-ready. |
+| **prompt-review** | Manual (`/prompt-review`) review and fix of prompts written for BytePlus generative models (Seedance, Seed Audio, Seedream) against the repo's skill best practices using a sub-agent review pipeline. |
+| **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — paste-ready. |
 | **seedance-prompt-25** | Write production-grade Seedance 2.5 video prompts with the six-part formula, 50-material multimodal referencing, variable-duration staging (4-30s), timestamp pacing, structured editing, extension, keyframes, storyboards, and blockouts. |
+| **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, audio routes, and style presets. |
 | **seedance-prompt-25-filipino** | Write Filipino and Taglish dialogue direction while preserving exact words and register; evidence-based pronunciation hypotheses and opt-in lip-sync audio. |
 | **filipino-micro-drama** | Write Filipino-market micro-drama episode briefs: proven Pinoy formulas, hook/reveal/cliffhanger beats, light cast, authentic settings, and English-dominant Taglish dialogue with subtitle translations. Story material only. |
 | **seedance-prompt-20** | Legacy Seedance 2.0 prompt skill for 4K output (unsupported by 2.5), Fast/Mini speed variants, or lower cost per generation. |
@@ -68,6 +69,7 @@ flowchart LR
 | **seedream-prompt** | Write Seedream prompts for synthesized or edited imagery; exact typography, pricing, CTA, product grids, and logos are out of scope in this workspace. |
 | **seedream-character-sheet** | Write structured Seedream prompts for three-panel character sheets and identity references — the face anchors Seedance uses. |
 | **seedream-location-asset** | Write structured Seedream prompts for cinematic location assets and reusable environment sheets. |
+| **seedream-storyboard** | Write Seedream storyboard prompts from one hero panel to a multi-panel continuity board: sketch-default single-image grid or separate images, element binding, geometry and continuity contract, revision prompts. |
 | **seedream-prop-asset** | Write structured Seedream prompts for prop and product identity sheets: prop threshold, acquisition-first order, hero or multi-view layout, neutral background, one canonical state. |
 | **seed-audio-prompt** | Write structured Seed Audio 1.0 prompts for full-soundscape audio generation including dialogue, music, SFX, and ambience. |
 | **seed-audio-commercial** | Compose dramatic, story-driven audio commercial prompts with a five-act arc, multi-character voice profiles, and commercial SFX/music patterns. |
@@ -94,7 +96,7 @@ seed-prompt-studio/
 ├── AGENTS.md                       # workspace contract for agents
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 29 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 31 prompt-composition skills + sync-skills (maintenance)
 ├── .claude -> .agents              # symlink so Claude Code sees the same skills
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -118,8 +120,9 @@ any supported agent to mirror the 25 allowlisted skill bundles into this repo:
 All three run the same procedure in
 [`.agents/skills/sync-skills/`](.agents/skills/sync-skills/SKILL.md), which only
 runs when invoked explicitly. The local `template-factory`,
-`seed-audio-commercial`, `filipino-micro-drama`, and `seedream-prop-asset` forks
-and all contracts are locally maintained and are never overwritten by a sync. The command previews changes, asks before copying
+`seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
+`seedream-storyboard`, and `seedance-motion-recast` forks and all contracts are
+locally maintained and are never overwritten by a sync. The command previews changes, asks before copying
 unreviewed upstream work, and leaves the result uncommitted for review. A
 scoped run — `/sync-skills seedance-prompt-25` — syncs one skill only. The sync source defaults to a sibling checkout at
 `../ark-director` and can be relocated with `SKILLS_SOURCE`.

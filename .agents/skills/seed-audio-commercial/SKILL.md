@@ -25,7 +25,7 @@ Input: brand, audience, language, cast, story objective, and target duration.
 
 Output: a commercial soundscape prompt with its parameter block, delivered
 paste-ready in chat (saved under `projects/<project>/prompts/` only on
-request), after `prompt-review`.
+request).
 
 ## Procedure and reference loading
 
@@ -42,7 +42,7 @@ otherwise.
 
 ## Submission boundary and failure behavior
 
-The caller owns the handoff: freeze the reviewed prompt, deliver it with its
+The caller owns the handoff: freeze the prompt, deliver it with its
 ordered parameter block, and let the user paste it into the destination UI. A
 leaf returns its prompt package without loading sibling skills. Missing
 required inputs remain unresolved; a delivered prompt is not an approved
@@ -94,9 +94,7 @@ flowchart TD
   G[Brief: brand, product, tone, language] --> H[Story arc design]
   H --> P[Prompt composition: T2A full soundscape]
   P --> V[Validate: char count, safety, format]
-  V --> R[prompt-review gate]
-  R -->|findings| P
-  R -->|clean| HOFF[Handoff: paste-ready prompt + parameter block]
+  V --> HOFF[Handoff: paste-ready prompt + parameter block]
 ```
 
 ### Step 1 — Gather the brief
@@ -197,11 +195,9 @@ Check these constraints before delivering the prompt:
 **Format recommendation**: put `mp3` at `24000` Hz in the parameter block for
 commercials; it keeps file sizes small for the destination workflow.
 
-### Step 5 — Review and handoff
+### Step 5 — Handoff
 
-Run `prompt-review` on the exact prompt and parameter block; resolve
-CRITICAL/MAJOR findings and re-review changed prompts. Then deliver the
-paste-ready block in chat: the prompt, the parameter block (`format: mp3`,
+Deliver the paste-ready block in chat: the prompt, the parameter block (`format: mp3`,
 `sample_rate: 24000`), and the story-arc summary (one line per act). Save a
 draft under `projects/<project>/prompts/` only on explicit request.
 
@@ -216,5 +212,5 @@ Review the actual content and rights context. Correct a legitimate issue with a
 recorded change contract, or use the destination's support/appeal path when the
 reason is unclear. Preserve the user's requested language unless a translation
 is explicitly requested or agreed. Rephrasing to disguise content or bypass a
-filter is not a remediation strategy. A revised prompt gets a fresh
-prompt-review pass; no wording promises a guaranteed pass.
+filter is not a remediation strategy. Show the user the revised prompt; no
+wording promises a guaranteed pass.

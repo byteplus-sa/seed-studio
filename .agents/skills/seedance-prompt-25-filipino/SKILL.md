@@ -91,7 +91,7 @@ models because of an optical style or a pronunciation concern. Return an
 unsupported or unverified requirement to the caller instead of inventing support.
 
 The caller owns production authorization, approved references, the exact request
-hash, and complete prompt review. New text is a draft until the user accepts it;
+hash, and handoff. New text is a draft until the user accepts it;
 a proposed simpler line does not replace a locked line. Separate audio, if
 requested, must preserve the same approved words in both prompts and fit the
 video duration. Unknown submission outcomes are reconciled, not duplicated.

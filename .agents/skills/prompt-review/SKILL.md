@@ -1,25 +1,28 @@
 ---
 name: prompt-review
 description: >-
-  Review BytePlus Seedance, Seedream, and Seed Audio prompts with a sub-agent
-  review pipeline and explicit model, operation, change contract, and request
-  hash. Return rule findings and complete or incomplete status; fix and re-review
-  changed prompts before generation. Use for video, VFX, Filipino dialogue,
+  Manual review (/prompt-review) of BytePlus Seedance, Seedream, and Seed Audio
+  prompts with a sub-agent review pipeline and explicit model, operation, change
+  contract, and request hash. Return rule findings and complete or incomplete
+  status; fix and re-review changed prompts. Use for video, VFX, Filipino dialogue,
   image/character/location/prop/UI/card/storyboard prompts, music, SFX, or ambience.
-  Trigger when asked to review, QA, validate, or lint prompts, or before submitting
-  newly authored generation prompts. Exclude manifest-only edits, generated-media
-  review, and frozen snapshots unless re-review is explicitly requested.
+  Runs only when the user asks to review, QA, validate, or lint prompts. Exclude
+  manifest-only edits, generated-media review, and frozen snapshots unless
+  re-review is explicitly requested.
+disable-model-invocation: true
 ---
 
 # Prompt Review
 
-A quality gate for prompts. The main agent writes prompts, a sub-agent reviews them
-against the repo's skill best practices, and the main agent fixes any issues found.
+An optional, user-invoked review for prompts. When the user runs `/prompt-review`,
+a sub-agent reviews the named prompts against the repo's skill best practices and
+the main agent fixes any issues found. Nothing else in this workspace runs or
+waits on it.
 
 ## Core concept
 
 ```
-Main agent writes/updates prompts
+User invokes /prompt-review on one or more prompts
   → identify each prompt's type (Seedance 2.5, Seed Audio, Seedream, etc.)
   → load the matching review checklist from references/review-checklists.md
   → spawn a sub-agent: give it the prompt text + the checklist
@@ -30,10 +33,9 @@ Main agent writes/updates prompts
 
 ## When to trigger
 
-- After writing or updating any prompt for a BytePlus generative model.
-- Before the user pastes a generation prompt into the destination UI (Seedance, Seed Audio, Seedream).
-- When the user asks to review, check, QA, validate, or lint prompts.
-- After revising a prompt based on generated output feedback.
+Only when the user invokes `/prompt-review` or explicitly asks to review, check,
+QA, validate, or lint prompts. Never run it on your own initiative, after
+writing a prompt, or as a step of another workflow.
 
 Do not trigger for:
 - Generated-media viewing (this workspace delivers prompts only; outputs are
@@ -59,8 +61,8 @@ evidence leaves a production review `incomplete`; request it from the caller.
 Filename/content inference is a draft-only fallback with an explicit warning.
 
 For the same request, use generation rules for generate, 2.5 edit rules for a
-2.5 edit, legacy VFX rules for a supported 2.0 edit, and extension rules for
-extend. Language and named-axis checklists are additive only when applicable.
+2.5 edit, recast rules for a 2.5 recast (motion transfer), legacy VFX rules for
+a supported 2.0 edit, and extension rules for extend. Language and named-axis checklists are additive only when applicable.
 A localized change contract overrides generic preservation heuristics for items
 under `may_change`; keep all `must_preserve` items unchanged.
 
@@ -73,6 +75,7 @@ Use explicit input first; filenames below are fallback hints, not authority:
 | Seedance 2.5 video | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-25` |
 | Seedance 2.0 video (4K/Fast/Mini) | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-20` |
 | Seedance 2.5 edit | explicit model + edit operation | Seedance 2.5 edit section |
+| Seedance 2.5 recast (motion transfer) | explicit model + recast operation | Seedance 2.5 recast section + `seedance-motion-recast` |
 | Seedance VFX (video-to-video edit, legacy path) | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-vfx-prompt` |
 | Seedance Filipino dialogue | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-25` + `seedance-prompt-25-filipino` |
 | Seed Audio (dialogue/music/SFX/ambience) | `prompt_dlg_*`, `prompt_mus_*`, `prompt_sfx_*`, `prompt_amb_*`, `prompt_mix_*` | `seed-audio-prompt` |
@@ -82,7 +85,7 @@ Use explicit input first; filenames below are fallback hints, not authority:
 | Seedream prop asset | `prompt_prop_*` | `seedream-prop-asset` |
 | Seedream screen UI reference | `prompt_screen_*` | `seedream-prompt` (general image rules apply) |
 | Seedream brand/title card | `prompt_card_*` | `seedream-prompt` (general image rules apply) |
-| Storyboard prompts | `prompt_storyboard_*` (multi-panel) | `template-factory` (storyboard prompts) |
+| Seedream storyboard | `prompt_sNN_kf*`, `prompt_storyboard_*` (multi-panel) | `seedream-storyboard`; `template-factory` (storyboard prompts) |
 | Seedance music video | `prompt_sNN_shNNN_tNN_vNN.md` (song-driven) | `seedance-music-video` |
 
 Deterministic HTML-entrypoint screens, cards, posters, product layouts, and
@@ -106,14 +109,12 @@ compliance audit runs **before Stage 1** — if it returns CRITICAL, stop the pi
 
 ### Step 1 — Collect prompts to review
 
-Gather all prompt files that were written or updated in the current session. These are
-the files with the `prompt_` prefix that sit beside their media asset. Read each file
-to get its full text.
+Review the prompts the user points to: pasted text, named `prompt_*.md` files, or
+the prompt blocks most recently delivered in chat. If it is unclear which prompts
+are meant, ask. Read each file to get its full text.
 
-If reviewing prompts that have not yet been saved to files (drafted inline in
-working copy), extract the prompt text from the working copy. Before handoff,
-freeze the accepted text as its immutable `prompt_*.md` snapshot (when the user
-requested saved drafts) or deliver it in chat.
+If the prompts have not been saved to files (drafted inline in chat), extract the
+prompt text from the conversation. Save a snapshot only when the user asks for one.
 
 ### Step 2 — Detect prompt type and load checklist
 
@@ -168,7 +169,7 @@ issues and suggest fixes.
 ## Dispatch and request identity
 prompt_type: <explicit type>
 model: <resolved model>
-operation: <generate/edit/extend>
+operation: <generate/edit/extend/recast>
 language: <requested language>
 requested_axes: <named axes>
 request_sha256: <canonical request hash>
@@ -276,16 +277,16 @@ If a sub-agent returns an empty, truncated, or content-free result (or findings
 without a complete hash-bound record per prompt), record `reviewer_status:
 incomplete` and retry the same batch once (max 1 retry).
 If the retry is still unusable, run the review inline against the same
-checklists. If evidence is still missing, retain incomplete status and block
-submission; never treat an empty sub-agent result as passed.
+checklists. If evidence is still missing, retain incomplete status and report it
+to the user; never treat an empty sub-agent result as passed.
 
 When the sub-agent returns findings:
 
 1. **Read all findings** for each prompt.
 2. **Triage by severity:**
-   - CRITICAL issues — must fix before any generation task is submitted.
-   - MAJOR issues — must resolve before submission. A user-requested creative
-     change requires a new applicability decision and review, not a fake pass.
+   - CRITICAL issues — fix; the prompt is likely to fail or drift if used as is.
+   - MAJOR issues — resolve. A user-requested creative change requires a new
+     applicability decision and review, not a fake pass.
    - MINOR issues — fix opportunistically; surface to the user.
 3. **Deduplicate** — if multiple sub-agents found the same issue (e.g., a universal
    principle violation), merge into one finding.
@@ -331,9 +332,9 @@ Summarize the review results:
 ### Remaining issues (if any)
 - <prompt file>: <issue> — <reason not fixed>
 
-### Ready for generation
-- <prompt file> — READY
-- <prompt file> — BLOCKED (<reason>)
+### Verdict
+- <prompt file> — READY TO PASTE
+- <prompt file> — NEEDS ATTENTION (<reason>)
 ```
 
 ## Multi-prompt review
@@ -445,10 +446,9 @@ organized by prompt type with a table of contents at the top for quick navigatio
 
 ## Compose with other skills
 
-- After a production prompt passes, return its snapshot path, request hash,
-  reference bindings and review result to the caller. The caller freezes the
-  reviewed prompt and hands it off paste-ready; generated-media review happens
-  in the destination workflow.
+- After a prompt passes, return its snapshot path (if one exists), request hash,
+  reference bindings and review result to the user; generated-media review
+  happens in the destination workflow.
 - For end-to-end production coordination, say so: it is out of scope in this workspace.
-- This skill is called by the main agent during prompt-writing work; it does not call
-  generation tools itself.
+- This skill is user-invoked only and stands alone; it does not call generation
+  tools itself.

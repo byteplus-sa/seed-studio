@@ -1,18 +1,18 @@
 # Generation transport (optional)
 
 Load this contract only when the user explicitly asks to generate, submit, run,
-or render a prompt. Every other request stays prompt-only: deliver the reviewed
+or render a prompt. Every other request stays prompt-only: deliver the
 block in chat.
 
 ## Modes
 
 | Mode | When | Result |
 | --- | --- | --- |
-| Prompt-only (default) | No generation request, or no usable transport | Reviewed copy-paste block for Lumina |
-| Prompt + generation | The user asks for generation and a transport is usable | Reviewed prompt, then a confirmed submit and job status |
+| Prompt-only (default) | No generation request, or no usable transport | Copy-paste block for Lumina |
+| Prompt + generation | The user asks for generation and a transport is usable | Prompt shown to the user, then a confirmed submit and job status |
 
 Composition is identical in both modes. Generation never changes how a prompt is
-written or reviewed; it only adds a submit step after the review gate.
+written; it only adds a submit step after the prompt is delivered.
 
 ## Detect the transport
 
@@ -35,10 +35,9 @@ submit may still have created a task, so check job status before any retry.
 
 ## Gates before every submit
 
-1. `prompt-review` is complete with no CRITICAL/MAJOR findings, and its
-   `request_sha256` is recorded.
-2. The submitted prompt and reference order are byte-identical to the reviewed
-   request. Any change means a re-review.
+1. The user has been shown the exact prompt and the ordered references.
+2. The submitted prompt and reference order are byte-identical to what the
+   user saw. Any change means showing it again.
 3. Show a submit summary and wait for an explicit yes: transport, model,
    operation, duration/resolution/count, ordered references, and cost when
    known (`arkcli-pricing`, or capabilities output). Count every variation.
@@ -64,8 +63,8 @@ submit may still have created a task, so check job status before any retry.
 Report task id, status, and the result reference in chat. Save nothing by
 default. On explicit request, write a provenance record to
 `projects/<project>/generations/<asset-stem>.md` with transport, model, task
-id, date, and the prompt file plus `request_sha256`. Never store signed URLs,
+id, date, and the prompt file. Never store signed URLs,
 keys, or account data. Download media only when asked.
 
-A moderation rejection is evidence to diagnose. Revise, re-review, and confirm
-again before resubmitting.
+A moderation rejection is evidence to diagnose. Revise, show the revised
+prompt, and confirm again before resubmitting.

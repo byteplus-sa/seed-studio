@@ -202,8 +202,6 @@ keeping geometry, motion, camera, framing, timing, and cuts exactly as they are.
   formula; this skill supplies the Blender-source edit block only.
 - `seedance-vfx-prompt` — general edit taxonomy and the legacy 2.0 path when
   the user explicitly needs 4K or Fast/Mini.
-- `prompt-review` — the gate for every prompt before handoff; missing reviewer
-  output is incomplete.
 
 ## Self-check
 
@@ -217,4 +215,3 @@ keeping geometry, motion, camera, framing, timing, and cuts exactly as they are.
 8. People carry grounding and face-protection locks.
 9. Source is within the duration ceiling; longer sources are trimmed or split on shot boundaries by the user.
 10. The prompt contains the edit block, not a production workflow or generation instructions.
-11. `prompt-review` has passed before handoff.

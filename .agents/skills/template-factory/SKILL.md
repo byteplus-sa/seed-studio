@@ -3,8 +3,8 @@ name: template-factory
 description: >-
   Reverse-engineer a reference video into a Lumina-ready prompt package: a
   structured video breakdown, Seedream element prompts (characters, locations,
-  props), storyboard prompts, and Seedance 2.5 video prompts, each passed
-  through prompt-review. Prompt-only — never generates media, uploads files,
+  props), storyboard prompts, and Seedance 2.5 video prompts, delivered as
+  paste-ready blocks. Prompt-only — never generates media, uploads files,
   or submits tasks. Use when the user provides a video or keyframes to
   replicate its style, composition, and grammar; adapt it to new inputs; or
   build a reusable template recipe.
@@ -18,8 +18,8 @@ analysis, Seedream element prompts, storyboard prompts, and Seedance 2.5
 prompts — delivered as copy-paste blocks for Lumina.
 
 This skill is a **declared orchestrator**: it sequences the prompt-composition
-leaf skills and the `prompt-review` gate. It never generates media, never
-uploads files, and never submits a task.
+leaf skills. It never generates media, never uploads files, and never submits
+a task.
 
 ## What one run produces
 
@@ -58,9 +58,6 @@ explicit unknowns per [frame-extraction.md](references/frame-extraction.md).
   when the user requests saved drafts.
 - Never infer approval. A completed draft is `review`; only the user approves
   the breakdown, the element set, and the final prompts.
-- **Every prompt this factory hands off — element sheet, storyboard, or
-  Seedance — must pass the `prompt-review` gate first.** Missing reviewer
-  output is incomplete.
 - Replicate style, composition, and grammar. Do not clone copyrighted
   footage. De-identify real people in analysis.
 - Deliver prompts in chat by default; save drafts only on explicit request.
@@ -153,8 +150,7 @@ does not expose.
 
 Deliver each prompt as its own fenced copy-paste block, labeled with its
 element or shot id, followed by the ordered reference list and the parameter
-block. Run `prompt-review` on every block before handoff and report the
-review outcome. Optionally produce the reusable recipe against
+block. Optionally produce the reusable recipe against
 `template-schema.json`: `locked_grammar`, `replaceable_inputs`,
 `adaptation_rules`. Never bundle source media, identities, brands, or signed
 URLs into the recipe.
@@ -173,7 +169,6 @@ URLs into the recipe.
 | Filipino / Tagalog dialogue | `seedance-prompt-25-filipino` |
 | Acting, camera, lens, lighting, pacing axes | `seedance-acting-console`, `seedance-{camera,lens,lighting,pacing}-presets` |
 | Grade sentence | `color-grade-palettes` |
-| Prompt quality gate | `prompt-review` |
 | Exact typography, UI, logo, poster, product layout | Out of scope in this workspace — say so |
 
 ## Revisions

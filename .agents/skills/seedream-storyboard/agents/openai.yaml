@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedream Storyboard"
+  short_description: "Write Seedream storyboard panel and grid prompts"
+  default_prompt: "Use $seedream-storyboard to write the Seedream storyboard prompts for this scene."

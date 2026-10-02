@@ -54,8 +54,7 @@ Seedance prompts depend on them.
 - Bind the approved breakdown revision's SHA-256 as the motion review's
   `source_breakdown_sha256`.
 - The imperative wording fills the Seedance Action slot; it is **prompt text**
-  and must follow positive-only directing principles and pass the
-  `prompt-review` gate.
+  and must follow positive-only directing principles.
 - Preserve the approved breakdown revision; merge valid motion into a new
   revision. If motion review proposes changed timing or action, re-present the
   affected decisions rather than silently changing an approved breakdown.
