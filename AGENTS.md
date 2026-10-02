@@ -1,9 +1,9 @@
 # AGENTS.md — seed-prompt-studio
 
 Prompt-first workspace for composing Lumina-paste-ready prompts for BytePlus
-Seed-family models (Seedance, Seedream, Seed Audio). It writes and reviews
-prompts. Generation is optional: only when the user explicitly asks and has
-`ark-mcp` or `arkcli` connected.
+Seed-family models (Seedance, Seedream, Seed Audio). It writes prompts; review
+is a manual `/prompt-review` the user runs. Generation is optional: only when
+the user explicitly asks and has `ark-mcp` or `arkcli` connected.
 
 ## Scope and authority
 
@@ -100,6 +100,9 @@ modes and examples into focused same-skill references.
 
 ## Prompt invariants
 
+- Never run `prompt-review` or spawn a review sub-agent on your own. Review
+  happens only when the user invokes `/prompt-review`; it never gates handoff
+  or generation, and no skill or contract may require it or name it as a step.
 - Freeze the exact prompt text before handoff. A generation submit must match
   the prompt the user saw byte for byte.
 - Source video is inspected by an agent video pass when the client can watch
@@ -147,8 +150,8 @@ never revert or discard work you did not create.
 ## Verification
 
 Prompt QA is optional: the user runs `/prompt-review` when they want it. For
-repository changes run `git diff --check`; this workspace ships no code, so unit, lint, type, and
-build checks are not applicable.
+repository changes run `git diff --check`; this workspace ships no code, so
+unit, lint, type, and build checks are not applicable.
 
 Shared skills are maintained in an upstream source checkout and pulled in with
 `/sync-skills` in Claude Code or opencode, or `$sync-skills` in Codex (see README
