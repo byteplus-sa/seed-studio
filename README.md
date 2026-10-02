@@ -94,10 +94,11 @@ flowchart LR
 ```
 seed-prompt-studio/
 ├── AGENTS.md                       # workspace contract for agents
+├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
 │   └── skills/                     # 31 prompt-composition skills + sync-skills (maintenance)
-├── .claude -> .agents              # symlink so Claude Code sees the same skills
+├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
 └── projects/                       # local drafts (save-on-request; never a default Git staging target)
