@@ -18,9 +18,11 @@ Use this skill when the user wants:
 
 This skill is designed to partner with:
 - `seedream-prompt` for general Seedream image prompting
+- `seedream-character-sheet-cleanup` to write a Seedream edit prompt that
+  removes an extra readable face from a generated sheet
 
-Sheet cleanup and local image edits are out of scope in this workspace: if a
-generated sheet needs a fix, regenerate it from a revised prompt.
+Other image edits are out of scope here: if a generated sheet needs a different
+fix, regenerate it from a revised prompt.
 
 Do **not** use this skill for:
 - one-off portraits

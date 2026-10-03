@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedream Character Sheet Cleanup"
+  short_description: "Write Seedream edit prompts that leave one readable face on a character sheet"
+  default_prompt: "Use $seedream-character-sheet-cleanup to write a Seedream edit prompt that removes the extra face from this character sheet."

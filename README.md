@@ -68,6 +68,7 @@ flowchart LR
 | **seedance-vfx-prompt** | Write structured video-to-video VFX prompts with the `@Video N` / `@Image N` reference grammar, VFX taxonomy, relighting, layered space, and timing triggers. |
 | **seedream-prompt** | Write Seedream prompts for synthesized or edited imagery; exact typography, pricing, CTA, product grids, and logos are out of scope in this workspace. |
 | **seedream-character-sheet** | Write structured Seedream prompts for three-panel character sheets and identity references — the face anchors Seedance uses. |
+| **seedream-character-sheet-cleanup** | Write a Seedream edit prompt that removes the head from the full-body panels so the close-up is the only readable face; non-destructive, with an acceptance checklist. |
 | **seedream-location-asset** | Write structured Seedream prompts for cinematic location assets and reusable environment sheets. |
 | **seedream-storyboard** | Write Seedream storyboard prompts from one hero panel to a multi-panel continuity board: sketch-default single-image grid or separate images, element binding, geometry and continuity contract, revision prompts. |
 | **seedream-prop-asset** | Write structured Seedream prompts for prop and product identity sheets: prop threshold, acquisition-first order, hero or multi-view layout, neutral background, one canonical state. |
@@ -122,7 +123,8 @@ All three run the same procedure in
 [`.agents/skills/sync-skills/`](.agents/skills/sync-skills/SKILL.md), which only
 runs when invoked explicitly. The local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
-`seedream-storyboard`, and `seedance-motion-recast` forks and all contracts are
+`seedream-storyboard`, `seedream-character-sheet-cleanup`, and
+`seedance-motion-recast` forks and all contracts are
 locally maintained and are never overwritten by a sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result
 uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs

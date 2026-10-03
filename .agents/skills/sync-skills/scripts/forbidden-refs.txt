@@ -12,7 +12,6 @@
 \bblender-(animation-rigging|compositing-nodes|geometry-nodes|modeling-modifiers|physics-simulation|python-scripting|scene-rendering|shader-nodes)\b
 \bshowcase-html\b
 \blark-showcase-aigc\b
-\bseedream-character-sheet-cleanup\b
 \bseedream-edit\b
 \bhtml-graphic-render\b
 \bfilm-production\b
