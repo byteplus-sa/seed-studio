@@ -22,9 +22,10 @@ sync:
 
 - `template-factory` and `seed-audio-commercial` — deliberate local forks
   whose content diverges upstream.
-- `filipino-micro-drama`, `seedream-prop-asset`, `seedream-storyboard`, and
-  `seedance-motion-recast` — prompt-only local forks of upstream skills, with
-  generation and orchestrator references removed.
+- `filipino-micro-drama`, `seedream-prop-asset`, `seedream-storyboard`,
+  `seedream-character-sheet-cleanup`, and `seedance-motion-recast` —
+  prompt-only local forks of upstream skills, with generation and orchestrator
+  references removed.
 - `sync-skills` — this maintenance skill is local.
 - Everything under `.agents/contracts/` — locally maintained variants.
 - Every skill not on the allowlist.

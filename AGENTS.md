@@ -64,6 +64,7 @@ requested choreography needs more.
 | Animation styles / Blender-video edit prompts | `seedance-animation-styles`, `seedance-graybox-world` |
 | Motion design / music video / restoration / VFX edit prompts | `seedance-motion-design`, `seedance-music-video`, `seedance-restoration`, `seedance-vfx-prompt` |
 | Seedream image prompts, character sheets, location plates, prop sheets | `seedream-prompt`, `seedream-character-sheet`, `seedream-location-asset`, `seedream-prop-asset` |
+| Seedream edit prompt that leaves one readable face on a character sheet | `seedream-character-sheet-cleanup` |
 | Seed Audio prompts | `seed-audio-prompt` |
 | Audio commercial prompts (story arc, cast, tagline) | `seed-audio-commercial` |
 | UGC ad modes / UGC motion presets | `ugc-ad-modes`, `ugc-motion-presets` |
@@ -157,5 +158,6 @@ Shared skills are maintained in an upstream source checkout and pulled in with
 `/sync-skills` in Claude Code or opencode, or `$sync-skills` in Codex (see README
 Maintenance). The command never overwrites the local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
-`seedream-storyboard`, and `seedance-motion-recast` forks and leaves its changes
+`seedream-storyboard`, `seedream-character-sheet-cleanup`, and
+`seedance-motion-recast` forks and leaves its changes
 uncommitted for review.
