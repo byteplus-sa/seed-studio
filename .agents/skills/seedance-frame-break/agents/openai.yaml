@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Frame Break"
+  short_description: "Write Seedance 2.5 frame-break pop-out prompts where the subject bursts over black bars"
+  default_prompt: "Use $seedance-frame-break to write a pop-out prompt where my character bursts out of the black bars, with a scenic backdrop."

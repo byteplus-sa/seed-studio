@@ -57,6 +57,7 @@ flowchart LR
 | **seedance-prompt-20** | Legacy Seedance 2.0 prompt skill for 4K output (unsupported by 2.5), Fast/Mini speed variants, or lower cost per generation. |
 | **seedance-acting-console** | Turn playable motives and tactics into observable acting cues appropriate to framing, visibility and intensity. |
 | **seedance-animation-styles** | Write Seedance animation prompts for claymation, needle felt, wood puppets, toy miniatures, rubber hose, painterly 2D, cubist ink, stylized 3D, silicone creatures, and wax crayon. |
+| **seedance-frame-break** | Write Seedance 2.5 frame-break pop-out prompts: two fixed black bars with the subject's limbs drawn over them, four timed break-out stages, product-hero variant, failure repairs, and a user-run acceptance check. |
 | **seedance-camera-presets** | Turn a named camera move (dolly, pan, orbit, crane, tracking, handheld, FPV, aerial, bullet time, dolly zoom, whip pan, one-take, static) into a drop-in Camera block. |
 | **seedance-graybox-world** | Write Seedance edit prompts for Blender-rendered videos (playblasts, graybox/previz, finished renders); change appearance while preserving Blender's motion, camera, and timing. |
 | **seedance-lens-presets** | Translate a lens, focal length, aperture, or sensor request into a canonical visible-result phrase for Seedance prompts or Seedream style. |
@@ -98,7 +99,7 @@ seed-prompt-studio/
 ├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 31 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 33 prompt-composition skills + sync-skills (maintenance)
 ├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -123,8 +124,8 @@ All three run the same procedure in
 [`.agents/skills/sync-skills/`](.agents/skills/sync-skills/SKILL.md), which only
 runs when invoked explicitly. The local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
-`seedream-storyboard`, `seedream-character-sheet-cleanup`, and
-`seedance-motion-recast` forks and all contracts are
+`seedream-storyboard`, `seedream-character-sheet-cleanup`,
+`seedance-motion-recast`, and `seedance-frame-break` forks and all contracts are
 locally maintained and are never overwritten by a sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result
 uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs
