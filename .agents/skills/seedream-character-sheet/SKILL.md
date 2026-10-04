@@ -20,9 +20,8 @@ This skill is designed to partner with:
 - `seedream-prompt` for general Seedream image prompting
 - `seedream-character-sheet-cleanup` to write a Seedream edit prompt that
   removes an extra readable face from a generated sheet
-
-Other image edits are out of scope here: if a generated sheet needs a different
-fix, regenerate it from a revised prompt.
+- `seedream-prompt` (interactive image editing mode) to write edit prompts for
+  other local post-generation fixes
 
 Do **not** use this skill for:
 - one-off portraits
@@ -317,8 +316,9 @@ Recommended sequence:
 1. Use this skill to write the character-sheet prompt.
 2. Generate the sheet with Seedream.
 3. Inspect the body panels for extra readable faces.
-4. If a body panel still shows an extra readable face, regenerate from a
-   revised prompt; cleanup tools are out of scope in this workspace.
+4. If a body panel still shows an extra readable face, optionally compose
+   with `seedream-character-sheet-cleanup` for the edit prompt, or regenerate
+   from a revised prompt.
 5. Save each generated result under `elements/<character-id>/` beside `character.md`.
 6. Record the approved filename as `selected_variant` in `character.md`; keep reference images in the same element folder using the `ref_<NN>_...` convention.
 

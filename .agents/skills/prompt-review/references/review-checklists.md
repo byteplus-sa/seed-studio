@@ -12,6 +12,7 @@ sub-agent along with the prompt text.
 - [Seedance VFX (video-to-video)](#seedance-vfx-video-to-video)
 - [Seedance 2.5 edit (video-to-video)](#seedance-25-edit-video-to-video)
 - [Seedance 2.5 recast (motion transfer)](#seedance-25-recast-motion-transfer)
+- [Seedance 2.5 restyle](#seedance-25-restyle)
 - [Seedance Filipino dialogue](#seedance-filipino-dialogue)
 - [Seed Audio](#seed-audio)
 - [Seedream image generation](#seedream-image-generation)
@@ -75,6 +76,22 @@ change the production policy. Source metadata: `rule-provenance.json`.
 10. **@tag references.** All project Elements (characters, locations, props) are
     referenced by their locked `@tag` and bound to the correct `@Image N` / `@Video N`
     / `@Audio N` index.
+
+11. **Reference-derived talent is distinct.** When a template came from a
+    competitor or category reference, character descriptors do not reproduce
+    the reference performer's distinctive combination of face, hair, wardrobe
+    and styling. Keep the role and staging; change the identity.
+
+12. **Product descriptors match the packshot.** Every product cue in the prompt
+    (pack type, size, colour, cap, label layout) agrees with the bound official
+    product reference. A descriptor inherited from the reference ad's product
+    fails.
+
+13. **No invited copy or marks.** The prompt does not quote taglines, captions,
+    slogans or source-brand names, and does not ask the model to render readable
+    brand text or logos that a post-production overlay or a supplied official
+    asset should provide. Words like "logo", "tagline" or "text reads" are
+    deliberate only.
 
 ---
 
@@ -289,9 +306,12 @@ whose feature is absent (no references → skip material mapping).
    extend` — `edit_video` is 2.0-only and is rejected).
 2. `[Source Video Role]` declares `@Video 1` as the sole editing master and
    lists what it defines (subjects, scene, actions, camera, event order).
-3. `[Target Material Role]` present iff references are used: each `@Image N`
-   mapped to one target; "Do not use its background/people" present;
-   single-person sheets directed to use the close-up panel only.
+3. `[Target Material Role]` (or `[Target Reference Role]` in an object swap)
+   present iff references are used: each `@Image N` mapped to one target, and
+   the image's unowned content excluded ("Do not use its background/people").
+   Exempt what the target class owns: a character reference owns its person, a
+   location reference owns its background. Single-person sheets directed to
+   use the close-up panel only.
 4. `[Edit Scope]` states what changes and, for what must not change, a positive
    "exactly one <subject> — never a second or duplicated copy" guard.
 5. `[Content to Preserve]` lists identity/motion/timing/camera/lighting to keep.
@@ -330,6 +350,10 @@ whose feature is absent (no references → skip material mapping).
 
 ### Object swap (only when one named element is replaced)
 
+Source skill: `seedance-object-swap`. Object swaps use a muted master
+(V1 below), so audio items 10–12 are N/A; the silent `[Audio]` line is
+correct.
+
 16. **Residual original (`swap.residual_original`).** The original object is
     identified by observable descriptors (position, colour, material, who holds
     or wears it) and a positive guard states that it is fully replaced in every
@@ -344,10 +368,11 @@ whose feature is absent (no references → skip material mapping).
 
 18. **Contact and preservation.** Each grip, mouth contact, occlusion and
     set-down window is listed with its approximate time; hands, faces,
-    accessories, dialogue and lip sync stay under `[Content to Preserve]`. A
-    single-character swap without confirmed consent for the target likeness and
-    the retained source performer is CRITICAL. Swapping several people or the
-    whole cast belongs to the recast section below.
+    accessories and mouth movement stay under `[Content to Preserve]`. Swapping
+    several people or the whole cast belongs to the recast section below.
+
+19. **Video-to-video inputs.** Apply the shared items under
+    [Video-to-video inputs](#video-to-video-inputs-swap-recast-restyle).
 
 ---
 
@@ -399,10 +424,11 @@ and record why.
    person count per cut is stated, background extras are given as a count or
    density, and no additional people appear. Missing either guard is MAJOR.
 
-6. **Audio route (`recast.audio_route`).** The prompt states one audio route:
-   source dialogue kept (separated `@Audio 1` or the video's track), regenerated
-   dialogue or sound, music only, or silent for post. Lip-sync expectations agree
-   with that route. An unstated route is MAJOR.
+6. **Audio route (`recast.audio_route`).** The prompt's audio block states a
+   silent output with sound added in post, and the package records one
+   post-audio route (original, new, mixed or re-voiced) with lip-sync QA when
+   someone speaks on screen. An unstated route is MAJOR. Native audio appears
+   only as a recorded, user-requested exception for the named take.
 
 7. **No overlay text.** No captions, taglines, CTAs, end cards or readable brand
    copy are requested (Universal item 13). Source on-screen text has a stated
@@ -417,11 +443,90 @@ and record why.
    references above the recommended range, is MAJOR unless the prompt notes
    the trade-off; suggest splitting into shots and assembling in post.
 
-9. **Real-person consent.** The package notes the user's confirmed consent for
-   every real likeness in a target reference and every identifiable source
-   performer whose motion is kept. A creative choice never implies consent. A
-   missing confirmation is CRITICAL and blocks the prompt; do not suggest
-   wording that routes around a provider rejection.
+9. **Video-to-video inputs.** Apply the shared items under
+   [Video-to-video inputs](#video-to-video-inputs-swap-recast-restyle).
+
+### Video-to-video inputs (swap, recast, restyle)
+
+Shared by the object swap items, the recast section and the restyle section.
+Policy source: the
+[video-to-video inputs contract](../../../contracts/video-to-video-inputs.md).
+
+V1. **Muted source (`v2v.muted_source`).** `@Video 1` is the muted master,
+    `generate_audio` is `false`, and no `@Audio` binding is present, unless the
+    user explicitly requested native audio for this take and the package notes
+    that exception. A source with audio bound as `@Video 1`, or a package with
+    no post-audio route, is MAJOR. A source video that shows a person is bound
+    as an `asset://` video; a raw upload of one is rejected by the provider, so
+    flag it as MAJOR.
+
+V2. **Virtual Portrait identities (`v2v.virtual_portrait_identity`).** Every
+    realistic human likeness (a target character, an AI avatar, or a performer
+    in the source) is recommended for Virtual Portrait upload and bound as an
+    `asset://` reference by binding position, never by asset ID. A raw face or
+    character image is MAJOR. A real, identifiable person as a target without
+    the user's confirmed consent is CRITICAL and blocks the prompt, per the
+    [production policy](../../../contracts/production-policy.md).
+
+V3. **Source rights.** The package notes the user's confirmed rights for the
+    footage and the people in it. A missing confirmation is CRITICAL. Do not
+    suggest wording that routes around a provider rejection.
+
+---
+
+## Seedance 2.5 restyle
+
+Source skill: `seedance-restyle`.
+
+Apply "Universal — all prompts", the general Seedance 2.5 reference items and,
+for the edit route, Seedance 2.5 edit items 1, 2, 4 and 5. Edit item 3 is
+replaced by restyle item 3 (`[Style Reference Role]`, `[Identity Anchors]`);
+edit item 9 is N/A because the photoreal face line contradicts drawn and
+crafted styles (use it only for a capture look); edit items 10–12 are N/A
+because the output is silent (V1). A restyle keeps the source's subjects,
+layout, actions, camera, cuts and timing and changes only the rendering
+medium. Mark N/A any item whose feature is absent and record why.
+
+1. **Content preserved (`restyle.content_preserved`).** The prompt pins the
+   subject count, observable subject descriptors with identity cues, key props
+   and set layout from the content inventory, and keeps poses, camera, cuts and
+   timing with `@Video 1`. Introducing, removing or replacing a subject is
+   CRITICAL; that request belongs to Object Swap or Motion Transfer.
+
+2. **Medium lock.** One style applies to people, props, set, sky and effects,
+   and nothing is left photographic unless the style is a capture look. A
+   partial or conflicting style block is MAJOR.
+
+3. **Style-only reference (`restyle.style_reference_only`).** Each style image
+   supplies only medium, palette, line, texture and light quality and excludes
+   its subjects, layout and characters. A style image without that exclusion
+   is MAJOR. Studio, artist or franchise names, or frames from copyrighted
+   productions, are CRITICAL.
+
+4. **Identity anchors.** Anchors, when used, are Virtual Portraits designed in
+   the target medium and mapped to a source subject by observable descriptor.
+   A photoreal anchor under a drawn or crafted style is MAJOR.
+
+5. **Cadence and text.** Stepped styles state that beat poses still land.
+   Source text surfaces become abstract shapes; no lettering is requested.
+
+6. **Route and limits.** The operation matches the route the user chose and
+   what the destination UI offers (`model.supported_mode`); an unverified route is
+   labeled provisional and the request is a 480p probe. Route A uses 1–5
+   images; Route B sets the whole-second source duration and ratio.
+
+7. **Same place.** A restyle keeps the source's place: the background is
+   restyled through an environment image of that place, or left as it is.
+   Naming a different location (a city street becoming a seaside village) is
+   MAJOR unless the user asked for one. A scene replacement or style word that
+   only tells the model to keep the source layout for the background is likely
+   to leave it photographic (probed); flag it MAJOR when a whole-frame restyle
+   is requested. Keeping positions for the subject and the furniture they use is
+   correct. A restyle that intentionally keeps the original background
+   photographic is N/A.
+
+8. **Video-to-video inputs.** Apply the shared items under
+   [Video-to-video inputs](#video-to-video-inputs-swap-recast-restyle).
 
 ---
 
@@ -1184,18 +1289,23 @@ Source skill: `seedream-prop-asset`
 
 ### Layout
 
-3. **Layout declared.** Single hero view by default; a two- or three-panel sheet
-   only for multi-side, large, mechanical, or small-detail objects. Three panels
-   at most, with the detail panel showing only what the full views cannot. A
-   single named view (front, side, top, edge) is valid when a shot needs it.
+3. **View plan declared.** Front and back by default; side added when the user
+   asks or the object's profile carries its identity (vehicles, machines, tools,
+   footwear, furniture). Near-symmetric, thin, or flat objects stay at front and
+   back. Three views at most; a detail close-up is a separate image, never a
+   fourth view. A single named view (front, back, side, top, edge, detail) is valid
+   when a shot or the user asks for one angle. A prompt with a single
+   three-quarter hero view and no other face is a MAJOR defect unless one view
+   was requested.
 
 4. **Background.** Pure white seamless with a faint contact shadow, or neutral
    light gray, with the same faint contact shadow, for white, silver, chrome,
-   clear, or translucent objects, or when the project's approved props or
-   character sheets already use gray. No colored, gradient, textured, or scene
-   background.
+   clear, or translucent objects, objects where such parts make up a large share
+   of the silhouette, or when the project's approved props or character sheets
+   already use gray. The background runs as one continuous field across the whole
+   sheet. No colored, gradient, textured, or scene background.
 
-5. **Neutral lighting.** Even, neutral white balance, identical across panels.
+5. **Neutral lighting.** Even, neutral white balance, identical across views.
    Shape-revealing highlights and gentle raking light are allowed; scene mood
    and color casts are not.
 
@@ -1212,7 +1322,8 @@ Source skill: `seedream-prop-asset`
 
 9. **Identity description.** Silhouette and proportions, real-world size in
    words, materials and finish, colors, and the identity-critical details the
-   video must reproduce. Wear and damage appear only as the story needs.
+   video must reproduce, with repeated features (doors, handles, wheels, lamps)
+   counted per face. Wear and damage appear only as the story needs.
 
 10. **One canonical state.** Open/closed, lit/unlit, folded/extended or similar
     is stated; emissive parts stay off unless the glow is canonical.
@@ -1231,23 +1342,48 @@ Source skill: `seedream-prop-asset`
 
 ### Composition
 
-14. **Whole object.** Every full-view panel fits the whole object with margin.
+14. **Whole object.** Every view fits the whole object with a stated clear margin
+    (about 6% of the sheet) to the canvas edge and to the next view.
 
-15. **Consistent scale.** Full-view panels share one scale and design.
+15. **Faces, flanks, and size.** Each view names the face it shows, the back is
+    the opposite face with its own described details, and the views share one
+    design and one scale (the object the same height in each view; width
+    targets are not used). Three-quarter views of an object whose flanks
+    differ name the visible flank in object and frame terms, with the rear view
+    written as a half-revolution turn of the front view and the side profile
+    matching the front view's flank.
+
+16. **One continuous background.** The prompt says "view", not "panel", and asks
+    for no boxes, frames, borders, divider lines, off-white rectangles, labels,
+    or captions, and a flat even field with no floor line, each shadow staying
+    under its own object.
+
+17. **Marks as pattern.** Faces are told apart by pattern, color, or placement,
+    not damage, and no face pairs "unblemished" with a dark mark.
 
 ### Text in image
 
-16. **Text route.** No readable text by default; a blank surface or an angle
+18. **Text route.** No readable text by default; a blank surface or an angle
     that hides the print is preferred, and pseudo-letters count as invented
     text. Identity-critical copy comes from a supplied authorized asset or is
-    added in post; model text appears only when non-exact text is expressly
-    accepted.
+    added in post; model text appears only when the user has said it is
+    acceptable, never on a conditional or hypothetical mention. A fictional
+    identifier is quoted once and reads identically on every view.
 
 ### Constraints
 
-17. **Common negatives.** No hands or people, no other objects or duplicates, no
-    unwanted background, no readable text or logos, no cropped edges, no extra
-    panels, no watermark — only those that apply.
+19. **Common negatives.** No hands or people, no other objects or duplicates, no
+    unwanted background, no readable text or logos, no cropped edges, no boxes,
+    frames, borders, or divider lines, no extra views, labels, or captions, no
+    watermark — only those that apply.
+
+### Workflow
+
+20. **Element saved.** `prop_<prop-id>_<view>_vNN.png` under
+    `elements/<prop-id>/` with a same-stem `prompt_prop_` snapshot.
+
+21. **Selected variant.** Approved filename recorded as `selected_variant` in
+    the element manifest.
 
 ---
 

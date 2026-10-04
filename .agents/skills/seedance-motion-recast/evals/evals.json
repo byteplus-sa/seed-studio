@@ -4,14 +4,15 @@
     {
       "id": 1,
       "prompt": "Here's an 8-second 9:16 clip we shot of two of our own dancers on a rooftop. Keep the choreography and the camera exactly, but make it our two approved characters Mara and Theo dancing in the approved night-market location.",
-      "expected_output": "A recast prompt package: a disposition for both source dancers built from observable descriptors, Mara and Theo bound to separate front and profile images, the location bound with its people excluded, a Motion Authority block that excludes source appearance, people-count and wardrobe guards, a stated audio route, the route marked provisional pending a 480p probe, and a first ladder rung that is a 480p key-beat probe.",
+      "expected_output": "A recast prompt package: a disposition for both source dancers built from observable descriptors, Mara and Theo bound to separate front and profile Virtual Portrait images, the location bound with its people excluded, the muted master as an asset:// @Video 1, a Motion Authority block that excludes source appearance, people-count and wardrobe guards, a stated post-audio route, the route stated as verified only for the tested single-person case, and a first ladder rung that is a 480p key-beat probe.",
       "files": [],
       "expectations": [
         "Each source dancer is mapped individually by screen position, clothing and action; the prompt never says replace everyone.",
         "@Video 1 is bound as motion, camera path, cuts and timing only, with its people, clothing and location excluded.",
-        "Each character uses separate per-view reference images from approved elements; no collage.",
+        "Each character uses separate per-view reference images from approved elements, recommended for Virtual Portrait upload and bound as asset://; no collage.",
         "The Guards block fixes exactly two people and wardrobe from each character's own reference.",
-        "The selected route is labeled unverified and the first block proposed is a 480p probe of the key beat, not a full-duration or final-resolution take.",
+        "The route is stated as verified only for the tested single-person case, and because this two-dancer, location-image case is new the first block proposed is a 480p probe of the key beat, not a full-duration or final-resolution take.",
+        "@Video 1 is the muted master, bound as an asset:// video because it shows people, with generate_audio false and no @Audio binding; the source music returns through a stated post-audio route.",
         "The package is delivered in chat as a paste-ready block; the skill does not generate, upload or submit anything."
       ]
     },
@@ -24,6 +25,7 @@
         "The Style block uses the claymation preset fragment and the character reference is a clay-medium element rather than a photoreal sheet.",
         "The pose sequence, camera path and timing remain owned by @Video 1; the preset changes appearance only.",
         "The user's statement of ownership is noted as confirmed source rights in the package before the prompt is written.",
+        "Because the source shows the user, the package recommends uploading the muted master to the Virtual Portrait library and binding @Video 1 as asset://.",
         "No caption, title or other overlay text is requested in the generated footage."
       ]
     },

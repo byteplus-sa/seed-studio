@@ -148,7 +148,7 @@ visible:
 | Technique | Where | Result |
 |---|---|---|
 | Re-voice + **re-render lips** | `seedance-vfx-prompt` (2.5 audio edit, this section) | Video re-rendered; mouth re-animated to the new language. Use when the mouth is visible and lip-sync matters. |
-| Voice-clone + **overlay audio** | outside this workspace — overlay dubbing is not a prompt deliverable | Video frames untouched; cloned audio laid on top. Use when lips are off-screen or not the focus. |
+| Voice-clone + **overlay audio** | a separate Seed Audio 1.0 TA2A step the user runs; `seed-audio-prompt` writes its prompt | Video frames untouched; cloned audio laid on top. Use when lips are off-screen or not the focus. |
 
 ### Content-safety note (copyright false positives on output)
 

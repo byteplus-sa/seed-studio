@@ -51,7 +51,9 @@ flowchart LR
 | **prompt-review** | Manual (`/prompt-review`) review and fix of prompts written for BytePlus generative models (Seedance, Seed Audio, Seedream) against the repo's skill best practices using a sub-agent review pipeline. |
 | **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — paste-ready. |
 | **seedance-prompt-25** | Write production-grade Seedance 2.5 video prompts with the six-part formula, 50-material multimodal referencing, variable-duration staging (4-30s), timestamp pacing, structured editing, extension, keyframes, storyboards, and blockouts. |
-| **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, audio routes, and style presets. |
+| **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, Virtual Portrait identities, a muted source with audio in post, and style presets. |
+| **seedance-object-swap** | Write Seedance 2.5 object-swap prompts that replace one character, outfit, product, prop or location in existing footage and keep the rest as filmed: five-part swap contract, contact windows, Virtual Portrait identities, and swap checks. |
+| **seedance-restyle** | Write Seedance 2.5 restyle prompts that redraw a whole clip in a new medium (anime, watercolor, claymation, pixel art and more) while keeping its performance, camera and cuts; style catalog, same-place environment image, and restyle checks. |
 | **seedance-prompt-25-filipino** | Write Filipino and Taglish dialogue direction while preserving exact words and register; evidence-based pronunciation hypotheses and opt-in lip-sync audio. |
 | **filipino-micro-drama** | Write Filipino-market micro-drama episode briefs: proven Pinoy formulas, hook/reveal/cliffhanger beats, light cast, authentic settings, and English-dominant Taglish dialogue with subtitle translations. Story material only. |
 | **seedance-prompt-20** | Legacy Seedance 2.0 prompt skill for 4K output (unsupported by 2.5), Fast/Mini speed variants, or lower cost per generation. |
@@ -112,7 +114,7 @@ seed-prompt-studio/
 ## Maintenance
 
 Shared skills are maintained in an upstream source checkout. Run the sync from
-any supported agent to mirror the 25 allowlisted skill bundles into this repo:
+any supported agent to mirror the 23 allowlisted skill bundles into this repo:
 
 | Agent | Command |
 | --- | --- |
@@ -125,8 +127,10 @@ All three run the same procedure in
 runs when invoked explicitly. The local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
-`seedance-motion-recast`, and `seedance-frame-break` forks and all contracts are
-locally maintained and are never overwritten by a sync. The command previews
+`seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
+`seedance-frame-break`, `seedance-graybox-world`, and `seedance-music-video`
+forks and all contracts are locally maintained and are never overwritten by a
+sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result
 uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs
 one skill only. A sync leaves each skill's `agents/` folder alone and scans the

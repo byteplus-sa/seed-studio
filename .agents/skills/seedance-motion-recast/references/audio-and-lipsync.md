@@ -3,137 +3,86 @@
 Focused reference for `seedance-motion-recast`. Read [the entrypoint](../SKILL.md)
 for mode selection, gates and the prompt-only boundary.
 
-- [Route selection](#route-selection)
-- [Provisional default](#provisional-default)
-- [Route sentences](#route-sentences)
+- [Silent submission](#silent-submission)
+- [Post-audio routes](#post-audio-routes)
+- [Speaker ownership](#speaker-ownership)
 - [Preparing source audio](#preparing-source-audio)
-- [Lip-sync QA](#lip-sync-qa)
+- [Lip-sync checks](#lip-sync-checks)
 
-## Route selection
+## Silent submission
 
-Every recast prompt has an `[Audio]` block that names one route.
+Every recast binds the muted master as `@Video 1`, sets
+`generate_audio: false` in the parameter block and uses no `@Audio` bindings.
+The prompt's audio block is always:
 
-| Route | Use when | Audio input | Lips |
+```text
+[Audio]
+Silent output. Sound is added in post.
+```
+
+The audio decision lives in the package as a post-audio route, following the
+[video-to-video inputs contract](../../../contracts/video-to-video-inputs.md#post-audio).
+Native audio generation is used only when the user explicitly asks for it on a
+named take; note that exception in the package and write it as its own prompt
+block.
+
+## Post-audio routes
+
+| Route | Use when | Source | Lips |
 | --- | --- | --- | --- |
-| **Music-only** | No dialogue; the source music or a new track carries the beat | Separated source music as `@Audio 1`, a new approved track, or native generation | No speech |
-| **Keep source dialogue** | New cast says the same words in the same voices | Separated source dialogue as `@Audio 1`, or inherited from `@Video 1` | Re-rendered to the kept words |
-| **Replace voice** | Same words, new voice for the new character | New approved voice track, or a timbre reference plus the exact lines | Re-rendered to the new track |
-| **Re-voice or translate** | Same meaning in another language, or a rewritten line | Exact new lines in `{}`, optional timbre reference | Re-rendered to the new words |
-| **Post audio** | Sound is designed and mixed in assembly | None; native audio off or discarded | Only if no one speaks on screen |
+| **Original** | The recast keeps the source music, dialogue or ambience | Saved source audio | New mouths follow the source mouth motion |
+| **New** | The brief asks for new music, SFX, ambience or voice | A Seed Audio prompt or an approved library track | No on-screen speech, or a re-voiced line |
+| **Mixed** | Keep the source dialogue, replace the bed (or the reverse) | Stems the user separates, plus new audio | Kept dialogue follows the source mouth motion |
+| **Re-voiced** | New words, language or voice | A Seed Audio TA2A prompt the user generates, laid over the picture | Check sync; lip-sync work is opt-in |
 
 Voice rules:
 
 - Keeping a real person's recorded voice, or cloning its timbre for a new
-  character, requires that person's recorded voice consent, separate from
+  character, requires that person's confirmed voice consent, separate from
   footage rights and image likeness. See the
   [production policy](../../../contracts/production-policy.md).
 - Separate lip-sync audio is opt-in. When the user asks for it, follow the
   [audio-video alignment contract](../../../contracts/audio-video-alignment.md):
-  exact dialogue in both prompts, audio duration verified before handoff,
-  and both prompts updated when the audio changes.
-- When lips are off-screen or not the focus, a voice overlay in post, done in
-  the destination workflow, avoids re-rendering the mouth.
+  exact dialogue in both prompts, audio duration checked before handoff, and
+  both prompts updated when the audio changes.
+- When lips are off-screen or not the focus, a voice overlay in post avoids
+  re-rendering the mouth.
 
-## Provisional default
+## Speaker ownership
 
-Which source-audio binding keeps dialogue and lip sync best in a recast is
-unverified. Treat the defaults below as provisional until a low-cost 480p probe
-on owned or synthetic dialogue footage compares them, and record the result in
-the project.
-
-- **Dialogue clips:** candidate default is the separated source dialogue bound
-  as `@Audio 1`, stated as the dialogue and speaking times, with `@Video 1`
-  still motion-only. The alternative to compare is `@Video 1` alone carrying
-  its audio, with the Audio block saying to keep its dialogue.
-- **Music clips:** separated source music as `@Audio 1`, or a new approved
-  track when the music changes.
-
-Whatever the probe shows, change one binding at a time and keep the rest of the
-prompt stable, so the cause of any change is identifiable.
-
-## Route sentences
-
-Music-only, keeping the source track:
-
-```text
-[Audio]
-@Audio 1 is the soundtrack from the source; keep it unchanged and on the same
-beat. Add <ambience of the new location> under it. No one speaks.
-```
-
-Music-only, new track:
-
-```text
-[Audio]
-@Audio 1 defines the music: (upbeat synth-pop at the source tempo). Keep the
-dance on its beat. No one speaks.
-```
-
-Keep source dialogue:
-
-```text
-[Audio]
-@Audio 1 defines the dialogue and speaking times. Mara speaks the first line
-and Theo the second, exactly as in @Audio 1; their lips move with those words.
-Add <new location ambience> under the dialogue.
-```
-
-Replace voice:
-
-```text
-[Audio]
-@Audio 1 defines only Mara's voice timbre, accent and pacing; use none of its
-words. Mara says, with the same timing as the source line: {<exact line>}
-```
-
-Re-voice or translate:
-
-```text
-[Audio]
-Mara says, in natural <language>, with the same delivery and speaking times as
-the source line: {<exact translated line>}. Her lips move with the new words.
-```
-
-Post audio:
-
-```text
-[Audio]
-No dialogue. Keep only quiet <location ambience>; music and sound design are
-added in post.
-```
-
-Speaker ownership comes from the speech windows in your source inspection. Map each window to one named character; a line whose speaker is
-removed or turned into a background extra needs an explicit decision (cut the
-line, give it to a mapped character, or keep it off-screen).
+Speech windows come from your source inspection. Map each window to one named
+character. A line whose speaker is removed or turned into a background extra
+needs an explicit decision: cut the line, give it to a mapped character, or
+keep it off-screen.
 
 ## Preparing source audio
 
 Audio preparation happens on the user's side, in the destination workflow; this
-workspace does not separate, trim, transcode or transcribe media. State these
-needs in the package so the user can prepare the files:
+workspace does not separate, trim, transcode, transcribe or mux media. State
+these needs in the package so the user can prepare the files:
 
-1. Separate voice and background from the source with a tool of the user's
+1. Save the source audio and write the muted master per the contract.
+2. For a Mixed route, separate voice and background with a tool of the user's
    choice, and name the time range.
-2. Trim the separated track to the exact source span bound as `@Video 1`. A
-   trimmed probe clip needs a matching trimmed audio file.
-3. Verify the track duration against the planned output duration; combined
-   audio inputs stay within 30 s.
-4. Transcribe the kept dialogue and keep the word timings as the reference for
+3. Trim the saved audio to the exact span bound as `@Video 1`. A trimmed probe
+   needs a matching trimmed audio file.
+4. Transcribe kept dialogue and keep the word timings as the reference for the
    lip-sync checks.
 
-## Lip-sync QA
+## Lip-sync checks
 
-Apply when any character speaks on screen:
+Apply after the user muxes the post-audio route, to anything they share or
+describe, when any character speaks on screen:
 
-- Transcribe the output audio (user-side) and diff it against the intended lines. Kept
-  dialogue matches the source; replaced or translated lines match the approved
-  script; timbre references contribute no words.
-- Check speaker ownership: each line comes from the mapped character's mouth,
-  never from a removed subject or an extra.
+- The output transcript (user-side) matches the intended lines. Kept dialogue
+  matches the source; replaced or translated lines match the approved script;
+  timbre references contribute no words.
+- Each line comes from the mapped character's mouth, never from a removed
+  subject or an extra.
 - Step through close frames on plosives (p, b, m) and open vowels; mouth shapes
   land on the audible sounds.
-- Measure the audio-to-mouth offset at two or three distinct syllables; an
-  offset that grows across the clip suggests a duration mismatch.
+- Measure the audio-to-mouth offset at two or three syllables. An offset that
+  grows across the clip suggests a duration mismatch between picture and audio.
 - Listen in full. Loudness readings and waveforms do not replace listening.
-- For a replaced voice, compare timbre against the approved voice and ask for a
-  human listen.
+- A visible drift routes to the Re-voiced route or a new take; note the failure
+  rather than accepting it.

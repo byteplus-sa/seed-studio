@@ -41,6 +41,7 @@ Load only the contract relevant to the current request:
 | Requested camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [Directorial axes](.agents/contracts/seedance-reference.md) |
 | Canon, props, screens and reference roles | [Element identification](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [Audio-video alignment](.agents/contracts/audio-video-alignment.md) |
+| Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [Video-to-video inputs](.agents/contracts/video-to-video-inputs.md) |
 | Explicit request to generate or submit a prompt | [Generation transport](.agents/contracts/generation-transport.md) |
 
 ## Routing
@@ -55,6 +56,8 @@ requested choreography needs more.
 | Reference-video reverse engineering (breakdown → element, storyboard, Seedance prompts) | `template-factory` |
 | Storyboard panel and grid prompts | `seedream-storyboard` |
 | Motion recast of a source clip (new cast and world, same motion) | `seedance-motion-recast` |
+| Object swap in existing footage (one character, outfit, product, prop or location) | `seedance-object-swap` |
+| Restyle a whole clip into a new visual medium (same cast, place and motion) | `seedance-restyle` |
 | Seedance 2.5 prompt grammar | `seedance-prompt-25` |
 | Seedance 2.0 / 4K legacy grammar | `seedance-prompt-20` |
 | Filipino/Tagalog dialogue direction | `seedance-prompt-25-filipino` |
@@ -160,5 +163,6 @@ Shared skills are maintained in an upstream source checkout and pulled in with
 Maintenance). The command never overwrites the local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
-`seedance-motion-recast`, and `seedance-frame-break` forks and leaves its
-changes uncommitted for review.
+`seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
+`seedance-frame-break`, `seedance-graybox-world`, and `seedance-music-video`
+forks and leaves its changes uncommitted for review.
