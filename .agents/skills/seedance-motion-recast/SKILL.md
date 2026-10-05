@@ -88,15 +88,14 @@ targets.
    stop and ask for the request ID and the flagged inputs, and follow the
    [rejection rule](../../contracts/video-to-video-inputs.md#provider-rejections).
    Never crop, blur, stylize, recompose or swap inputs to get a real likeness or
-   real footage past the check. Offer the Virtual Portrait route, an invented
-   cast, or generated or owned-talent source footage, and revise only on the
-   user's explicit decision.
+   real footage past the check. Offer an invented cast or generated or
+   owned-talent source footage, and revise only on the user's explicit decision.
 5. **Stay within recommended reference ranges**: 1–8 distinct subjects in R2V,
    1–5 reference images in edit mode, source under 20 s for edit. Above those,
    warn the user that stability drops and propose splitting into shots.
 6. **No baked text.** Keep generated footage free of captions, taglines, CTAs,
    end cards and legible signage copy; add text in post.
-7. **Submit the muted master.** `@Video 1` is the muted master,
+7. **Bind the muted master.** `@Video 1` is the muted master,
    `generate_audio` is `false`, and there are no `@Audio` bindings. Sound
    returns in post through the stated route in
    [audio and lip-sync](references/audio-and-lipsync.md).
@@ -180,7 +179,7 @@ gates, unapproved references, unresolved source ambiguities or an unconfirmed
 route remain open items in the package; a draft does not establish approval. A
 provider rejection the user reports is evidence to diagnose (rule 4).
 
-When the user reports a result that fails the acceptance checks, record the
+When the user reports a result that fails the acceptance checks, note the
 locked decisions, the one requested delta and the observed failure, then change
 only one of prompt wording, reference bundle or route per retry.
 

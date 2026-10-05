@@ -21,6 +21,8 @@ they are prompt-composition only and never call the API themselves.
 | Audio commercial (story arc, cast, tagline) | `seed-audio-commercial` | Five-act commercial soundscape prompt (dialogue + BGM + SFX + ambience in one pass) with multi-character voice profiles |
 | Storyboard prompts | `seedream-storyboard`, `template-factory` | Panel and grid prompts (sketch default, single-image grid or separate images); `template-factory` authors them inside a reference-video reverse-engineering package; full multi-scene production is out of scope in this workspace |
 | Motion recast of a source clip | `seedance-motion-recast` | Keep a source clip's motion, camera, cuts and timing; rebuild cast, wardrobe, product, location and style from references |
+| Object swap in existing footage | `seedance-object-swap` | Replace one character, outfit, product, prop or location and keep everything else as filmed |
+| Restyle a whole clip | `seedance-restyle` | Redraw the same cast, place, motion and camera in a new visual medium |
 
 ## Composition rules
 

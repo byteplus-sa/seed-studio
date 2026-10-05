@@ -72,9 +72,12 @@ block, the post-audio route, and the test-ladder rung.
    the source clip, when it shows a person, and any identity anchors to the
    Virtual Portrait library and bind them as `asset://`, per the
    [video-to-video inputs contract](../../contracts/video-to-video-inputs.md).
-   Identity anchors are designed in the target medium: a photoreal sheet under
+   Rights and consent follow the
+   [production policy](../../contracts/production-policy.md): unknown rights,
+   identity and consent facts stop the work, and a creative choice never
+   supplies them. Identity anchors are designed in the target medium: a photoreal sheet under
    a drawn style leaks photoreal skin.
-6. **Submit the muted master** with `generate_audio: false` and no `@Audio`
+6. **Bind the muted master** with `generate_audio: false` and no `@Audio`
    binding; sound returns in post.
 7. **No baked text.** Source signage becomes abstract shapes in the style;
    captions and copy are added in post.
@@ -126,8 +129,8 @@ geometry matches the source), other styles (a 2D style may redraw a whole frame
 more easily than sculpted clay), and 720p or 1080p.
 
 **If the request allows no image input at all,** a same-place background restyle
-is not reliable today. Say so, and offer: an environment image generated from
-text (the user supplies nothing), a subject-only restyle, or, only if the user
+is not reliable today. Say so, and offer: an environment image the user
+generates from a prompt you write (the user supplies nothing), a subject-only restyle, or, only if the user
 wants it, a different place described in words.
 
 These are parameter-block values for the destination UI, never prompt text:
@@ -209,13 +212,13 @@ the
 - [ ] Muted master bound as `@Video 1`; `generate_audio: false`; audio saved
 - [ ] Content inventory covers every subject, key prop, cut and text surface
 - [ ] Whole-frame restyle: environment image of the same place bound; no
-      different location named; output compared with the source for the place
+      different location named; the user compares the output with the source for the place
 - [ ] Edit input trimmed to an 8n+1 frame count
 - [ ] One style with a medium lock that names people, props, set and effects
 - [ ] Style image role limited to medium, palette, line, texture and light
 - [ ] No studio, artist or franchise names
-- [ ] Realistic people (source and anchors) recommended for Virtual Portrait
-      upload; anchors designed in the target medium
+- [ ] Source showing a person and any identity anchors recommended for Virtual
+      Portrait upload; anchors designed in the target medium
 - [ ] Stop-motion cadence note present when the style steps motion
 - [ ] Source text disposition stated; no new copy requested
 - [ ] Route and ladder rung stated; a new case (other style, camera or people count) probed at 480p first

@@ -3,9 +3,12 @@
 This contract covers identity references, source footage, the muted source
 master and post audio for Seedance video-to-video prompts: Motion Transfer
 (`seedance-motion-recast`), Object Swap (`seedance-object-swap`) and Restyle
-(`seedance-restyle`). These skills write prompts only. Every upload, asset
-registration, trim, submission and mux below is a step the user takes in their
-own tools; the prompt package states what each step needs.
+(`seedance-restyle`). These skills write prompts only. In prompt-only mode,
+every upload, asset registration, trim, submission and mux below is a step the
+user takes in their own tools, and the prompt package states what each step
+needs. When the user explicitly asks to generate,
+[generation transport](generation-transport.md) governs submission; asset
+registration, trimming and muxing stay user-side.
 
 - [Human likeness: Virtual Portrait assets](#human-likeness-virtual-portrait-assets)
 - [Source footage](#source-footage)
@@ -24,8 +27,9 @@ inputs (see [Provider rejections](#provider-rejections)).
 
 - **Where.** In the ModelArk console: Model Playground > My assets > Virtual
   Portrait. The library is isolated by project, and an asset works only with an
-  endpoint in the same project. The user waits until the asset is active before
-  binding it.
+  endpoint in the same project. The account needs Advanced Creation Rights, and
+  the user signs the console authorization when creating the first group. The
+  user waits until the asset is active before binding it.
 - **One subject per group.** Never mix two characters in one asset group. A
   medium-specific design, such as a clay or anime version of a character, is
   its own subject (`"Mara (claymation)"`).
@@ -34,14 +38,18 @@ inputs (see [Provider rejections](#provider-rejections)).
   orientation.
 - **Order of work.** Seedream does not accept `asset://` inputs, so design and
   approve the sheet first, then upload the approved views.
-- **Review outcome.** BytePlus reviews every upload. When an asset is
+- **Review outcome.** BytePlus reviews every upload, and its documentation says
+  a Virtual Portrait asset must not resemble any real person's likeness, so an
+  upload of a real, identifiable person may be rejected. When an asset is
   rejected, report the outcome the user shares and follow the
   [production policy](production-policy.md); never alter the asset to get it
-  accepted.
+  accepted. For a real performer whose likeness is rejected, BytePlus's
+  separate authorized real-person asset route (invite-only, verified with the
+  person's own liveness check) applies; it sits outside this workspace.
 - **Package.** List each identity reference with its binding position and mark
   it as a Virtual Portrait asset for the user to upload. The agent never
-  registers assets and never handles account credentials or asset IDs beyond
-  what the user pastes back.
+  registers assets, never asks for credentials, and never writes asset IDs or
+  `asset://` URIs into prompts, packages or saved files.
 - **Prompt wording.** Refer to each asset by its binding position
   (`@Image 1`), never by asset ID. A short production label tied to that
   binding (`Mara: @Image 1 and @Image 2`) may name the character in later
@@ -112,16 +120,19 @@ keeps the audio as a separate file for post.
 
 3. The package names the post-audio route (below).
 
-User-side recipe:
+User-side recipe (skip the first command when the source has no audio
+stream):
 
 ```bash
 ffmpeg -i <source>.mp4 -map 0:a:0 -vn -c:a pcm_s24le <stem>_audio.wav
 ffmpeg -i <source>.mp4 -map 0:v:0 -an -c:v copy <stem>_muted.mp4
 ```
 
-Native audio generation is not the default for these workflows. Use it only
-when the user explicitly asks for it on a named take, and note that exception
-in the package.
+Native audio generation, or a supplied `@Audio` track for opt-in lip-sync (see
+the [audio-video alignment contract](audio-video-alignment.md)), is not the
+default for these workflows. Use it only when the user explicitly asks for it on
+a named take, write it as its own prompt block, and note the exception in the
+package.
 
 ## Post audio
 
@@ -159,8 +170,12 @@ A `PrivacyInformation` or other sensitive-content rejection the user reports is
 evidence to diagnose. Ask for the request ID and the flagged input, and follow
 the moderation rule in the [production policy](production-policy.md).
 
-- When the flagged input is a person bound as a raw image or video, recommend
-  the Virtual Portrait route above and write a fresh prompt package for the new
-  bindings.
+- When the flagged input is an invented or AI-generated character (an AI
+  avatar included) bound as a raw image or video, recommend the Virtual
+  Portrait route above and write a fresh prompt package for the new bindings.
+- When the flagged input is source footage or a likeness of a real person,
+  stop. Do not retry the same footage or likeness through another route to get
+  past the check. Offer owned or generated source footage, or an invented
+  Virtual Portrait cast, and revise only on the user's explicit decision.
 - Never blur, crop, stylize, re-encode or swap inputs to get a likeness or
-  footage past the check. Revise only on the user's explicit decision.
+  footage past the check.

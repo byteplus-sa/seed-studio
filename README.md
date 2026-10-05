@@ -91,6 +91,7 @@ flowchart LR
 | Camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [`.agents/contracts/seedance-reference.md`](.agents/contracts/seedance-reference.md) |
 | Canon, props, screens and reference roles | [`.agents/contracts/element-identification.md`](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [`.agents/contracts/audio-video-alignment.md`](.agents/contracts/audio-video-alignment.md) |
+| Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [`.agents/contracts/video-to-video-inputs.md`](.agents/contracts/video-to-video-inputs.md) |
 | Optional generation via `ark-mcp` / `arkcli` | [`.agents/contracts/generation-transport.md`](.agents/contracts/generation-transport.md) |
 
 ## Repository structure
@@ -101,7 +102,7 @@ seed-prompt-studio/
 ├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 33 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 35 prompt-composition skills + sync-skills (maintenance)
 ├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill

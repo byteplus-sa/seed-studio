@@ -198,6 +198,5 @@ follow the
 [rejection rule](../../../contracts/video-to-video-inputs.md#provider-rejections)
 and the moderation rule in the
 [production policy](../../../contracts/production-policy.md). Never alter,
-disguise or swap inputs to pass the check. Offer the Virtual Portrait route, an
-invented cast, or a generated or owned-talent source clip, and revise only on
-the user's explicit decision.
+disguise or swap inputs to pass the check. Offer an invented cast or a generated
+or owned-talent source clip, and revise only on the user's explicit decision.

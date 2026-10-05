@@ -36,5 +36,6 @@ September 2026. No native-speaker confirmation.
    priority in the listening plan. It is not a reason to rewrite without scope.
 2. If rewriting is in scope, propose moving the critical word mid-sentence at
    normal volume, as a draft for the user to accept.
-3. After a new take, add a row with the locked text, what was heard, the note
-   tried, and the result.
+3. After a new take, offer the user a row with the locked text, what was heard,
+   the note tried, and the result, for the maintainer to add; do not edit this
+   file.

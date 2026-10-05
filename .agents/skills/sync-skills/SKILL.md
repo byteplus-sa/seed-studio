@@ -66,6 +66,9 @@ the diff and restore these:
   "hash-bound prompt review" or a review stage.
 - `seedance-prompt-25-filipino`: the caller-ownership sentence must not say
   "complete prompt review".
+- `brief-intake`: keep `approval_mode`, `approve_for_me` and `agent_confirmed`
+  out; only an explicit user choice approves a set
+  ([production policy](../../contracts/production-policy.md)).
 - Any other synced skill that gains a `prompt-review` reference: remove it.
   Only the `prompt-review` skill itself may name `prompt-review`.
 

@@ -10,7 +10,7 @@ for routing and the prompt-only boundary.
 ## Picture checks
 
 Inspect the silent output side by side with the source, frame by frame around
-each contact window and cut. Record each item as pass, fail or not applicable.
+each contact window and cut. Note each item as pass, fail or not applicable.
 
 - **Residual original.** No frame shows the original element, a blend of old
   and new, or a second copy of the target. Check the first and last frames and

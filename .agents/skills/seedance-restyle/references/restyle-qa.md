@@ -10,7 +10,7 @@ for routing and the prompt-only boundary.
 ## Picture checks
 
 Play the silent output at full speed, then step through it beside the source.
-Record each item as pass, fail or not applicable.
+Note each item as pass, fail or not applicable.
 
 - **Medium coverage.** Every person, prop, surface, sky and effect is in the
   style. No photographic patches, especially faces, hands and backgrounds.

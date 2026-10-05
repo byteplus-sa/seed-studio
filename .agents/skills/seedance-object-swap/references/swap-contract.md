@@ -39,7 +39,7 @@ Target reference rules:
   collage. Several views of one target need `The output contains only one
   <target> throughout.`
 - For an authorized real brand or labeled product, bind the official or
-  user-supplied product asset. Generate a substitute only when no usable real
+  user-supplied product asset. Write a Seedream prompt for a substitute only when no usable real
   asset exists.
 - Match the target's scale to the original's grip or fit. When the target is
   larger or smaller, state the new scale and how the hand or body accommodates

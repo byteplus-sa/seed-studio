@@ -280,8 +280,10 @@
         "recast"
       ],
       "owner_path": ".agents/skills/prompt-review/references/review-checklists.md",
-      "summary": "A recast states one audio route and lip-sync expectations that agree with it.",
-      "exceptions": []
+      "summary": "A recast submits the muted master silently and states one post-audio route with lip-sync expectations that agree with it.",
+      "exceptions": [
+        "A user-requested native-audio or lip-sync exception for a named take, noted in the package."
+      ]
     },
     {
       "id": "v2v.muted_source",

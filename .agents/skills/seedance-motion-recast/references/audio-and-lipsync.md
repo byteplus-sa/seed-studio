@@ -41,7 +41,9 @@ Voice rules:
   character, requires that person's confirmed voice consent, separate from
   footage rights and image likeness. See the
   [production policy](../../../contracts/production-policy.md).
-- Separate lip-sync audio is opt-in. When the user asks for it, follow the
+- Separate lip-sync audio is opt-in, and it is the one case where an `@Audio`
+  binding is allowed: write it as its own prompt block and note the exception
+  in the package. When the user asks for it, follow the
   [audio-video alignment contract](../../../contracts/audio-video-alignment.md):
   exact dialogue in both prompts, audio duration checked before handoff, and
   both prompts updated when the audio changes.
@@ -59,7 +61,7 @@ keep it off-screen.
 
 Audio preparation happens on the user's side, in the destination workflow; this
 workspace does not separate, trim, transcode, transcribe or mux media. State
-these needs in the package so the user can prepare the files:
+these needs in the package and ask the user to prepare the files:
 
 1. Save the source audio and write the muted master per the contract.
 2. For a Mixed route, separate voice and background with a tool of the user's

@@ -77,8 +77,10 @@ the test-ladder rung.
    `asset://`, per the
    [video-to-video inputs contract](../../contracts/video-to-video-inputs.md).
    Rights and consent follow the
-   [production policy](../../contracts/production-policy.md).
-3. **Submit the muted master.** `@Video 1` is the muted master;
+   [production policy](../../contracts/production-policy.md): unknown rights,
+   identity and consent facts stop the work, a creative choice never supplies
+   them, and calling the job a test does not either.
+3. **Bind the muted master.** `@Video 1` is the muted master;
    `generate_audio` is `false`; there are no `@Audio` bindings. Sound returns in
    post through the stated route.
 4. **Reference budget**: 1–5 target images, one view per image, no collage.
@@ -104,8 +106,9 @@ never prompt text:
   not accept `edit_video`. Outfit, character and location swaps are untested;
   treat their first rung as a probe.
 - Omit `ratio` and `duration`; both lock to the source. Output can be up to
-  about 0.3 s shorter unless the input is an 8n+1 frame count (for example 121
-  at 24 fps), which an upstream probe of the same edit route returned exactly.
+  about 0.3 s shorter, so ask for an 8n+1 frame input (for example 121 at 24
+  fps); an upstream Restyle probe of the same edit route returned exactly 121
+  frames.
 - `generate_audio: false`, `watermark: false`, `resolution` per ladder rung.
 
 Confirm the model ID and the accepted parameters in the destination UI or the
