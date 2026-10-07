@@ -67,14 +67,14 @@
     {
       "id": 6,
       "prompt": "Write a 20-second Seedance prompt for a music video where the singer's vocals must be lip-synced to an existing original track. The user wants the mouth to match the voice exactly and the audio to drive the pacing.",
-      "expected_output": "A black-sync music-video prompt: the user-prepared pure-black timing container is bound as @Video 1 with native audio on, and lyric coverage is verified against the track.",
+      "expected_output": "A black-sync directing prompt with scoped lip sync, optional native audio, and the original master retained for exact final soundtrack delivery.",
       "files": [],
       "expectations": [
-        "The prompt uses the black-sync contract: the user-prepared black container is bound as @Video 1 and stated as the exact soundtrack and timing authority.",
-        "The prompt sets generate_audio: true so the model re-performs the vocals over the timing reference.",
-        "The re-performance caveat is stated: the model's vocals approximate, not clone, the original track.",
-        "The exact sung lines are kept in {curly braces} and are not paraphrased.",
-        "No bare @Audio 1 soundtrack binding is used, and no real artist's song, name, or voice clone is referenced."
+        "The supplied song segment is carried in pure-black @Video 1 as timing authority, without promising exact model audio reproduction.",
+        "Native audio is optional; no mandatory generate_audio setting or transport/submission instructions are introduced.",
+        "Missing lyrics or timestamps stay unresolved; supplied verified sung lines are preserved in curly braces.",
+        "Final audio preservation and visible lip-sync playback are separate checks; restoring audio is not claimed to fix mouth motion.",
+        "No bare @Audio 1 song reference is used."
       ]
     },
     {
@@ -180,6 +180,31 @@
         "Labels track-specific structure and energy as provisional.",
         "Offers a coherent audience effect and visual rule without invented BPM, measured timings or lyrics.",
         "Does not block an untimed treatment on audio upload; exact sync remains unresolved."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "I have a 24-second finished music-video scene and a reference photo of red shades. Write only the direction to add those shades to the singer. Keep every camera move, cut, gesture and lip movement. The supplied original song will be restored afterward.",
+      "expected_output": "A scoped source-footage edit direction, with existing scene @Video 1 and shades @Image 1, rather than blackout video.",
+      "files": [],
+      "expectations": [
+        "Existing footage is @Video 1; no blackout replacement of the edit source.",
+        "Eyewear is the only visual change, preserving source camera, cuts, duration, actions and mouth motion.",
+        "Original-song restoration is distinct from checking visible lip sync.",
+        "No MCP, CLI, paid submission or tool setup instructions."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Explain the workflow for a full-song video using my supplied AAC master. I need exactly unchanged audio. The timing excerpts may be packet-aligned. Do not generate anything.",
+      "expected_output": "Black-sync reference preparation and uninterrupted original-master assembly with explicit audio verification.",
+      "files": [],
+      "expectations": [
+        "Stream-copy compatible audio and preserve the untouched master; no unconditional re-encoding.",
+        "Record excerpt offsets and actual durations rather than claiming sample-exact compressed trimming.",
+        "Final assembly retains continuous master audio without unsolicited padding, normalization or crossfades.",
+        "Audio equality and full decode checks are separate from playback/lip-sync review.",
+        "No transport or submission instructions."
       ]
     }
   ]

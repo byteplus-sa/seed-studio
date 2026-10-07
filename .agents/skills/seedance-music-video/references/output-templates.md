@@ -24,7 +24,9 @@ Final Section (<verified time range or event cue>): <closing assignment and fina
 <Which audio events the cuts and camera land on; cut density per section.>
 
 [Audio Treatment]
-<Audio treatment: native audio brackets, or the black-sync @Video 1 timing authority — the song never enters as bare @Audio 1.>
+<Audio intent: native brackets, or black-sync @Video 1 for supplied-song timing.
+For edits, @Video 1 remains the source scene. Exact-song delivery uses the
+untouched master in assembly.>
 
 [Genre Lock]
 <Palette, lighting, camera grammar, motion cadence, and tone.>
@@ -38,12 +40,13 @@ Final Section (<verified time range or event cue>): <closing assignment and fina
 Use when the user asks for a complete prompt:
 
 ```text
-[Timing & Soundtrack Authority] (only when the performance follows a master)
+[Song Timing Authority] (only when the performance follows a master)
 @Video 1 is the black-sync container — the master muxed into pure-black video.
-It provides the exact soundtrack, beat timing, vocal rhythm, and all temporal
-pacing. Match <performer>'s visible mouth only to the vocals in @Video 1.
-(Prerequisite: the user prepares the container first — the song never enters
-as a bare @Audio 1 input.)
+Its vocals, pauses, and accents guide visual pacing and requested lip sync.
+Match <performer>'s visible mouth to its vocals during designated performance
+shots. Render the directed scene imagery rather than the black carrier.
+(For edits, @Video 1 is the existing scene instead; preserve its camera, cuts,
+actions, duration, and mouth motion while applying the requested visual change.)
 
 [Reference Roles] (only when references exist)
 @Image 1 defines <performer>'s <appearance, wardrobe, or identity>.
@@ -52,8 +55,8 @@ as a bare @Audio 1 input.)
 <Subject performs the primary action in <scene>.>
 The visuals feature <genre lock: palette, lighting, lens, grade, look>.
 Use <shot sizes, camera moves, and cuts>, with <beat contract>.
-Audio includes <(music)> <{sung lines}> <sound effects>.
-Audio: <black-sync @Video 1 authority or native brackets>.
+Audio: <silent picture for original-master assembly, or requested native
+soundscape using brackets>. Any candidate soundtrack may differ from the master.
 
 [Shot Plan] or [Stage Plan]
 Shot 1 (<time range>): @Image <N> only — <location or subject>; <one event and
@@ -66,7 +69,8 @@ Scope each shot to its own references ("@Image N only") so no location or look
 bleeds across a cut.
 
 [Lip-Sync & Lyric Timing] (only when lip-synced vocals are requested)
-<Performer>'s mouth shapes align to every syllable. Perform every line in full,
+In designated performance shots, <performer>'s mouth shapes align to every
+syllable. Perform each assigned line in full,
 in order, at its beat slot — no line skipped, shortened, mumbled, or reordered.
 <X>-line timestamped timeline (<start>s–<end>s): <[X-Ys] { line }> per line.
 
