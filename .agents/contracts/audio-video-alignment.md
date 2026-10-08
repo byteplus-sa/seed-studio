@@ -1,12 +1,37 @@
 # Audio-video alignment
 
-Separate Seed Audio dialogue is opt-in when the user requests lip-synced dialogue audio. Otherwise use native video audio. Generate each scene at its natural duration, using the selected model/tool's current supported limits.
+Choose the reference role from the task. Separate Seed Audio dialogue is opt-in
+when requested; otherwise use the requested native audio treatment. Song-led
+scene creation follows the music-video skill's black-sync song reference.
+For edits, the existing scene video remains the picture and timing source.
+Use natural scene windows within the selected model's supported limits.
 
-1. Preserve exact dialogue in both audio and video prompts; bind the chosen audio reference in each applicable shot.
-2. Inspect the actual audio duration and line timing before video submission. Audio must fit the planned video duration. Revise or trim the intended audio within authorization rather than padding the video to a model maximum.
-3. Persist the audio path, SHA-256, verified duration, and dialogue-to-shot alignment in the owning manifest. The generation request contains the same ordered audio reference.
-4. Use second-level prompt timing when explicitly requested or necessary for the requested synchronization/editing operation. Ordinary prompt composition does not add per-shot seconds by default.
-5. Replacing audio invalidates the dependent prompt text. Preserve old snapshots/takes; update the dialogue and audio bindings in the affected prompts and show the user the revised prompt before any submit.
-6. Provider success places output in review. Inspect lip sync, dialogue placement, audio streams and decode integrity; only user approval makes the take approved.
+1. Preserve supplied dialogue and assigned lip-sync lyrics verbatim. Bind the
+   correct reference in each applicable performance shot; B-roll need not sing.
+2. Inspect actual source duration, timestamps and phrase timing. Record master
+   offsets and excerpt boundaries; do not invent timing or pad to a model maximum.
+3. Persist source paths, hashes, measured durations and alignment evidence in the
+   owning manifest. Identify ASR-derived, supplied and listening-verified evidence.
+4. Use prompt timing when requested or needed for synchronization. Keep raw
+   evidence distinct from simplified display windows.
+5. Replacing an audio reference requires corresponding prompt and binding updates.
+   Preserve old snapshots and takes; show revised text before submission under
+   the generation transport contract.
+6. Keep technical success, visual inspection, user approval and selected take
+   distinct. Sampled stills do not establish continuous tracking or lip sync.
 
-Assembly happens in the destination workflow, not here. When it does, probe audio and video stream durations and pad short audio to the intended video timeline before crossfades. Validate final duration within the declared codec tolerance, streams, full decode, and audible continuity. Loudness readings do not replace listening.
+Within an authorized production workflow, preparation and assembly may be
+completed with available tools. For prompt-only requests, return the relevant
+workflow guidance without claiming media has been produced.
+
+For exact supplied-song delivery, preserve the untouched master and assemble
+picture on its continuous timeline. Stream-copy compatible audio where possible.
+Compressed packet boundaries and encoder delay can affect trimmed references;
+record actual offsets and flag any necessary derived encoding. Do not describe
+re-encoded audio as an exact copy.
+
+Validate output streams, dimensions, duration, timestamps and full decode.
+Compare encoded audio packet payloads where applicable and decoded samples
+against the master for exact-audio delivery. Review audible continuity and
+visible mouth timing separately. Do not pad, crossfade, normalize or time-stretch
+a locked song unless requested; loudness readings do not replace listening.

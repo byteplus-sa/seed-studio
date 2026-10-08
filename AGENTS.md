@@ -2,23 +2,31 @@
 
 Prompt-first workspace for composing Lumina-paste-ready prompts for BytePlus
 Seed-family models (Seedance, Seedream, Seed Audio). It writes prompts; review
-is a manual `/prompt-review` the user runs. Generation is optional: only when
-the user explicitly asks and has `ark-mcp` or `arkcli` connected.
+is a manual `/prompt-review` the user runs. Generation and media production
+are optional when requested or necessary to complete a user-authorized
+deliverable with available tools.
 
 ## Scope and authority
 
 This workspace produces copy-paste prompt blocks. By default the user pastes
 them into Lumina or another Seed-model UI, where generation happens. When the
-user explicitly asks to generate and a usable `ark-mcp` or `arkcli` is
+user requests generation or a deliverable requiring generated Seed media,
+and a usable `ark-mcp` or `arkcli` is
 connected, follow [Generation transport](.agents/contracts/generation-transport.md):
 show the exact prompt, confirm each submit, use one transport per job. With neither
 connected, stay prompt-only and say so. The workspace never assumes, configures,
 or stores generation credentials.
 
-Deterministic rendering, 3D, and assembly capabilities are out of scope in this
-standalone workspace, including the 3D, VOD, and Blender tools that `ark-mcp`
-exposes. Local `ffmpeg`/`ffprobe` are permitted for read-only analysis frame
-extraction only.
+Within the authorized task, agents may generate media, download references
+and results, prepare audio/video inputs, trim, mux, concatenate, assemble,
+transcode, and export deliverables using available tools, including local
+`ffmpeg`/`ffprobe`. Save outputs to the user's requested destination, including
+Desktop when requested. Preserve source assets and existing takes; do not
+overwrite unrelated files. These permissions override prompt-only,
+analysis-only, and destination-workflow-only restrictions in linked contracts
+and skills for these operations. Other generation approval, reference,
+security, and verification requirements still apply. Unrelated 3D, Blender,
+and deterministic graphics workflows remain out of scope.
 
 Deliver prompts in chat by default. Save a draft under
 `projects/<name>/prompts/` only when the user explicitly asks.
@@ -86,15 +94,13 @@ sequences the prompt leaves.
 
 This workspace ships prompt-composition skills only, plus the maintenance-only
 `sync-skills` skill, which runs on explicit request. Generation is a transport
-contract, not a skill: it uses the user's connected `ark-mcp` or `arkcli` and
-adds no pipeline here. Deterministic-graphics renderers, 3D/animation tooling,
-and media-processing skills are not installed; do not attempt their workflows.
-The prompt leaves and `template-factory` stay prompt-only; they never submit.
-Local
-`ffmpeg`/`ffprobe` are analysis-only — never generation, assembly, or
-transcoding. Delivered recipes that mention such tools (e.g. a mux step in a
-music-video handoff) are user-side destination-workflow material, not agent
-actions.
+contract, not a skill: it uses the user's connected `ark-mcp` or `arkcli`.
+Prompt leaves and `template-factory` produce prompts; the calling agent owns
+authorized submission and media production. No installed media-processing
+skill is required to use available tools for the operations permitted above.
+Recipes such as muxing a song onto a video may be executed by the agent when
+needed for the authorized deliverable; otherwise deliver them as instructions.
+Do not assume unavailable tools or expand into unrelated production work.
 
 Prompt QA is optional and user-triggered. `prompt-review` runs only when the
 user invokes `/prompt-review`; no prompt-writing skill or workflow runs, loads,
@@ -157,6 +163,12 @@ never revert or discard work you did not create.
 Prompt QA is optional: the user runs `/prompt-review` when they want it. For
 repository changes run `git diff --check`; this workspace ships no code, so
 unit, lint, type, and build checks are not applicable.
+
+For produced media, verify output existence, audio/video streams, dimensions,
+duration, and full decode integrity before delivery. When exact original audio
+is required, preserve it without re-encoding where supported and verify audio
+payload or decoded-sample equality. Technical checks do not establish visual
+quality or lip sync; distinguish sampled-frame inspection from playback review.
 
 Shared skills are maintained in an upstream source checkout and pulled in with
 `/sync-skills` in Claude Code or opencode, or `$sync-skills` in Codex (see README
