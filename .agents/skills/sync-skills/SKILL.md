@@ -17,15 +17,19 @@ for the procedure; Claude Code, Codex and opencode all run it.
 
 ## Scope
 
-The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 25 skills. Never
+The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 23 skills. Never
 sync:
 
 - `template-factory` and `seed-audio-commercial` — deliberate local forks
   whose content diverges upstream.
 - `filipino-micro-drama`, `seedream-prop-asset`, `seedream-storyboard`,
-  `seedream-character-sheet-cleanup`, `seedance-motion-recast`, and
-  `seedance-frame-break` — prompt-only local forks of upstream skills, with
-  generation and orchestrator references removed.
+  `seedream-character-sheet-cleanup`, `seedance-motion-recast`,
+  `seedance-object-swap`, `seedance-restyle`, and `seedance-frame-break` —
+  prompt-only local forks of upstream skills, with generation and orchestrator
+  references removed.
+- `seedance-graybox-world` and `seedance-music-video` — local rewrites that
+  are newer than their upstream copies (Blender-video edit prompts; black-sync
+  timing reference and rights-holder wording).
 - `sync-skills` — this maintenance skill is local.
 - Everything under `.agents/contracts/` — locally maintained variants.
 - Every skill not on the allowlist.
@@ -57,12 +61,14 @@ the diff and restore these:
   "Manual review (/prompt-review)" description and "When to trigger" section.
   Also remove upstream's `scripts/` folder and its references: this workspace
   ships no code in skills.
-- `seedance-prompt-25`, `seedance-vfx-prompt`, `seedance-music-video`,
-  `seedream-prompt`, `seed-audio-prompt`: the "Submission boundary" paragraph
-  must not mention a "hash-bound prompt review" or a review stage, and the
-  `seedance-music-video` description must not say the caller "owns review".
+- `seedance-prompt-25`, `seedance-vfx-prompt`, `seedream-prompt`,
+  `seed-audio-prompt`: the "Submission boundary" paragraph must not mention a
+  "hash-bound prompt review" or a review stage.
 - `seedance-prompt-25-filipino`: the caller-ownership sentence must not say
   "complete prompt review".
+- `brief-intake`: keep `approval_mode`, `approve_for_me` and `agent_confirmed`
+  out; only an explicit user choice approves a set
+  ([production policy](../../contracts/production-policy.md)).
 - Any other synced skill that gains a `prompt-review` reference: remove it.
   Only the `prompt-review` skill itself may name `prompt-review`.
 

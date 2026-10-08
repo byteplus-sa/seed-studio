@@ -1,0 +1,43 @@
+{
+  "skill_name": "seedance-object-swap",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "This is our own 8-second UGC clip: a guy on a couch drinks from a green energy-drink can, sets it down, and talks to camera. Swap the can for our approved Volt Zero packshot and keep everything else, including his voice.",
+      "expected_output": "A product swap package: the muted master as @Video 1 (an asset:// video, since the clip shows a person) with the source audio saved for an original-audio post route, the packshot as @Image 1 with background and lighting excluded, the five-part swap contract with per-cut count, contact windows for grip, drink and set-down, generate_audio false, edit task type, and a 480p contact-window probe as the first rung.",
+      "files": [],
+      "expectations": [
+        "The original can is identified by observable descriptors (colour, which hand, first appearance), never as 'the product'.",
+        "The prompt states that the entire video contains exactly one target can and includes a Timeline Inheritance clause.",
+        "@Video 1 is the muted master, generate_audio is false, no @Audio binding is used, and the original-audio post route is stated for his voice.",
+        "Because the clip shows a person, the package recommends uploading the muted master to the Virtual Portrait library and binding @Video 1 as asset://.",
+        "Grip, mouth contact and set-down windows are listed with approximate times.",
+        "The first proposed block is a 480p probe, and the package is delivered in chat as a paste-ready block; the skill does not generate, upload or submit anything."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Replace the woman on the right in this two-person cafe scene with our character Lia. Keep the man on the left untouched.",
+      "expected_output": "A single-character swap that recommends uploading Lia's approved views to the Virtual Portrait library and binds them as asset:// references, the right-hand woman identified by position, clothing and action, source accessories named so they do not carry over, and the man listed under preservation.",
+      "files": [],
+      "expectations": [
+        "Lia's approved views are recommended for Virtual Portrait upload and bound as asset:// references by binding position, never by asset ID.",
+        "The replaced woman is identified by screen position, clothing and action, and the man on the left is explicitly preserved.",
+        "The prompt states exactly one Lia and that she wears only the wardrobe in her reference.",
+        "The swap is not routed to Motion Transfer, because only one person changes.",
+        "Before writing the prompt, the agent asks the user to confirm rights for the cafe footage and the people in it."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Swap the product and also change the whole background to a beach and make everyone wear summer clothes.",
+      "expected_output": "A routing response: several element classes and most of the frame change, so the request is split into sequential swaps or routed to Motion Transfer, with the trade-off explained before any prompt is written.",
+      "files": [],
+      "expectations": [
+        "The skill does not write one swap prompt that changes product, location and every outfit at once.",
+        "It proposes either sequential single-class swaps, with the user judging each result before the next, or a Motion Transfer recast, and explains the difference.",
+        "Nothing is generated or submitted."
+      ]
+    }
+  ]
+}

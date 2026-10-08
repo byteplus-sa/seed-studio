@@ -9,6 +9,8 @@ Read [the entrypoint](../SKILL.md) for authority and source limits.
 | Filipino or Taglish line | Preserve approved words and use native audio |
 | Pronunciation concern without a recording | Identify a hypothesis; do not claim observed failure |
 | Specific heard error | Verify the target reading and add one external cue |
+| Locked line with a shouted or whispered critical Tagalog word | Flag it as a listening priority; check it word by word against a user-supplied transcript |
+| Checking a generated take | Ask the user for a transcript and compare it with the approved words, plus listening; never a model summary alone |
 | User-approved natural rewrite | Offer a minimal meaning/register-preserving revision |
 | Literary or period dialogue | Preserve the intentional register |
 | Separate lip-sync audio explicitly requested | Use the same approved words in both prompts and verify actual alignment |
@@ -25,7 +27,7 @@ Read [the entrypoint](../SKILL.md) for authority and source limits.
 - Timing remains optional outside requested/critical synchronization.
 - No universal syllable-stress, flat-contour, or accent substitution is imposed.
 - No language capability, pronunciation, or lip-sync guarantee is invented.
-- The caller receives the exact prompt and changes for request-bound review.
+- The caller receives the exact prompt and changes for handoff.
 
 ## Optional separate-audio check
 

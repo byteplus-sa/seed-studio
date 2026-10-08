@@ -1,0 +1,45 @@
+{
+  "skill_name": "seedance-restyle",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Turn our 10-second office comedy clip into 2D anime. Same two coworkers, same gags, same camera. We own the footage.",
+      "expected_output": "A restyle package with the cel-anime-2d fragment, a content inventory for both coworkers by observable descriptors, an environment image prompt of the same office drawn in the style and bound as the environment reference, the muted master as @Video 1 (an asset:// video, since the clip shows people) trimmed to an 8n+1 frame count with generate_audio false and an original-audio post route, and a 480p probe of the hardest beat first.",
+      "files": [],
+      "expectations": [
+        "The edit scope redraws every person, object and surface in the style and states exactly two people.",
+        "Each coworker keeps identity cues (hair shape, wardrobe colours) described from the source, not by name.",
+        "@Video 1 is the muted master, generate_audio is false and the saved source audio is the stated post-audio route.",
+        "Because the clip shows people, the package recommends uploading the muted master to the Virtual Portrait library and binding @Video 1 as asset://.",
+        "An environment image of the same office, drawn in the style, is written as a text-to-image prompt and bound with an Environment Reference Role; the prompt names no different location and does not rely on 'same layout' wording to restyle the background.",
+        "The package asks the user to confirm that the environment image reads as the same office as the source and holds no stray objects, and states that the background must stay the same place.",
+        "The package asks for an 8n+1 frame trim (for example 241 frames at 24 fps for 10 s) before the edit.",
+        "No studio, artist or franchise is named.",
+        "The first block is a 480p probe, delivered in chat; the skill does not generate, upload or submit anything."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Here are three paintings I made. Restyle my dance clip to look like them.",
+      "expected_output": "A custom style entry derived from the three images, each bound with a style-only role that excludes their subjects and layout, one image per binding, and the dance content and timing kept from @Video 1.",
+      "files": [],
+      "expectations": [
+        "Each painting is bound as a style reference that supplies only medium, palette, line, texture and light quality.",
+        "A custom recipe names the medium lock, surface traits, palette and cadence read from the images.",
+        "The dancer's poses, positions, camera and timing stay with @Video 1."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Make this street interview look like a Pixar movie and swap the interviewer for our mascot.",
+      "expected_output": "The request is split: the style uses the stylized-handcrafted-3d fragment without naming the studio, and replacing the interviewer is either a separate Object Swap with the mascot's Virtual Portrait or, if the cast changes, a Motion Transfer.",
+      "files": [],
+      "expectations": [
+        "The studio name is not used in the prompt; a descriptive stylized 3D fragment replaces it.",
+        "Replacing the interviewer is routed to Object Swap or Motion Transfer rather than folded into the restyle prompt.",
+        "Any realistic person, including the interviewee in the source, is recommended for Virtual Portrait upload and bound as an asset:// reference.",
+        "Before writing any prompt, the agent asks the user to confirm rights for the street interview footage and the people in it."
+      ]
+    }
+  ]
+}

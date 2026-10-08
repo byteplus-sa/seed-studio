@@ -16,6 +16,19 @@ separate Seed Audio is used only when explicitly requested.
    guidance outside the spoken text.
 5. Return a prompt package; the caller owns model support checks, review, and
    submission. Listen to any generated result before judging pronunciation.
+6. Name the listening priorities for the generated take. A locked line whose
+   plot-critical Tagalog word is shouted at the start of a line or whispered at
+   the end has been garbled in past takes; see [observed failures](observed-failures.md).
+   Flag it for a word-by-word check, but do not rewrite a locked line without
+   rewrite scope.
+
+## Verifying the words
+
+Ask the user for a speech-to-text transcript of each generated take and
+compare it word by word against the approved text, with a listening pass for
+the speaker and register. This skill does not transcribe audio. A video model's summary of what was said is not enough: in a past
+review it reported the dialogue as unintelligible while the transcript matched
+the approved lines. Note the heard wording, not only a pass or fail.
 
 ## Minimal native form
 
@@ -46,6 +59,9 @@ Examples of distinct diagnoses:
   or emphasis toward the addressee. Do not automatically shorten the words.
 - **A word differs from the approved script.** Verify the exact script and
   heard output before proposing a targeted pronunciation cue or a text repair.
+  When the heard word is an English look-alike (heard "Hey" for {Hoy}), a
+  single note naming it as the Filipino interjection or honorific has fixed it
+  in a past retake.
 - **A line finishes too late.** Check the speaking window and pace; do not claim
   a stress change can solve an impossible duration without changing delivery.
 - **A user wants a natural rewrite.** Use [vocabulary](vocabulary.md) only within

@@ -61,8 +61,9 @@ evidence leaves a production review `incomplete`; request it from the caller.
 Filename/content inference is a draft-only fallback with an explicit warning.
 
 For the same request, use generation rules for generate, 2.5 edit rules for a
-2.5 edit, recast rules for a 2.5 recast (motion transfer), legacy VFX rules for
-a supported 2.0 edit, and extension rules for extend. Language and named-axis checklists are additive only when applicable.
+2.5 edit, recast rules for a 2.5 recast (motion transfer), restyle rules for a
+2.5 restyle, legacy VFX rules for a supported 2.0 edit, and extension rules for
+extend. Language and named-axis checklists are additive only when applicable.
 A localized change contract overrides generic preservation heuristics for items
 under `may_change`; keep all `must_preserve` items unchanged.
 
@@ -75,7 +76,9 @@ Use explicit input first; filenames below are fallback hints, not authority:
 | Seedance 2.5 video | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-25` |
 | Seedance 2.0 video (4K/Fast/Mini) | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-20` |
 | Seedance 2.5 edit | explicit model + edit operation | Seedance 2.5 edit section |
+| Seedance 2.5 object swap | explicit model + edit operation replacing one element | Seedance 2.5 edit section (object swap items) + `seedance-object-swap` |
 | Seedance 2.5 recast (motion transfer) | explicit model + recast operation | Seedance 2.5 recast section + `seedance-motion-recast` |
+| Seedance 2.5 restyle | explicit model + restyle operation | Seedance 2.5 restyle section + `seedance-restyle` |
 | Seedance VFX (video-to-video edit, legacy path) | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-vfx-prompt` |
 | Seedance Filipino dialogue | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-25` + `seedance-prompt-25-filipino` |
 | Seed Audio (dialogue/music/SFX/ambience) | `prompt_dlg_*`, `prompt_mus_*`, `prompt_sfx_*`, `prompt_amb_*`, `prompt_mix_*` | `seed-audio-prompt` |
@@ -115,6 +118,11 @@ are meant, ask. Read each file to get its full text.
 
 If the prompts have not been saved to files (drafted inline in chat), extract the
 prompt text from the conversation. Save a snapshot only when the user asks for one.
+
+For Seedance prompts, run the [quick pre-check](references/author-self-check.md)
+before dispatching the sub-agent. It covers ten recurring findings, such as
+descriptor drift, raw/baked state, camera end times, shot density, trim points,
+and audio brackets, and usually saves a re-review round.
 
 ### Step 2 — Detect prompt type and load checklist
 
@@ -169,7 +177,7 @@ issues and suggest fixes.
 ## Dispatch and request identity
 prompt_type: <explicit type>
 model: <resolved model>
-operation: <generate/edit/extend/recast>
+operation: <generate/edit/extend/recast/restyle>
 language: <requested language>
 requested_axes: <named axes>
 request_sha256: <canonical request hash>

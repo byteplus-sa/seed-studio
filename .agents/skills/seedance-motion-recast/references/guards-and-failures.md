@@ -194,8 +194,9 @@ brand to an authorized reference. Add exact copy in post.
 
 A `PrivacyInformation`, sensitive-content or policy rejection the user reports
 is evidence to diagnose. Stop, ask for the request ID and flagged inputs, and
-follow the moderation rule in the
+follow the
+[rejection rule](../../../contracts/video-to-video-inputs.md#provider-rejections)
+and the moderation rule in the
 [production policy](../../../contracts/production-policy.md). Never alter,
-disguise or swap inputs to pass the check. Offer an invented cast, a generated
-or owned-talent source clip, or the provider's authorized route, and revise
-only on the user's explicit decision.
+disguise or swap inputs to pass the check. Offer an invented cast or a generated
+or owned-talent source clip, and revise only on the user's explicit decision.
