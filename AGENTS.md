@@ -11,10 +11,11 @@ deliverable with available tools.
 This workspace produces copy-paste prompt blocks. By default the user pastes
 them into Lumina or another Seed-model UI, where generation happens. When the
 user requests generation or a deliverable requiring generated Seed media,
-and a usable `ark-mcp` or `arkcli` is
-connected, follow [Generation transport](.agents/contracts/generation-transport.md):
-show the exact prompt, confirm each submit, use one transport per job. With neither
-connected, stay prompt-only and say so. The workspace never assumes, configures,
+and a usable `ark-mcp` or `arkcli` is connected, or the user explicitly requests
+direct HTTP/curl with an established secure runtime configuration, follow
+[Generation transport](.agents/contracts/generation-transport.md): show the exact
+prompt, confirm each submit, use one transport per job. With no usable selected
+transport, stay prompt-only and say so. The workspace never assumes, configures,
 or stores generation credentials.
 
 Within the authorized task, agents may generate media, download references
@@ -96,7 +97,8 @@ sequences the prompt leaves.
 
 This workspace ships prompt-composition skills only, plus the maintenance-only
 `sync-skills` skill, which runs on explicit request. Generation is a transport
-contract, not a skill: it uses the user's connected `ark-mcp` or `arkcli`.
+contract, not a skill: it uses the user's connected `ark-mcp` or `arkcli`, or
+explicitly requested direct HTTP/curl with existing runtime authentication.
 Prompt leaves and `template-factory` produce prompts; the calling agent owns
 authorized submission and media production. No installed media-processing
 skill is required to use available tools for the operations permitted above.
