@@ -1,0 +1,110 @@
+{
+  "skill_name": "seedance-effects-studio",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "What effects can I put on my full-body photo?",
+      "expected_output": "Relevant grouped menu, start requirements and a choice question.",
+      "files": [],
+      "assertions": [
+        "Names compatible effects and their inputs.",
+        "No generation or automatic file save."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Write Street colossus for my sidewalk photo.",
+      "expected_output": "Frozen effect prompt or unresolved input package with a required city-scale opening still.",
+      "files": [],
+      "assertions": [
+        "Lists the fitted giant first frame as required when absent.",
+        "Keeps the two cuts and one helicopter.",
+        "Returns reference roles and parameters in chat."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Eyes in on an extreme-close portrait with the left eye visible.",
+      "expected_output": "First-frame eye dive matching the supplied framing.",
+      "files": [],
+      "assertions": [
+        "Names eye side by frame side.",
+        "Maintains no-blink dive and black ending."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Clones: I need exactly five copies beside me.",
+      "expected_output": "Five copies plus original stated at each count change, with observed count drift disclosed.",
+      "files": [],
+      "assertions": [
+        "Distinguishes copies from total figures.",
+        "Does not guarantee exact counts."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Write Canvas for this source clip.",
+      "expected_output": "Restyle style block, source/environment requirements, audio preservation note and evidence limit.",
+      "files": [],
+      "assertions": [
+        "Does not load another skill.",
+        "Discloses that Canvas was not achieved upstream.",
+        "Does not generate or require a test ladder."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Tracking with readable numbers and a precise HUD.",
+      "expected_output": "Footage prompt and explicit destination post handoff.",
+      "files": [],
+      "assertions": [
+        "No readable text or HUD in generated footage.",
+        "States that full effect depends on post work.",
+        "Does not implement deterministic graphics."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Mighty fighter from my portrait, preserve the face-last reveal.",
+      "expected_output": "Separate Shot A and B prompts with role options and a post-cut note.",
+      "files": [],
+      "assertions": [
+        "Face first appears around five seconds.",
+        "Exact hard cut is a destination post need.",
+        "Provider rejection is not treated as permission to bypass."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Make the effect on my missing photo and save everything.",
+      "expected_output": "Asks for the asset and clarifies effect choice before filling unseen facts.",
+      "files": [],
+      "assertions": [
+        "No invented image observations.",
+        "Saving follows explicit user request with no credentials or signed URLs."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Prepare the Cyclope first and last still prompts. The seagull flies away at one second.",
+      "expected_output": "The first still contains one perched seagull; the last still contains none, matching the flight event.",
+      "files": [],
+      "assertions": [
+        "The last-frame prompt removes the seagull rather than retaining it.",
+        "The person, meadow, boulder, sword and camera framing remain continuous."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Write Lacewalker using my waist-up portrait. My trousers and shoes are outside the frame.",
+      "expected_output": "Asks for the unseen clothing choice; inserts at most one complete lower-outfit sentence after the user supplies it.",
+      "files": [],
+      "assertions": [
+        "Does not invent unseen trousers or shoes.",
+        "Does not duplicate the phrase The miniature also wears.",
+        "For a full-body reference, removes the conditional lower-outfit slot."
+      ]
+    }
+  ]
+}

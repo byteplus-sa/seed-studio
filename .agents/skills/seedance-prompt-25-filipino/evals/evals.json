@@ -68,7 +68,7 @@
       "files": [],
       "expectations": [
         "Does not accept the model summary over the word-level transcript.",
-        "States the heard word 'nagpalala' against the approved 'nagpadala'.",
+        "Records the heard word 'nagpalala' against the approved 'nagpadala'.",
         "Proposes at most one targeted external cue for a retake, leaving the spoken text unchanged.",
         "Does not claim the cue guarantees the fix; requires listening after the retake."
       ]

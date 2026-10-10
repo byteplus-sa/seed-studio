@@ -7,7 +7,8 @@ they are prompt-composition only and never call the API themselves.
 
 | Axis | Skill | Notes |
 |---|---|---|
-| Camera movement & camera styles | `seedance-camera-presets` | Moves, techniques (dolly zoom, FPV, bullet-time orbit, one-take), and 10 camera styles; keep ≤2 moves per clip |
+| Requested shot planning | `seedance-shot-design` | Plan each shot's purpose, duration, framing, move, lens intent and motivated light; preserve user locks and static formats |
+| Camera movement & camera styles | `seedance-camera-presets` | Moves, techniques (dolly zoom, FPV, bullet-time orbit, one-take), and 10 camera styles; keep ≤2 moves per shot |
 | Lens / focal length / aperture / sensor | `seedance-lens-presets` | Always pairs numeric optics with the visible result; resolve requested 4K against current model capabilities |
 | Lighting | `seedance-lighting-presets` | Causal lighting presets; emit both the Seedream `Lighting:` recipe (elements) and the Seedance visual-style phrase so image + video share one lighting intent |
 | Color grading | `color-grade-palettes` | Named palettes + film looks in the Visual Style slot; keep one project-wide palette; optional post-grade filter expression for cross-shot matching in the destination workflow |
@@ -29,9 +30,12 @@ they are prompt-composition only and never call the API themselves.
 Use a preset skill only when the user asks for a concrete axis ("dolly in on her
 face", "teal and orange grade", "Rage at medium intensity", "bullet-time
 slow-mo"). For ordinary shots without such direction, `seedance-prompt-25` alone
-is sufficient. Do not let two skills fight: exactly one grade, one dominant
-lighting direction, and 1–2 camera moves per clip. Record the chosen axis
-choices and their canonical phrases in `shot.md` alongside the prompt snapshot.
+is sufficient. Use `seedance-shot-design` when the user requests a shot list,
+coverage or a more dynamic camera and light plan; carry the supplied plan into
+each shot without adding unrequested axes. Do not let two skills fight: exactly
+one grade per clip, one dominant lighting direction per shot, and 1–2 camera
+moves per shot. Return chosen axes and canonical phrases alongside the prompt
+in chat; save them only when requested.
 
 Load `seedance-lighting-presets` / `color-grade-palettes` alongside
 `seedream-prompt` when generating matching element sheets. Use

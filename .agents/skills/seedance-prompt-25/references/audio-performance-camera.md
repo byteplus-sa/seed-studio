@@ -150,6 +150,10 @@ together to lock the layout.
 
 ## Camera language
 
+For a requested or supplied shot plan, keep each shot's size, angle and move on
+its own line; see [Shot Staging](shot-staging.md). Do not add camera axes to a
+prompt that does not request them.
+
 ### Basic terms
 
 | Type | Common Terms |

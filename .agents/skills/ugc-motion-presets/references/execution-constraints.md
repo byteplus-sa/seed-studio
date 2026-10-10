@@ -11,9 +11,9 @@ tool/API values — they never appear in prompt text.
 | Parameter | Value and notes |
 |---|---|
 | `duration` | Integer seconds, 4–30; `-1` for auto. Integer only — no sub-second values. |
-| `resolution` | `480p`, `720p`, `1080p`. Default 720p for UGC placement. 4K is unsupported on 2.5 — a 4K request falls back to Seedance 2.0. |
+| `resolution` | `480p`, `720p`, `1080p`. Default 720p for UGC placement. Standard 2.5 caps at 1080p; a 4K request needs legacy 2.0 or confirmed access and destination support for whitelist-only 2.5 Premium. |
 | `ratio` | `9:16` default for UGC unless the request says otherwise. Locked to the first image on first/last-frame tasks and auto-derived from the source on edit tasks — never set it there. |
-| `camera_fixed` | `true` for locked-off selfie/posing and spectacle demos. |
+| Locked camera | State locked-off selfie/posing and spectacle framing in the prompt. Use a camera-lock parameter only if the destination exposes one. |
 | `generate_audio` | Enables the native audio track the recipes describe. |
 | `watermark` | `false` by default (the tool supports the parameter). |
 | `return_last_frame` | `true` chains a scene into the next one's `first_frame` — used by multi-shot and long lifestyle recipes. |
@@ -69,7 +69,7 @@ QA the final frame: it must read as the intended vanish, not a corrupt frame.
 No crowd-freeze or timelapse-speed parameter exists. Approximation: state the
 subject's stillness explicitly ("stands perfectly still, motionless for the
 full duration") while background pedestrians move constantly at fast frequency
-with motion blur, on a locked-off `camera_fixed` shot. QA that the subject
+with motion blur, on a locked-off camera stated in the prompt. QA that the subject
 actually holds — any subject drift breaks the effect.
 
 ### Morning routine — over-30s arc

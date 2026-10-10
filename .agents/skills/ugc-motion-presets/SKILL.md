@@ -6,7 +6,8 @@ description: >
   Eating Zoom, Group Photo, Yacht, ...) or asks for
   preset-style UGC motion — reaction, selfie, fashion, eating, VFX spectacle,
   action, timelapse, or multi-shot formats. Persuasion angle, claims, and CTA
-  belong to ugc-ad-modes; prompt grammar belongs to seedance-prompt-25. Never
+  belong to ugc-ad-modes; prompt grammar belongs to seedance-prompt-25. Locked-off
+  presets are static by design; preserve a supplied multi-shot plan. Never
   generates media.
 ---
 

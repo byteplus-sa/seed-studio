@@ -60,13 +60,13 @@ mode selection and caller responsibilities.
 | Bounce speed ramp | Acceleration/deceleration points; final state |
 
 ### Reproducibility
-- `seed`: pin once a look is approved to reproduce the same visual family.
-- `camera_fixed`: set to `true` for locked-off shots.
+- `seed`: use only if the destination exposes it. The upstream 2.5 client checked on 2026-10-06 did not; reuse the approved prompt and references without promising identical output.
+- `camera_fixed`: do not assume the destination exposes it. The upstream 2.5 client checked on 2026-10-06 did not; state the locked camera in the prompt.
 - `return_last_frame`: set to `true` to chain multi-shot continuity.
 
 ### Output duration
 - 4–30s per generation (up from 4–15s in 2.0).
-- Output resolution: 480p, 720p, or 1080p. For 4K output, fall back to Seedance 2.0 (`dreamina-seedance-2-0-260128`) via `seedance-prompt-20`.
+- Output resolution: 480p, 720p, or 1080p. For 4K output, use legacy Seedance 2.0 via `seedance-prompt-20`, or whitelist-only 2.5 Premium only when the caller confirms access and support in the destination.
 - Multi-round extensions up to 180s (beta).
 
 ### Cost ladder
@@ -78,7 +78,7 @@ mode selection and caller responsibilities.
 
 Fall back to `seedance-prompt-20` and the 2.0 model (`dreamina-seedance-2-0-260128`) when:
 
-- You need **4K output resolution** — 2.5 caps at 1080p.
+- You need **4K output resolution** — standard 2.5 caps at 1080p; whitelist-only 2.5 Premium is a separate access-dependent option.
 - You need **Fast or Mini speed variants** — 2.5 has no Fast/Mini; 2.0 Fast/Mini are cheaper and faster for prototyping.
 - You need the lowest possible cost per generation for quick iteration.
 

@@ -11,8 +11,9 @@ description: >
   skill for Seedance 2.5 prompts, multi-reference asset orchestration, scene
   staging, video editing, extension, and corrections to generated motion or
   continuity. For legacy Seedance 2.0 prompts, use seedance-prompt-20 instead.
-  For 4K output resolution (unsupported by 2.5) or Fast/Mini speed variants,
-  also use `seedance-prompt-20`.
+  For 4K through legacy 2.0 or Fast/Mini speed variants, use
+  `seedance-prompt-20`; whitelist-only 2.5 Premium requires confirmed access
+  and destination support.
 ---
 
 # Seedance Prompt
@@ -40,7 +41,8 @@ for each critical action beat.
 
 Use reference-inputs for R2V; video-editing for edits; video-extension for
 extensions; keyframes-storyboards-blockouts for approved visual conditioning
-and validated blockout manifests. Add audio-performance-camera only for
+and validated blockout manifests; shot-staging for requested or supplied
+multi-shot plans. Add audio-performance-camera only for
 applicable dialogue, acting, UI, or camera detail.
 
 Read only the mode-specific resources needed for the request. Reference paths
@@ -48,6 +50,7 @@ mentioned in prose are relative to this skill directory unless a link says other
 
 - [Reference Inputs](references/reference-inputs.md) — Reference materials; Multi-reference workflow (5 steps).
 - [Scene Action](references/scene-action.md) — Scene staging; Action description.
+- [Shot Staging](references/shot-staging.md) — Requested shot plans; Per-shot camera and light; Dialogue inside shots.
 - [Audio Performance Camera](references/audio-performance-camera.md) — Special audio and text syntax; Emotional direction; Scripted dialogue for all speaking characters; Describing screen and UI layout positively; Camera language; Video call scenes; Spatial continuity.
 - [Video Editing](references/video-editing.md) — Video editing.
 - [Video Extension](references/video-extension.md) — Video extension.
@@ -125,7 +128,8 @@ film grain with soft halation.
 Each preset skill (`seedance-lighting-presets`, `seedance-lens-presets`,
 `color-grade-palettes`) produces one phrase; this rule defines how they
 assemble. Use only the presets the user requested — do not pad the slot with
-unused defaults.
+unused defaults. When a shot plan supplies camera and light facts, carry them
+on each shot line and keep any requested grade in the shared opening.
 
 ### Example
 

@@ -192,9 +192,26 @@ Source skill: `seedance-prompt-25`
 
 ### Camera language
 
-24. **Coherent camera direction.** Use one or two clear camera movements when
+24. **Coherent camera direction.** Use one or two clear camera movements per shot when
     requested, with the subject, beginning, and endpoint of each stated. Avoid
-    competing simultaneous moves; preserve a requested static camera.
+    competing simultaneous moves within a shot; preserve a requested static camera.
+
+24a. **Requested shot plan carried.** When the user requests or supplies a shot
+    plan, each shot carries its duration, purpose, framing, camera move or
+    static reason, visible lens intent and motivated light. Compare the prompt
+    with that plan and confirmed axes; report dropped facts or broken locks.
+    No separate plan is required for ordinary prompt requests.
+
+24b. **Variety fits the requested energy.** For an explicitly requested dynamic
+    sequence, compare neighboring shot sizes, angles, moves and key sides with
+    the requested plan. Treat the shot-design thresholds as craft heuristics,
+    not model guarantees. Preserve dialogue readability, fixed song timing,
+    static formats and source-preserving edits.
+
+24c. **Motivated light and readable holds.** A planned source keeps its world
+    position across cuts; a new source needs a visible motivating event. A
+    static hold may emphasize performance or contrast with motion. Never add
+    camera movement against a user lock merely to meet a variety target.
 
 25. **Uncommon cinematography terms.** If used, they follow the format:
     Term + Target Subject + Visual Change + Foreground/Background Relationship +
@@ -1290,10 +1307,12 @@ Source skill: `seedream-prop-asset`
 
 ### Layout
 
-3. **Layout declared.** Single hero view by default; a two- or three-panel sheet
-   only for multi-side, large, mechanical, or small-detail objects. Three panels
-   at most, with the detail panel showing only what the full views cannot. A
-   single named view (front, side, top, edge) is valid when a shot needs it.
+3. **View plan declared.** Front and back by default; add side when requested
+   or when the profile carries identity. Honor an explicit single-view request;
+   existing hero references remain valid. State variants use only the faces
+   where the change is visible. A detail close-up is separate, never a fourth
+   view. Three views at most, in front/side/back row order for compact objects;
+   front and back above a centered side profile for long objects.
 
 4. **Background.** Pure white seamless with a faint contact shadow, or neutral
    light gray, with the same faint contact shadow, for white, silver, chrome,
@@ -1301,7 +1320,7 @@ Source skill: `seedream-prop-asset`
    character sheets already use gray. No colored, gradient, textured, or scene
    background.
 
-5. **Neutral lighting.** Even, neutral white balance, identical across panels.
+5. **Neutral lighting.** Even, neutral white balance, identical across views.
    Shape-revealing highlights and gentle raking light are allowed; scene mood
    and color casts are not.
 
@@ -1318,7 +1337,9 @@ Source skill: `seedream-prop-asset`
 
 9. **Identity description.** Silhouette and proportions, real-world size in
    words, materials and finish, colors, and the identity-critical details the
-   video must reproduce. Wear and damage appear only as the story needs.
+   video must reproduce. Wear and damage appear only as the story needs. Each planned face names its
+   own details; opposite flanks use landmarks and frame terms, not left/right
+   wording alone. Do not invent a missing branded face or its copy.
 
 10. **One canonical state.** Open/closed, lit/unlit, folded/extended or similar
     is stated; emissive parts stay off unless the glow is canonical.
@@ -1337,9 +1358,13 @@ Source skill: `seedream-prop-asset`
 
 ### Composition
 
-14. **Whole object.** Every full-view panel fits the whole object with margin.
+14. **Whole object.** Every full view fits the whole object with a requested 6%
+    margin to canvas edges and neighboring views. A continuous seamless field
+    separates views by empty space, without boxes, borders, labels or dividers.
 
-15. **Consistent scale.** Full-view panels share one scale and design.
+15. **Consistent scale.** Views share one scale and design, compared by object
+    height or wheel diameter rather than width; three-quarter front/back show
+    opposite flanks and the profile shows the chosen near flank.
 
 ### Text in image
 
@@ -1353,7 +1378,8 @@ Source skill: `seedream-prop-asset`
 
 17. **Common negatives.** No hands or people, no other objects or duplicates, no
     unwanted background, no readable text or logos, no cropped edges, no extra
-    panels, no watermark — only those that apply.
+    views, boxes, borders, divider lines, labels or captions, no watermark —
+    only those that apply.
 
 ---
 

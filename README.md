@@ -7,10 +7,12 @@ want, the agent composes a production-grade prompt from the skill libraries and
 hands you a copy-paste block for the Lumina UI. Want a second opinion? Run
 `/prompt-review` yourself; the agent never runs it on its own.
 
-Generation is optional. If you have `ark-mcp` or `arkcli` connected and explicitly
-ask the agent to generate, it submits the prompt you saw through that transport
-after you confirm the model, references, and cost. Without either connected, or
-without that request, it stays prompt-only. The agent never stores credentials or
+Generation is optional. With `ark-mcp` or `arkcli` connected, an explicit
+generation request submits the prompt you saw after you confirm the model,
+references and cost. Direct HTTP/curl is also supported when explicitly requested
+and secure caller-managed runtime configuration already exists; it is never an
+automatic fallback. Without a usable selected transport or generation request,
+the agent stays prompt-only. The agent never stores credentials or
 writes production files. See
 [`generation-transport.md`](.agents/contracts/generation-transport.md).
 
@@ -18,7 +20,7 @@ writes production files. See
 
 | This repo **is** | This repo **is not** |
 |---|---|
-| Prompt composition skills for Seed-family models | A generation pipeline — you paste prompts into the destination UI, or opt in to a confirmed submit through your own `ark-mcp` / `arkcli` |
+| Prompt composition skills for Seed-family models | A generation pipeline — you paste prompts into the destination UI, or opt in to a confirmed submit through your own `ark-mcp` / `arkcli`, or explicitly requested direct HTTP |
 | An optional, user-invoked review (`/prompt-review`) | A renderer — static and motion graphics are out of scope |
 | Chat-first delivery of paste-ready prompt blocks | A 3D or assembly tool — 3D, compositing, and editing are out of scope |
 | Optional local prompt drafts under `projects/` | A production canvas — no stage machinery, no task registry |
@@ -32,7 +34,7 @@ flowchart LR
   D --> E[Paste into Lumina]
   D -.->|you run it, optional| C[/prompt-review/]
   D -.->|on request| F[(projects/&lt;name&gt;/prompts/)]
-  D -.->|on request, ark-mcp or arkcli connected| G[Confirm, then submit]
+  D -.->|on request, usable selected transport| G[Confirm, then submit]
 ```
 
 1. The agent routes your request to the relevant skill (grammar, presets,
@@ -60,6 +62,8 @@ flowchart LR
 | **seedance-acting-console** | Turn playable motives and tactics into observable acting cues appropriate to framing, visibility and intensity. |
 | **seedance-animation-styles** | Write Seedance animation prompts for claymation, needle felt, wood puppets, toy miniatures, rubber hose, painterly 2D, cubist ink, stylized 3D, silicone creatures, and wax crayon. |
 | **seedance-frame-break** | Write Seedance 2.5 frame-break pop-out prompts: two fixed black bars with the subject's limbs drawn over them, four timed break-out stages, product-hero variant, failure repairs, and a user-run acceptance check. |
+| **seedance-shot-design** | Plan requested shot coverage, camera moves, lens intent and motivated lighting; preserve fixed formats and confirmed axes. |
+| **seedance-effects-studio** | Compose a selected visual effect from a 45-entry recipe menu, with reference roles, parameters, post needs and evidence limits. |
 | **seedance-camera-presets** | Turn a named camera move (dolly, pan, orbit, crane, tracking, handheld, FPV, aerial, bullet time, dolly zoom, whip pan, one-take, static) into a drop-in Camera block. |
 | **seedance-graybox-world** | Write Seedance edit prompts for Blender-rendered videos (playblasts, graybox/previz, finished renders); change appearance while preserving Blender's motion, camera, and timing. |
 | **seedance-lens-presets** | Translate a lens, focal length, aperture, or sensor request into a canonical visible-result phrase for Seedance prompts or Seedream style. |
@@ -74,7 +78,7 @@ flowchart LR
 | **seedream-character-sheet-cleanup** | Write a Seedream edit prompt that removes the head from the full-body panels so the close-up is the only readable face; non-destructive, with an acceptance checklist. |
 | **seedream-location-asset** | Write structured Seedream prompts for cinematic location assets and reusable environment sheets. |
 | **seedream-storyboard** | Write Seedream storyboard prompts from one hero panel to a multi-panel continuity board: sketch-default single-image grid or separate images, element binding, geometry and continuity contract, revision prompts. |
-| **seedream-prop-asset** | Write structured Seedream prompts for prop and product identity sheets: prop threshold, acquisition-first order, hero or multi-view layout, neutral background, one canonical state. |
+| **seedream-prop-asset** | Write prop and product identity-sheet prompts: acquisition first, front/back by default, identity-critical side views, continuous background and one canonical state. |
 | **seed-audio-prompt** | Write structured Seed Audio 1.0 prompts for full-soundscape audio generation including dialogue, music, SFX, and ambience. |
 | **seed-audio-commercial** | Compose dramatic, story-driven audio commercial prompts with a five-act arc, multi-character voice profiles, and commercial SFX/music patterns. |
 | **ugc-ad-modes** | Write hooks, scripts and Seedance prompts for nine ad modes using supplied product facts, audience objections, supported claims and accurate CTAs. |
@@ -92,7 +96,7 @@ flowchart LR
 | Canon, props, screens and reference roles | [`.agents/contracts/element-identification.md`](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [`.agents/contracts/audio-video-alignment.md`](.agents/contracts/audio-video-alignment.md) |
 | Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [`.agents/contracts/video-to-video-inputs.md`](.agents/contracts/video-to-video-inputs.md) |
-| Optional generation via `ark-mcp` / `arkcli` | [`.agents/contracts/generation-transport.md`](.agents/contracts/generation-transport.md) |
+| Optional generation via `ark-mcp` / `arkcli` or explicitly requested direct HTTP | [`.agents/contracts/generation-transport.md`](.agents/contracts/generation-transport.md) |
 
 ## Repository structure
 
@@ -102,7 +106,7 @@ seed-prompt-studio/
 ├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 35 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 37 prompt-composition skills + sync-skills (maintenance)
 ├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -129,7 +133,8 @@ runs when invoked explicitly. The local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
-`seedance-frame-break`, `seedance-graybox-world`, and `seedance-music-video`
+`seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
+`seedance-shot-design`, and `seedance-effects-studio`
 forks and all contracts are locally maintained and are never overwritten by a
 sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result

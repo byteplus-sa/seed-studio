@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Effects Studio"
+  short_description: "Compose a named Seedance visual-effect prompt"
+  default_prompt: "Use $seedance-effects-studio to show effects that fit my photo or clip, then write the prompt for the one I choose."

@@ -1,0 +1,83 @@
+{
+  "skill_name": "seedream-prop-asset",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Make a recurring prop sheet of a ripe unbranded apple. It is intact; no approved reference exists.",
+      "expected_output": "Front and back sheet, straight-on views, one continuous white background.",
+      "files": [],
+      "expectations": [
+        "States front and back with a one-line reason; no unnecessary side or detail view.",
+        "Describes opposite skin patterns without inventing damage.",
+        "Same scale by height, no labels, boxes or dividers, neutral light, 6% requested margin.",
+        "Returns prompt in chat and does not generate or submit."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Make a fictional tricycle prop sheet for our stylized film. Its sidecar is on its right. Show the details on both flanks.",
+      "expected_output": "Front, back and side on a square stacked sheet, explicit flank landmarks.",
+      "files": [],
+      "expectations": [
+        "Front/right and rear/left three-quarter views cover opposite flanks; profile shows the sidecar flank.",
+        "Uses object and frame terms with a half-turn rather than ambiguous opposite-side wording.",
+        "Front/back sit above a centered side profile; height and wheel diameter govern scale.",
+        "No fourth detail view, baked labels or invented brand."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "For the apple sheet, give me only a top view.",
+      "expected_output": "Single isolated top view; explicit request overrides default.",
+      "files": [],
+      "expectations": [
+        "Honors exactly one top view, with no automatic front/back/side expansion.",
+        "Whole object and margin remain; text-free continuous background."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Create a front/back reference of the real Acme bottle. I authorize the brand but have only its official front photo.",
+      "expected_output": "Acquisition handoff requesting authorized back; no invented packaging.",
+      "files": [],
+      "expectations": [
+        "Reports missing real back view and asks for an authorized image.",
+        "Does not generate an imagined back label, logo or brand marks.",
+        "No generation, automatic review or save action."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "The approved fictional hinged box sheet is attached. Write the open-state variant; only its front changes.",
+      "expected_output": "I2I front-only open-state prompt using unchanged approved identity.",
+      "files": [],
+      "expectations": [
+        "Copies approved identity descriptor word for word and binds reference inline.",
+        "Requests only the front where the state change shows, not an automatic complete turnaround.",
+        "Does not overwrite or rename the existing hero/sheet reference."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Make a blank fictional taxi prop sheet. If we later want a number we could use 42, but keep it blank for now.",
+      "expected_output": "Three-view fictional taxi with blank roof and plate surfaces.",
+      "files": [],
+      "expectations": [
+        "Conditional mention is not consent to render 42.",
+        "No text, numbers, logos, labels or captions in prompt output.",
+        "One continuous neutral background and opposite-flank plan."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Make a fictional canvas satchel turnaround. Its left flank has a brass buckle and right flank is plain. It has no wheels.",
+      "expected_output": "A compact three-view row with asymmetric flank landmarks, no vehicle features.",
+      "files": [],
+      "expectations": [
+        "Front/back three-quarter views show opposite flanks and profile shows the buckle flank.",
+        "Replaces generic layout flank placeholder with observed bag details; does not request wheels, grille, lamps or vehicle features.",
+        "No boxes, dividers, labels or captions; same height and neutral lighting."
+      ]
+    }
+  ]
+}

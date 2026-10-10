@@ -64,7 +64,9 @@ than a narrative event; a sound-only brief can use a sonic idea.
 ## 2. Choose the appropriate depth
 
 - **Fast proposal (default):** give one compact treatment tied to the creative
-  spine and only the axes needed to execute it. Do not produce alternatives or
+  spine and only the axes needed to execute it. When camera/light planning or
+  energy direction is requested, tie their stance and energy level (restrained,
+  standard or kinetic) to the intended reaction. Do not produce alternatives or
   a questionnaire merely because a project is new.
 - **Exploration:** when the user asks for directions, alternatives, or help
   choosing a concept, offer two materially different treatments. Distinguish
@@ -84,7 +86,9 @@ of the same shot does not constitute two treatments.
 
 Every recommended choice needs a concrete visible or audible purpose and a
 tradeoff where it affects feasibility. Choose fewer coherent instructions over
-an exhaustive preset stack.
+an exhaustive preset stack. For a requested shot plan, carry the accepted
+camera/light stance through the shots; a static camera is a valid choice when
+the format or intended reaction calls for it.
 
 | Axis | Derivation | Composition hint for a calling agent |
 | --- | --- | --- |

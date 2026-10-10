@@ -11,10 +11,11 @@ deliverable with available tools.
 This workspace produces copy-paste prompt blocks. By default the user pastes
 them into Lumina or another Seed-model UI, where generation happens. When the
 user requests generation or a deliverable requiring generated Seed media,
-and a usable `ark-mcp` or `arkcli` is
-connected, follow [Generation transport](.agents/contracts/generation-transport.md):
-show the exact prompt, confirm each submit, use one transport per job. With neither
-connected, stay prompt-only and say so. The workspace never assumes, configures,
+and a usable `ark-mcp` or `arkcli` is connected, or the user explicitly requests
+direct HTTP/curl with an established secure runtime configuration, follow
+[Generation transport](.agents/contracts/generation-transport.md): show the exact
+prompt, confirm each submit, use one transport per job. With no usable selected
+transport, stay prompt-only and say so. The workspace never assumes, configures,
 or stores generation credentials.
 
 Within the authorized task, agents may generate media, download references
@@ -54,13 +55,15 @@ Load only the contract relevant to the current request:
 
 ## Routing
 
-Compose only the axes the user requested. One grade, one dominant lighting
-direction, and one or two camera moves per clip unless the explicitly
+Compose only the axes the user requested. One grade per clip, one dominant lighting
+direction per shot, and one or two camera moves per shot unless the explicitly
 requested choreography needs more.
 
 | Intent | Route |
 | --- | --- |
 | Brief shaping | `brief-intake` |
+| Requested shot list, coverage or dynamic camera and light plan | `seedance-shot-design` |
+| Named visual-effect recipes and effect menu | `seedance-effects-studio` |
 | Reference-video reverse engineering (breakdown → element, storyboard, Seedance prompts) | `template-factory` |
 | Storyboard panel and grid prompts | `seedream-storyboard` |
 | Motion recast of a source clip (new cast and world, same motion) | `seedance-motion-recast` |
@@ -94,7 +97,8 @@ sequences the prompt leaves.
 
 This workspace ships prompt-composition skills only, plus the maintenance-only
 `sync-skills` skill, which runs on explicit request. Generation is a transport
-contract, not a skill: it uses the user's connected `ark-mcp` or `arkcli`.
+contract, not a skill: it uses the user's connected `ark-mcp` or `arkcli`, or
+explicitly requested direct HTTP/curl with existing runtime authentication.
 Prompt leaves and `template-factory` produce prompts; the calling agent owns
 authorized submission and media production. No installed media-processing
 skill is required to use available tools for the operations permitted above.
@@ -176,5 +180,6 @@ Maintenance). The command never overwrites the local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
-`seedance-frame-break`, `seedance-graybox-world`, and `seedance-music-video`
+`seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
+`seedance-shot-design`, and `seedance-effects-studio`
 forks and leaves its changes uncommitted for review.

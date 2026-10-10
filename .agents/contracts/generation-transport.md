@@ -16,7 +16,9 @@ written; it only adds a submit step after the prompt is delivered.
 
 ## Detect the transport
 
-Detect from the session; never assume, and never ask for or handle credentials.
+Detect from the session; never assume, and never ask for, read back, print or
+store credentials. Authentication belongs to existing caller-managed runtime
+configuration; this workspace never configures it.
 
 1. **ark-mcp**: tools named `mcp__ark-mcp__*` exist in the session (they may be
    deferred; load them first). Call `ark_job_capabilities` for the supported
@@ -25,13 +27,31 @@ Detect from the session; never assume, and never ask for or handle credentials.
 2. **arkcli**: `command -v arkcli` succeeds and the profile is authenticated.
    Use the `arkcli-auth` skill to check status and the `arkcli-gen` skill for
    `arkcli +gen`; do not hardcode flags here.
-3. **Both available**: prefer ark-mcp (structured submit/get/cancel and durable
-   artifacts). Use arkcli when the user names it or ark-mcp cannot do the job.
-4. **Neither usable**: stay prompt-only, say generation was not attempted, and
-   tell the user to connect one. Run auth or configuration flows only if asked.
+3. **Explicit direct HTTP/curl**: use this route only when the user explicitly
+   requests direct HTTP or `curl` generation. Check that `curl` is available,
+   and that an existing caller-managed runtime configuration provides the
+   documented endpoint and authentication. Verify the current official API
+   contract for the requested model and operation before constructing the
+   payload; do not copy transport-specific fields from another client. Never
+   put credential values in prompts, shell arguments, logs or repository files.
+   If no secure runtime authentication mechanism is established, stay
+   prompt-only and report the missing configuration; do not request secrets.
+4. **Multiple available**: prefer ark-mcp for ordinary generation requests
+   (structured submit/get/cancel and durable artifacts). Use arkcli when the
+   user names it or ark-mcp cannot do the job. An explicit direct HTTP request
+   selects `curl`; it is never an automatic fallback.
+5. **No usable selected transport**: stay prompt-only, say generation was not
+   attempted, and describe the missing transport or runtime configuration.
+   Run auth or configuration flows only if separately asked.
 
 Use one transport per job. Do not fail over mid-job: a failed or timed-out
 submit may still have created a task, so check job status before any retry.
+For an asynchronous direct HTTP operation, capture the provider task ID from
+the response and poll that same ID using the documented status endpoint. For
+a synchronous operation, use the returned result and request identifier when
+available; never invent a task ID or polling endpoint. Reconcile ambiguous
+responses before repeating a submit. A timeout does not prove the operation
+failed or that no job was created.
 
 ## Gates before every submit
 
@@ -62,8 +82,9 @@ submit may still have created a task, so check job status before any retry.
 
 Report task id, status, and the result reference in chat. Save nothing by
 default. On explicit request, write a provenance record to
-`projects/<project>/generations/<asset-stem>.md` with transport, model, task
-id, date, and the prompt file. Never store signed URLs,
+`projects/<project>/generations/<asset-stem>.md` with transport (`ark-mcp`,
+`arkcli` or `curl`), model, provider task or request identifier when available,
+date, and the prompt file. Never store signed URLs,
 keys, or account data. Download media only when asked.
 
 A moderation rejection is evidence to diagnose. Revise, show the revised

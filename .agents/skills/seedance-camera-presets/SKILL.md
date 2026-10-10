@@ -5,7 +5,8 @@ description: >
   tracking, handheld, FPV, aerial, bullet time, dolly zoom, crash zoom, whip
   pan, one-take, or static — into a canonical, drop-in Camera block for the
   Seedance 2.5 six-part prompt formula. Use when the user asks for a camera
-  preset, camera movement style, or a shot's camera treatment.
+  preset, camera movement style, or a shot's camera treatment, and when a shot
+  plan names a move to word.
   Bullet time here is the camera-orbit technique (freeze + orbit); speed-ramp
   and slow-mo timing belong to seedance-pacing-presets. One-take here is the
   pass-through camera path; single-shot no-cuts pacing belongs to
@@ -99,7 +100,8 @@ recipe from `seedance-prompt-25`:
 
 Camera styles describe the camera's personality for the whole clip — a
 paragraph-level treatment you can append to a prompt. Choose one style per
-prompt; do not combine styles.
+prompt; do not combine styles. For a supplied shot plan, preserve each shot's
+move, size and angle within that style.
 
 | Style | Camera-treatment block |
 |---|---|
@@ -140,7 +142,7 @@ required; everything else is optional.
 | `shot_size` | From the shot-size vocabulary | Optional; e.g. `medium close-up`. |
 | `angle` | From the angle vocabulary | Optional; e.g. `low angle`. |
 | `timestamp` | Optional `At Ns` moment for a transition or beat | Use only for critical handoffs or transitions. A time budget, not frame-accurate. |
-| `stack` | Number of simultaneous moves in one clip | **At most 2 per clip.** Default to one move. Add one secondary move (e.g. `dolly in` + `tilt up`) only when the shot requires it and the motions remain compatible; more than 2 risks instability. |
+| `stack` | Number of simultaneous moves in one shot | **At most 2 per shot.** Default to one move. Add one secondary move (e.g. `dolly in` + `tilt up`) only when the shot requires it and the motions remain compatible; more than 2 risks instability. A requested multi-shot sequence may carry more moves across cuts; otherwise keep one or two moves for the clip. |
 | `speed` | Pace of the move | Optional; use directional words (`slow`, `fast`, `rapid`, `leisurely`) rather than numeric fps. |
 
 ## Output grammar
@@ -184,12 +186,17 @@ lock, and matches the style of a full Seedance 2.5 prompt.
 - **Timestamps are a time budget.** `At Ns` allocates time to a beat; it is not
   a frame-accurate edit point, and actions may land slightly before or after
   the boundary.
-- **At most 1-2 moves per clip.** A clip with more simultaneous moves becomes
+- **At most 1-2 moves per shot.** A shot with more simultaneous moves becomes
   unstable and cuts erratically. `stack` defaults to 1; allow 2 only when the
-  second move is a natural continuation (e.g. `dolly in, then tilt up`).
-- **Locked-off shots use `camera_fixed`.** For a static camera, keep the
-  prompt's camera block and also set the generation parameter
-  `camera_fixed: true` so the frame stays locked.
+  second move is a natural continuation (e.g. `dolly in, then tilt up`). In a
+  clip that cuts, write one Camera block per shot so each cut can carry its own
+  move.
+- **A locked-off shot is a recorded choice.** State the static camera in the
+  Camera block. An optional `static_reason` in a supplied shot plan can be a
+  user lock, static-by-design format, plate for later cutdown, performance hold, or a
+  contrast hold after motion. If a shot plan is supplied, preserve that reason.
+  State the lock in the prompt; do not assume the destination exposes a
+  `camera_fixed` parameter. A hold can land after motion when the brief calls for it.
 - **One-take needs explicit order.** A one-take shot must list the subjects,
   spaces, and events the camera passes through **in order**; an unordered list
   lets the model cut or reorder the passage.
@@ -212,7 +219,7 @@ Before a Camera block is submitted as part of a Seedance 2.5 prompt, verify:
 1. The `move` is from the preset bank, or follows the Cinematography-Term +
    Subject + Visual Change + Foreground/Background + Direction recipe for
    uncommon terms.
-2. `stack` is 2 or fewer simultaneous moves.
+2. `stack` is 2 or fewer simultaneous moves per shot.
 3. The Camera block names the subject the camera follows whenever a subject
    exists, and states where the move starts and ends.
 4. No numeric aperture or focal value appears alone without a visible result.

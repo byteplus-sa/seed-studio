@@ -30,6 +30,9 @@ sync:
 - `seedance-graybox-world` and `seedance-music-video` — local rewrites that
   are newer than their upstream copies (Blender-video edit prompts; black-sync
   timing reference and rights-holder wording).
+- `seedance-shot-design` and `seedance-effects-studio` — local prompt-only
+  adaptations; upstream stage gates, mandatory reviews and production tooling
+  must not be restored by a mirror.
 - `sync-skills` — this maintenance skill is local.
 - Everything under `.agents/contracts/` — locally maintained variants.
 - Every skill not on the allowlist.
