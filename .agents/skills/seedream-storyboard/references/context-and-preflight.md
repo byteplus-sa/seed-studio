@@ -225,6 +225,13 @@ Use this table:
 |---|---|---|---|---|---|---|---|
 | p010 | beat-01 | ... | ... | ... | ... | ... | ... |
 
+For each panel, record requested camera, lens and lighting choices in the
+shot/angle or staging cells. A panel-specific choice overrides the shared
+default for that axis only; identity, prop state and location canon remain
+locked. Show a camera move through its start/end compositions and keep pacing
+in the motion notes rather than asking a still panel to move. Do not invent
+extra axes to fill the table.
+
 For a multi-panel board, also record the delivery mode above the table:
 
 ```text

@@ -64,7 +64,9 @@ Do not assert that a reference has correct pronunciation until it was checked.
 3. Use measured dialogue timestamps only where shot alignment needs them.
 4. Have the user supply the generated audio as the ordered `reference_audio`
    binding (`@Audio 1`).
-5. Record the user-reported duration and reference selection, plus any mapping.
+5. Record measured duration, reference selection and any mapping when accessible.
+   For caller-managed files, record path and SHA-256 in production provenance;
+   distinguish user-reported facts from measurements.
 6. Review generated lip motion and sound continuity; a correct audio track does
    not establish correct video alignment.
 

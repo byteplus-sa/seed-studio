@@ -55,9 +55,17 @@ RULES
   clearest keyframe for each element.
 - Make each keyframe_index and in_shots entry refer to an existing shot. A
   keyframe must also appear in that element's in_shots list.
+- Keep each shot's observed lighting and camera choices local to that shot.
+  Global visual_style describes shared defaults, not a replacement for changes
+  visible across cuts. Describe perspective rather than claiming a measured
+  focal length when it is unknown.
 - Extract visual_style (grade, lighting_direction, lens, film_look), camera
   (shot_sizes, moves, framing, transitions), and audio (mode, music, sfx,
-  dialogue — transcribe any dialogue verbatim inside {braces}).
+  dialogue — transcribe verified dialogue verbatim inside {braces}). When audio
+  is unavailable to this pass, set audio.mode to "unverified", music and dialogue
+  to null, sfx to [], and each shots[].audio to "unverified". A video-only input
+  or frame set is not evidence of silence; do not infer sound or spoken words
+  from visible action.
 
 Return this schema:
 {

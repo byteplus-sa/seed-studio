@@ -136,7 +136,7 @@ via `seedance-prompt-25`:
   to `@Image N`.
 - Action from `shots[].action` plus the motion-review imperative wording.
 - Visual style ordered lighting → lens → grade → film look.
-- Camera from the breakdown and per-shot camera fields; ≤2 moves per clip.
+- Camera from the breakdown and per-shot camera fields; ≤2 moves per shot.
 - Audio in bracket syntax; dialogue verbatim in `{braces}`; `No audio at all`
   when the source is silent.
 

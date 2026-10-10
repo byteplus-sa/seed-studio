@@ -4,9 +4,9 @@ description: >
   Translate a named lighting setup into a canonical Seedream `Lighting:` recipe
   and a matching Seedance visual-style lighting phrase, so the same lighting
   intent works for images (elements, storyboards) and video. Use when the user
-  asks for lighting, light, rim light, backlight, golden hour, soft or hard
-  light, three-point, Rembrandt, practical lights, silhouette, contre-jour, or
-  key light direction. Golden hour here means the physical lighting (sun
+  or a shot plan asks for lighting, light, rim light, backlight, golden hour,
+  soft or hard light, three-point, Rembrandt, practical lights, silhouette,
+  contre-jour, or key light direction. Golden hour here means the physical lighting (sun
   position and light); for a golden-hour color grade, use color-grade-palettes.
 ---
 
@@ -150,27 +150,31 @@ Worked example:
 ```
 A detective sits alone in a windowless interrogation room under a single bare bulb.
 The visuals feature soft cross lighting — a large diffused source at 90 degrees camera-left, cold 5600K, one half of the face in deep shadow with a gentle wrap on the lit side.
-Hold a static locked-off shot at eye level.
+Hold a locked-off eye-level shot; stillness lets the reaction land.
 ```
 
 ### Six-part formula placement
 
-The lighting phrase always lives in the **Visual Style** slot of the Seedance
+The lighting phrase lives in the **Visual Style** slot of the Seedance
 six-part formula (Subject + Action or Event + Scene and Environment + **Visual
 Style** + Camera Movement/Cut + Audio). Do not bury lighting in the Subject or
 Action slot. Keep lighting to one sentence; grade, film stock, and lens
-character may share the same slot after it. For Seedream, the same intent goes
+character may share the same slot after it. For supplied lighting in a clip
+that cuts, the slot carries
+the scene's shared source, and each shot line carries its own key-side phrase
+from this bank. For Seedream, the same intent goes
 in the `Lighting:` section only — never in `Style:` or `Subject:`.
 
 ## Edge cases and guardrails
 
 - **Lighting is emergent.** Prompt-side direction only, not a rig. The model
-  approximates the setup; validate every shot and run an A/B with the same
-  seed before locking a look. Never promise exact light physics.
+  approximates the setup; inspect generated shots before locking a look.
+  For a requested A/B, keep prompt and references fixed and reuse a seed only
+  when the destination supports it. Never promise exact light physics.
 - **Relight is not available prompt-side.** Changing lighting on an
   already-generated image or video requires regenerating from a revised
-  prompt. There is no prompt-side relight toggle; local image-edit tools are
-  out of scope in this workspace.
+  prompt. There is no prompt-side relight toggle; write an image-edit prompt
+  only when the user requests one.
 - **Match the preset to scene intent.** A mismatched preset has a visible
   cost: **Overhead Fall on a romantic field scene kills the warmth**; **Soft
   Cross adds a hidden off-camera source that destroys a candlelit Practicals
@@ -193,9 +197,9 @@ Before handing off a lighting block, verify:
 
 1. The preset is from the bank, or the custom recipe follows the direction/quality/color-temperature recipe.
 2. Seedream output puts the lighting in the `Lighting:` section only.
-3. Seedance output puts the lighting phrase in the Visual Style slot ("The visuals feature ... lighting").
+3. Seedance output puts the lighting phrase in the Visual Style slot ("The visuals feature ... lighting"); when a shot plan supplies lighting, each shot line preserves its key side.
 4. Exactly one dominant lighting direction is named.
 5. Every phrase names direction, quality (soft or hard), and color temperature or gel.
 6. Practicals and Silhouette outputs add no hidden off-camera fill source.
 7. No "well lit", "bright", or "good lighting" empty phrasing appears.
-8. The phrase is stable and reusable verbatim across chained scenes that must match.
+8. The phrase is stable and reusable verbatim across chained scenes that must match; per-shot key sides may differ within a scene.

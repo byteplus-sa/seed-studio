@@ -192,9 +192,26 @@ Source skill: `seedance-prompt-25`
 
 ### Camera language
 
-24. **Coherent camera direction.** Use one or two clear camera movements when
+24. **Coherent camera direction.** Use one or two clear camera movements per shot when
     requested, with the subject, beginning, and endpoint of each stated. Avoid
-    competing simultaneous moves; preserve a requested static camera.
+    competing simultaneous moves within a shot; preserve a requested static camera.
+
+24a. **Requested shot plan carried.** When the user requests or supplies a shot
+    plan, each shot carries its duration, purpose, framing, camera move or
+    static reason, visible lens intent and motivated light. Compare the prompt
+    with that plan and confirmed axes; report dropped facts or broken locks.
+    No separate plan is required for ordinary prompt requests.
+
+24b. **Variety fits the requested energy.** For an explicitly requested dynamic
+    sequence, compare neighboring shot sizes, angles, moves and key sides with
+    the requested plan. Treat the shot-design thresholds as craft heuristics,
+    not model guarantees. Preserve dialogue readability, fixed song timing,
+    static formats and source-preserving edits.
+
+24c. **Motivated light and readable holds.** A planned source keeps its world
+    position across cuts; a new source needs a visible motivating event. A
+    static hold may emphasize performance or contrast with motion. Never add
+    camera movement against a user lock merely to meet a variety target.
 
 25. **Uncommon cinematography terms.** If used, they follow the format:
     Term + Target Subject + Visual Change + Foreground/Background Relationship +

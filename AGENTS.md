@@ -54,13 +54,15 @@ Load only the contract relevant to the current request:
 
 ## Routing
 
-Compose only the axes the user requested. One grade, one dominant lighting
-direction, and one or two camera moves per clip unless the explicitly
+Compose only the axes the user requested. One grade per clip, one dominant lighting
+direction per shot, and one or two camera moves per shot unless the explicitly
 requested choreography needs more.
 
 | Intent | Route |
 | --- | --- |
 | Brief shaping | `brief-intake` |
+| Requested shot list, coverage or dynamic camera and light plan | `seedance-shot-design` |
+| Named visual-effect recipes and effect menu | `seedance-effects-studio` |
 | Reference-video reverse engineering (breakdown → element, storyboard, Seedance prompts) | `template-factory` |
 | Storyboard panel and grid prompts | `seedream-storyboard` |
 | Motion recast of a source clip (new cast and world, same motion) | `seedance-motion-recast` |
@@ -176,5 +178,6 @@ Maintenance). The command never overwrites the local `template-factory`,
 `seed-audio-commercial`, `filipino-micro-drama`, `seedream-prop-asset`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
-`seedance-frame-break`, `seedance-graybox-world`, and `seedance-music-video`
+`seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
+`seedance-shot-design`, and `seedance-effects-studio`
 forks and leaves its changes uncommitted for review.

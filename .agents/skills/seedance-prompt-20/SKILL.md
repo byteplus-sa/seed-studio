@@ -127,7 +127,7 @@ Task type: Multimodal Reference | Video Editing | Video Extension | Combined Tas
 
 ### 4. Shots
 
-Write a timeline-based storyboard using `Shot 1 / Shot 2 / Shot 3` in event order. Each shot covers one coherent unit of action. The official Seedance 2.0 guide recommends shot sequencing, but it does not require second-level timecodes or a declared duration for every shot.
+Write a timeline-based storyboard using `Shot 1 / Shot 2 / Shot 3` in event order. Each shot covers one coherent unit of action. When a shot plan is requested or supplied, carry its size, angle, move and light source into each shot line. The official Seedance 2.0 guide recommends shot sequencing, but it does not require second-level timecodes or a declared duration for every shot.
 
 Before writing shots for movement-heavy scenes, define a spatial continuity contract:
 
@@ -171,7 +171,7 @@ For each shot, describe in this order:
 1. Camera movement or shot transition (one per shot only)
 2. Subject actions and expressions (body-part level detail)
 3. Position or spatial changes
-4. Lighting & color tone (optional per shot, e.g. "warm dusk light", "cool blue key light")
+4. Lighting & color tone (optional; when supplied by the shot plan, carry its source and key side, e.g. "warm dusk light from camera-left")
 5. Audio information (dialogue, SFX, ambience)
 
 ```

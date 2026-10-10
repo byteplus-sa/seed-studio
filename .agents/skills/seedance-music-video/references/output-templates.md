@@ -60,13 +60,19 @@ soundscape using brackets>. Any candidate soundtrack may differ from the master.
 
 [Shot Plan] or [Stage Plan]
 Shot 1 (<time range>): @Image <N> only — <location or subject>; <one event and
-visible end state>.
+visible end state>; <requested shot size, angle and camera move>; <requested
+lighting source and key side>.
 Shot 2 (<time range>): @Image <N> only — <location or subject>; <one event and
-visible end state>.
+visible end state>; <requested shot size, angle and camera move>; <requested
+lighting source and key side>.
 Final Shot (<time range>): @Image <N> only — <closing event and final visible
-state>.
+state>; <requested shot size, angle and camera move>; <requested lighting
+source and key side>.
 Scope each shot to its own references ("@Image N only") so no location or look
-bleeds across a cut.
+bleeds across a cut. Scope requested lens and pacing changes to the shot that
+uses them. Omit unspecified axes; keep a shared grade and stable performer
+identity across cuts. Each shot inherits only the shared choices it does not
+explicitly change.
 
 [Lip-Sync & Lyric Timing] (only when lip-synced vocals are requested)
 In designated performance shots, <performer>'s mouth shapes align to every

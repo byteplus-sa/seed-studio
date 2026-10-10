@@ -64,6 +64,13 @@ the custom template when no preset fits:
 - `ugc-virtual-try-on`: casual garment demonstration;
 - `virtual-try-on`: editorial garment presentation.
 
+Shot planning follows the mode. `ugc`, `ugc-how-to`, `ugc-unboxing`,
+`product-review` and `ugc-virtual-try-on` are phone-shot formats whose camera is
+static by design unless the brief asks for more movement.
+For `product-showcase`, `tv-spot`, `wild-card` and `virtual-try-on`, a requested
+or supplied shot plan carries size, angle, move and a named light source per
+shot. Do not add unrequested axes merely because of the chosen mode.
+
 If unspecified, choose a provisional mode from the product, audience, and
 placement. A product-only request does not need to become presenter-led UGC.
 For hybrids, state the dominant texture and the purposeful secondary influence.

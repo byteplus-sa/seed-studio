@@ -430,7 +430,7 @@ direction and workflow. Never let two skills fight:
 **Guardrail:** the genre lock is the sole palette, lighting, and camera source
 **unless the user names a specific axis** — then compose that axis with its
 owning preset skill and keep exactly one grade, one dominant lighting direction,
-and at most two camera moves per clip. Do not stack a second grade or camera
+and at most two camera moves per shot. Do not stack a second grade or camera
 treatment on top of a genre recipe.
 
 ## Rights and safety

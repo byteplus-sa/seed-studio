@@ -4,7 +4,8 @@ description: >
   Turn a named pacing or rhythm preset — speed ramp, slow motion, slow-mo,
   bullet time, ramp up, flash in/out, impact moment, montage, montage pacing,
   cut rhythm, timing, or speed up — into a canonical, timestamped motion,
-  cut, and pacing block for the Seedance 2.5 prompt. Use when the user asks
+  cut, and pacing block for the Seedance 2.5 prompt. Use when the user or a
+  supplied shot plan asks
   to direct a scene's rhythm, tempo, or editing energy rather than only its
   content. Bullet time here is the freeze/slow-mo speed ramp; the camera-orbit
   technique belongs to seedance-camera-presets. Single Shot here is no-cuts
@@ -145,9 +146,10 @@ list first; end-to-end production is out of scope in this workspace.
 - **Timestamps are a time budget, not frame-accurate.** Never promise exact
   frame sync, and never demand impossible frequencies (e.g. "complete three
   actions in one second"). Write beats with margin and verify in review.
-- **Keep 1-2 camera moves per clip.** Pacing blocks describe timing, not camera
-  gymnastics. Compose the camera treatment with `seedance-camera-presets` and
-  keep simultaneous moves to at most two per clip.
+- **Keep 1-2 camera moves per shot.** Pacing blocks describe timing, not camera
+  gymnastics. A requested multi-shot sequence may use a different move on each
+  shot; otherwise retain the one-or-two-move limit for the clip. Keep
+  simultaneous moves to at most two per shot.
 - **Pacing needs a shot list.** When the scene has multiple cuts, prefer an
   approved shot list (storyboard prompts via `template-factory`) rather than
   one raw prompt. A montage without an ordered cut list lets the model cut or

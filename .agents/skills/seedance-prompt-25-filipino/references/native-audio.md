@@ -24,11 +24,13 @@ separate Seed Audio is used only when explicitly requested.
 
 ## Verifying the words
 
-Ask the user for a speech-to-text transcript of each generated take and
-compare it word by word against the approved text, with a listening pass for
-the speaker and register. This skill does not transcribe audio. A video model's summary of what was said is not enough: in a past
+For a generated take, compare a speech-to-text transcript word by word against
+the approved text, with a listening pass for speaker and register when
+playback is accessible. The caller obtains the transcript using available
+tools or asks the user for it. If evidence is unavailable, keep verification
+unresolved. A video model's summary of what was said is not enough: in a past
 review it reported the dialogue as unintelligible while the transcript matched
-the approved lines. Note the heard wording, not only a pass or fail.
+the approved lines. Record the heard wording, not only a pass or fail.
 
 ## Minimal native form
 
