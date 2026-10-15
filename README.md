@@ -1,6 +1,6 @@
 # seed-prompt-studio
 
-> A prompt-first workspace for composing **Lumina-paste-ready prompts** for BytePlus / Volcano Engine Seed models — **Seedance** (video), **Seedream** (images), and **Seed Audio** (audio).
+> A prompt-first workspace for composing **Lumina-paste-ready prompts** for BytePlus / Volcano Engine Seed models — **Seedance** (video), **Seedream** (images), and **Seed Audio** (audio) — plus **OmniHuman 2.0** lip-sync prompts.
 
 This repository ships agent skills, not generation tooling. You describe what you
 want, the agent composes a production-grade prompt from the skill libraries and
@@ -81,6 +81,7 @@ flowchart LR
 | **seedream-prop-asset** | Write prop and product identity-sheet prompts: acquisition first, front/back by default, identity-critical side views, continuous background and one canonical state. |
 | **seed-audio-prompt** | Write structured Seed Audio 1.0 prompts for full-soundscape audio generation including dialogue, music, SFX, and ambience. |
 | **seed-audio-commercial** | Compose dramatic, story-driven audio commercial prompts with a five-act arc, multi-character voice profiles, and commercial SFX/music patterns. |
+| **omnihuman-prompt-20** | Write OmniHuman 2.0 lip-sync prompts for one image plus one driving audio track: speaking state, camera end states, ordered gestures, group-shot speaker choice, long-audio segmentation, input checks and symptom fixes. |
 | **ugc-ad-modes** | Write hooks, scripts and Seedance prompts for nine ad modes using supplied product facts, audience objections, supported claims and accurate CTAs. |
 | **ugc-motion-presets** | Turn a named UGC motion preset (Atomic, Outfit Switch, Eating Zoom, Yacht, ...) into a canonical Seedance prompt block with reference bindings, duration, and constraint flags. |
 | **color-grade-palettes** | Map a named color grade palette or film look into a canonical grade sentence for the Seedance Visual Style slot or the Seedream `Style:` section. |
@@ -106,7 +107,7 @@ seed-prompt-studio/
 ├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 37 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 38 prompt-composition skills + sync-skills (maintenance)
 ├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -119,7 +120,7 @@ seed-prompt-studio/
 ## Maintenance
 
 Shared skills are maintained in an upstream source checkout. Run the sync from
-any supported agent to mirror the 23 allowlisted skill bundles into this repo:
+any supported agent to mirror the 24 allowlisted skill bundles into this repo:
 
 | Agent | Command |
 | --- | --- |
