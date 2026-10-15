@@ -1,7 +1,8 @@
 # AGENTS.md — seed-prompt-studio
 
 Prompt-first workspace for composing Lumina-paste-ready prompts for BytePlus
-Seed-family models (Seedance, Seedream, Seed Audio). It writes prompts; review
+Seed-family models (Seedance, Seedream, Seed Audio) and OmniHuman 2.0
+lip-sync video. It writes prompts; review
 is a manual `/prompt-review` the user runs. Generation and media production
 are optional when requested or necessary to complete a user-authorized
 deliverable with available tools.
@@ -84,6 +85,7 @@ requested choreography needs more.
 | Authorized AI avatar or digital twin of a consenting presenter, talking-head takes | `seedance-ai-avatar` |
 | Seed Audio prompts | `seed-audio-prompt` |
 | Audio commercial prompts (story arc, cast, tagline) | `seed-audio-commercial` |
+| OmniHuman 2.0 lip-sync prompts (one image + driving audio) | `omnihuman-prompt-20` |
 | UGC ad modes / UGC motion presets | `ugc-ad-modes`, `ugc-motion-presets` |
 | Color grade sentence | `color-grade-palettes` |
 | Scene structure / staging references | `tig-scene-engine`, `tig-blocking-map` |

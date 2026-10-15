@@ -17,7 +17,7 @@ for the procedure; Claude Code, Codex and opencode all run it.
 
 ## Scope
 
-The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 23 skills. Never
+The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 24 skills. Never
 sync:
 
 - `template-factory` and `seed-audio-commercial` — deliberate local forks
@@ -72,6 +72,8 @@ the diff and restore these:
   "hash-bound prompt review" or a review stage.
 - `seedance-prompt-25-filipino`: the caller-ownership sentence must not say
   "complete prompt review".
+- `omnihuman-prompt-20`: the "Output" section must not tell the caller to
+  pass the card through a prompt review step before generation.
 - `brief-intake`: keep `approval_mode`, `approve_for_me` and `agent_confirmed`
   out; only an explicit user choice approves a set
   ([production policy](../../contracts/production-policy.md)).

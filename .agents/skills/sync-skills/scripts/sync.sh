@@ -23,7 +23,7 @@
 # 4 synced skills contain forbidden references that must be scrubbed.
 set -euo pipefail
 
-ALLOWLIST="brief-intake prompt-review seedance-prompt-25 seedance-prompt-25-filipino seedance-prompt-20 seedance-acting-console seedance-animation-styles seedance-camera-presets seedance-lens-presets seedance-lighting-presets seedance-pacing-presets seedance-motion-design seedance-restoration seedance-vfx-prompt seedream-prompt seedream-character-sheet seedream-location-asset seed-audio-prompt ugc-ad-modes ugc-motion-presets color-grade-palettes tig-blocking-map tig-scene-engine"
+ALLOWLIST="brief-intake prompt-review seedance-prompt-25 seedance-prompt-25-filipino seedance-prompt-20 seedance-acting-console seedance-animation-styles seedance-camera-presets seedance-lens-presets seedance-lighting-presets seedance-pacing-presets seedance-motion-design seedance-restoration seedance-vfx-prompt seedream-prompt seedream-character-sheet seedream-location-asset seed-audio-prompt ugc-ad-modes ugc-motion-presets color-grade-palettes tig-blocking-map tig-scene-engine omnihuman-prompt-20"
 EXCLUDES=(--exclude='.DS_Store' --exclude='__pycache__')
 DIFF_EXCLUDES=("${EXCLUDES[@]}" --exclude='agents')
 RSYNC_EXCLUDES=("${EXCLUDES[@]}" --exclude='/agents')
