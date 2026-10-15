@@ -15,7 +15,7 @@
 \bseedream-edit\b
 \bhtml-graphic-render\b
 \bfilm-production\b
-\bseedance-(vfx-pipeline|ai-avatar|avatar-news)\b
+\bseedance-(vfx-pipeline|avatar-news)\b
 \bffmpeg-(scene-transitions|side-by-side-comparison)\b
 \bmedia-(use|review)\b
 (?i)\bhyperframes

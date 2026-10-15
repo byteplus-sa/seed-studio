@@ -81,6 +81,8 @@ requested choreography needs more.
 | Motion design / music video / restoration / VFX edit prompts | `seedance-motion-design`, `seedance-music-video`, `seedance-restoration`, `seedance-vfx-prompt` |
 | Seedream image prompts, character sheets, location plates, prop sheets | `seedream-prompt`, `seedream-character-sheet`, `seedream-location-asset`, `seedream-prop-asset` |
 | Seedream edit prompt that leaves one readable face on a character sheet | `seedream-character-sheet-cleanup` |
+| New outfit on an approved character sheet | `seedream-character-outfit` |
+| Authorized AI avatar or digital twin of a consenting presenter, talking-head takes | `seedance-ai-avatar` |
 | Seed Audio prompts | `seed-audio-prompt` |
 | Audio commercial prompts (story arc, cast, tagline) | `seed-audio-commercial` |
 | OmniHuman 2.0 lip-sync prompts (one image + driving audio) | `omnihuman-prompt-20` |
@@ -183,5 +185,5 @@ Maintenance). The command never overwrites the local `template-factory`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
 `seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
-`seedance-shot-design`, and `seedance-effects-studio`
-forks and leaves its changes uncommitted for review.
+`seedance-shot-design`, `seedance-effects-studio`, `seedream-character-outfit`,
+and `seedance-ai-avatar` forks and leaves its changes uncommitted for review.

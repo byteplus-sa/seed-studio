@@ -76,11 +76,13 @@ flowchart LR
 | **seedream-prompt** | Write Seedream prompts for synthesized or edited imagery; exact typography, pricing, CTA, product grids, and logos are out of scope in this workspace. |
 | **seedream-character-sheet** | Write structured Seedream prompts for three-panel character sheets and identity references — the face anchors Seedance uses. |
 | **seedream-character-sheet-cleanup** | Write a Seedream edit prompt that removes the head from the full-body panels so the close-up is the only readable face; non-destructive, with an acceptance checklist. |
+| **seedream-character-outfit** | Write a Seedream image-to-image prompt that changes the outfit on an approved character sheet while face, hair, build, layout and lighting stay identical; change contract, residual-original guard, garment-photo and accessory patterns, and outfit QA. |
 | **seedream-location-asset** | Write structured Seedream prompts for cinematic location assets and reusable environment sheets. |
 | **seedream-storyboard** | Write Seedream storyboard prompts from one hero panel to a multi-panel continuity board: sketch-default single-image grid or separate images, element binding, geometry and continuity contract, revision prompts. |
 | **seedream-prop-asset** | Write prop and product identity-sheet prompts: acquisition first, front/back by default, identity-critical side views, continuous background and one canonical state. |
 | **seed-audio-prompt** | Write structured Seed Audio 1.0 prompts for full-soundscape audio generation including dialogue, music, SFX, and ambience. |
 | **seed-audio-commercial** | Compose dramatic, story-driven audio commercial prompts with a five-act arc, multi-character voice profiles, and commercial SFX/music patterns. |
+| **seedance-ai-avatar** | Prepare an authorized AI avatar of a consenting presenter and write lip-synced Seedance 2.5 talking-head prompts: consent and real-likeness gates, character-sheet and timbre-only voice-clip inputs, 1:1 and 9:16 templates, and take QA. |
 | **omnihuman-prompt-20** | Write OmniHuman 2.0 lip-sync prompts for one image plus one driving audio track: speaking state, camera end states, ordered gestures, group-shot speaker choice, long-audio segmentation, input checks and symptom fixes. |
 | **ugc-ad-modes** | Write hooks, scripts and Seedance prompts for nine ad modes using supplied product facts, audience objections, supported claims and accurate CTAs. |
 | **ugc-motion-presets** | Turn a named UGC motion preset (Atomic, Outfit Switch, Eating Zoom, Yacht, ...) into a canonical Seedance prompt block with reference bindings, duration, and constraint flags. |
@@ -107,7 +109,7 @@ seed-prompt-studio/
 ├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 38 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 40 prompt-composition skills + sync-skills (maintenance)
 ├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -135,8 +137,8 @@ runs when invoked explicitly. The local `template-factory`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
 `seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
-`seedance-shot-design`, and `seedance-effects-studio`
-forks and all contracts are locally maintained and are never overwritten by a
+`seedance-shot-design`, `seedance-effects-studio`, `seedream-character-outfit`,
+and `seedance-ai-avatar` forks and all contracts are locally maintained and are never overwritten by a
 sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result
 uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs

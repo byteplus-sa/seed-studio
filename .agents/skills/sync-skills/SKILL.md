@@ -34,6 +34,9 @@ sync:
   adaptations; upstream stage gates, mandatory reviews and production tooling
   must not be restored by a mirror.
 - `sync-skills` — this maintenance skill is local.
+- `seedream-character-outfit` and `seedance-ai-avatar` — prompt-only local
+  forks; upstream sample, QA and provenance steps that call generation,
+  voice-separation or transcription tools are removed.
 - Everything under `.agents/contracts/` — locally maintained variants.
 - Every skill not on the allowlist.
 
