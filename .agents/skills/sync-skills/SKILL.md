@@ -34,6 +34,10 @@ sync:
   adaptations; upstream stage gates, mandatory reviews and production tooling
   must not be restored by a mirror.
 - `sync-skills` — this maintenance skill is local.
+- `seedream-handcrafted-3d` — local prompt-only adaptation with chat delivery,
+  destination-UI settings and no bundled generation evidence.
+- `seedream-woodblock-poster` — local prompt-only adaptation with chat delivery
+  and no bundled example images, provenance or smoke results.
 - `seedream-character-outfit` and `seedance-ai-avatar` — prompt-only local
   forks; upstream sample, QA and provenance steps that call generation,
   voice-separation or transcription tools are removed.
