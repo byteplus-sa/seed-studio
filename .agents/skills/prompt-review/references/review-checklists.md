@@ -210,8 +210,18 @@ Source skill: `seedance-prompt-25`
 
 24c. **Motivated light and readable holds.** A planned source keeps its world
     position across cuts; a new source needs a visible motivating event. A
-    static hold may emphasize performance or contrast with motion. Never add
-    camera movement against a user lock merely to meet a variety target.
+    light that goes off, dims or flickers inside a shot matches a cue recorded
+    on a planned source, with its time and trigger. A static hold may
+    emphasize performance or contrast with motion. Never add camera movement
+    against a user lock merely to meet a variety target.
+
+24d. **Assembly cuts stay in the edit.** A blink cut, intercut or vision
+    flash shorter than about 0.8 s is planned as an assembly cut and never
+    requested inside one prompt; a prompt that asks the model to skip an
+    action it describes is a MAJOR finding. A prompt that asks a subject to
+    drift out of focus during a move is a MINOR finding: that defocus is
+    added in post. A sudden burst action appears at most once per shot with
+    a still hold before and after it (MINOR otherwise).
 
 25. **Uncommon cinematography terms.** If used, they follow the format:
     Term + Target Subject + Visual Change + Foreground/Background Relationship +

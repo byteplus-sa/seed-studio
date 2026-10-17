@@ -75,6 +75,8 @@ flowchart LR
 | **seedance-vfx-prompt** | Write structured video-to-video VFX prompts with the `@Video N` / `@Image N` reference grammar, VFX taxonomy, relighting, layered space, and timing triggers. |
 | **seedream-prompt** | Write Seedream prompts for synthesized or edited imagery; exact typography, pricing, CTA, product grids, and logos are out of scope in this workspace. |
 | **seedream-character-sheet** | Write structured Seedream prompts for three-panel character sheets and identity references — the face anchors Seedance uses. |
+| **seedream-handcrafted-3d** | Write prompt-only Seedream packages for handcrafted painterly 3D portraits, character sheets and tactile wardrobe studies, with separate identity, costume and style reference roles. |
+| **seedream-woodblock-poster** | Write prompt-only Seedream prompts for engraved woodblock-style illustrated posters and cohesive series, with style-only and identity reference roles and a Philippine folklore recipe. |
 | **seedream-character-sheet-cleanup** | Write a Seedream edit prompt that removes the head from the full-body panels so the close-up is the only readable face; non-destructive, with an acceptance checklist. |
 | **seedream-character-outfit** | Write a Seedream image-to-image prompt that changes the outfit on an approved character sheet while face, hair, build, layout and lighting stay identical; change contract, residual-original guard, garment-photo and accessory patterns, and outfit QA. |
 | **seedream-location-asset** | Write structured Seedream prompts for cinematic location assets and reusable environment sheets. |
@@ -137,8 +139,8 @@ runs when invoked explicitly. The local `template-factory`,
 `seedream-storyboard`, `seedream-character-sheet-cleanup`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
 `seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
-`seedance-shot-design`, `seedance-effects-studio`, `seedream-character-outfit`,
-and `seedance-ai-avatar` forks and all contracts are locally maintained and are never overwritten by a
+`seedance-shot-design`, `seedance-effects-studio`, `seedream-handcrafted-3d`,
+`seedream-woodblock-poster`, `seedream-character-outfit`, and `seedance-ai-avatar` forks and all contracts are locally maintained and are never overwritten by a
 sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result
 uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs
