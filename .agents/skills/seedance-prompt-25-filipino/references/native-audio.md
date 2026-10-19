@@ -30,7 +30,10 @@ playback is accessible. The caller obtains the transcript using available
 tools or asks the user for it. If evidence is unavailable, keep verification
 unresolved. A video model's summary of what was said is not enough: in a past
 review it reported the dialogue as unintelligible while the transcript matched
-the approved lines. Record the heard wording, not only a pass or fail.
+the approved lines. Record the heard wording, not only a pass or fail. Automatic transcription can
+mishear words and names; a transcript mismatch requires listening confirmation,
+and a matching transcript does not establish accent or pronunciation. Use a
+native listener for those judgments and for register.
 
 ## Minimal native form
 
@@ -68,6 +71,21 @@ Examples of distinct diagnoses:
   a stress change can solve an impossible duration without changing delivery.
 - **A user wants a natural rewrite.** Use [vocabulary](vocabulary.md) only within
   the accepted rewrite scope and preserve meaning, register, and character.
+
+## One-word repair boundary
+
+For an otherwise accepted take, name the exact target word and its existing
+start/end times. Preserve adjacent words, speaker identity, accent/register,
+pauses, sentence timing and picture. Give one external pronunciation cue based
+on an approved reading; do not respell the locked spoken text. Respelling can
+add a syllable and disturb the existing window.
+
+A localized repair depends on the selected destination's editing support; a
+whole-line prompt is not evidence that neighboring audio will remain unchanged.
+If a repair cannot fit the existing word window or the destination cannot edit
+that scope, report the conflict and request an explicit wider-edit choice.
+Do not silently replace the whole line or re-dub the scene. Check the actual
+replacement, neighboring words, joins and lip-sync after any authorized edit.
 
 ## Failure and uncertainty
 

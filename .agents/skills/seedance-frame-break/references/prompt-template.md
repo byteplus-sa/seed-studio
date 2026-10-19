@@ -19,9 +19,9 @@ belong to `seedance-prompt-25`; this file only fills them for the pop-out look.
 
 0-<t1> seconds: Inside the central window of <calm backdrop>, <subject> stands full-body, about two thirds of the window height, clear of both bars, <establishing pose, arm cue; other limbs small and tucked behind>. End state: <subject is full-body inside the window with nothing over either bar>.
 
-<t1>-<t2> seconds: <Subject> keeps their feet planted and <one coherent lower-bar break-out by one named limb or hem>. At the peak, their <screen-left/right limb or hem> passes over the lower bar's inner edge and covers about <a third> of the bar's width, then returns. End state: <subject stands full-body inside the window, nothing over a bar>.
+<t1>-<t2> seconds: <Subject> keeps their feet planted and <one coherent lower-bar break-out by one named limb or hem>. At the peak, their <anatomical limb or hem, with its screen side> passes over the lower bar's inner edge and covers about <a third> of the bar's width, then returns. End state: <subject stands full-body inside the window, nothing over a bar>.
 
-<t2>-<t3> seconds: <Subject> keeps their feet planted and <one coherent upper-bar break-out by one named limb>. At the peak, their <screen-left/right limb> rises across the upper bar's inner edge and covers about <a third> of the bar's width, then lowers. End state: <subject stands full-body inside the window, nothing over a bar>.
+<t2>-<t3> seconds: <Subject> keeps their feet planted and <one coherent upper-bar break-out by one named limb>. At the peak, their <anatomical limb, with its screen side> rises across the upper bar's inner edge and covers about <a third> of the bar's width, then lowers. End state: <subject stands full-body inside the window, nothing over a bar>.
 
 <t3>-<t4> seconds: <Subject> <one coherent hero break-out: a single limb or hem>. At the peak, <what overlaps which bar and how much>, then it settles. End state: <final pose full-body inside the window, nothing over a bar>.
 
@@ -45,7 +45,7 @@ No on-screen text, captions, logos or watermarks; no held props; the bars stay p
 | Break-out | A brief extension with a peak and a return. The feet stay planted; the subject never walks or leans closer so that torso or legs end up over a bar. |
 | Crossing anchor | Give a number or fraction (about a third of the bar's width) and an edge-by-edge direction: which bar, over which edge, how far toward the frame edge. |
 | End state | A frame you could pause on: the subject full-body inside the window and nothing over a bar. The peak is stated in the action sentence. |
-| Left and right | Screen-left and screen-right, never the character's own left and right. |
+| Left and right | Give anatomy plus screen side, consistent with the visible facing; for a subject facing the viewer, "her left leg, screen-right". Re-check after turns rather than carrying a stale side mapping. |
 | Gaze, spin, sweep | Pick one gaze rule per stage. A spin or sweep direction must match the direction stated elsewhere. |
 | Bars, early sentence | Said once right after the main idea: fixed graphics, perfectly straight horizontal inner edges, same height in every frame. |
 | Frame and layer order | Back to front, with the bars as flat static graphics under the subject, the constant-height phrase repeated, the rule that whatever covers them never changes them, and the window stated as the large majority of the frame height. Avoid the word letterbox. |
@@ -70,11 +70,11 @@ The lantern-keeper girl, in a clean 2D anime style, stands full-body inside the 
 
 0-3 seconds: Inside the central window of a calm indigo dusk harbour village with still water and distant lit windows, the girl stands full-body on a stone quay, about two thirds of the window height, clear of both bars, her arms hanging loosely at her sides, looking toward the viewer while the breeze stirs her cape hem and her other limbs stay small and close to her body. End state: she is upright and full-body inside the window with nothing over either bar.
 
-3-6 seconds: She keeps her feet planted and swings her screen-right leg forward in one slow high step. At the peak, the boot toe passes over the lower bar's inner edge and covers about a third of the bar's width, reaching halfway to the bottom edge, then the boot returns to the quay. End state: she stands upright and full-body inside the window, nothing over a bar.
+3-6 seconds: She keeps her feet planted and swings her left leg, screen-right, forward in one slow high step. At the peak, the boot toe passes over the lower bar's inner edge and covers about a third of the bar's width, reaching halfway to the bottom edge, then the boot returns to the quay. End state: she stands upright and full-body inside the window, nothing over a bar.
 
-6-9 seconds: She raises her screen-left arm up and forward, fingers opening. At the peak, the open palm rises across the upper bar's inner edge and covers about a third of the bar's width, with every finger visible, then the arm lowers to her side. End state: she stands upright and full-body inside the window, nothing over a bar.
+6-9 seconds: She raises her right arm, screen-left, up and forward, fingers opening. At the peak, the open palm rises across the upper bar's inner edge and covers about a third of the bar's width, with every finger visible, then the arm lowers to her side. End state: she stands upright and full-body inside the window, nothing over a bar.
 
-9-12 seconds: She sweeps her screen-right arm out to the side; the cape follows. At the peak, the cape's lower edge flares toward the lens across the right third of the lower bar, then settles. End state: she faces the viewer upright and full-body inside the window, cape settled, nothing over a bar.
+9-12 seconds: She sweeps her left arm, screen-right, out to the side; the cape follows. At the peak, the cape's lower edge flares toward the lens across the right third of the lower bar, then settles. End state: she faces the viewer upright and full-body inside the window, cape settled, nothing over a bar.
 
 Frame and layer order, back to front: (1) the harbour village fills only the central window between the bars, which is the large majority of the frame height; (2) two flat, solid black bars, each about 12 percent of the frame height, lie at the top and bottom as static 2D graphics laid over the picture, at the same height in every frame, never moving, tilting or bending; (3) the girl is drawn complete, full-body inside the window, and on top of the bars only during her boot, palm and cape break-outs, in full colour, never clipped or hidden by a bar. Whatever covers a bar sits on top and never changes it; when her boot, palm or cape withdraws, the straight edge is simply visible again. The bars are a graphic overlay, not part of the camera's picture. The village stays calmer and darker than the girl, with no signs or lettering.
 
@@ -114,7 +114,7 @@ Notes on the choices (optional technique unless labelled):
 | Four stages, one named limb, End state each; no two unconnected limb actions per stage | Pass: boot, palm, then arm with cape; the other limbs stay close to her body |
 | Upper bar has its own stage, limb, peak and End state | Pass: stage 3 |
 | Numeric anchor, direction and return per crossing | Pass |
-| Screen-left and screen-right | Pass |
+| Anatomy plus screen side, consistent with her facing | Pass |
 | No gaze, spin or sweep contradiction | Pass: gaze appears once, in stage 1; no spin |
 | Locked camera | Pass |
 | No held props | Pass |

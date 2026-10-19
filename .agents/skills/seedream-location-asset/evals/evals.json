@@ -1,0 +1,38 @@
+{
+  "skill_name": "seedream-location-asset",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Make a night prompt from my approved daytime courtyard. Keep the camera and geometry. It is moonless and overcast; only the existing lamp over the east doorway is on.",
+      "expected_output": "I2I lighting-only iteration bound to supplied geometry, moonless sky and the existing east-door lamp.",
+      "files": [],
+      "expectations": [
+        "Does not invent a moon, new fixtures, camera move or grade.",
+        "Preserves the east doorway and source position; distinguishes physical direction from frame side.",
+        "Lists full-image state and geometry checks without claiming approval."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Restyle the supplied frame of a narrow daytime brick street as handmade clay. Keep four planters and a bench between planters two and three; write an empty environment plate prompt.",
+      "expected_output": "Same-place I2I plate preserving architecture, counts, layout and daytime lighting while changing medium and omitting people.",
+      "files": [],
+      "expectations": [
+        "Uses the supplied frame as location geometry reference.",
+        "Keeps four planters and the bench relation; does not substitute a different city.",
+        "Changes only the requested medium and empty-plate occupancy."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have no image or description of the source room. Write its exact same-place night plate without asking anything.",
+      "expected_output": "Explains missing geometry prevents exact same-place drafting; offers clearly unlocked concept only.",
+      "files": [],
+      "expectations": [
+        "Does not invent an inspected reference or confirmed room layout.",
+        "Keeps same-place fidelity unresolved.",
+        "Does not treat night as requiring a moon or fixed lighting recipe."
+      ]
+    }
+  ]
+}

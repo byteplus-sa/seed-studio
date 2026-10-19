@@ -27,6 +27,7 @@ a task.
 | --- | --- | --- |
 | Video breakdown | [analysis-prompt.md](references/analysis-prompt.md) + [breakdown-schema.json](references/breakdown-schema.json) | Shots, elements, style, camera, audio; user-approved before prompts |
 | Motion review | [motion-review-prompt.md](references/motion-review-prompt.md) | Second pass; merged by `shot_index`; the anti-static fix |
+| Measured edit ledger (optional) | [measured-edit-ledger.md](references/measured-edit-ledger.md) | For edit-structure remakes: confirmed cuts, evidence, timing drivers and bounded revision dependencies |
 | Seedream element prompts | `seedream-character-sheet`, `seedream-location-asset`, `seedream-prompt` | Characters, locations, props above the threshold |
 | Storyboard prompts | [storyboard-prompts.md](references/storyboard-prompts.md) | One panel per shot by default; sketch grid default |
 | Seedance 2.5 prompts | `seedance-prompt-25` + [slot-mapping.md](references/slot-mapping.md) | Per-shot natural duration; ordered `@Image N` bindings |
@@ -46,7 +47,7 @@ Resolve one of these modes before analysis and record which one was used:
 | **External pass** | The user can run a video-capable tool | Hand the user the analysis prompt to paste there; they return the JSON |
 
 **Never claim to have watched a video you could not access.** Timing is
-measured only when cuts were detected from the source; otherwise mark timing,
+measured only when candidate cuts were confirmed against the source; otherwise mark timing,
 audio, and motion as estimates and record the mode in the analysis metadata.
 Audio is never heard from frames — use the user's transcript or notes, or
 explicit unknowns per [frame-extraction.md](references/frame-extraction.md).

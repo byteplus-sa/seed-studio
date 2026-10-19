@@ -105,6 +105,41 @@
         "Does not duplicate the phrase The miniature also wears.",
         "For a full-body reference, removes the conditional lower-outfit slot."
       ]
+    },
+    {
+      "id": 11,
+      "files": [],
+      "prompt": "Write the Canvas effect for my approved person-free car clip: retain the photographic street and add marker doodles around the car only. Is an oil-painted empty environment plate required?",
+      "expected_output": "A source-only overlay recipe with the photographic plate preserved, no unnecessary restyled environment plate, and an explicit unverified outcome boundary.",
+      "assertions": [
+        "Does not require a painted environment image for this photographic-overlay recipe.",
+        "States that Canvas was not achieved in the cited upstream run and does not claim the new clip will pass.",
+        "The car remains photographic and doodles are limited to the requested regions; inspection checks for spill onto the car.",
+        "Returns prompt/reference guidance only, without loading a sibling skill or generating media."
+      ]
+    },
+    {
+      "id": 12,
+      "files": [],
+      "prompt": "My Palette output has thick oil strokes in the sky, but the road and car remain photographic. Does it pass as a whole-frame restyle?",
+      "expected_output": "A failed whole-frame-style assessment with one scoped repair hypothesis and no new local verification claim.",
+      "assertions": [
+        "Does not accept the sky alone as evidence of whole-frame restyling.",
+        "Identifies the road, car and foreground as surfaces to inspect.",
+        "Keeps the reported upstream failed result and labels further repair as a hypothesis.",
+        "Does not automatically submit or change the approved source camera and movement."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Write the LSD treatment for my authorized person-free street clip. Preserve its camera and event order, but restyle the whole picture into alternating photocopy and rainbow looks with the requested wave warp. Does source-only mean keeping the surfaces photographic?",
+      "expected_output": "A source-only edit hypothesis preserving scene and temporal structure while explicitly allowing whole-picture surface changes and the requested deformation.",
+      "files": [],
+      "assertions": [
+        "Does not preserve photographic rendering or prohibit the requested wave warp.",
+        "Preserves source-place identity, subject count, camera path, timing and event order.",
+        "Does not require a painted environment image or claim the unverified recipe has passed."
+      ]
     }
   ]
 }

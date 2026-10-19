@@ -152,3 +152,14 @@ prior shot (Woman standing in @neon-alley). She turns and walks toward camera,
 > extending a clip), Seedance 2.5's native forward/backward extension can replace
 > the manual `return_last_frame` chaining above. Use `seedance-prompt-25` with
 > the 2.5 model (`dreamina-seedance-2-5-260628`).
+
+### People in a continuation source
+
+Upstream [PR #40](https://github.com/byteplus-sa/ark-director/pull/40) reports
+privacy rejection on extension and chaining inputs showing realistic people
+unless the supported authorized asset bindings are supplied. This is inherited
+provider behavior, not a fresh local test or a guarantee of acceptance.
+Before suggesting a continuation route, check the current destination and the
+[video-to-video input contract](../../../contracts/video-to-video-inputs.md).
+If the necessary binding or approval is missing, leave it unresolved; a new
+prompt or first-frame route is not permission to evade the restriction.

@@ -27,34 +27,50 @@ mkdir -p "$FRAMES"
 ### 1. Probe the source
 
 ```bash
-ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$VIDEO"
 ffprobe -v error -select_streams v:0 \
-  -show_entries stream=width,height,r_frame_rate -of default=nw=1 "$VIDEO"
+  -show_entries stream=duration,duration_ts,time_base,width,height,r_frame_rate,avg_frame_rate:format=duration \
+  -of json "$VIDEO"
 ```
 
-Record duration, resolution, and frame rate. These are **measured**, not
-estimated.
+Record the picture stream's duration, dimensions and frame-rate metadata.
+Use stream duration, or duration ticks multiplied by time base, for the last
+picture boundary. Container duration can include a longer audio tail. If
+picture duration is unavailable, mark a container-duration fallback provisional
+and verify the final picture timestamp before locking the cut list. An average
+frame rate does not establish constant frame timing for variable-rate footage.
 
 ### 2. Detect shot boundaries
 
 ```bash
 ffmpeg -v info -i "$VIDEO" -vf "select='gt(scene,0.3)',showinfo" \
-  -fps_mode vfr "$FRAMES/cut_%04d.png" -y 2>&1 | grep -o "pts_time:[0-9.]*"
+  -fps_mode vfr "$FRAMES/cut_%04d.png" -y 2>&1 | rg -o "pts_time:[0-9.]*"
 ```
 
-Each `pts_time` is a measured cut. Use `scene=0.2` for subtle cuts,
-`0.4–0.5` when only hard cuts should count. Add `0.0` as the first boundary
-and the probed duration as the last; shots are the intervals between them.
+Each `pts_time` is a measured detector event, initially a **candidate cut**.
+Inspect a short frame strip around it: a flash or fast motion may be a false
+positive, while a dissolve, whip or speed ramp may hide a real boundary.
+Changing the threshold changes sensitivity, not certainty. Add confirmed
+missed boundaries and remove false positives with their reasons. Use `0.0`
+as the first relative boundary and the verified picture duration as the last;
+record any source timestamp offset before comparing streams.
+
+For an edit-structure remake, record confirmed boundaries and uncertainty in
+the optional [measured edit ledger](measured-edit-ledger.md).
 
 ### 3. Extract per-shot frames
 
-For each shot, extract start, middle, and end frames by timestamp:
+For each shot, extract start, middle, and last-in-shot frames by timestamp:
 
 ```bash
 ffmpeg -v error -ss <start_s> -i "$VIDEO" -frames:v 1 "$FRAMES/shot01_a.png" -y
 ffmpeg -v error -ss <mid_s>   -i "$VIDEO" -frames:v 1 "$FRAMES/shot01_b.png" -y
-ffmpeg -v error -ss <end_s>   -i "$VIDEO" -frames:v 1 "$FRAMES/shot01_c.png" -y
+ffmpeg -v error -ss <last_in_shot_s> -i "$VIDEO" -frames:v 1 "$FRAMES/shot01_c.png" -y
 ```
+
+The end boundary is exclusive: extracting exactly there can return the next
+shot. Choose the final source frame strictly before it. For constant-rate
+footage that may be one frame interval before the cut; for variable-rate
+footage use actual frame timestamps rather than an average-frame-rate estimate.
 
 ### 4. Extract motion bursts
 
@@ -83,8 +99,10 @@ say so when confidence is not high.
   inputs. Delete them or leave them local; they are not deliverables.
 - Extraction never uses filters, effects, transcoding, or assembly — only
   `ffprobe` inspection and plain frame extraction.
-- The agent still has not *watched* the video continuously. Timing is measured;
-  motion and audio observations remain sampled inferences.
+- The agent still has not *watched* the video continuously. Confirmed cut
+  timestamps have measured evidence; unresolved boundaries remain estimates.
+  Motion between sampled frames remains an inference, and frames provide no
+  audible evidence.
 - **Audio cannot be heard from frames.** Ask the user for a transcript or
   audio notes. Without them, set the analysis audio fields to explicit
   unknowns (`mode: "unknown (no audio access)"`, null music and dialogue,

@@ -26,6 +26,9 @@ public effects page, analysed upstream on 2026-10-08. These descriptive labels
 are not official Seedance presets or an endorsement. Recipes retain upstream
 reported tests on invented subjects; none was re-rendered in this workspace.
 See [evidence status](references/evidence-status.md) for outcomes and limits.
+Selective recipe clarifications follow [upstream PR #40](https://github.com/byteplus-sa/ark-director/pull/40)
+and [the pinned source](https://github.com/byteplus-sa/ark-director/tree/0539a2e3/.agents/skills/seedance-effects-studio).
+These are inherited observations and hypotheses, not new local render results.
 
 ## Composition boundaries
 

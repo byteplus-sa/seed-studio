@@ -58,7 +58,7 @@ Silent output. Sound is added in post.
 ### `canvas` - Canvas
 
 **Look:** real footage where the one main subject carries a thick white spray-painted sticker outline and the whole scene is scribbled over with bright marker doodles that redraw differently at every step.
-**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. An empty environment image `@Image 1` defines the same place in the requested medium. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
+**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. This recipe keeps the photographic source plate and adds an overlay or capture look, so do not require a restyled environment image by default. Treat this source-only route as an unverified hypothesis; inspect whether the place and source surfaces remain intact. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
 **Parameters:** duration and ratio match the source; audio off with original sound restored in destination post. Source-frame compatibility follows the local video-to-video inputs contract. Resolution follows destination support and the user request. Stepped cadence may need post retiming.
 **Start photo:** source clip requirements: user-owned footage with a recorded rights decision; 4-8 s; one clearly separable moving subject (skater, cyclist, walker) who stays inside frame; bystanders allowed but few. Poor input: several equal-sized subjects (the outline lands on the wrong one), a subject that touches frame edges, very dark footage.
 **Beats (from the originals):**
@@ -122,13 +122,13 @@ Silent output. Sound is added in post.
 - Moving objects show directional smear; static areas shimmer between steps.
 - Camera distortion and move match the source; subject count unchanged.
 - Faces remain recognisable as the same person.
-**Risks:** drift to a smooth painting filter instead of coarse strokes; strokes frozen instead of shimmering; face likeness lost under heavy texture; fisheye straightened; the environment image for a wide-angle street gives the model a flatter perspective than the source. Confidence in the original look is high.
+**Risks:** drift to a smooth painting filter instead of coarse strokes; strokes frozen instead of shimmering; face likeness lost under heavy texture; fisheye straightened; the environment image for a wide-angle street gives the model a flatter perspective than the source; inspect every major surface because a partly painted sky can hide an otherwise photographic road, vehicle or foreground. A recognisable style in one region does not establish a whole-frame restyle.
 **Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-30, video edit, then reference-to-video retake, 480p, no draft mode, sound on, person-free source clip at 9:16): not achieved; the edit route painted only the sky; the retake paints sky and buildings but the car and road stay lightly painterly (review fail). Not verified on other clips or at a higher resolution.
 
 ### `lsd` - LSD
 
 **Look:** a strobing alternation between a scratched high-contrast black-and-white photocopy and oil-slick rainbow swirl floods, with people turned to cracked white silhouettes.
-**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. An empty environment image `@Image 1` defines the same place in the requested medium. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
+**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. The source-only route is an unverified hypothesis and does not require a separate painted environment image by default. Preserve the source-place identity, subject inventory, event order, camera and timing while applying the requested whole-picture photocopy, silhouette, rainbow and wave-warp treatment. Do not lock photographic surface rendering or forbid the deformation this effect requests; inspect continuity and the intended style changes separately. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
 **Parameters:** duration and ratio match the source; audio off with original sound restored in destination post. Source-frame compatibility follows the local video-to-video inputs contract. Resolution follows destination support and the user request. Stepped cadence may need post retiming.
 **Start photo:** source clip requirements: user-owned footage with a recorded rights decision; 4-8 s; people close to camera or strong wide shapes (shelves, tables) that can warp; no flashing lights already in the footage. Poor input: footage that already strobes, very dark or very bright scenes.
 **Beats (from the originals):**
@@ -177,7 +177,7 @@ Silent output. Sound is added in post.
 ```text
 @Image 1 is the first frame. It defines {subject}'s face, hair, outfit, full-body framing and the flat {backdrop_color} studio backdrop; keep them unchanged.
 Exactly one person with two arms and two legs, centred, filling about {fill_pct} percent of the frame height, head to shoes always fully in frame.
-At 0s {subject} stands in a wide horse stance with both fists raised near the chin, holding until 0.8s. From 0.8s to 2s the {leg_side} knee lifts to waist height and the head turns to the left profile. From 2s to 4s the {leg_side} leg extends into a straight high kick to head height and holds, hair and {flare_item} blown back. From 4s to 5.5s the leg retracts and {subject} lands back in the opening stance, matching the first frame until 6s.
+At 0s {subject} stands in a wide horse stance with both fists raised near the chin, holding until 0.8s. From 0.8s to 2s the {leg_side} knee, {leg_frame_side}, lifts to waist height and the head turns to the left profile. From 2s to 4s the {leg_side} leg, {leg_frame_side}, extends into a straight high kick to head height and holds, hair and {flare_item} blown back. From 4s to 5.5s the leg retracts and {subject} lands back in the opening stance, matching the first frame until 6s.
 The motion is stepped like stop-motion paper pieces: 12 frames per second, each pose held for one step.
 Locked-off camera, no zoom or pan, a fixed full-body frame. The backdrop stays one flat uniform {backdrop_color} with no props, floor line or cast shadow. Clothing and backdrop are plain surfaces with no lettering or logos.
 Silent output. Sound is added in post.
@@ -185,7 +185,8 @@ Silent output. Sound is added in post.
 **Slots:**
 - `{subject}`: what the photo shows, for example "a woman with long blonde hair, round glasses and a dark oversized suit".
 - `{backdrop_color}`, `{fill_pct}`: read from the photo (default fill 70).
-- `{leg_side}`: "right" or "left" as seen in the frame, chosen so the kick leaves the torso uncrossed.
+- `{leg_side}`: anatomical "left" or "right"; choose the leg so the kick leaves the torso uncrossed.
+- `{leg_frame_side}`: "frame-left" or "frame-right", checked against the actual pose; a subject facing the viewer has their anatomical left leg at frame-right.
 - `{flare_item}`: the loose garment, for example "jacket"; default "clothing".
 - Alternative action for skirts or dresses: replace the kick sentences with "a slow full turn in place with arms swinging out", keeping the same timings.
 - Layout defaults (post): cut-out box x 40-680, y 40-830; left inset 300x360 at (45, 870); right inset 300x360 at (375, 870); paper gradient from the outfit's complementary warm hues, with crop windows keyframed per beat from the generated clip (left window follows the shoe, right window follows the head).
