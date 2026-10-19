@@ -136,6 +136,18 @@
         "The response says to compare the far left and far right of the frame with the centre and to read the frames just before and after, and that dark clothing merging with the bar can mimic a thicker bar and is ambiguous, so another take is the safe choice if it stays unclear.",
         "The response does not mention a pixel script or a numeric tool verdict."
       ]
+    },
+    {
+      "id": 11,
+      "files": [],
+      "prompt": "Correct only the side labels in my frame-break stage: a woman faces the viewer and raises her anatomical right hand over the upper bar; later she turns her back and uses that same hand. Keep every other axis fixed.",
+      "expected_output": "Facing-aware anatomical and screen-side labels, preserving the same acting limb and all other axes.",
+      "expectations": [
+        "For the front-facing beat names her right hand, screen-left.",
+        "For the back-facing beat re-checks and names her right hand, screen-right.",
+        "Keeps the same anatomical hand across the turn and does not invent lighting, lens or a new action.",
+        "Does not claim a media probe or run generation."
+      ]
     }
   ]
 }

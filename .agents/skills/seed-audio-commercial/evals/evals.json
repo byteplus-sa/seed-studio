@@ -24,6 +24,30 @@
         "The split option chains via TA2A continuation prompts.",
         "The user decides between split and trim before prompts are finalized."
       ]
+    },
+    {
+      "id": 3,
+      "prompt": "The approved English line is \"Welcome aboard, we are glad you are here.\" Keep its natural Filipino accent. A native listener confirmed only \"aboard\" is wrong at 0.8-1.3 seconds and supplied an approved reading. Everything else, including surrounding words, pauses and timing, is locked. Write a correction instruction, not a new whole-line take.",
+      "expected_output": "A one-word repair instruction preserving the exact English line, accent, neighboring words and timing, with destination support and listening checks explicit.",
+      "files": [],
+      "assertions": [
+        "Keeps the line English without adding Tagalog words or changing neighboring copy.",
+        "Targets only aboard in the existing 0.8-1.3 second window and follows the approved reading without invented phonetics.",
+        "Keeps accent direction outside spoken text and uses a native listener for acceptance.",
+        "Preserves surrounding words, pauses and timing; checks both edit joins.",
+        "Does not promise localized editing support or whole-line preservation from regeneration, and exposes any need for a wider authorized edit."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "The transcript spells our English brand name differently but nobody has listened to the audio. It also says the Filipino accent is correct. Should we re-dub the full spot?",
+      "expected_output": "Keep the defect unconfirmed pending listening, and avoid a whole-spot re-dub based only on fallible transcription.",
+      "files": [],
+      "assertions": [
+        "Treats the spelling difference as a possible recognition error and asks for listening evidence.",
+        "Does not accept transcript evidence as proof of accent quality.",
+        "Keeps the accepted neighboring audio and timing locked and proposes a bounded repair only if an audible issue is confirmed."
+      ]
     }
   ]
 }

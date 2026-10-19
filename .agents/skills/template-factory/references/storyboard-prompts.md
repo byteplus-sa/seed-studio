@@ -14,6 +14,10 @@ pastes into Lumina.
   standalone-production-panel request and record the decision.
 - Delivery defaults to a **single-image grid** in reading order. Use separate
   panels when the user wants individually usable images.
+- For a requested detailed scene board, offer L1 (one decisive frame per shot),
+  L2 (start/peak/end for key shots) or L3 (action sub-beats). An explicit panel
+  budget wins; keep the mapping of source shots to panels or combined beats.
+  Density changes coverage, not the default delivery format.
 
 ## Per-panel prompt (separate-image mode)
 

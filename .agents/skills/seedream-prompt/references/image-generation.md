@@ -191,8 +191,12 @@ Close with only the quality directives and negative constraints that materially 
 
 ```
 Constraints:
-Quality: [HD, 4K, 2K, rich details, cinematic texture]
+Quality: [rich details, cinematic texture, consistent identity]
 Negative: [no watermarks, no signatures, clean background, no text overlays, no distorted anatomy]
 ```
 
 All constraints go inline in the text prompt. The Seedream API has no separate `negative_prompt` field.
+
+Keep output dimensions and requested visual detail separate. Put explicit output dimensions in the destination's size parameter; a "4K" quality adjective does not verify the delivered pixel dimensions. Use only supported settings and keep them outside the paste-ready prompt.
+
+Describe wanted surfaces and light shapes positively before adding a short exclusion: "a plain ceramic jug, smooth unprinted glaze" or "a soft round pool of lamplight on the floor." When no text is wanted, state that generic boxes, jars, signs and garment tags are plain and unprinted. Inspect actual candidates for pseudo-text; a prompt instruction does not prove the surface stayed blank, and visible marks can persist in downstream video references.

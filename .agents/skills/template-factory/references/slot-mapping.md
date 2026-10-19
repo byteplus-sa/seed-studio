@@ -58,5 +58,8 @@ one exists.
   full-color, or standalone-production-panel request.
 - Delivery defaults to the smallest readable single-image grid. Use separate
   panels when the user wants individual images.
+- A requested detailed scene board can use L1 decisive moments, L2 key-shot
+  start/peak/end coverage or L3 action sub-beats. Preserve the explicit panel
+  budget and the shot-to-panel mapping.
 - Authoring templates and the prompt-length budget live in
   [storyboard-prompts.md](storyboard-prompts.md).

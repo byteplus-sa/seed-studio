@@ -18,7 +18,9 @@ and revalidate them when the user supplies the missing reference.
 
 ## The plan record
 
-The example is a 12-second family-drama kitchen scene at standard energy.
+The example is a 12-second family-drama kitchen scene at standard energy with
+full shot planning requested. For a narrower request, omit unrequested axes
+and apply only their relevant variety rules.
 
 ```yaml
 shot_plan:
@@ -40,17 +42,21 @@ shot_plan:
       duration_s: 3.0
       job: establish
       size: wide
+      framing: single
+      featured: [mother]
       angle: high
-      angle_reason: show the whole room and where each person will stand
+      angle_reason: show the mother and room; the visitors remain outside the closed door
       move: slow crane down from ceiling height to table height, left to right
       move_reason: lowers the viewer into the room as the mother crosses it
-      lens_intent: deep focus; table and doorway both sharp
+      lens_intent: deep focus; table and closed door both sharp
       light: {source: window, key_side: camera-left, quality: low sun, long soft shadows across the table}
       contrast_with_previous: n/a
     - id: s02_sh010_b
       duration_s: 2.5
       job: reveal
       size: medium close-up
+      framing: insert
+      featured: []
       angle: eye level
       move: slow push-in on the door handle, ending on her hand as the door opens
       move_reason: moves the viewer to the point of contact
@@ -62,6 +68,8 @@ shot_plan:
       turn: true
       job: emphasize
       size: close-up
+      framing: single
+      featured: [boy]
       angle: low
       angle_reason: the boy's sudden appearance at adult hip height gets presence
       move: static hold, no movement
@@ -73,10 +81,12 @@ shot_plan:
       duration_s: 3.0
       job: release
       size: medium
+      framing: two-shot
+      featured: [mother, boy]
       angle: eye level
-      move: slow drift right, ending on her smile
+      move: slow drift right, ending on her smile with the boy at her side
       move_reason: releases the tension by sliding to the mother's reaction
-      lens_intent: natural depth, mother sharp
+      lens_intent: natural depth, mother and boy sharp
       light: {source: window, key_side: camera-left, quality: soft sun with a warm rim from the open door}
       contrast_with_previous: size family, angle class and move change
 ```
@@ -94,14 +104,27 @@ shot_plan:
 | `turn` | `true` on exactly one shot |
 | `job` | One of establish, reveal, emphasize, connect, escalate, hold, release |
 | `size` | Extreme wide, wide, medium, medium close-up, close-up, extreme close-up or insert |
-| `angle` | Eye level, over-the-shoulder, low, high, overhead or first-person |
+| `framing` | Single, dirty single, two-shot, three-shot, group, over-the-shoulder, over-the-hip, point of view or insert, per [framing](framing.md). Required in a scene with two or more characters |
+| `featured` | The subjects the shot is about, with screen sides when it matters; empty for an insert or an unpeopled point of view |
+| `composition` | Optional. Balanced or deliberately unbalanced (isolation, tension), with the reason when unbalanced |
+| `angle` | Physical camera elevation or tilt: eye level, low, high, overhead or canted. Preserve supplied angles independently of framing and viewpoint; a low-angle OTS remains low |
+| `viewpoint` | Optional observer or first-person perspective, with its owner when relevant. POV framing does not erase the camera angle |
 | `angle_reason` | Required for any angle other than eye level |
 | `move` | The primary move with subject, start and end, or `static hold` |
 | `move_reason` | What the move reveals or emphasizes |
 | `static_reason` | Required with a static hold; a value from the entrypoint table |
 | `lens_intent` | A visible result (sharp plane, soft background, compression), never a number alone |
 | `light` | A declared `source`, the `key_side` relative to the lens, and the quality and contrast |
-| `contrast_with_previous` | Which of size family, angle class, move and key side change; `n/a` for the first shot |
+| `contrast_with_previous` | Which of size family, angle comparison class, move and key side change; `n/a` for the first shot |
+
+For V1 and V2 only, derive one angle comparison class: use the actual
+non-eye-level angle first; otherwise use first-person for POV or
+over-the-shoulder for OTS/OTH/dirty-single framing, else eye level. Keep
+`angle`, `viewpoint` and `framing` unchanged in the plan and prompt. This
+comparison class is a craft scoring aid, never a replacement camera direction;
+count it once rather than counting framing again. A supplied legacy
+`angle: first-person` or `angle: over-the-shoulder` describes viewpoint or
+framing; retain any separately supplied elevation or tilt when normalizing it.
 
 A cue that lands inside a shot is written once on the source and named on the
 shot's `light` line:

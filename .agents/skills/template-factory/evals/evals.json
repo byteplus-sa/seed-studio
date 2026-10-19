@@ -9,7 +9,7 @@
       "assertions": [
         "The breakdown is validated against breakdown-schema.json before any prompt is authored.",
         "The user approves the breakdown before element, storyboard, or Seedance prompts are written.",
-        "Character, location, and prop elements route to seedream-character-sheet, seedream-location-asset, and seedream-prompt respectively.",
+        "Character, location and threshold-qualified prop elements route to seedream-character-sheet, seedream-location-asset and seedream-prop-asset respectively.",
         "The storyboard defaults to one panel per shot with a monochrome sketch grid.",
         "Nothing is generated, uploaded, or submitted; prompts are delivered in chat."
       ]
@@ -51,14 +51,58 @@
     {
       "id": 5,
       "prompt": "Here's the video file at ~/Downloads/reference-ad.mp4. Build the full prompt package.",
-      "expected_output": "Frame extraction with local ffmpeg: probed duration and resolution, measured scene-cut boundaries, per-shot frames and motion bursts read as images, a breakdown with measured timing, audio set to explicit unknowns unless the user supplies notes, and the full prompt package.",
+      "expected_output": "Frame extraction with local ffmpeg: picture-stream duration and resolution, confirmed scene-cut candidates, per-shot frames and motion bursts read as images, a breakdown with measured timing, audio set to explicit unknowns unless the user supplies notes, and the full prompt package.",
       "files": [],
       "assertions": [
         "The agent checks for ffmpeg/ffprobe availability before choosing the extraction mode.",
-        "Shot boundaries are measured via scene detection rather than estimated.",
+        "Scene-detection events are candidate boundaries, checked against surrounding frames; false positives and missed transitions are recorded rather than treated as certain cuts.",
         "Extracted frames stay in projects/<project>/frames/, are never uploaded, and are never bound as @Image N references.",
         "Audio fields are explicit unknowns with the package flagged audio-unverified when the user provides no transcript or notes.",
         "The agent does not claim to have watched the video continuously; motion between sampled frames is labeled as inference."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "My reference picture ends at 12 seconds but the container ends at 14 because of music. A scene detector event at 5 seconds is a camera flash. Prepare the timing analysis for an edit remake.",
+      "expected_output": "Uses the 12-second picture duration, rejects the flash as a cut after checking frames, and records audio uncertainty without guessing beats.",
+      "files": [],
+      "assertions": [
+        "The final picture boundary is 12 seconds, not the 14-second container end.",
+        "The 5-second event remains a candidate until inspected and does not become a fictional shot.",
+        "A scene-end sample is strictly before the exclusive boundary, not from the next shot."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I only have six screenshots from a fast ad and an untimed transcript. Tell me its exact beat offsets and speech-cut timings.",
+      "expected_output": "Labels timing and cut drivers unresolved; screenshots and untimed words cannot prove exact audible anchors.",
+      "files": [],
+      "assertions": [
+        "Does not claim measured beats, speech times or continuous playback from stills.",
+        "Uses unknown rather than none for unsupported cut drivers.",
+        "Keeps any optional ledger outside the strict breakdown JSON."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "The approved edit has shot 1 from 0 to 2 seconds and shot 2 from 2 to 5. Move their boundary to 2.2 seconds, keep the ending at 5, and retain all other prompt decisions.",
+      "expected_output": "Proposes durations of 2.2 and 2.8 seconds, rechecks both neighboring shots and crossing sound, and re-presents the timing change before dependent prompts.",
+      "files": [],
+      "assertions": [
+        "Both neighboring durations change while the 5-second endpoint stays locked.",
+        "No unrelated identity, wardrobe, lighting or shot is rewritten.",
+        "Audio crossing the changed cut is checked, and unknown audio is not declared continuous."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "I am changing only a caption in a supplied reference edit. Its product shot and exact cut timings are approved. Update the prompt package.",
+      "expected_output": "Updates only the separate post-copy note, preserves approved picture and timing, and flags exact caption execution as outside prompt generation.",
+      "files": [],
+      "assertions": [
+        "Does not regenerate product imagery or invent a Seedream typography prompt.",
+        "Keeps cut timing and unrelated picture prompts unchanged.",
+        "Does not silently alter the approved script or soundtrack."
       ]
     }
   ]

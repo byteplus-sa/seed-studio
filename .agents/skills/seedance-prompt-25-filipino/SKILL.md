@@ -53,6 +53,23 @@ words and completing the unaffected direction.
    Listen against exact words and the approved speaker/register reference.
    Unavailable listening or linguistic evidence remains unresolved.
 
+## Accent and localized correction
+
+An accent request does not authorize code-switching. For English with a
+Filipino accent, keep every approved word English and put the accent direction
+outside the dialogue braces. Preserve any explicitly requested Tagalog or
+Taglish register; do not impose an English-dominant rewrite.
+
+For one verified mispronounced word, scope the repair to that word and its
+existing time window. Preserve the surrounding words, voice, register, pauses,
+line timing and picture. A prompt cannot guarantee a localized edit: the caller
+must confirm destination support, and inspect neighboring words and the join.
+Do not expand the repair to a whole-line re-dub without an explicit choice.
+
+Automatic transcripts are fallible clues to word differences. Listen before
+recording a mismatch as heard; a native listener judges accent, pronunciation
+and register. Missing listening evidence remains unresolved.
+
 ## Procedure and reference loading
 
 Read only the references needed for the current issue:

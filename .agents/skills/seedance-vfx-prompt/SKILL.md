@@ -15,8 +15,9 @@ description: >-
 
 # Seedance VFX Prompt
 
-Write production-grade prompts for BytePlus Seedance 2.0 **video-to-video VFX
-editing**. This skill is for editing **existing footage** — not text-to-video
+Write production-grade prompts for BytePlus Seedance **video-to-video VFX
+editing**, using the Seedance 2.5 structured edit-goal grammar by default.
+This skill is for editing **existing footage** — not text-to-video
 generation. The source clip is the anchor; the prompt describes what to change.
 
 Use this skill when the user wants to:
@@ -38,9 +39,9 @@ Do **not** use this skill for:
 - redrawing the whole clip in a new visual medium with the same content (use
   `seedance-restyle`)
 
-> **Version note**: This skill covers **both** Seedance generations. The core
-> methodology (sections 1–11) is written for Seedance 2.0. For Seedance 2.5
-> video-to-video editing — the preferred path for full-duration edits — see
+> **Version note**: Seedance 2.5 structured editing is the default. The legacy
+> methodology (sections 1–11 in the references) applies when 2.0 is explicitly
+> selected. For Seedance 2.5 video-to-video editing see
 > [Seedance 2.5 editing](references/seedance-25-edit.md#seedance-25-editing) below; the `seedance-prompt-25`
 > skill remains the authority for 2.5 T2V/R2V and native extension. For 2.0
 > T2V/R2V prompts, use `seedance-prompt-20`.
@@ -152,7 +153,7 @@ Constraints: [NON-IP, face protection, no-warp, camera-motion lock, etc.]
 ## Iteration discipline
 
 The user iterates fast and in small steps: "softer light," "from the right,"
-"bigger snowier mountains," "make the chimp huge," "a beat before the zoom,"
+"bigger mountains," "make the creature larger," "a beat before the zoom,"
 "keep the original runtime." Change **only the named thing** and keep the rest
 of the prompt stable — re-rolling the whole prompt loses what already worked.
 

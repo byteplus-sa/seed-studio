@@ -101,20 +101,36 @@ Confirm gate 2 is recorded. Write the prompt from
 - **1:1 locked** take when the presenter will sit in a split-screen or card.
 - **9:16 camera-beat** take when the edit goes full-screen on the presenter.
 
-Settings to give the user: audio on, 1080p, no watermark, duration = script
-length rounded up with about 1s of slack (≤30). Deliver the frozen prompt with
+Settings to give the user: audio on, 1080p, no watermark. Estimate duration
+from script words ÷ 2.2, plus about 1s for speech onset and at least 0.4s of
+final tail, rounded up (≤30). This is a planning heuristic, not a guaranteed
+speech rate. Check the intended performance; if it does not fit, split the
+exact script or ask to shorten it when editing is authorized. Keep approved
+words unchanged. If the caller uses a draft-and-promotion route, verify its
+current destination support and re-check the actual final. Deliver the frozen
+prompt with
 the references named in binding order: the selected sheet as `@Image 1` and the
 voice clip as `@Audio 1`.
+
+Keep duration, resolution and aspect ratio in the separate parameter note,
+not the model-facing prompt. The prompt describes performance, framing and
+relative action; preserve the exact script in its dialogue block.
 
 ### 5. Take QA
 - Compare a contact sheet against the selected sheet: face, hairline,
   wardrobe, accessories, props.
 - Transcribe the take audio and diff it against the script. No words from the
-  voice clip may appear. Keep the word timings for captions added in post.
+  voice clip may appear. Treat automatic transcription as fallible evidence;
+  listen to suspected errors before declaring a spoken mismatch. Keep the word
+  timings for captions added in post. Repeat transcript and lip-sync checks on
+  the actual final, including one promoted from a checked draft; do not assume
+  its soundtrack or timing is identical.
 - Check lip-sync on close frames and on plosives. Distinguish sampled-frame
-  inspection from playback review.
+  inspection from full playback review; frame samples alone do not establish
+  lip-sync. Check that the last word completes before
+  the clip ends, and listen for unintended music or a second voice.
 - Voice resemblance: a rough pitch comparison is only a hint; ask the user for
-  a human listen.
+  a human listen. A native listener judges accent and pronunciation.
 
 At most one retake, and only for a clear defect. Tell the user why before
 revising.
@@ -128,3 +144,5 @@ revising.
 | Mic or accessory missing | Name it in both scene and subject text and QA it. It cannot come from the sheet. |
 | Words from the voice clip spoken | Strengthen the timbre-only binding and keep the clip ≤15s |
 | Voice resemblance weak | Retake with the 15s alternate clip |
+| Last words clipped or rushed | Reassess speech onset, word budget and final tail; split the exact script or shorten only with authorization. |
+| Gesture on the wrong hand | Name anatomy plus frame side, such as "left hand, frame-right" for a front-facing, unmirrored presenter. |

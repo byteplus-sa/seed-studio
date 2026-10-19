@@ -18,7 +18,7 @@ Output: a panel plan and paste-ready panel or grid prompts in chat, with the ord
 
 ## Procedure and reference loading
 
-Read context-and-preflight, then panel-and-grid-prompts for authoring. Read review-and-selection when the user shares candidates, and editing-failed-panels only for a requested revision.
+Read context-and-preflight, then panel-and-grid-prompts for authoring. Read scene-density for a requested whole-scene density choice or staging that needs start, peak, end or action sub-beats. Read review-and-selection when the user shares candidates, and editing-failed-panels only for a requested revision.
 
 Read only the mode-specific resources needed for the request. Reference paths
 mentioned in prose are relative to this skill directory unless a link says otherwise.
@@ -26,6 +26,7 @@ mentioned in prose are relative to this skill directory unless a link says other
 - [Context And Preflight](references/context-and-preflight.md) — 1. Inspect existing project context; 2. Lock the brief; 3. Break the scene into observable beats; 4. Decide panel density; 5. Preflight every reference; 6. Establish geography and continuity; 7. Build the panel plan.
 - [Panel And Grid Prompts](references/panel-and-grid-prompts.md) — 8. Write the exact prompt for each panel; 9. Write the multi-panel prompt; 9c. Prompt length budget; 9d. Prompt self-checks.
 - [Review And Selection](references/review-and-selection.md) — 12. Review the board; 13. Present variants for the user's selection.
+- [Scene Density](references/scene-density.md) — optional L1, L2 and L3 scene planning and explicit panel budgets.
 - [Editing Failed Panels](references/editing-failed-panels.md) — Revising a failed panel; Revision contract.
 
 ## Prompt-only boundary and failure behavior
@@ -66,8 +67,9 @@ confirms it passes both storyboard and visual-anchor review.
 - Describe one frozen, decisive moment per panel.
 - **Always use available Elements.** Before writing any prompt, check the
   project's `elements/` records, or ask the user, for approved character,
-  location, and prop sheets. A storyboard must bind every visible Element by
-  its canonical reference so identity, geometry, materials, and wardrobe stay
+  location, and prop sheets. Bind every visible recurring or critical Element
+  by its canonical reference; incidental generic props may be described under
+  the workspace prop threshold. This keeps identity, geometry, materials, and wardrobe
   on point across panels. A text description or an earlier storyboard panel is
   not a substitute for a canonical Element sheet. If an Element has no selected
   sheet, use the best available approved reference; if none exists, mark the

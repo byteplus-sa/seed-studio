@@ -1,0 +1,16 @@
+{
+  "skill_name": "seedream-prompt",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a prompt for a plain ceramic jug on a neutral surface. No text, no logos. Do not add a film look. Put resolution in a settings note, not the image prompt.",
+      "expected_output": "Concise plain-surface prompt and separate supported-size intent, without adding a film treatment.",
+      "files": [],
+      "expectations": [
+        "Describes smooth unprinted glaze positively.",
+        "Keeps resolution settings outside the paste-ready prompt.",
+        "Does not claim blank surfaces or dimensions have been verified."
+      ]
+    }
+  ]
+}

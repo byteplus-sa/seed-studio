@@ -74,7 +74,7 @@ Rules:
 
 ## Carrying a shot plan
 
-When a shot plan exists for the scene, copy each shot's size, angle, move and
+When a shot plan exists for the scene, copy each shot's size, angle, framing, featured subjects, move and
 light facts into its shot line without softening them. If the prompt cannot hold
 a planned fact, report the conflict to the plan owner instead of dropping it. A
 confirmed project axis appears in the shot lines or carries a scene override.
@@ -91,7 +91,16 @@ presets; fill it from a supplied plan or the user's request.
 Place a spoken line inside the shot that frames the speaker. Make the shot at
 least spoken words / 2.2 + 1 s long as an initial planning estimate. Upstream
 draft runs observed speech starting 0.5-1.5 s late; this is limited evidence,
-not a timing guarantee. Actual delivery or supplied audio determines alignment. Vary size and angle between
+not a timing guarantee. Budget onset, spoken words / 2.2, and at least 0.4 s
+of tail after the final word separately; use the longer estimate when the
+one-second margin cannot cover both onset and tail. Supplied audio or the
+actual delivery determines alignment. If exact words do not fit, propose a
+longer shot or a user-approved script revision rather than silently shortening
+the line. Prefer a simple closing beat instead of packing speech, a turn and
+an exit into the final seconds. Re-check the final take even when a selected
+draft is promoted: its picture and soundtrack may differ.
+
+Vary size and angle between
 speakers, and keep moves slow while a line is spoken so the lips and eyes stay
 readable. For Filipino or Taglish lines, compose with the dialogue partner skill
 for the delivery direction.

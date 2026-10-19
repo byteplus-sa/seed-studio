@@ -150,13 +150,23 @@ visible:
 | Re-voice + **re-render lips** | `seedance-vfx-prompt` (2.5 audio edit, this section) | Video re-rendered; mouth re-animated to the new language. Use when the mouth is visible and lip-sync matters. |
 | Voice-clone + **overlay audio** | a separate Seed Audio 1.0 TA2A step the user runs; `seed-audio-prompt` writes its prompt | Video frames untouched; cloned audio laid on top. Use when lips are off-screen or not the focus. |
 
-### Content-safety note (copyright false positives on output)
+### Content-safety note (output copyright rejections)
 
-Seedance can reject an otherwise-innocuous edit with
-`OutputVideoSensitiveContentDetected.PolicyViolation` ("copyright restrictions")
-when the *generated output* resembles a film/photo cliché — interrogation rooms,
-a figure arguing in the rain, well-known movie setups. This is an output-level
-false positive, not a prompt error. Mitigate by softening the trope wording
-(e.g. `arguing` → `talking into his phone`; `bare-bulb interrogation` → a neutral
-desk scene), resubmitting once, and recording the failed task. Never retry the
-identical prompt unchanged.
+An output rejection such as
+`OutputVideoSensitiveContentDetected.PolicyViolation` is evidence to diagnose,
+not proof of a false positive or of a particular cause. Record the reported
+code, request or task identifier, flagged inputs when supplied, and what is
+actually known. Do not label a generic scene unsafe solely because it was
+rejected, and do not promise that softened wording will pass.
+
+Check the requested content, approved references and rights context. A board
+may carry unintended lettering, composition or a sketch style; inspect its
+role rather than assuming that every board is forbidden or that removing it
+fixes a rejection. Correct a legitimate issue with one recorded change while
+preserving the approved edit scope. When the reason remains unclear, retain
+it as unresolved and use the provider's support or appeal path. Do not disguise
+content, switch routes to evade the check, or retry automatically.
+
+This clarification is adapted from [upstream PR #40](https://github.com/byteplus-sa/ark-director/pull/40)
+and [the pinned edit reference](https://github.com/byteplus-sa/ark-director/blob/0539a2e3/.agents/skills/seedance-vfx-prompt/references/seedance-25-edit.md).
+It reports no new local provider test.

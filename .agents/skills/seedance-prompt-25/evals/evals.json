@@ -57,13 +57,13 @@
     {
       "id": 5,
       "prompt": "Write a Seedance 2.5 prompt for a scene where a barista greets a customer in Japanese, a bell rings in the distance, soft piano music plays, and a subtitle appears saying 'Chapter One: Departure'. The dialogue must be in natural conversational Japanese.",
-      "expected_output": "A prompt that correctly uses all four audio/text bracket syntaxes and the dialogue language reinforcement formula.",
+      "expected_output": "A Japanese dialogue prompt using music, sound-effects and dialogue syntax, with the requested subtitle preserved as a post-production note outside generated footage.",
       "files": [],
       "expectations": [
         "The output uses () for music: (Soft, rhythmic piano music plays in the background).",
         "The output uses <> for sound effects: <A bell rings in the distance>.",
         "The output uses {} for dialogue with Japanese text inside.",
-        "The output uses 【】 for the subtitle: 【Chapter One: Departure】.",
+        "The requested subtitle text is preserved in a separate post-production note; the generated-video prompt does not ask for subtitles.",
         "The output specifies the dialogue language as Japanese before the dialogue line."
       ]
     },
@@ -113,6 +113,39 @@
         "Contains a paper boat drifting on a puddle.",
         "Does not require a camera or light stance, shot plan, or static-reason record.",
         "Does not add unrequested directorial axes."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Write a minimal prompt for exactly three ceramic cups on a counter. A front-facing host lifts only the center cup with her right hand, visible on frame-left. Keep the other cups stationary. Do not add camera or lighting direction.",
+      "expected_output": "Exact count, stable positions, anatomical and frame-side hand cue, plain surfaces, and only requested axes.",
+      "files": [],
+      "expectations": [
+        "Three cups remain accounted for; lifting one does not create a spare cup.",
+        "The right-hand cue includes frame-left for this front-facing pose.",
+        "No camera, lighting, grade or mandatory shot plan is invented."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Write a four-second dialogue shot. The approved line is: We have waited all morning and now the doors are finally open for everyone. Do not change any words.",
+      "expected_output": "Flags that the approved line exceeds the timing budget and proposes more duration without rewriting it.",
+      "files": [],
+      "expectations": [
+        "Counts speech time and allows onset plus final tail.",
+        "Does not silently shorten or paraphrase the approved line.",
+        "Offers longer timing or asks for a script decision rather than promising impossible alignment."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Write a Seedance prompt for a wordless riverside scene with only wind and birds, no music. I am open to separate sound if that is more reliable.",
+      "expected_output": "Explains native-audio leakage risk and proposes picture-only video plus a separate ambience bed.",
+      "files": [],
+      "expectations": [
+        "Does not promise that a no-music sentence guarantees no music.",
+        "Makes picture-only an explicit proposed route with destination-capability verification.",
+        "Does not run generation or make prompt review a gate."
       ]
     }
   ],

@@ -1,0 +1,40 @@
+{
+  "skill_name": "seed-audio-prompt",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The approved 30-second coast clip has unwanted speech in its native audio. Write an ambience-only replacement bed; keep the picture unchanged.",
+      "expected_output": "A positive layer-based bed prompt with rough event timing, explicit exclusions, and a verification and assembly handoff.",
+      "files": [],
+      "assertions": [
+        "Preserves the approved picture and proposes replacing its soundtrack rather than regenerating the video.",
+        "Uses surf, wind and gulls as positive acoustic layers and treats no-voices/no-music wording as a request to verify.",
+        "States that generated event timestamps are approximate and a visible-action effect needs separate placement for exact sync.",
+        "Does not invent dialogue, mandate a production application or save files without a request."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Plan a silent-picture scene with a separate score only: low cello, a rising pulse, then a quiet ending. Do not generate anything yet.",
+      "expected_output": "A picture-only option conditional on destination support and a standalone score prompt with no dialogue requirement.",
+      "files": [],
+      "assertions": [
+        "Uses picture-only generation only if the selected destination supports disabling native audio, otherwise proposes replacing or muting the native soundtrack in post.",
+        "Specifies score instrumentation and arc without inventing speech or environmental effects.",
+        "Does not submit, require a review gate or assume an API field is universally available."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write a very short spoken line and make it stop exactly at 3.000 seconds. The ASR says one word is missing and says the accent is correct.",
+      "expected_output": "Preserve the exact supplied line, leave trailing space, measure actual timing, and distinguish transcript evidence from listening.",
+      "files": [],
+      "assertions": [
+        "Requests about a second of trailing silence and checks that the last word is complete.",
+        "Does not guarantee exact generated timing; proposes measured trimming or padding when needed.",
+        "Checks the audio before treating the ASR result as a confirmed omission.",
+        "Requires a native listener for accent and pronunciation rather than accepting an ASR claim."
+      ]
+    }
+  ]
+}

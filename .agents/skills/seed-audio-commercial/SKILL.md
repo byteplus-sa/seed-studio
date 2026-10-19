@@ -201,6 +201,32 @@ Deliver the paste-ready block in chat: the prompt, the parameter block (`format:
 `sample_rate: 24000`), and the story-arc summary (one line per act). Save a
 draft under `projects/<project>/prompts/` only on explicit request.
 
+## Listening and targeted corrections
+
+Keep accent separate from language: an English line with a Filipino or other
+regional accent stays English unless code-switching is requested. Put the
+accent in the voice profile, preserve exact approved words and use the brief's
+register. Do not translate or add local expressions merely to signal accent.
+
+Compare the delivered audio against the approved script. Automatic
+transcription can mishear words and names; listen to suspected differences
+before declaring a spoken error. A native listener judges accent,
+pronunciation and register; a transcript or automated listening verdict alone
+does not establish them. Measure actual speech onsets and final-word completion
+rather than promising exact timestamps from the prompt.
+
+For a single pronunciation defect in an otherwise accepted spot, propose a
+word-scoped repair in its existing time window. Preserve neighboring words,
+speaker, delivery, pauses, sentence timing, sound effects and music. Use one
+cue from an approved reading, outside quoted speech; a respelling is a
+hypothesis that may add syllables, not permission to change approved copy.
+Confirm the destination can edit that scope, and check the replacement and
+both joins. If it cannot fit or requires replacing a whole line or mix, surface
+the conflict and obtain the user's explicit scope choice. Do not promise that
+a whole-spot regeneration will preserve accepted audio, or switch to a
+separate lip-sync track unless requested. Preserve any supplied authorized
+music and its existing use constraints throughout the repair.
+
 ## Multilingual and Taglish guidance
 
 Seed Audio supports multilingual synthesis. A moderation error is a provider

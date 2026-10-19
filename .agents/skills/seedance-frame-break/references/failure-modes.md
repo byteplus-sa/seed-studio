@@ -42,7 +42,7 @@ Re-rolling the same wording did not help.
 | Sudden scale jump and limb swap inside a stage. This is a hard-gate failure. Observed: a stylised 3D fox reached out with a paw, then a giant bare cream sole popped into frame at about 1.25 to 2.0 s and filled half the frame; the sole also differed from the sheet's teal sole. An earlier take showed a paw reaching toward the lens, then a different giant foot appearing | One stage combined two unconnected limb actions (an arm reach, then a kick) | One coherent action per stage; the limb that arrives at the lens is the limb that crosses the bar; never name two different limbs crossing in the same beat; keep the other limbs small and tucked behind until a later stage. Find it by reading a 12 fps contact sheet of each stage window, since sparse sampling hides it |
 | Stage actions arrive late or merge | Timestamps are allocations; the action ran about 0.25 to 0.5 s late | Reach each End state about half a second before the boundary; do not chain three motions in a stage |
 | Gaze, spin or sweep contradictions | Conflicting direction cues, such as eyes locked on the lens throughout combined with a turn | One gaze rule per stage; make any spin direction match the sweep direction; drop spins when the stage must end facing the lens |
-| Unclear which limb acts | Ambiguous left or right | Use screen-left and screen-right and name the limb in every stage; include an arm cue in early stages |
+| Unclear which limb acts | Ambiguous left or right | Name anatomy plus screen side in every stage and check the mapping against the subject's facing; after a turn re-check it rather than assuming the side is unchanged; include an arm cue in early stages |
 
 ## Backdrop and unrequested content
 
@@ -57,5 +57,5 @@ Re-rolling the same wording did not help.
 
 | Symptom | Likely cause | Prompt repair |
 | --- | --- | --- |
-| Light music or a chime on an effects-only request | The model adds music | Add an explicit no-music line and name the effects; verify by listening, not only by level |
+| Light music or a chime on an effects-only request | The model adds music | Name the wanted sounds and verify by listening, not only by level. A no-music line is not a guarantee; for a strict music-free brief, offer picture-only output with sound added in post rather than changing an accepted picture solely to fix its soundtrack |
 | A video-understanding model reports no overlap or a moving camera on clips whose frames show overlap and a locked camera (observed) | Unreliable temporal judgement | Judge overlap from the frames; use the model only as secondary evidence |

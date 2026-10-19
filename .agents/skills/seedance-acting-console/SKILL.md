@@ -197,6 +197,10 @@ limit. Fewer cues are appropriate when the brief asks for minimal action.
   delivery if audio is requested. Preserve the framing; do not uncover the face
   merely to satisfy an eye-work template.
 
+Name a hand, arm or foot by anatomy and frame side together ("her right hand,
+frame-left"): a bare side is ambiguous in facing or mirrored shots. State the
+viewpoint explicitly before mapping anatomy to frame side.
+
 Keep motive and goal stable when comparing framings; translate their evidence.
 For revision diagnosis, load [hypothetical acting repairs](references/acting-repairs.md)
 only when a performance is stiff, overstated or unreadable.
@@ -334,6 +338,13 @@ language stated):
 Dialogue language: <language>. <character> <says/shouts/whispers> in <delivery style>: {<exact line>}
 ```
 
+Give each line room: upstream drafts showed speech starting about 0.5-1.5 s
+after its cue and running at about 2.2 words per second. Plan at least
+words / 2.2 + 1 s for onset, plus at least 0.4 s after the last word before
+the clip ends. Check actual delivery; lengthen or split a shot that cannot fit
+approved dialogue rather than silently changing the words. These are planning
+allowances, not guaranteed timings.
+
 ### Worked example
 
 Directive: A woman confronts a locked door. Her husband just left. Scene
@@ -351,8 +362,8 @@ OBSTACLE: the locked door; the silence on the other side; the feeling pressing
 to surface.
 TACTIC: pressing the door, testing the handle, eyes hunting the frame for
 anything he left behind — checking the threshold, the mat, the hallway.
-CUES: gaze searches the threshold for a response; hand tests the handle once;
-weight stays toward the door while her reply catches in her breath.
+CUES: gaze searches the threshold for a response; her right hand, frame-left,
+tests the handle once; weight stays toward the door while her reply catches in her breath.
 Moment to moment:
 — presses the handle — finds it locked — eyes snap to the gap under the door
 — "Get out of my way." — said at the door, voice strained, eyes still searching
@@ -413,6 +424,9 @@ dialogue-to-shot timestamp mapping in `shot.md` and `scene.md`.
   the Seedance `{line}` changes, change both. A mismatch causes lip-sync drift.
 - **Audio longer than video: trim audio, never pad video.** Reduce pauses,
   ambience tails, and scene description in the Seed Audio prompt; regenerate.
+- **Plain wording already produces a big action.** The console adds the
+  hold before it, its stop and the hold after it instead of stacking intensity
+  adjectives on the action.
 - **Emotion arcs need ordered triggers and consequences.** Use multiple beats;
   timestamps are optional unless requested or needed for verified audio alignment.
 - **`reference_audio` forces lip-sync, not acting fidelity.** It locks the voice
@@ -465,3 +479,6 @@ Before finalizing an acting block or plan, verify:
       of truth.
 - [ ] Where the tool supports it, `watermark: false` unless the user requested the AIGC
       watermark.
+- [ ] Hands and limbs name anatomy and frame side when position matters.
+- [ ] Spoken lines fit the shot with onset allowance and a final tail; approved
+      words remain unchanged unless the user requests a rewrite.

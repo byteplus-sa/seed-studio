@@ -114,7 +114,8 @@ example.
    with perfectly straight horizontal inner edges at the same height in every
    frame.
 3. **Four timed stages.** Each stage has one coherent action by one named limb
-   (use screen-left and screen-right), the bar it crosses with a numeric
+   (name anatomy plus screen side, consistent with the facing), the bar it
+   crosses with a numeric
    anchor such as covering about a third of the bar's width, the crossing
    direction, the moment it peaks, and an observable `End state:` with the
    subject back fully inside the window and nothing over a bar. The limb that
@@ -129,7 +130,10 @@ example.
    except during the named break-outs.
 5. **Camera.** Locked off, no movement, zoom or cuts; only the subject moves.
 6. **Audio.** Requested sound arc in the `seedance-prompt-25` bracket syntax.
-   When no music is wanted, say so.
+   When no music is wanted, name only the requested sounds and disclose that
+   a native-audio exclusion may still leak music. A picture-only take with
+   separately added sound is an option for a strict music-free brief; the
+   caller resolves that route rather than adding it as an unconditional default.
 7. **Closing exclusions.** Short: no text, captions, logos or watermarks, no
    held props, bars unmarked. Keep necessary exclusions to one or two lines.
 
@@ -195,7 +199,8 @@ before each boundary. Do not state the clip duration in prompt text.
 - [ ] The upper bar has its own stage, a limb that can reach it, an explicit peak
       and an End state back inside.
 - [ ] Every crossing has a numeric anchor, a crossing direction and a return.
-- [ ] Left and right are given as screen-left and screen-right.
+- [ ] Every named limb has anatomy plus screen side, consistent with the
+      subject's facing.
 - [ ] Gaze, spin and sweep directions do not contradict each other.
 - [ ] The camera is locked off with no zoom or cuts.
 - [ ] No held props unless the subject is the product.
@@ -263,3 +268,7 @@ references, unresolved rights for a real brand asset, or a request to bake text
 into the footage stay open items in the package; say that on-screen text is
 added in post by the destination workflow, which is out of scope here, rather
 than improvising a prompt for it.
+
+Side-label clarification adapted from [upstream PR #40](https://github.com/byteplus-sa/ark-director/pull/40)
+and [the pinned template](https://github.com/byteplus-sa/ark-director/blob/0539a2e3/.agents/skills/seedance-frame-break/references/prompt-template.md).
+No new media probe was run in this workspace.

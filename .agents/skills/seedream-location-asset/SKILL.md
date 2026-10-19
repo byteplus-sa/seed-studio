@@ -38,6 +38,10 @@ adapts it specifically for location/environment generation; compose with
 When official documentation changes, prefer the live docs over this skill where
 they conflict.
 
+## Focused reference loading
+
+Read [Lighting states and same-place plates](references/lighting-states-and-plates.md) when adapting day, dusk, night or lights-off versions of a location, or preparing the source's own environment in another medium. It also covers repeated landmarks, set-piece counts and architecture checks. These are prompt-composition options, not automatic changes to the brief. Deliver prompts in chat; save a draft only when requested.
+
 ## Flexible prompt structure — Location Asset
 
 Use this order for the sections that apply. Do not add empty boilerplate:
