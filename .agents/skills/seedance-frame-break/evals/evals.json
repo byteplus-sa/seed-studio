@@ -41,11 +41,11 @@
       "expected_output": "A repair plan: re-rolling the same wording is not recommended; the bars are re-described as flat 2D graphics under a subject drawn complete on top, with numeric overlap anchors and edge-by-edge crossing directions, written as a new prompt version.",
       "files": [],
       "expectations": [
-        "The response diagnoses the bars being treated as camera letterbox rather than suggesting an identical re-roll, and notes that re-rolling the same wording did not help.",
+        "The response offers unclear layer order as a possible cause and proposes a controlled wording change without claiming an identical re-roll cannot help.",
         "The repair describes the bars as flat 2D graphics laid over the picture and the subject as drawn complete on top of the black.",
         "The repair adds numeric overlap anchors such as covering about a third of the bar's width and crossing directions per stage.",
         "The upper bar gets its own stage with an explicit End state, and only one thing (wording, reference or stage design) changes per retry.",
-        "The response labels the guidance as an observed result with conditions, not a guarantee, and does not retouch or edit the take."
+        "The response labels the repair as a technique to test, not prior-project evidence or a guaranteed fix, and keeps this leaf prompt-only."
       ]
     },
     {
@@ -62,20 +62,20 @@
     },
     {
       "id": 5,
-      "prompt": "Frame-break prompt for a photoreal boxer in a boxing ring. Put the ring ropes right where the top and bottom bars are so it looks authentic.",
-      "expected_output": "A response that keeps bar-like objects out of the bar zone, because ropes at the bar position were drawn as the bars with the subject behind them, and offers a ring-free or far-back alternative.",
+      "prompt": "Fictional prompt exercise: a photoreal skateboarder in a skatepark. Put metal rails where the graphic bars are.",
+      "expected_output": "A response that identifies competing horizontal geometry as a design concern and offers a rail-free or far-back alternative, without claiming measured validation.",
       "files": [],
       "expectations": [
-        "The response declines to place ropes or rails at the bar position and explains that bar-like objects were drawn as the bars with the subject behind them (observed result).",
+        "The response explains that rails may compete with the overlay and offers this as a design concern, not a validated model result.",
         "The response offers a backdrop without bar-like objects near the top and bottom, or keeps ropes far back in the middle distance.",
         "Background bags and equipment are required to be free of lettering and logos, and the footage is kept text-free.",
-        "The boxer is full-body and completely inside the window at the start and at every stage boundary, about two thirds of the window height, with brief single-limb or hem break-outs and no walking or leaning toward the lens so that legs, shorts or robe sit over a bar; no extending limb or head fills a third of the frame.",
-        "The response notes that photoreal subjects cross the bars less often than drawn ones and gives the upper bar its own stage."
+        "The subject starts and returns inside the window with brief single-part crossings.",
+        "The response gives the upper bar its own stage without making a style-based reliability claim."
       ]
     },
     {
       "id": 6,
-      "prompt": "Fix this draft frame-break prompt. Stage 2: '3-6 seconds: The fox reaches his paw toward the lens, then kicks his foot up so the sole crosses the lower bar and the paw crosses the upper bar.' Layer block: 'Black bars at top and bottom of the frame.' No other mention of the bars.",
+      "prompt": "Fictional draft: Stage 2 says a robot reaches its arm toward the lens then kicks its foot over the lower bar while the hand crosses the upper bar. Layer block only says black bars at top and bottom. Fix the draft.",
       "expected_output": "A rewritten prompt that gives each stage one coherent action by one limb, fixes the bars as straight constant-height graphics, and states the layer order back to front.",
       "files": [],
       "expectations": [
@@ -88,7 +88,7 @@
     },
     {
       "id": 7,
-      "prompt": "Here is a 12-second take of a photoreal boxer. I sampled one frame every 0.5 s and the bars looked fine. How should I check it?",
+      "prompt": "Fictional QA exercise: a dancer's bars looked fixed when sampled every half second. How should I check the take?",
       "expected_output": "A user-run acceptance check that steps each stage window at about 12 fps, judges bar motion by direction, checks that the subject starts inside and overlaps intermittently, separates hard and soft gates, and treats a video-understanding summary as secondary.",
       "files": [],
       "expectations": [
@@ -112,7 +112,7 @@
     },
     {
       "id": 9,
-      "prompt": "Fix this draft frame-break prompt. Stage 1 (0-3 seconds): 'The boxer, big and close to the lens, fills the frame, her legs, shorts and robe already over the lower bar.' Stage 2: 'She walks closer, her torso leaning over the lower bar.' Stage 3: 'Her fist crosses the upper bar.' Stage 4: 'She stays close to the lens.' The bars are 'thick black bars, about 20 percent each'.",
+      "prompt": "Fictional draft: a runner starts with her legs and jacket over the lower bar, walks closer in stage 2, raises a fist over the upper bar in stage 3 and stays close in stage 4. Bars are 20 percent each. Fix the draft.",
       "expected_output": "A rewrite that opens full-body inside the window and makes each break-out a brief limb or hem extension with a return, replacing the thick bars with about 12 percent bars.",
       "files": [],
       "expectations": [
@@ -127,7 +127,7 @@
     },
     {
       "id": 10,
-      "prompt": "On my accepted boxer take the lower bar's edge looks different every time her robe flares and her boots swing over it. Does that mean the bars are moving?",
+      "prompt": "Fictional diagnostic case: the lower edge appears different while a dancer's skirt covers the bar. Does that prove the bars moved?",
       "expected_output": "An explanation that a subject covering a bar is overlap, not bar motion, separated by direction and shape, with ambiguous cases sent to a frame-by-frame look.",
       "files": [],
       "expectations": [
@@ -147,6 +147,17 @@
         "For the back-facing beat re-checks and names her right hand, screen-right.",
         "Keeps the same anatomical hand across the turn and does not invent lighting, lens or a new action.",
         "Does not claim a media probe or run generation."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Fictional acceptance exercise: should I reject every 480p and 1080p take with more than 70 percent overlap because one earlier take looked wrong?",
+      "expected_output": "A user-run visual check based on the current brief's opening, crossings and returns, not a universal duty limit or prior take.",
+      "files": [],
+      "expectations": [
+        "The response rejects the proposed universal percentage and does not import prior-project take evidence.",
+        "The response asks for current frames and the intended timing, without claiming to have watched unavailable footage.",
+        "The response preserves this workspace's prompt-only role and does not introduce a pixel script, automated gate or mandatory prompt-review step."
       ]
     }
   ]

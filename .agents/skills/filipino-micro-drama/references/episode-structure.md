@@ -10,8 +10,10 @@ Filipino formulas, dialogue and signifiers fill.
 - Cast of at most three recurring characters per episode; incidental extras are
   described in scene direction, not canonized.
 - One or two locations. One location per scene keeps geography stable.
-- Dialogue carries the plot. Aim for 3–5 short lines per clip; a clip with more
-  than about 12 spoken seconds rushes delivery and invites word errors.
+- Dialogue carries the plot. Aim for 3–5 short lines per clip when measured
+  delivery or a native-language-informed read fits, with pauses, onset and tail.
+  No fixed spoken-second or English word-rate threshold applies to every
+  language. Preserve exact text; propose retiming before authorized rewrites.
 
 ## Beat template
 
@@ -63,6 +65,6 @@ Every brief supplies:
 5. Props that pass the threshold: story-critical or identity-critical only.
 6. Three scenes, each with duration, action beats, exact locked dialogue in
    `{braces}` with speaker, the turn or proof beat, and the final visible state.
-7. Subtitle translations for any non-English words.
+7. Subtitle translations only for the requested target languages, or none.
 8. Content limits: fictional characters only, no real brands, no legible
    signage, non-injurious conflict.

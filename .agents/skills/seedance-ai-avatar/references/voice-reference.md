@@ -18,13 +18,16 @@ Find natural pauses:
 ffmpeg -i voice-source.wav -af silencedetect=n=-40dB:d=0.25 -f null - 2>&1 | grep silence_
 ```
 
-Cut at a pause, mono 48 kHz, normalised, short fade, to a new file; keep the
-source untouched:
+Choose `START_S` and `DURATION_S` from the inspected recording's pause
+boundaries. Set `FADE_START_S` to the excerpt duration minus the chosen
+`FADE_DURATION_S`, without fading a spoken word. These are measured inputs,
+not fixed timestamps from another recording. Set a new `OUTPUT_AUDIO` path.
+Cut at a pause, mono 48 kHz, normalised; keep the source untouched:
 
 ```bash
-ffmpeg -i voice-source.wav -ss 0 -to 8.86 -ac 1 -ar 48000 \
-  -af "loudnorm=I=-16:TP=-1.5:LRA=11,afade=t=out:st=8.66:d=0.2" \
-  elements/<id>/refs/ref_voice-timbre.wav
+ffmpeg -n -i voice-source.wav -ss "${START_S:?}" -t "${DURATION_S:?}" -ac 1 -ar 48000 \
+  -af "loudnorm=I=-16:TP=-1.5:LRA=11,afade=t=out:st=${FADE_START_S:?}:d=${FADE_DURATION_S:?}" \
+  "${OUTPUT_AUDIO:?}"
 ```
 
 Also keep a ~15s alternate (`refs/ref_voice-timbre-long.wav`) for a retake if
@@ -38,7 +41,7 @@ resemblance is weak. Verify the cut with `ffprobe` (duration, one audio stream,
 ```
 
 Put the full new script in the `{}` dialogue block and state the language
-("Dialogue language: American English").
+("Dialogue language: <requested language and accent>").
 
 ## QA
 

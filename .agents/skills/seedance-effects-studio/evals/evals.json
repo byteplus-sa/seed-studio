@@ -35,7 +35,7 @@
     {
       "id": 4,
       "prompt": "Clones: I need exactly five copies beside me.",
-      "expected_output": "Five copies plus original stated at each count change, with observed count drift disclosed.",
+      "expected_output": "Five copies plus original stated at each count change, unvalidated on current inputs, with a current-output count check.",
       "files": [],
       "assertions": [
         "Distinguishes copies from total figures.",
@@ -49,7 +49,7 @@
       "files": [],
       "assertions": [
         "Does not load another skill.",
-        "Discloses that Canvas was not achieved upstream.",
+        "States that Canvas is unvalidated on current inputs and checks current destination capabilities without assuming unsupported routes work.",
         "Does not generate or require a test ladder."
       ]
     },
@@ -113,7 +113,7 @@
       "expected_output": "A source-only overlay recipe with the photographic plate preserved, no unnecessary restyled environment plate, and an explicit unverified outcome boundary.",
       "assertions": [
         "Does not require a painted environment image for this photographic-overlay recipe.",
-        "States that Canvas was not achieved in the cited upstream run and does not claim the new clip will pass.",
+        "States that Canvas is unvalidated on current inputs and proposes review of the requested overlay regions on a returned take.",
         "The car remains photographic and doodles are limited to the requested regions; inspection checks for spill onto the car.",
         "Returns prompt/reference guidance only, without loading a sibling skill or generating media."
       ]
@@ -126,7 +126,7 @@
       "assertions": [
         "Does not accept the sky alone as evidence of whole-frame restyling.",
         "Identifies the road, car and foreground as surfaces to inspect.",
-        "Keeps the reported upstream failed result and labels further repair as a hypothesis.",
+        "Bases the failed assessment only on the supplied output and labels further repair as a hypothesis.",
         "Does not automatically submit or change the approved source camera and movement."
       ]
     },

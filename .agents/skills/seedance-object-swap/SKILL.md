@@ -99,26 +99,31 @@ never prompt text:
 - `videos`: the muted master as `@Video 1`, first in order; an `asset://` video
   when the source shows a person.
 - `images`: target views as `reference_image`, in binding order.
-- `omni_reference_task_type`: `edit`. An upstream 480p, 5 s product-swap probe
-  on 2026-10-03 (one person, a hand-held can, a static camera) was accepted and
-  passed its checks: the can was replaced in every sampled frame, contact and
-  occlusion held, and the rest of the frame was unchanged. Seedance 2.5 does
-  not accept `edit_video`. Outfit, character and location swaps are untested;
-  treat their first rung as a probe.
-- Omit `ratio` and `duration`; both lock to the source. Output can be up to
-  about 0.3 s shorter, so ask for an 8n+1 frame input (for example 121 at 24
-  fps); an upstream Restyle probe of the same edit route returned exactly 121
-  frames.
+- `omni_reference_task_type`: `edit` when supported, not an assumed
+  `edit_video` alias. Verify the current model and destination's accepted
+  operation; test the current target class, contacts and camera motion without
+  extrapolating success from another clip.
+- Omit `ratio` and `duration` only when the destination locks them to the
+  source. Preserve the exact source span, frame timestamps, cuts and playback
+  speed. Do not trim, pad or retime to an assumed 8n+1 frame count or
+  whole-second duration. Adapt a separate copy only to a verified destination
+  requirement, with the user's agreement and the timing change recorded.
+  Preserve the original video and audio.
 - `generate_audio: false`, `watermark: false`, `resolution` per ladder rung.
 
 Confirm the model ID and the accepted parameters in the destination UI or the
 current documentation before finalizing the parameter block.
+Use a supported low-resolution probe (480p when available) for the current
+case; it does not guarantee final-resolution quality or timing. Treat linked
+preparation recipes as conditional on these checks, not default trim instructions.
 
 ## Procedure
 
 1. **Route check.** One element class changes; everything else is kept.
-2. **Source intake.** Inspect the source, confirm rights, and tell the user how
-   to trim and mute it ([video-to-video inputs](../../contracts/video-to-video-inputs.md)).
+2. **Source intake.** Inspect the source, confirm rights, and describe a muted
+   copy preserving exact timing ([video-to-video inputs](../../contracts/video-to-video-inputs.md)).
+   Propose trimming only for a requested span or verified destination constraint,
+   with the user's agreement.
 3. **Facts.** Inspect the source and note descriptors, counts and contact
    windows. Uncertain facts stay open questions.
 4. **Target.** Confirm the approved element. For a character, recommend the
@@ -154,6 +159,8 @@ route per retry.
 - [ ] One element class changes; recast and restyle requests routed elsewhere
 - [ ] Source inspected; footage rights confirmed
 - [ ] Muted master bound as `@Video 1`; source audio saved; `generate_audio: false`
+- [ ] Exact source timing preserved; any adaptation tied to a verified
+      destination requirement, agreed and recorded on a separate copy
 - [ ] Original identified by observable descriptors and first appearance
 - [ ] Object count stated for the whole video and per cut when it changes
 - [ ] Timeline Inheritance clause present

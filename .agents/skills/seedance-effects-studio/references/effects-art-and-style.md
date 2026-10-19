@@ -1,6 +1,6 @@
 # Effect recipes - Art and style
 
-Prompt-composition recipes. Start-frame descriptions are required inputs, not instructions to generate. Parameters are suggestions for destination settings; `Post` is a destination handoff. Status records are upstream observations from 2026-10-08, not current local verification.
+Prompt-composition recipes. Start-frame descriptions are required inputs, not instructions to generate. Parameters are suggestions for destination settings; `Post` is a destination handoff. Validate each returned take against its recipe; no prior result verifies the current input.
 
 ## Menu rows
 
@@ -19,7 +19,7 @@ Prompt-composition recipes. Start-frame descriptions are required inputs, not in
 ### `comic` - Comic
 
 **Look:** the live clip redrawn as an inked, cel-shaded comic page whose sky, clouds and pattern overlays change look every third of a second while the subject's geometry stays locked.
-**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. An empty environment image `@Image 1` defines the same place in the requested medium. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
+**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. A words-only whole-frame style block is valid. Include an empty same-place environment image only when supplied or requested in the current brief, or justified by the current input or reviewed failure and explicitly approved. Missing imagery does not authorize generation. The source layout, geometry, camera parallax and timing remain authoritative; the image supplies medium, palette and texture only, never people, extra props or a new layout. Bind a selected, inspected and approved image as `@Image 1` only in a currently supported role; omit absent image bindings. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
 **Parameters:** duration and ratio match the source; audio off with original sound restored in destination post. Source-frame compatibility follows the local video-to-video inputs contract. Resolution follows destination support and the user request. Stepped cadence may need post retiming.
 **Start photo:** source clip requirements: user-owned footage with a recorded rights decision; 4-8 s single take; one clear central subject against sky or a simple backdrop; no cuts; no readable signage in frame (source text becomes abstract shapes). Poor input: crowds, many small subjects, busy text-heavy scenes, handheld footage with heavy blur.
 **Beats (from the originals):**
@@ -28,17 +28,17 @@ Prompt-composition recipes. Start-frame descriptions are required inputs, not in
 - 2.5-5s: pose and camera follow the source; sunset gradients, teal rim tint, hard black shadows and sunburst rays alternate at the same rhythm.
 - No hard cuts; one continuous take.
 **Prompt template:**
+Use the source-only template below. Only when an environment image is selected and approved, add: `@Image 1 supplies only comic-ink medium, palette and texture for {place_features}; @Video 1 remains authoritative for layout, geometry, camera parallax and timing. Ignore people and extra props in @Image 1.` Otherwise omit this role and its binding.
 ```text
-Edit @Video 1. Replace the scene with the inked comic version of {place} from @Image 1, and redraw {subject_inventory} as a comic illustration. Keep every subject, action, prop, camera move and timing from @Video 1.
+Edit @Video 1. Redraw the entire scene {place} and {subject_inventory} as an inked comic illustration. Keep every subject, action, prop, layout, camera move and timing from @Video 1.
 @Video 1 is the sole editing master. It defines {subject_inventory}, {key_props}, {camera_path}, and the event order: {source_beats}.
-@Image 1 defines only how the empty place looks in comic ink: {place_features}. Use no person from it.
 Style: the entire video is redrawn as a printed comic with heavy black ink contours, flat cel shading, halftone dot shading and a bold white-and-black outline around {main_subject}. {outfit_policy} The sky and background change look every 0.3 s, cycling through {background_variants}; the subject's pose, silhouette and position never change between steps. From {burst_start}s to {burst_end}s a radial manga speed-line burst surrounds {main_subject}.
 Stepped cadence: the picture redraws about 10 times per second, each step held still.
 Exactly {people_count} {people_noun} appear. {text_surfaces} show abstract coloured shapes only. No letters, digits or words anywhere.
 Silent output. Sound is added in post.
 ```
 **Slots:**
-- `{place}`, `{place_features}`: read from the source (for example "a stack of rusty shipping containers under open sky"); the required environment image uses the same description, empty of people and props the shot lacks.
+- `{place}`, `{place_features}`: read from the source (for example "a stack of rusty shipping containers under open sky"); use `{place_features}` only for a selected optional environment image, preserving source layout and excluding people and extra props.
 - `{subject_inventory}`, `{main_subject}`, `{people_count}`, `{people_noun}`: observable descriptors and the exact count from the source inspection.
 - `{key_props}`, `{camera_path}`, `{source_beats}`: from the source inventory with times (default camera: "the source camera path unchanged").
 - `{outfit_policy}`: default "Outfit colours stay as in @Video 1." Use "Outfit colours shift with each step" only when the user wants the original's recolouring.
@@ -53,7 +53,7 @@ Silent output. Sound is added in post.
 - No letters, digits or words on any surface.
 - After post, frame holds are an even three frames at 30 fps.
 **Risks:** Seedance smooths the flicker into one steady grade, so the cadence is also enforced in post; outfit colour drift is intended only if `{outfit_policy}` allows it; invented container lettering; speed lines can render static; a Seedream environment image gives one look, so the background variants rely on text. The page for this effect had no copy beyond a title, so the look is read from frames only.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-28, video edit with an environment image, 480p, no draft mode, sound on, person-free source clip at 9:16): usable with defects; the background changes about every second, not every 0.3 s; no stepped look until retimed in post. Not verified on other clips or at a higher resolution.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `canvas` - Canvas
 
@@ -89,30 +89,30 @@ Silent output. Sound is added in post.
 - Doodles appear on walls and ground and change between steps; none cover the subject's face.
 - Footage remains photographic and the subject path matches the source.
 - No scribble reads as a letter or word.
-**Risks:** outline drift or doubling; outline applied to bystanders; doodles smoothed into one static drawing; text-like scribbles; sticker edge flicker; doodles dimming the footage. Page copy was thin, so the rule that no environment image is needed is an assumption to verify at the probe.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-29, video edit, 480p, no draft mode, sound on, person-free source clip at 9:16): not achieved; take 1 doodled only the sky between 1.5 and 4 s; take 2 put doodles on the car body, which the prompt forbade. Not verified on other clips or at a higher resolution.
+**Risks:** Check outline placement, motion, unwanted lettering, sticker edges and plate visibility on the current output. The source description was thin; verify current source-only edit support and review the intended overlay without assuming success.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `palette` - Palette
 
 **Look:** the clip rendered as one continuous thick-impasto oil painting, with visible knife ridges and brush-streak smears on fast-moving objects.
-**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. An empty environment image `@Image 1` defines the same place in the requested medium. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
+**Route:** `v2v-restyle`. Muted source `@Video 1` supplies subjects, props, motion, camera and timing. A words-only whole-frame style block is valid. Include an empty same-place environment image only when supplied or requested in the current brief, or justified by the current input or reviewed failure and explicitly approved. Missing imagery does not authorize generation. The source layout, geometry, camera parallax and timing remain authoritative; the image supplies medium, palette and texture only, never people, extra props or a new layout. Bind a selected, inspected and approved image as `@Image 1` only in a currently supported role; omit absent image bindings. The style block below supplies the effect; input preparation follows the local video-to-video contract. This is a composition hint for `seedance-restyle`, not delegation.
 **Parameters:** duration and ratio match the source; audio off with original sound restored in destination post. Source-frame compatibility follows the local video-to-video inputs contract. Resolution follows destination support and the user request. Stepped cadence may need post retiming.
 **Start photo:** source clip requirements: user-owned footage with a recorded rights decision; 4-8 s; wide-angle or dynamic motion (low fisheye walk-over, subject leaning from a moving car) gains most; faces large enough to hold likeness under strokes. Poor input: static talking head, tiny faces, dark or low-contrast footage.
 **Beats (from the originals):**
 - 0-5s: the whole clip is thick oil paint, with strokes visible on sky, fabric, metal and glass; fast objects (taxis, grass, pedestrians) smear into directional streaks; strokes shimmer at 12 fps; the look never changes.
 - No hard cuts; the camera is the source camera.
 **Prompt template:**
+Use the source-only template below. Only when an environment image is selected and approved, add: `@Image 1 supplies only oil-paint medium, palette and texture for {place_features}; @Video 1 remains authoritative for layout, geometry, camera parallax and timing. Ignore people and extra props in @Image 1.` Otherwise omit this role and its binding.
 ```text
-Edit @Video 1. Replace the scene with the thick oil-painted version of {place} from @Image 1, and repaint {subject_inventory} in the same oil painting. Keep every subject, action, prop, camera move, lens distortion and timing from @Video 1.
+Edit @Video 1. Repaint the entire scene {place} and {subject_inventory} as a thick oil painting. Keep every subject, action, prop, layout, camera move, lens distortion and timing from @Video 1.
 @Video 1 is the sole editing master. It defines {subject_inventory}, {key_props}, {camera_path}, and the event order: {source_beats}.
-@Image 1 defines only how the empty place looks in oil paint: {place_features}. Use no person from it.
 Style: the entire video is redrawn as thick oil impasto painting with coarse visible brush strokes and palette-knife ridges in the sky, fabric, metal and glass, rich layered colour and canvas weave. {fast_movers} smear into long brush streaks along their direction of travel. Faces keep clear eye, nose and mouth shapes in finer strokes.
 Stepped cadence: the strokes repaint about 12 times per second, shimmering slightly while every contour stays locked to @Video 1.
 Exactly {people_count} {people_noun} appear in the foreground; {background_extras}. {text_surfaces} show abstract paint shapes only. No letters, digits or words anywhere.
 Silent output. Sound is added in post.
 ```
 **Slots:**
-- `{place}`, `{place_features}`, `{subject_inventory}`, `{key_props}`, `{camera_path}`, `{source_beats}`, `{people_count}`, `{people_noun}`: from the source inventory; the required environment image depicts `{place_features}`.
+- `{place}`, `{place_features}`, `{subject_inventory}`, `{key_props}`, `{camera_path}`, `{source_beats}`, `{people_count}`, `{people_noun}`: from the source inventory; use `{place_features}` only for a selected optional environment image, preserving source layout and excluding people and extra props.
 - `{fast_movers}`: the fastest-moving items in the source, for example "Taxis and passing pedestrians".
 - `{background_extras}`: default "every other figure stays a small painted shape in the background".
 - `{text_surfaces}`: signs, number plates, shopfronts in frame. When the source has none, delete the sentence that begins with this slot and keep "no letters, digits or words anywhere".
@@ -123,7 +123,7 @@ Silent output. Sound is added in post.
 - Camera distortion and move match the source; subject count unchanged.
 - Faces remain recognisable as the same person.
 **Risks:** drift to a smooth painting filter instead of coarse strokes; strokes frozen instead of shimmering; face likeness lost under heavy texture; fisheye straightened; the environment image for a wide-angle street gives the model a flatter perspective than the source; inspect every major surface because a partly painted sky can hide an otherwise photographic road, vehicle or foreground. A recognisable style in one region does not establish a whole-frame restyle.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-30, video edit, then reference-to-video retake, 480p, no draft mode, sound on, person-free source clip at 9:16): not achieved; the edit route painted only the sky; the retake paints sky and buildings but the car and road stay lightly painterly (review fail). Not verified on other clips or at a higher resolution.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `lsd` - LSD
 
@@ -159,12 +159,12 @@ Silent output. Sound is added in post.
 - Warp peaks in the 3-4 s window and the clip returns to Look A at the end.
 - People remain countable and readable; subject count matches the source.
 **Risks:** Seedance settles into one steady style; photosensitivity from strobing and blowouts (cap by default, disclose otherwise); faces melt and identity drifts under warp; crackle reads as lens dirt; the pastel peak replaces the original blowout and is a deliberate deviation. Page confidence is medium.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-31, video edit; the first submission was rejected for its output audio, 480p, no draft mode, sound on, person-free source clip at 9:16): not achieved; no wave warp or halftone dots, a slow look hold, and the car turns dark grey (review fail). Not verified on other clips or at a higher resolution.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `scrapbook-collage` - Scrapbook collage
 
 **Look:** a crumpled-paper scrapbook page with a white-bordered full-body cut-out above two torn-edge inset photos (shoes and face) that move in sync with the main figure.
-**Route:** `composite`. One first-frame image supplies the full-body subject on a plain backdrop. Compose only the person clip. The destination builds the paper page, white cut-out border and exactly two synchronized inset crops from that same clip; a single generated layout is unreliable.
+**Route:** `composite`. One first-frame image supplies the full-body subject on a plain backdrop. Compose only the person clip. The destination builds the paper page, white cut-out border and exactly two synchronized inset crops from that same clip; check the completed layout against the requested geometry and timing.
 **Parameters:** duration 6; ratio follows the photo (9:16 or 3:4 portrait preferred); `generate_audio: false`. Layout canvas 720x1280 (9:16) by default.
 **Start photo:** whole body head to shoes, standing, face readable, a plain one-colour studio backdrop, clear detail zones (shoes, hem, trouser cuffs). Poor input: busy backdrops (matting fails), cropped feet, long skirts that hide the legs, crossed arms, backdrop the same colour as the clothing.
 **Beats (from the originals):**
@@ -197,13 +197,13 @@ Silent output. Sound is added in post.
 - Kick holds between 2 s and 4 s; last frame matches the first.
 - Matte has no backdrop halo, and no text in any panel.
 **Risks:** leg, shoe and heel anatomy during the kick; hair flyaways break the matte; crop-derived insets cannot show a profile unless the head actually turns (accepted trade for sync); backdrop shadow or colour matching the garment ruins the key; count errors if insets are generated rather than cropped.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-32, first-frame plus deterministic layout, 480p draft, sound on, one invented subject at 9:16): clean; the kick goes to frame-left; the cadence reads stepped. Not verified on other photos or at a higher resolution.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `cutout` - Cutout
 
 **Look:** the surroundings erode to a pure white void and separate into floating paper-flat cut-out layers around an untouched person, then snap back to the exact original photo.
 **Route:** `i2v-first-and-last`: `@Image 1` is the first frame, `@Image 2` is the last frame, both the same file (copy it to a second role so the two bindings are separate inputs). Ratio locked to the photo; both match by construction. No reference images (Seedance 2.5 cannot mix first_frame with reference_image).
-**Parameters:** duration 8; ratio follows the photo (4:3, 3:4, 16:9, 1:1 seen); `generate_audio: false` (optional light paper-rustle bed via Seed Audio in post). The same image as first and last frame was accepted by the provider and the 2026-10-08 draft ended on the photo (scene-33), so the route works; the fallback below is only for a draft that does not end on the photo: `i2v-first-frame` with `@Image 1` only, drop every `@Image 2` sentence, and end the prompt with "By 8s the scene is back to the original photo: every piece in its original position and size, no white remaining, the camera at the start framing."
+**Parameters:** duration 8; ratio follows the photo (4:3, 3:4, 16:9, 1:1 seen); `generate_audio: false` (optional light paper-rustle bed via Seed Audio in post). Verify current support for identical first and last images and review the return to the opening photo on the current take. Alternative recipe, also unvalidated and subject to capability checks: `i2v-first-frame` with `@Image 1` only, drop every `@Image 2` sentence, and end the prompt with "By 8s the scene is back to the original photo: every piece in its original position and size, no white remaining, the camera at the start framing."
 **Start photo:** a person standing in a recognisable structured scene (stair block, cafe counter, street, bookshop) with separable objects (lamps, counter, floor tiles, balconies, laundry line); the whole person visible and fairly small in frame. Poor input: close-up portraits, plain walls, cluttered scenes with dozens of tiny items, subject touching frame edges.
 **Beats (from the originals):**
 - 0-1s: the original scene, subject still, camera locked.
@@ -238,8 +238,8 @@ Silent output. Sound is added in post.
 - At 0 s and 8 s all `{piece_counts_total}` pieces are present in their original places.
 - At 4 s exactly `{kept_count}` pieces float and `{erased_count}` are erased, with no added or extra piece.
 - Last frame matches the first frame; no residual white.
-**Risks:** background kept instead of white; layers melt instead of cut flat; subject drifts or is carried away with debris; pieces fail to return to original positions; item counts change; first-and-last with identical images is unproven.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-33, first and last frames with the same image, 480p draft, sound on, one invented subject at 9:16): usable with defects; a quiet orchestral underscore leaked; the floating pieces read as crumpled paper, not clearly the lamps and counter. Not verified on other photos or at a higher resolution.
+**Risks:** background kept instead of white; layers melt instead of cut flat; subject drifts or is carried away with debris; pieces fail to return to original positions; item counts change; verify current support for identical first and last images and review the current output.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `pearl-earring` - Pearl earring
 
@@ -272,7 +272,7 @@ Silent output. Sound is added in post.
 - The two halves are 1:1 each, stacked 1:2, with no text and no gap.
 - Top half does not reproduce the painting's face; it is the user's face.
 **Risks:** identity drift when re-costuming a casual portrait; earring count or ear side; turban fold geometry; head turning past three-quarter; lighting not matching; speech or music baked into native audio (generate_audio stays false). Gallery clips were matched to presets by thumbnail inspection, so the beats are read with medium certainty.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-34, first-frame plus FFmpeg stack, 480p draft, sound on, one invented subject at 9:16): clean; the fabric rustle is not audible; the turban top sits close to the crop edge. Not verified on other photos or at a higher resolution.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `cyclope` - Cyclope
 
@@ -306,7 +306,7 @@ Silent output. Sound is added in post.
 - Last frame matches `@Image 2`; seagull leaves; person count never changes.
 - Stack is 1:2 with no text.
 **Risks:** two eyes or extra fingers; scale (the giant must tower); the hand not gripping the rock convincingly; person identity from a prone pose; the seagull multiplying; the painting must not be reproduced in the top half. The first/last stills double the prep cost and need scene continuity between them. Gallery matching by thumbnail inspection, medium certainty.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-35, first and last frames plus FFmpeg stack, 480p draft, sound on, one invented subject at 9:16): usable with defects; a rising orchestral score leaked; the giant head arrives about 1 s late; her face is small and turned away. Not verified on other photos or at a higher resolution.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.
 
 ### `fallen-angel` - Fallen angel
 
@@ -339,4 +339,4 @@ Silent output. Sound is added in post.
 - Face identity and skin tone match the still before and after the arm lift.
 - Stack is 1:2, clean crop, no text.
 **Risks:** wings fusing with the back or doubling during the arm lift; fingers and eye contact artifacts when the hand covers the face; identity drift while the face is covered; skin-tone drift; the nude source painting (crop it, do not generate nudity). Gallery matching by thumbnail inspection, medium certainty.
-**Status:** tested once in the 2026-10-08 showcase run (project `effects-showcase`, scene-36, first-frame plus FFmpeg stack, 480p draft, sound on, one invented subject at 9:16): clean; the lift is about 0.5 s early; one quiet sigh in the sound. Not verified on other photos or at a higher resolution.
+**Status:** Unvalidated on current inputs; verify current capabilities and review the current take against QA.

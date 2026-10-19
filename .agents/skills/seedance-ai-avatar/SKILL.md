@@ -102,9 +102,11 @@ Confirm gate 2 is recorded. Write the prompt from
 - **9:16 camera-beat** take when the edit goes full-screen on the presenter.
 
 Settings to give the user: audio on, 1080p, no watermark. Estimate duration
-from script words ÷ 2.2, plus about 1s for speech onset and at least 0.4s of
-final tail, rounded up (≤30). This is a planning heuristic, not a guaranteed
-speech rate. Check the intended performance; if it does not fit, split the
+from measured delivery or a native-language-informed read with pauses, plus
+about 1s for onset and at least 0.4s of final tail initially (≤30). About
+2.2 words/s is an English estimate, not a universal gate. Without delivery
+evidence, timing is provisional. Preserve the requested language. Check the
+intended performance; if it does not fit, propose retiming or split the
 exact script or ask to shorten it when editing is authorized. Keep approved
 words unchanged. If the caller uses a draft-and-promotion route, verify its
 current destination support and re-check the actual final. Deliver the frozen

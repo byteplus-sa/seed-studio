@@ -7,6 +7,8 @@ Read [the entrypoint](../SKILL.md) for authority and source limits.
 | Need | Default action |
 | --- | --- |
 | Filipino or Taglish line | Preserve approved words and use native audio |
+| New line, material register or code-switch preference missing | Ask before drafting a language mix; preserve any requested language |
+| Pure Tagalog or English-dominant Taglish explicitly requested | Honor that choice; neither is a universal default or defect |
 | Pronunciation concern without a recording | Identify a hypothesis; do not claim observed failure |
 | Specific heard error | Verify the target reading and add one external cue |
 | Locked line with a shouted or whispered critical Tagalog word | Flag it as a listening priority; check it word by word with an available transcript |

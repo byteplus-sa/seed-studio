@@ -18,18 +18,37 @@ If unavailable, fall back to the user keyframe set or the external pass.
 
 ## Procedure
 
+Run these blocks in the same Bash session. Set `VIDEO` to the selected local
+source and `FRAMES_ROOT` to the current project's analysis scratch directory
+(`projects/<project>/frames`). Verify that destination before creating it.
+Each invocation hashes the source and allocates a fresh run directory; never
+reuse a previous run for a different source or extraction attempt.
+
 ```bash
-VIDEO="<path to the user-provided video>"
-FRAMES="projects/<project>/frames"
-mkdir -p "$FRAMES"
+set -euo pipefail
+set -C
+: "${VIDEO:?Set VIDEO to the selected local source}"
+: "${FRAMES_ROOT:?Set FRAMES_ROOT to the project analysis scratch directory}"
+test -f "$VIDEO" && test -r "$VIDEO"
+mkdir -p "$FRAMES_ROOT"
+SOURCE_ID="$(shasum -a 256 < "$VIDEO" | awk '{print $1}')"
+FRAMES="$(mktemp -d "$FRAMES_ROOT/source-${SOURCE_ID}.run.XXXXXX")"
+printf 'source=%s\nsha256=%s\nrun=%s\n' "$VIDEO" "$SOURCE_ID" "$FRAMES" \
+  > "$FRAMES/source.txt"
 ```
+
+Preserve `source.txt`, probe output and detector logs with that run's frames.
+Each extraction block claims its output directory with `mkdir` without `-p`;
+under `set -e`, a reused directory stops the block before extraction. Keep
+that guard: FFmpeg image output must not rely on `-n` alone for overwrite
+protection. Use a fresh run for a retry, including after partial failure.
 
 ### 1. Probe the source
 
 ```bash
 ffprobe -v error -select_streams v:0 \
   -show_entries stream=duration,duration_ts,time_base,width,height,r_frame_rate,avg_frame_rate:format=duration \
-  -of json "$VIDEO"
+  -of json "$VIDEO" > "$FRAMES/probe.json"
 ```
 
 Record the picture stream's duration, dimensions and frame-rate metadata.
@@ -42,9 +61,15 @@ frame rate does not establish constant frame timing for variable-rate footage.
 ### 2. Detect shot boundaries
 
 ```bash
-ffmpeg -v info -i "$VIDEO" -vf "select='gt(scene,0.3)',showinfo" \
-  -fps_mode vfr "$FRAMES/cut_%04d.png" -y 2>&1 | rg -o "pts_time:[0-9.]*"
+mkdir "$FRAMES/cuts"
+ffmpeg -nostdin -n -v info -i "$VIDEO" -vf "select='gt(scene,0.3)',showinfo" \
+  -fps_mode vfr "$FRAMES/cuts/cut_%04d.png" 2> "$FRAMES/scene-detection.log"
+awk '/pts_time:/ { sub(/^.*pts_time:/, ""); sub(/ .*/, ""); print }' \
+  "$FRAMES/scene-detection.log"
 ```
+
+No detected events is a valid result, not proof that the source has no cuts.
+Check the saved log if extraction fails; do not treat failure as an empty result.
 
 Each `pts_time` is a measured detector event, initially a **candidate cut**.
 Inspect a short frame strip around it: a flash or fast motion may be a false
@@ -59,12 +84,17 @@ the optional [measured edit ledger](measured-edit-ledger.md).
 
 ### 3. Extract per-shot frames
 
-For each shot, extract start, middle, and last-in-shot frames by timestamp:
+For each shot, set `START_S`, `MID_S` and `LAST_IN_SHOT_S` to inspected numeric
+timestamps, and use a distinct shot number in the output directory:
 
 ```bash
-ffmpeg -v error -ss <start_s> -i "$VIDEO" -frames:v 1 "$FRAMES/shot01_a.png" -y
-ffmpeg -v error -ss <mid_s>   -i "$VIDEO" -frames:v 1 "$FRAMES/shot01_b.png" -y
-ffmpeg -v error -ss <last_in_shot_s> -i "$VIDEO" -frames:v 1 "$FRAMES/shot01_c.png" -y
+mkdir "$FRAMES/shot01"
+ffmpeg -nostdin -n -v error -ss "${START_S:?Set START_S}" -i "$VIDEO" \
+  -frames:v 1 "$FRAMES/shot01/a.png"
+ffmpeg -nostdin -n -v error -ss "${MID_S:?Set MID_S}" -i "$VIDEO" \
+  -frames:v 1 "$FRAMES/shot01/b.png"
+ffmpeg -nostdin -n -v error -ss "${LAST_IN_SHOT_S:?Set LAST_IN_SHOT_S}" -i "$VIDEO" \
+  -frames:v 1 "$FRAMES/shot01/c.png"
 ```
 
 The end boundary is exclusive: extracting exactly there can return the next
@@ -74,11 +104,13 @@ footage use actual frame timestamps rather than an average-frame-rate estimate.
 
 ### 4. Extract motion bursts
 
-For motion-critical shots, extract a short dense burst across the shot:
+For motion-critical shots, set `DURATION_S` to the positive burst duration and
+extract a short dense burst across the shot:
 
 ```bash
-ffmpeg -v error -ss <start_s> -i "$VIDEO" -t <duration_s> -vf fps=6 \
-  "$FRAMES/shot01_m%02d.png" -y
+mkdir "$FRAMES/shot01-motion"
+ffmpeg -nostdin -n -v error -ss "${START_S:?Set START_S}" -i "$VIDEO" \
+  -t "${DURATION_S:?Set DURATION_S}" -vf fps=6 "$FRAMES/shot01-motion/m%02d.png"
 ```
 
 Read consecutive burst frames together to observe direction, speed,
@@ -94,9 +126,11 @@ say so when confidence is not high.
 
 ## Boundaries
 
-- Frames are analysis scratch under `projects/<project>/frames/`. They are
+- Frames are analysis scratch in source/run namespaces under
+  `projects/<project>/frames/`. They are
   never uploaded, never listed as references, and never bound as `@Image N`
-  inputs. Delete them or leave them local; they are not deliverables.
+  inputs. Keep prior evidence untouched; remove only the current task's own
+  disposable run when it is no longer needed. They are not deliverables.
 - Extraction never uses filters, effects, transcoding, or assembly — only
   `ffprobe` inspection and plain frame extraction.
 - The agent still has not *watched* the video continuously. Confirmed cut
