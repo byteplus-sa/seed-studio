@@ -18,7 +18,7 @@ mode selection and caller responsibilities.
 | **Music** | `()` | `(Soft, rhythmic piano music plays in the background)` |
 | **Sound Effects** | `<>` | `<A bell rings in the distance>` |
 | **Dialogue** | `{}` | `{Hello, welcome back.}` |
-| **Subtitles** | `【】` | `【Chapter One: Departure】` |
+| **Subtitles** | `【】` | Provider syntax only; captions belong in post, outside the generated-video prompt |
 
 ### Dialogue language reinforcement
 
@@ -62,6 +62,14 @@ No background music. Keep only the characters' dialogue, ambience, and action so
 No subtitles.
 No audio at all.
 ```
+
+A no-music or no-speech sentence is a request, not proof of silence. Upstream
+observations include native audio adding unwanted voices or music. When the
+brief requires an ambience-only or score-led piece, propose picture-only video
+with a separate approved sound bed; set audio generation off only when the
+selected destination supports it and the user accepts that route. Keep an
+accepted native-dialogue route and separate lip-sync audio opt-in. Listening
+and playback determine whether the result meets the brief.
 
 ## Emotional direction
 

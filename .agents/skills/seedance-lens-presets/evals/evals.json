@@ -113,6 +113,19 @@
         "It does not stack extra blur or a second move in the prompt.",
         "It keeps the push-in as the camera move."
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "Write the lens line for a shot where a bloodied knife sits sharp in the foreground of a kitchen and focus then pulls onto the face of the woman standing behind it.",
+      "expected_output": "A rack focus line that names both planes as visible results, timed, with the pull onto the face marked as an unverified heuristic to check in a 480p draft.",
+      "files": [],
+      "expectations": [
+        "The line names the knife as the starting sharp plane and the woman's face as the ending sharp plane, each as a visible result.",
+        "The focus change has a time or a clear start and end.",
+        "The output marks a pull onto a face as unverified and suggests checking it in a 480p draft.",
+        "It contrasts this with a pull away from a face, which belongs in post.",
+        "No numeric aperture or focal length appears without a visible result."
+      ]
     }
   ]
 }

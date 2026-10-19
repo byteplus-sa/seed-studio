@@ -105,16 +105,22 @@ State what should be sharp and what should be soft. Describe bokeh shape only
 when it is requested or visually relevant; aperture alone does not guarantee
 an exact shape or near-to-far focus outcome.
 
-### Focus loss during a move (post only)
+### Focus changes: rack focus and focus loss
 
-A face that drifts out of focus while the camera keeps moving can show a
-character losing their grip, but it is **not a prompt preset**. In 480p
-Seedance 2.5 text-to-video drafts the face stayed sharp in all six takes
-across three wordings; the model softened the background instead. Generate the
-shot with ordinary focus and add a defocus ramp in post, or carry the loss
-of control with light and the edit. A
-deliberate focus change between two named planes is a rack focus and belongs
-to the camera preset skill.
+This skill owns focus-change wording. In six upstream 480p text-to-video
+takes across three wordings, the face stayed sharp. Treat that as limited evidence rather than a universal model limit: a
+face asked to drift out of focus often stays sharp while the model softens the
+background instead.
+
+| Change | Status | What to write |
+|---|---|---|
+| Face sharp, then focus left behind on the background (rack away from a face, focus loss during a move) | **Post only** | Generate with ordinary focus on the face; add the defocus ramp in post, or carry the change with light, a move or a cut |
+| Foreground object sharp, then focus pulls onto a face behind it | Unverified hypothesis; check a 480p draft | `Rack focus: focus starts on <foreground object>, sharp, with <subject> soft behind it; at <N>s focus shifts smoothly to <subject>, the <foreground object> blurring as <subject>'s face turns sharp.` |
+| Between two objects with no face | Unverified hypothesis; check a 480p draft | The same template with both planes named as visible objects |
+
+Do not spend more tries on wording when a draft keeps the face sharp; the
+repair is in post. An attention shift inside one frame can also be staged: a
+move past a foreground element, or the subject stepping into the sharp plane.
 
 ### Lens character
 
@@ -136,12 +142,22 @@ have a flare. The label does not authorize inventing either feature.
 
 | Sensor | Canonical visible-result phrase |
 |---|---|
-| **VHS** | VHS camcorder look: low resolution, visible scanlines, colors bleeding into each other, soft analog noise. |
+| **VHS** | VHS camcorder look: low resolution, visible scanlines, colors bleeding into each other, soft analog noise. For Seedance video, plan these as a post treatment. |
 | **Film** | Film stock look: visible grain, gentle halation around highlights, natural tonal range. |
 | **Digital Cinema** | Digital cinema look: clean, crisp image with high dynamic range and minimal noise or grain. |
 
 Sensor character is a texture and tone choice, not a resolution guarantee.
 Pair it with the actual output resolution set in the generation interface.
+
+**Tape and camcorder looks are post treatments for Seedance video.** A
+camcorder format word ("MiniDV") in a Seedance prompt tends to return clean
+cinema footage. For a VHS, MiniDV or camcorder piece, prompt the
+camera behaviour the format implies (handheld at arm's length, an on-camera
+light; whether these cues read as tape is unverified) and apply the scanlines,
+color bleed, noise and frame size in post (the color-grade skill owns post
+looks). The sensor phrase may still serve a Seedream
+still, where it is an unverified heuristic. Add no grain, halation or vignette
+unless the user asks for the look.
 
 ## Authoring fields — not a provider payload
 

@@ -39,6 +39,18 @@
         "The output checks face size or framing as a cause of the still mouth.",
         "The output suggests also running a no-prompt baseline take."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "A two-person photo has a woman in red on frame-left and a man on frame-right. The driving audio contains her question followed by his answer. Write the optional prompt; she raises her anatomical right hand, visible on frame-left. Add a plain ceramic cup, with captions handled later.",
+      "expected_output": "Position-bound turn-taking with a precise hand cue and plain prop, while acknowledging uncertain multi-speaker assignment.",
+      "files": [],
+      "expectations": [
+        "Names each speaker by frame side and visible identity.",
+        "Preserves the anatomical right hand and frame-left cue.",
+        "Keeps captions out of generation and the ceramic cup free of invented lettering.",
+        "Does not guarantee multi-voice speaker assignment."
+      ]
     }
   ]
 }

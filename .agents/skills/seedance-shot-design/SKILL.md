@@ -24,7 +24,7 @@ skill.
 
 | Need | Where it lives |
 | --- | --- |
-| Resolve a named move into canonical Camera phrasing | `seedance-camera-presets` |
+| Resolve a named move or framing into canonical Camera phrasing | `seedance-camera-presets` |
 | Resolve focal length, aperture or depth of field | `seedance-lens-presets` |
 | Resolve a named light setup into recipes and phrases | `seedance-lighting-presets` |
 | Speed ramps and montage rhythm | `seedance-pacing-presets` |
@@ -74,7 +74,10 @@ and the per-shot facts the Seedance 2.5 prompt carries.
 
 1. **Read locks and axes.** A `user_confirmed` camera or light choice is an
    input, not a suggestion. A confirmed project axis must reach the shots, and
-   the plan records where. Fill only the gaps.
+   the plan records where. Fill only gaps within the requested axes. Apply the
+   variety rules to those axes; a framing-only request does not authorize a
+   camera move, lens, grade or lighting setup. Omit unrequested fields rather
+   than filling them to satisfy the checklist.
 2. **Choose the energy level** from the intended reaction and format, never
    from genre alone.
 
@@ -98,13 +101,21 @@ and the per-shot facts the Seedance 2.5 prompt carries.
    unlike its neighbors. One shot across a long clip needs a recorded one-take or
    `static_reason`. A spoken line needs a shot at least words / 2.2 + 1 s long,
    because speech starts late (observed 0.5-1.5 s in upstream draft
-   runs).
+   runs). Reserve at least 0.4 s after the last word before the clip ends.
+   These observed timings are planning allowances, not guaranteed speech rates;
+   propose a longer shot or a split when a line does not fit, preserving
+   approved dialogue.
 5. **Declare the scene's light sources** with world positions, the event that
    switches each on, and any in-scene cue that switches it off, dims it or makes
    it flicker. Then give every shot a source, a key side relative to the
-   lens, a quality and a contrast. Assign each shot a size, an angle, a move
-   with start and end, and a lens intent as a visible result. Dialogue shots
-   vary size and angle; keep their moves quiet so speech and lips stay readable.
+   lens, a quality and a contrast. Within the requested axes, assign each shot
+   a size, a framing and featured subjects in multi-character scenes (see
+   [framing](references/framing.md)), an angle, a move with start and end, and
+   a lens intent as a visible result. Dialogue shots vary size, framing and
+   angle; keep their moves quiet so speech and lips stay readable. A focus pull
+   away from a face has failed in limited upstream probes; offer post
+   treatment or a requested blocking/move/cut alternative rather than promising
+   reliable prompted defocus.
 6. **Run the variety rules below** and revise until every shot passes or carries
    a recorded reason. Flag exactly one shot as the turn.
 7. **Tell one light story per scene.** The sources stay fixed in the room. A cut
@@ -131,6 +142,7 @@ and the per-shot facts the Seedance 2.5 prompt carries.
 | V7 Readable performance | A move never stands in for a cue that cannot be read at that size; match shot size to the cues the beat needs. |
 | V8 Screen direction | Travel and confrontation state the axis and restate it after each cut; a deliberate axis crossing is named. |
 | V9 Uneven timing | Shot lengths are not all within 20% of each other. Cut times fixed by a song map, a pacing axis or a lock are recorded as given: V9 is waived and the turn is marked by contrast instead. |
+| V10 Framing intent | In a scene with two or more characters every shot names its framing and featured subjects, and the framing fits the beat: a scene of three or more shots that cover a conversation does not run on clean singles alone, a trio is not covered by three singles when one three-shot serves, a point-of-view shot sits next to its looker and its reaction shot or records why it stands alone, and an over-the-hip shot is used when the characters are at different heights (over-the-shoulder otherwise) or records why. Framing sets the `angle` class (see the plan format), so it counts once under V1 and V2. Scenes with one character are exempt. |
 
 ## Inputs and limits
 
@@ -143,11 +155,13 @@ views, or ask for an approved extra view before binding the references.
 
 ## Evidence and limits
 
-A requested plan carries its facts into the prompt. The V1-V9
+A requested plan carries its facts into the prompt. The V1-V10
 thresholds are craft heuristics and optional artistic technique, drawn from the
 failure shape of earlier upstream prompts: equal-length wide, medium,
 two-shot, wide ladders with no move and no light change, and project axes that
-never reached the shot lines. They are not measured video-quality gains.
+never reached the shot lines. Framing and V10 follow the source and craft
+heuristics in [framing](references/framing.md); none is a verified model control
+or a measured video-quality gain.
 Timestamps are a time budget, not frame-accurate cut points, and the model may
 merge or reorder cuts. Judge the take by watching it. A 480p Draft
 (`draft=true`) is the cheap way to check shot structure and motion before a
@@ -158,8 +172,9 @@ final render.
 Before returning a plan, confirm:
 
 1. Every shot has a job, duration, size, angle, move (or `static_reason`), lens
-   intent, source and key side, and exactly one shot is the turn.
-2. V1 through V9 pass or carry a recorded reason.
+   intent, source and key side, framing and featured subjects where relevant,
+   and exactly one shot is the turn, within the requested axes.
+2. V1 through V10 pass or carry a recorded reason.
 3. Locks and confirmed axes are carried, not overwritten.
 4. The shot count and lengths fit the duration, the energy level and any
    dialogue.
@@ -175,6 +190,6 @@ Worked cases are hypothetical teaching repairs in
 
 ## Upstream provenance
 
-Adapted from [ark-director at 4b7bbad](https://github.com/byteplus-sa/ark-director/tree/4b7bbade2de83eb5fd8bd26f50655983ed99a2a6/.agents/skills/seedance-shot-design).
+Adapted from [ark-director at 0539a2e3](https://github.com/byteplus-sa/ark-director/tree/0539a2e3/.agents/skills/seedance-shot-design).
 The coverage heuristics and hypothetical repairs come from upstream; local
 changes keep shot planning opt-in and return plans in chat by default.

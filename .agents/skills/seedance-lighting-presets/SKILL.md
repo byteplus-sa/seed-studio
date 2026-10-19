@@ -90,6 +90,7 @@ one direction and compose the quality, color, and ratio yourself.
 | **Low-key** | Minimal light, mostly shadow, high contrast, one dominant source. | `Lighting: low-key — a single small source, deep shadows, high contrast, most of the frame falling to black.` | `The visuals feature low-key lighting — a single source, deep shadow, high contrast, the frame mostly falling to black.` |
 | **High-key** | Bright, even, low-contrast fill with almost no shadow. | `Lighting: high-key — bright even fill, soft shadows, low contrast, airy and clean.` | `The visuals feature high-key lighting — bright even fill, almost no shadow, airy and clean.` |
 | **Night neon** | Cool ambient night with saturated neon gel accents. | `Lighting: night neon — cool 6500K ambient, neon-blue and magenta gel accents from signage, wet reflections carrying the color.` | `The visuals feature night-neon lighting — cool ambient night, saturated neon accents, color bleeding across wet surfaces.` |
+| **Moonlit night** | True night with no artificial light: a black sky, low exposure, one small pale moon as the only source. | `Lighting: true night, low exposure, a black sky with one small pale moon high camera-right as the only source, cold silver rim on the subject's hair and shoulders, the ground falling to near black.` | `The visuals feature moonlit night — a black sky, low exposure, one small pale moon high in the frame as the only light, a cold silver rim on the subject, everything beyond the rim falling to near black.` |
 | **Dappled light** | Light filtered through foliage or blinds casts broken patches of light and shadow. | `Lighting: dappled light through overhead foliage, broken patches of warm sunlight and shadow moving across the subject.` | `The visuals feature dappled light — sunlight filtered through leaves, broken patches of warm light and shadow playing across the subject.` |
 
 ### Intent to preset
@@ -110,12 +111,40 @@ take, and reach the look through the prompt rather than a post grade.
 A change of feeling inside a scene is a light cue on a declared source (on,
 off, dim or flicker) planned in the shot plan, not a new invented source.
 
+### Night needs stating
+
+A bare "night" or "moonlight" often does not make Seedance footage read as
+night. State what the viewer sees: a black sky, low
+exposure, the one source that lights the subject (a small pale moon, a
+streetlamp, a lit window) and what falls to black. Describe the moon or lamp
+by its visible shape and size ("a small, round, pale moon") rather than
+excluding a shape; a negated shape does not remove it.
+
+### Timed light cues
+
+This skill owns the wording of a light change inside a shot; the shot plan
+records its time, change and trigger.
+
+| Change | Canonical phrase template |
+|---|---|
+| Off | `At <N>s, <declared source> clicks off and the room drops to <visible result, such as faces just above black>.` |
+| On | `At <N>s, <declared source> switches on, throwing <quality and color> light across <subject or surface>.` |
+| Dim | `From <N>s to <M>s, <declared source> fades down to <visible result>.` |
+| Flicker | `At <N>s, <declared source> flickers <twice / rapidly for about one second>, then <holds steady / goes out>.` |
+
+Upstream drafts observed close timing for some cues, but this is not a
+frame-accurate control. Write a fade as a time range and check actual timing
+in a draft. Plain wording ("the lamp goes out") already produces the change; the
+timestamp adds control of when it lands and of the hold after it. An untimed
+"partway through" lands at an unplanned moment. Name the source the scene
+already declared, and say what the frame looks like after the change.
+
 ## Parameter schema
 
 ```
 preset            — preset name from the bank (soft-cross, overhead-fall, contre-jour, window,
                      practicals, silhouette, auto, three-point, rembrandt, golden-hour, low-key,
-                     high-key, night-neon, dappled) or none for a fully custom recipe
+                     high-key, night-neon, moonlit-night, dappled) or none for a fully custom recipe
 direction         — front/beauty, top, back/rim, left, right, bottom/underlight, auto
                      (used for custom or relight-style setups; ignored when preset fully defines direction)
 quality           — soft | hard (diffused source vs small bare source)
@@ -125,6 +154,8 @@ brightness        — bright | dimmed | a rough level (e.g. "dimmed to a single 
 target_model      — seedream | seedance | both
 subject           — the subject being lit
 time_of_day       — optional: golden hour, blue hour, night, noon, dawn, dusk
+cue               — optional requested timed change on a declared source: at_s or a range,
+                     on | off | dim | flicker, and the visible result after it
 ```
 
 Resolve the preset from the bank when it fully defines direction; otherwise
@@ -221,3 +252,5 @@ Before handing off a lighting block, verify:
 6. Practicals and Silhouette outputs add no hidden off-camera fill source.
 7. No "well lit", "bright", or "good lighting" empty phrasing appears.
 8. The phrase is stable and reusable verbatim across chained scenes that must match; per-shot key sides may differ within a scene.
+9. A requested light change has a time or range, a declared source and a visible
+   result. A night phrase states the actual sky, exposure and motivated sources.

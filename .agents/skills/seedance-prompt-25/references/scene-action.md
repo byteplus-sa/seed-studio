@@ -5,6 +5,7 @@ mode selection and caller responsibilities.
 
 - [Scene staging](#scene-staging)
 - [Action description](#action-description)
+- [Counts, hands and surfaces](#counts-hands-and-surfaces)
 
 ## Scene staging
 
@@ -147,3 +148,32 @@ head", write "the featureless neon figure floats with a gentle up-down bob
 (~0.5Hz sine, ~5% of body height) in a leaning pose, while a fan-shaped rainbow
 beam projects from its head with the color bands continuously scrolling along
 the beam (~1s full-spectrum cycle) and the background stars twinkle randomly."
+
+## Counts, hands and surfaces
+
+Upstream production observations motivate these prompt-authoring heuristics;
+they improve clarity without guaranteeing counts or handedness.
+
+**Counts.** Counted items can drop or duplicate. State the exact number and
+name each item by size or position. Keep the counted set readable when the
+brief permits it; otherwise account explicitly for off-screen, entering or
+occluded items. Restate counts and relevant positions after a state change.
+Do not reveal a deliberately hidden subject merely to make it countable.
+
+```text
+Three ceramic cups stand in a row on the counter from the first frame: small at
+frame-left, medium in the center, large at frame-right. She lifts only the
+medium cup; the small and large cups stay where they are. Three cups in total
+throughout.
+```
+
+**Hands.** Bare left/right wording can be ambiguous or mirrored. Name anatomy
+and the visible frame side together: "her right hand, frame-left" for a
+front-facing pose. Derive frame side from the actual pose and camera view;
+restate it after a turn or a cut rather than assuming it stays fixed.
+
+**Surfaces.** Generic tubes, jars, jugs, hard-shell cases,
+garment neck labels, tickets and generated screens grow invented lettering.
+Describe a recurring non-sheet prop positively as plain ("a plain white ceramic
+jug, smooth solid surface, nothing printed"), leave it out, or give a story prop
+a reference sheet with its real markings. Exact copy is a post layer.

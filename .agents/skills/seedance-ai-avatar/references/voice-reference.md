@@ -43,6 +43,9 @@ Put the full new script in the `{}` dialogue block and state the language
 ## QA
 
 - Transcribe the generated take and diff it against the script. No words from
-  the reference clip may appear.
+  the reference clip may appear. Automatic transcription can mishear words and
+  names, so listen to suspected differences before declaring a spoken error.
+  Repeat the comparison on the actual final, including a promoted draft.
 - Compare median pitch as a rough check. A human listen is still required, so
-  say so in the handoff.
+  say so in the handoff. A native listener judges accent and pronunciation;
+  neither a transcript nor a pitch comparison establishes them.

@@ -24,6 +24,32 @@
         "The agent does not automatically resubmit with a different image to get past the rejection.",
         "The rejection and the user's subsequent decision are logged in PROVENANCE.md when a record is kept."
       ]
+    },
+    {
+      "id": 3,
+      "prompt": "Consent and likeness gates are recorded. Write a 26-second vertical take for a locked 72-word script, with the presenter pointing using the left hand on 'launch'.",
+      "expected_output": "Flag the speech budget and propose splitting the unchanged script; keep the gesture hand and frame side explicit.",
+      "files": [],
+      "assertions": [
+        "Uses words divided by about 2.2 plus onset and tail only as a planning estimate, then checks the actual delivery.",
+        "Flags that 72 words exceed 26 seconds at that estimate and proposes splitting rather than silently rewriting the approved script.",
+        "Names the anatomical left hand and frame-right for a front-facing, unmirrored presenter, and keeps the hand within the changing frame.",
+        "Keeps consent, likeness and timbre-only bindings and adds no overlay text.",
+        "Keeps duration, resolution and aspect ratio in a separate parameter note, with Dialogue language and the unchanged script inside a brace-delimited dialogue block in the model-facing prompt."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "The selected avatar draft passed our checks. Its final was promoted at higher resolution. Can we deliver without listening again? The automated transcript spells the presenter name differently.",
+      "expected_output": "Require verification of the actual final and human listening to resolve possible transcription errors.",
+      "files": [],
+      "assertions": [
+        "Repeats transcript comparison and lip-sync playback checks on the final rather than inheriting draft approval.",
+        "Checks that the final word completes before the end and listens for unintended music or a second voice.",
+        "Treats automatic transcription as fallible evidence; checks the audio before declaring a name spelling difference a spoken error.",
+        "Uses a native listener for accent and pronunciation; automated transcript and pitch alone are insufficient.",
+        "Does not assume draft promotion is supported by every destination or silently submit a new request."
+      ]
     }
   ]
 }

@@ -22,7 +22,7 @@ Read only the mode-specific resources needed for the request. Reference paths
 mentioned in prose are relative to this skill directory unless a link says otherwise.
 
 - [References And Modes](references/references-and-modes.md) — Input references; Generation mode.
-- [Soundscape Arrangement](references/soundscape-arrangement.md) — Full-soundscape composition workflow; Scene transitions and dynamic arcs; Scene and atmosphere.
+- [Soundscape Arrangement](references/soundscape-arrangement.md) — Full-soundscape composition workflow; Scene transitions and dynamic arcs; Scene and atmosphere; Sonic motifs; Ambience or score bed for a video clip.
 - [Dialogue And Voices](references/dialogue-and-voices.md) — Characters and dialogue.
 - [Templates And Quality](references/templates-and-quality.md) — Reusable full-soundscape template; Creative and quality constraints; Conversational voiceover recipe (T2A); Brand-name pronunciation; hypothetical crowded-soundscape repair.
 - [Worked Examples](references/worked-examples.md) — Full example: T2A — Sci-fi news broadcast; Full example: TA2A — Multi-character fantasy battle dialogue; Full example: T2A — Timestamp control.
@@ -79,6 +79,26 @@ Arrange those ingredients as one chronological audio scene, not as unrelated inv
 5. Creative or quality constraints, only when the user supplies them
 
 Generation mode and request limits belong in request metadata or validation, not in model-facing prompt boilerplate.
+
+## Output verification handoff
+
+When audio is produced by the caller, verify the actual delivered file:
+
+- **Words:** compare a transcript against the exact script, then listen to any
+  suspected omissions, additions or name differences. Automatic transcription
+  is fallible evidence, not authority over what was spoken.
+- **Accent and pronunciation:** a native listener decides. A transcript,
+  pitch comparison or automated listening result cannot establish accent
+  accuracy or voice resemblance.
+- **Timing:** treat prompt timestamps, tempo and arc points as approximate.
+  Measure actual onsets and duration; trim, pad or place individual effects in
+  assembly when exact timing matters.
+- **Short lines:** request the intended clip length and about a second of
+  trailing silence. Check that the final word completes before the clip ends.
+- **Sound layers:** listen for unintended speech, music or missing layers;
+  exclusions in a prompt do not prove their absence in the result.
+- **Technical:** check duration, format and channels, full decode integrity and
+  a file hash. Technical checks do not establish listening quality.
 
 ## Ideal use cases
 

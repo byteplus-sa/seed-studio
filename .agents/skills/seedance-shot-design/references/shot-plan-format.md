@@ -18,7 +18,9 @@ and revalidate them when the user supplies the missing reference.
 
 ## The plan record
 
-The example is a 12-second family-drama kitchen scene at standard energy.
+The example is a 12-second family-drama kitchen scene at standard energy with
+full shot planning requested. For a narrower request, omit unrequested axes
+and apply only their relevant variety rules.
 
 ```yaml
 shot_plan:
@@ -40,6 +42,8 @@ shot_plan:
       duration_s: 3.0
       job: establish
       size: wide
+      framing: three-shot
+      featured: [mother, aunt, boy]
       angle: high
       angle_reason: show the whole room and where each person will stand
       move: slow crane down from ceiling height to table height, left to right
@@ -51,6 +55,8 @@ shot_plan:
       duration_s: 2.5
       job: reveal
       size: medium close-up
+      framing: insert
+      featured: []
       angle: eye level
       move: slow push-in on the door handle, ending on her hand as the door opens
       move_reason: moves the viewer to the point of contact
@@ -62,6 +68,8 @@ shot_plan:
       turn: true
       job: emphasize
       size: close-up
+      framing: single
+      featured: [boy]
       angle: low
       angle_reason: the boy's sudden appearance at adult hip height gets presence
       move: static hold, no movement
@@ -73,10 +81,12 @@ shot_plan:
       duration_s: 3.0
       job: release
       size: medium
+      framing: two-shot
+      featured: [mother, boy]
       angle: eye level
-      move: slow drift right, ending on her smile
+      move: slow drift right, ending on her smile with the boy at her side
       move_reason: releases the tension by sliding to the mother's reaction
-      lens_intent: natural depth, mother sharp
+      lens_intent: natural depth, mother and boy sharp
       light: {source: window, key_side: camera-left, quality: soft sun with a warm rim from the open door}
       contrast_with_previous: size family, angle class and move change
 ```
@@ -94,7 +104,10 @@ shot_plan:
 | `turn` | `true` on exactly one shot |
 | `job` | One of establish, reveal, emphasize, connect, escalate, hold, release |
 | `size` | Extreme wide, wide, medium, medium close-up, close-up, extreme close-up or insert |
-| `angle` | Eye level, over-the-shoulder, low, high, overhead or first-person |
+| `framing` | Single, dirty single, two-shot, three-shot, group, over-the-shoulder, over-the-hip, point of view or insert, per [framing](framing.md). Required in a scene with two or more characters |
+| `featured` | The subjects the shot is about, with screen sides when it matters; empty for an insert or an unpeopled point of view |
+| `composition` | Optional. Balanced or deliberately unbalanced (isolation, tension), with the reason when unbalanced |
+| `angle` | Eye level, over-the-shoulder, low, high, overhead or first-person. A dirty single, over-the-shoulder or over-the-hip framing records over-the-shoulder, and a point-of-view framing records first-person |
 | `angle_reason` | Required for any angle other than eye level |
 | `move` | The primary move with subject, start and end, or `static hold` |
 | `move_reason` | What the move reveals or emphasizes |

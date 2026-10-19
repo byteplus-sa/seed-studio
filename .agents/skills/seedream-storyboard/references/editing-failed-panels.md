@@ -13,14 +13,18 @@ processed here.
 
 ## Choosing a revision path
 
-- **Separate-images mode.** Write a narrow revision contract for the one failed
-  panel's image.
-- **Single-image grid mode.** Either revise the whole-grid prompt and ask the
-  user to generate it again, or write a revision contract that targets one cell
-  of the grid. Prefer the whole-grid revision when more than one cell is
-  affected or a repeated defect suggests the prompt itself is at fault.
-- After a composition is approved, change one failed dimension at a time and
-  keep every approved property in the preserve list.
+**Use the smallest repair scope: panel, then shot, then scene.** Preserve correct panels when a failure is isolated.
+
+| Finding | Revision path |
+| --- | --- |
+| Local defect in an otherwise correct panel, such as an extra prop, hand detail or expression | Write a narrow edit prompt for that panel or grid cell |
+| Wrong beat, reversed axis or incorrect geography | Correct the full prompt and regenerate that panel |
+| Shared cause across a shot's panels | Fix the source reference or prompt, then revise only that shot's affected panels |
+| Shared cause across most grid cells or the whole scene | Revise the grid or scene with a stated reason |
+
+After two edits fail the same acceptance criterion, stop repeating the local edit and propose regenerating the affected panel from a corrected prompt. Structural errors can take that path immediately. More than one failed cell alone is not a reason to regenerate every cell.
+
+Change one failed dimension at a time and keep every approved property in the preserve list. Keep the original candidate and prompt when presenting a new version. A revision grants no approval and does not invalidate unaffected siblings.
 
 ## Naming the region
 
@@ -28,7 +32,7 @@ Name the target by its position and content, in words the user can match on
 screen, not by tool coordinates:
 
 ```text
-the second panel in the top row (the confrontation at the church altar)
+the second panel in the top row (the confrontation beside the lighthouse stairs)
 ```
 
 Add a distinguishing detail when two cells look alike, such as the object or
@@ -63,3 +67,9 @@ watermark, and no changes outside the target region.
 Change one failed dimension at a time. The user treats the corrected result as
 a continuity anchor only after it passes the acceptance checks in
 [review and selection](review-and-selection.md).
+
+## Check the full result
+
+When a revised candidate is supplied, compare the entire image with its parent, including areas outside the target region. Check pose, anatomy, count, scale, camera, geography, eyelines, light and unchanged grid cells as well as the requested correction. A corrected prop with a changed character pose fails preservation even if the local correction passes. If the image cannot be inspected, leave preservation unverified.
+
+Local removals may suit an edit. Additions at the frame edge and broad geometry changes can redraw neighboring objects or change the depicted beat. Treat these as risks to verify, not measured success rates or guarantees. Prefer regeneration for structural geometry errors.

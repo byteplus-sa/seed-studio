@@ -40,6 +40,9 @@ Read the supplied brief and existing confirmed decisions first. Extract:
 | Where the feeling lives | Which channel carries the inner state (performance, sound, light, framing, edit) rather than literal effects? |
 | Source bible | Is there a source text, script, brand book or prior canon whose lines and details must survive every stage? |
 | Quality bar | Whose reaction is the bar: a named person, the user's own taste, or a past version of the user? |
+| Sound plan | Is the deliverable silent, on-camera dialogue, ambience or score, and is a separate sound bed acceptable? |
+| Look | Is a grade or capture-format look requested, or should the original model colours remain? |
+| On-screen copy | Which captions, title, CTA or end card should be listed separately for post? |
 
 When a tone or genre reference is a **concrete brand video ad or other footage**
 (URL, campaign name, or user-supplied file) meant for visual or motion
@@ -79,6 +82,14 @@ State the creative spine in one sentence: **For [audience/context], show
 [specific idea] so the viewer [intended reaction].** This is an aid to reasoning,
 not mandatory output syntax. A static asset can use a visual contrast rather
 than a narrative event; a sound-only brief can use a sonic idea.
+
+For a moving-image brief, flag sound-route decisions that affect the result.
+Native dialogue, picture-only with a separate ambience/score bed, separate
+lip-sync audio and silence serve different needs. Native audio can add unwanted
+music or voices despite exclusions, so propose picture-only when strict control
+matters and the destination supports it. Preserve any accepted audio choice;
+separate lip-sync audio remains opt-in. Leave a grade or film look out unless
+requested. These are scoped proposals, not new mandatory axes or approvals.
 
 ## 2. Choose the appropriate depth
 

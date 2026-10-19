@@ -278,6 +278,15 @@ Source skill: `seedance-prompt-25`
     ≈ spoken words / 2.2 (conversational) to seconds. If the `{}` script reads
     far shorter than the API `duration`, the prompt must explicitly direct the
     gap (pauses, hesitations, action beats); otherwise right-size the duration.
+    Budget onset separately (limited upstream observations: 0.5-1.5 s) and leave
+    at least 0.4 s after the last word. Supplied audio overrides estimates;
+    flag an overfull line without silently changing approved words.
+
+**Prompt precision.** Check exact counts and stage positions for counted items,
+anatomical side plus frame side for critical hand actions, and plain generic
+surfaces where generated lettering would be a defect. These are authoring
+heuristics, not guarantees of model control. Respect intentional occlusion,
+entrances and exits; do not expose a hidden subject merely to count it.
 
 ### Motion grammar (stylized animation & reverse-engineered takes)
 

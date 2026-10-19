@@ -7,6 +7,7 @@ mode selection and caller responsibilities.
 - [Scene transitions and dynamic arcs](#scene-transitions-and-dynamic-arcs)
 - [Scene and atmosphere](#scene-and-atmosphere)
 - [Sonic motifs and voice treatment](#sonic-motifs-and-voice-treatment)
+- [Ambience or score bed for a video clip](#ambience-or-score-bed-for-a-video-clip)
 
 ### Full-soundscape composition workflow
 
@@ -129,3 +130,41 @@ silence (room tone, a breath).
 A layered or multi-voice line is still one speaker for lip-sync. Keep the
 exact words identical across the layers, and when lip-sync audio is opt-in,
 deliver the lead voice clean and add the chorus layer in post.
+
+### Ambience or score bed for a video clip
+
+Use a standalone bed when the requested clip needs only ambience or score, or
+when native video audio contains unwanted speech, chants, cheering or music.
+Exclusion wording may fail; regenerating the video solely to repair audio can
+change an approved picture.
+
+1. Preserve the approved picture and replace its soundtrack in post. For a new
+   post-only audio plan, picture-only generation is an option only when the
+   selected destination supports disabling native audio; otherwise mute or
+   replace its soundtrack during assembly. Do not infer support from a prompt.
+2. Match the requested cut length and describe audible events in picture order.
+   For ambience, name environmental layers; for score, name instruments,
+   rhythmic feel and the musical arc. Neither requires invented dialogue.
+3. Describe the intended contents positively, layer by layer. A closing limit
+   such as `Only wind, surf and distant gulls; no voices and no music.` is a
+   prompting hypothesis, so verify the generated output by listening.
+4. Hand off the bed for loudness adjustment to the project target and placement
+   under the preserved picture. No particular editing application is required.
+5. State that a generated bed is **not frame-synced**. Place a door slam,
+   footfall or other sound tied to a visible action as a separate effect when
+   exact synchronization matters, or explicitly accept loose sync.
+
+**Hypothetical prompt example; no result evidence is bundled:**
+
+```text
+A 30-second ambience bed for a coastal village at dawn.
+[0.0:30.0] Low steady surf on a pebble beach, close; light onshore wind across open ground, mid-distance.
+[6.0:9.0] A single gull calls twice, far left, then drifts away.
+[18.0:24.0] Wind gusts a little stronger, then settles back.
+The bed ends as it began, with surf and wind continuing to the last second.
+Only surf, wind and gulls throughout; no voices and no music.
+```
+
+Speech-free beds require a destination that accepts prompts without dialogue;
+verify that capability before submission. Event windows are approximate cues,
+not a promise of exact timing.

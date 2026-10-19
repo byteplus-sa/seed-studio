@@ -236,7 +236,10 @@ Before generation, verify:
 16. **Motion acceptance**: Does every critical movement have an observable
     direction, relationship, contact, or end-state criterion? Could camera
     movement falsely appear to satisfy required subject movement?
-17. **Manifest currency**: When a blockout manifest exists, do its source,
+17. **Counts, sides and surfaces**: Are exact counts and positions carried
+    across beats? Does a critical hand cue name anatomy and frame side? Are
+    generic surfaces plain, with exact copy reserved for post?
+18. **Manifest currency**: When a blockout manifest exists, do its source,
     previz, selection, and reference hashes match the generation package?
 
 ## Usage limitations

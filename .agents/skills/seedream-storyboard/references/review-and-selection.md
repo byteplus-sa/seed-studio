@@ -44,6 +44,8 @@ Reject or repair:
 - in grid mode: panels out of reading order, illegible panel content, missing or
   misaligned dividers, panel numbers bleeding into image content.
 
+Route failed panels through the smallest-scope ladder in [Editing Failed Panels](editing-failed-panels.md). After an edit, compare the complete result with its parent; a correction that changes an approved pose, neighboring prop or unaffected grid cell still fails. Once panels pass, check the ordered scene again for eyelines, travel direction, light, prop state and rhythm.
+
 ### 13. Present variants for the user's selection
 
 These checks run when the user shares generated candidates (images or a
