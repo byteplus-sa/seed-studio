@@ -126,9 +126,17 @@ modes and examples into focused same-skill references.
   or generation, and no skill or contract may require it or name it as a step.
 - Freeze the exact prompt text before handoff. A generation submit must match
   the prompt the user saw byte for byte.
-- Source video is inspected by an agent video pass when the client can watch
-  it, or by local `ffmpeg`/`ffprobe` frame extraction read as images when it
-  cannot; never claim to have watched footage you could not access.
+- Prefer an agent video pass when the client can watch the source, or local
+  `ffmpeg`/`ffprobe` frame extraction read with image perception. When native
+  perception is insufficient, the caller may use a capable available analysis
+  tool under privacy, cost and explicit offline constraints. Record actual
+  inspected ranges, tool provenance and uncertainty; never claim to have
+  watched footage you could not access or continuously reviewed sparse frames.
+- Audio requires actual auditory perception or documented human listening.
+  Transcripts, waveforms and player launches do not verify soundscape. Native
+  host reasoning is not necessarily on-device; offline requests require
+  verified on-device perception or human evidence. Continue supported analysis
+  with unavailable modalities unresolved; analysis is not generation approval.
 - Preserve exact canonical descriptors where applicable. Prefer positive,
   observable direction; necessary edit-scope exclusions are allowed.
 - Identify all visible props; only threshold-qualified props need locked

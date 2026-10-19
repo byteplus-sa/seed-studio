@@ -1,4 +1,4 @@
-# Motion Review Prompt — deep frame-by-frame pass
+# Motion Review Prompt - evidence-based motion pass
 
 A static "action" description is not enough to reproduce how a template
 moves. Run this as a **second pass** on the same source (agent video pass, or
@@ -6,9 +6,16 @@ an external video-capable tool). Feed the existing shot list and the SHA-256
 of the approved breakdown revision with the prompt. This is the primary fix
 for "our version looks static".
 
+Prefer native video/image inspection; a caller-selected capable visual tool
+may fill a perception gap under the user's privacy, cost and offline
+constraints. Record source hash, inspected timestamp ranges, frame paths,
+reviewer/tool identity and uncertainty in companion notes. Do not claim a
+frame-by-frame review after viewing only sparse thumbnails.
+
 ```text
 You are a senior motion designer and video analyst. Analyze the attached video
-frame by frame and report, exhaustively, how it MOVES.
+or timestamped frame sequences over the inspected ranges and report how it
+MOVES. Identify sampling limits and uninspected intervals explicitly.
 
 Use the supplied shot boundaries without renumbering them. For EACH shot report:
 1. time range
@@ -42,6 +49,19 @@ confidence to low unless the frames clearly bracket a change, and say so in
 the review. In both cases, motion between sampled frames remains an
 inference: ask the user to confirm or correct the strongest cues before the
 Seedance prompts depend on them.
+
+## Comparing a returned take
+
+When a user supplies a generated take for diagnosis, inspect both source and
+take over corresponding action intervals. Record both hashes and measure
+take cuts separately: equal timestamps do not guarantee corresponding action
+when timing has drifted. Keep the approved source shot keys and distinguish
+observed mismatches, uncertainty and proposed prompt repairs.
+
+Inspect denser consecutive frames where samples hide motion. If no permitted
+route can inspect either input, report the comparison unavailable, not passed.
+This optional comparison does not replace the local source-motion pass or
+authorize new generation.
 
 ## Merge contract
 

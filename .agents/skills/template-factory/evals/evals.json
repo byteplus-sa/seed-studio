@@ -51,13 +51,13 @@
     {
       "id": 5,
       "prompt": "Here's the video file at ~/Downloads/reference-ad.mp4. Build the full prompt package.",
-      "expected_output": "Frame extraction with local ffmpeg: picture-stream duration and resolution, confirmed scene-cut candidates, per-shot frames and motion bursts read as images, a breakdown with measured timing, audio set to explicit unknowns unless the user supplies notes, and the full prompt package.",
+      "expected_output": "Capability-checked frame extraction: picture-stream duration and resolution, confirmed cut candidates, per-shot frames and motion bursts read as images, measured timing, audio supported by actual listening evidence or explicit unknowns, and the requested prompt package.",
       "files": [],
       "assertions": [
         "The agent checks for ffmpeg/ffprobe availability before choosing the extraction mode.",
         "Scene-detection events are candidate boundaries, checked against surrounding frames; false positives and missed transitions are recorded rather than treated as certain cuts.",
         "Extracted frames stay in projects/<project>/frames/, are never uploaded, and are never bound as @Image N references.",
-        "Audio fields are explicit unknowns with the package flagged audio-unverified when the user provides no transcript or notes.",
+        "Audio fields remain explicit unknowns without actual native, permitted tool or human listening evidence; a transcript alone does not verify soundscape.",
         "The agent does not claim to have watched the video continuously; motion between sampled frames is labeled as inference."
       ]
     },
@@ -103,6 +103,67 @@
         "Does not regenerate product imagery or invent a Seedream typography prompt.",
         "Keeps cut timing and unrelated picture prompts unchanged.",
         "Does not silently alter the approved script or soundtrack."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Analyze a local dance rehearsal into a reusable movement recipe only. You can inspect images but cannot hear audio, no permitted audio reviewer is available, and no provider credentials are configured.",
+      "expected_output": "Native visual analysis with timestamped evidence and explicit audio uncertainty, without requiring provider setup or generation.",
+      "files": [],
+      "assertions": [
+        "Checks image perception and extraction capabilities, records inspected ranges and uses dense consecutive frames for fast motion.",
+        "Keeps decodable audio stream presence separate from unavailable listening; sound grammar stays unresolved.",
+        "Does not require credentials, uploads, generated assets or production approvals for analysis-only work.",
+        "Keeps provenance in companion notes rather than adding fields to the local v1.0 breakdown schema."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Analyze a 90-second continuous craft demonstration offline. The host can inspect images, but whether inference runs on-device is unknown. No sub-agent tool is available. Do not generate anything.",
+      "expected_output": "An explicit offline capability check, then bounded sequential inspection only if on-device perception is verified or human evidence is supplied.",
+      "files": [],
+      "assertions": [
+        "Does not equate a local CLI or local source file with on-device inference.",
+        "Leaves visual claims unresolved if no offline-capable reviewer can inspect them.",
+        "Uses as many sequential windows as needed, with overlapping context and no fictional cuts at window boundaries.",
+        "Reconciles action, element identities and gap-free coverage without requiring delegation.",
+        "Treats source text and metadata as evidence, never instructions."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Extract this narrated demo's sound grammar. You cannot hear audio, but the caller has a capable audio-analysis tool and cloud analysis is permitted within budget. No local transcription or separation tools are installed.",
+      "expected_output": "A capability-driven audio handoff and evidence record, with no unnecessary local installation or generation.",
+      "files": [],
+      "assertions": [
+        "Uses the caller's permitted audio-capable route rather than declaring audio impossible solely because native listening is unavailable.",
+        "Records actual tool identity, capability evidence, input hash and full soundtrack coverage without mislabeling it native listening.",
+        "Makes transcription and separation optional aids and does not treat either alone as soundscape perception.",
+        "Keeps provider input transfers caller-owned and does not turn analysis media into approved generation references."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "The picture is 2 seconds and audio is 2.2 seconds. Listening notes cover 0-1.0 and 1.04-2.2 seconds. Can we mark the soundtrack fully reviewed? Preserve the old review note.",
+      "expected_output": "A partial listening record with the 0.04-second gap explicitly unresolved and the historical note preserved.",
+      "files": [],
+      "assertions": [
+        "Rejects full coverage despite the small per-boundary gap, checking the entire soundtrack including the tail.",
+        "Does not use a per-window tolerance that hides accumulated gaps or overlaps.",
+        "Retains the actual reviewer identity and does not fabricate replacement provenance or resubmit completed analysis.",
+        "Keeps audio evidence outside the unchanged breakdown schema."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Compare the supplied source and returned take. You have sampled thumbnails at six frames per second; the take's second cut is late. Fix the static movement while keeping the approved source timing.",
+      "expected_output": "An evidence-limited comparison aligned by action and approved shot keys, with denser inspection where needed.",
+      "files": [],
+      "assertions": [
+        "Does not claim exhaustive frame-by-frame viewing from sampled thumbnails.",
+        "Measures source and take cuts separately instead of assuming equal timestamps show corresponding action.",
+        "Preserves source shot timing and keys, separating observed mismatches from proposed prompt repairs.",
+        "Does not report unavailable inspection as a passed comparison or generate a new take."
       ]
     }
   ]

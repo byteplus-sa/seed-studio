@@ -110,6 +110,18 @@
         "It names a quality bar or asks whose reaction it is only if the brief cannot answer it.",
         "It does not turn the questions into a long questionnaire, and it still gives a camera and light stance with an energy level."
       ]
+    },
+    {
+      "id": 11,
+      "prompt": "Shape a chat-only brief borrowing the rhythm of this reference ad. The caller can inspect local video but cannot hear audio. A permitted audio-analysis tool is available; no local transcription tool is installed.",
+      "expected_output": "A scoped brief with a capability-driven reference-analysis handoff, without this leaf fetching media or invoking tools.",
+      "files": [],
+      "expectations": [
+        "Hands full reverse-engineering to template-factory and requires actual visual evidence, not the ad's article or script.",
+        "Prefers capable native visual inspection without requiring an upload.",
+        "Allows the caller's permitted audio-capable fallback without requiring local transcription installation.",
+        "Does not infer audible rhythm from picture cuts or treat the recipe as generation authorization."
+      ]
     }
   ]
 }
