@@ -98,9 +98,10 @@ purpose.
   and its `featured` subjects. Other scenes may omit it.
 - Framing type is checked by V10 and adds no V1 contrast of its own: a single
   and a two-shot at the same size, angle, move and key side count as no V1
-  contrast. A dirty single, over-the-shoulder and over-the-hip framing record
-  `angle: over-the-shoulder` and a point-of-view framing records `angle:
-  first-person`, so each counts once, through the angle class.
+  contrast. Preserve physical `angle`, `viewpoint` and `framing` independently:
+  a low-angle OTS remains low, and an overhead POV remains overhead. Derive
+  the single V1/V2 comparison class per [field rules](shot-plan-format.md#field-rules)
+  without overwriting these directions or counting framing a second time.
 - Keep a POV shot adjacent to its looker and its reaction shot, or record why it
   stands alone (an object POV, a cold open).
 - Use an unbalanced frame on purpose and record it in `composition`.

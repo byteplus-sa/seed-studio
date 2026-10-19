@@ -184,6 +184,28 @@
         "Does not invent a move, lens, grade or extra lighting to satisfy variety checks.",
         "Does not split the handoff into multiple shots, save files or require a review gate."
       ]
+    },
+    {
+      "id": 17,
+      "prompt": "Plan a 12-second kitchen doorway surprise. The mother is inside; the aunt and boy are outside the closed door. The boy first appears after the mother opens it. Keep that appearance as the turn.",
+      "expected_output": "The establishing shot keeps the visitors hidden and the later shot retains the reveal.",
+      "files": [],
+      "expectations": [
+        "The opening features only the mother; neither aunt nor boy appears through the closed door.",
+        "Framing and featured subjects preserve the first-appearance reveal.",
+        "Does not expose the hidden boy to meet a group-framing or count heuristic."
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Carry these locked shots into a framing plan: a low-angle over-the-shoulder shot from behind Mara, then an overhead first-person POV from her position. Do not change camera elevation.",
+      "expected_output": "Independent framing, viewpoint and physical angle retain both locks; variety scoring does not overwrite them.",
+      "files": [],
+      "expectations": [
+        "The OTS retains angle low and its featured target.",
+        "The POV retains angle overhead and owner Mara.",
+        "Any derived comparison class counts once and does not replace angle or framing in the prompt."
+      ]
     }
   ]
 }
