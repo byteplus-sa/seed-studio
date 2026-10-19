@@ -1,14 +1,6 @@
 ---
 name: seedance-prompt-25-filipino
-description: >-
-  Write or revise Filipino, Tagalog, and Taglish dialogue direction for Seedance.
-  Preserve approved exact words, speaker identity, meaning, and register. Use
-  native audio by default; separate Seed Audio lip-sync is opt-in. Diagnose a
-  specific pronunciation or delivery issue before proposing targeted annotation
-  or an agreed vocabulary change. Treat pronunciation directions as hypotheses
-  requiring listening review. Use for Filipino video prompts, natural dialogue,
-  pronunciation, intonation, and code-switching; this independent prompt-only
-  leaf returns a dialogue layer and does not submit generation tasks.
+description: Write Seedance dialogue direction when Filipino, Tagalog, Taglish, or Filipino-accent support is explicitly requested. Preserve approved words, speaker identity, meaning, language, register, code-switching and subtitle choices; ask about material gaps. Keep accent notes separate from spoken words and pronunciation hypotheses subject to listening review. Native audio is the default; separate lip-sync audio is opt-in. This prompt-only leaf does not submit generation tasks.
 ---
 
 # Seedance Prompt 2.5 — Filipino/Tagalog Partner
@@ -16,6 +8,12 @@ description: >-
 Write Filipino, Tagalog, or Taglish dialogue and delivery direction while
 preserving the user's intended voice. The caller can compose this dialogue
 layer with a complete video prompt; this skill does not load sibling skills.
+
+This Filipino pack is opt-in, not a language default. Preserve pure Tagalog,
+Taglish, or English as requested. Ask when a missing language, register, or
+code-switch preference materially affects new lines; do not assume a mix.
+Honor an explicit English-dominant request without treating dense Tagalog as a
+defect in other briefs.
 
 ## Input and output contract
 
@@ -100,6 +98,11 @@ Use enough delivery direction to make the line playable. Do not pad every line
 with a pronunciation dictionary, prescribed flat contour, or invented syllables.
 Timing remains event-relative unless the user or a critical synchronization
 point calls for timestamps.
+
+Fit speech using measured delivery or a native-language-informed read, including
+pauses, onset and tail. About 2.2 words/s is an English planning estimate, not a
+universal gate. Without delivery evidence, timing is provisional. Preserve exact
+text and propose retiming or splitting before an authorized wording revision.
 
 ## Model and review boundaries
 

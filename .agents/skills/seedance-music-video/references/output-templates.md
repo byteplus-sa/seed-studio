@@ -24,9 +24,11 @@ Final Section (<verified time range or event cue>): <closing assignment and fina
 <Which audio events the cuts and camera land on; cut density per section.>
 
 [Audio Treatment]
-<Audio intent: native brackets, or black-sync @Video 1 for supplied-song timing.
-For edits, @Video 1 remains the source scene. Exact-song delivery uses the
-untouched master in assembly.>
+<Audio intent: native brackets or silent picture for original-master assembly.
+When timing conditioning is needed, use verified supported @Audio N or an
+optional, selected black-sync @Video N carrier; leave unverified support open.
+Record current-song permissions without inferring them from prior work.
+For edits, @Video 1 remains the source scene.>
 
 [Genre Lock]
 <Palette, lighting, camera grammar, motion cadence, and tone.>
@@ -40,11 +42,13 @@ untouched master in assembly.>
 Use when the user asks for a complete prompt:
 
 ```text
-[Song Timing Authority] (only when the performance follows a master)
-@Video 1 is the black-sync container — the master muxed into pure-black video.
-Its vocals, pauses, and accents guide visual pacing and requested lip sync.
-Match <performer>'s visible mouth to its vocals during designated performance
-shots. Render the directed scene imagery rather than the black carrier.
+[Song Timing Authority] (only with a selected, supported timing reference)
+<@Audio N for supported direct song input, or @Video N for an optional
+supported black-sync carrier> supplies the approved master segment.
+Its vocals, pauses and accents guide pacing and requested lip sync during
+designated performance shots. Render the directed scene imagery.
+(For a black-sync carrier, ignore its black picture; neither route guarantees
+exact mouth timing or a copied soundtrack.)
 (For edits, @Video 1 is the existing scene instead; preserve its camera, cuts,
 actions, duration, and mouth motion while applying the requested visual change.)
 

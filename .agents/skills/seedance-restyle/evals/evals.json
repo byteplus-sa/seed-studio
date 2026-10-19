@@ -4,18 +4,18 @@
     {
       "id": 1,
       "prompt": "Turn our 10-second office comedy clip into 2D anime. Same two coworkers, same gags, same camera. We own the footage.",
-      "expected_output": "A restyle package with the cel-anime-2d fragment, a content inventory for both coworkers by observable descriptors, an environment image prompt of the same office drawn in the style and bound as the environment reference, the muted master as @Video 1 (an asset:// video, since the clip shows people) trimmed to an 8n+1 frame count with generate_audio false and an original-audio post route, and a 480p probe of the hardest beat first.",
+      "expected_output": "A restyle package with the cel-anime-2d fragment, both coworkers inventoried by observable descriptors, the same office preserved, and an optional environment reference only when justified by current inputs or selected by the user. The muted master is @Video 1 with exact source timing, generate_audio false and an original-audio post route; propose a supported low-resolution probe of the hardest beat.",
       "files": [],
       "expectations": [
         "The edit scope redraws every person, object and surface in the style and states exactly two people.",
         "Each coworker keeps identity cues (hair shape, wardrobe colours) described from the source, not by name.",
         "@Video 1 is the muted master, generate_audio is false and the saved source audio is the stated post-audio route.",
         "Because the clip shows people, the package recommends uploading the muted master to the Virtual Portrait library and binding @Video 1 as asset://.",
-        "An environment image of the same office, drawn in the style, is written as a text-to-image prompt and bound with an Environment Reference Role; the prompt names no different location and does not rely on 'same layout' wording to restyle the background.",
-        "The package asks the user to confirm that the environment image reads as the same office as the source and holds no stray objects, and states that the background must stay the same place.",
-        "The package asks for an 8n+1 frame trim (for example 241 frames at 24 fps for 10 s) before the edit.",
+        "The prompt preserves the same office and layout; an environment image is optional, not required from a prior claymation result.",
+        "If an environment image is selected, the package requires approval and checks its medium coverage, source geometry and stray objects before binding it.",
+        "The package preserves exact source timing and does not request 8n+1 trimming or whole-second rounding without a verified destination requirement and user agreement.",
         "No studio, artist or franchise is named.",
-        "The first block is a 480p probe, delivered in chat; the skill does not generate, upload or submit anything."
+        "A supported low-resolution probe (480p when available) is proposed in chat; the skill does not generate, upload or submit anything."
       ]
     },
     {
@@ -39,6 +39,39 @@
         "Replacing the interviewer is routed to Object Swap or Motion Transfer rather than folded into the restyle prompt.",
         "Any realistic person, including the interviewee in the source, is recommended for Virtual Portrait upload and bound as an asset:// reference.",
         "Before writing any prompt, the agent asks the user to confirm rights for the street interview footage and the people in it."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Restyle my owned, unpeopled 120-frame clip at 24 fps as watercolor, preserving all five seconds and the room layout. The selected edit UI supports this source timing. No image references, just write the prompt.",
+      "expected_output": "A text-only whole-frame watercolor prompt preserving all 120 frames of source timing, with coverage to be checked rather than guaranteed.",
+      "files": [],
+      "expectations": [
+        "Does not demand an environment image, declare text-only restyle impossible, or switch to subject-only restyle.",
+        "Preserves the source span and layout without adding or trimming frames to meet 8n+1.",
+        "No invented image binding, generation, upload or automatic prompt-review."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "In my owned unpeopled workshop clip, the tool bench became felt but the walls stayed photographic. I can supply a source-derived felt environment image. Keep the exact workshop geometry and timing; write a repair only.",
+      "expected_output": "A conditional repair grounded in the supplied coverage failure, with the source-derived image inspected and approved before binding.",
+      "files": [],
+      "expectations": [
+        "Treats incomplete coverage as evidence from this result, not proof that every style requires an environment image.",
+        "Allows a source-derived environment image after checking target-medium coverage, geometry and stray objects.",
+        "Keeps source layout and timing authoritative; does not promise the image or alternate route will fix coverage."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "My owned unpeopled clip is 5.125 seconds. The selected destination documentation requires whole-second input duration. I need exact timing and have not approved any trim or padding. Draft the restyle handoff, no generation.",
+      "expected_output": "An explicit timing conflict with the destination, without silent source alteration.",
+      "files": [],
+      "expectations": [
+        "Keeps 5.125 seconds as the required source span; does not silently round, trim, pad or retime.",
+        "Asks for agreement before any separate adapted copy and records the verified constraint and proposed timing change.",
+        "Leaves exact timing unresolved or offers another verified compatible destination rather than guaranteeing a reference route fixes it."
       ]
     }
   ]

@@ -21,14 +21,13 @@ under [Generation transport](../../contracts/generation-transport.md).
 Adapted from the [pinned upstream skill](https://github.com/byteplus-sa/ark-director/tree/4b7bbade2de83eb5fd8bd26f50655983ed99a2a6/.agents/skills/seedance-effects-studio),
 merged through PR #22.
 
-The menu adapts 45 visual mechanics from example footage on a third-party
-public effects page, analysed upstream on 2026-10-08. These descriptive labels
-are not official Seedance presets or an endorsement. Recipes retain upstream
-reported tests on invented subjects; none was re-rendered in this workspace.
-See [evidence status](references/evidence-status.md) for outcomes and limits.
+The menu describes 45 visual mechanics. These descriptive labels are not
+official Seedance presets or an endorsement. Recipes require testing against
+the current input; see [evidence status](references/evidence-status.md) for
+checks and limits.
 Selective recipe clarifications follow [upstream PR #40](https://github.com/byteplus-sa/ark-director/pull/40)
 and [the pinned source](https://github.com/byteplus-sa/ark-director/tree/0539a2e3/.agents/skills/seedance-effects-studio).
-These are inherited observations and hypotheses, not new local render results.
+Source lineage does not establish a successful result for the current input.
 
 ## Composition boundaries
 
@@ -171,9 +170,10 @@ Recipes: [effects-product-and-spectacle.md](references/effects-product-and-spect
 | `v2v-restyle` | Source `@Video 1`, empty environment `@Image 1` when needed | Muted source and original audio restored in post under local video-to-video contract |
 | `composite` | Recipe's footage roles | Full effect requires destination post work |
 
-Route compatibility and provider restrictions quoted in recipes are dated
-upstream observations, not universal current capability claims. The caller
-checks destination support before any authorized submission. A provider
+Recipes are unvalidated on current inputs. The caller verifies current
+destination capabilities before any authorized submission and preserves
+documented unsupported flags unless authoritative capability evidence changes.
+Unknown support is not permission to submit. A provider
 rejection needs diagnosis; changing the role is not permission to bypass it.
 Virtual Portrait anchors apply only to invented identities, as specified by
 the local video-to-video contract.
@@ -184,16 +184,16 @@ the local video-to-video contract.
   readable UI, logos and HUD copy are destination post needs.
 - **Audio follows the brief.** Recipes generally recommend native audio off.
   Remove conditional audio lines when off; when requested, use explicit sound
-  brackets and the requested arc. Upstream tests leaked music or vocals even
-  with exclusions, so a clean audio master needs separate verification.
+  brackets and the requested arc. Review the current output's audio against
+  the brief; prompt wording alone does not validate a clean audio master.
 - **Counts and continuity are observable.** State copy counts at each change;
   all copies share one face and outfit. Count foreground arrivals too; adapt
   the recipe when the user requests a total count. Prompt counts remain
   probabilistic.
 - **No hidden workflow.** This leaf neither submits nor prepares requests,
   creates projects, enforces a draft ladder or saves files automatically.
-- **Evidence stays bounded.** Report `canvas`, `palette` and `lsd` as not
-  achieved in the cited run; a recipe's presence is not proof it works.
+- **Evidence stays bounded.** Check each recipe's intended style coverage on
+  the current output; a recipe's presence is not proof it works.
 
 ## Reference loading
 

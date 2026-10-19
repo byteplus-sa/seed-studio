@@ -30,6 +30,7 @@ Read supplied references, locked copy, and instructions first. Extract:
 | Experience evidence | Whose actual experience, quotation, or review can be used, and in what approved scope? |
 | CTA | What one action and destination were requested? |
 | Creative constraints | Runtime, mode, ratio, audio, product identity references, and forbidden changes |
+| Language and register | Preserve requested language and locked copy; ask when a missing code-switch preference materially affects new dialogue |
 
 Keep an internal ledger: `claim → supplied source → supported scope → usable
 wording`. It need not appear in a prompt-only answer. Unknowns stay unknown;
@@ -137,6 +138,11 @@ in the mix; a quiet bed is optional, not universally prohibited. Requested music
 must have an appropriate usable source; do not invent licensing. Resolve actual
 broadcast/platform delivery specifications during finishing, rather than assuming
 one universal loudness target.
+
+Base speaking time on measured delivery or a native-language-informed read
+with pauses, onset and tail. About 2.2 words/s is an English estimate, not a
+universal gate; without delivery evidence, timing is provisional. Preserve
+exact copy and propose retiming or splitting before authorized rewrites.
 
 Separate lip-sync audio is opt-in. For that handoff, specify identical dialogue
 across audio/video prompt drafts and bind supplied audio references. Actual audio

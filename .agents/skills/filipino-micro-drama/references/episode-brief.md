@@ -16,6 +16,7 @@ Cliffhanger question: <the question the episode leaves open>.
 Cast (≤3): **<Name>** (<age>, <look>, <wardrobe>, always-worn: <items>). ...
 Location(s): <name> — <layout, landmarks, light, time of day>.
 Props: <story-critical objects; note "no legible text">.
+Dialogue mode: <requested language, register and code-switch preference; clarify if material and unknown>.
 
 S1 Hook (<N> s): <action beats>.
 - <Speaker>: {<exact line>}
@@ -24,13 +25,14 @@ S2 Turn (<N> s): <action, sampal or reveal, proof shown in close-up>.
 S3 Cliffhanger (<N> s): <action>; hold on <character>'s face.
 - <Speaker>: {<exact line>}
 
-Subtitles: "<Tagalog>" = "<English>"; ...
+Subtitles: <requested target language(s), or none>; "<approved source line>" = "<approved translation>"; ...
 Limits: fictional cast, no real brands or legible signage, non-injurious conflict.
 ```
 
 ## Worked example
 
-This brief was produced into a finished 51 s episode in September 2026.
+This fictional example illustrates a selected Taglish mix, not a default for
+other briefs or evidence that another language needs rewriting.
 
 ```text
 ## know-your-place — "Know Your Place" (hidden heiress vs. kontrabida)
@@ -67,6 +69,7 @@ Subtitles: "Magnanakaw!" = "Thief!"; "hindi po ako magnanakaw" = "I'm not a
 thief"; "iha" = "dear (condescending)".
 ```
 
-Lesson from production: the shouted opening word "Magnanakaw!" was garbled.
-Moving the plot-critical Tagalog word mid-sentence at normal volume would have
-been safer, for example `{Where is my necklace, magnanakaw?}`.
+If a recording confirms a problem with "Magnanakaw!", propose a delivery cue
+outside the locked words first. A reordering such as
+`{Where is my necklace, magnanakaw?}` changes wording and needs rewrite scope;
+neither a shouted opening nor Tagalog itself establishes a defect.

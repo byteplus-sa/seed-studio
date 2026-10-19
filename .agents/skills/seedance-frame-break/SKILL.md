@@ -68,14 +68,12 @@ Supporting rules:
   at the same height in every frame; whatever covers them sits on top and never
   changes them, and when a limb withdraws the straight edge is simply visible
   again. Moving bars fail the take.
-- Keep any extending limb from filling a third of the frame: a near-lens limb
-  or head distorted the bar edge. This is about protecting the bars, not about
-  making the subject big.
-- Bars of 17 to 21 percent shrink the window and push the subject over them.
-  Ask for about 12 percent and state once that the central window is the large
+- Keep the extending part small enough that the bar edges remain readable.
+  A one-third-frame limit is a staging suggestion, not a measured failure boundary.
+- Thicker bars leave less room for the subject. Ask for about 12 percent as a
+  template starting point and state once that the central window is the large
   majority of the frame height.
-- The lower bar is crossed far more reliably than the upper bar. The upper bar
-  needs its own stage, a limb or hem that plausibly reaches it, an explicit peak
+- Give the upper bar its own stage, a limb or hem that plausibly reaches it, an explicit peak
   ("the open palm covers the upper bar") and an End state back inside.
 - If the model reads the bars as camera letterbox, the subject stays behind or
   clipped by them and the effect is lost. Describe the bars as an overlay and
@@ -161,8 +159,8 @@ before each boundary. Do not state the clip duration in prompt text.
    it, or by local `ffmpeg` frame extraction read as images if it cannot; never
    claim to have watched footage you could not access.
 8. **Repair** with [failure modes](references/failure-modes.md): change one
-   thing at a time and write the result as a new prompt version; re-rolling the
-   same wording did not help.
+   thing at a time and write the result as a new prompt version; compare results
+   without promising improvement.
 
 ## Reference loading
 
@@ -212,18 +210,18 @@ before each boundary. Do not state the clip duration in prompt text.
 
 ## Usage limitations
 
-- Timestamps allocate time; actions arrive about 0.25 to 0.5 s late and are not
-  frame-accurate cut points.
+- Timestamps allocate time, not frame-accurate cut points; measure the actual
+  timing instead of assuming a fixed delay.
 - Bars are approximate in thickness and may differ top versus bottom. Never
   promise exact geometry. Bars that tilt, bow or jump are not a limitation to
   accept: moving bars fail the acceptance check, and a take that moves them is
   rejected, however well the subject crosses.
-- A sudden scale jump or limb swap inside a stage fails the check. It is found
-  by reading every frame of each stage at about 12 fps, not by sparse sampling.
+- A confirmed scale jump or limb swap fails the visual requirement. Use contact
+  sheets to locate suspect moments, then inspect native frames.
 - A prompt improves the odds of overlap; it does not guarantee it. Judge overlap
   from frames, and treat a video-understanding model's summary as secondary
   evidence only.
-- Photoreal subjects cross the bars less often than drawn ones.
+- Do not infer crossing reliability or count from photoreal versus drawn style.
 - A take whose subject starts over a bar, or overlaps a bar for most of the
   clip, reads as standing outside the frame and fails the break-out check even
   when the bars are perfectly static.
@@ -237,26 +235,12 @@ before each boundary. Do not state the clip duration in prompt text.
 
 ## Evidence labels
 
-Distinguish the kind of claim when it affects a decision: **observed result**
-(reported upstream from Seedance 2.5 takes at 1080p, October 2026, each row
-naming its take; conditions stated, not re-run in this workspace and not a
-guarantee), **documented convention** (owned by `seedance-prompt-25`) and
-**optional technique** (a hypothesis to test).
-
-| Claim | Label |
-| --- | --- |
-| Describing bars as flat overlay graphics with numeric overlap anchors fixed takes where the subject sat behind the bars; re-rolling the same wording did not | observed result |
-| Bars measured 9.4 to 18.9 percent of frame height when about 12 percent was asked, often unequal; about 7 percent once when treated as letterbox | observed result |
-| Bars were static within 1 px in most takes; one take had a lower-bar bow up to about 4.6 percent and one a 0.25 to 0.5 s edge jump with the subject very close to the lens | observed result |
-| A photoreal boxer take was rejected for moving bars: the lower bar's inner edge tilted, bowed and jumped as a whole for 0.25 to 0.5 s when the subject leaned very close to the lens; sampling every 0.5 s and an 8 fps scan did not flag it clearly | observed result |
-| Extreme foreshortening, a limb or head very close to the lens, is the observed cause of bar-edge distortion | observed result |
-| A photoreal boxer take with static bars (17.5 and 21.1 percent measured) was rejected because the subject was outside the window from the first frame, with legs, shorts and robe over the lower bar for most of the clip (overlap in about 80 percent of frames), so it read as standing outside the frame; the earlier keep-it-at-arm's-length repair overcorrected | observed result |
-| Takes the user accepted overlapped a bar in about 15 to 65 percent of frames and began inside the window | observed result |
-| Ring ropes and rails near the bar zone were drawn as bars; the model painted a real-brand logo on background bags despite plain, unmarked wording | observed result |
-| A stylised 3D fox take was rejected: the fox reached out with a paw, then a giant bare cream sole appeared at about 1.25 to 2.0 s and filled half the frame, a scale jump and limb swap from two unconnected limb actions in one stage; the sole also differed from the sheet's teal sole | observed result |
-| Drawn subjects gave 3 to 5 strong overlap moments; photoreal subjects gave 1 to 3 | observed result |
-| Calm, darker, lower-contrast backdrops with colours that differ from the subject read well | observed result |
-| Avoid the word letterbox in the prompt; keep other limbs small and tucked behind until their stage; make each break-out a brief event that ends back inside | optional technique |
+Treat staging recipes and worked examples as optional techniques, not measured
+success rates or validation claims. An observed result must refer to accessible
+evidence from the current task with its conditions and limitations. Do not carry
+prior-project take narratives or thresholds into a new task. The 12 percent bar
+height, suggested part scale and stage budgets are editable design choices.
+The user-run acceptance check has no universal overlap-duty or pixel threshold.
 
 ## Submission boundary and failure behavior
 

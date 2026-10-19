@@ -88,12 +88,12 @@ presets; fill it from a supplied plan or the user's request.
 
 ## Dialogue inside shots
 
-Place a spoken line inside the shot that frames the speaker. Make the shot at
-least spoken words / 2.2 + 1 s long as an initial planning estimate. Upstream
-draft runs observed speech starting 0.5-1.5 s late; this is limited evidence,
-not a timing guarantee. Budget onset, spoken words / 2.2, and at least 0.4 s
-of tail after the final word separately; use the longer estimate when the
-one-second margin cannot cover both onset and tail. Supplied audio or the
+Place a spoken line inside the shot that frames the speaker. About 2.2 words/s
+is an English planning estimate, not a universal gate. Use measured delivery
+or a native-language-informed read; without evidence, timing is provisional.
+Upstream draft runs observed speech starting 0.5-1.5 s late; this is limited
+evidence, not a timing guarantee. Budget onset, spoken delivery with pauses,
+and at least 0.4 s of tail after the final word separately. Supplied audio or the
 actual delivery determines alignment. If exact words do not fit, propose a
 longer shot or a user-approved script revision rather than silently shortening
 the line. Prefer a simple closing beat instead of packing speech, a turn and
@@ -102,8 +102,8 @@ draft is promoted: its picture and soundtrack may differ.
 
 Vary size and angle between
 speakers, and keep moves slow while a line is spoken so the lips and eyes stay
-readable. For Filipino or Taglish lines, compose with the dialogue partner skill
-for the delivery direction.
+readable. An explicitly selected Filipino dialogue partner can supplement
+delivery direction without choosing a language mix or changing locked text.
 
 ## Examples
 

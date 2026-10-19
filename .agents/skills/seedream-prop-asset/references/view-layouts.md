@@ -64,16 +64,19 @@ For a right near flank, mirror the frame terms using the table above.
 
 ## QA notes
 
-Check each flank by a landmark, preferring a feature that does not mirror (the
-front fender, the grille end) over door handles. For a mirror-symmetric object,
+Check each flank by an actual landmark, preferring a feature that does not
+mirror (a bag's side pocket, a tool's control housing, or a vehicle's grille).
+For a mirror-symmetric object,
 decide each flank from which end points where in the frame and say so. The table
 is a request, and the model can still render both three-quarter views from the
 same corner.
 
-Measure scale as height including roof furniture such as a lamp box (a strict
-colour mask dropped the pale lamp and understated heights by up to 18% in a
-sample), cross-checked by the wheel-face major axis. Allow a few percent for the
-near wheel's perspective in three-quarter views.
+Measure scale using the whole object's height, including its actual
+attachments, and a stable visible feature appropriate to that object. For
+wheeled objects only, a visible wheel-face major axis can cross-check scale;
+allow for perspective on the near wheel in three-quarter views. Include roof
+fixtures only on a vehicle that actually has them. Bags, tools and furniture
+without wheels or roofs must not acquire those features from this QA recipe.
 
 Sample evidence, one car, three runs: the turntable wording put the rear
 three-quarter on the opposite flank in both later runs (the earlier "opposite
