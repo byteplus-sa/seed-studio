@@ -14,7 +14,9 @@ command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null \
   && echo "extraction available" || echo "extraction unavailable"
 ```
 
-If unavailable, fall back to the user keyframe set or the external pass.
+Also verify that the host can inspect images. If extraction or image
+perception is unavailable, use another permitted capable route from the
+skill's input table; never infer picture content from file metadata.
 
 ## Procedure
 
@@ -117,12 +119,23 @@ Read consecutive burst frames together to observe direction, speed,
 amplitude, and easing. Motion between sampled frames remains an inference —
 say so when confidence is not high.
 
+For fast action, flashes, occlusions and uncertain cuts, inspect consecutive
+source frames with their actual presentation timestamps, not only the
+resampled 6 fps burst. Include the opening and final decoded frames in the
+overall inspection. Record which intervals were sampled versus inspected
+consecutively; neither a detector score nor a sparse strip proves exhaustive
+frame-by-frame review.
+
 ## Budget
 
-- Read frames in small batches; keep the total working set near 30–40 images.
+- Read frames in small batches; keep each working set near 30–40 images.
 - Three frames per shot for the breakdown; add a 6-frame burst only for
-  motion-critical shots (or all shots when the video is short).
-- For long videos, analyze one scene at a time and summarize before moving on.
+  motion-critical shots (or all shots when the video is short), then add
+  denser evidence where those samples cannot establish the action.
+- For long videos, use [bounded windows](long-reference-analysis.md). The
+  working-set budget limits each batch, not total source coverage.
+- Keep source hash, inspected ranges, frame paths, commands, corrections and
+  uncertainty in companion notes; save durable drafts only on request.
 
 ## Boundaries
 
@@ -137,7 +150,9 @@ say so when confidence is not high.
   timestamps have measured evidence; unresolved boundaries remain estimates.
   Motion between sampled frames remains an inference, and frames provide no
   audible evidence.
-- **Audio cannot be heard from frames.** Ask the user for a transcript or
-  audio notes. Without them, set the analysis audio fields to explicit
-  unknowns (`mode: "unknown (no audio access)"`, null music and dialogue,
-  empty sfx) and flag the package audio-unverified — never guess.
+- **Audio cannot be heard from frames.** Check actual auditory capability
+  separately per [audio evidence](audio-analysis.md). A permitted audio tool
+  or documented human listening may fill the gap; a transcript alone does
+  not verify soundscape. Without evidence, use `mode: "unverified"`, null
+  music and dialogue, empty sfx, and unverified shot audio. Keep the package
+  audio-unverified and continue visual work without guessing.

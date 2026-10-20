@@ -47,14 +47,21 @@ Read the supplied brief and existing confirmed decisions first. Extract:
 When a tone or genre reference is a **concrete brand video ad or other footage**
 (URL, campaign name, or user-supplied file) meant for visual or motion
 inspiration, record it under constraints or creative intent and **hand off** —
-this skill does not fetch or analyze media. Downstream work needs a watchable
-copy (the user's file, or a link the user can open) and analyzes it in one of
-two modes: an **agent video pass** when the client can watch the video, or
-**local frame extraction** (`ffmpeg`/`ffprobe`) read as images when it cannot —
-the normal case. Route full reverse-engineering through `template-factory`; a
-lighter "what is this ad doing visually?" pass uses the same two modes.
-Transcripts, scripts, and article write-ups may note claims or dialogue but must
-not replace watching the video.
+this skill does not fetch or analyze media. Downstream work needs media the
+reviewer can actually inspect, preferably a decodable local copy. Prefer an
+**agent video pass** when the client can watch it, or **local frame extraction**
+(`ffmpeg`/`ffprobe`) read as images, with measured timing and timestamped
+evidence. Route full reverse-engineering through `template-factory`; a lighter
+visual pass uses the same evidence requirements.
+
+When native perception is insufficient, the caller may use an available
+capable analysis tool under the user's privacy, cost and offline constraints.
+Do not require uploads or tool setup for analysis the host can already perform.
+A local CLI does not prove on-device inference; explicit offline work requires
+verified on-device perception or human evidence. Audio needs actual auditory
+perception or documented human listening. Transcripts, scripts and article
+write-ups can support words or claims, but cannot replace visual inspection or
+establish soundscape. These are handoff requirements, not tool calls by this leaf.
 
 An absent genre is not a blocker. If intent is clear, derive a proposal from it.
 Ask a focused question only when missing information materially changes the

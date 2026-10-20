@@ -1,4 +1,4 @@
-# Motion Review Prompt — deep frame-by-frame pass
+# Motion Review Prompt - evidence-based motion pass
 
 A static "action" description is not enough to reproduce how a template
 moves. Run this as a **second pass** on the same source (agent video pass, or
@@ -6,9 +6,16 @@ an external video-capable tool). Feed the existing shot list and the SHA-256
 of the approved breakdown revision with the prompt. This is the primary fix
 for "our version looks static".
 
+Prefer native video/image inspection; a caller-selected capable visual tool
+may fill a perception gap under the user's privacy, cost and offline
+constraints. Record source hash, inspected timestamp ranges, frame paths,
+reviewer/tool identity and uncertainty in companion notes. Do not claim a
+frame-by-frame review after viewing only sparse thumbnails.
+
 ```text
 You are a senior motion designer and video analyst. Analyze the attached video
-frame by frame and report, exhaustively, how it MOVES.
+or timestamped frame sequences over the inspected ranges and report how it
+MOVES. Identify sampling limits and uninspected intervals explicitly.
 
 Use the supplied shot boundaries without renumbering them. For EACH shot report:
 1. time range
@@ -29,7 +36,7 @@ say what moves and how, never negative phrasing) to reproduce the same
 movement in a Seedance 2.5 prompt.
 
 Return JSON only, conforming to motion-review-schema.json. Key every result by
-shot_index.
+shot_index. Set mode to "source" for this source-only pass.
 ```
 
 ## Working from extracted frames or keyframes
@@ -43,7 +50,49 @@ the review. In both cases, motion between sampled frames remains an
 inference: ask the user to confirm or correct the strongest cues before the
 Seedance prompts depend on them.
 
-## Merge contract
+## Comparing a returned take
+
+When a user supplies a generated take for diagnosis, inspect both source and
+take over corresponding action intervals. Record both hashes and measure
+take cuts separately: equal timestamps do not guarantee corresponding action
+when timing has drifted. Keep the approved source shot keys and distinguish
+observed mismatches, uncertainty and proposed prompt repairs.
+
+Use this comparison instruction in place of the source-only prompt above:
+
+```text
+Compare the supplied source and take over corresponding inspected action
+intervals. Return JSON conforming to motion-review-schema.json with mode:
+"comparison" and the supplied approved source_breakdown_sha256.
+
+Keep shot_index, start_s and end_s tied to the approved source breakdown.
+Describe SOURCE visible_content and motion in those fields. Report TAKE
+deviations in missing_or_wrong and proposed repairs in concrete_fix_prompt_text;
+use directing_prompt_text and top_directing_prompt_text for source-grounded
+direction. Include global_diffs with pace_cut_timing, energy_level and aesthetic.
+Distinguish observations from uncertain_estimates and set confidence honestly.
+Do not treat the defective take as the source motion to reproduce.
+```
+
+Record source-to-take interval mappings, both media hashes and inspection
+coverage in separate comparison notes, outside the strict JSON schema.
+When saved drafts are requested, use a new `motion-comparison-vNN.json` and
+matching `.md` note for each comparison. Otherwise return them in chat.
+Never overwrite `motion-review.json`, its notes, or source breakdown evidence
+with a comparison, and never merge comparison output into `shots[].motion`.
+Apply accepted repair wording only to a new prompt revision; any proposed
+change to the approved source action or timing still needs user approval.
+
+Inspect denser consecutive frames where samples hide motion. If no permitted
+route can inspect either input, report the comparison unavailable, not passed.
+This optional comparison does not replace the local source-motion pass or
+authorize new generation.
+
+## Source-only merge contract
+
+Apply this contract only to `mode: "source"`. Comparison records follow the
+separate output and no-merge rules above, even though their schema also
+contains a `motion` field.
 
 - Write the exact JSON output beside the breakdown as `motion-review.json` and
   a readable rendering as `motion-review.md` when the user requests saved
