@@ -27,15 +27,15 @@
     },
     {
       "id": 3,
-      "prompt": "Consent and likeness gates are recorded. Write a 26-second vertical take for a locked 72-word script, with the presenter pointing using the left hand on 'launch'.",
-      "expected_output": "Flag the speech budget and propose splitting the unchanged script; keep the gesture hand and frame side explicit.",
+      "prompt": "Consent and likeness gates are recorded. Plan a 26-second vertical take for a locked 72-word English script, with the presenter pointing using the left hand on 'launch'. No delivery recording or full script is supplied yet.",
+      "expected_output": "Flag provisional English timing risk, request the missing script and delivery evidence, and propose retiming or splitting only if needed; keep the gesture hand and frame side explicit.",
       "files": [],
       "assertions": [
-        "Uses words divided by about 2.2 plus onset and tail only as a planning estimate, then checks the actual delivery.",
-        "Flags that 72 words exceed 26 seconds at that estimate and proposes splitting rather than silently rewriting the approved script.",
+        "Uses words divided by about 2.2 plus onset and tail only as a provisional English planning estimate, not a universal rejection; requests the exact script and measured or native-language-informed delivery to determine fit.",
+        "Flags that 72 words exceed 26 seconds at that estimate and proposes retiming or splitting if delivery is overfull, without automatically rewriting approved text or inventing missing script.",
         "Names the anatomical left hand and frame-right for a front-facing, unmirrored presenter, and keeps the hand within the changing frame.",
         "Keeps consent, likeness and timbre-only bindings and adds no overlay text.",
-        "Keeps duration, resolution and aspect ratio in a separate parameter note, with Dialogue language and the unchanged script inside a brace-delimited dialogue block in the model-facing prompt."
+        "Keeps duration, resolution and aspect ratio in a separate parameter note; once supplied, the unchanged script belongs in a brace-delimited dialogue block with Dialogue language, not invented placeholder speech."
       ]
     },
     {

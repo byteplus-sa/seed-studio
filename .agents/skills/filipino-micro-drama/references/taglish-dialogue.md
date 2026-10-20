@@ -5,14 +5,18 @@ revising dialogue.
 
 ## Code-switching pattern
 
-- **English carries content:** accusations, facts, names of things, and the
+- Preserve the requested language and locked text, including pure Tagalog.
+  Ask when a missing register or code-switch preference materially affects a
+  new draft. Dense Tagalog is not a defect. The following pattern is optional
+  for explicitly requested Taglish, not a default:
+- **English may carry content:** accusations, facts, names of things, and the
   insult itself.
-- **Tagalog carries feeling:** particles and interjections such as *naman,
+- **Tagalog may carry feeling:** particles and interjections such as *naman,
   kasi, lang, na, muna, pa, ha?, diba*, and *Hoy!, Ano ba!, Grabe, Diyos ko,
   Ay!*
 - Switch mid-sentence at a natural clause break, not word by word.
-- The kontrabida retreats into polished English to assert rank. The heroine
-  answers in Tagalog to sound sincere.
+- A character may use polished English or Tagalog for a selected tactic;
+  neither language inherently signals rank or sincerity.
 
 ## Status and relationship markers
 
@@ -31,14 +35,19 @@ revising dialogue.
 ## Line craft
 
 - 3–5 lines per 15–20 s scene. One idea per line.
-- Put the plot-critical Tagalog word mid-sentence, spoken at normal volume.
-  Shouted openings and whispered closings are where words were most often
-  garbled in generated video.
+- Keep plot-critical words in the requested language. Check intelligibility
+  by listening in context, not by assuming Tagalog or a delivery style is faulty.
+- Base timing on measured delivery or a native-language-informed read with
+  pauses, onset and tail. A 2.2 words/sec English estimate is not a universal
+  gate; preserve text and propose retiming before authorized rewrites.
 - Prefer common spellings. Mark contractions consistently (*ano po'ng*), and
   expect a model to normalize some forms (*'ng* → *yung*).
-- Give every non-English word a subtitle translation in the brief.
+- Include subtitle translations only when requested, in the requested subtitle
+  languages. Preserve approved dialogue; do not assume English subtitles or
+  translate words merely because they are non-English. Ask when subtitle
+  languages are unspecified and needed for the requested output.
 
-## Sample lines (English-dominant)
+## Sample lines (fictional, selected Taglish mixes)
 
 1. "Ma'am, with all due respect, hindi po ako magnanakaw."
 2. "Hoy! Don't you dare walk away. Kinakausap pa kita!"
@@ -53,7 +62,7 @@ revising dialogue.
 
 ## Iconic kontrabida register
 
-Short, crisp, class-based English put-downs delivered coldly and close, not
+When this English register is selected, use short, crisp, class-based put-downs delivered coldly and close, not
 shouted, for example: "Know your place." "You're nothing but the help."
 "No daughter of mine smells like a carinderia." Write original lines in this
 register; do not quote famous lines verbatim.

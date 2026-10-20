@@ -29,6 +29,11 @@ prove how a generation model will respond.
 
 ## Taglish code-switching
 
+For new lines, preserve the requested language, including pure Tagalog. Ask
+when the missing register or code-switch preference materially affects the
+draft; English-dominant Taglish is an explicit choice, not a fallback. Dense
+Tagalog alone is not a defect.
+
 Keep the user's approved mix of languages. Code-switching varies with speaker,
 setting, relationship, and intended effect. Do not apply blanket vowel, stress,
 consonant-substitution, or accent rules to every English word. Do not introduce

@@ -38,6 +38,9 @@ Without references, return a text-only prompt and no `@Image` bindings. A
 prompt-only request ends with prompts. An explicit generation request is handled
 by the caller under its production rules. Do not invent a seed, parameter,
 price, approved identity, or reproducibility guarantee.
+If a referenced image is missing or unreadable, request it and leave its visible
+details unresolved. Offer a text-only alternative only from supplied text,
+without claiming a match to the unavailable image.
 
 ## Read the reference as visual evidence
 

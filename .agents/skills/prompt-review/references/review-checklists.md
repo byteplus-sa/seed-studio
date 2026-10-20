@@ -1,8 +1,9 @@
 # Review Checklists
 
 Consolidated, actionable validation checklists for every prompt-writing skill in the
-repo. Each section is self-contained — pass the relevant section to the review
-sub-agent along with the prompt text.
+repo. Use only when the user explicitly invokes `/prompt-review`; it never
+gates prompt handoff or generation. Each section is self-contained for that
+manual review.
 
 ## Table of contents
 
@@ -274,13 +275,15 @@ Source skill: `seedance-prompt-25`
 45. **Seamless transitions**: two videos' roles, trigger action, transition process,
     and arrival state defined.
 
-46. **Speech fits duration.** For dialogue-driven shots, estimate speech length
-    ≈ spoken words / 2.2 (conversational) to seconds. If the `{}` script reads
-    far shorter than the API `duration`, the prompt must explicitly direct the
-    gap (pauses, hesitations, action beats); otherwise right-size the duration.
+46. **Speech fits duration.** Use measured delivery or a native-language-informed
+    read with pauses. Spoken words / 2.2 is an English planning estimate in
+    seconds, not a universal rejection rule; without delivery evidence, fit is
+    provisional. If delivery leaves a substantial gap in the API `duration`,
+    direct the gap (pauses, hesitations, action beats) or propose retiming.
     Budget onset separately (limited upstream observations: 0.5-1.5 s) and leave
-    at least 0.4 s after the last word. Supplied audio overrides estimates;
-    flag an overfull line without silently changing approved words.
+    at least 0.4 s after the last word as an initial allowance. Actual delivery
+    overrides estimates; flag an overfull line and propose retiming or splitting
+    without automatically changing approved words.
 
 **Prompt precision.** Check exact counts and stage positions for counted items,
 anatomical side plus frame side for critical hand actions, and plain generic
@@ -509,6 +512,13 @@ V3. **Source rights.** The package notes the user's confirmed rights for the
     footage and the people in it. A missing confirmation is CRITICAL. Do not
     suggest wording that routes around a provider rejection.
 
+V4. **Exact source timing (swap and restyle).** Preserve the source span,
+    frame timestamps, cuts and playback speed. Do not require 8n+1 frames or
+    whole-second rounding from a prior probe. Adapt only a separate copy for
+    a verified destination requirement, with user agreement and the timing
+    change recorded; retain original video and audio. Report output timing
+    mismatches rather than accepting a blanket tolerance.
+
 ---
 
 ## Seedance 2.5 restyle
@@ -549,18 +559,18 @@ medium. Mark N/A any item whose feature is absent and record why.
 
 6. **Route and limits.** The operation matches the route the user chose and
    what the destination UI offers (`model.supported_mode`); an unverified route is
-   labeled provisional and the request is a 480p probe. Route A uses 1–5
-   images; Route B sets the whole-second source duration and ratio.
+   labeled provisional. A proposed probe uses a supported low resolution
+   (480p when available) and is not a capability guarantee. Image counts,
+   roles, ratio and duration follow verified destination limits; no default
+   trim or rounding of exact source timing.
 
-7. **Same place.** A restyle keeps the source's place: the background is
-   restyled through an environment image of that place, or left as it is.
-   Naming a different location (a city street becoming a seaside village) is
-   MAJOR unless the user asked for one. A scene replacement or style word that
-   only tells the model to keep the source layout for the background is likely
-   to leave it photographic (probed); flag it MAJOR when a whole-frame restyle
-   is requested. Keeping positions for the subject and the furniture they use is
-   correct. A restyle that intentionally keeps the original background
-   photographic is N/A.
+7. **Same place.** A restyle keeps the source place and layout. An environment
+   image is optional, based on current inputs, user selection or observed
+   incomplete medium coverage. Its absence alone is not a finding. When used,
+   check approval, target-medium coverage, source geometry and stray objects;
+   it does not override the source layout. Naming a different location is
+   MAJOR unless requested. A no-image request stays valid without a guarantee
+   of coverage; do not prescribe an image or a location change automatically.
 
 8. **Video-to-video inputs.** Apply the shared items under
    [Video-to-video inputs](#video-to-video-inputs-swap-recast-restyle).
@@ -1381,9 +1391,11 @@ Source skill: `seedream-prop-asset`
     margin to canvas edges and neighboring views. A continuous seamless field
     separates views by empty space, without boxes, borders, labels or dividers.
 
-15. **Consistent scale.** Views share one scale and design, compared by object
-    height or wheel diameter rather than width; three-quarter front/back show
-    opposite flanks and the profile shows the chosen near flank.
+15. **Consistent scale.** Views share one scale and design, compared by whole
+    object height and an actual stable feature. Wheel diameter applies only
+    to wheeled objects; roof fixtures only to vehicles that have them.
+    Three-quarter front/back show opposite flanks and the profile shows the
+    chosen near flank.
 
 ### Text in image
 
@@ -1524,8 +1536,13 @@ Source skill: `seedance-music-video`
 
 ### Audio contract
 
-6. **Audio treatment explicit.** Native audio brackets, `@Audio N` timing
-   authority, or hybrid (reference + native generation) — never ambiguous.
+6. **Audio treatment explicit.** Distinguish native output audio from timing
+   conditioning. Use supported direct `@Audio N` or an optional, selected
+   black-sync `@Video N` only after verifying the destination's timing-input
+   capability; otherwise mark support unresolved. Container acceptance alone
+   does not prove audio conditioning. Existing-footage edits keep the source
+   scene as `@Video 1`. Confirm current-song permissions, never infer them
+   from a prior project or supplied file.
 
 7. **Lip-sync lines verbatim in `{...}`.** Match the audio master exactly —
    no paraphrasing, no reordering, no omitted lines.
@@ -1539,9 +1556,10 @@ Source skill: `seedance-music-video`
    used, the prompt includes an explicit instruction that no line may be
    skipped, shortened, mumbled, or reordered.
 
-10. **Native audio caveat acknowledged.** If `generate_audio` is true, the
-    prompt accounts for re-performance risk (the model re-performs, not copies,
-    the reference).
+10. **Native audio caveat acknowledged.** If native audio is requested, it may
+    re-perform or alter the reference. Exact-song delivery retains the original
+    master and checks audio equality separately from visible lip-sync playback;
+    neither carrier choice nor restoring the master guarantees mouth accuracy.
 
 ### Beat contract
 

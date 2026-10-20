@@ -79,14 +79,15 @@ them.
 - **Trim by route.** The package tells the user which span to trim to, and the
   muted master and saved audio come from that trimmed file so all three share
   one timeline.
-  - *Reference routes* set `duration`, which takes whole seconds. Trim to a
-    whole-second span.
-  - *Edit routes* (Object Swap, Restyle) lock duration to the source. The
-    official Seedance 2.5 guide says the output comes back up to about 0.3 s
-    shorter unless the input frame count is 8n+1 (for example 121 frames at
-    24 fps, 5.04 s). Ask for an 8n+1 frame trim. Upstream probes confirmed it:
-    a 120-frame input returned 113 frames, and a 121-frame input returned
-    exactly 121 frames.
+  - *Reference routes* use currently supported duration increments. Do not
+    round or trim the source silently; explain any required timeline
+    adaptation and obtain approval for the specific span.
+  - *Edit routes* (Object Swap, Restyle) preserve the selected source timeline.
+    Check the current destination's documented frame-count constraints before
+    preprocessing. Do not pad or trim to an empirical `8n+1` pattern from a
+    previous run. If the current route requires it, disclose the timing change
+    and obtain authorization; measure output duration rather than promising
+    exact frame-count preservation.
 - **Source videos that show a person are `asset://` videos.** Seedance rejects
   a realistic person in a video input, including an invented person in a
   text-generated clip, with `InputVideoSensitiveContentDetected.PrivacyInformation`
@@ -98,11 +99,12 @@ them.
 User-side trim recipe, for the package (the agent does not run it):
 
 ```bash
-ffmpeg -ss <start> -i <source>.mp4 -frames:v <8n+1> -map 0:v:0 -map 0:a:0? \
+ffmpeg -ss <start> -i <source>.mp4 -t <approved-duration> -map 0:v:0 -map 0:a:0? \
   -c:v libx264 -crf 16 -preset slow -c:a pcm_s24le <stem>_trim.mov
 ```
 
-For a reference route, replace `-frames:v <8n+1>` with `-t <whole seconds>`.
+For a reference route, use its currently supported duration increment. Any
+source timeline change must be explicit and authorized.
 
 ## Muted source master
 
@@ -154,8 +156,9 @@ ffmpeg -i <generated>.mp4 -i <audio>.wav -map 0:v:0 -map 1:a:0 \
 
 Checks to hand over with the package:
 
-- Edit outputs land within about 0.3 s of the source length (exact for an 8n+1
-  frame input); reference-route outputs match the requested whole seconds.
+- Measure decoded frame timestamps and duration against the approved source
+  or requested timeline. Report differences and reconcile audio explicitly;
+  do not assume a previous run's frame-count behavior holds.
 - Output frame rate may differ from the source. Audio aligns by time; check two
   or three sync points (hits, claps, plosives) by playback.
 - When a person speaks on screen, the mouth follows the source mouth motion.

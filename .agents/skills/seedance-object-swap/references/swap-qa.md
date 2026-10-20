@@ -34,8 +34,12 @@ each contact window and cut. Note each item as pass, fail or not applicable.
   halo.
 - **Everything else untouched.** Faces, wardrobe, accessories, other props,
   background, camera, cuts and mouth movement match `@Video 1`.
-- **Technical.** The output decodes cleanly, has no audio stream, and its
-  duration is within about 0.3 s of the source.
+- **Technical.** The output decodes cleanly and has no audio stream. Compare
+  duration, frame timestamps, cuts and playback speed with the exact source
+  span; a different frame rate does not authorize retiming. Report mismatches,
+  not a blanket 0.3 s tolerance or 8n+1 guarantee. Any input adaptation needs
+  a verified destination requirement, user agreement and a separate copy with
+  its timing change recorded.
 
 ## Audio checks after mux
 

@@ -119,6 +119,19 @@ or waits on it.
 Keep skill metadata concise and valid YAML. Move substantial conditional
 modes and examples into focused same-skill references.
 
+## Portable content
+
+Market, language, register, setting and identity come from the current brief,
+not the installed skill list or previous projects. Use a market-specific pack
+only when the user requests that market or confirms it in the brief. Ask when
+a missing choice materially changes the output; do not silently choose Taglish
+or any other language. Preserve approved dialogue verbatim.
+
+Keep shared skills independent of real local clients, prior production results,
+personal paths and private links. Use clearly fictional, varied examples and
+parameterized paths, never example values as runtime defaults. Reuse project
+assets or context only when explicitly selected for the current task.
+
 ## Prompt invariants
 
 - Never run `prompt-review` or spawn a review sub-agent on your own. Review

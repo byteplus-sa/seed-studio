@@ -3,7 +3,7 @@ name: seedance-music-video
 description: >-
   Write Seedance 2.5 music-video prompts from a song, artist brief, or requested
   format. Map song sections, beat density, performer intent, camera, lyric timing,
-  the black-sync video timing reference, native versus supplied audio, and natural
+  capability-checked timing references, native versus supplied audio, and natural
   scene duration into the six-part formula. Cover rap, dance, performance, narrative, abstract, vertical, and custom
   formats. Use for song-driven visual direction, lyric/performance videos, or
   music-video revisions. This prompt-only skill covers directing, reference roles, and audio workflow.
@@ -50,20 +50,12 @@ playback quality or user approval.
 - Music-video craft and beat-sync practice — format taxonomy, song-section
   energy mapping, and section-relative cut density (sources below).
 - Genre conventions — per-genre visual recipes, vertical-vs-landscape norms.
-- **Field-tested learnings from `mv-bryce-vine` (2026-08-20):** the timestamped
-  lyric timeline technique (section 3b), native audio re-performance behavior
-  (section 3a), the black-sync timing-reference carrier (section 3, take t04),
-  and ASR-based lyric
-  verification (section 3c) were derived from three generation takes where
-  large `{...}` blocks caused lyric dropouts.
-- **Field-tested black-sync follow-up (t04 vs t03 baseline):** carrying the
-  master inside a pure-black video container as `@Video 1` (section 3)
-  retained the source audio in the reference carrier and showed strong
-  transient alignment in the candidate native audio; adopted as the
-  timing-reference carrier, replacing the standalone `@Audio 1` file
-  entirely. Historical local evidence, not a capability guarantee.
+- Timing-reference support depends on the selected model, operation and
+  destination. Verify current capabilities before choosing an input role;
+  timestamp cues, reference carriers and ASR checks are techniques, not
+  guarantees of lyric coverage or lip sync.
 
-Key third-party sources (accessed 2026-08-20):
+Third-party craft references, not model capability evidence:
 [AI music-video production workflows](https://www.creativeainews.com/articles/how-to-make-ai-music-video-2026/),
 [Beat-synced 30s edits](https://aitoolsguidebook.com/en/articles/ai-music-video-tutorial/),
 and [music-video section-arc planning](https://blog.celtx.com/how-to-write-a-music-video-script/).
@@ -95,7 +87,7 @@ format                 which video type this is (and its direct/indirect address
 song map               each section → visual assignment, energy, and end state
 performance ratio      how much screen time is performer vs atmosphere per section
 beat contract          which audio events the cuts and camera land on
-audio treatment        native audio, or a master carried as the black-sync @Video 1 timing reference
+audio treatment        native audio, a supported master timing reference, or silent picture for post
 genre lock             one recipe controlling palette, lighting, camera, and rhythm
 exclusions             only contradictions that would break the format or genre
 ```
@@ -157,7 +149,10 @@ API rules or requirements for every song. Preserve a requested continuous take.
 
 ### 3. Set the audio contract
 
-Choose one of two audio modes; state it explicitly.
+State the requested output audio and, separately, whether a timing reference is
+needed. Confirm song permissions for this request before using a master;
+an uploaded file, carrier choice or prior project's approval does not establish
+permission.
 
 **Native audio (default when no master is involved).** Seedance co-generates
 audio and video in one pass. Use the bracket syntax in the Audio slot and
@@ -182,17 +177,29 @@ When the clip must sit under an existing master in post, add a direct control
 line so the model does not invent music (the generated file may carry no usable
 track — re-mux the master in assembly).
 
-**Black-sync video reference (required when the performance follows a supplied
-or Seed Audio master).** Carry the song segment in a pure-black video container
-and bind it as `@Video 1`, rather than sending a standalone `@Audio 1` song
-reference. This is the workflow's timing carrier, not a guarantee of copied
-soundtrack or exact lip sync. Historical black-sync evidence is local experience,
-not a universal model capability claim.
+**Supplied-master timing reference (when needed).** Select the reference
+transport for the current request from the destination's verified capabilities:
+
+- Use `@Audio N` when the chosen model and operation support song audio as
+  timing input.
+- A black-sync video carrier is optional when the destination supports using
+  a video's audio for timing and the user selects that approach. Container
+  acceptance alone does not prove the model uses its audio. Do not force this
+  carrier or replace a supported direct audio input by default.
+- If neither is verified or available, keep the prompt provisional with
+  supplied event or lyric cues and plan original-master assembly. Do not claim
+  audio conditioning or exact lip sync.
+
+These are reference-role choices, not instructions to submit a job. Keep
+generation transport and approval with the caller's current-request contract.
+No input route guarantees a copied soundtrack or exact mouth timing.
 
 Preparation should preserve the source master and record each segment's exact
 start, end, duration, and audio provenance. Prepare the carrier within the
 authorized production workflow; if only a prompt is requested, describe the
-required asset without claiming it exists.
+selected asset without claiming it exists.
+
+If a black-sync carrier is selected and supported, use this preparation contract:
 
 | Property | Contract |
 | --- | --- |
@@ -209,7 +216,16 @@ re-encoding, treat that file as a derived timing reference and preserve the
 untouched master for final assembly. Do not label a re-encoded carrier as
 bit-identical to the master.
 
-Use this reference-role block:
+For supported direct audio, use this reference-role block:
+
+```text
+[Song Timing Authority]
+@Audio 1 supplies the approved song segment. Its vocals, pauses and musical
+accents guide visual pacing and requested lip sync during designated
+performance shots. Render the directed scene imagery.
+```
+
+For a selected, supported black-sync carrier, use this block instead:
 
 ```
 [Song Timing Authority]
@@ -231,8 +247,8 @@ original master and copy its audio without re-encoding where compatible. Verify
 that the final audio matches the master, independently of any candidate
 soundtrack. This also avoids excerpt-boundary gaps and repeated audio packets.
 
-The black-sync rule applies to song-led scene creation. Dialogue-only audio
-references retain their own contract. For edits to existing music-video footage,
+These options apply to song-led scene creation. Dialogue-only audio references
+retain their own contract. For edits to existing music-video footage,
 `@Video 1` is the source scene and preserves its actions, camera path, cuts,
 duration, and existing mouth motion; additional images specify the requested
 visual change. Do not replace that source with a blackout carrier. Restore the
@@ -240,7 +256,7 @@ original song after the picture edit and re-check mouth timing.
 
 ### 3a. Candidate audio is not exact master reproduction
 
-When native audio is requested with a black-sync reference, vocals and music
+When native audio is requested with a supplied timing reference, vocals and music
 may be re-performed or altered. Treat that soundtrack as a candidate, not a copy.
 Keep the supplied master as the final soundtrack authority whenever exact
 fidelity is required. Audio equality verifies sound preservation; it does not
@@ -253,13 +269,13 @@ is critical, **do NOT** group all lyrics into one or two large `{...}` blocks.
 Instead, bind each lyric line to its own timestamped slot:
 
 ```
-[2-4 seconds] { I used to pray before I went to bed, }
-[5-7 seconds] { back when I was like eleven or ten. }
-[7-8 seconds] { I don't remember the facts, }
+[2-4 seconds] { We trace the dawn in paper blue, }
+[5-7 seconds] { each folded road is something new. }
+[7-8 seconds] { The light comes through. }
 ```
 
-(Example lines quote the rights-holder-authorized `mv-bryce-vine` project
-track; the technique itself is lyric-agnostic.)
+Original illustrative lyrics and hypothetical timings, not a measured track.
+Replace them only with the current request's approved lyrics and timing evidence.
 
 Add an explicit mandate:
 
@@ -295,17 +311,17 @@ No line may be skipped, shortened, mumbled, or reordered.
    `[X-Ys] { line }` slots. Untimed drafts may use ordered lyric cues; do not invent
    measured timings without the audio.
 
-Example ASR-to-timeline conversion:
+Hypothetical ASR-to-timeline conversion with an original example phrase:
 
 ```
-# ASR returns word-level timestamps:
-"ever" start=17170ms  "really" start=17530ms  "took" start=17810ms
-"charge" start=18170ms  "like" start=18530ms  "a" start=18690ms
-"wiring" start=18890ms  "fee" start=19450ms end=19730ms
+Illustrative word timestamps:
+"we" start=17170ms  "fold" start=17530ms  "the" start=17810ms
+"dawn" start=18170ms  "in" start=18530ms  "paper" start=18890ms
+"blue" start=19450ms end=19730ms
 
-# Verified phrase interval: 17.170–19.730s; retain as evidence.
-# Separate simplified prompt window:
-[17-20 seconds] { ever really took charge like a wiring fee, }
+Illustrative phrase interval: 17.170–19.730s; verify against actual audio.
+Separate simplified prompt window:
+[17-20 seconds] { we fold the dawn in paper blue, }
 ```
 
 ### 3c. Audio and lip-sync verification
@@ -437,15 +453,17 @@ treatment on top of a genre recipe.
 
 - Use **original music by default**. Reproducing a real artist's copyrighted
   song in a prompt or as a timing reference requires documented permission from
-  the rights holder (the `mv-bryce-vine` project runs under such permission);
-  without it, never reproduce a copyrighted song and never write artist-name
-  or copycat prompts.
+  the rights holder for the current song and intended use. Never infer this
+  from a prior project, an uploaded track, a filename or a generation request.
+  With permission unresolved, ask; offer an original, non-imitative alternative
+  without reproducing the protected song.
 - Voice-cloning a real, named artist's voice requires written consent from the
   artist or estate.
 - Keep `watermark: false` where the tool supports it; enable the AIGC watermark only when the
   user explicitly requests it.
-- Generate the music master with Seed Audio (or another original source) so the
-  release stays distribution-clean.
+- When a new master is requested, propose original music from an approved
+  source. Generation alone does not establish distribution rights; confirm
+  applicable permissions and terms for the intended use.
 
 ## Exclusion rules
 
@@ -469,8 +487,10 @@ Before returning the prompt, verify:
 3. The beat contract names the audio events and their visual relationship.
 4. Restraint, repetition, counterpoint or escalation is justified by the supplied
    track/brief; no chorus, bridge or energy change is invented.
-5. Audio intent is explicit. Song-led creation uses black-sync `@Video 1`,
-   not bare `@Audio 1`; existing-footage edits use the source scene as `@Video 1`.
+5. Audio intent and current-request song permissions are explicit. Select
+   direct audio or an optional black-sync carrier only with verified support;
+   otherwise leave timing conditioning unresolved. Existing-footage edits
+   keep the source scene as `@Video 1`.
 6. Assigned lip-sync lines appear verbatim in `{...}` and match the supplied
    segment. Existing-footage edits preserve source mouth motion and require
    playback checks against the master afterward.

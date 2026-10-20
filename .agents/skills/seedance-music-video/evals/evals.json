@@ -67,14 +67,14 @@
     {
       "id": 6,
       "prompt": "Write a 20-second Seedance prompt for a music video where the singer's vocals must be lip-synced to an existing original track. The user wants the mouth to match the voice exactly and the audio to drive the pacing.",
-      "expected_output": "A black-sync directing prompt with scoped lip sync, optional native audio, and the original master retained for exact final soundtrack delivery.",
+      "expected_output": "A directing prompt with scoped lip sync, capability-checked timing input, optional native audio, and the original master retained for exact final soundtrack delivery.",
       "files": [],
       "expectations": [
-        "The supplied song segment is carried in pure-black @Video 1 as timing authority, without promising exact model audio reproduction.",
+        "Selects supported direct audio or an optional black-sync carrier from current destination capabilities; leaves unverified conditioning unresolved without promising exact model audio reproduction.",
         "Native audio is optional; no mandatory generate_audio setting or transport/submission instructions are introduced.",
         "Missing lyrics or timestamps stay unresolved; supplied verified sung lines are preserved in curly braces.",
         "Final audio preservation and visible lip-sync playback are separate checks; restoring audio is not claimed to fix mouth motion.",
-        "No bare @Audio 1 song reference is used."
+        "Does not require a black-sync carrier or reject a supported direct @Audio 1 song reference."
       ]
     },
     {
@@ -197,14 +197,47 @@
     {
       "id": 17,
       "prompt": "Explain the workflow for a full-song video using my supplied AAC master. I need exactly unchanged audio. The timing excerpts may be packet-aligned. Do not generate anything.",
-      "expected_output": "Black-sync reference preparation and uninterrupted original-master assembly with explicit audio verification.",
+      "expected_output": "Capability-checked timing-reference choices and uninterrupted original-master assembly with explicit audio verification; black-sync preparation is conditional on selection and support.",
       "files": [],
       "expectations": [
         "Stream-copy compatible audio and preserve the untouched master; no unconditional re-encoding.",
         "Record excerpt offsets and actual durations rather than claiming sample-exact compressed trimming.",
         "Final assembly retains continuous master audio without unsolicited padding, normalization or crossfades.",
         "Audio equality and full decode checks are separate from playback/lip-sync review.",
-        "No transport or submission instructions."
+        "No generation transport or submission instructions; a black-sync carrier is optional, not required."
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "I own this original song and authorize its use here. The chosen destination supports song timing through direct @Audio 1, but not video-audio conditioning. Write a performance prompt from my supplied lyric cues; no tools or generation.",
+      "expected_output": "A direct-audio timing role using only the supported input and current-request authorization.",
+      "files": [],
+      "expectations": [
+        "Uses @Audio 1 as song timing authority and does not demand a black-sync video.",
+        "Preserves supplied lyric cues without inventing measured timestamps.",
+        "Keeps original-master delivery and lip-sync verification separate; does not submit anything."
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "For this authorized original song, I selected a black-sync carrier. The destination confirms it can use video audio for timing. Explain the carrier role and exact-audio finishing; don't prepare files or generate.",
+      "expected_output": "A conditional black-sync role with source provenance and original-master finishing, not a universal recipe.",
+      "files": [],
+      "expectations": [
+        "Uses the carrier because it was selected and supported for this request, not because every song needs it.",
+        "Keeps black frames out of scene imagery and makes no exact lip-sync or soundtrack-copy guarantee.",
+        "Preserves original audio for final assembly and distinguishes derived excerpts from untouched master evidence."
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "Use this commercial song for our launch video. Another project had permission, so assume that covers us. The destination accepts MP4 uploads but I don't know whether it uses the audio. Write the handoff only.",
+      "expected_output": "Unresolved current-song authorization and timing support, with an original-music alternative.",
+      "files": [],
+      "expectations": [
+        "Does not infer current rights from another project, upload availability or the requested use; asks for permission covering this song and launch.",
+        "Does not treat MP4 acceptance as verified audio conditioning or automatically require black-sync.",
+        "Offers an original non-imitative alternative without reproducing protected lyrics or claiming generation occurred."
       ]
     }
   ]

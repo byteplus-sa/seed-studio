@@ -2,9 +2,9 @@
 
 Settings and references to give with the pasted block: the selected sheet as
 `@Image 1` (reference image), the voice clip as `@Audio 1`, audio on, 1080p,
-no watermark. Estimate duration as script words ÷ 2.2 + about 1s speech onset
-plus at least 0.4s final tail, rounded up (≤30); confirm against the intended
-performance and current destination limits. Hand off the sheet
+no watermark. Derive duration from measured or language-aware delivery,
+including onset and final-word tail, within current destination limits.
+Hand off the sheet
 only after the consent and real-likeness gates are recorded. Placeholders in
 angle brackets (`<Name>`, `<possessive>`) are filled before the prompt is frozen.
 
@@ -13,9 +13,13 @@ in its parameter note. Use performance and framing descriptions in the prompt;
 format exact dialogue as `Dialogue language: <language and accent>. <Name>
 says: {<full script>}`.
 
+These are optional framing recipes. Resolve topic, language, accent, setting,
+delivery and final expression from the current brief. A news style, statistic,
+smile or studio is not assumed for an unrelated presenter script.
+
 ## A. Locked take for split-screen (ratio 1:1)
 
-The square frame crops cleanly to the 1080×960 lower half and to the framed card.
+Choose the source crop and safe area from the actual destination layout.
 
 ```
 [Character]
@@ -25,7 +29,7 @@ The square frame crops cleanly to the 1080×960 lower half and to the framed car
 A small studio with a dark charcoal gradient backdrop, slightly lighter behind <possessive> head and falling off to near-black at the edges. A small black lavalier mic is clipped at the center of <possessive> sweater collar.
 
 [Shot]
-<Name> delivers a fast, energetic tech-news explainer straight to camera in one continuous take, in a centered medium close-up framed from just above the top of <possessive> head to just below the sternum. <Name> keeps direct eye contact with the lens the whole time. While speaking, <Name> uses natural open-hand explanatory gestures at chest height: <2–4 gestures tied to quoted words, each hand named by anatomy and frame side, e.g. "on the quoted key word, the left hand, frame-right, opens palm-up">. Brows lift on key words, head gives small emphatic nods, and <possessive> lips form every syllable in sync with the dialogue. <Possessive> hands rest loosely together at the bottom edge of frame between gestures. After the final word, <Name> holds a relaxed closed-mouth expression until the clip ends.
+<Name> delivers <requested subject and performance> straight to camera in one continuous take, in a centered medium close-up. Use <brief-selected gestures tied to exact script words, with anatomical and frame sides>. Keep gestures inside the delivery crop and lips synchronized with the dialogue. After the last word, hold <brief-selected final expression and pose> to the end.
 
 [Style and camera]
 Soft frontal key light slightly above eye level with gentle falloff into the dark background, clean 50mm-equivalent look, neutral slightly cool studio grade with natural skin tones. Static locked-off medium close-up at eye level, no camera movement, no cuts.
@@ -34,7 +38,7 @@ Soft frontal key light slightly above eye level with gentle falloff into the dar
 @Audio 1 defines <Name>'s voice timbre, accent and pacing only; do not reuse any words from @Audio 1.
 
 [Audio]
-Dialogue language: <language and accent>. <Name> says in fast, confident, energetic news-explainer delivery, with a punchy rise on <key phrase> and a brief beat before the final stat: {<full script>}
+Dialogue language: <requested language and accent>. <Name> says with <brief-selected delivery, emphasis and pauses>: {<full approved script>}
 Quiet studio room tone only. No background music. No subtitles or on-screen text.
 ```
 
@@ -51,7 +55,7 @@ vertical framing, <Name> centered and facing the camera throughout." and
 ## Notes
 
 - Budget for speech onset and a complete final word with a quiet tail. The
-  2.2 words/s estimate is a planning heuristic; do not silently accelerate or
+  word-count estimate is language-specific; do not silently accelerate or
   rewrite an approved script to fit. Split it or request an authorized edit.
 - Anatomical left is frame-right for a front-facing, unmirrored presenter;
   establish orientation first if the shot is mirrored or the presenter turns.

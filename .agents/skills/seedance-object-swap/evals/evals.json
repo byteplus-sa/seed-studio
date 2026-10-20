@@ -38,6 +38,28 @@
         "It proposes either sequential single-class swaps, with the user judging each result before the next, or a Motion Transfer recast, and explains the difference.",
         "Nothing is generated or submitted."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "Swap the blue mug in our owned stop-motion clip for this approved orange mug. No people are visible. It is exactly 120 frames at 24 fps, with the set-down on the final frame. The selected edit destination supports this input. Preserve all timing and the saved audio; prompt only.",
+      "expected_output": "A single-object swap preserving the full five-second source span and final contact, without an empirical frame-count trim.",
+      "files": [],
+      "expectations": [
+        "Preserves exact source timing and the final-frame set-down; does not change the input to 121 or 113 frames.",
+        "Uses the muted source and original-audio post route, with contact and timeline inheritance preserved.",
+        "Checks actual output timing rather than promising equal frame counts or accepting a blanket 0.3-second loss."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "The current destination documentation requires an 8n+1 frame input for my 120-frame owned product clip. I have not approved any timing change. Explain the next step without generating or modifying files.",
+      "expected_output": "A constraint-driven adaptation proposal that keeps the original untouched and asks for agreement.",
+      "files": [],
+      "expectations": [
+        "Distinguishes this verified destination requirement from a universal frame-count rule.",
+        "Does not silently trim, pad or retime; explains the timing tradeoff and asks for agreement before making a separate copy.",
+        "Preserves the original video and audio and records any agreed adaptation; does not promise exact model output timing."
+      ]
     }
   ]
 }

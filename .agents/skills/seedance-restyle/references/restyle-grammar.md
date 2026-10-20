@@ -16,7 +16,7 @@ routing, rules and the prompt-only boundary.
 | Input | Owns | Supplies none of |
 | --- | --- | --- |
 | `@Video 1` muted master | Subjects and their count, their screen positions, actions, poses, props, the furniture they use, camera path, cuts, timing, and which place the scene is in | Rendering medium, surface texture, grade |
-| Environment `@Image N` | How the same place looks in the target medium: street, buildings, sky, background furniture | People, the place itself (it must depict the source's place), props the shot lacks |
+| Optional environment `@Image N` | How the same place looks in the target medium: street, buildings, sky, background furniture | People, source layout, the place itself (it must depict the source's place), props the shot lacks |
 | Style `@Image N` | Medium, palette, line quality, texture, light quality | Subjects, layout, characters, text |
 | Identity anchor `@Image N` | One character's design in the target medium | Pose, background, lighting of the sheet |
 | Text | The style block, content inventory, guards | Motion already in `@Video 1` |
@@ -25,18 +25,17 @@ Describe content only as an inventory that pins who and what must survive.
 Retelling every move conflicts with the video.
 
 **The place stays the same.** The background is restyled, never replaced with a
-different location. Words alone did not do it: five words-only runs that kept the
-place (restyle wording, every surface named, "same positions", "same layout")
-left the street photographic. Describing a different place in words did rebuild
-the frame, but moved the scene from a city to the sea, so it is not a restyle.
-Use an environment image of the same place.
+different location. Use the source inventory and a whole-frame medium lock.
+An environment image is optional, selected from the current inputs or as a
+remedy for observed incomplete coverage. It does not take layout authority
+from the source, and its absence alone is not a defect.
 
 ## Route A: full-frame edit
 
 ```text
 [Edit Goal]
-Edit @Video 1. Replace the scene with the <style name> <the source's place> from
-@Image 1, and restyle <the people and props> as <style name>. Keep every
+Edit @Video 1. Restyle the entire frame, including <the source's place>,
+<the people and props>, as <style name>. Keep every
 subject, action, prop, camera and timing from @Video 1.
 
 [Source Video Role]
@@ -44,16 +43,9 @@ subject, action, prop, camera and timing from @Video 1.
 props>, <the furniture the subject uses>, the static camera, <their> poses and
 actions, and event order.
 
-[Environment Reference Role]
-@Image 1 defines the whole environment: <the source's place in the target
-medium: city, buildings, furniture, plants>. Use it for <street, buildings,
-sky, bench, shrub, table surface>. Use no person from it. Do not use its <extra
-objects it holds>. The only objects on <surface> are <the source's objects>, one
-of each, never a second or duplicated copy.
-
 [Edit Scope]
-Replace the scene with @Image 1: <each background element> is the modelled
-<medium> of @Image 1, in the same positions as the source. <Subject>, <wardrobe
+Restyle <each background element> in <medium>, in the same positions as the
+source. <Subject>, <wardrobe
 and accessories> and <props> are also rendered in <medium>. Exactly <N> people
 appear in the foreground; <background extras>. <Source text surface> shows
 <abstract shapes>; no lettering appears anywhere.
@@ -76,20 +68,28 @@ Silent output. Sound is added in post.
 Optional blocks, added before `[Edit Scope]`:
 
 ```text
+[Environment Reference Role]    (only with an approved environment image)
+@Image <N> supplies <the source's place> in <medium>: <relevant surfaces>.
+@Video 1 retains the place, geometry, layout and object inventory.
+Use no people or <observed stray objects> from the image.
+
 [Style Reference Role]          (only with style images)
-@Image 2 defines only the visual style: <medium, palette, line, texture,
+@Image <N> defines only the visual style: <medium, palette, line, texture,
 light quality>. Use none of its subjects, layout or characters.
 
 [Identity Anchors]              (only with anchors)
-@Image 3 defines <Name>'s design in <style>: <hair shape, wardrobe colours>.
+@Image <N> defines <Name>'s design in <style>: <hair shape, wardrobe colours>.
 <Name> is <observable descriptor in @Video 1>.
 ```
 
+Number only the images actually bound, sequentially.
+
 ## Route B: reference
 
-Use when a Route A probe keeps photographic pixels or the duration must be
-exact. Set `duration` to the whole-second source length and `ratio` to the
-source.
+Consider a supported reference route when the current edit result fails coverage
+or timing. Preserve exact source duration and ratio where supported. Do not
+round to whole seconds or promise exact output; a verified constraint requires
+an agreed, documented adaptation on a separate copy.
 
 ```text
 Create a new video using @Video 1 as the strict visual and temporal reference.
@@ -102,15 +102,15 @@ screen positions, and every pose, gesture and contact in the same order and at
 the same time as in @Video 1.
 
 [Reference content]
-@Video 1 defines only the motion, timing, screen positions and camera. Use none
-of its photographic surfaces, faces, wardrobe or location.
+@Video 1 defines the subjects, identity cues, wardrobe shapes and colours,
+props, place, layout, motion, timing, screen positions and camera. Redraw
+their surfaces in the target medium rather than copying photographic texture.
 - 0:00 to 0:NN: <what happens>
 - 0:NN to 0:NN: <what happens>
 
 [World]
-@Image 1 defines the whole world: <the source's place in the target medium>.
-Everything in the video is modelled <medium> in the same layout. Do not use its
-<extra objects it holds>. The only objects on <surface> are <the source's
+Redraw <the source's place> in <medium>, keeping the source layout.
+The only objects on <surface> are <the source's
 objects>, one of each, never a second or duplicated copy.
 
 [Characters and props]
@@ -125,12 +125,14 @@ foreground; <background extras>. No lettering appears anywhere.
 Silent output. Sound is added in post.
 ```
 
+If an approved environment image is bound, add the optional Environment
+Reference Role from Route A; do not invent a binding when none is supplied.
+
 ## A different place, only when requested
 
-When the user explicitly asks for a different location, a words-only block
-rebuilt the whole frame in a 2026-10-04 probe on both routes (a clay seaside
-village in place of a Paris street). Use it only on request, never as a way to
-restyle the background of the same scene:
+When the user explicitly asks for a different location, mark that as an
+additional location change rather than a same-place restyle. Use this block
+only on request, never as a workaround for incomplete medium coverage:
 
 ```text
 [Location Change]
@@ -171,8 +173,9 @@ A single-take restyle without recurring characters needs no anchors.
 
 ## Worked example: terrace clip to claymation
 
-Verified upstream on 2026-10-04: edit route, 480p, 121-frame muted source bound
-as an `asset://` video, one environment image of the same place.
+Hypothetical example, not generated-result evidence. The user has selected an
+environment image of the same place; the edit route and parameters remain
+subject to destination capability verification.
 
 Source: a 5 s, 16:9 locked-off clip. A woman with shoulder-length dark hair, a
 navy jacket over a cream top and a small gold hoop earring sits at a small round
@@ -208,16 +211,16 @@ Edit prompt, with the image bound as `@Image 1`:
 
 ```text
 [Edit Goal]
-Edit @Video 1. Replace the scene with the claymation café terrace from @Image 1, and restyle the woman and her props as plasticine claymation. Keep every subject, action, prop, set layout, camera and timing from @Video 1.
+Edit @Video 1. Restyle the entire café terrace, the woman and her props as plasticine claymation, using @Image 1 for the environment's medium. Keep every subject, action, prop, set layout, camera and timing from @Video 1.
 
 [Source Video Role]
 @Video 1 is the sole editing master. It defines the woman with shoulder-length dark hair in a navy jacket over a cream top, the red aluminium can in her right hand, the white espresso cup, the small round café table, the static camera, her poses and actions, and event order.
 
 [Environment Reference Role]
-@Image 1 defines the whole environment: a plasticine café terrace with a round café table, a curved wooden bench behind it, a pressed-clay shrub at the right, and a street of cream stone buildings with balconies and coloured clay shop fronts. Use it for the street, buildings, sky, bench, shrub and table surface. Use no person from it. Do not use its chair, ashtray, saucer or second cup. The only objects on the table are the white espresso cup and the red can from @Video 1, one of each, never a second or duplicated copy.
+@Image 1 supplies plasticine surfaces for the café terrace: the street, buildings, sky, bench, shrub and table. @Video 1 retains the place, geometry, layout and object inventory. Use no people or extra objects from the image. The only objects on the table are the white espresso cup and the red can from @Video 1, one of each, never a second or duplicated copy.
 
 [Edit Scope]
-Replace the scene with @Image 1: the street, the buildings, the sky, the wooden bench, the shrub and the table are the modelled clay of @Image 1, with visible thumbprints and tool marks, in the same positions as the source. The woman, her navy jacket and cream top, her small gold hoop earring, the red can and the white espresso cup are also modelled in plasticine. One person appears in the foreground; the distant passers-by stay as tiny blurred clay figures. No lettering appears anywhere, including on the can.
+Restyle the street, buildings, sky, wooden bench, shrub and table with the clay surfaces of @Image 1, with visible thumbprints and tool marks, keeping the source geometry and positions. The woman, her navy jacket and cream top, her small gold hoop earring, the red can and the white espresso cup are also modelled in plasticine. One person appears in the foreground; any distant passers-by in the source retain their count and positions as tiny blurred clay figures. No lettering appears anywhere, including on the can.
 
 [Timeline Inheritance]
 Every pose, gesture and contact keeps the timing and screen position of @Video 1: the can held at the start, lifted to her lips at about 0:01, drunk from until about 0:03, and set on the table by about 0:04.5. A slightly stepped stop-motion cadence still hits each of those poses on the beat.
@@ -232,11 +235,13 @@ Plasticine claymation throughout: visible thumbprints, fingerprint ridges and to
 Silent output. Sound is added in post.
 ```
 
-Parameter block: `omni_reference_task_type: edit`, `generate_audio: false`,
-`resolution: 480p`, `watermark: false`; `ratio` and `duration` omitted.
+Candidate parameter block, only when supported:
+`omni_reference_task_type: edit`, `generate_audio: false`,
+`resolution: 480p`, `watermark: false`; omit `ratio` and `duration` only when
+the destination inherits both from the source.
 
-Result: the street, buildings, bench, shrub and table became clay and it stayed a
-Paris café terrace, while the woman, can and cup kept their motion and timing;
-121 frames in, 121 out. The same image on the reference route gave the same kind
-of result. The street's geometry follows the image, not the source plate. Once
-the user accepts the take, they mux the saved source audio.
+Acceptance criteria: the whole frame reads as clay while the same terrace
+geometry, people, props, motion and exact timing survive. Check for reference
+leakage; the environment image must not replace the source layout. No output
+frame count or quality is guaranteed. Once the user accepts the take, they
+mux the saved source audio and check synchronization.

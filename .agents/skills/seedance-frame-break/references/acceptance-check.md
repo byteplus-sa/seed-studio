@@ -5,8 +5,7 @@ take. This workspace ships no pixel-measurement tooling, so the check is made by
 eye from frames: the user runs it, or the agent runs it when it can inspect the
 take. Judge bar motion, break-out timing, limb continuity and the camera from
 frames, and treat a video-understanding model's summary as secondary evidence
-only (observed upstream: it reported no overlap and a moving camera on clips
-whose frames showed overlap and a locked camera).
+only. Do not substitute a summary for accessible frame evidence.
 
 - [Procedure](#procedure)
 - [Frame extraction for inspection](#frame-extraction-for-inspection)
@@ -19,11 +18,9 @@ whose frames showed overlap and a locked camera).
 ## Procedure
 
 1. Watch the take once at full speed with sound, as a viewer would.
-2. For every stage of the prompt, step through that stage's time window at about
-   12 fps and read every frame in order. This step is mandatory: a sudden scale
-   jump or limb swap inside a stage is found only this way. Sparse sampling (a
-   frame every 0.5 s, or an 8 fps scan) did not flag the observed bar-edge
-   failure and would hide a one-second limb pop-in.
+2. For every stage, use a 12 fps sheet to locate crossings and suspected defects,
+   then step through native frames around those moments. A sampled sheet is not
+   proof that every frame was inspected and can miss brief defects.
 3. Inspect the frames at every overlap moment and at each stage End state, and
    inspect the backdrop in several frames for lettering, logos, glow or flare.
 4. Listen to the audio.
@@ -70,9 +67,9 @@ single frame at full size, use `-ss <seconds> -i take.mp4 -frames:v 1 frame.png`
 
 | Gate | Target | Evidence |
 | --- | --- | --- |
-| Bar thickness | Near 12 percent of frame height, about 130 px on a 1920x1080 frame; upstream takes ran 9.4 to 18.9 percent, and 17 to 21 percent in a rejected take (observed) | Measure the bar height in an image viewer and divide by the frame height |
-| Top and bottom match | Within about 1 point of frame height, about 11 px on 1080p | Same measurement |
-| Break-out moments | Drawn subject 3 to 5, photoreal 1 to 3 (observed) | Count the separate overlap moments |
+| Bar thickness | Brief-defined; the template suggests about 12 percent, not a universal acceptance boundary | Measure the bar height in an image viewer and divide by the frame height |
+| Top and bottom match | Compare with the brief's intended symmetry; choose any tolerance for the current output | Same measurement |
+| Break-out moments | The count requested by the brief, not a style-based success rate | Count and inspect the separate overlap moments |
 | Backdrop | Calm, darker than the subject, no bar-like objects | Frames |
 | Timing | End states within about 0.5 s of the stage budget; timestamps are allocations | Frames |
 | Unrequested effects | No glow arcs or flare around near-lens parts | Frames |
@@ -95,8 +92,8 @@ before and after any suspect moment.
 | A dark costume, robe or shorts merges with the bar so the bar looks thicker for a moment | Ambiguous: dark clothing against black cannot be separated from a thicker bar by eye alone. Check the far ends and the frames either side; if it is still unclear, treat it as needing another take |
 | A flare, glow or light streak reaches a bar | An unrequested effect (soft gate), not bar motion |
 
-Bar-edge distortion appeared when a limb or head came very close to the lens, so
-look hardest at the frames of each near-lens peak.
+Inspect each near-lens peak because occlusion can make edge comparisons
+ambiguous; proximity alone does not establish a cause of bar motion.
 
 ## Break-out check
 
@@ -104,14 +101,14 @@ A take whose bars are perfectly static can still fail if the subject starts over
 a bar or stays over one for most of the clip: it reads as standing outside the
 frame, not as a frame break.
 
-- **Starts inside**: in the first quarter second, nothing of the subject covers
-  either bar. A subject over a bar at the first frame fails.
-- **Intermittent**: the subject is over a bar for part of the clip, not most of
-  it. Upstream, accepted takes overlapped a bar in about 15 to 65 percent of
-  frames and a take rejected for standing outside the window overlapped in about
-  80 percent. Treat more than about 70 percent as a fail and 60 to 80 percent as
-  a judgement call to settle by reading the frames. This is a small-sample
-  calibration, not a proven default.
+- **Starts inside**: inspect the opening specified by the prompt. A subject
+  already over a bar at the first frame does not meet an inside-window opening.
+- **Intermittent**: inspect each requested crossing and return. There is no
+  universal overlap-duty cutoff, pixel tolerance or pass percentage. Any numeric
+  target must be selected for the current brief, resolution and measurement
+  method, supported by representative evidence, not a previous take's outcome.
+  A duration fraction alone cannot distinguish deliberate choreography from a
+  subject permanently standing outside the window.
 - **Absent**: a clip with no overlap at any frame is the effect-absent case and
   fails the required break-outs gate.
 
@@ -122,5 +119,4 @@ frame, not as a frame break.
 - Glow, flare or backdrop light inside a bar band can look like a break-out.
 - Limb continuity and the camera lock are judged only by reading the stage
   frames in order.
-- The tolerances above are small-sample guidance from upstream takes, not a
-  verified standard.
+- Template numbers are design suggestions, not validated QA thresholds.
