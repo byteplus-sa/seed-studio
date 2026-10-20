@@ -165,6 +165,42 @@
         "Preserves source shot timing and keys, separating observed mismatches from proposed prompt repairs.",
         "Does not report unavailable inspection as a passed comparison or generate a new take."
       ]
+    },
+    {
+      "id": 15,
+      "prompt": "We already saved an approved breakdown and motion-review.json for the source. Compare a returned take with static hands against that source, propose a repair, and save the diagnosis without changing source evidence.",
+      "expected_output": "A separately saved comparison-mode record using the existing schema, with no merge into source motion.",
+      "files": [],
+      "assertions": [
+        "Sets mode to comparison and includes global_diffs, missing_or_wrong and concrete_fix_prompt_text as required by motion-review-schema.json.",
+        "Keeps source shot keys, times and observed motion in source fields, with defective take behavior confined to deviation fields.",
+        "Uses new motion-comparison-vNN files and never overwrites motion-review.json, its notes or the approved breakdown.",
+        "Does not merge comparison motion into shots[].motion; accepted repairs affect a new prompt revision only."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Analyze the original music mix in a video with audio stream 1 for music and stream 2 for commentary. Both last 12 seconds. The native player does not report which track it plays.",
+      "expected_output": "A track-bound audio record for absolute stream index 1, using explicitly mapped audio or leaving track completeness unresolved.",
+      "files": [],
+      "assertions": [
+        "Records stream index 1 and the user-selected original mix, rather than inferring identity from the common container hash or duration.",
+        "Requires verified playback selection or extraction with explicit mapping to 0:1 and derived input provenance.",
+        "Binds duration, offsets and coverage to the selected track; does not combine observations from commentary.",
+        "Does not claim complete review from native playback whose selected track is unknown."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Only my external video-capable reviewer can inspect the reference. Give me the complete paste-ready analysis request. I will return its output; keep our existing breakdown schema unchanged.",
+      "expected_output": "A standalone request for schema-valid breakdown JSON plus separate inspection evidence, without new schema fields.",
+      "files": [],
+      "assertions": [
+        "Includes the full breakdown schema and evidence-return instructions in the external handoff.",
+        "Scopes JSON-only formatting to the Breakdown output and explicitly requests separate Evidence notes with capabilities, provenance, ranges, sampling and uncertainty.",
+        "Requests track identity and actual listening coverage for audio claims, while allowing unavailable facts to stay unknown.",
+        "If the external reviewer returns JSON alone, requests missing evidence from that inspection and does not fabricate coverage or declare completeness."
+      ]
     }
   ]
 }

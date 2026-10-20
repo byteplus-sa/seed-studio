@@ -52,7 +52,7 @@ Resolve a mode before analysis and record what was actually inspected:
 | **Agent frame extraction** | Extraction tools and image perception are available | Extract frames per [frame-extraction.md](references/frame-extraction.md): measured cuts, per-shot frames, motion bursts. Read them as images. |
 | **Agent video pass** | Your client can watch the provided video | Analyze directly with the analysis prompt |
 | **User keyframe set** | No extraction tool and you cannot watch the video | Ask the user for one frame per shot (mid-shot preferred) plus total duration, aspect ratio, and any audio notes. Read the frames as images. |
-| **External pass** | The user can run a video-capable tool | Hand the user the analysis prompt to paste there; they return the JSON |
+| **External pass** | The user can run a video-capable tool | Hand over the complete analysis prompt and schema; collect both breakdown JSON and separate inspection evidence |
 | **Caller-selected analysis tool** | Native perception is insufficient and a permitted capable tool is available | The caller owns tool use and any necessary input transfer. Apply the same evidence checklist to returned observations; record the capability gap and actual tool provenance. |
 
 **Never claim to have watched a video you could not access.** Timing is
@@ -121,12 +121,17 @@ any prompt authoring. Revise and re-present until approved.
 ### 3. Motion review
 
 A static action description is not enough to reproduce how a template moves.
-Run the motion-review pass on the same source — read the dense motion bursts
+Run the `mode: "source"` motion-review pass on the same source — read the dense motion bursts
 when frames were extracted, or the user's keyframes otherwise. Merge results
 into the analysis **by `shot_index`, never by array position**, as
 `shots[].motion`. Motion evidence may enrich the approved breakdown without
 changing timing or action; if it changes an approved decision, mark the
 affected prompts stale and re-present.
+
+A returned-take diagnosis uses `mode: "comparison"` and separate comparison
+records per the motion reference. Never merge its output into source
+`shots[].motion` or overwrite the source review; accepted fixes revise prompt
+wording without silently changing the approved source evidence.
 
 ### 4. Element prompts
 
