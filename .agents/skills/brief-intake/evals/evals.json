@@ -96,7 +96,7 @@
       "expectations": [
         "Changes only the requested energy stance.",
         "Does not propose a new camera or light setup.",
-        "Does not infer approval from silence or use agent-confirmed locks."
+        "Does not infer user approval from silence or replace the explicit camera and lighting locks."
       ]
     },
     {
@@ -121,6 +121,29 @@
         "Prefers capable native visual inspection without requiring an upload.",
         "Allows the caller's permitted audio-capable fallback without requiring local transcription installation.",
         "Does not infer audible rhythm from picture cuts or treat the recipe as generation authorization."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Use default review and approve_for_me. Create one compact direction for a silent six-second lamp reveal, then continue with its prompt. Keep the supplied product shape.",
+      "expected_output": "One selected in-scope direction and prompt without a full checklist or repeated confirmation.",
+      "files": [],
+      "expectations": [
+        "Keeps review depth separate from approval authority.",
+        "Labels its own choice as agent-confirmed, never user-confirmed.",
+        "Preserves supplied product identity and does not create files for chat-only work.",
+        "Does not ask for permission to continue with the already requested prompt."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Use strict review and approve_for_me for this chat-only prompt. Keep the locked dialogue and choose the camera yourself.",
+      "expected_output": "A detailed applicable inline review with an agent camera choice, not a human approval wait.",
+      "files": [],
+      "expectations": [
+        "Strict changes review depth, not who selects the camera.",
+        "Does not spawn a review sub-agent without separate authorization.",
+        "Does not rewrite the locked dialogue or create a project file."
       ]
     }
   ]

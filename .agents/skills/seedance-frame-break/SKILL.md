@@ -247,7 +247,8 @@ The user-run acceptance check has no universal overlap-duty or pixel threshold.
 This leaf returns the prompt package without generating media. When the user
 explicitly asks to generate and a transport is connected, follow
 [Generation transport](../../contracts/generation-transport.md): show the exact
-frozen prompt, confirm each submit, one transport per job. Missing identity
+frozen prompt, apply the independent review and approval modes, and use one
+transport per job without repeating an already granted authorization. Missing identity
 references, unresolved rights for a real brand asset, or a request to bake text
 into the footage stay open items in the package; say that on-screen text is
 added in post by the destination workflow, which is out of scope here, rather

@@ -245,6 +245,6 @@ Use panel numbers in increments of 10 so panels can be inserted without
 renumbering. The last column is the file stem to use if the user asks for the
 prompt saved under `projects/<project>/prompts/`.
 
-For a one-panel board, create only `p010`. Ask the user to generate
-alternatives as samples (v01–v03) of `p010`; do not mislabel three alternatives
-as three narrative panels.
+For a one-panel board, create only `p010`. Use one sample in default review.
+Only strict review or a requested count calls for multiple samples
+(for example v01-v03) of `p010`; never mislabel alternatives as narrative panels.

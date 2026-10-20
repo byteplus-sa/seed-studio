@@ -5,16 +5,35 @@
 This repository ships agent skills, not generation tooling. You describe what you
 want, the agent composes a production-grade prompt from the skill libraries and
 hands you a copy-paste block for the Lumina UI. Want a second opinion? Run
-`/prompt-review` yourself; the agent never runs it on its own.
+`/prompt-review` yourself, or select strict review for detailed checks.
 
 Generation is optional. With `ark-mcp` or `arkcli` connected, an explicit
-generation request submits the prompt you saw after you confirm the model,
-references and cost. Direct HTTP/curl is also supported when explicitly requested
+generation request authorizes the specified prompt, references and count without
+repeated confirmations under `approve_for_me`. Direct HTTP/curl is also supported when explicitly requested
 and secure caller-managed runtime configuration already exists; it is never an
 automatic fallback. Without a usable selected transport or generation request,
 the agent stays prompt-only. The agent never stores credentials or
 writes production files. See
 [`generation-transport.md`](.agents/contracts/generation-transport.md).
+
+## Review modes
+
+Say **"use default review"** for the fast path or **"use strict review"** for
+detailed checks. Chat-only work needs no configuration file. For saved projects,
+set these independent fields in `project.md` frontmatter:
+
+```yaml
+review_mode: default
+approval_mode: approve_for_me
+```
+
+`default` uses one inline preflight and a final sanity check: no full prompt
+review report, repeated stage approvals, automatic three-image set or mandatory
+draft-first video. `strict` restores detailed applicable checks. Neither changes
+who decides: `approve_for_me` selects in-scope creative choices, while
+`ask_for_approval` waits for you. Explicit choices, scope, budget, rights,
+privacy and publishing boundaries remain in force.
+See [Review mode](.agents/contracts/review-mode.md).
 
 ## What this is / is not
 
@@ -42,7 +61,7 @@ flowchart LR
 2. You receive one copy-paste block — prompt text, ordered reference bindings,
    and the parameter block. Paste it into Lumina.
 3. Optionally, run `/prompt-review` to check a prompt against the workspace rule
-   catalog. It is manual only and nothing else depends on it.
+   catalog. Default skips that pipeline; strict explicitly requests it.
 4. Drafts are saved locally only when you ask for them.
 
 ## Skills
@@ -50,7 +69,7 @@ flowchart LR
 | Skill | Summary |
 | --- | --- |
 | **brief-intake** | Shape intent-led briefs and treatments; preserve confirmed decisions. |
-| **prompt-review** | Manual (`/prompt-review`) review and fix of prompts written for BytePlus generative models (Seedance, Seed Audio, Seedream) against the repo's skill best practices using a sub-agent review pipeline. |
+| **prompt-review** | Requested or strict-mode inline review of Seedance, Seedream and Seed Audio prompts; review sub-agents require a separate explicit request. |
 | **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — paste-ready. |
 | **seedance-prompt-25** | Write production-grade Seedance 2.5 video prompts with the six-part formula, 50-material multimodal referencing, variable-duration staging (4-30s), timestamp pacing, structured editing, extension, keyframes, storyboards, and blockouts. |
 | **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, Virtual Portrait identities, a muted source with audio in post, and style presets. |
@@ -96,6 +115,7 @@ flowchart LR
 
 | Need | Source |
 | --- | --- |
+| Default/strict review depth and independent approval authority | [`.agents/contracts/review-mode.md`](.agents/contracts/review-mode.md) |
 | Prompt review policy and stable rule IDs | [`.agents/contracts/rules.json`](.agents/contracts/rules.json), [`.agents/contracts/production-policy.md`](.agents/contracts/production-policy.md) |
 | Camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [`.agents/contracts/seedance-reference.md`](.agents/contracts/seedance-reference.md) |
 | Canon, props, screens and reference roles | [`.agents/contracts/element-identification.md`](.agents/contracts/element-identification.md) |
