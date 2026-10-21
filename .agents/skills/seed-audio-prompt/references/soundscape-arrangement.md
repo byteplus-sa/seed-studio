@@ -20,7 +20,7 @@ When the user wants dialogue, music, SFX, and ambience together, compose the pro
 5. **Control the mix narratively.** Say when music ducks beneath speech, an effect dominates the foreground, ambience remains distant, or silence replaces the score.
 6. **Specify the ending.** Describe what fades, sustains, stops abruptly, or carries into silence.
 
-Use event-relative cues such as "as she opens the door," "under his line," and "after the impact" to tie sounds to actions. Second-level timestamps in `[start_time:end_time]` notation are also available by default to control per-line timing — use them when precise placement matters and omit them when event-relative cues suffice.
+Use event-relative cues such as "as she opens the door," "under his line," and "after the impact" to tie sounds to actions. Use `[start_time:end_time]` windows only when supplied or when timeline design is explicitly requested. A total duration alone calls for event-relative cues, not invented segments.
 
 ### Scene transitions and dynamic arcs
 
@@ -56,6 +56,10 @@ lip-synced audio, generate video directly and let Seedance's native audio
 handle dialogue.
 
 ### Scene and atmosphere
+
+Use only requested layers or clearly authorized sound design. There is no fixed
+effect quota, required instrument count, or mandatory crescendo. Preserve dry
+speech, intentional foreground music, abrupt stops, loops, and requested silence.
 
 Describe only the acoustic layers that matter to the request. This section can set the sonic world before any character speaks.
 
