@@ -1,8 +1,9 @@
 # Seedance talking-head templates
 
 Settings and references to give with the pasted block: the selected sheet as
-`@Image 1` (reference image), the voice clip as `@Audio 1`, audio on, 1080p,
-no watermark. Derive duration from measured or language-aware delivery,
+`@Image 1` (reference image), the voice clip as `@Audio 1`, audio on,
+`resolution: "480p"`, boolean `draft: true`, no watermark. Keep 1080p or the
+requested delivery resolution as the later promotion target. Derive duration from measured or language-aware delivery,
 including onset and final-word tail, within current destination limits.
 Hand off the sheet
 only after the consent and real-likeness gates are recorded. Placeholders in
@@ -63,8 +64,10 @@ vertical framing, <Name> centered and facing the camera throughout." and
 - Wardrobe and accessories come through the sheet, but the lav mic does not
   reliably appear from text alone. If it matters, QA it and say it twice
   (scene + subject).
-- Confirm supported resolution, actual output dimensions and any draft
-  promotion feature in the current destination. Repeat transcript, final-word
+- Inspect and select the native draft before promotion by `draft_task_id`.
+  Resolve missing draft controls in the destination rather than using plain
+  480p; creative retries require a new native draft. Confirm supported final
+  resolution and actual output dimensions. Repeat transcript, final-word
   timing and lip-sync checks on the delivered final even when a draft passed.
 - Do not put captions, source badges or other overlay text in the prompt;
   they are added in post.

@@ -154,6 +154,12 @@ Recipes: [effects-product-and-spectacle.md](references/effects-product-and-spect
 5. **Handoff.** Deliver the exact paste-ready prompt, ordered reference roles,
    parameter suggestions, missing inputs, destination post needs and material
    evidence limits. Do not promise exact counts, cut frames or identity.
+   Every new Seedance 2.5 generation, including video edits, starts with
+   `resolution: "480p"` and boolean `draft: true`. Keep delivery resolution
+   separate; the caller inspects and selects the native draft before promotion
+   by `draft_task_id`. Missing draft controls need resolution, not an ordinary
+   480p substitute. Other video models without native draft mode use a clearly
+   labeled ordinary 480p test.
    Freeze the text; a revision is a new version with its named change.
 6. **Returned take, when supplied.** Compare its signature mechanics against
    the recipe's acceptance observations, state how it was inspected, and
@@ -191,7 +197,8 @@ the local video-to-video contract.
   the recipe when the user requests a total count. Prompt counts remain
   probabilistic.
 - **No hidden workflow.** This leaf neither submits nor prepares requests,
-  creates projects, enforces a draft ladder or saves files automatically.
+  creates projects or saves files automatically. It states native draft
+  settings in the parameter note; the caller owns execution and selection.
 - **Evidence stays bounded.** Check each recipe's intended style coverage on
   the current output; a recipe's presence is not proof it works.
 

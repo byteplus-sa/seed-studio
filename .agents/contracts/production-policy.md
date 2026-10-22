@@ -48,6 +48,20 @@ This workspace performs no provider submission: the user pastes prompts into the
 
 ## Generation and review defaults
 
+Every new Seedance 2.5 generation starts with explicit `resolution: "480p"`
+and boolean `draft: true`, including edits, extensions and creative retries.
+Plain 480p is not native draft mode. This first-test policy is independent of
+review depth and final delivery resolution. Parameter notes follow it even
+when the output is prompt-only; authoring does not authorize submission.
+
+The caller inspects and selects a successful native draft before a separately
+authorized promotion using `draft_task_id` and supported output settings.
+Changed prompt text, references, duration, ratio or audio settings require a
+new native draft, not a modified promotion. Re-check the final output.
+Resolve a missing draft control in a Seedance 2.5 tool/UI instead of silently
+submitting non-draft 480p. Other video models without native draft mode use
+an ordinary, non-promotable 480p test; a final is a fresh generation.
+
 Prefer per-shot prompts at natural duration over compressed timelines. Continuous single-take extension is exceptional; flag every seam. Separate lip-sync audio remains opt-in; follow [audio-video-alignment.md](audio-video-alignment.md).
 
 Use the lowest suitable resolution within the requested behavior. For Seedream image prompts, default to three sampling variants; keep prompt, references, model and effective parameters identical except supported stochastic seed differences, and say so in the package. Creative alternatives change only explicitly requested variables. Explicit requested count wins. Watermark handling is a parameter note for the destination UI, not something this workspace sets.

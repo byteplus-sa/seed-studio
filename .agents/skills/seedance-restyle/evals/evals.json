@@ -15,7 +15,7 @@
         "If an environment image is selected, the package requires approval and checks its medium coverage, source geometry and stray objects before binding it.",
         "The package preserves exact source timing and does not request 8n+1 trimming or whole-second rounding without a verified destination requirement and user agreement.",
         "No studio, artist or franchise is named.",
-        "A supported low-resolution probe (480p when available) is proposed in chat; the skill does not generate, upload or submit anything."
+        "A native probe with explicit resolution 480p and boolean draft true is proposed in chat; missing draft controls remain unresolved, and the skill does not generate, upload or submit anything."
       ]
     },
     {

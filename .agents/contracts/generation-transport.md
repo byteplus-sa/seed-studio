@@ -55,11 +55,32 @@ failed or that no job was created.
 
 ## Gates before every submit
 
+Every new Seedance 2.5 request uses native draft mode: explicit
+`resolution: "480p"` and boolean `draft: true`. This applies to first tests,
+edits, extensions and creative retries, regardless of review depth or delivery
+resolution. Never substitute an ordinary 480p request for native draft mode.
+If the selected transport cannot expose it, resolve the capability mismatch or
+stay prompt-only; do not silently drop the flag.
+
+After the caller inspects and explicitly selects a successful draft, prepare
+promotion using its `draft_task_id` and supported output settings. Confirm
+promotion separately; it is another paid request. Do not resend or change the
+prompt, references, duration, ratio or audio settings during promotion. A
+creative change requires a new native draft. Inspect the final output again.
+Record the returned draft task ID in chat so it can be reused without another
+first test; save provenance only when requested.
+
+For other video models without native draft mode, use an ordinary 480p first
+test and label it non-promotable. Do not add an unsupported draft flag; a final
+is then a fresh generation. If 480p is unsupported too, explain the limitation
+and ask before using another resolution.
+
 1. The user has been shown the exact prompt and the ordered references.
 2. The submitted prompt and reference order are byte-identical to what the
    user saw. Any change means showing it again.
 3. Show a submit summary and wait for an explicit yes: transport, model,
-   operation, duration/resolution/count, ordered references, and cost when
+   operation, native-draft/test/promotion stage, duration/resolution/count,
+   ordered references, and cost when
    known (`arkcli-pricing`, or capabilities output). Count every variation.
    Approval covers that submit only.
 

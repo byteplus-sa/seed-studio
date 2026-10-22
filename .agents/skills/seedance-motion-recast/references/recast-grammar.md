@@ -204,7 +204,7 @@ Silent output. Sound is added in post.
 ```
 
 Parameters for the first ladder rung: default R2V route,
-`omni_reference_task_type: auto`, `resolution: 480p`, `ratio: 9:16`,
+`omni_reference_task_type: auto`, `resolution: "480p"`, `draft: true`, `ratio: 9:16`,
 `duration` set to the key beat trimmed from the source (for example the
 0:03–0:08 spin and orbit, 5 s), `generate_audio: false`, `watermark: false`.
 The probe binds the muted 0:03–0:08 beat, trimmed on the user's side, as

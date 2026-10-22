@@ -177,9 +177,12 @@ via `seedance-prompt-25`:
 
 Prefer one clip per shot at natural duration. When the requested output
 exceeds one supported clip, split on shot boundaries rather than compressing
-the template. Include the parameter block (duration, resolution, ratio)
-beside the prompt, and note that the user may trim parameters the Lumina UI
-does not expose.
+the template. Include the parameter block beside the prompt: every new
+Seedance 2.5 generation uses explicit `resolution: "480p"` and boolean
+`draft: true`, with duration and ratio according to the selected mode.
+Keep the delivery target separate for promotion by `draft_task_id` after
+the caller inspects and selects the native draft. A missing native draft
+control in the destination UI needs resolution; do not simply drop it.
 
 ### 7. Package handoff
 

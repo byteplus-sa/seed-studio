@@ -11,7 +11,7 @@ tool/API values — they never appear in prompt text.
 | Parameter | Value and notes |
 |---|---|
 | `duration` | Integer seconds, 4–30; `-1` for auto. Integer only — no sub-second values. |
-| `resolution` | `480p`, `720p`, `1080p`. Default 720p for UGC placement. Standard 2.5 caps at 1080p; a 4K request needs legacy 2.0 or confirmed access and destination support for whitelist-only 2.5 Premium. |
+| `resolution` | Explicit `480p` with boolean `draft: true` for every new Seedance 2.5 generation. Keep the requested UGC delivery target separate for promotion by `draft_task_id` after the caller inspects and selects the draft. Standard 2.5 caps at 1080p; a 4K request needs legacy 2.0 or confirmed access and destination support for whitelist-only 2.5 Premium. |
 | `ratio` | `9:16` default for UGC unless the request says otherwise. Locked to the first image on first/last-frame tasks and auto-derived from the source on edit tasks — never set it there. |
 | Locked camera | State locked-off selfie/posing and spectacle framing in the prompt. Use a camera-lock parameter only if the destination exposes one. |
 | `generate_audio` | Enables the native audio track the recipes describe. |
