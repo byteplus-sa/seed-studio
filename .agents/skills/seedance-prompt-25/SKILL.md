@@ -39,6 +39,13 @@ for each critical action beat.
 
 ## Procedure and reference loading
 
+For every new generation, including edits, extensions and retries, provide
+explicit `resolution: "480p"` and boolean `draft: true` in the parameter block,
+never in prompt text. This is native draft mode, not ordinary low-resolution
+generation, and applies regardless of review depth or final delivery target.
+Read [Parameter Reference](references/parameter-reference.md#native-draft-first)
+for promotion and capability mismatch handling.
+
 Use reference-inputs for R2V; video-editing for edits; video-extension for
 extensions; keyframes-storyboards-blockouts for approved visual conditioning
 and validated blockout manifests; shot-staging for requested or supplied

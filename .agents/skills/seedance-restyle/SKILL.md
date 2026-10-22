@@ -81,9 +81,11 @@ block, the post-audio route, and the test-ladder rung.
    binding; sound returns in post.
 7. **No baked text.** Source signage becomes abstract shapes in the style;
    captions and copy are added in post.
-8. **Test ladder**: a 480p probe of the hardest beat (fast motion, a face close-up
-   or a cut), then the full clip at 480p, then the final resolution. Each rung is
-   a separate prompt block, pasted and judged by the user before the next.
+8. **Test ladder**: every new Seedance 2.5 test uses `resolution: "480p"`
+   and boolean `draft: true`, including an agreed hardest-beat probe and the
+   full clip. The caller inspects and selects the full-clip native draft before
+   promotion by `draft_task_id`; changed inputs need another native draft.
+   Resolve a missing draft control rather than substituting ordinary 480p.
 9. **Keep the same place.** A restyle changes how the background looks, never
    where the scene is: a city street stays a city street, with the same kind of
    buildings, furniture and plants. Never name a different location unless the
@@ -101,8 +103,9 @@ block, the post-audio route, and the test-ladder rung.
 Route support and restyle quality are separate checks. Verify the selected
 model, operation, image roles, resolution and timing constraints in the current
 destination UI or documentation. Do not generalize success or failure from one
-source, medium or resolution to another. A supported low-resolution probe
-(480p when available) can test the current source; it is not proof that other
+source, medium or resolution to another. A native probe uses explicit
+`resolution: "480p"` and boolean `draft: true`; resolve missing draft controls
+before submission. It can test the current source but is not proof that other
 styles or final-resolution output will behave identically.
 
 **If the request allows no image input,** compose a text-only whole-frame

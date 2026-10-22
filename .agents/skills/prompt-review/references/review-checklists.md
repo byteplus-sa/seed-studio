@@ -100,6 +100,17 @@ change the production policy. Source metadata: `rule-provenance.json`.
 
 Source skill: `seedance-prompt-25`
 
+### Native draft first
+
+Every new Seedance 2.5 generation, edit, extension, probe and creative retry
+has explicit `resolution: "480p"` and boolean `draft: true` outside prompt
+text, regardless of review depth or delivery target. Plain 480p is not native
+Draft mode. A missing control is a capability mismatch to resolve, not a
+fallback. Inspect and select the draft before promotion by `draft_task_id`;
+changed creative inputs require a new draft. Other models without native
+Draft support use a clearly labeled ordinary, non-promotable 480p test.
+This check does not make manual `/prompt-review` mandatory.
+
 ### Formula check
 
 1. **Subject + Action present.** The prompt contains at minimum a clear subject and a
@@ -559,8 +570,9 @@ medium. Mark N/A any item whose feature is absent and record why.
 
 6. **Route and limits.** The operation matches the route the user chose and
    what the destination UI offers (`model.supported_mode`); an unverified route is
-   labeled provisional. A proposed probe uses a supported low resolution
-   (480p when available) and is not a capability guarantee. Image counts,
+   labeled provisional. Every proposed 2.5 probe uses explicit
+   `resolution: "480p"` and boolean `draft: true`; missing controls must be
+   resolved before execution. Draft settings are not a quality guarantee. Image counts,
    roles, ratio and duration follow verified destination limits; no default
    trim or rounding of exact source timing.
 
@@ -827,7 +839,9 @@ Source skill: `seedance-vfx-prompt`
     waxy, smoothed, or warped."
 
 28. **Supported model/mode (`model.supported_mode`).** Resolve operation and
-    model first. A 2.5 face-containing edit uses supported 480p/720p/1080p;
+    model first. A new 2.5 face-containing edit starts with explicit
+    `resolution: "480p"` and boolean `draft: true`; 720p/1080p are later
+    promotion targets after draft inspection and selection;
     only an explicitly selected supported legacy path may use 4K. Face/detail
     fidelity is an output-QA criterion, not a guaranteed property of resolution.
 

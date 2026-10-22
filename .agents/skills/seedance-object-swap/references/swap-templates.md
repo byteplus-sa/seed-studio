@@ -263,6 +263,7 @@ Silent output. Sound is added in post.
 ```
 
 Parameter block: `omni_reference_task_type: edit`, `@Video 1` first and
-`@Image 1` second, `generate_audio: false`, 480p for the probe. Once the user
+`@Image 1` second, `generate_audio: false`, `resolution: "480p"` and
+`draft: true` for the native draft probe. Once the user
 accepts the take, they mux the saved source audio so the set-down sound lands
 at 0:05.

@@ -139,6 +139,15 @@ assets or context only when explicitly selected for the current task.
   or generation, and no skill or contract may require it or name it as a step.
 - Freeze the exact prompt text before handoff. A generation submit must match
   the prompt the user saw byte for byte.
+- Every new Seedance 2.5 generation starts in native draft mode with explicit
+  `resolution: "480p"` and boolean `draft: true`, including edits, extensions,
+  retries and first tests. A delivery target does not skip this first pass.
+  Keep these settings outside prompt text. The caller inspects and selects the
+  draft before promotion by `draft_task_id`; changed creative inputs need a new
+  native draft. A tool or UI that cannot expose draft mode is a capability
+  mismatch to resolve, not permission to silently send ordinary 480p.
+  Other video models without native draft mode use an ordinary 480p test,
+  clearly labeled non-promotable. Do not invent unsupported parameters.
 - Prefer an agent video pass when the client can watch the source, or local
   `ffmpeg`/`ffprobe` frame extraction read with image perception. When native
   perception is insufficient, the caller may use a capable available analysis

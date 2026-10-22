@@ -27,6 +27,13 @@ writes production files. See
 
 ## How it works
 
+Seedance 2.5 starts every new generation in native draft mode:
+`resolution: "480p"` plus boolean `draft: true`, not plain 480p. The caller
+inspects and selects the draft before a separately authorized promotion by
+`draft_task_id` to the delivery resolution. This includes edits, extensions
+and creative retries and does not make prompt review automatic. Other video
+models without native draft mode use a clearly labeled ordinary 480p test.
+
 ```mermaid
 flowchart LR
   A[Brief or directed request] --> B[Prompt skill composition]

@@ -101,15 +101,18 @@ Confirm gate 2 is recorded. Write the prompt from
 - **1:1 locked** take when the presenter will sit in a split-screen or card.
 - **9:16 camera-beat** take when the edit goes full-screen on the presenter.
 
-Settings to give the user: audio on, 1080p, no watermark. Estimate duration
+Settings to give the user: audio on, `resolution: "480p"`, `draft: true`,
+no watermark; retain 1080p or the requested resolution as the delivery target
+after selection and promotion by `draft_task_id`. Estimate duration
 from measured delivery or a native-language-informed read with pauses, plus
 about 1s for onset and at least 0.4s of final tail initially (≤30). About
 2.2 words/s is an English estimate, not a universal gate. Without delivery
 evidence, timing is provisional. Preserve the requested language. Check the
 intended performance; if it does not fit, propose retiming or split the
 exact script or ask to shorten it when editing is authorized. Keep approved
-words unchanged. If the caller uses a draft-and-promotion route, verify its
-current destination support and re-check the actual final. Deliver the frozen
+words unchanged. Use native draft mode for the first take and creative retries;
+resolve a missing draft control rather than substituting ordinary 480p.
+Re-check the actual final. Deliver the frozen
 prompt with
 the references named in binding order: the selected sheet as `@Image 1` and the
 voice clip as `@Audio 1`.

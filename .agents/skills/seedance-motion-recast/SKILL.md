@@ -99,9 +99,12 @@ targets.
    `generate_audio` is `false`, and there are no `@Audio` bindings. Sound
    returns in post through the stated route in
    [audio and lip-sync](references/audio-and-lipsync.md).
-8. **Test ladder**: a 480p probe of the key beat, then the full duration at
-   480p, then the final resolution. Each rung is a separate prompt
-   block, pasted and judged by the user before the next rung.
+8. **Test ladder**: every new Seedance 2.5 test uses `resolution: "480p"`
+   and boolean `draft: true`, including an agreed key-beat probe and the
+   full-duration take. Preserve the source span unless a shorter probe is
+   approved. The caller inspects and selects the full-duration native draft
+   before promotion by `draft_task_id`; changed inputs need another draft.
+   Resolve a missing draft control rather than substituting ordinary 480p.
 
 ## Mode selection
 

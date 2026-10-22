@@ -4,6 +4,7 @@ Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) f
 mode selection and caller responsibilities.
 
 - [Quick reference card](#quick-reference-card)
+- [Native draft first](#native-draft-first)
 - [Guide disclaimer](#guide-disclaimer)
 
 ## Quick reference card
@@ -70,7 +71,8 @@ mode selection and caller responsibilities.
 - Multi-round extensions up to 180s (beta).
 
 ### Cost ladder
-- Prototype at lower resolution → finalize at target resolution.
+- Start with `resolution: "480p"` and boolean `draft: true`, then promote
+  the selected native draft to the recorded delivery resolution.
 - Video generation is billed per successful task completion.
 - Confirm current billing rules on the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106).
 
@@ -122,6 +124,27 @@ These modes are mutually exclusive. Do not combine first/last-frame roles with
 an R2V bundle unless the live model explicitly confirms that combination. Record
 the chosen mode, ordered reference roles, paths, hashes, selected variants, and
 approval states in the shot manifest before submission.
+
+## Native draft first
+
+Every new Seedance 2.5 generation, including edits, extensions and creative
+retries, starts with explicit `resolution: "480p"` and boolean `draft: true`.
+Keep these controls in the destination parameter block, not prompt text.
+Review depth does not change this rule. A requested 720p or 1080p final is a
+delivery target, not permission to skip the native draft.
+
+The caller inspects and selects the successful draft, retains its provider
+task ID, then requests promotion with `draft_task_id` and supported output
+settings. The final is separately paid and inspected. Do not resend or change
+prompt text, references, duration, ratio or audio parameters in promotion.
+Changing any creative input requires a new native draft first.
+
+A plain 480p output is not a native draft and cannot be promoted by naming its
+task ID. If a selected Seedance 2.5 UI/tool does not expose native draft mode,
+resolve the capability mismatch before submission rather than dropping
+`draft: true`. Do not invent a control the interface cannot accept.
+For other video models without native draft mode, use an ordinary 480p first
+test, clearly labeled non-promotable, and a fresh generation for the final.
 
 ## Guide disclaimer
 

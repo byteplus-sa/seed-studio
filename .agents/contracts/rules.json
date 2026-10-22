@@ -2,6 +2,16 @@
   "schema_version": 1,
   "rules": [
     {
+      "id": "seedance.draft_promotion",
+      "severity": "error",
+      "applies_to": [
+        "preflight"
+      ],
+      "owner_path": ".agents/contracts/production-policy.md",
+      "summary": "Every new Seedance 2.5 generation uses explicit 480p and boolean draft true before inspection, selection, and promotion by draft_task_id. Other models without native Draft support use ordinary non-promotable 480p tests.",
+      "exceptions": []
+    },
+    {
       "id": "approval.explicit_choice",
       "severity": "error",
       "applies_to": [

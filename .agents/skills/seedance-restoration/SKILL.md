@@ -217,8 +217,11 @@ direction.
   copy"), grounding ("no cut-out edge, no halo; rim light matches the key
   direction"), and face protection ("never waxy, plastic, or warped") belong in
   every prompt that preserves people.
-- **Submission.** `omni_reference_task_type="edit"`, `resolution` 480p/720p/1080p
-  (2.5 has no 4K), `generate_audio: false` (since the source audio is re-muxed
+- **Submission.** `omni_reference_task_type="edit"`, `resolution: "480p"` and
+  boolean `draft: true` for each new Seedance 2.5 test. Inspect and select the
+  native draft before promotion by `draft_task_id` to the delivery resolution
+  (standard 2.5 has no 4K). Missing draft controls are a capability mismatch,
+  not permission to substitute ordinary 480p. Use `generate_audio: false` (since the source audio is re-muxed
   afterward — skip the re-mux if you instead keep native audio), `watermark: false`
   only when the tool supports the parameter. Duration auto-locks to the input —
   do not set it.

@@ -147,6 +147,50 @@
         "Makes picture-only an explicit proposed route with destination-capability verification.",
         "Does not run generation or make prompt review a gate."
       ]
+    },
+    {
+      "id": 101,
+      "prompt": "Prepare a Seedance 2.5 request for a new eight-second shot of a paper kite lifting from a field. The delivery target is 1080p and review mode is default. Give the first-test parameter block only. Do not generate.",
+      "expected_output": "An explicit native 480p draft request, with 1080p retained only as the later delivery target.",
+      "files": [],
+      "expectations": [
+        "Sets resolution to 480p and draft to boolean true outside prompt text.",
+        "Does not treat default review mode or 1080p delivery as permission to skip the first draft.",
+        "Leaves generation and draft selection to the caller without running automatic prompt review."
+      ]
+    },
+    {
+      "id": 102,
+      "prompt": "The selected Seedance 2.5 native draft is ready for 1080p. Promote it, but also change the kite from red to blue. Prepare settings only; do not submit.",
+      "expected_output": "A new native 480p draft for the changed creative input, not a promotion that modifies the selected draft.",
+      "files": [],
+      "expectations": [
+        "Explains that changing the prompt requires a new draft.",
+        "Uses resolution 480p and boolean draft true for the changed version.",
+        "Does not attach changed creative inputs to draft_task_id promotion."
+      ]
+    },
+    {
+      "id": 103,
+      "prompt": "Prepare a Seedance 2.5 edit replacing only a desk lamp. The connected UI exposes resolution 480p but no native draft control. Should I submit plain 480p as the first draft?",
+      "expected_output": "A capability mismatch explanation; keep the native draft requirement and resolve the interface before submission.",
+      "files": [],
+      "expectations": [
+        "Does not label ordinary 480p as a native draft or silently drop draft true.",
+        "Does not invent a UI control or claim a submitted result.",
+        "Preserves the edit scope while leaving submission unresolved."
+      ]
+    },
+    {
+      "id": 104,
+      "prompt": "The required model is legacy Seedance 2.0, which has no native draft mode in this interface. Prepare the first test at 480p and explain how a later final differs.",
+      "expected_output": "An ordinary 480p test explicitly distinguished from native draft mode; the final is a fresh generation.",
+      "files": [],
+      "expectations": [
+        "Does not invent draft true for a model without native draft support.",
+        "Uses an ordinary 480p first test and identifies it as non-promotable.",
+        "Does not reuse its task ID as draft_task_id for a final."
+      ]
     }
   ],
   "evaluation_note": "Judge semantic effectiveness. Exact delimiters remain checks only where the selected model grammar requires them; headings and paraphrases are not quality proxies."
