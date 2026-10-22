@@ -36,8 +36,8 @@ Lumina or another Seed-model UI without loading sibling skills, and never
 generates, uploads, downloads, edits or persists images. The user pastes the
 block. Missing required inputs remain unresolved; a draft does not establish
 approval.
-Preserve optional timing, the three-variant sampling default where applicable,
-and the requested delta.
+Preserve optional timing and the requested delta. Default review uses one
+sample; strict review uses three where applicable. Explicit counts win.
 
 ## Source authority
 
@@ -49,8 +49,8 @@ changed capability.
 ## What this produces
 
 Depending on the request, produce a beat and panel plan, reference inventory,
-spatial and continuity contract, exact prompts and the parameter block, and an
-acceptance checklist the user applies to the images they generate.
+spatial and continuity contract, exact prompts and the parameter block. Add the
+full acceptance checklist only for strict or explicitly requested review.
 
 Keep these artifacts distinct:
 
@@ -58,8 +58,8 @@ Keep these artifacts distinct:
 - **Look frame:** locks style, palette, lighting, and materials.
 - **Video keyframe:** a polished image promoted as a generation anchor.
 
-A storyboard panel may later become a keyframe, but only after the user
-confirms it passes both storyboard and visual-anchor review.
+A storyboard panel may later become a keyframe only after actual fidelity
+inspection and selection under the caller's approval mode.
 
 ## Core rules
 
@@ -93,9 +93,10 @@ confirms it passes both storyboard and visual-anchor review.
   generated image unless visible story-world text is required. Exception: in
   single-image grid mode, thin dividers and panel numbers are part of the
   layout, not annotations — they belong inside the image.
-- A candidate the user generates is a draft until the user chooses. Only an
-  explicit user choice selects a variant or approves a panel; a
-  recommendation alone never does.
+- Select an inspected candidate under the caller's approval mode: an agent
+  choice under `approve_for_me`, or the user's choice under `ask_for_approval`.
+  A request to choose personally always waits for that choice. A draft prompt
+  or an unseen image never counts as inspected output.
 
 ## Panel delivery mode
 
@@ -222,15 +223,17 @@ and continuity are accepted.
 ## Default response structure
 
 For a one-panel request, return a compact hero-beat decision, one `p010` panel
-plan, reference inventory, exact prompt, a note that the user generates three
-samples (v01–v03) of it, video-handoff recommendation, review checklist, and
-selection needed. For a multi-panel plan
+plan, reference inventory, exact prompt and any material unresolved inputs.
+Use one sample by default, or three in strict mode; explicit counts win.
+Do not include a full checklist or demand selection when no images exist.
+For a multi-panel plan
 or prompt package, return the panel delivery mode (single-image grid or
 separate images), render style (sketch default or full color), assumptions and
 locks, reference inventory, beat and panel plan, spatial and continuity
-contract, parameter block, exact panel prompts, review checklist, and open
-decisions. When the user shares generated candidates, add a review against the
-acceptance checks and a recommendation.
+contract, parameter block, exact panel prompts and open decisions. When the
+user shares generated candidates, inspect and select under the approval mode.
+Use a concise fidelity check by default and the full table only in strict
+mode or for an explicit review request.
 
 Do not claim that a storyboard, asset, or variant exists: this skill delivers
 prompts, and any image comes from the user's generation step.

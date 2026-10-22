@@ -9,7 +9,7 @@ block in chat.
 | Mode | When | Result |
 | --- | --- | --- |
 | Prompt-only (default) | No generation request, or no usable transport | Copy-paste block for Lumina |
-| Prompt + generation | The user asks for generation and a transport is usable | Prompt shown to the user, then a confirmed submit and job status |
+| Prompt + generation | The user asks for generation and a transport is usable | Prompt shown to the user, then an in-scope submit and job status under the approval mode |
 
 Composition is identical in both modes. Generation never changes how a prompt is
 written; it only adds a submit step after the prompt is delivered.
@@ -53,30 +53,38 @@ available; never invent a task ID or polling endpoint. Reconcile ambiguous
 responses before repeating a submit. A timeout does not prove the operation
 failed or that no job was created.
 
-## Gates before every submit
+## Preflight and authorization
 
-1. The user has been shown the exact prompt and the ordered references.
-2. The submitted prompt and reference order are byte-identical to what the
-   user saw. Any change means showing it again.
-3. Show a submit summary and wait for an explicit yes: transport, model,
-   operation, duration/resolution/count, ordered references, and cost when
-   known (`arkcli-pricing`, or capabilities output). Count every variation.
-   Approval covers that submit only.
+Follow [review-mode.md](review-mode.md). Review depth and approval authority are
+separate. Default needs a single inline request preflight, not a checklist
+report. Strict adds detailed prompt review, not automatic human confirmation.
+
+1. Present the exact prompt, ordered references and compact submit summary:
+   transport, model, operation, duration/resolution/count and cost when known.
+   Count every variation and preserve any stated spending limit.
+2. Under `approve_for_me`, a generation request authorizes the specified
+   submissions without another yes for each step. Under `ask_for_approval`,
+   wait for the requested user choice; retain any existing batch authorization.
+3. Submit the exact displayed package. A change must be shown, but needs fresh
+   authorization only when it changes a user lock, exceeds the approved scope
+   or budget, or the user asked to confirm submissions. Unknown material
+   cost/scope is a question, never unlimited spending authority.
 
 ## In scope
 
 - Seedance, Seedream, and Seed Audio generate, edit, and variation jobs.
 - Job polling, cancel, and fetching a result reference for the user.
-- Uploading reference files the user named in this request, after confirming
-  each file.
+- Uploading reference files the user selected for this generation, without
+  repeating authorization for each file. Respect offline/privacy constraints.
 
 ## Still out of scope
 
-- VOD enhance/transcode/subtitle/audio-separation, 3D generation, Blender, and
-  any assembly, compositing, or muxing. Local `ffmpeg`/`ffprobe` stay
-  analysis-only.
+- Unrequested provider administration, 3D generation and Blender. Authorized
+  local trimming, muxing, assembly and export use the existing permissions in
+  the root workspace instructions; this contract does not retract them.
 - Exact-copy, typography, logo, UI, and deterministic HTML/CSS/SVG work.
-- Bulk or unattended generation loops. Submit what was confirmed, then report.
+- Unbounded generation loops. Submit only the requested count or authorized
+  batch; retries and new variations must remain within scope and budget.
 
 ## Results and records
 
@@ -87,5 +95,6 @@ default. On explicit request, write a provenance record to
 date, and the prompt file. Never store signed URLs,
 keys, or account data. Download media only when asked.
 
-A moderation rejection is evidence to diagnose. Revise, show the revised
-prompt, and confirm again before resubmitting.
+A moderation rejection is evidence to diagnose. Revise only legitimately,
+show the changed prompt, and apply the current authorization boundary before
+resubmitting. Never disguise restricted inputs or infer unlimited retry scope.
