@@ -75,6 +75,14 @@ declared orchestrator may coordinate the submission stage. Missing required inpu
 or technical success does not establish user approval. Preserve optional timing,
 the three-image sampling default where applicable, and the requested delta.
 
+For character performance, carry supplied intent, triggers, listening and
+readable consequences into the subject/action wording once. Inline intent is
+valid; no saved plan or automatic review is required. Preserve exact words,
+quiet holds, masked framing and the selected medium. Source-preserving edits
+inherit acting instead of adding new cues. For supplied staged action, retain
+participant/prop states and visible interaction order. Report missing material
+direction without inventing character history or an outcome.
+
 ## Evidence and creative advice
 
 Distinguish four kinds of guidance when they affect a decision: **API requirement**

@@ -129,14 +129,14 @@ the format or intended reaction calls for it.
 
 | Axis | Derivation | Composition hint for a calling agent |
 | --- | --- | --- |
-| Structure | Narrative development needs an event and progression; one-off static assets do not | `tig-scene-engine` |
+| Structure | Narrative development needs an event and progression; one-off static assets do not | `scene-craft` |
 | Acting | Specify an observable reaction/tactic only if a performer matters; match detail to framing | `seedance-acting-console` |
 | Camera | Choose viewpoint, framing, and necessary movement to reveal the central idea | `seedance-camera-presets` |
 | Lens | Describe perspective, separation, and context; add optical terms only when useful | `seedance-lens-presets` |
 | Lighting | Motivate a source and guide attention to the story/product truth | `seedance-lighting-presets` |
 | Grade | Support tone and reference fidelity; retain accepted palette | `color-grade-palettes` |
 | Pacing | Give the action enough time; stillness, repetition, contrast, and escalation are choices | `seedance-pacing-presets` |
-| Staging | Define geography only when action or relationships depend on it | `tig-blocking-map` |
+| Staging | Define geography only when action or relationships depend on it | `blocking-map` |
 | Medium | Preserve requested medium; propose only when the idea benefits from that choice | `seedance-animation-styles` |
 | Audio | Honor silent/native/soundtrack requests; separate lip-sync audio remains opt-in | `seed-audio-prompt` / `seed-audio-commercial` |
 

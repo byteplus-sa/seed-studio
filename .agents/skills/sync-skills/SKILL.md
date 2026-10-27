@@ -17,9 +17,13 @@ for the procedure; Claude Code, Codex and opencode all run it.
 
 ## Scope
 
-The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 24 skills. Never
+The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 21 skills. Never
 sync:
 
+- `acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
+  `scene-craft` and `blocking-map` are locally maintained prompt-only craft
+  adaptations. Preserve chat plans, optional frameworks, source locks and
+  manual-review boundaries; do not mirror their production counterparts.
 - `template-factory` and `seed-audio-commercial` — deliberate local forks
   whose content diverges upstream.
 - `filipino-micro-drama`, `seedream-prop-asset`, `seedream-storyboard`,
@@ -83,6 +87,15 @@ the diff and restore these:
   ([production policy](../../contracts/production-policy.md)).
 - Any other synced skill that gains a `prompt-review` reference: remove it.
   Only the `prompt-review` skill itself may name `prompt-review`.
+- `seedance-prompt-25` and its performance reference: preserve inline intent,
+  listener tasks and sustained attention without mandatory saved plans or
+  review gates. `seedance-lens-presets` keeps conditional anamorphic markers,
+  locked framing/medium, and separate optical and output settings.
+
+The craft adoption is pinned to
+[Cinema Studio PR #7](https://github.com/byteplus-sa/seed-cinema-studio/pull/7),
+revision `e302ab982bc6714597983733d371e6bbbff0248c`. Future updates to these
+forks require selective manual comparison, not allowlist expansion or a mirror.
 
 ## Arguments
 

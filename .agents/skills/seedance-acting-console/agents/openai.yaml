@@ -1,4 +1,4 @@
 interface:
   display_name: "Seedance Acting Console"
-  short_description: "Help with Seedance acting, emotion, and performance tasks"
-  default_prompt: "Use $seedance-acting-console to handle this acting, emotion, or performance direction task."
+  short_description: "Encode supplied performance intent as readable cues"
+  default_prompt: "Use $seedance-acting-console to encode this supplied performance intent."

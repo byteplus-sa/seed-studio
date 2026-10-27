@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blocking Map"
+  short_description: "Plan geometry while preserving the approved medium"
+  default_prompt: "Use $blocking-map to handle this blocking map task."

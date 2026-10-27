@@ -100,8 +100,8 @@ shot_plan:
 | `axis_carry` | Where each confirmed project axis appears (camera, lens, lighting, pacing, energy), or the scene override and its reason |
 | `sources` | Every light source the scene uses, with a fixed world position and the event that switches it on |
 | `cues` | Optional, per source. Each cue has `at_s` (scene time), `change` (`on`, `off`, `dim` or `flicker`), `trigger` (the visible or story event) and, when it lands inside a shot, that shot's `id`. A shot's `light` describes the state at its start and names any cue inside it |
-| `duration_s` | Shot length in seconds; lengths are uneven and the turn differs from its neighbors |
-| `turn` | `true` on exactly one shot |
+| `duration_s` | Shot length from supplied speech, listening, action and rhythm; equal lengths are valid |
+| `turn` | Optional `true` for a supplied turn; omit for sustained or observational scenes |
 | `job` | One of establish, reveal, emphasize, connect, escalate, hold, release |
 | `size` | Extreme wide, wide, medium, medium close-up, close-up, extreme close-up or insert |
 | `framing` | Single, dirty single, two-shot, three-shot, group, over-the-shoulder, over-the-hip, point of view or insert, per [framing](framing.md). Required in a scene with two or more characters |
@@ -147,9 +147,10 @@ delivered) and an `off` cue switches the source instantly. When a fade is
 wanted, write it into the light line ("fades out over about one second"). An
 untimed "partway through" switch lands at an unplanned moment.
 
-A plan with `energy`, `sources`, a `turn`, uneven `duration_s` values and a
-`contrast_with_previous` for every shot after the first is complete enough for
-review.
+A plan contains only requested axes, supplied durations and performance
+readability notes. A turn, uneven timing or neighboring contrast is not
+required when it conflicts with the approved rhythm. Supplied beat IDs connect
+critical intent, listening and responses to the shots without a new schema.
 
 ## Carrying the plan into the prompt
 

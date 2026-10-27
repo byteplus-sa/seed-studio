@@ -49,6 +49,7 @@ Load only the contract relevant to the current request:
 | --- | --- |
 | Manual `/prompt-review` policy and stable rule IDs | [rules.json](.agents/contracts/rules.json) and [production policy](.agents/contracts/production-policy.md) |
 | Requested camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [Directorial axes](.agents/contracts/seedance-reference.md) |
+| Requested performance plans, cue encoding and fictional action | [Performance direction](.agents/contracts/performance-direction.md) |
 | Canon, props, screens and reference roles | [Element identification](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [Audio-video alignment](.agents/contracts/audio-video-alignment.md) |
 | Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [Video-to-video inputs](.agents/contracts/video-to-video-inputs.md) |
@@ -74,7 +75,9 @@ requested choreography needs more.
 | Seedance 2.0 / 4K legacy grammar | `seedance-prompt-20` |
 | Filipino/Tagalog dialogue direction | `seedance-prompt-25-filipino` |
 | Filipino micro-drama stories and episode briefs | `filipino-micro-drama` |
-| Acting direction and emotional intensity | `seedance-acting-console` |
+| Character goals, tactics, listening and performance beats | `acting-direction` |
+| Encode supplied performance intent for Seedance | `seedance-acting-console` |
+| Requested fictional screen-fight choreography | `seedance-fight-choreography` |
 | Camera / lens / lighting / pacing presets | `seedance-camera-presets`, `seedance-lens-presets`, `seedance-lighting-presets`, `seedance-pacing-presets` |
 | Frame-break pop-out effect (subject bursts over black bars, 3D billboard look) | `seedance-frame-break` |
 | Animation styles / Blender-video edit prompts | `seedance-animation-styles`, `seedance-graybox-world` |
@@ -90,7 +93,7 @@ requested choreography needs more.
 | OmniHuman 2.0 lip-sync prompts (one image + driving audio) | `omnihuman-prompt-20` |
 | UGC ad modes / UGC motion presets | `ugc-ad-modes`, `ugc-motion-presets` |
 | Color grade sentence | `color-grade-palettes` |
-| Scene structure / staging references | `tig-scene-engine`, `tig-blocking-map` |
+| Scene structure / staging references | `scene-craft`, `blocking-map` |
 | Prompt QA (manual; only when the user runs `/prompt-review`) | `prompt-review` |
 
 ## Skills and orchestration
@@ -115,6 +118,12 @@ Do not assume unavailable tools or expand into unrelated production work.
 Prompt QA is optional and user-triggered. `prompt-review` runs only when the
 user invokes `/prompt-review`; no prompt-writing skill or workflow runs, loads,
 or waits on it.
+
+For requested performance work, pass the source-bound intention and relevant
+beats from direction to cue encoding, with coverage only when requested.
+Return these in chat; scene files and hashes are not prerequisites. Preserve
+quiet holds, exact dialogue and source performances. The five-element scene
+engine and named fighting styles are opt-in, not universal defaults.
 
 Keep skill metadata concise and valid YAML. Move substantial conditional
 modes and examples into focused same-skill references.
@@ -218,4 +227,6 @@ Maintenance). The command never overwrites the local `template-factory`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
 `seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
 `seedance-shot-design`, `seedance-effects-studio`, `seedream-handcrafted-3d`,
-`seedream-woodblock-poster`, `seedream-character-outfit`, and `seedance-ai-avatar` forks and leaves its changes uncommitted for review.
+`seedream-woodblock-poster`, `seedream-character-outfit`, `seedance-ai-avatar`,
+`acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
+`scene-craft`, and `blocking-map` forks and leaves its changes uncommitted for review.

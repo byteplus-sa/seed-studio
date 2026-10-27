@@ -60,6 +60,12 @@ the semantic submitted request, not just its prompt. Missing dispatch or request
 evidence leaves a production review `incomplete`; request it from the caller.
 Filename/content inference is a draft-only fallback with an explicit warning.
 
+Within this user-requested review only, apply `acting.plan_bound` to authored
+performances and `fight.readable_exchange` to authored staged fights. Follow
+[Performance direction](../../contracts/performance-direction.md) and the
+bundled checklist. A plan may be inline; missing material intent is incomplete,
+not permission to invent source evidence or require a production scene file.
+
 For the same request, use generation rules for generate, 2.5 edit rules for a
 2.5 edit, recast rules for a 2.5 recast (motion transfer), restyle rules for a
 2.5 restyle, legacy VFX rules for a supported 2.0 edit, and extension rules for
@@ -183,6 +189,8 @@ requested_axes: <named axes>
 request_sha256: <canonical request hash>
 required_rule_ids: <IDs supplied by caller>
 reference_evidence: <ordered paths, hashes, roles, and approvals>
+performance_input: <supplied intent, triggers, listening, locks and source locators; inline is valid>
+fight_input: <participant and prop states and readable exchanges, when applicable>
 
 ## Change contract (may change / must preserve)
 

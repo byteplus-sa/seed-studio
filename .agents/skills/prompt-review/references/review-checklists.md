@@ -192,12 +192,21 @@ This check does not make manual `/prompt-review` mandatory.
 
 ### Emotional direction
 
-22. **Visible/audible cues.** Abstract emotions are paired with directly visible or
-    audible cues (eye movement, brow tension, mouth movement, breathing, gaze, hand
-    movement). Select 2-4 readable cues per emotional transition, grounded in
-    the playable tactic and framing. Close-ups can use eye/mouth detail; masked
-    wide shots need posture, spacing or hand action. Blink guidance is relevant
-    only when visible and needed; do not move the camera to rescue unreadable cues.
+22. **Performance handoff (`acting.plan_bound`).** During this requested review,
+    trace supplied intentions, triggers, registration, listener tasks and readable
+    consequences into the prompt. Inline intent is valid; missing material input
+    is incomplete, not permission to invent a scene file. Preserve quiet holds,
+    masked framing, exact words, timing and deliberate non-response. Two to four
+    cues is a heuristic, not a minimum. Critical omissions or contradicted locks
+    are MAJOR. Static assets and preservation-only edits record not_applicable;
+    inherited performance still needs its applicable preservation checks.
+
+22a. **Staged fights (`fight.readable_exchange`).** For authored fight action,
+    trace participants, start/end states, apparent contact or avoidance,
+    reactions and prop ownership through readable framing and timing. Do not
+    certify hidden contact, impose a fighting style or change a locked outcome.
+    Non-fight work and preservation-only edits record a concrete applicability
+    reason. These criteria do not make review automatic.
 
 23. **No bare emotion words.** The prompt does not rely solely on emotion labels like
     "very sad" or "extremely angry" without physical externalization.
@@ -1437,7 +1446,7 @@ Source skills: `seedream-storyboard`, plus `template-factory` (storyboard prompt
 1. **One frozen, decisive moment per panel.** Not a collage or multi-panel grid.
 
 2. **Dynamic panel count.** When an upstream analysis (a video or frame pass,
-   `tig-scene-engine`, or a script/beat sheet) has identified
+   `scene-craft`, or a script/beat sheet) has identified
    N scenes/shots, the board defaults to one panel per identified scene/shot —
    not a fixed budget. A user-specified smaller count is honored only when
    explicit, with omitted shots recorded as motion notes.

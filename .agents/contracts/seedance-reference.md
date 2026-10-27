@@ -12,9 +12,11 @@ they are prompt-composition only and never call the API themselves.
 | Lens / focal length / aperture / sensor | `seedance-lens-presets` | Always pairs numeric optics with the visible result; resolve requested 4K against current model capabilities |
 | Lighting | `seedance-lighting-presets` | Causal lighting presets; emit both the Seedream `Lighting:` recipe (elements) and the Seedance visual-style phrase so image + video share one lighting intent |
 | Color grading | `color-grade-palettes` | Named palettes + film looks in the Visual Style slot; keep one project-wide palette; optional post-grade filter expression for cross-shot matching in the destination workflow |
-| Acting / emotion | `seedance-acting-console` | Scene-level analysis (motive, tactic, eye-work) + per-character cue encoding (6 emotions × 3 intensities); optional audio reinforcement via `seed-audio-prompt` |
-| Scene structure & dramaturgy | `tig-scene-engine` | Five-element engine (Goal, Obstacle, Tactic, Reversal, Value Shift); bespoke definitions — do not substitute textbook craft |
-| Staging / blocking | `tig-blocking-map` | Color-coded outline schematic for character disposition; geometry only, no style bleed |
+| Performance planning | `acting-direction` | Source-bound goals, tactics, listening and performance beats, returned in chat |
+| Performance cue encoding | `seedance-acting-console` | Encode supplied intent without repeating scene analysis; emotion vocabulary is optional |
+| Requested fictional fight action | `seedance-fight-choreography` | Readable interactions, stable actors and props; no generation or real-world combat instruction |
+| Scene structure & dramaturgy | `scene-craft` | Apply the explicitly selected framework; the five-element engine is optional |
+| Staging / blocking | `blocking-map` | Color-coded outline schematic for character disposition; geometry only, no style bleed |
 | Pacing / rhythm | `seedance-pacing-presets` | Speed ramps and montage pacing; second-level timestamps are opt-in and not frame-accurate |
 | Animation medium & handcrafted style | `seedance-animation-styles` | Material-first Seedance prompts for clay, felt, wood puppets, toys, vintage cel, painterly 2D, crafted 3D, silicone, crayon, and custom media |
 | Music video | `seedance-music-video` | Song-first Seedance prompts: format (performance/narrative/conceptual/lyric/visualizer/hybrid), song-section map, beat/cut-density contract, black-sync lip-sync timing reference, and a per-genre style lock |
@@ -29,6 +31,12 @@ they are prompt-composition only and never call the API themselves.
 | Restyle a whole clip | `seedance-restyle` | Redraw the same cast, place, motion and camera in a new visual medium |
 
 ## Composition rules
+
+Requested acting work follows [Performance direction](performance-direction.md).
+Return the plan in chat and pass supplied intent to any requested coverage and
+cue encoding. Do not turn that handoff into mandatory scene files or automatic
+review. Source-preserving edits inherit performance; quiet holds and deliberate
+non-response need no extra motion, cuts or emotional turn.
 
 Use a preset skill only when the user asks for a concrete axis ("dolly in on her
 face", "teal and orange grade", "Rage at medium intensity", "bullet-time
