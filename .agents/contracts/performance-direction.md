@@ -12,6 +12,33 @@ explicit request. Existing source locators, beat IDs and hashes may be carried
 forward; do not invent files, hashes, IDs, production stages or approval records.
 An isolated prompt can supply intention, target, trigger and locks inline.
 
+## Creative Premise and Handoff
+
+For new, underspecified moving-image work, settle the intended audience response,
+what carries attention, and why the ending matters before treating a proposal
+as an executable direction. Read these from supplied intent where possible.
+Ask only for material gaps; offer genuinely different premises only while the
+idea is unresolved, not for a settled single-prompt edit. An observational
+ending may sustain attention or leave a question open; no reversal is required.
+
+Return a compact chat handoff alongside the prompt, proportionate to the request:
+
+- Premise and locks, distinguishing supplied facts from proposed interpretations.
+- Picture and edit intent: what to reveal, withhold, emphasize or sustain, and
+  which listening or recovery beat a trim must retain.
+- Early sound intent: the role of speech, ambience, an accent, or silence in
+  that attention and ending. Preserve the selected audio route; no final audio
+  asset or separate-audio workflow is required to discuss intent.
+- Observable acceptance suggestions tied to the brief, such as a listener
+  continuing a task through a refusal, a hurried exchange remaining intelligible,
+  or a sound withheld until the reveal. These are proposed checks, not scores
+  or approvals. Final cue timing follows the measured edit.
+
+No mandatory document, production registry, automatic review or new stage is
+introduced. Save only on explicit request. When media is available and inspection
+is authorized, record actual playback/listening evidence for these suggestions;
+otherwise leave the outcome unverified.
+
 ## Performance Handoff
 
 Preserve exact dialogue, language, register, medium, framing, timing and outcome.
@@ -30,6 +57,16 @@ If shot planning is requested, pass the relevant beats to `seedance-shot-design`
 Reserve time for listening and response; use cues the crop, camera side and
 subject scale can reveal. Holds, silence, ambiguity and repeated stillness are
 valid. Do not add cuts, gestures or a reversal to satisfy a quota.
+
+Body speed, amplitude, interruptions and recovery follow the approved pursuit
+and physical action. Actor energy, camera energy and edit rhythm are separate
+choices. Energetic dialogue is valid when speaker, words and relevant responses
+remain readable at the planned framing and speed; speech is not an energy cap.
+Quiet acting and sustained stillness are equally valid. A single burst with
+holds or slower movement is an optional remedy for a demonstrated failure,
+not an acceptance rule. Do not erase repeated action or add recovery holds
+across locked timing. Repeated framing, equal durations and multiple holds
+need no exception count; no fixed cadence, coverage, turn or "wow" quota applies.
 
 For requested fictional staged fights, `seedance-fight-choreography` supplies
 participant and prop states, apparent contact or avoidance, reaction and settled

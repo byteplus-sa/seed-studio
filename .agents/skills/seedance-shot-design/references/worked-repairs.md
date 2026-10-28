@@ -13,24 +13,19 @@ judgments drawn from recurring prompt shapes, not measured generation outcomes.
 - **Initial prompt shape:** Shot 1 (0-3 s) wide shot of the room. Shot 2 (3-6 s)
   medium shot at the door. Shot 3 (6-9 s) medium two-shot. Shot 4 (9-12 s) wide
   shot. One lighting sentence at the top: "soft late-afternoon daylight".
-- **Simulated failure:** Every shot is eye level and static, the shots are the
-  same length, and the light never changes. The scene plays as one framing cut
-  four times.
-- **Hypothesis:** Only size varies, and the cuts carry no other change.
-- **Smallest repair:** Keep the four beats and plan them with two declared
-  sources (the window at screen-left, the front door that opens at about 5 s) and
-  uneven lengths. Shot a (3.0 s): high wide, slow crane down, window sun from
-  camera-left. Shot b (2.5 s): medium close-up, slow push-in to the handle, the
-  same window sun. Shot c (3.5 s, the turn): low close-up held static on the boy,
-  contre-jour from the open door with window fill on his face. Shot d (3.0 s):
-  medium, slow drift right to the mother's smile, window sun with a warm rim from
-  the door.
-- **Tradeoff:** More facts for the model to honor in 12 seconds. One primary move
-  per shot, one room and two fixed sources keep the plan within what a clip can
-  hold.
-- **Acceptance:** Adjacent shots differ in at least two of size family, angle
-  class, move and key side; lengths are uneven; the child's tap lands on the one
-  shot flagged as the turn; no shot uses a source the scene did not declare.
+- **Simulated failure:** The son's tap and the mother's registration are omitted;
+  the cut returns wide before their interaction can be read.
+- **Hypothesis:** The cut points were selected without the action's purpose.
+  Equal lengths, eye level and stable light are not themselves defects.
+- **Smallest repair:** Keep the four beats, equal durations and stable window
+  light. In shot 3, place the boy's tap and the mother's registration in the
+  two-shot before the cut returns wide. If their response cannot fit, propose
+  borrowing time from the opening rather than silently changing locked timing.
+- **Tradeoff:** The interaction relies on readable shared framing rather than
+  a close-up. A more varied camera plan is an alternative only if requested.
+- **Acceptance:** The tap and the mother's registration are readable in order;
+  no shot invents a light source. A varied option is not required: a held
+  setup or equal-length shots that reveal the same interaction are also valid.
 
 ## A recorded axis that never reaches the shots
 
@@ -60,22 +55,18 @@ judgments drawn from recurring prompt shapes, not measured generation outcomes.
   answers {Wouldn't miss it.}
 - **Initial prompt shape:** "Hold a steady medium shot at eye level" for the whole
   clip, with "natural light".
-- **Simulated failure:** The brief's calm is honored, but the clip is one framing
-  for twelve seconds and the light is flat.
-- **Hypothesis:** The restrained level was read as "no variety".
-- **Smallest repair:** Keep restrained energy and declare two sources: cool light
-  from the freezer doors above the aisle, and warm shop-floor fill. Shot a (4 s):
-  medium two-shot at eye level, very slow drift left to right, the shopper's line
-  inside it, freezer light from camera-left. Shot b (4.5 s, the turn): over-the-
-  shoulder on the neighbor, slow push-in, the answer inside it, the same freezer
-  light now from camera-right because the camera crossed to the other side of the
-  pair. Shot c (3.5 s): eye-level close-up on the shopper's smile held static as a
-  `contrast_hold` after the push, warm floor fill rising on her face.
-- **Tradeoff:** More cuts than a single hold; every move stays slow, and each
-  line sits inside one shot with room for the late start of speech.
-- **Acceptance:** Size family, angle class and key side change between shots
-  while every move stays slow and motivated, each line fits its shot, and no
-  large move lands during speech. For this fictional English exchange only,
+- **Simulated failure:** The neighbor is obscured by a freezer door during the
+  reply, hiding the shared greeting.
+- **Hypothesis:** The framing misses the partner's response, not a variety quota.
+- **Smallest repair:** Keep the held medium two-shot and calm performance.
+  Shift the requested framing enough to keep the freezer-door edge clear of
+  the neighbor's reply, with the actual aisle source named. Preserve both
+  exact lines and the response time instead of adding a cut or a new turn.
+- **Tradeoff:** A small framing shift may expose more aisle background; keep
+  the supplied location and lighting consistent.
+- **Acceptance:** Both greeting and reply remain readable, with the unforced
+  camera requested by this calm brief. A held two-shot with an unobscured
+  neighbor also passes. For this fictional English exchange only,
   words / 2.2 plus 1 s onset and 0.4 s tail is a provisional planning estimate,
   not a rejection threshold. Measured or native-language-informed delivery
   determines fit; retime or split if needed, without rewriting approved text.
@@ -88,13 +79,28 @@ judgments drawn from recurring prompt shapes, not measured generation outcomes.
   global light sentence.
 - **Simulated failure:** The whip pans land during speech, so the lips and the
   line are hard to read.
-- **Hypothesis:** Large moves were spent on the shots that need readable
-  performance.
-- **Smallest repair:** Move the variety into size, angle and key side. Use an
-  over-the-shoulder and two singles with quiet pushes, put the one fast move in
-  a short insert before the key line, and light both speakers from the same
-  declared dinner lamp seen from opposite camera sides.
-- **Tradeoff:** Less kinetic feel; clearer speech and a visible power shift.
-- **Acceptance:** No large move is planned during a spoken line, the key line
-  sits in a single shot, and the speakers' lit sides differ without a second
-  source appearing.
+- **Hypothesis:** The pan crosses away from the speaker at the critical response.
+- **Smallest repair:** Keep the argument's actor energy. Reposition the pan
+  endpoint to frame the speaker before the key words, or use a tracking two-shot
+  that retains both siblings. Quiet pushes are another option, not a requirement.
+- **Tradeoff:** A tracking two-shot retains physical urgency but needs enough
+  frame width and focus depth to reveal both responses.
+- **Acceptance:** The key line, its speaker and the listener's registration
+  remain readable at the planned speed, with consistent dinner-lamp geography.
+  Energetic dialogue does not fail simply because movement continues.
+
+## Energetic exchange and quiet counterpart
+
+- **Brief:** Two couriers hurry side by side to deliver a parcel. One says exactly
+  {This way!}; the other changes direction to follow. Keep their quick pace and
+  use a tracking medium two-shot. No fall, collision or added dialogue.
+- **Initial prompt:** Both slow to a gentle walk and stop for the line.
+- **Simulated failure:** Speech protection removes the urgency of the delivery.
+- **Hypothesis:** Actor energy was confused with camera stability.
+- **Smallest repair:** Keep the brisk steps, weight transfer into the turn and
+  the follower's response; track alongside at a distance that reveals both.
+- **Tradeoff:** Framing and speech fit remain provisional without playback.
+- **Acceptance:** Exact words and follower registration remain intelligible;
+  no compulsory hold or extra cut interrupts the turn. For a counterpart brief
+  asking for quiet couriers waiting in the same framing, preserve waiting
+  instead. More movement is not the acceptance criterion.

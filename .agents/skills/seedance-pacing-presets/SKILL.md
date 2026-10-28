@@ -55,6 +55,11 @@ When a speed ramp is requested, choose exactly **one** ramp per stage (or
 named transition does not require an added speed ramp. Avoid conflicting
 time treatments within the same stage.
 
+Preserve source timing and requested rhythm. Actor energy, camera energy and
+edit rhythm are separate choices; preset durations illustrate a treatment,
+not a required cadence. Derive timings from the action, sound and readability.
+Repeated holds, equal durations and energetic dialogue are valid when intended.
+
 ### Speed ramps
 
 Each row gives the intent and a canonical timestamped phrase template that
@@ -83,7 +88,7 @@ of stacking it with a conflicting speed ramp.
 |---|---|---|
 | Time-lapse / timelapse | Compressed event, visible progression, framing, end state | `From <start>s to <end>s, show a time-lapse of <event>: <visible changes> progress rapidly from <initial state> to <final state>, with <subject or landmark> consistently framed.` |
 | Freeze frame | Exact visible pose, hold window, resume or cut | `At <N>s, freeze the entire picture on <subject's visible pose>; hold that same still image until <M>s, then <resume the action / cut to the next shot>.` |
-| Progressive change | The part that changes first, timed stages by body part or region, a slowed crossing, unbroken motion | See [Progressive change](#progressive-change) |
+| Progressive change | The part that changes first, timed stages by body part or region, source-led crossing speed, unbroken motion | See [Progressive change](#progressive-change) |
 
 A freeze frame holds the entire picture, including camera and background.
 Bullet time instead allows camera motion around near-frozen action. Time-lapse
@@ -99,13 +104,20 @@ doorway, a shadow edge), a surface that freezes or rusts from one end, a
 material that spreads across an object. This section is the one home for the
 technique; other skills point here.
 
-1. Slow the movement so the crossing takes about 1.5 s (a slow walk past the
-   line, not a stride).
-2. Write the stages by timestamp and body part or region, about 0.4 s apart:
-   the leading edge first, then a quarter, half, three quarters, then fully
-   changed.
+1. Preserve source timing, stride and crossing speed. When timing is not
+   supplied, choose a crossing window for the requested action and readability,
+   not an automatic slow walk.
+2. Write timed stages by body part or region as each actually crosses:
+   leading edge through fully changed. Stage count and intervals follow the
+   geometry and pace; the five-stage template below is illustrative, not a quota.
 3. Keep the motion and the place continuous, and rule out transition effects
    that the model otherwise adds.
+
+For a demonstrated whole-body swap, pose jump or unreadable progression,
+slowing the crossing to about 1.5 s with stages about 0.4 s apart is an optional
+failure-specific remedy, not a requirement. Use it only when timing can change;
+ask before relaxing a source lock. A fixed fast crossing remains valid but its
+result is unverified until inspected. Do not promise frame-accurate stages.
 
 ```
 At <T1>s, <subject>'s <leading hand and leading foot> have crossed <the line> and already show <new state>; the rest is still <old state>.
@@ -219,10 +231,12 @@ list first; end-to-end production is out of scope in this workspace.
 - **Timestamps are a time budget, not frame-accurate.** Never promise exact
   frame sync, and never demand impossible frequencies (e.g. "complete three
   actions in one second"). Write beats with margin and verify in review.
-- **Keep 1-2 camera moves per shot.** Pacing blocks describe timing, not camera
-  gymnastics. A requested multi-shot sequence may use a different move on each
-  shot; otherwise retain the one-or-two-move limit for the clip. Keep
-  simultaneous moves to at most two per shot.
+- **Preserve readable requested choreography.** One or two camera moves is a
+  default, not a hard shot or clip cap. Pacing describes timing; keep coherent
+  source paths and distinguish simultaneous moves from ordered phases.
+  Simplifying moves is an optional remedy for demonstrated instability or
+  lost readability. Resolve incompatible directions with the user; do not
+  remove moves, slow the action or add cuts just to meet a count.
 - **Pacing needs a shot list.** When the scene has multiple cuts, prefer an
   approved shot list (storyboard prompts via `template-factory`) rather than
   one raw prompt. A montage without an ordered cut list lets the model cut or
@@ -267,8 +281,11 @@ Before a pacing block is submitted as part of a Seedance 2.5 prompt, verify:
 
 9. Picture transitions identify outgoing and incoming shots; audio bridges name
    the sound source and overlap window without promising exact synchronization.
-10. Cuts shorter than about 0.8 s are planned in assembly; progressive changes
-    state timed regions and unbroken motion.
+10. About 0.8 s per cut is provisional guidance, not a provider limit.
+    Use assembly when the brief needs timing precision a prompt cannot supply;
+    progressive changes
+    state timed regions and unbroken motion at source-led speed, with any
+    failure-specific timing remedy kept optional and compatible with locks.
 
 A pacing block that passes all ten checks is ready to be composed into the
 full prompt by `seedance-prompt-25`.

@@ -59,6 +59,29 @@
         "The output returns the dependent panel to review and does not submit video generation.",
         "The output requires paths, hashes, selected variants, roles, and approval states in the shot manifest."
       ]
+    },
+    {
+      "id": 6,
+      "prompt": "Legacy Seedance 2.0, chat only. In one tracking medium two-shot, two couriers run side by side. A abruptly reaches for the parcel twice as B pulls it back to keep A listening; A says exactly {Give it here.} in English during the second reach. Keep both on their feet, the brisk pace and both reaches. No holds, slow motion or new ending.",
+      "expected_output": "A legacy-grammar prompt preserving energetic dialogue and repeated action with physical continuity and readable responses.",
+      "files": [],
+      "expectations": [
+        "Keeps both reaches and withdrawals, brisk pace and exact dialogue without slow-body or single-burst defaults.",
+        "Specifies weight, contact and recovery sufficient to understand the action while preserving the tracking two-shot.",
+        "Separates actor energy from camera movement and leaves delivery fit unverified without evidence.",
+        "No new source files, automatic review, generation or invented outcome."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Legacy Seedance 2.0: three equal-length held medium shots of the same courier waiting, each repeating the framing. She says exactly {Still here.} quietly in English, with no new gesture or turn. Keep the patient repeated attention and the open ending.",
+      "expected_output": "A quiet legacy prompt preserving repeated stillness, exact words and equal coverage.",
+      "files": [],
+      "expectations": [
+        "Does not introduce camera variety, body motion, a tactic switch or a resolution.",
+        "Keeps the language and words, quiet delivery and patient attention.",
+        "Does not require a non-eye-level angle, changed duration or minimum burst count."
+      ]
     }
   ]
 }

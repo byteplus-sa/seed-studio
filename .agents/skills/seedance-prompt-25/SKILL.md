@@ -237,7 +237,7 @@ Before generation, verify:
 2. **Reference roles**: Does every reference state what to use and what not to use?
 3. **Subject binding**: Is every required canonical character, product, and prop named and bound to a reference, with incidental objects handled by the prop threshold?
 4. **Scene selection**: Are references selected by scene, not forced to appear all at once?
-5. **Stage structure**: Does each stage contain only one primary change and a clear end state?
+5. **Stage structure**: Does each stage contain one primary event or sustained state and a clear end state? Purposeful waiting or listening may remain unchanged without a forced turn.
 6. **Consistency**: Do character count, clothing, prop ownership, and spatial relationships stay consistent?
 7. **Editing master**: For editing, is the sole editing master, edit scope, target quantity, and content to preserve defined?
 8. **Emotion & camera**: Are abstract emotions and cinematography terms paired with visible/audible cues?

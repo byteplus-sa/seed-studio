@@ -27,7 +27,7 @@ User invokes /prompt-review on one or more prompts
   → load the matching review checklist from references/review-checklists.md
   → spawn a sub-agent: give it the prompt text + the checklist
   → sub-agent returns structured findings (issues by severity with suggested fixes)
-  → main agent applies fixes to the prompt files
+  → main agent returns inline fixes or edits files within the requested scope
   → re-review only the changed prompts if any fixes were applied
 ```
 
@@ -65,6 +65,16 @@ performances and `fight.readable_exchange` to authored staged fights. Follow
 [Performance direction](../../contracts/performance-direction.md) and the
 bundled checklist. A plan may be inline; missing material intent is incomplete,
 not permission to invent source evidence or require a production scene file.
+
+For an unfinished new moving-image idea, identify missing audience response,
+attention and ending purpose before judging its direction complete. Offer
+alternatives only to resolve an open premise. Settled prompt edits do not need
+this exercise. Assess supplied sound/edit intent and observable acceptance
+suggestions without requiring final audio assets or a production registry.
+Body energy, camera energy and edit rhythm follow the brief: quiet holds and
+energetic dialogue are both valid when their required evidence is readable.
+Missing evidence remains unresolved; no cadence, coverage, turn or burst quota
+substitutes for that judgment.
 
 For the same request, use generation rules for generate, 2.5 edit rules for a
 2.5 edit, recast rules for a 2.5 recast (motion transfer), restyle rules for a
@@ -311,9 +321,11 @@ When the sub-agent returns findings:
 
 ### Step 6 — Apply fixes
 
-The main agent applies fixes directly to the prompt files:
+The main agent returns fixes inline for chat prompts. Edit existing prompt
+files only when file editing is in the user's scope; save a new snapshot only
+on explicit request:
 
-1. For each finding to be fixed, edit the prompt file with the suggested fix.
+1. For each finding to be fixed, revise the inline prompt or authorized file.
 2. Preserve the prompt's structure and formatting conventions.
 3. Do not rewrite the entire prompt — apply only the targeted fix.
 4. After applying fixes, note what was changed.

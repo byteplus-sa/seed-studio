@@ -80,13 +80,18 @@ Every recipe in [motion-presets.md](references/motion-presets.md) provides:
   reference roles. A held or worn product visible in frame follows the
   workspace element policy — canonical props get locked references, incidental
   generics may be described.
-- Keep every Flag visible in the composed prompt or the pre-submission notes;
-  flags encode real provider constraints, not style advice.
+- Keep applicable Flags visible in the composed prompt or handoff notes.
+  Distinguish verified provider constraints from safety boundaries and optional
+  creative heuristics; a dynamics caution is not a universal energy cap.
 - Duration, resolution, ratio, and watermark are generation parameters — they
   stay in the parameter block, never in the prompt text.
 - Acting intensity is expressed through observable physical cues, never degree
   adjectives; compose with `seedance-acting-console` when the emotion needs
   deeper cue work.
+- Preserve brief-grounded speed, interruptions and recovery. Actor energy,
+  camera energy and edit rhythm are separate; dialogue does not automatically
+  require slower movement. Keep speech and relevant action readable, including
+  in an energetic take. Purposeful stillness remains valid without added gestures.
 - Deeper execution constraints — parameter map, task-type enum, and the four
   flagged presets — live in
   [execution-constraints.md](references/execution-constraints.md).

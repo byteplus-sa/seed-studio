@@ -119,13 +119,13 @@
     {
       "id": 10,
       "prompt": "A veiled elder whose fine mesh veil leaves only her eyes visible suddenly lunges like a snake to hold a needle at a young man's neck. Keep the veil.",
-      "expected_output": "The snake image turned into observable cues with one burst and still holds, while the veil stays on and the eyes carry the threat.",
+      "expected_output": "The snake image translated into the supplied sudden lunge and held end position, preserving the veil without adding a mandatory pre-burst hold.",
       "files": [],
       "expectations": [
         "The animal image is translated into observable body cues and the word snake is not left alone as the direction.",
-        "There is exactly one burst action, with a still hold before it and a still hold after it.",
+        "Preserves the supplied lunge and hold at the neck; does not add timing or a pre-burst hold merely because of the image.",
         "The veil is kept and the eyes stay readable through it; no lip or nostril expression is required.",
-        "Wardrobe or identity is restated after the burst so it does not drift."
+        "Preserves supplied wardrobe and identity without claiming wording guarantees against drift."
       ]
     },
     {
@@ -200,6 +200,18 @@
         "Does not invent a visible reaction for offscreen B or additional dialogue.",
         "Keeps timing fit unverified and returns any fit concern without changing locked words or timing.",
         "Does not generate or request separate audio automatically, invoke siblings or promise synchronization."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Encode a brisk physical-comedy beat in a held medium two-shot. A reaches twice for a rolling parcel; B pulls it back each time to keep A listening. A says exactly {Give it here.} in English during the second reach. Both stay on their feet; no injury, extra dialogue, slow motion or added still holds. Preserve this supplied pursuit and repetition.",
+      "expected_output": "Readable repeated reaches and withdrawals at the supplied pace, with exact dialogue and distinct pursuits.",
+      "files": [],
+      "expectations": [
+        "Preserves both reaches and both withdrawals instead of enforcing a single-burst cap.",
+        "Grounds weight, hand contact and recovery while keeping the medium two-shot and supplied action.",
+        "Does not soften the body because speech occurs or add holds, slow motion, a fall or a new outcome.",
+        "Returns concise inline cues and unverified timing without claiming a successful take."
       ]
     }
   ]

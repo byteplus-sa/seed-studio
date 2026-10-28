@@ -125,6 +125,21 @@ Return these in chat; scene files and hashes are not prerequisites. Preserve
 quiet holds, exact dialogue and source performances. The five-element scene
 engine and named fighting styles are opt-in, not universal defaults.
 
+For new, underspecified moving-image work, resolve a compact creative premise
+in chat: intended audience response, what carries attention, and why the ending
+matters. Use supplied intent first; ask about material gaps and offer distinct
+alternatives only while the idea is unresolved. Settled prompt edits do not
+need a new treatment or whole-scene plan.
+
+Carry early sound and edit intent alongside the prompt: what is revealed,
+withheld or sustained, and whether sound or silence supports that moment.
+Suggest brief-specific observable acceptance checks, not approval records.
+Separate actor energy, camera energy and edit rhythm; derive each from the
+brief and readable action. Slow motion, repeated holds, equal durations,
+energetic dialogue and repeated framing are valid when purposeful. No cadence,
+coverage, turn, burst or "wow" quota supersedes that intent. See the existing
+performance contract for this inline handoff and its evidence limits.
+
 Keep skill metadata concise and valid YAML. Move substantial conditional
 modes and examples into focused same-skill references.
 
@@ -210,8 +225,11 @@ never revert or discard work you did not create.
 ## Verification
 
 Prompt QA is optional: the user runs `/prompt-review` when they want it. For
-repository changes run `git diff --check`; this workspace ships no code, so
-unit, lint, type, and build checks are not applicable.
+repository changes run `git diff --check`, the sync verifier, and
+`python3 -B -m unittest discover -s tests -p 'test_*.py' -v`.
+These offline maintenance tests check instruction consistency and eval data,
+not creative quality. Prompt skills ship no runtime code; application lint,
+type and build checks are not applicable.
 
 For produced media, verify output existence, audio/video streams, dimensions,
 duration, and full decode integrity before delivery. When exact original audio

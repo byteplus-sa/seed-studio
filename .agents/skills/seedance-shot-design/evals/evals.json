@@ -56,23 +56,23 @@
     {
       "id": 5,
       "prompt": "A client wants a calm, naturalistic supermarket ad: a shopper meets a neighbor at the freezer aisle and they exchange two lines. The camera should feel unforced and real. Plan the shots for a 12-second clip.",
-      "expected_output": "A restrained-energy plan preserving the encounter and listening, with motivated movement or holds, no large moves during spoken lines, and provisional timing until the two lines are supplied.",
+      "expected_output": "A restrained-energy plan preserving the calm encounter and listening, with motivated movement or holds and provisional timing until the two lines are supplied.",
       "files": [],
       "assertions": [
         "The energy level is recorded as restrained and any moves are slow and motivated.",
         "The plan may retain one framing and stable light when they serve the encounter.",
-        "No large camera move is planned during a spoken line, and each line sits in one shot.",
+        "Camera restraint follows this calm brief, not a blanket ban on energetic dialogue; speaker and relevant responses remain readable.",
         "The plan does not invent the two lines or claim measured fit without delivery evidence."
       ]
     },
     {
       "id": 6,
       "prompt": "Plan an 8-second kinetic motorbike chase through a night market for a music-video clip. The editor wants hard cuts on the beat.",
-      "expected_output": "A kinetic-energy plan of short shots within the shot ceiling, with hard cuts on the beat, per-shot moves, a stated travel axis and screen direction, and colored practical lighting from declared sources, without stacking competing moves inside one shot.",
+      "expected_output": "A kinetic-energy plan with proposed beat-aligned cuts, a stated travel axis and screen direction, and motivated practical lighting, without stacking competing moves or claiming measured music timing.",
       "files": [],
       "assertions": [
-        "The plan records kinetic energy and uses shots of roughly one to three seconds each.",
-        "The plan has at most about 7 shots and none shorter than about 0.8 s.",
+        "Kinetic energy follows the requested chase; shot durations follow readable action and the supplied beat map, or remain provisional if no map is provided.",
+        "Treats numerical shot-density guidance as provisional; suggests assembly for precise short cuts without claiming a provider limit.",
         "The travel axis and screen direction are stated and restated after each cut.",
         "Every shot has one primary move and at most one secondary move.",
         "Every shot names a declared light source or practical and its key side."
@@ -128,37 +128,37 @@
     {
       "id": 11,
       "prompt": "A two-character interrogation: a seated elder dominates a kneeling young man for the first half, then he starts resisting and takes control. Plan the coverage so the power shift reads without dialogue explaining it.",
-      "expected_output": "A Power-shift plan: dirty over-the-shoulder shots with the elder as a dark foreground mass while she dominates, a high angle on him before the turn, and a push-in held back until he takes control.",
+      "expected_output": "A plan making the supplied resistance and control shift readable; a power-shift coverage pattern is one option, not a required shot recipe.",
       "files": [],
       "assertions": [
-        "While the elder dominates, his coverage keeps her in the foreground as a soft dark mass (a dirty over-the-shoulder).",
-        "The angle changes at the turn, high on him before and low or level after, and only once rather than every shot.",
-        "A push-in is given only to the young man as he takes control, and not to both characters.",
-        "Exactly one shot is flagged as the turn, and it falls where he starts resisting."
+        "Shows the elder's initial dominance and the young man's resistance without inventing dialogue or a new outcome.",
+        "Any angle change or push-in supports the supplied shift; no specific move or framing is mandatory.",
+        "A held setup is valid if the physical exchange makes the shift readable.",
+        "May label the supplied turn without requiring exactly one turn shot."
       ]
     },
     {
       "id": 12,
       "prompt": "Plan the coverage for a 14-second Seedance 2.5 scene: a detective sees a bloodied glove in a locker and her two partners react behind her. Make the discovery land for the viewer.",
-      "expected_output": "A plan that covers the discovery as a look, point-of-view and reaction sequence and the trio reaction in one shot, with framing and featured subjects named per shot.",
+      "expected_output": "A plan making the glove discovery and partners' reactions readable, with framing and featured subjects named; a look/POV/reaction sequence or held shared coverage can serve the brief.",
       "files": [],
       "assertions": [
-        "The glove discovery is shown from the detective's viewpoint, with her looking before it and her reaction after it.",
+        "The viewer can connect the detective's discovery to the glove; does not require a look/POV/reaction shot count.",
         "Every shot names a framing and its featured subjects.",
-        "The detective and her two partners reacting together are covered in one shot that features all three rather than three separate singles.",
-        "Adjacent shots still differ in at least two of size family, angle class, camera move and key side, and exactly one shot is flagged as the turn."
+        "The partners' supplied reactions remain readable, in shared coverage or justified singles.",
+        "No minimum neighbor contrast or turn-shot quota substitutes for the discovery and response."
       ]
     },
     {
       "id": 13,
       "prompt": "A grandmother stands over her seated grandson at the dinner table and scolds him; halfway through he stands up and answers back. Cover it in four shots so the power shift reads from the camera alone.",
-      "expected_output": "A plan using an over-the-hip shot over the standing grandmother onto the seated boy, a single on him at the turn, and framing named per shot, with the foreground mass leaving the frame at the turn.",
+      "expected_output": "A four-shot plan making the supplied standing/seated relationship and answer-back readable through camera choices; over-the-hip and a single are options, not mandatory coverage.",
       "files": [],
       "assertions": [
-        "While she stands and he sits, the coverage keeps her in the foreground as a soft, unfeatured mass (a dirty single, over-the-shoulder or over-the-hip).",
-        "Once he stands, the coverage no longer relies on the height difference, and the plan records which framing replaces it.",
-        "Every shot names a framing and featured subjects, and at least one shot features the boy alone.",
-        "The foreground mass or the angle changes once at the turn rather than on every shot."
+        "The initial standing/seated relationship remains readable without requiring a foreground mass or over-the-hip framing.",
+        "Once he stands, the camera coverage reflects the changed relationship without inventing a further action or outcome.",
+        "Every shot names a framing and featured subjects; the boy's response is readable without requiring a single.",
+        "Any change in foreground mass or angle serves the supplied power shift, without an exact change count."
       ]
     },
     {
@@ -229,6 +229,30 @@
         "Reserves space for the listener response and does not claim measured timing.",
         "Accepts inline context without inventing source files, hashes or approved evidence.",
         "Returns timing uncertainty without accelerating speech, rewriting dialogue or creating a review gate."
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "Plan an energetic 10-second exchange. Two couriers hurry side by side; A says exactly {This way!} in English and darts left, B registers it and follows. Keep brisk footwork and a tracking medium two-shot, no fall, extra words or stop for speech. No delivery recording exists. Return in chat.",
+      "expected_output": "A source-grounded energetic dialogue plan preserving the repeated steps, directional change and follower response without inserting speech holds.",
+      "files": [],
+      "expectations": [
+        "Separates actor energy, camera tracking and edit rhythm; does not select restrained energy just because there is dialogue.",
+        "Preserves exact words, the left turn and B's registration, with weight transfer and recovery appropriate to brisk movement.",
+        "Keeps both subjects and the relevant response readable at the proposed framing and speed.",
+        "Leaves speech fit and actual motion unverified without playback; no automatic review, saved plan or generation."
+      ]
+    },
+    {
+      "id": 22,
+      "prompt": "Plan a quiet 10-second counterpart: the same couriers wait side by side in a locked medium two-shot. A quietly says exactly {This way!} in English while looking toward the left doorway; B listens but deliberately waits. No steps, cut, turn of the body or added gesture. Return in chat.",
+      "expected_output": "A sustained quiet exchange preserving deliberate waiting and readable listening without borrowing urgency from the courier scenario.",
+      "files": [],
+      "expectations": [
+        "Preserves the held medium two-shot, exact words and B's deliberate waiting.",
+        "Does not add movement, a reversal or a louder delivery to prove energy or aliveness.",
+        "Acceptance concerns readable orientation, exact delivery and sustained attention, not variety.",
+        "No files, automatic review or claim of observed media quality."
       ]
     }
   ]

@@ -94,18 +94,21 @@ silently changing coverage, performance or timing.
    | Level | Fits | Typical shot length | Camera | Light |
    | --- | --- | --- | --- | --- |
    | Restrained | Naturalistic, documentary, brand-safe realism, quiet drama | 3-10 s | Intentional holds or slow motivated movement | Motivated window or practical light; stable light when appropriate |
-   | Standard | Most narrative, ad and micro-drama work (default) | 2-6 s | Motivated moves or holds according to the supplied beats | Named key side; contrast only when it serves the scene |
+   | Standard | Narrative, ad and micro-drama work when the brief supports it | 2-6 s | Motivated moves or holds according to the supplied beats | Named key side; contrast only when it serves the scene |
    | Kinetic | Action, sport, chase, music video, high-energy ad | 1-3 s | Tracking, whip, handheld, crash zoom, orbit or FPV per beat | Hard contrast, rim or backlight, flicker, colored practicals |
 
    These ranges are optional craft aids, not quotas or duration limits.
-   Preserve source-led repetition and stillness. Choose kinetic only when
-   the brief supports it, and only for shots without spoken lines.
+   Preserve source-led repetition and stillness. Separate actor energy, camera
+   energy and edit rhythm. Energetic dialogue is valid when the brief supports
+   it and speaker, words, action and relevant responses remain readable at the
+   planned framing and speed. Speech alone is not an energy ceiling.
 3. **Give every beat a job:** establish, reveal, emphasize, connect, escalate,
    hold or release. A shot with no job is cut or merged into its neighbor.
-4. **Set the shot count and lengths** from the beats. A clip carries at most
-   about 7 shots and none shorter than about 0.8 s (observed in
-   upstream production reviews); split a longer kinetic sequence into
-   several clips. A shorter cut is planned as an assembly cut: generate each
+4. **Set the shot count and lengths** from the beats. About 7 shots and 0.8 s
+   per shot are provisional feasibility heuristics from limited upstream
+   observations, not provider limits or acceptance quotas. If density prevents
+   readable action, propose several clips. A precise short cut can be planned
+   as an assembly cut: generate each
    side at a natural length and trim in post (see the pacing preset skill's
    assembly-only cuts). Derive lengths from the supplied rhythm; variation and
    a turn shot are optional, never repairs to a locked hold. One shot across a long clip needs a recorded one-take or
@@ -121,8 +124,11 @@ silently changing coverage, performance or timing.
    lens, a quality and a contrast. Within the requested axes, assign each shot
    a size, a framing and featured subjects in multi-character scenes (see
    [framing](references/framing.md)), an angle, a move with start and end, and
-   a lens intent as a visible result. Dialogue shots vary size, framing and
-   angle; keep their moves quiet so speech and lips stay readable. A focus pull
+   a lens intent as a visible result. Dialogue coverage may hold, repeat or move
+   vigorously when motivated. Identify the speaker and preserve the cues and
+   lip visibility the brief needs; do not soften the actor merely to quiet the
+   camera. If a move obscures a critical response, change only the conflicting
+   framing, move or timing within authorization. A focus pull
    away from a face has failed in limited upstream probes; offer post
    treatment or a requested blocking/move/cut alternative rather than promising
    reliable prompted defocus.
@@ -133,8 +139,9 @@ silently changing coverage, performance or timing.
    removes a source (a door opens, a lamp is switched on, the room lights go
    out). A light cue may land inside a shot, even during a move, when the plan
    records its time and trigger. A shot never invents a source or a cue the
-   scene did not declare. Silhouette is for shots without speech; contre-jour
-   that keeps the face readable is allowed on spoken shots.
+   scene did not declare. Silhouette may accompany speech when concealment is
+   intended and speaker identity and delivery are clear. Where lip or facial
+   evidence is required, keep those features readable, including in contre-jour.
 8. **Write the plan** per [shot plan format](references/shot-plan-format.md).
    Choose recurring structures from
    [coverage patterns](references/coverage-patterns.md).
@@ -143,16 +150,16 @@ silently changing coverage, performance or timing.
 
 | Rule | Check |
 | --- | --- |
-| V1 Neighbor contrast | Adjacent shots differ in at least two of: size family (wide, medium, close), angle class (eye level, over-the-shoulder, low, high, overhead, first-person) with a recorded reason (extreme wide and wide count as wide; medium and medium close-up as medium; close-up, extreme close-up and insert as close), camera move (moving versus held, or a different type or direction), and key side from the same declared source or a motivated new source. A step within a family, "slightly low", and a reworded light phrase with no new position do not count. |
-| V2 Angle range | At least one shot per scene is not plain eye level (low, high, overhead, first-person or over-the-shoulder) unless a lock or `static_reason` says otherwise. |
+| V1 Neighbor relationship | Compare size, angle, move and key side for what the cut reveals or sustains. Contrast is optional; repeated framing and stable light are valid without a minimum number of changes or an exception count. |
+| V2 Viewpoint purpose | Choose eye level, low, high, overhead, first-person or over-the-shoulder for the supplied intent. No scene needs a non-eye-level shot merely for variety. |
 | V3 Motivated motion or stillness | Derive motion from the supplied scene and requested directing intent. Motion ratios are optional planning aids, not quotas. A whole clip or scene may remain held with a stated rationale; repeated stillness is valid. Do not add moves, cuts or light changes to satisfy a count. |
 | V4 Light named | Every shot names a declared source and a key side. "Cinematic lighting" and "soft fill" without a source and a side are not light facts. |
 | V5 Turn readable | When a turn is supplied, choose readable emphasis within the locks. Do not invent a turn, contrast or changed duration for an observational scene. |
-| V6 Move budget | One primary move per shot and at most one secondary, each with a subject, a start and an end. The clip-level cap is the shot ceiling in step 4, not a move count. |
+| V6 Move clarity | One primary move per shot and at most one secondary unless explicitly requested choreography needs more, each with a subject, a start and an end. Step 4's shot-density guidance is provisional, not a clip-level quota. |
 | V7 Readable performance | A move never stands in for a cue that cannot be read at that size; match shot size to the cues the beat needs. |
 | V8 Screen direction | Travel and confrontation state the axis and restate it after each cut; a deliberate axis crossing is named. |
 | V9 Intentional timing | Use the scene's speech, listening and action rhythm. Uneven timing is optional; equal lengths and source-locked cuts remain valid without a forced turn or contrast. |
-| V10 Framing intent | In a scene with two or more characters every shot names its framing and featured subjects, and the framing fits the beat: a scene of three or more shots that cover a conversation does not run on clean singles alone, a trio is not covered by three singles when one three-shot serves, a point-of-view shot sits next to its looker and its reaction shot or records why it stands alone, and an over-the-hip shot is used when the characters are at different heights (over-the-shoulder otherwise) or records why. Framing may inform the derived comparison class (see the plan format), but never overwrites a locked physical angle or viewpoint and is counted only once under V1 and V2. Scenes with one character are exempt. |
+| V10 Framing intent | In multi-character coverage, name framing and featured subjects so the relevant relationship and responses are readable. Clean singles, a held group shot, repeated framings or an unpaired POV can each serve the brief. Do not demand a framing mix, a reaction close-up or a height-based angle. Preserve physical angle and viewpoint independently; comparison classes are descriptive, not scores. |
 
 ## Inputs and limits
 
@@ -166,7 +173,7 @@ views, or ask for an approved extra view before binding the references.
 ## Evidence and limits
 
 A requested plan carries its facts into the prompt. The V1-V10
-thresholds are craft heuristics and optional artistic technique, drawn from the
+checks are contextual craft guidance and optional artistic technique, drawn from the
 failure shape of earlier upstream prompts: equal-length wide, medium,
 two-shot, wide ladders with no move and no light change, and project axes that
 never reached the shot lines. Framing and V10 follow the source and craft
@@ -184,15 +191,15 @@ Before returning a plan, confirm:
 1. Every shot has a job, duration, size, angle, move (or `static_reason`), lens
    intent, source and key side, framing and featured subjects where relevant,
    and supplied performance beats remain readable, within the requested axes.
-2. V1 through V10 pass or carry a recorded reason.
+2. V1 through V10 support the supplied intent; no numerical variety score applies.
 3. Locks and confirmed axes are carried, not overwritten.
 4. The shot count and lengths fit the duration, the energy level and any
    dialogue.
 5. No shot stacks competing moves, and no shot invents a light source or an
    undeclared light cue.
-6. A cut shorter than about 0.8 s (a blink cut, a vision flash, a fast
-   intercut) is an assembly cut: the plan names the clips it is cut from, and
-   each clip is generated at a natural length.
+6. Exact blink cuts, vision flashes or fast intercuts belong in assembly when
+   prompted timing cannot meet the brief: name the source clips at natural
+   lengths. The approximate 0.8 s heuristic is not a universal minimum.
 7. Return the plan in chat and identify which prompt carries it; save only on request.
 
 Worked cases are hypothetical teaching repairs in

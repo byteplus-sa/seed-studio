@@ -28,23 +28,23 @@ Do not invent an artifact, timestamp, listener verdict or measured quality gain.
 ## Blind pair comparison
 
 1. Keep the same brief, inputs, output budget and writing conditions for both
-   versions. Archive the skill sources used. Record differences in model or
+   versions. Identify the skill revisions used in chat. Record differences in model or
    settings; do not attribute those confounds to the skill change.
 2. Give writers the brief and appropriate skill version, without expected
    answers, grading rubrics or the other writer's output.
-3. Use `.agents/scripts/evaluate_skill_quality.py pack` at the workspace layer
-   to randomize A/B order. Keep `key.json`, version names and source paths away
-   from the judge. The pack contains the brief, criteria and complete outputs.
-4. An independent judge records `pack_sha256` for the assessed blind JSON and
-   returns each criterion's score and supporting evidence,
+3. A coordinator assigns neutral A/B labels and varies their order, keeping
+   version names and source paths away from the judge. Provide the brief,
+   criteria and complete outputs inline. No bundled harness is required.
+4. An independent judge returns each criterion's score and supporting evidence,
    plus concrete hard failures when any occur. Missing judgments are incomplete,
    not zero scores. Allow ties and neither-candidate-acceptable results.
-5. Use `summarize` only after judgment is complete. Inspect individual cases
+5. Summarize only after judgment is complete. Inspect individual cases
    before claiming an improvement; a small single-run pilot is not a statistical
    benchmark. Preserve regressions and disagreements, not just wins.
 
-The harness validates and aggregates human/agent judgments; it does not judge
-creative quality by keyword matching. Prompt scores do not establish generated
+This manual comparison does not judge creative quality by keyword matching.
+If no independent judge is available, label the result a self-assessment, not
+a blind evaluation. Prompt scores do not establish generated
 media quality. A later authorized media comparison should use matched requests,
 inspect actual artifacts and report stochastic variation and generation costs.
 
@@ -55,6 +55,16 @@ soft shadowless product photography, a quiet repeated chorus, a masked wide-shot
 performance, locked literary Tagalog dialogue, a product with no numerical
 claims, and a single requested edit. Pair close-up/wide or supported/unsupported
 claim cases to check whether decisions change for the right reason.
+
+Include quiet and energetic dialogue with exact words, sustained repeated holds,
+readable repeated physical actions, and a new brief missing its premise.
+Check audience response, attention and ending before treating that new direction
+as settled. Missing intent warrants a focused question or proposed alternatives,
+not invented canon. Also include a settled edit that must not reopen the premise.
+Score sound/edit intent by its role in the supplied piece, not by the number of
+cues, cuts, turns, bursts or impressive still frames. Energetic dialogue and
+purposeful silence can both succeed. Acceptance suggestions stay in chat;
+they do not run automatic review or establish that a take was watched.
 
 Worked repairs must include brief, initial prompt, actual or explicitly simulated
 failure, hypothesis, minimal repair, tradeoff and observable acceptance criteria.
@@ -70,23 +80,12 @@ conditions; absent those, mark historical anecdotes unverified. Artistic advice
 should explain when it helps and when it does not apply. Do not turn a plausible
 technique or a single failed take into a universal prohibition or guarantee.
 
-## Harness usage and judgment format
+## Chat judgment format
 
-From the workspace root, with complete writer output files:
-
-```bash
-uv run python .agents/scripts/evaluate_skill_quality.py pack --cases tests/fixtures/creative_quality_cases.json --before before.json --after after.json --seed 908 --out review-package
-uv run python .agents/scripts/evaluate_skill_quality.py summarize --pack review-package/blind.json --key review-package/key.json --judgments judgments.json
-```
-
-Each writer file contains `outputs`, a mapping of every case ID to its complete
-response text. The judge sees only `blind.json` and the scoring anchors above.
-The coordinator supplies the pack hash from `key.json` without its label mapping.
-`judgments.json` contains `pack_sha256` and `cases`; each case has `id` and
-`ratings` with exactly A and B. Each rating has `criteria` mapping every requested
-criterion to an integer `score` and concrete `evidence`, plus `hard_failures` as
-a list of evidenced brief violations (empty if none). Missing scores fail closed.
-
-The harness refuses an existing output directory. Keep the original package
-when revising a rubric or candidate and run a separately named follow-up; never
-quietly replace an unfavorable result or mix judgments across different packs.
+For each supplied case, report the candidate label, selected criterion, score,
+quoted evidence or concrete omission, and any hard brief violation. Mark missing
+evidence incomplete rather than inventing a score. Preserve ties, neither-
+acceptable outcomes and disagreements. Identify revised candidates separately;
+never silently replace an unfavorable result. Save comparison notes only on
+explicit request. No production registry, new tool stack or paid generation is
+part of this prompt-level assessment.

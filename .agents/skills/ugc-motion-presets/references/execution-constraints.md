@@ -74,10 +74,11 @@ actually holds — any subject drift breaks the effect.
 
 ### Morning routine — over-30s arc
 Two supported paths:
-1. **Compress** the arc into a ≤30s staged three-beat version (default in the
-   recipe).
-2. **Chain** three ~10s scenes via `return_last_frame: true` → `first_frame`,
-   with matched aspect ratios and wardrobe continuity across scenes.
+1. **Compress** only when the brief permits it; the recipe's three-beat version
+   is an example, not a required cadence.
+2. **Chain** scenes at lengths earned by their action, within verified limits,
+   via `return_last_frame: true` → `first_frame`, with matched aspect ratios and
+   wardrobe continuity. Preserve intended holds and repeated rhythms.
 
 ## Cross-cutting QA
 
@@ -91,7 +92,10 @@ Two supported paths:
   boundary, and end state; never demand impossible movement frequencies.
 - **Keyframe chains (multi-shot).** First and last images must share an aspect
   ratio; ordered multi-keyframe images are preferred over grids.
-- **High-burst caution.** Explosions, splashes, and jumps use described,
-  moderate dynamics — avoid unbounded debris and fragments around the subject.
+- **Intent-led dynamics.** Explosions, splashes and jumps use the brief's speed
+  and amplitude, with support, trajectory, contact and recovery described.
+  Keep debris boundaries and subject safety appropriate to the selected effect.
+  Moderate dynamics or burst-with-holds is an optional repair for demonstrated
+  failure, not a universal energy cap or a provider requirement.
 - **Generation parameters stay in the API.** Duration, resolution, ratio, and
   watermark never go in the prompt text.

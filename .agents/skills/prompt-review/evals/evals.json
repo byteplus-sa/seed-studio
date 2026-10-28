@@ -1,0 +1,52 @@
+{
+  "skill_name": "prompt-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "User-invoked /prompt-review, draft-only inline assessment. Model Seedance 2.5, operation generate, English, requested axes acting and camera. Approved inline intent: A reaches twice for a parcel while B withdraws it to keep A listening. Prompt preserves two brisk reaches in a tracking medium two-shot; A says {Give it here.} during the second, with both faces and hands visible and weight recovering between reaches. No still holds. Native 480p draft parameters supplied separately. No take or production request hash exists.",
+      "expected_output": "A draft assessment of readable action and exact dialogue, without a burst cap or kinetic-dialogue rejection; production evidence remains incomplete.",
+      "files": [],
+      "expectations": [
+        "Does not flag two bursts, brisk body movement or speech during tracking as defects by themselves.",
+        "Checks physical continuity, supplied pursuits and listener response rather than replacing them with gentle movement.",
+        "Distinguishes predicted readability from actual playback; missing production request evidence stays incomplete.",
+        "Returns inline findings without saving a snapshot, submitting generation or inventing a hash."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "User-invoked /prompt-review, draft-only inline assessment, Seedance 2.0 generate. Three equal-length held eye-level clean singles repeat the same quiet waiting; each records performance_hold for sustained attention. The approved brief deliberately withholds an answer, has no turn, and keeps light unchanged. The prompt preserves those facts and the exact English line {Still here.}. Judge only performance and coverage; no take is available.",
+      "expected_output": "No performance or coverage defect solely for repeated framing, holds, equal timing or an absent turn; actual media remains unverified.",
+      "files": [],
+      "expectations": [
+        "Does not penalize repeated performance_hold reasons or demand a group shot, non-eye-level angle, contrast or wow image.",
+        "Checks the quiet delivery and sustained waiting against supplied intent.",
+        "No forced gesture, reversal, cut or resolution.",
+        "Does not claim successful playback or a complete production preflight from a draft-only assessment."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "User-invoked /prompt-review on a draft Seedance 2.5 energetic dialogue shot. The approved plan requires the listener's immediate refusal to be visible. The prompt instead whip-pans away from both people for the entire reply and returns only after the listener leaves. Exact words and action are locked; no media is available.",
+      "expected_output": "A concrete readability finding tied to the omitted response, not a general prohibition on energetic dialogue.",
+      "files": [],
+      "expectations": [
+        "Identifies that the pan hides the critical supplied refusal and departure.",
+        "Suggests repairing the pan endpoint or framing while preserving actor energy, words and action.",
+        "Does not lower all body motion, add a mandatory still hold or claim a generated failure was observed."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "User-invoked /prompt-review of an unfinished new-video idea: someone receives a rejection and says {I'm fine.}. Only the mood 'emotional' is supplied. No intention, intended audience response, attention mechanism or ending is settled. Return a draft assessment in chat, not a production verdict.",
+      "expected_output": "Material premise and performance gaps remain unresolved; proposed interpretations are not backfilled as source evidence.",
+      "files": [],
+      "expectations": [
+        "Requests the intended audience response, what carries attention and the purpose of the ending.",
+        "Does not invent concealment, sincerity, listener behavior or an approved resolution.",
+        "May offer distinct proposed readings to settle the open idea, without an alternatives quota.",
+        "No automatic generation, save, new registry or fabricated passing evidence."
+      ]
+    }
+  ]
+}

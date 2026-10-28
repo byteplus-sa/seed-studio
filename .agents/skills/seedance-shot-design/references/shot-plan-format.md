@@ -115,13 +115,13 @@ shot_plan:
 | `static_reason` | Required with a static hold; a value from the entrypoint table |
 | `lens_intent` | A visible result (sharp plane, soft background, compression), never a number alone |
 | `light` | A declared `source`, the `key_side` relative to the lens, and the quality and contrast |
-| `contrast_with_previous` | Which of size family, angle comparison class, move and key side change; `n/a` for the first shot |
+| `contrast_with_previous` | Optional description of what changes or intentionally repeats; `n/a` for the first shot. No minimum contrast count |
 
 For V1 and V2 only, derive one angle comparison class: use the actual
 non-eye-level angle first; otherwise use first-person for POV or
 over-the-shoulder for OTS/OTH/dirty-single framing, else eye level. Keep
 `angle`, `viewpoint` and `framing` unchanged in the plan and prompt. This
-comparison class is a craft scoring aid, never a replacement camera direction;
+comparison class is a descriptive aid, never a score or replacement camera direction;
 count it once rather than counting framing again. A supplied legacy
 `angle: first-person` or `angle: over-the-shoulder` describes viewpoint or
 framing; retain any separately supplied elevation or tilt when normalizing it.
@@ -148,8 +148,8 @@ wanted, write it into the light line ("fades out over about one second"). An
 untimed "partway through" switch lands at an unplanned moment.
 
 A plan contains only requested axes, supplied durations and performance
-readability notes. A turn, uneven timing or neighboring contrast is not
-required when it conflicts with the approved rhythm. Supplied beat IDs connect
+readability notes. A turn, uneven timing or neighboring contrast is optional,
+not a requirement even when timing is open. Supplied beat IDs connect
 critical intent, listening and responses to the shots without a new schema.
 
 ## Carrying the plan into the prompt
