@@ -14,6 +14,12 @@ block in chat.
 Composition is identical in both modes. Generation never changes how a prompt is
 written; it only adds a submit step after the prompt is delivered.
 
+Confirmation is per-submit generation opt-in, not financial approval. Do not
+require a project or generation budget, spending cap, cost estimate or spending
+authorization. Cost information is optional. Missing pricing never blocks
+prompt delivery or an otherwise valid, confirmed submit. Provider limits still
+apply; report actual rejections without bypassing them or recommending cap setup.
+
 ## Detect the transport
 
 Detect from the session; never assume, and never ask for, read back, print or
@@ -64,7 +70,7 @@ stay prompt-only; do not silently drop the flag.
 
 After the caller inspects and explicitly selects a successful draft, prepare
 promotion using its `draft_task_id` and supported output settings. Confirm
-promotion separately; it is another paid request. Do not resend or change the
+promotion separately; it is another generation request. Do not resend or change the
 prompt, references, duration, ratio or audio settings during promotion. A
 creative change requires a new native draft. Inspect the final output again.
 Record the returned draft task ID in chat so it can be reused without another
@@ -80,9 +86,10 @@ and ask before using another resolution.
    user saw. Any change means showing it again.
 3. Show a submit summary and wait for an explicit yes: transport, model,
    operation, native-draft/test/promotion stage, duration/resolution/count,
-   ordered references, and cost when
-   known (`arkcli-pricing`, or capabilities output). Count every variation.
-   Approval covers that submit only.
+   and ordered references. Count every variation. Approval covers that submit
+   only, including retries and promotion; it is not a financial approval.
+   Optionally include known cost information, without requiring a price lookup
+   or treating an unknown price as zero.
 
 ## In scope
 

@@ -2,8 +2,8 @@
 
 Use for requested skill evaluations, worked-example review or comparison of
 alternative drafts. This is an offline editorial assessment, separate from the
-hash-bound production preflight. It does not approve assets or authorize media
-spend. Read only the rubric relevant to the supplied brief.
+hash-bound production preflight. It does not approve assets or provide
+per-submit generation opt-in. Read only the rubric relevant to the supplied brief.
 
 ## Judge the result the brief asks for
 
@@ -46,7 +46,8 @@ Do not invent an artifact, timestamp, listener verdict or measured quality gain.
 The harness validates and aggregates human/agent judgments; it does not judge
 creative quality by keyword matching. Prompt scores do not establish generated
 media quality. A later authorized media comparison should use matched requests,
-inspect actual artifacts and report stochastic variation and generation costs.
+inspect actual artifacts and report stochastic variation. Generation cost
+information is optional and never a prerequisite for the comparison.
 
 ## Case design
 

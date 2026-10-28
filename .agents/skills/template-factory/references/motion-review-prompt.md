@@ -7,7 +7,7 @@ of the approved breakdown revision with the prompt. This is the primary fix
 for "our version looks static".
 
 Prefer native video/image inspection; a caller-selected capable visual tool
-may fill a perception gap under the user's privacy, cost and offline
+may fill a perception gap under the user's privacy and offline
 constraints. Record source hash, inspected timestamp ranges, frame paths,
 reviewer/tool identity and uncertainty in companion notes. Do not claim a
 frame-by-frame review after viewing only sparse thumbnails.

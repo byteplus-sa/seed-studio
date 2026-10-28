@@ -27,7 +27,7 @@ breakdown metadata.
 Never claim to have watched a video you could not access.
 Check image capability before choosing extracted-frame mode. A shell that
 reads files cannot see them. Prefer native inspection without uploads when
-capable; honor privacy, cost and explicit offline constraints for fallbacks.
+capable; honor privacy and explicit offline constraints for fallbacks.
 
 ## Evidence before interpretation
 

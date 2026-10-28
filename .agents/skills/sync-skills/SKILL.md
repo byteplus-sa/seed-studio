@@ -83,6 +83,13 @@ the diff and restore these:
   ([production policy](../../contracts/production-policy.md)).
 - Any other synced skill that gains a `prompt-review` reference: remove it.
   Only the `prompt-review` skill itself may name `prompt-review`.
+- Remove inherited project/generation budget declarations, spending caps,
+  cost-estimate prerequisites and financial approval gates. Preserve deliberate
+  per-submit generation opt-in, manual review, native drafts, provider limits,
+  rights, consent and duplicate-submission protection. Cost information stays
+  optional. Keep external provider budget facts if present, but do not restore
+  recommendations to configure caps. Timing, prompt-length, reference-count
+  and panel-count constraints are not financial budgets.
 
 ## Arguments
 
@@ -146,6 +153,8 @@ above. Delete any code file the scan flags rather than editing it.
 
 ```bash
 python3 .agents/skills/sync-skills/scripts/verify.py
+python3 -B .agents/skills/sync-skills/scripts/test_generation_policy.py
+bash -n .agents/skills/sync-skills/scripts/sync.sh
 ```
 
 It checks that frontmatter names match their directories, that relative
@@ -153,6 +162,12 @@ Markdown links resolve, that no `.DS_Store` or `__pycache__` sits under
 `.agents/`, and that no skill mentions a tool or skill this workspace does not
 ship. It must report `forbidden references: 0` before the sync is done. Report
 every problem it lists, and repeat step 2b until it is clean.
+
+The nonpaid policy regressions check the retained submission safeguards,
+absence of inherited financial prerequisites, JSON validity and eval IDs.
+Representative scenarios live in
+[generation-policy-evals.json](../../contracts/generation-policy-evals.json);
+they describe expected behavior, not paid generation or model benchmark results.
 
 ### 4. Report
 

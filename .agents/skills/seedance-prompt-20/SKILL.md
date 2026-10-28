@@ -359,7 +359,10 @@ Model IDs are version-dated and change on release. Always copy the live ID from 
 
 ### Cost ladder
 - Prototype on Mini 480p → confirm on Fast 720p → finalize on Standard at target resolution.
-- Video generation is typically billed on successful task completion; confirm current billing rules on the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106).
+- Video generation is typically billed on successful task completion. Cost
+  information is optional; consult the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106)
+  when reporting current billing, not as a prerequisite for prompt delivery or
+  a confirmed submit.
 
 ### Consistency rules
 - Lock character sheets, prop sheets, and scene sheets with Seedream before spending video credits.

@@ -42,9 +42,18 @@ When the user runs `/prompt-review`, use explicit prompt type, model, operation,
 
 The request hash covers exact prompt bytes, model/operation/effective parameters and ordered reference roles/bindings. Credentials and timestamps are excluded. Changed request content makes an earlier review result stale.
 
-## Handoff (no provider operations)
+## Handoff and optional generation
 
-This workspace performs no provider submission: the user pastes prompts into the destination UI. There is no task registry, no provider status, and no cost record here. Provider-side outcomes the user reports back are diagnostic evidence for revision — rejection is evidence to diagnose, not a false positive by default, and reported success is review, never approval. Legitimate creative revisions stay within authorization and record the exact delta.
+Deliver prompts for the destination UI by default. When generation is requested,
+follow [generation-transport.md](generation-transport.md) for exact-package,
+per-submit opt-in, not financial approval. No project budget, spending cap,
+cost estimate or spending authorization is required. Cost information is
+optional; this workspace has no task registry or spending ledger.
+
+Provider-side outcomes are diagnostic evidence for revision: rejection is
+evidence to diagnose, not a false positive by default, and reported success
+does not approve an output. Legitimate creative revisions stay within
+authorization and record the exact delta.
 
 ## Generation and review defaults
 
@@ -66,7 +75,10 @@ Prefer per-shot prompts at natural duration over compressed timelines. Continuou
 
 Use the lowest suitable resolution within the requested behavior. For Seedream image prompts, default to three sampling variants; keep prompt, references, model and effective parameters identical except supported stochastic seed differences, and say so in the package. Creative alternatives change only explicitly requested variables. Explicit requested count wins. Watermark handling is a parameter note for the destination UI, not something this workspace sets.
 
-Verify the package before handoff: prompt text matches the review record, ordered references match the bindings, and the parameter block is complete and within documented limits.
+Verify the package before handoff: ordered references match the bindings, and
+the parameter block is complete and within documented limits. When a review
+was requested, its record must match the final prompt; otherwise no review
+record is required.
 
 ## Reserved upstream rules
 

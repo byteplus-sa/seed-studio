@@ -167,7 +167,6 @@ in one plan header and give each segment a short card:
 Plan: <id>, <n> segments, total <duration> s
 Image: <file>, <width>x<height> or unverified, face size: <ok / small / extreme pose>
 Audio: <file>, <format>, <size> or unverified
-Estimated cost: <total seconds> s x <current per-second list price> per full pass, x takes
 Open questions: <missing inputs, transcript, speaker identity>
 
 Segment <nn> (audio <start>-<end>, <duration> s)
@@ -179,6 +178,11 @@ Risks: <limits that still apply>
 ```
 
 A single clip uses the same fields with one segment.
+
+Optional cost note: when useful and current pricing is known, show total audio
+seconds times the per-second price and proposed take count. Omit it or label
+pricing unknown when unavailable; never require an estimate, budget or
+financial approval to deliver the card.
 
 Submission, polling and download belong to the calling agent or tool; see
 [inputs and API](references/inputs-and-api.md) for the request shape and

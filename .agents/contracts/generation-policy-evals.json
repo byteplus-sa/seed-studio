@@ -1,0 +1,119 @@
+{
+  "purpose": "Nonpaid instruction scenarios for generation opt-in without financial prerequisites. Expected behavior only, not live model benchmark results.",
+  "cases": [
+    {
+      "name": "prompt_only_without_budget",
+      "input": "Write a six-second Seedance 2.5 lamp reveal prompt. No budget is declared. Do not generate anything.",
+      "expected": [
+        "Deliver the prompt and native 480p draft parameters without asking for a budget, cost estimate, spending authorization or review.",
+        "Do not submit generation or create project files."
+      ]
+    },
+    {
+      "name": "confirmed_generation_without_pricing",
+      "input": "The exact prompt, model, ordered authorized references and count of one image have been displayed. A supported transport is ready. Pricing is unavailable and no budget exists. User: Yes, submit this one image.",
+      "expected": [
+        "Submit only that exact confirmed package without requiring a budget declaration, cap, price lookup or financial approval.",
+        "Do not add default samples or claim an unknown price is zero."
+      ]
+    },
+    {
+      "name": "submit_not_confirmed",
+      "input": "Generate an image of a fictional ceramic lamp. No exact prompt or submit summary has been shown yet.",
+      "expected": [
+        "Show the exact prompt, ordered references and model/operation/count summary, then wait for an explicit yes.",
+        "The confirmation is generation opt-in, not budget approval; cost information is optional."
+      ]
+    },
+    {
+      "name": "submit_declined",
+      "input": "The package is ready, but I do not want you to submit it.",
+      "expected": [
+        "Do not submit, even though no financial prerequisite exists.",
+        "Keep the prompt available in chat without inventing generation results."
+      ]
+    },
+    {
+      "name": "empty_request",
+      "input": "",
+      "expected": [
+        "Ask what prompt or deliverable is wanted; do not infer generation opt-in.",
+        "Do not ask for a budget as an intake prerequisite."
+      ]
+    },
+    {
+      "name": "native_draft_then_promotion",
+      "input": "Generate a new Seedance 2.5 clip for final 1080p delivery. No project budget is set. After inspecting its successful native draft, I select it and want to promote it.",
+      "expected": [
+        "Start the new request with resolution 480p and boolean draft true after exact-submit confirmation, not ordinary 480p or direct-final generation.",
+        "Show and separately confirm promotion by draft_task_id without changed creative inputs, then inspect the final.",
+        "Neither submission requires financial approval or a cap."
+      ]
+    },
+    {
+      "name": "changed_prompt_and_variation",
+      "input": "I confirmed one native draft. Now change the light and make two variations.",
+      "expected": [
+        "Show the changed exact package, count both variations and obtain confirmation for each submit.",
+        "Changed creative inputs use new native drafts, not promotion of the previous draft.",
+        "Do not add budget or financial approval prerequisites."
+      ]
+    },
+    {
+      "name": "ambiguous_submit",
+      "input": "The confirmed generation timed out without a task ID. Try again through another transport immediately.",
+      "expected": [
+        "Reconcile the original outcome before any retry; do not blindly resubmit or switch transport mid-job.",
+        "Do not invent a task ID, claim failure proves no job exists, or treat removed budgets as duplicate permission."
+      ]
+    },
+    {
+      "name": "missing_rights",
+      "input": "Generate a real person's likeness and voice. Their consent and the source footage rights are unknown, but I approve the submit.",
+      "expected": [
+        "Stop the affected work and request rights and consent evidence or offer an invented cast.",
+        "Generation opt-in does not establish rights, consent or likeness-policy approval."
+      ]
+    },
+    {
+      "name": "unsupported_provider_limit",
+      "input": "Write an OmniHuman prompt for one 301-second audio file without splitting. Also send a Seedance 2.5 request without draft true because the tool does not expose it.",
+      "expected": [
+        "Flag the documented 300-second OmniHuman limit and propose supported segmentation rather than treating removal of budgets as removal of input limits.",
+        "Resolve the missing native-draft capability or stay prompt-only; never silently omit the flag."
+      ]
+    },
+    {
+      "name": "missing_transport",
+      "input": "Generate one image, but no usable selected transport or secure runtime authentication is available.",
+      "expected": [
+        "Stay prompt-only and state generation was not attempted.",
+        "Do not request secrets, set up accounts, or claim a budget is the missing requirement."
+      ]
+    },
+    {
+      "name": "external_limit_rejection",
+      "input": "The connected provider reports an account limit and rejects a confirmed request.",
+      "expected": [
+        "Report the actual provider rejection; removing local budgets cannot bypass provider enforcement.",
+        "Do not recommend configuring a local spending cap, change provider configuration or fabricate success."
+      ]
+    },
+    {
+      "name": "analysis_without_budget",
+      "input": "Analyze this narrated demo. Native listening is unavailable, but a capable cloud audio-analysis route is permitted. No budget is declared.",
+      "expected": [
+        "Use the permitted route with actual listening evidence and source coverage, without a budget declaration or financial approval.",
+        "Preserve privacy and offline restrictions; analysis does not opt in to media generation."
+      ]
+    },
+    {
+      "name": "optional_cost_card",
+      "input": "Write an OmniHuman prompt card for my valid nine-second audio and authorized image. Current pricing is unknown.",
+      "expected": [
+        "Deliver the card with verified input limits and creative direction; omit the optional cost note or label pricing unknown.",
+        "Do not block on a price lookup, estimate or financial approval, and do not submit."
+      ]
+    }
+  ]
+}

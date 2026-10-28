@@ -132,11 +132,12 @@
     },
     {
       "id": 12,
-      "prompt": "Extract this narrated demo's sound grammar. You cannot hear audio, but the caller has a capable audio-analysis tool and cloud analysis is permitted within budget. No local transcription or separation tools are installed.",
+      "prompt": "Extract this narrated demo's sound grammar. You cannot hear audio, but the caller has a capable audio-analysis tool and cloud analysis is permitted. No budget is declared, and no local transcription or separation tools are installed.",
       "expected_output": "A capability-driven audio handoff and evidence record, with no unnecessary local installation or generation.",
       "files": [],
       "assertions": [
         "Uses the caller's permitted audio-capable route rather than declaring audio impossible solely because native listening is unavailable.",
+        "Does not require a budget declaration, spending cap, cost estimate or financial approval for analysis.",
         "Records actual tool identity, capability evidence, input hash and full soundtrack coverage without mislabeling it native listening.",
         "Makes transcription and separation optional aids and does not treat either alone as soundscape perception.",
         "Keeps provider input transfers caller-owned and does not turn analysis media into approved generation references."

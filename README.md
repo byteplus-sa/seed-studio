@@ -8,8 +8,11 @@ hands you a copy-paste block for the Lumina UI. Want a second opinion? Run
 `/prompt-review` yourself; the agent never runs it on its own.
 
 Generation is optional. With `ark-mcp` or `arkcli` connected, an explicit
-generation request submits the prompt you saw after you confirm the model,
-references and cost. Direct HTTP/curl is also supported when explicitly requested
+generation request submits the exact prompt you saw after you confirm each
+submit's model, ordered references and parameters. This is generation opt-in,
+not financial approval: no project budget, cap, estimate or spending
+authorization is required, and cost information is optional.
+Direct HTTP/curl is also supported when explicitly requested
 and secure caller-managed runtime configuration already exists; it is never an
 automatic fallback. Without a usable selected transport or generation request,
 the agent stays prompt-only. The agent never stores credentials or

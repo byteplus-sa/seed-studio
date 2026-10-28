@@ -19,6 +19,12 @@ prompt, confirm each submit, use one transport per job. With no usable selected
 transport, stay prompt-only and say so. The workspace never assumes, configures,
 or stores generation credentials.
 
+Per-submit confirmation is generation opt-in, not financial approval. Do not
+require project or generation budget declarations, caps, cost estimates or
+spending authorization. Cost information is optional and never a prerequisite
+for prompt delivery, analysis or a confirmed submit. Keep native-draft,
+provider-limit, rights, consent and duplicate-submission safeguards intact.
+
 Within the authorized task, agents may generate media, download references
 and results, prepare audio/video inputs, trim, mux, concatenate, assemble,
 transcode, and export deliverables using available tools, including local
@@ -151,7 +157,7 @@ assets or context only when explicitly selected for the current task.
 - Prefer an agent video pass when the client can watch the source, or local
   `ffmpeg`/`ffprobe` frame extraction read with image perception. When native
   perception is insufficient, the caller may use a capable available analysis
-  tool under privacy, cost and explicit offline constraints. Record actual
+  tool under privacy and explicit offline constraints. Record actual
   inspected ranges, tool provenance and uncertainty; never claim to have
   watched footage you could not access or continuously reviewed sparse frames.
 - Audio requires actual auditory perception or documented human listening.
@@ -201,8 +207,17 @@ never revert or discard work you did not create.
 ## Verification
 
 Prompt QA is optional: the user runs `/prompt-review` when they want it. For
-repository changes run `git diff --check`; this workspace ships no code, so
-unit, lint, type, and build checks are not applicable.
+repository changes run `git diff --check`, the maintenance metadata/link
+validator and nonpaid policy regressions:
+
+```bash
+python3 -B .agents/skills/sync-skills/scripts/verify.py
+python3 -B .agents/skills/sync-skills/scripts/test_generation_policy.py
+bash -n .agents/skills/sync-skills/scripts/sync.sh
+```
+
+These check repository instructions, not generated media or live model
+behavior. This workspace has no application type-check or build target.
 
 For produced media, verify output existence, audio/video streams, dimensions,
 duration, and full decode integrity before delivery. When exact original audio
