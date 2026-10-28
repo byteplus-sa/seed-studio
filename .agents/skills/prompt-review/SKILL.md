@@ -146,7 +146,10 @@ For each prompt:
 1. Resolve its explicit model, operation, prompt type, and requested axes; use
    the table only for a warned draft fallback.
 2. Read the corresponding section from `references/review-checklists.md`.
-3. Also load the **universal directing principles** section (applies to all prompts).
+3. Also load the complete [Universal checklist](references/review-checklists.md#universal--all-prompts),
+   including its model-independent performance and staged-fight criteria. Include their
+   applicability guards so static assets and preservation-only edits are not
+   treated as new performances.
 
 ### Step 3 — Spawn the review sub-agent
 
@@ -154,7 +157,8 @@ Delegate the review to a sub-agent. The sub-agent receives:
 - The full text and explicit review input for each prompt being reviewed.
 - The request hash, change contract, reference evidence, and applicable rule IDs.
 - The applicable checklist section(s) from `references/review-checklists.md`.
-- The universal directing principles.
+- The complete [Universal checklist](references/review-checklists.md#universal--all-prompts),
+  including applicability guards; the policy summary below is not a substitute.
 - Clear instructions on what to check and how to report.
 
 **Batching strategy:**
@@ -219,9 +223,11 @@ fight_input: <participant and prop states and readable exchanges, when applicabl
 
 <paste the applicable checklist section from references/review-checklists.md here>
 
-## Universal directing principles (apply to ALL prompts)
+## Universal checklist (check applicability for every item)
 
-<these are always included — see Universal Directing Principles section below>
+<paste the complete section from references/review-checklists.md#universal--all-prompts,
+including performance and staged-fight criteria and their applicability guards;
+do not substitute the policy summary in SKILL.md>
 
 ## Your task
 
@@ -381,6 +387,10 @@ This is efficient because:
 - The main agent only re-reviews prompts that actually changed.
 
 ## Universal directing principles
+
+This is a policy summary, not the checklist dispatched to the reviewer.
+Include the complete [Universal checklist](references/review-checklists.md#universal--all-prompts)
+in every worker payload.
 
 The workspace policy owner is the tracked production contract, with stable
 rule IDs in `../../contracts/rules.json`. The bundled checklist provides

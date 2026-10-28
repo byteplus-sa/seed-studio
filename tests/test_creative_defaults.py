@@ -230,6 +230,72 @@ class CreativeDefaultsTests(unittest.TestCase):
                 with self.subTest(path=path):
                     self.assertNotIn("/prompt-review", path.read_text())
 
+    def test_each_model_review_receives_shared_performance_criteria(self):
+        checklist = self.text(
+            ".agents/skills/prompt-review/references/review-checklists.md"
+        )
+        sections = {}
+        for section in re.split(r"(?m)^## ", checklist)[1:]:
+            heading, _, content = section.partition("\n")
+            sections[heading] = content
+        universal = next(
+            content for heading, content in sections.items()
+            if heading.startswith("Universal")
+        )
+        for model_section in [
+            "Seedance 2.0", "Seedance 2.5",
+            "Seedance 2.5 edit (video-to-video)", "Seedance VFX (video-to-video)",
+        ]:
+            with self.subTest(section=model_section):
+                packet = " ".join((universal + sections[model_section]).split())
+                for rule in ["acting.plan_bound", "fight.readable_exchange"]:
+                    self.assertIn(rule, packet)
+                for criterion in [
+                    "listener tasks", "consequences", "start/end states",
+                    "prop ownership", "incomplete", "not_applicable",
+                ]:
+                    self.assertIn(criterion, packet)
+
+    def test_shared_performance_review_retains_nonperformance_exemptions(self):
+        checklist = self.text(
+            ".agents/skills/prompt-review/references/review-checklists.md"
+        )
+        universal = " ".join(next(
+            section for section in re.split(r"(?m)^## ", checklist)
+            if section.startswith("Universal")
+        ).split())
+        for criterion in [
+            "Static assets", "preservation-only edits", "Non-fight work",
+            "applicable preservation checks", "do not make review automatic",
+        ]:
+            with self.subTest(criterion=criterion):
+                self.assertIn(criterion, universal)
+
+    def test_review_template_explicitly_includes_shared_checklist_source(self):
+        review = self.text(".agents/skills/prompt-review/SKILL.md")
+        source = "references/review-checklists.md#universal--all-prompts"
+        steps = re.split(r"(?m)^### Step ", review)
+        for number in ("2", "3", "4"):
+            with self.subTest(step=number):
+                step = next(part for part in steps if part.startswith(number))
+                self.assertIn(source, step)
+        template = next(part for part in steps if part.startswith("4"))
+        self.assertNotIn("see Universal Directing Principles section below", template)
+        self.assertIn("complete", template)
+        self.assertIn("applicability", template)
+
+    def test_action_frequency_requires_physical_or_readability_evidence(self):
+        for relative in [
+            "seedance-prompt-25/references/scene-action.md",
+            "prompt-review/references/review-checklists.md",
+        ]:
+            with self.subTest(path=relative):
+                text = " ".join((SKILLS / relative).read_text().lower().split())
+                self.assertNotIn("three actions in one second", text)
+                self.assertIn("count alone", text)
+                self.assertIn("physical", text)
+                self.assertIn("readability", text)
+
     def test_sync_preserves_local_forks_and_metadata(self):
         script = self.text(".agents/skills/sync-skills/scripts/sync.sh")
         allowlist = re.search(r'^ALLOWLIST="([^"]+)"', script, re.M).group(1).split()
@@ -287,7 +353,7 @@ class CreativeDefaultsTests(unittest.TestCase):
             "seedance-acting-console": {15, 16, 17},
             "seedance-prompt-25": {105, 106},
             "seedance-prompt-20": {6, 7},
-            "prompt-review": {1, 2, 3, 4},
+            "prompt-review": {1, 2, 3, 4, 5, 6},
             "ugc-motion-presets": {7, 9},
             "seedance-camera-presets": {14, 15, 16, 17},
             "seedance-pacing-presets": {13, 14, 15},

@@ -94,6 +94,25 @@ change the production policy. Source metadata: `rule-provenance.json`.
     asset should provide. Words like "logo", "tagline" or "text reads" are
     deliberate only.
 
+14. **Performance handoff (`acting.plan_bound`).** During this requested review,
+    trace supplied intentions, triggers, registration, listener tasks and readable
+    consequences into the prompt, regardless of the selected video model.
+    Inline intent is valid; missing material input is incomplete, not permission
+    to invent a scene file. Preserve quiet holds, masked framing, exact words,
+    timing and deliberate non-response. Two to four cues is a heuristic, not a
+    minimum. Critical omissions or contradicted locks are MAJOR. Static assets
+    and preservation-only edits record not_applicable; inherited performance
+    still needs its applicable preservation checks.
+
+15. **Staged fights (`fight.readable_exchange`).** For authored fight action,
+    trace participants, start/end states, apparent contact or avoidance,
+    reactions and prop ownership through readable framing and timing.
+    These criteria are model-independent; do not import another model's
+    parameters. Do not certify hidden contact, impose a fighting style or
+    change a locked outcome. Non-fight work and preservation-only edits record
+    not_applicable with a concrete reason. These criteria do not make review
+    automatic.
+
 ---
 
 ## Seedance 2.5
@@ -177,8 +196,10 @@ This check does not make manual `/prompt-review` mandatory.
 17. **Timestamp ranges.** Time ranges are consecutive and non-overlapping. They are
     treated as a time budget, not precise edit points.
 
-18. **No impossible frequencies.** The prompt does not demand impossible action
-    densities (e.g., "complete three actions in one second").
+18. **Action feasibility.** Judge physical support, travel, contact and recovery
+    against the available time and required readability. Action count alone
+    does not establish impossibility. Cite a concrete conflict; without enough
+    timing evidence, leave feasibility unresolved rather than inventing a limit.
 
 ### Audio syntax
 
@@ -194,21 +215,8 @@ This check does not make manual `/prompt-review` mandatory.
 
 ### Emotional direction
 
-22. **Performance handoff (`acting.plan_bound`).** During this requested review,
-    trace supplied intentions, triggers, registration, listener tasks and readable
-    consequences into the prompt. Inline intent is valid; missing material input
-    is incomplete, not permission to invent a scene file. Preserve quiet holds,
-    masked framing, exact words, timing and deliberate non-response. Two to four
-    cues is a heuristic, not a minimum. Critical omissions or contradicted locks
-    are MAJOR. Static assets and preservation-only edits record not_applicable;
-    inherited performance still needs its applicable preservation checks.
-
-22a. **Staged fights (`fight.readable_exchange`).** For authored fight action,
-    trace participants, start/end states, apparent contact or avoidance,
-    reactions and prop ownership through readable framing and timing. Do not
-    certify hidden contact, impose a fighting style or change a locked outcome.
-    Non-fight work and preservation-only edits record a concrete applicability
-    reason. These criteria do not make review automatic.
+22. **Performance criteria.** Apply Universal items 14 and 15 with their
+    applicability guards; they are shared with the other video models.
 
 23. **No bare emotion words.** The prompt does not rely solely on emotion labels like
     "very sad" or "extremely angry" without physical externalization.

@@ -47,6 +47,30 @@
         "May offer distinct proposed readings to settle the open idea, without an alternatives quota.",
         "No automatic generation, save, new registry or fabricated passing evidence."
       ]
+    },
+    {
+      "id": 5,
+      "prompt": "User-invoked /prompt-review, draft-only Seedance 2.0 generate, acting and fictional fight axes. Supplied intent: A blocks the doorway to keep B present; B deliberately does not respond. The staged exchange must show A's attempted reach, B avoiding it, and a baton remaining with B. The prompt instead hides the whole exchange behind a wall and shows the baton in A's hand afterward. Identity, exact dialogue, final ownership and the deliberate non-response are locked. No take or production request hash exists.",
+      "expected_output": "Applies the shared acting and fight criteria to the legacy model, identifies the hidden required exchange and contradicted ownership, and leaves production review incomplete.",
+      "files": [],
+      "expectations": [
+        "Includes acting.plan_bound and fight.readable_exchange criteria despite selecting Seedance 2.0.",
+        "Flags the hidden exchange and baton ownership contradiction without certifying unseen contact.",
+        "Preserves deliberate non-response; does not invent a reaction, winner, new dialogue or an emotional turn.",
+        "Returns draft findings in chat, leaves missing production evidence incomplete, and does not import Seedance 2.5-only parameters or generate media."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "User-invoked /prompt-review of two draft Seedance 2.5 action descriptions. A: a hand already resting above three adjacent keys taps each once within one second; keep this rhythm. B: a human crosses a 40-metre room on foot and returns to the starting mark within one second at normal playback speed, with no cuts or supernatural movement. Judge physical feasibility and readable evidence, not action count. No generated media is available.",
+      "expected_output": "Does not reject A solely for three actions per second; identifies B's specific travel-time conflict without turning it into a universal action-count limit.",
+      "files": [],
+      "expectations": [
+        "Keeps the requested three-tap rhythm; does not automatically add holds, slow it down or split it by action count.",
+        "Distinguishes A's predicted readability from verified playback.",
+        "Flags B's travel distance and return within the locked second as the concrete physical conflict.",
+        "Proposes authorized retiming or a changed staging approach for B rather than silently changing its locks."
+      ]
     }
   ]
 }
