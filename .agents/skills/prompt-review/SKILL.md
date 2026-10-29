@@ -20,6 +20,7 @@ The caller checks validity and returns the prompt without waiting on review.
 Approval authority is separate: `approve_for_me` does not request this review.
 Run detailed review inline. Delegate only when the user explicitly requests a
 review sub-agent, not because strict mode or general parallelism is enabled.
+Fix only eligible drafts under the frozen snapshot boundary below.
 
 ## Core concept
 
@@ -29,7 +30,7 @@ User invokes /prompt-review on one or more prompts
   → load the matching review checklist from references/review-checklists.md
   → review inline (delegate only if explicitly requested)
   → record findings (issues by severity with suggested fixes)
-  → main agent returns inline fixes or edits files within the requested scope
+  → main agent reports frozen-input findings or fixes eligible drafts
   → re-review only the changed prompts if any fixes were applied
 ```
 
@@ -44,6 +45,23 @@ Do not trigger for:
 - Manifest or scene definition edits (those are production metadata, not prompts).
 - Prompts that have already been frozen as prompt snapshots unless the user explicitly
   asks to re-review a frozen snapshot.
+
+## Frozen snapshot boundary
+
+Classify every input as an unfrozen draft, frozen/handed-off snapshot, or
+unknown before any repair. Use the caller's state and handoff evidence, never
+filename inference alone. If state is unknown, review findings-only and ask
+before editing; do not assume a saved file is still an editable draft.
+
+Re-review of a frozen input is findings-only. Preserve its original bytes,
+path, request hash, prior reviews and selection history, regardless of finding
+severity. A request to re-review is not authorization to repair or overwrite it.
+
+Repair requires separate explicit authorization for a new version. Keep the
+original unchanged, use a distinct unused destination only when saving is
+authorized, and bind the new review to the new request hash. If that destination
+already exists, stop and ask instead of replacing it. Return a revised chat
+package without writing files when persistence was not requested.
 
 ## Creative-quality comparisons
 
@@ -135,6 +153,11 @@ are meant, ask. Read each file to get its full text.
 
 If the prompts have not been saved to files (drafted inline in chat), extract the
 prompt text from the conversation. Save a snapshot only when the user asks for one.
+
+Record each input's state and original request hash in the review context.
+Pass the frozen snapshot boundary to reviewers; reviewers return findings only
+and never modify inputs. Missing input text remains incomplete, not permission
+to create or overwrite a snapshot.
 
 For Seedance prompts, run the [quick pre-check](references/author-self-check.md)
 before dispatching the sub-agent. It covers ten recurring findings, such as
@@ -329,14 +352,18 @@ When the sub-agent returns findings:
 
 ### Step 6 — Apply fixes
 
-The main agent returns fixes inline for chat prompts. Edit existing prompt
-files only when file editing is in the user's scope; save a new snapshot only
-on explicit request:
+Apply the frozen snapshot boundary to each input independently:
 
-1. For each finding to be fixed, revise the inline prompt or authorized file.
-2. Preserve the prompt's structure and formatting conventions.
-3. Do not rewrite the entire prompt — apply only the targeted fix.
-4. After applying fixes, note what was changed.
+1. Frozen or unknown-state inputs stay findings-only; report unresolved issues
+   without editing them. Severity never overrides immutability.
+2. For an explicitly authorized new version, create a separate revised package
+   and review its new request hash. Never transfer the original's approval or
+   selection to it. Preserve the original and check it remains unchanged.
+3. For an unfrozen draft within the repair scope, apply only targeted fixes.
+   Edit existing files only when file editing is in the user's scope.
+   Keep chat-only drafts in chat; do not create files without a save request.
+4. Preserve structure and formatting, and report which drafts or new versions
+   changed separately from the frozen originals that were only reviewed.
 
 ### Step 7 — Re-review changed prompts (if any fixes were applied)
 
@@ -350,6 +377,11 @@ If any CRITICAL or MAJOR fixes were applied, re-review the changed prompts:
 ### Step 8 — Report to the user
 
 Summarize the review results:
+
+For findings-only inputs, report findings as unresolved rather than "fixed".
+Distinguish a complete review with failures from an incomplete review. A frozen
+snapshot with blocking findings is NEEDS ATTENTION and remains unchanged; a
+separately reviewed new version never replaces its historical result.
 
 ```text
 ## Prompt Review Complete
@@ -380,7 +412,8 @@ When reviewing multiple prompts (e.g., all prompts for a scene's shots):
 1. Group prompts by type.
 2. Review each type inline; only explicit delegation uses sub-agents.
 3. Review all prompts of the same type in one pass.
-4. Collect all findings, deduplicate, and apply fixes.
+4. Collect all findings, deduplicate, and apply fixes only to eligible drafts
+   or separately authorized new versions. Frozen inputs remain findings-only.
 5. Re-review only the prompts that had CRITICAL or MAJOR fixes applied.
 
 This is efficient because:
