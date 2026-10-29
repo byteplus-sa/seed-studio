@@ -1,12 +1,12 @@
 ---
 name: prompt-review
 description: >-
-  Requested or strict-mode review of BytePlus Seedance, Seedream, and Seed Audio
+  Manual review (/prompt-review) of BytePlus Seedance, Seedream, and Seed Audio
   prompts inline, with explicit model, operation, change
   contract, and request hash. Return rule findings and complete or incomplete
   status; fix and re-review changed prompts. Use for video, VFX, Filipino dialogue,
   image/character/location/prop/UI/card/storyboard prompts, music, SFX, or ambience.
-  Runs when the user selects strict review or asks to review, QA, validate, or lint prompts. Exclude
+  Runs only when the user invokes /prompt-review. Exclude
   manifest-only edits, generated-media review, and frozen snapshots unless
   re-review is explicitly requested.
 disable-model-invocation: true
@@ -14,9 +14,9 @@ disable-model-invocation: true
 
 # Prompt Review
 
-Detailed review for an explicit request or `review_mode: strict`. In
-`review_mode: default`, do not load this pipeline merely because a prompt was
-written; the caller does one inline validity check and returns the prompt.
+Detailed review only when the user invokes `/prompt-review`. Neither
+`review_mode: default` nor `review_mode: strict` invokes this pipeline.
+The caller checks validity and returns the prompt without waiting on review.
 Approval authority is separate: `approve_for_me` does not request this review.
 Run detailed review inline. Delegate only when the user explicitly requests a
 review sub-agent, not because strict mode or general parallelism is enabled.
@@ -24,20 +24,19 @@ review sub-agent, not because strict mode or general parallelism is enabled.
 ## Core concept
 
 ```
-User requests review or selects strict review for the task
+User invokes /prompt-review on one or more prompts
   → identify each prompt's type (Seedance 2.5, Seed Audio, Seedream, etc.)
   → load the matching review checklist from references/review-checklists.md
   → review inline (delegate only if explicitly requested)
   → record findings (issues by severity with suggested fixes)
-  → main agent applies fixes to the prompt files
+  → main agent returns inline fixes or edits files within the requested scope
   → re-review only the changed prompts if any fixes were applied
 ```
 
 ## When to trigger
 
-Only when the user selects strict review, invokes `/prompt-review`, or explicitly
-asks to review, check, QA, validate, or lint prompts. In default mode, never run
-it just after writing a prompt or add it to another workflow.
+Only when the user invokes `/prompt-review`. Never run it merely after writing
+a prompt, on a strict-mode setting, or as a step of another workflow.
 
 Do not trigger for:
 - Generated-media viewing (this workspace delivers prompts only; outputs are
@@ -306,9 +305,11 @@ When the sub-agent returns findings:
 
 ### Step 6 — Apply fixes
 
-The main agent applies fixes directly to the prompt files:
+The main agent returns fixes inline for chat prompts. Edit existing prompt
+files only when file editing is in the user's scope; save a new snapshot only
+on explicit request:
 
-1. For each finding to be fixed, edit the prompt file with the suggested fix.
+1. For each finding to be fixed, revise the inline prompt or authorized file.
 2. Preserve the prompt's structure and formatting conventions.
 3. Do not rewrite the entire prompt — apply only the targeted fix.
 4. After applying fixes, note what was changed.
@@ -461,5 +462,5 @@ organized by prompt type with a table of contents at the top for quick navigatio
   reference bindings and review result to the user; generated-media review
   happens in the destination workflow.
 - For end-to-end production coordination, say so: it is out of scope in this workspace.
-- This skill is requested or strict-mode review only and stands alone; it does
+- This skill is user-invoked only and stands alone; it does
   not call generation tools itself.

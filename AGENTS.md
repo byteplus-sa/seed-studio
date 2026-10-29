@@ -15,7 +15,7 @@ user requests generation or a deliverable requiring generated Seed media,
 and a usable `ark-mcp` or `arkcli` is connected, or the user explicitly requests
 direct HTTP/curl with an established secure runtime configuration, follow
 [Generation transport](.agents/contracts/generation-transport.md): show the exact
-prompt, apply the selected review and approval modes, and use one transport per job. With no usable selected
+prompt, confirm each submit, use one transport per job. With no usable selected
 transport, stay prompt-only and say so. The workspace never assumes, configures,
 or stores generation credentials.
 
@@ -114,11 +114,13 @@ needed for the authorized deliverable; otherwise deliver them as instructions.
 Do not assume unavailable tools or expand into unrelated production work.
 
 Review depth is `review_mode: default` unless explicitly set to `strict`.
-Default skips the full prompt-review pipeline and checklist reports; strict
-or an explicit review request uses the applicable detailed review inline.
+Default uses a compact inline preflight; strict adds validity explanations
+and detailed candidate inspection without invoking manual prompt review.
 `approval_mode: approve_for_me` separately lets the agent make in-scope creative
 decisions; `ask_for_approval` waits for user decisions in either review mode.
 Never infer permission for review sub-agents from either setting.
+Prompt QA runs only when the user invokes `/prompt-review`; no prompt-writing
+skill or workflow runs, loads, or waits on it.
 See [Review mode](.agents/contracts/review-mode.md) for chat-only toggles,
 sampling, final sanity checks and the safeguards that remain in both modes.
 
@@ -140,11 +142,20 @@ assets or context only when explicitly selected for the current task.
 
 ## Prompt invariants
 
-- In default mode, do not run the full prompt-review pipeline unless explicitly
-  requested. Strict mode requests the detailed inline check before handoff.
-  Review sub-agents require a separate explicit request.
+- Never run `prompt-review` on your own, including in strict mode. Review
+  happens only when the user invokes `/prompt-review`; it never gates handoff
+  or generation. Review sub-agents require a separate explicit request.
 - Freeze the exact prompt text before handoff. A generation submit must match
   the prompt the user saw byte for byte.
+- Every new Seedance 2.5 generation starts in native draft mode with explicit
+  `resolution: "480p"` and boolean `draft: true`, including edits, extensions,
+  retries and first tests. A delivery target does not skip this first pass.
+  Keep these settings outside prompt text. The caller inspects and selects the
+  draft before promotion by `draft_task_id`; changed creative inputs need a new
+  native draft. A tool or UI that cannot expose draft mode is a capability
+  mismatch to resolve, not permission to silently send ordinary 480p.
+  Other video models without native draft mode use an ordinary 480p test,
+  clearly labeled non-promotable. Do not invent unsupported parameters.
 - Prefer an agent video pass when the client can watch the source, or local
   `ffmpeg`/`ffprobe` frame extraction read with image perception. When native
   perception is insufficient, the caller may use a capable available analysis
@@ -197,10 +208,11 @@ never revert or discard work you did not create.
 
 ## Verification
 
-Default prompt QA is a brief inline preflight; strict or requested review adds
-the detailed checklist. For
-repository changes run `git diff --check`; this workspace ships no code, so
-unit, lint, type, and build checks are not applicable.
+Prompt QA is optional: the user runs `/prompt-review` when they want it. For
+repository changes run `git diff --check`, the maintenance verifier, and
+`python3 -B -m unittest discover -s tests -p 'test_*.py' -v`.
+These nonpaid checks validate instructions, not generated-media quality.
+Application lint, type and build checks are not applicable.
 
 For produced media, verify output existence, audio/video streams, dimensions,
 duration, and full decode integrity before delivery. When exact original audio

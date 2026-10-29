@@ -14,7 +14,7 @@
       "name": "strict_with_agent_selection",
       "input": "Use strict review and approve_for_me. Choose the camera and write the prompt.",
       "expected": [
-        "Run the detailed applicable review inline.",
+        "Explain applicable validity checks; strict does not invoke manual prompt review or require its record.",
         "Choose the in-scope camera without waiting for a user choice.",
         "Do not delegate review without a separate explicit request."
       ]
@@ -29,11 +29,11 @@
     },
     {
       "name": "requested_generation",
-      "input": "Generate one image using the supplied authorized product reference. Use default review, approve_for_me, and the stated budget cap.",
+      "input": "Generate one image using the supplied authorized product reference. Use default review and approve_for_me.",
       "expected": [
         "Show the exact package and perform one inline preflight.",
-        "Submit the one requested image without a repeated confirmation if supported and within the cap.",
-        "Do not add two more samples or extra retry spend.",
+        "Wait for an explicit yes to the exact package before submitting that one image.",
+        "Do not add two more samples or unconfirmed retries.",
         "Inspect the real result before selecting it; unavailable inspection is not a pass."
       ]
     },
@@ -47,7 +47,7 @@
     },
     {
       "name": "explicit_review_in_default",
-      "input": "Use default review. Now review this particular prompt in detail.",
+      "input": "Use default review. /prompt-review this particular prompt in detail.",
       "expected": [
         "Perform the specifically requested review.",
         "Keep the broader project default unchanged."
@@ -67,7 +67,7 @@
       "input": "The generation submit timed out without returning a task ID. Default review is enabled.",
       "expected": [
         "Reconcile the existing submission before retrying.",
-        "Do not infer permission for duplicate spend from default mode."
+        "Do not infer permission for duplicate submission from default mode."
       ]
     },
     {

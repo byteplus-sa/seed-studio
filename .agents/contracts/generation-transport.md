@@ -9,7 +9,7 @@ block in chat.
 | Mode | When | Result |
 | --- | --- | --- |
 | Prompt-only (default) | No generation request, or no usable transport | Copy-paste block for Lumina |
-| Prompt + generation | The user asks for generation and a transport is usable | Prompt shown to the user, then an in-scope submit and job status under the approval mode |
+| Prompt + generation | The user asks for generation and a transport is usable | Exact package shown to the user, then a confirmed submit and job status |
 
 Composition is identical in both modes. Generation never changes how a prompt is
 written; it only adds a submit step after the prompt is delivered.
@@ -57,18 +57,38 @@ failed or that no job was created.
 
 Follow [review-mode.md](review-mode.md). Review depth and approval authority are
 separate. Default needs a single inline request preflight, not a checklist
-report. Strict adds detailed prompt review, not automatic human confirmation.
+report. Neither approval mode authorizes submission: creative selection
+does not replace the exact-package confirmation below. Strict mode does not
+invoke manual prompt review or require a review record.
 
-1. Present the exact prompt, ordered references and compact submit summary:
-   transport, model, operation, duration/resolution/count and cost when known.
-   Count every variation and preserve any stated spending limit.
-2. Under `approve_for_me`, a generation request authorizes the specified
-   submissions without another yes for each step. Under `ask_for_approval`,
-   wait for the requested user choice; retain any existing batch authorization.
-3. Submit the exact displayed package. A change must be shown, but needs fresh
-   authorization only when it changes a user lock, exceeds the approved scope
-   or budget, or the user asked to confirm submissions. Unknown material
-   cost/scope is a question, never unlimited spending authority.
+Every new Seedance 2.5 request uses native draft mode: explicit
+`resolution: "480p"` and boolean `draft: true`. This applies to first tests,
+edits, extensions and creative retries, regardless of review depth or delivery
+resolution. Never substitute an ordinary 480p request for native draft mode.
+If the selected transport cannot expose it, resolve the capability mismatch or
+stay prompt-only; do not silently drop the flag.
+
+After the caller inspects and explicitly selects a successful draft, prepare
+promotion using its `draft_task_id` and supported output settings. Confirm
+promotion separately; it is another paid request. Do not resend or change the
+prompt, references, duration, ratio or audio settings during promotion. A
+creative change requires a new native draft. Inspect the final output again.
+Record the returned draft task ID in chat so it can be reused without another
+first test; save provenance only when requested.
+
+For other video models without native draft mode, use an ordinary 480p first
+test and label it non-promotable. Do not add an unsupported draft flag; a final
+is then a fresh generation. If 480p is unsupported too, explain the limitation
+and ask before using another resolution.
+
+1. The user has been shown the exact prompt and the ordered references.
+2. The submitted prompt and reference order are byte-identical to what the
+   user saw. Any change means showing it again.
+3. Show a submit summary and wait for an explicit yes: transport, model,
+   operation, native-draft/test/promotion stage, duration/resolution/count,
+   ordered references, and cost when
+   known (`arkcli-pricing`, or capabilities output). Count every variation.
+   Approval covers that submit only.
 
 ## In scope
 
@@ -83,8 +103,8 @@ report. Strict adds detailed prompt review, not automatic human confirmation.
   local trimming, muxing, assembly and export use the existing permissions in
   the root workspace instructions; this contract does not retract them.
 - Exact-copy, typography, logo, UI, and deterministic HTML/CSS/SVG work.
-- Unbounded generation loops. Submit only the requested count or authorized
-  batch; retries and new variations must remain within scope and budget.
+- Bulk or unattended generation loops. Submit what was confirmed, then report.
+  Retries, variations and promotion each require their own confirmation.
 
 ## Results and records
 
@@ -96,5 +116,5 @@ date, and the prompt file. Never store signed URLs,
 keys, or account data. Download media only when asked.
 
 A moderation rejection is evidence to diagnose. Revise only legitimately,
-show the changed prompt, and apply the current authorization boundary before
-resubmitting. Never disguise restricted inputs or infer unlimited retry scope.
+show the changed prompt, and confirm again before resubmitting.
+Never disguise restricted inputs or infer unlimited retry scope.

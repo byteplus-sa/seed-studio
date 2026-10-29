@@ -237,7 +237,7 @@ Silent output. Sound is added in post.
 
 Candidate parameter block, only when supported:
 `omni_reference_task_type: edit`, `generate_audio: false`,
-`resolution: 480p`, `watermark: false`; omit `ratio` and `duration` only when
+`resolution: "480p"`, `draft: true`, `watermark: false`; omit `ratio` and `duration` only when
 the destination inherits both from the source.
 
 Acceptance criteria: the whole frame reads as clay while the same terrace

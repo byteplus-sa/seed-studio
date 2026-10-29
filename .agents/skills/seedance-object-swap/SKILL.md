@@ -87,9 +87,11 @@ the test-ladder rung.
    Several views of one target state that the output contains only one.
 5. **No baked text.** A label printed on a product is part of the product;
    captions, taglines, CTAs and end cards are added in post.
-6. **Test ladder**: a 480p probe of the hardest contact window, then the full
-   clip at 480p, then the final resolution. Each rung is a separate prompt
-   block, pasted and judged by the user before the next rung.
+6. **Test ladder**: every new Seedance 2.5 test uses `resolution: "480p"`
+   and boolean `draft: true`, including an agreed contact-window probe and the
+   full clip. The caller inspects and selects the full-clip native draft before
+   promotion by `draft_task_id`; changed inputs need another native draft.
+   Resolve a missing draft control rather than substituting ordinary 480p.
 
 ## Route and parameters
 
@@ -109,12 +111,14 @@ never prompt text:
   whole-second duration. Adapt a separate copy only to a verified destination
   requirement, with the user's agreement and the timing change recorded.
   Preserve the original video and audio.
-- `generate_audio: false`, `watermark: false`, `resolution` per ladder rung.
+- `generate_audio: false`, `watermark: false`, `resolution: "480p"`,
+  `draft: true` for each new test; record delivery resolution separately.
 
 Confirm the model ID and the accepted parameters in the destination UI or the
 current documentation before finalizing the parameter block.
-Use a supported low-resolution probe (480p when available) for the current
-case; it does not guarantee final-resolution quality or timing. Treat linked
+Use explicit `resolution: "480p"` and boolean `draft: true` for a new native
+probe; resolve missing draft controls before submission. It does not guarantee
+final-resolution quality or timing. Treat linked
 preparation recipes as conditional on these checks, not default trim instructions.
 
 ## Procedure

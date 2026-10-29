@@ -5,11 +5,12 @@
 This repository ships agent skills, not generation tooling. You describe what you
 want, the agent composes a production-grade prompt from the skill libraries and
 hands you a copy-paste block for the Lumina UI. Want a second opinion? Run
-`/prompt-review` yourself, or select strict review for detailed checks.
+`/prompt-review` yourself; neither review mode invokes it automatically.
 
 Generation is optional. With `ark-mcp` or `arkcli` connected, an explicit
-generation request authorizes the specified prompt, references and count without
-repeated confirmations under `approve_for_me`. Direct HTTP/curl is also supported when explicitly requested
+generation request submits the prompt you saw after you confirm each submit's
+model, references and parameters. Creative approval is separate from generation
+opt-in. Direct HTTP/curl is also supported when explicitly requested
 and secure caller-managed runtime configuration already exists; it is never an
 automatic fallback. Without a usable selected transport or generation request,
 the agent stays prompt-only. The agent never stores credentials or
@@ -28,10 +29,12 @@ approval_mode: approve_for_me
 ```
 
 `default` uses one inline preflight and a final sanity check: no full prompt
-review report, repeated stage approvals, automatic three-image set or mandatory
-draft-first video. `strict` restores detailed applicable checks. Neither changes
+review report, repeated creative approvals or automatic three-image set.
+`strict` adds validity explanations and detailed candidate inspection, but
+does not invoke `/prompt-review` or gate handoff. Native video drafts remain
+mandatory in both modes. Neither changes
 who decides: `approve_for_me` selects in-scope creative choices, while
-`ask_for_approval` waits for you. Explicit choices, scope, budget, rights,
+`ask_for_approval` waits for you. Explicit choices, scope, rights,
 privacy and publishing boundaries remain in force.
 See [Review mode](.agents/contracts/review-mode.md).
 
@@ -45,6 +48,13 @@ See [Review mode](.agents/contracts/review-mode.md).
 | Optional local prompt drafts under `projects/` | A production canvas — no stage machinery, no task registry |
 
 ## How it works
+
+Seedance 2.5 starts every new generation in native draft mode:
+`resolution: "480p"` plus boolean `draft: true`, not plain 480p. The caller
+inspects and selects the draft before a separately authorized promotion by
+`draft_task_id` to the delivery resolution. This includes edits, extensions
+and creative retries and does not make prompt review automatic. Other video
+models without native draft mode use a clearly labeled ordinary 480p test.
 
 ```mermaid
 flowchart LR
@@ -61,7 +71,7 @@ flowchart LR
 2. You receive one copy-paste block — prompt text, ordered reference bindings,
    and the parameter block. Paste it into Lumina.
 3. Optionally, run `/prompt-review` to check a prompt against the workspace rule
-   catalog. Default skips that pipeline; strict explicitly requests it.
+   catalog. It remains manual in both modes and never gates handoff.
 4. Drafts are saved locally only when you ask for them.
 
 ## Skills
@@ -69,7 +79,7 @@ flowchart LR
 | Skill | Summary |
 | --- | --- |
 | **brief-intake** | Shape intent-led briefs and treatments; preserve confirmed decisions. |
-| **prompt-review** | Requested or strict-mode inline review of Seedance, Seedream and Seed Audio prompts; review sub-agents require a separate explicit request. |
+| **prompt-review** | Manual user-invoked review of Seedance, Seedream and Seed Audio prompts; review sub-agents require a separate explicit request. |
 | **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — paste-ready. |
 | **seedance-prompt-25** | Write production-grade Seedance 2.5 video prompts with the six-part formula, 50-material multimodal referencing, variable-duration staging (4-30s), timestamp pacing, structured editing, extension, keyframes, storyboards, and blockouts. |
 | **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, Virtual Portrait identities, a muted source with audio in post, and style presets. |

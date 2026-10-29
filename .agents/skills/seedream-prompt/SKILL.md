@@ -35,8 +35,9 @@ The caller owns production authorization and the exact request preflight. A
 leaf returns its prompt package without loading sibling skills. An explicitly
 declared orchestrator may coordinate the submission stage. Missing required inputs remain unresolved; a draft
 or technical success does not establish user approval. Preserve optional timing
-and the requested delta. Default review uses one sample; strict review uses
+and the requested delta. Default review uses one sample; strict review proposes
 three where applicable. An explicit requested count wins in either mode.
+Sampling advice never authorizes additional generation.
 
 ## Evidence and creative advice
 

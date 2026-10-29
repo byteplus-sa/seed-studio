@@ -39,6 +39,13 @@ for each critical action beat.
 
 ## Procedure and reference loading
 
+For every new generation, including edits, extensions and retries, provide
+explicit `resolution: "480p"` and boolean `draft: true` in the parameter block,
+never in prompt text. This is native draft mode, not ordinary low-resolution
+generation, and applies regardless of review depth or final delivery target.
+Read [Parameter Reference](references/parameter-reference.md#native-draft-first)
+for promotion and capability mismatch handling.
+
 Use reference-inputs for R2V; video-editing for edits; video-extension for
 extensions; keyframes-storyboards-blockouts for approved visual conditioning
 and validated blockout manifests; shot-staging for requested or supplied
@@ -65,8 +72,10 @@ mentioned in prose are relative to this skill directory unless a link says other
 The caller owns production authorization and the exact request preflight. A
 leaf returns its prompt package without loading sibling skills. An explicitly
 declared orchestrator may coordinate the submission stage. Missing required inputs remain unresolved; a draft
-or technical success does not establish user approval. Preserve optional timing,
-the three-image sampling default where applicable, and the requested delta.
+or technical success does not establish user approval. Preserve optional timing
+and the requested delta. Image sampling follows the caller's review mode:
+one by default, proposed comparison samples in strict mode, explicit count first.
+Sampling advice never authorizes generation or changes native video drafts.
 
 ## Evidence and creative advice
 

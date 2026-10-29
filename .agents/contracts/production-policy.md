@@ -2,11 +2,11 @@
 
 ## Review depth
 
-Follow [review-mode.md](review-mode.md): `default` skips detailed prompt-review
-reports and repeated stage confirmations; `strict` requests them. This is
-independent of `approval_mode`, whose default is `approve_for_me`.
-The detailed review-record requirements below apply only in strict mode or
-when a review was explicitly requested. Never manufacture a passing report.
+Follow [review-mode.md](review-mode.md): `default` uses a compact inline
+preflight; `strict` adds detail without invoking manual prompt review.
+This is independent of `approval_mode`, whose default is `approve_for_me`.
+Neither mode requires a review record for handoff. Detailed prompt review
+runs only when the user invokes `/prompt-review`; never manufacture a report.
 
 ## Stage evidence and authorization
 
@@ -30,6 +30,8 @@ Either a genuine user choice or an agent decision under `approve_for_me` can
 select an inspected candidate or approve a package. Under `ask_for_approval`,
 automated advice uses `recommended_variant`. Preserve earlier selections and
 user-written metadata when updating a bounded field.
+These are creative decisions, not per-submit generation opt-in, rights or
+consent. Explicit user locks and requests to choose personally always win.
 
 ## Directing guidance
 
@@ -51,10 +53,10 @@ An explicitly selected supported conditioning input is a promoted composition or
 
 Before handing off a **generation-bound** prompt, freeze its exact text in the
 chat package or requested file, list ordered reference roles and check required
-inputs and supported parameters once. Reuse valid capability evidence for
+inputs and supported parameters once. Record current hashes for local reference
+files in the chat package or requested record. Reuse valid capability evidence for
 unchanged inputs; refresh on uncertainty or changed model/operation.
-Default mode needs no review record. Strict or explicitly requested review
-adds the applicable detailed check, without a separate reviewer by default.
+Neither mode starts manual review or waits for a review record.
 
 Acquired brand, logo, or packshot descriptors require inspection and a selection
 under the approval mode before dependent use. Rights are separate from that
@@ -69,24 +71,38 @@ The request hash covers exact prompt bytes, model/operation/effective parameters
 Without a generation request, deliver prompts for the destination UI and stop.
 For requested generation, follow [generation-transport.md](generation-transport.md).
 Do not introduce a production stage ledger or review-report requirement for
-default-mode prompt delivery. Provider success alone does not establish creative
+prompt delivery in either mode. Provider success alone does not establish creative
 quality. Revisions stay within authorization and record the actual changed inputs.
 
 ## Generation and review defaults
 
+Every new Seedance 2.5 generation starts with explicit `resolution: "480p"`
+and boolean `draft: true`, including edits, extensions and creative retries.
+Plain 480p is not native draft mode. This first-test policy is independent of
+review depth and final delivery resolution. Parameter notes follow it even
+when the output is prompt-only; authoring does not authorize submission.
+
+The caller inspects and selects a successful native draft before a separately
+authorized promotion using `draft_task_id` and supported output settings.
+Changed prompt text, references, duration, ratio or audio settings require a
+new native draft, not a modified promotion. Re-check the final output.
+Resolve a missing draft control in a Seedance 2.5 tool/UI instead of silently
+submitting non-draft 480p. Other video models without native draft mode use
+an ordinary, non-promotable 480p test; a final is a fresh generation.
+
 Prefer per-shot prompts at natural duration over compressed timelines. Continuous single-take extension is exceptional; flag every seam. Separate lip-sync audio remains opt-in; follow [audio-video-alignment.md](audio-video-alignment.md).
 
-Use the requested suitable resolution. Default mode uses one image sample and
-no compulsory draft-first pass. Strict mode proposes three stochastic samples
-and a suitable video draft when applicable; explicit counts and delivery choices
-win. Additional generations remain within authorized scope and budget.
+Use the requested suitable image resolution and the native-video policy above.
+Default mode uses one image sample. Strict mode proposes three stochastic
+samples when applicable. Explicit requested count wins. Additional generations
+require their own exact-package confirmation; review depth never authorizes them.
 Sampling sets keep identical prompt, references and effective parameters except
 supported seed variation. Creative alternatives change only requested variables.
 Watermark handling follows the supported destination parameters.
 
 Verify the package once before handoff: ordered references match the bindings
-and the parameter block is valid. When a detailed review was requested, its
-record must match the final request; default mode does not need that record.
+and the parameter block is valid. When a review was requested, its
+record must match the final request; otherwise no review record is required.
 
 ## Reserved upstream rules
 

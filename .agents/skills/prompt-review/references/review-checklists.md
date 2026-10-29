@@ -63,9 +63,9 @@ change the production policy. Source metadata: `rule-provenance.json`.
    structure explicitly includes them. They belong in the submitted parameters,
    never in the prompt text.
 
-7. **Prompt snapshot location.** The prompt is saved beside the media asset it
-   produced, using the `prompt_` prefix convention. It is not duplicated in shot
-   folders, scene folders, or any other location.
+7. **Prompt delivery.** Chat is the default. Save a snapshot only on explicit
+   request, under the user's requested prompt location; no scene file or
+   production registry is required for an inline prompt.
 
 8. **No duplicate action descriptions.** The same action is not described twice in
    the same prompt. Each beat appears once.
@@ -99,6 +99,17 @@ change the production policy. Source metadata: `rule-provenance.json`.
 ## Seedance 2.5
 
 Source skill: `seedance-prompt-25`
+
+### Native draft first
+
+Every new Seedance 2.5 generation, edit, extension, probe and creative retry
+has explicit `resolution: "480p"` and boolean `draft: true` outside prompt
+text, regardless of review depth or delivery target. Plain 480p is not native
+Draft mode. A missing control is a capability mismatch to resolve, not a
+fallback. Inspect and select the draft before promotion by `draft_task_id`;
+changed creative inputs require a new draft. Other models without native
+Draft support use a clearly labeled ordinary, non-promotable 480p test.
+This check does not make manual `/prompt-review` mandatory.
 
 ### Formula check
 
@@ -559,8 +570,9 @@ medium. Mark N/A any item whose feature is absent and record why.
 
 6. **Route and limits.** The operation matches the route the user chose and
    what the destination UI offers (`model.supported_mode`); an unverified route is
-   labeled provisional. A proposed probe uses a supported low resolution
-   (480p when available) and is not a capability guarantee. Image counts,
+   labeled provisional. Every proposed 2.5 probe uses explicit
+   `resolution: "480p"` and boolean `draft: true`; missing controls must be
+   resolved before execution. Draft settings are not a quality guarantee. Image counts,
    roles, ratio and duration follow verified destination limits; no default
    trim or rounding of exact source timing.
 
@@ -827,7 +839,9 @@ Source skill: `seedance-vfx-prompt`
     waxy, smoothed, or warped."
 
 28. **Supported model/mode (`model.supported_mode`).** Resolve operation and
-    model first. A 2.5 face-containing edit uses supported 480p/720p/1080p;
+    model first. A new 2.5 face-containing edit starts with explicit
+    `resolution: "480p"` and boolean `draft: true`; 720p/1080p are later
+    promotion targets after draft inspection and selection;
     only an explicitly selected supported legacy path may use 4K. Face/detail
     fidelity is an output-QA criterion, not a guaranteed property of resolution.
 
@@ -1226,10 +1240,12 @@ Source skill: `seedream-character-sheet`
     caller. Cleanup is conditional, non-destructive, and requires new selection;
     this reviewer does not invoke an editing skill.
 
-17. **Element saved.** Saved under `elements/<character-id>/`.
+17. **Element delivery.** Chat is the default; check a saved element record
+    only when saving was explicitly requested.
 
-18. **Selected variant.** Approved filename recorded as `selected_variant` in
-    `character.md`.
+18. **Selected variant.** An inspected, mode-authorized selection is recorded
+    in chat or an explicitly requested file; it never replaces user locks,
+    rights, consent or per-submit generation opt-in.
 
 ---
 

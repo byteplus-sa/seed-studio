@@ -138,10 +138,11 @@
     {
       "id": 13,
       "prompt": "Use strict review and approve_for_me for this chat-only prompt. Keep the locked dialogue and choose the camera yourself.",
-      "expected_output": "A detailed applicable inline review with an agent camera choice, not a human approval wait.",
+      "expected_output": "Detailed validity explanations with an agent camera choice, without invoking manual review or waiting for creative approval.",
       "files": [],
       "expectations": [
         "Strict changes review depth, not who selects the camera.",
+        "Does not invoke manual prompt review from the mode setting alone.",
         "Does not spawn a review sub-agent without separate authorization.",
         "Does not rewrite the locked dialogue or create a project file."
       ]
