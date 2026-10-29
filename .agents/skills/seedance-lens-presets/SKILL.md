@@ -273,9 +273,9 @@ Composition:
 - **Caller-owned supported parameters.** Watermark defaults apply only where
   the selected tool supports the field. This prompt-only skill sets no payload
   parameters and does not invoke generation or sibling skills.
-- **Record the resolved phrase.** When a generation is submitted, the exact
-  prompt snapshot (including the optics line) is saved beside the asset as
-  `prompt_<asset>.md` and referenced from the shot manifest.
+- **Record the resolved phrase.** Keep the exact optics line in the chat
+  package. Save a prompt snapshot or update an existing manifest only on
+  explicit request; submission does not imply permission to create files.
 
 ## Self-check checklist
 

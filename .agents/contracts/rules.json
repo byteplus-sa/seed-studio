@@ -18,7 +18,7 @@
         "preflight"
       ],
       "owner_path": ".agents/contracts/production-policy.md",
-      "summary": "Generation inputs match explicit manifest selections.",
+      "summary": "Generation inputs match inspected, mode-authorized creative selections and explicit user locks; per-submit generation opt-in remains separate.",
       "exceptions": []
     },
     {
@@ -162,7 +162,7 @@
         "preflight"
       ],
       "owner_path": ".agents/contracts/production-policy.md",
-      "summary": "All applicable checks have complete request-bound evidence.",
+      "summary": "When the user invokes manual prompt review, all applicable checks have complete request-bound evidence; review is not a handoff or generation gate.",
       "exceptions": []
     },
     {

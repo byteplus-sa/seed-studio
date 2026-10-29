@@ -1,5 +1,13 @@
 # Production policy
 
+## Review depth
+
+Follow [review-mode.md](review-mode.md): `default` uses a compact inline
+preflight; `strict` adds detail without invoking manual prompt review.
+This is independent of `approval_mode`, whose default is `approve_for_me`.
+Neither mode requires a review record for handoff. Detailed prompt review
+runs only when the user invokes `/prompt-review`; never manufacture a report.
+
 ## Stage evidence and authorization
 
 Draft brief and scene breakdown can identify assets before canon exists. Before dependent prompt authoring, require the appropriate approved recurring/critical element descriptors and declared reference roles. Canon may be defined by prompt-only element sheets (Seedream prompts) or by acquiring and approving real brand/product/logo descriptors; prompt-only authoring may deliver a draft without generating or downloading assets. When the brief borrows visual or motion grammar from a cited brand ad or other footage, obtain a watchable copy first (the user's file, or a link the user can open) and analyze it by agent video pass or local frame extraction; do not treat scripts or article text as the reference.
@@ -12,9 +20,18 @@ Keep one record per authored prompt: the exact prompt text, its ordered referenc
 
 Update the record after every material change to a brief, breakdown, element prompt, storyboard prompt, audio prompt, or video prompt. A handed-off prompt is frozen; changed inputs need a new prompt version.
 
-Defaults are proposed until the user accepts the displayed set. Store each axis with value, source (proposed/defaulted/user_confirmed), and approval evidence when available. Approval persists across turns within its stated scope. Authoring a prompt does not approve its result.
+Under `approve_for_me`, choose coherent in-scope defaults against the brief and
+label them `agent_confirmed`; user choices remain `user_confirmed`. Under
+`ask_for_approval`, keep recommendations proposed until the user chooses.
+Approval persists within its stated scope. Authoring a prompt does not approve
+an unseen result.
 
-Only explicit user choice sets a selected variant or approves a package. Automated advice uses recommended_variant. Preserve earlier selections and user-written metadata when updating a bounded field.
+Either a genuine user choice or an agent decision under `approve_for_me` can
+select an inspected candidate or approve a package. Under `ask_for_approval`,
+automated advice uses `recommended_variant`. Preserve earlier selections and
+user-written metadata when updating a bounded field.
+These are creative decisions, not per-submit generation opt-in, rights or
+consent. Explicit user locks and requests to choose personally always win.
 
 ## Directing guidance
 
@@ -34,17 +51,28 @@ An explicitly selected supported conditioning input is a promoted composition or
 
 ## Request preflight and optional review
 
-Before handing off a **generation-bound** prompt, freeze the exact prompt beside its intended asset, list ordered reference bindings/roles, check reference approval, record current hashes for local reference files, and resolve current model/mode capabilities against live documentation. Review is not part of the handoff: the user may run `/prompt-review` on any prompt at their own discretion, and nothing waits on it.
+Before handing off a **generation-bound** prompt, freeze its exact text in the
+chat package or requested file, list ordered reference roles and check required
+inputs and supported parameters once. Record current hashes for local reference
+files in the chat package or requested record. Reuse valid capability evidence for
+unchanged inputs; refresh on uncertainty or changed model/operation.
+Neither mode starts manual review or waits for a review record.
 
-Acquired brand, logo, or packshot descriptors that will not be generated still require explicit user approval before dependent prompts depend on them. See [element-identification.md](element-identification.md).
+Acquired brand, logo, or packshot descriptors require inspection and a selection
+under the approval mode before dependent use. Rights are separate from that
+creative decision. See [element-identification.md](element-identification.md).
 
 When the user runs `/prompt-review`, use explicit prompt type, model, operation, language, requested axes, may_change and must_preserve to route the review. A completed review is bound to the request hash and lists applicable rule outcomes and evidence. Missing/empty reviewer output is incomplete. Static image, audio, editing and narrative checks are applied to their relevant artifact types.
 
 The request hash covers exact prompt bytes, model/operation/effective parameters and ordered reference roles/bindings. Credentials and timestamps are excluded. Changed request content makes an earlier review result stale.
 
-## Handoff (no provider operations)
+## Handoff and optional provider operations
 
-This workspace performs no provider submission: the user pastes prompts into the destination UI. There is no task registry, no provider status, and no cost record here. Provider-side outcomes the user reports back are diagnostic evidence for revision — rejection is evidence to diagnose, not a false positive by default, and reported success is review, never approval. Legitimate creative revisions stay within authorization and record the exact delta.
+Without a generation request, deliver prompts for the destination UI and stop.
+For requested generation, follow [generation-transport.md](generation-transport.md).
+Do not introduce a production stage ledger or review-report requirement for
+prompt delivery in either mode. Provider success alone does not establish creative
+quality. Revisions stay within authorization and record the actual changed inputs.
 
 ## Generation and review defaults
 
@@ -64,9 +92,17 @@ an ordinary, non-promotable 480p test; a final is a fresh generation.
 
 Prefer per-shot prompts at natural duration over compressed timelines. Continuous single-take extension is exceptional; flag every seam. Separate lip-sync audio remains opt-in; follow [audio-video-alignment.md](audio-video-alignment.md).
 
-Use the lowest suitable resolution within the requested behavior. For Seedream image prompts, default to three sampling variants; keep prompt, references, model and effective parameters identical except supported stochastic seed differences, and say so in the package. Creative alternatives change only explicitly requested variables. Explicit requested count wins. Watermark handling is a parameter note for the destination UI, not something this workspace sets.
+Use the requested suitable image resolution and the native-video policy above.
+Default mode uses one image sample. Strict mode proposes three stochastic
+samples when applicable. Explicit requested count wins. Additional generations
+require their own exact-package confirmation; review depth never authorizes them.
+Sampling sets keep identical prompt, references and effective parameters except
+supported seed variation. Creative alternatives change only requested variables.
+Watermark handling follows the supported destination parameters.
 
-Verify the package before handoff: prompt text matches the review record, ordered references match the bindings, and the parameter block is complete and within documented limits.
+Verify the package once before handoff: ordered references match the bindings
+and the parameter block is valid. When a review was requested, its
+record must match the final request; otherwise no review record is required.
 
 ## Reserved upstream rules
 

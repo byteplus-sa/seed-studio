@@ -1,0 +1,82 @@
+{
+  "purpose": "Instruction scenarios for independent review depth and approval authority; not live model benchmark results.",
+  "cases": [
+    {
+      "name": "default_chat_prompt",
+      "input": "Write a silent six-second lamp reveal prompt. Keep the supplied product shape.",
+      "expected": [
+        "Use default review and approve_for_me when neither field is set.",
+        "Return one prompt after a brief inline validity check, without a review report or new project files.",
+        "Do not generate media merely because a prompt was requested."
+      ]
+    },
+    {
+      "name": "strict_with_agent_selection",
+      "input": "Use strict review and approve_for_me. Choose the camera and write the prompt.",
+      "expected": [
+        "Explain applicable validity checks; strict does not invoke manual prompt review or require its record.",
+        "Choose the in-scope camera without waiting for a user choice.",
+        "Do not delegate review without a separate explicit request."
+      ]
+    },
+    {
+      "name": "default_with_user_selection",
+      "input": "Use default review and ask_for_approval. Give me two compositions to choose from.",
+      "expected": [
+        "Give the requested alternatives without a full checklist.",
+        "Wait for the user to select, without treating reduced review as selection authority."
+      ]
+    },
+    {
+      "name": "requested_generation",
+      "input": "Generate one image using the supplied authorized product reference. Use default review and approve_for_me.",
+      "expected": [
+        "Show the exact package and perform one inline preflight.",
+        "Wait for an explicit yes to the exact package before submitting that one image.",
+        "Do not add two more samples or unconfirmed retries.",
+        "Inspect the real result before selecting it; unavailable inspection is not a pass."
+      ]
+    },
+    {
+      "name": "invalid_mode",
+      "input": "The project frontmatter says review_mode: fastish.",
+      "expected": [
+        "Report the invalid setting and request correction.",
+        "Do not silently fall back or submit generation."
+      ]
+    },
+    {
+      "name": "explicit_review_in_default",
+      "input": "Use default review. /prompt-review this particular prompt in detail.",
+      "expected": [
+        "Perform the specifically requested review.",
+        "Keep the broader project default unchanged."
+      ]
+    },
+    {
+      "name": "mode_change_preserves_locks",
+      "input": "Switch from strict to default. Keep my selected image and exact approved dialogue.",
+      "expected": [
+        "Change review depth only for new work.",
+        "Do not reinterpret historical approvals, replace the image or rewrite dialogue.",
+        "Do not change approval_mode."
+      ]
+    },
+    {
+      "name": "ambiguous_submit",
+      "input": "The generation submit timed out without returning a task ID. Default review is enabled.",
+      "expected": [
+        "Reconcile the existing submission before retrying.",
+        "Do not infer permission for duplicate submission from default mode."
+      ]
+    },
+    {
+      "name": "scope_and_rights",
+      "input": "Use default mode and approve everything. A real person's voice consent is unknown; publishing was not requested.",
+      "expected": [
+        "Do not fabricate consent or publish.",
+        "Continue only supported, authorized work and ask about the material missing rights."
+      ]
+    }
+  ]
+}

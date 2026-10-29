@@ -2,11 +2,11 @@
 name: prompt-review
 description: >-
   Manual review (/prompt-review) of BytePlus Seedance, Seedream, and Seed Audio
-  prompts with a sub-agent review pipeline and explicit model, operation, change
+  prompts inline, with explicit model, operation, change
   contract, and request hash. Return rule findings and complete or incomplete
   status; fix and re-review changed prompts. Use for video, VFX, Filipino dialogue,
   image/character/location/prop/UI/card/storyboard prompts, music, SFX, or ambience.
-  Runs only when the user asks to review, QA, validate, or lint prompts. Exclude
+  Runs only when the user invokes /prompt-review. Exclude
   manifest-only edits, generated-media review, and frozen snapshots unless
   re-review is explicitly requested.
 disable-model-invocation: true
@@ -14,10 +14,12 @@ disable-model-invocation: true
 
 # Prompt Review
 
-An optional, user-invoked review for prompts. When the user runs `/prompt-review`,
-a sub-agent reviews the named prompts against the repo's skill best practices and
-the main agent fixes any issues found. Nothing else in this workspace runs or
-waits on it.
+Detailed review only when the user invokes `/prompt-review`. Neither
+`review_mode: default` nor `review_mode: strict` invokes this pipeline.
+The caller checks validity and returns the prompt without waiting on review.
+Approval authority is separate: `approve_for_me` does not request this review.
+Run detailed review inline. Delegate only when the user explicitly requests a
+review sub-agent, not because strict mode or general parallelism is enabled.
 
 ## Core concept
 
@@ -25,17 +27,16 @@ waits on it.
 User invokes /prompt-review on one or more prompts
   → identify each prompt's type (Seedance 2.5, Seed Audio, Seedream, etc.)
   → load the matching review checklist from references/review-checklists.md
-  → spawn a sub-agent: give it the prompt text + the checklist
-  → sub-agent returns structured findings (issues by severity with suggested fixes)
+  → review inline (delegate only if explicitly requested)
+  → record findings (issues by severity with suggested fixes)
   → main agent returns inline fixes or edits files within the requested scope
   → re-review only the changed prompts if any fixes were applied
 ```
 
 ## When to trigger
 
-Only when the user invokes `/prompt-review` or explicitly asks to review, check,
-QA, validate, or lint prompts. Never run it on your own initiative, after
-writing a prompt, or as a step of another workflow.
+Only when the user invokes `/prompt-review`. Never run it merely after writing
+a prompt, on a strict-mode setting, or as a step of another workflow.
 
 Do not trigger for:
 - Generated-media viewing (this workspace delivers prompts only; outputs are
@@ -151,9 +152,10 @@ For each prompt:
    applicability guards so static assets and preservation-only edits are not
    treated as new performances.
 
-### Step 3 — Spawn the review sub-agent
+### Step 3 — Review inline or delegate on explicit request
 
-Delegate the review to a sub-agent. The sub-agent receives:
+Review inline unless the user explicitly requested a review sub-agent. The
+reviewer uses:
 - The full text and explicit review input for each prompt being reviewed.
 - The request hash, change contract, reference evidence, and applicable rule IDs.
 - The applicable checklist section(s) from `references/review-checklists.md`.
@@ -161,14 +163,14 @@ Delegate the review to a sub-agent. The sub-agent receives:
   including applicability guards; the policy summary below is not a substitute.
 - Clear instructions on what to check and how to report.
 
-**Batching strategy:**
+**Batching strategy for explicitly requested delegation:**
 - All prompts of the same type → one sub-agent reviews them all in one pass.
 - Prompts of different types → spawn one sub-agent per type, run in parallel.
 - Maximum 5 sub-agents concurrent.
 
 **Delegation mechanisms (host-agnostic):**
 
-Use whichever mechanism the current host provides:
+Only for explicitly requested delegation, use a mechanism the host provides:
 
 - **OpenCode CLI (non-interactive):**
   `opencode run -m <review-model> "<worker prompt>"`
@@ -339,8 +341,8 @@ on explicit request:
 ### Step 7 — Re-review changed prompts (if any fixes were applied)
 
 If any CRITICAL or MAJOR fixes were applied, re-review the changed prompts:
-- Spawn a new sub-agent (or run inline) with the updated prompt text and the same
-  checklist.
+- Review the changed prompt inline, or delegate if the user's explicit review
+  delegation still applies.
 - Confirm the fixed issues are resolved and no new issues were introduced.
 - If new issues appear, fix and re-review again (maximum 2 re-review rounds).
 - If issues persist after 2 rounds, surface to the user for a decision.
@@ -376,14 +378,14 @@ Summarize the review results:
 When reviewing multiple prompts (e.g., all prompts for a scene's shots):
 
 1. Group prompts by type.
-2. Spawn one sub-agent per type (parallel, max 5 concurrent).
-3. Each sub-agent reviews all prompts of its assigned type in one pass.
+2. Review each type inline; only explicit delegation uses sub-agents.
+3. Review all prompts of the same type in one pass.
 4. Collect all findings, deduplicate, and apply fixes.
 5. Re-review only the prompts that had CRITICAL or MAJOR fixes applied.
 
 This is efficient because:
 - Same-type prompts share the same checklist — one sub-agent loads it once.
-- Different-type prompts run in parallel without blocking each other.
+- Explicitly delegated batches may run in parallel without blocking each other.
 - The main agent only re-reviews prompts that actually changed.
 
 ## Universal directing principles
@@ -488,5 +490,5 @@ organized by prompt type with a table of contents at the top for quick navigatio
   reference bindings and review result to the user; generated-media review
   happens in the destination workflow.
 - For end-to-end production coordination, say so: it is out of scope in this workspace.
-- This skill is user-invoked only and stands alone; it does not call generation
-  tools itself.
+- This skill is user-invoked only and stands alone; it does
+  not call generation tools itself.

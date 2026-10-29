@@ -72,8 +72,10 @@ mentioned in prose are relative to this skill directory unless a link says other
 The caller owns production authorization and the exact request preflight. A
 leaf returns its prompt package without loading sibling skills. An explicitly
 declared orchestrator may coordinate the submission stage. Missing required inputs remain unresolved; a draft
-or technical success does not establish user approval. Preserve optional timing,
-the three-image sampling default where applicable, and the requested delta.
+or technical success does not establish user approval. Preserve optional timing
+and the requested delta. Image sampling follows the caller's review mode:
+one by default, proposed comparison samples in strict mode, explicit count first.
+Sampling advice never authorizes generation or changes native video drafts.
 
 For character performance, carry supplied intent, triggers, listening and
 readable consequences into the subject/action wording once. Inline intent is

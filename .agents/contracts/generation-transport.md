@@ -9,7 +9,7 @@ block in chat.
 | Mode | When | Result |
 | --- | --- | --- |
 | Prompt-only (default) | No generation request, or no usable transport | Copy-paste block for Lumina |
-| Prompt + generation | The user asks for generation and a transport is usable | Prompt shown to the user, then a confirmed submit and job status |
+| Prompt + generation | The user asks for generation and a transport is usable | Exact package shown to the user, then a confirmed submit and job status |
 
 Composition is identical in both modes. Generation never changes how a prompt is
 written; it only adds a submit step after the prompt is delivered.
@@ -53,7 +53,13 @@ available; never invent a task ID or polling endpoint. Reconcile ambiguous
 responses before repeating a submit. A timeout does not prove the operation
 failed or that no job was created.
 
-## Gates before every submit
+## Preflight and authorization
+
+Follow [review-mode.md](review-mode.md). Review depth and approval authority are
+separate. Default needs a single inline request preflight, not a checklist
+report. Neither approval mode authorizes submission: creative selection
+does not replace the exact-package confirmation below. Strict mode does not
+invoke manual prompt review or require a review record.
 
 Every new Seedance 2.5 request uses native draft mode: explicit
 `resolution: "480p"` and boolean `draft: true`. This applies to first tests,
@@ -88,16 +94,17 @@ and ask before using another resolution.
 
 - Seedance, Seedream, and Seed Audio generate, edit, and variation jobs.
 - Job polling, cancel, and fetching a result reference for the user.
-- Uploading reference files the user named in this request, after confirming
-  each file.
+- Uploading reference files the user selected for this generation, without
+  repeating authorization for each file. Respect offline/privacy constraints.
 
 ## Still out of scope
 
-- VOD enhance/transcode/subtitle/audio-separation, 3D generation, Blender, and
-  any assembly, compositing, or muxing. Local `ffmpeg`/`ffprobe` stay
-  analysis-only.
+- Unrequested provider administration, 3D generation and Blender. Authorized
+  local trimming, muxing, assembly and export use the existing permissions in
+  the root workspace instructions; this contract does not retract them.
 - Exact-copy, typography, logo, UI, and deterministic HTML/CSS/SVG work.
 - Bulk or unattended generation loops. Submit what was confirmed, then report.
+  Retries, variations and promotion each require their own confirmation.
 
 ## Results and records
 
@@ -108,5 +115,6 @@ default. On explicit request, write a provenance record to
 date, and the prompt file. Never store signed URLs,
 keys, or account data. Download media only when asked.
 
-A moderation rejection is evidence to diagnose. Revise, show the revised
-prompt, and confirm again before resubmitting.
+A moderation rejection is evidence to diagnose. Revise only legitimately,
+show the changed prompt, and confirm again before resubmitting.
+Never disguise restricted inputs or infer unlimited retry scope.

@@ -96,7 +96,7 @@
       "expectations": [
         "Changes only the requested energy stance.",
         "Does not propose a new camera or light setup.",
-        "Does not infer approval from silence or use agent-confirmed locks."
+        "Does not infer user approval from silence or replace the explicit camera and lighting locks."
       ]
     },
     {
@@ -168,6 +168,30 @@
         "Does not reopen audience, attention or ending decisions or add alternatives.",
         "Preserves all action, dialogue, timing and sound, and returns chat only.",
         "No automatic review, registry, save or generation."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Use default review and approve_for_me. Create one compact direction for a silent six-second lamp reveal, then continue with its prompt. Keep the supplied product shape.",
+      "expected_output": "One selected in-scope direction and prompt without a full checklist or repeated confirmation.",
+      "files": [],
+      "expectations": [
+        "Keeps review depth separate from approval authority.",
+        "Labels its own choice as agent-confirmed, never user-confirmed.",
+        "Preserves supplied product identity and does not create files for chat-only work.",
+        "Does not ask for permission to continue with the already requested prompt."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Use strict review and approve_for_me for this chat-only prompt. Keep the locked dialogue and choose the camera yourself.",
+      "expected_output": "Detailed validity explanations with an agent camera choice, without invoking manual review or waiting for creative approval.",
+      "files": [],
+      "expectations": [
+        "Strict changes review depth, not who selects the camera.",
+        "Does not invoke manual prompt review from the mode setting alone.",
+        "Does not spawn a review sub-agent without separate authorization.",
+        "Does not rewrite the locked dialogue or create a project file."
       ]
     }
   ]

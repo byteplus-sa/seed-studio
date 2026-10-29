@@ -173,6 +173,13 @@ remaining decision. Explain what each interpretation would make the viewer feel.
 
 ## 4. Confirm and persist the right scope
 
+Use the caller's review and approval modes independently. Default review means
+one compact self-check, not a checklist report. Under `approve_for_me`, choose
+coherent in-scope defaults and label them `agent_confirmed`; under
+`ask_for_approval`, recommend and wait. Neither mode replaces explicit user
+locks or fills in unknown rights, facts or consequential language choices.
+An exploration request asking the user to choose remains unselected.
+
 Present the proposed direction with reasons, then identify decisions actually
 requiring acceptance: a new concept, a changed lock, or an impactful assumption.
 Do not demand a fixed checklist of confirmations for prompt-only drafts. Silence,
@@ -204,7 +211,8 @@ locked:
 ```
 
 `proposed` means recommendation; `defaulted` means a disclosed working assumption;
-only `user_confirmed` choices enter `locked`. Preserve prior evidence for unchanged
+`agent_confirmed` choices may enter `locked` under `approve_for_me`, while
+`user_confirmed` choices retain the user's evidence. Preserve prior evidence for unchanged
 choices. Scene overrides carry their own value/source/evidence and do not overwrite
 project-wide locks. For a one-axis revision, change that axis and identify any
 actual downstream dependency; do not reopen the whole brief. In prompt-only or
@@ -222,5 +230,6 @@ choices and any source bible, and omits irrelevant axes. Offer distinct
 treatments only when exploration is wanted or they help settle an unresolved
 premise; they differ in mechanism. Check audience
 response, attention, ending and any relevant sound/edit acceptance suggestions
-without reopening settled choices. Unknowns remain labeled; recommendations remain unapproved until the
-user chooses them. Evaluate the reasoning and usefulness, not exact headings.
+without reopening settled choices. Unknowns remain labeled; recommendations
+awaiting a user choice remain unapproved. Evaluate the reasoning and usefulness,
+not exact headings.

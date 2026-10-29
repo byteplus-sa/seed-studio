@@ -1271,10 +1271,12 @@ Source skill: `seedream-character-sheet`
     caller. Cleanup is conditional, non-destructive, and requires new selection;
     this reviewer does not invoke an editing skill.
 
-17. **Element saved.** Saved under `elements/<character-id>/`.
+17. **Element delivery.** Chat is the default; check a saved element record
+    only when saving was explicitly requested.
 
-18. **Selected variant.** Approved filename recorded as `selected_variant` in
-    `character.md`.
+18. **Selected variant.** An inspected, mode-authorized selection is recorded
+    in chat or an explicitly requested file; it never replaces user locks,
+    rights, consent or per-submit generation opt-in.
 
 ---
 
