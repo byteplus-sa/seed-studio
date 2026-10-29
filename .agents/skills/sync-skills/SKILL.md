@@ -148,14 +148,21 @@ would change. It copies nothing.
 
 - **Exit 1** — stop and report the error. Never sync from another path
   unless the user sets `SKILLS_SOURCE`.
+- **Exit 5** — modified, staged, untracked or ignored destination paths
+  intersect the selected bundles. Stop before copying anything, list the
+  paths, and ask the user how to preserve or resolve that work. Both `plan`
+  and `apply` refuse this state before previewing or copying bundles.
+  Never automatically stash, commit, discard or overwrite it. Resolve only
+  with explicit authorization, then rerun `plan`. Excluded `agents/`
+  metadata and cache files are preserved and do not block the sync.
 - **Exit 3** — dirty source paths intersect the sync scope; the sync would
   copy unreviewed upstream work. The plan is still printed. List those paths
   and ask the user to confirm before applying.
 - A "would bring in N reference(s)" line under a skill means upstream's copy
   of it mentions tools or skills this workspace does not ship. Tell the user
   how many skills are affected, and expect to scrub them after applying.
-- If this repo has uncommitted changes, warn that the sync diff will mix with
-  them and recommend committing or stashing first.
+- Unrelated destination changes do not block a scoped sync. Leave them alone
+  and distinguish them from the sync diff.
 
 The sync copies the source **working tree**, not its committed revision.
 
@@ -165,7 +172,10 @@ The sync copies the source **working tree**, not its committed revision.
 bash .agents/skills/sync-skills/scripts/sync.sh apply <names or all>
 ```
 
-After the user confirmed a dirty scope, prefix `SYNC_ALLOW_DIRTY=1`.
+After the user confirmed a dirty **source** scope, prefix `SYNC_ALLOW_DIRTY=1`.
+This never bypasses the destination guard, which checks all selected bundles
+before any copy. Do not edit selected bundles concurrently with the sync;
+the preflight is not a lock against external editors.
 `rsync --delete` mirrors each changed bundle, so renamed or removed reference
 files disappear here too, except each skill's `agents/` folder, which is left
 alone. The script never creates a skill directory and never touches
