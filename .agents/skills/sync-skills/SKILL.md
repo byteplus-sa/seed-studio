@@ -63,12 +63,12 @@ A sync copies upstream wording verbatim, and upstream is not prompt-only.
 
 ## Local edits to re-apply after a sync
 
-Prompt review is manual and isolated in this workspace, so a sync can
-reintroduce review wording that was removed locally. After applying, check
-the diff and restore these:
+Prompt review is manual and isolated in both depth modes. Strict adds validity
+detail and candidate inspection, not pipeline invocation. Creative approval
+authority never replaces per-submit generation opt-in. After a sync, restore:
 
 - `prompt-review`: `disable-model-invocation: true` in `SKILL.md` and the
-  "Manual review (/prompt-review)" description and "When to trigger" section.
+  "Manual review (/prompt-review)" description and user-invoked trigger.
   Also remove upstream's `scripts/` folder and its references: this workspace
   ships no code in skills.
 - `seedance-prompt-25`, `seedance-vfx-prompt`, `seedream-prompt`,
@@ -78,9 +78,12 @@ the diff and restore these:
   "complete prompt review".
 - `omnihuman-prompt-20`: the "Output" section must not tell the caller to
   pass the card through a prompt review step before generation.
-- `brief-intake`: keep `approval_mode`, `approve_for_me` and `agent_confirmed`
-  out; only an explicit user choice approves a set
+- `brief-intake`: preserve independent review/approval modes, compact default
+  output, mode-authorized agent choices and explicit user locks
   ([production policy](../../contracts/production-policy.md)).
+- Preserve one image sample by default and proposed strict-mode comparisons;
+  explicit counts win and every submit still needs confirmation. Preserve
+  mandatory native video drafts and save-on-request behavior in both modes.
 - Any other synced skill that gains a `prompt-review` reference: remove it.
   Only the `prompt-review` skill itself may name `prompt-review`.
 

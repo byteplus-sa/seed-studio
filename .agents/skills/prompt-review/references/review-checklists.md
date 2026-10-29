@@ -63,9 +63,9 @@ change the production policy. Source metadata: `rule-provenance.json`.
    structure explicitly includes them. They belong in the submitted parameters,
    never in the prompt text.
 
-7. **Prompt snapshot location.** The prompt is saved beside the media asset it
-   produced, using the `prompt_` prefix convention. It is not duplicated in shot
-   folders, scene folders, or any other location.
+7. **Prompt delivery.** Chat is the default. Save a snapshot only on explicit
+   request, under the user's requested prompt location; no scene file or
+   production registry is required for an inline prompt.
 
 8. **No duplicate action descriptions.** The same action is not described twice in
    the same prompt. Each beat appears once.
@@ -1240,10 +1240,12 @@ Source skill: `seedream-character-sheet`
     caller. Cleanup is conditional, non-destructive, and requires new selection;
     this reviewer does not invoke an editing skill.
 
-17. **Element saved.** Saved under `elements/<character-id>/`.
+17. **Element delivery.** Chat is the default; check a saved element record
+    only when saving was explicitly requested.
 
-18. **Selected variant.** Approved filename recorded as `selected_variant` in
-    `character.md`.
+18. **Selected variant.** An inspected, mode-authorized selection is recorded
+    in chat or an explicitly requested file; it never replaces user locks,
+    rights, consent or per-submit generation opt-in.
 
 ---
 

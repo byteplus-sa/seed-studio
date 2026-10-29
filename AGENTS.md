@@ -2,8 +2,8 @@
 
 Prompt-first workspace for composing Lumina-paste-ready prompts for BytePlus
 Seed-family models (Seedance, Seedream, Seed Audio) and OmniHuman 2.0
-lip-sync video. It writes prompts; review
-is a manual `/prompt-review` the user runs. Generation and media production
+lip-sync video. It writes prompts; default review is one inline preflight,
+not a full checklist pipeline. Generation and media production
 are optional when requested or necessary to complete a user-authorized
 deliverable with available tools.
 
@@ -47,6 +47,7 @@ Load only the contract relevant to the current request:
 
 | Need | Tracked source |
 | --- | --- |
+| Default/strict review depth, independent of decision authority | [Review mode](.agents/contracts/review-mode.md) |
 | Manual `/prompt-review` policy and stable rule IDs | [rules.json](.agents/contracts/rules.json) and [production policy](.agents/contracts/production-policy.md) |
 | Requested camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [Directorial axes](.agents/contracts/seedance-reference.md) |
 | Canon, props, screens and reference roles | [Element identification](.agents/contracts/element-identification.md) |
@@ -112,9 +113,16 @@ Recipes such as muxing a song onto a video may be executed by the agent when
 needed for the authorized deliverable; otherwise deliver them as instructions.
 Do not assume unavailable tools or expand into unrelated production work.
 
-Prompt QA is optional and user-triggered. `prompt-review` runs only when the
-user invokes `/prompt-review`; no prompt-writing skill or workflow runs, loads,
-or waits on it.
+Review depth is `review_mode: default` unless explicitly set to `strict`.
+Default uses a compact inline preflight; strict adds validity explanations
+and detailed candidate inspection without invoking manual prompt review.
+`approval_mode: approve_for_me` separately lets the agent make in-scope creative
+decisions; `ask_for_approval` waits for user decisions in either review mode.
+Never infer permission for review sub-agents from either setting.
+Prompt QA runs only when the user invokes `/prompt-review`; no prompt-writing
+skill or workflow runs, loads, or waits on it.
+See [Review mode](.agents/contracts/review-mode.md) for chat-only toggles,
+sampling, final sanity checks and the safeguards that remain in both modes.
 
 Keep skill metadata concise and valid YAML. Move substantial conditional
 modes and examples into focused same-skill references.
@@ -134,9 +142,9 @@ assets or context only when explicitly selected for the current task.
 
 ## Prompt invariants
 
-- Never run `prompt-review` or spawn a review sub-agent on your own. Review
+- Never run `prompt-review` on your own, including in strict mode. Review
   happens only when the user invokes `/prompt-review`; it never gates handoff
-  or generation, and no skill or contract may require it or name it as a step.
+  or generation. Review sub-agents require a separate explicit request.
 - Freeze the exact prompt text before handoff. A generation submit must match
   the prompt the user saw byte for byte.
 - Every new Seedance 2.5 generation starts in native draft mode with explicit
@@ -201,8 +209,10 @@ never revert or discard work you did not create.
 ## Verification
 
 Prompt QA is optional: the user runs `/prompt-review` when they want it. For
-repository changes run `git diff --check`; this workspace ships no code, so
-unit, lint, type, and build checks are not applicable.
+repository changes run `git diff --check`, the maintenance verifier, and
+`python3 -B -m unittest discover -s tests -p 'test_*.py' -v`.
+These nonpaid checks validate instructions, not generated-media quality.
+Application lint, type and build checks are not applicable.
 
 For produced media, verify output existence, audio/video streams, dimensions,
 duration, and full decode integrity before delivery. When exact original audio

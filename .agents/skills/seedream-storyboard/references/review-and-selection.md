@@ -3,6 +3,11 @@
 Focused reference for `seedream-storyboard`. Read [the entrypoint](../SKILL.md) for
 mode selection and the prompt-only boundary.
 
+Default review uses a concise check of the requested beat and preserved
+identity/continuity. Use the full table below only in strict mode, on an
+explicit review request, or to diagnose a specific defect; do not hand over a
+checklist with every ordinary prompt.
+
 - [12. Review the board](#12-review-the-board)
 - [13. Present variants for the user's selection](#13-present-variants-for-the-users-selection)
 
@@ -11,7 +16,8 @@ mode selection and the prompt-only boundary.
 Evaluate every individual panel. For multi-panel separate-images boards, also
 evaluate the ordered contact sheet. For multi-panel single-image grid boards,
 evaluate the whole grid image for both per-panel quality and cross-panel flow.
-For a one-panel board, compare its three variants side by side; a comparison
+For a one-panel board, use one sample in default mode and compare three only in
+strict mode or when requested. A comparison
 sheet is a review artifact, not another storyboard panel and not the canonical
 video input.
 
@@ -50,12 +56,13 @@ Route failed panels through the smallest-scope ladder in [Editing Failed Panels]
 
 These checks run when the user shares generated candidates (images or a
 description of them); this workspace does not generate or process images. Hand
-the review table above to the user with the prompt so they can apply it
-themselves.
+the full review table to the user only when requested or in strict mode.
 
 Present candidates in panel order with filename, material differences, known
-continuity or anatomy issues, and a recommendation. A recommendation never
-selects or approves anything: only the user's explicit choice selects a variant.
+continuity or anatomy issues, and a recommendation. Under `approve_for_me`,
+the agent may select an inspected suitable candidate with a short reason.
+Under `ask_for_approval`, or when the user explicitly wants to choose, only the
+user's choice selects it. Review depth never changes that authority.
 If no candidate passes, or the images cannot be inspected, leave selection
 unresolved and offer a revised prompt or a narrow edit prompt (see
 [editing failed panels](editing-failed-panels.md)). Reject candidates without
