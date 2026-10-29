@@ -72,8 +72,18 @@ mentioned in prose are relative to this skill directory unless a link says other
 The caller owns production authorization and the exact request preflight. A
 leaf returns its prompt package without loading sibling skills. An explicitly
 declared orchestrator may coordinate the submission stage. Missing required inputs remain unresolved; a draft
-or technical success does not establish user approval. Preserve optional timing,
-the three-image sampling default where applicable, and the requested delta.
+or technical success does not establish user approval. Preserve optional timing
+and the requested delta. Image sampling follows the caller's review mode:
+one by default, proposed comparison samples in strict mode, explicit count first.
+Sampling advice never authorizes generation or changes native video drafts.
+
+For character performance, carry supplied intent, triggers, listening and
+readable consequences into the subject/action wording once. Inline intent is
+valid; no saved plan or automatic review is required. Preserve exact words,
+quiet holds, masked framing and the selected medium. Source-preserving edits
+inherit acting instead of adding new cues. For supplied staged action, retain
+participant/prop states and visible interaction order. Report missing material
+direction without inventing character history or an outcome.
 
 ## Evidence and creative advice
 
@@ -229,7 +239,7 @@ Before generation, verify:
 2. **Reference roles**: Does every reference state what to use and what not to use?
 3. **Subject binding**: Is every required canonical character, product, and prop named and bound to a reference, with incidental objects handled by the prop threshold?
 4. **Scene selection**: Are references selected by scene, not forced to appear all at once?
-5. **Stage structure**: Does each stage contain only one primary change and a clear end state?
+5. **Stage structure**: Does each stage contain one primary event or sustained state and a clear end state? Purposeful waiting or listening may remain unchanged without a forced turn.
 6. **Consistency**: Do character count, clothing, prop ownership, and spatial relationships stay consistent?
 7. **Editing master**: For editing, is the sole editing master, edit scope, target quantity, and content to preserve defined?
 8. **Emotion & camera**: Are abstract emotions and cinematography terms paired with visible/audible cues?

@@ -1,9 +1,11 @@
 # Assembly-only cuts
 
-Some cuts are too short or too structural for one Seedance clip. A shot under
-about 0.8 s is merged or dropped by the model (observed in upstream
-production reviews), and a single prompt cannot make the picture skip an
-action it describes. These presets therefore live in the edit: each side is
+Some cuts need editorial precision that prompted timing cannot reliably supply.
+About 0.8 s is a provisional planning heuristic from limited upstream reviews,
+not a provider limit or proof that a shorter shot fails. Use assembly when
+the requested timing or omitted action needs explicit editorial control;
+do not ask a prompt to show an action that the edit must omit. These presets
+live in the edit: each side is
 generated as its own clip at a natural length, and the cut is made in the
 post edit. This reference plans the cut and
 writes the per-clip prompt lines; it does not run generation or edit media.

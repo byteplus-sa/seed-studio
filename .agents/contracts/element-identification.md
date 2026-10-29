@@ -1,5 +1,10 @@
 # Element identification
 
+Selection uses the independent approval mode in [review-mode.md](review-mode.md).
+`approve_for_me` permits an agent to select a genuinely inspected, authorized
+asset without another user confirmation; `ask_for_approval` waits. Default
+review needs a concise fidelity sanity check, not the full checklist report.
+
 Identify visible elements during draft breakdown; approve required references before dependent production generation. Static asset prompts create canon and therefore do not require that same asset to be approved already.
 
 | Category | Treatment |
@@ -53,8 +58,8 @@ When the brief authorizes a real brand, logo, packshot, or labeled product:
    SHA-256) in the element manifest and/or `PROVENANCE.md`.
 3. **Promote** the acquired file to the canonical asset name
    (`prop_…`, `screen_…`, `card_…`), set `source: web_download` or
-   `user_supplied`, `generation: none`, and obtain explicit
-   `selected_variant` / `approved` from the user.
+   `user_supplied`, `generation: none`, and record a mode-authorized
+   `selected_variant` / `approved` decision after inspection.
 4. **Generate with Seedream only** when no usable real asset exists, the user
    requests a stylized or fictional substitute, or acquisition is blocked.
 
@@ -66,8 +71,8 @@ analysis and may use placeholder descriptors until the user supplies or
 authorizes real identity.
 
 Acquired brand/product assets have no generation-bound prompt. They still
-require explicit user selection or approval before dependent prompts depend on
-them.
+require mode-authorized selection before dependent prompts depend on them.
+Neither mode invents rights or replaces an explicit user-selected asset.
 
 ## Exact-graphics boundary
 

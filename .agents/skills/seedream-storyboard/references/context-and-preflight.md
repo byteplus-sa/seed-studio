@@ -82,7 +82,7 @@ scene's subject, conflict or product, environment, and intended emotion.
 For optional whole-scene L1, L2 or L3 coverage, use [Scene Density](scene-density.md). Its state coverage replaces the one-panel-per-shot default only for that mode; an explicit panel budget still wins.
 
 **Dynamic panel count.** When an upstream analysis has identified the scene's
-shots or beats — a video or frame-pass breakdown, a `tig-scene-engine` beat
+shots or beats — a video or frame-pass breakdown, a `scene-craft` beat
 list, a shot list, a script/beat sheet, or any story analysis —
 the board defaults to **one panel per identified scene/shot**, regardless of
 any earlier guess or fixed budget. The panel count is dynamic and follows the
@@ -245,6 +245,6 @@ Use panel numbers in increments of 10 so panels can be inserted without
 renumbering. The last column is the file stem to use if the user asks for the
 prompt saved under `projects/<project>/prompts/`.
 
-For a one-panel board, create only `p010`. Ask the user to generate
-alternatives as samples (v01–v03) of `p010`; do not mislabel three alternatives
-as three narrative panels.
+For a one-panel board, create only `p010`. Use one sample in default review.
+Only strict review or a requested count calls for multiple samples
+(for example v01-v03) of `p010`; never mislabel alternatives as narrative panels.

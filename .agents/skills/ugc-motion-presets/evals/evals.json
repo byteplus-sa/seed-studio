@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "Make me an Atomic preset video prompt for @mia. She takes a selfie outside on a cloudy day.",
-      "expected_output": "A Seedance 2.5 prompt block for the Atomic preset: Mia holds a raised-phone selfie pose while a mushroom cloud rises behind her, with locked-off front camera, native rumble audio, 9:16 default, and the high-burst and disclosure flags carried through.",
+      "expected_output": "A Seedance 2.5 prompt block for the Atomic preset: Mia holds a raised-phone selfie pose while a mushroom cloud rises behind her, with locked-off front camera, native rumble audio, 9:16 default, and debris-boundary and disclosure flags carried through.",
       "files": [],
       "expectations": [
         "The output resolves the request to the Atomic preset and states so.",
@@ -80,11 +80,11 @@
     {
       "id": 7,
       "prompt": "Morning routine preset but I want the full arc: waking up, coffee close-up, getting dressed, and mirror selfies. That's more than 30 seconds.",
-      "expected_output": "The output presents the two supported paths — a compressed staged arc within 30s or chaining scenes via return_last_frame with first_frame and matched ratios — and delivers the compressed version by default with the chaining note.",
+      "expected_output": "Preserves the requested full arc through proposed scene chaining at action-led lengths; compression is an alternative requiring user acceptance, not the default.",
       "files": [],
       "expectations": [
-        "The output offers both paths: a compressed staged arc and scene chaining.",
-        "The default deliverable is a staged arc whose stages use consecutive non-overlapping timestamps within 30s.",
+        "The output prioritizes the requested full arc; compression is offered only as an unapproved alternative.",
+        "Scene lengths and count follow the supplied actions and meaningful holds rather than a three-by-ten-second cadence.",
         "The chaining path specifies return_last_frame on each scene feeding the next scene's first_frame with matched aspect ratios.",
         "The output notes wardrobe continuity across stages or chained scenes.",
         "No timelapse speed parameter is claimed to exist."
@@ -100,6 +100,18 @@
         "The output does not fabricate a preset name or recipe.",
         "The output offers a nearest alternative such as a custom two-subject composition through seedance-prompt-25 grammar.",
         "The output stays prompt-composition-only and does not claim the request was fulfilled with a preset."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Adapt Handheld Run into a brisk 10-second courier beat. Keep running and the repeated steps; the runner says exactly {Almost there!} in English without slowing. Do not add a spin, hold or camera cut. Return the motion block only.",
+      "expected_output": "A brief-grounded running block with readable dialogue and recovery, without enforcing moderate dynamics or the recipe's spin.",
+      "files": [],
+      "expectations": [
+        "Preserves running, repeated steps and exact words without slowing the actor for speech.",
+        "Describes support, momentum and recovery while keeping the requested camera and no-cut scope.",
+        "Omits the unrequested spin and holds; preset examples do not override the brief.",
+        "Does not claim actual speech fit or playback quality, generate media or save a file."
       ]
     }
   ]

@@ -63,9 +63,9 @@ change the production policy. Source metadata: `rule-provenance.json`.
    structure explicitly includes them. They belong in the submitted parameters,
    never in the prompt text.
 
-7. **Prompt snapshot location.** The prompt is saved beside the media asset it
-   produced, using the `prompt_` prefix convention. It is not duplicated in shot
-   folders, scene folders, or any other location.
+7. **Prompt delivery.** Chat is the default. Save a snapshot only on explicit
+   request, under the user's requested prompt location; no scene file or
+   production registry is required for an inline prompt.
 
 8. **No duplicate action descriptions.** The same action is not described twice in
    the same prompt. Each beat appears once.
@@ -93,6 +93,25 @@ change the production policy. Source metadata: `rule-provenance.json`.
     brand text or logos that a post-production overlay or a supplied official
     asset should provide. Words like "logo", "tagline" or "text reads" are
     deliberate only.
+
+14. **Performance handoff (`acting.plan_bound`).** During this requested review,
+    trace supplied intentions, triggers, registration, listener tasks and readable
+    consequences into the prompt, regardless of the selected video model.
+    Inline intent is valid; missing material input is incomplete, not permission
+    to invent a scene file. Preserve quiet holds, masked framing, exact words,
+    timing and deliberate non-response. Two to four cues is a heuristic, not a
+    minimum. Critical omissions or contradicted locks are MAJOR. Static assets
+    and preservation-only edits record not_applicable; inherited performance
+    still needs its applicable preservation checks.
+
+15. **Staged fights (`fight.readable_exchange`).** For authored fight action,
+    trace participants, start/end states, apparent contact or avoidance,
+    reactions and prop ownership through readable framing and timing.
+    These criteria are model-independent; do not import another model's
+    parameters. Do not certify hidden contact, impose a fighting style or
+    change a locked outcome. Non-fight work and preservation-only edits record
+    not_applicable with a concrete reason. These criteria do not make review
+    automatic.
 
 ---
 
@@ -125,8 +144,9 @@ This check does not make manual `/prompt-review` mandatory.
 4. **Action granularity.** The Action slot describes motion at the body-part
    level (hands, arms, legs, head, shoulders, back, hips, feet) with range,
    speed, and force, grounded in weight, balance, momentum, and contact — not
-   as bare verbs. High-burst, large-dynamic actions are avoided unless the
-   shot requires them.
+   as bare verbs. Speed, amplitude, interruptions and recovery follow the
+   supplied intent. Do not penalize energetic action or dialogue merely for
+   being fast; assess physical grounding and readable evidence.
 
 ### Reference materials
 
@@ -166,8 +186,9 @@ This check does not make manual `/prompt-review` mandatory.
 
 ### Scene staging
 
-15. **Stage structure.** The story is divided into consecutive stages. Each stage has
-    ONE primary state change and a clear end state.
+15. **Stage structure.** Multi-event stories use consecutive stages. Each has
+    one primary event or sustained state and a clear end state. Waiting or
+    listening may remain unchanged; do not demand a turn to fill a hold.
 
 16. **Natural duration.** Each scene is generated at its natural duration (4-30s),
     not padded to 30s. 30s single-pass or extension is the exception, not the default.
@@ -175,8 +196,10 @@ This check does not make manual `/prompt-review` mandatory.
 17. **Timestamp ranges.** Time ranges are consecutive and non-overlapping. They are
     treated as a time budget, not precise edit points.
 
-18. **No impossible frequencies.** The prompt does not demand impossible action
-    densities (e.g., "complete three actions in one second").
+18. **Action feasibility.** Judge physical support, travel, contact and recovery
+    against the available time and required readability. Action count alone
+    does not establish impossibility. Cite a concrete conflict; without enough
+    timing evidence, leave feasibility unresolved rather than inventing a limit.
 
 ### Audio syntax
 
@@ -192,12 +215,8 @@ This check does not make manual `/prompt-review` mandatory.
 
 ### Emotional direction
 
-22. **Visible/audible cues.** Abstract emotions are paired with directly visible or
-    audible cues (eye movement, brow tension, mouth movement, breathing, gaze, hand
-    movement). Select 2-4 readable cues per emotional transition, grounded in
-    the playable tactic and framing. Close-ups can use eye/mouth detail; masked
-    wide shots need posture, spacing or hand action. Blink guidance is relevant
-    only when visible and needed; do not move the camera to rescue unreadable cues.
+22. **Performance criteria.** Apply Universal items 14 and 15 with their
+    applicability guards; they are shared with the other video models.
 
 23. **No bare emotion words.** The prompt does not rely solely on emotion labels like
     "very sad" or "extremely angry" without physical externalization.
@@ -218,22 +237,30 @@ This check does not make manual `/prompt-review` mandatory.
     sequence, compare neighboring shot sizes, angles, moves and key sides with
     the requested plan. Treat the shot-design thresholds as craft heuristics,
     not model guarantees. Preserve dialogue readability, fixed song timing,
-    static formats and source-preserving edits.
+    static formats and source-preserving edits. Actor energy, camera energy and
+    edit rhythm are separate choices. Repeated framing, equal durations,
+    clean singles and sustained holds need no exception count. There is no
+    mandatory cadence, coverage mix, turn shot or "wow" image.
 
 24c. **Motivated light and readable holds.** A planned source keeps its world
     position across cuts; a new source needs a visible motivating event. A
     light that goes off, dims or flickers inside a shot matches a cue recorded
     on a planned source, with its time and trigger. A static hold may
     emphasize performance or contrast with motion. Never add camera movement
-    against a user lock merely to meet a variety target.
+    against a user lock merely to meet a variety target. Repeated
+    `performance_hold` reasons and a whole held scene are valid when they
+    sustain the intended attention.
 
-24d. **Assembly cuts stay in the edit.** A blink cut, intercut or vision
-    flash shorter than about 0.8 s is planned as an assembly cut and never
-    requested inside one prompt; a prompt that asks the model to skip an
+24d. **Assembly precision and motion remedies.** Exact blink cuts, intercuts or
+    vision flashes belong in assembly when prompted timing cannot meet the
+    brief; 0.8 s is a provisional heuristic, not a universal minimum.
+    A prompt that asks the model to skip an
     action it describes is a MAJOR finding. A prompt that asks a subject to
     drift out of focus during a move is a MINOR finding: that defocus is
-    added in post. A sudden burst action appears at most once per shot with
-    a still hold before and after it (MINOR otherwise).
+    added in post. A single burst with holds or slower motion is an optional
+    remedy for a demonstrated failure, not a cap or MINOR finding by itself.
+    Preserve repeated action and locked timing; assess readable support,
+    momentum, contact and recovery rather than counting bursts.
 
 25. **Uncommon cinematography terms.** If used, they follow the format:
     Term + Target Subject + Visual Change + Foreground/Background Relationship +
@@ -268,7 +295,7 @@ This check does not make manual `/prompt-review` mandatory.
 34. **Subject binding**: every required canonical character/product/prop named and bound to a
     reference.
 35. **Scene selection**: references selected by scene, not forced to appear all at once.
-36. **Stage structure**: each stage has only one primary change and a clear end state.
+36. **Stage structure**: each stage has one primary event or sustained state and a clear end state, including purposeful unchanged attention.
 37. **Consistency**: character count, clothing, prop ownership, spatial relationships
     stay consistent.
 38. **Editing master**: for editing, sole editing master, edit scope, target quantity,
@@ -650,14 +677,18 @@ Source skill: `seedance-prompt-20`
 15. **Coherent camera movement.** Use one or two clear requested movements per
     shot, with sequence and endpoints; avoid competing simultaneous directions.
 
-16. **Complexity budget.** At most 3 major action beats or 4 tightly related shots
-    for 15s generation.
+16. **Complexity budget.** Assess whether action, speech and continuity fit
+    15s. Three major beats or four related shots is a planning example, not a
+    quota or provider limit. Cite an actual timing or readability conflict.
 
 17. **Action detail.** Body-part level detail (hands, legs, head, shoulders, back)
     with range, speed, force.
 
-18. **Motion preference.** Prefers slow, gentle, continuous motion. Avoids
-    high-burst, large-dynamic actions.
+18. **Intent-led motion.** Speed, amplitude, interruptions and recovery follow
+    the brief, with physical support, momentum and contact. Energetic dialogue
+    is valid when words, speaker and responses remain readable. Quiet acting,
+    repeated framing and sustained holds are equally valid. Optional slower
+    motion or burst-with-holds repairs require a relevant failure, not a quota.
 
 19. **Emotion externalization.** Emotions are externalized as physical details,
     never bare labels.
@@ -1240,10 +1271,12 @@ Source skill: `seedream-character-sheet`
     caller. Cleanup is conditional, non-destructive, and requires new selection;
     this reviewer does not invoke an editing skill.
 
-17. **Element saved.** Saved under `elements/<character-id>/`.
+17. **Element delivery.** Chat is the default; check a saved element record
+    only when saving was explicitly requested.
 
-18. **Selected variant.** Approved filename recorded as `selected_variant` in
-    `character.md`.
+18. **Selected variant.** An inspected, mode-authorized selection is recorded
+    in chat or an explicitly requested file; it never replaces user locks,
+    rights, consent or per-submit generation opt-in.
 
 ---
 
@@ -1437,7 +1470,7 @@ Source skills: `seedream-storyboard`, plus `template-factory` (storyboard prompt
 1. **One frozen, decisive moment per panel.** Not a collage or multi-panel grid.
 
 2. **Dynamic panel count.** When an upstream analysis (a video or frame pass,
-   `tig-scene-engine`, or a script/beat sheet) has identified
+   `scene-craft`, or a script/beat sheet) has identified
    N scenes/shots, the board defaults to one panel per identified scene/shot —
    not a fixed budget. A user-specified smaller count is honored only when
    explicit, with omitted shots recorded as motion notes.

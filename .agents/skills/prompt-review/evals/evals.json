@@ -1,0 +1,76 @@
+{
+  "skill_name": "prompt-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "User-invoked /prompt-review, draft-only inline assessment. Model Seedance 2.5, operation generate, English, requested axes acting and camera. Approved inline intent: A reaches twice for a parcel while B withdraws it to keep A listening. Prompt preserves two brisk reaches in a tracking medium two-shot; A says {Give it here.} during the second, with both faces and hands visible and weight recovering between reaches. No still holds. Native 480p draft parameters supplied separately. No take or production request hash exists.",
+      "expected_output": "A draft assessment of readable action and exact dialogue, without a burst cap or kinetic-dialogue rejection; production evidence remains incomplete.",
+      "files": [],
+      "expectations": [
+        "Does not flag two bursts, brisk body movement or speech during tracking as defects by themselves.",
+        "Checks physical continuity, supplied pursuits and listener response rather than replacing them with gentle movement.",
+        "Distinguishes predicted readability from actual playback; missing production request evidence stays incomplete.",
+        "Returns inline findings without saving a snapshot, submitting generation or inventing a hash."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "User-invoked /prompt-review, draft-only inline assessment, Seedance 2.0 generate. Three equal-length held eye-level clean singles repeat the same quiet waiting; each records performance_hold for sustained attention. The approved brief deliberately withholds an answer, has no turn, and keeps light unchanged. The prompt preserves those facts and the exact English line {Still here.}. Judge only performance and coverage; no take is available.",
+      "expected_output": "No performance or coverage defect solely for repeated framing, holds, equal timing or an absent turn; actual media remains unverified.",
+      "files": [],
+      "expectations": [
+        "Does not penalize repeated performance_hold reasons or demand a group shot, non-eye-level angle, contrast or wow image.",
+        "Checks the quiet delivery and sustained waiting against supplied intent.",
+        "No forced gesture, reversal, cut or resolution.",
+        "Does not claim successful playback or a complete production preflight from a draft-only assessment."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "User-invoked /prompt-review on a draft Seedance 2.5 energetic dialogue shot. The approved plan requires the listener's immediate refusal to be visible. The prompt instead whip-pans away from both people for the entire reply and returns only after the listener leaves. Exact words and action are locked; no media is available.",
+      "expected_output": "A concrete readability finding tied to the omitted response, not a general prohibition on energetic dialogue.",
+      "files": [],
+      "expectations": [
+        "Identifies that the pan hides the critical supplied refusal and departure.",
+        "Suggests repairing the pan endpoint or framing while preserving actor energy, words and action.",
+        "Does not lower all body motion, add a mandatory still hold or claim a generated failure was observed."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "User-invoked /prompt-review of an unfinished new-video idea: someone receives a rejection and says {I'm fine.}. Only the mood 'emotional' is supplied. No intention, intended audience response, attention mechanism or ending is settled. Return a draft assessment in chat, not a production verdict.",
+      "expected_output": "Material premise and performance gaps remain unresolved; proposed interpretations are not backfilled as source evidence.",
+      "files": [],
+      "expectations": [
+        "Requests the intended audience response, what carries attention and the purpose of the ending.",
+        "Does not invent concealment, sincerity, listener behavior or an approved resolution.",
+        "May offer distinct proposed readings to settle the open idea, without an alternatives quota.",
+        "No automatic generation, save, new registry or fabricated passing evidence."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "User-invoked /prompt-review, draft-only Seedance 2.0 generate, acting and fictional fight axes. Supplied intent: A blocks the doorway to keep B present; B deliberately does not respond. The staged exchange must show A's attempted reach, B avoiding it, and a baton remaining with B. The prompt instead hides the whole exchange behind a wall and shows the baton in A's hand afterward. Identity, exact dialogue, final ownership and the deliberate non-response are locked. No take or production request hash exists.",
+      "expected_output": "Applies the shared acting and fight criteria to the legacy model, identifies the hidden required exchange and contradicted ownership, and leaves production review incomplete.",
+      "files": [],
+      "expectations": [
+        "Includes acting.plan_bound and fight.readable_exchange criteria despite selecting Seedance 2.0.",
+        "Flags the hidden exchange and baton ownership contradiction without certifying unseen contact.",
+        "Preserves deliberate non-response; does not invent a reaction, winner, new dialogue or an emotional turn.",
+        "Returns draft findings in chat, leaves missing production evidence incomplete, and does not import Seedance 2.5-only parameters or generate media."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "User-invoked /prompt-review of two draft Seedance 2.5 action descriptions. A: a hand already resting above three adjacent keys taps each once within one second; keep this rhythm. B: a human crosses a 40-metre room on foot and returns to the starting mark within one second at normal playback speed, with no cuts or supernatural movement. Judge physical feasibility and readable evidence, not action count. No generated media is available.",
+      "expected_output": "Does not reject A solely for three actions per second; identifies B's specific travel-time conflict without turning it into a universal action-count limit.",
+      "files": [],
+      "expectations": [
+        "Keeps the requested three-tap rhythm; does not automatically add holds, slow it down or split it by action count.",
+        "Distinguishes A's predicted readability from verified playback.",
+        "Flags B's travel distance and return within the locked second as the concrete physical conflict.",
+        "Proposes authorized retiming or a changed staging approach for B rather than silently changing its locks."
+      ]
+    }
+  ]
+}

@@ -71,6 +71,9 @@ reported gap and an explicit supported choice, not an automatic 2.0 switch.
 
 For ambiguous depth or geography, read only the relevant example in
 [Hypothetical optics repairs](references/optics-repairs.md).
+For anamorphic requests, read
+[Anamorphic treatment](references/anamorphic-treatment.md). Use conditional
+visible markers, not a mandatory film-stock, blur, flare or aspect-ratio package.
 
 ## Preset bank
 
@@ -134,7 +137,10 @@ move past a foreground element, or the subject stepping into the sharp plane.
 | **Warm Halation** | Warm halation: a soft warm glow blooming around highlights, gentle bleed where light meets dark. |
 | **Vintage Haze** | Vintage haze: soft low-contrast image with a slight bloom, muted colors, the diffused look of an old film lens. |
 
-For anamorphic, identify which visible marker serves this shot. A deep-focus
+For anamorphic, identify which visible marker serves this shot. Requested
+oval bokeh uses vertically elongated defocused highlights; a streak flare
+is horizontal and source-motivated, with color a selected look rather than
+a rule derived solely from lamp temperature. A deep-focus
 scene may not show bokeh; a scene without an appropriate bright source need not
 have a flare. The label does not authorize inventing either feature.
 
@@ -267,9 +273,9 @@ Composition:
 - **Caller-owned supported parameters.** Watermark defaults apply only where
   the selected tool supports the field. This prompt-only skill sets no payload
   parameters and does not invoke generation or sibling skills.
-- **Record the resolved phrase.** When a generation is submitted, the exact
-  prompt snapshot (including the optics line) is saved beside the asset as
-  `prompt_<asset>.md` and referenced from the shot manifest.
+- **Record the resolved phrase.** Keep the exact optics line in the chat
+  package. Save a prompt snapshot or update an existing manifest only on
+  explicit request; submission does not imply permission to create files.
 
 ## Self-check checklist
 

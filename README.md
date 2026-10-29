@@ -5,19 +5,41 @@
 This repository ships agent skills, not generation tooling. You describe what you
 want, the agent composes a production-grade prompt from the skill libraries and
 hands you a copy-paste block for the Lumina UI. Want a second opinion? Run
-`/prompt-review` yourself; the agent never runs it on its own.
+`/prompt-review` yourself; neither review mode invokes it automatically.
 
 Generation is optional. With `ark-mcp` or `arkcli` connected, an explicit
 generation request submits the exact prompt you saw after you confirm each
 submit's model, ordered references and parameters. This is generation opt-in,
 not financial approval: no project budget, cap, estimate or spending
 authorization is required, and cost information is optional.
+Creative approval is separate from generation opt-in.
 Direct HTTP/curl is also supported when explicitly requested
 and secure caller-managed runtime configuration already exists; it is never an
 automatic fallback. Without a usable selected transport or generation request,
 the agent stays prompt-only. The agent never stores credentials or
 writes production files. See
 [`generation-transport.md`](.agents/contracts/generation-transport.md).
+
+## Review modes
+
+Say **"use default review"** for the fast path or **"use strict review"** for
+detailed checks. Chat-only work needs no configuration file. For saved projects,
+set these independent fields in `project.md` frontmatter:
+
+```yaml
+review_mode: default
+approval_mode: approve_for_me
+```
+
+`default` uses one inline preflight and a final sanity check: no full prompt
+review report, repeated creative approvals or automatic three-image set.
+`strict` adds validity explanations and detailed candidate inspection, but
+does not invoke `/prompt-review` or gate handoff. Native video drafts remain
+mandatory in both modes. Neither changes
+who decides: `approve_for_me` selects in-scope creative choices, while
+`ask_for_approval` waits for you. Explicit choices, scope, rights,
+privacy and publishing boundaries remain in force.
+See [Review mode](.agents/contracts/review-mode.md).
 
 ## What this is / is not
 
@@ -52,7 +74,7 @@ flowchart LR
 2. You receive one copy-paste block — prompt text, ordered reference bindings,
    and the parameter block. Paste it into Lumina.
 3. Optionally, run `/prompt-review` to check a prompt against the workspace rule
-   catalog. It is manual only and nothing else depends on it.
+   catalog. It remains manual in both modes and never gates handoff.
 4. Drafts are saved locally only when you ask for them.
 
 ## Skills
@@ -60,7 +82,7 @@ flowchart LR
 | Skill | Summary |
 | --- | --- |
 | **brief-intake** | Shape intent-led briefs and treatments; preserve confirmed decisions. |
-| **prompt-review** | Manual (`/prompt-review`) review and fix of prompts written for BytePlus generative models (Seedance, Seed Audio, Seedream) against the repo's skill best practices using a sub-agent review pipeline. |
+| **prompt-review** | Manual user-invoked review of Seedance, Seedream and Seed Audio prompts; review sub-agents require a separate explicit request. |
 | **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — paste-ready. |
 | **seedance-prompt-25** | Write production-grade Seedance 2.5 video prompts with the six-part formula, 50-material multimodal referencing, variable-duration staging (4-30s), timestamp pacing, structured editing, extension, keyframes, storyboards, and blockouts. |
 | **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, Virtual Portrait identities, a muted source with audio in post, and style presets. |
@@ -69,7 +91,9 @@ flowchart LR
 | **seedance-prompt-25-filipino** | Opt-in Filipino dialogue support preserving approved words and requested language, register, code-switching and subtitle choices; separate accent notes, listening-based pronunciation review and opt-in separate lip-sync audio. |
 | **filipino-micro-drama** | Opt-in Filipino-market micro-drama stories and episode briefs with genre formulas and cultural context, preserving approved words and requested language, register, code-switching and subtitle choices. Story material only. |
 | **seedance-prompt-20** | Legacy Seedance 2.0 prompt skill for 4K output (unsupported by 2.5), Fast/Mini speed variants, or lower cost per generation. |
-| **seedance-acting-console** | Turn playable motives and tactics into observable acting cues appropriate to framing, visibility and intensity. |
+| **acting-direction** | Return source-bound performance plans in chat: goals, tactics, listening, triggers and readable consequences. |
+| **seedance-acting-console** | Encode supplied performance intent as concise Seedance cues without repeating scene analysis. |
+| **seedance-fight-choreography** | Plan requested fictional screen fights with stable actors, prop ownership and readable exchanges; no generation or real-world instruction. |
 | **seedance-animation-styles** | Write Seedance animation prompts for claymation, needle felt, wood puppets, toy miniatures, rubber hose, painterly 2D, cubist ink, stylized 3D, silicone creatures, and wax crayon. |
 | **seedance-frame-break** | Write Seedance 2.5 frame-break pop-out prompts: two fixed black bars with the subject's limbs drawn over them, four timed break-out stages, product-hero variant, failure repairs, and a user-run acceptance check. |
 | **seedance-shot-design** | Plan requested shot coverage, camera moves, lens intent and motivated lighting; preserve fixed formats and confirmed axes. |
@@ -99,15 +123,17 @@ flowchart LR
 | **ugc-ad-modes** | Write hooks, scripts and Seedance prompts for nine ad modes using supplied product facts, audience objections, supported claims and accurate CTAs. |
 | **ugc-motion-presets** | Turn a named UGC motion preset (Atomic, Outfit Switch, Eating Zoom, Yacht, ...) into a canonical Seedance prompt block with reference bindings, duration, and constraint flags. |
 | **color-grade-palettes** | Map a named color grade palette or film look into a canonical grade sentence for the Seedance Visual Style slot or the Seedream `Style:` section. |
-| **tig-blocking-map** | Give Seedance characters DISPOSITION via a color-coded outline schematic — a staging reference for multi-character blocking. |
-| **tig-scene-engine** | Write and audit screenplay scenes using a five-element dramatic engine — Goal, Obstacle, Tactic, Reversal, Value Shift. |
+| **blocking-map** | Plan multi-character geometry while preserving the approved medium; control drawings remain optional, explicitly selected references. |
+| **scene-craft** | Write and audit scenes using an explicitly selected framework; the five-element engine is optional, not a universal defect gate. |
 
 ## Contracts
 
 | Need | Source |
 | --- | --- |
+| Default/strict review depth and independent approval authority | [`.agents/contracts/review-mode.md`](.agents/contracts/review-mode.md) |
 | Prompt review policy and stable rule IDs | [`.agents/contracts/rules.json`](.agents/contracts/rules.json), [`.agents/contracts/production-policy.md`](.agents/contracts/production-policy.md) |
 | Camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [`.agents/contracts/seedance-reference.md`](.agents/contracts/seedance-reference.md) |
+| Performance plans, cue handoffs and optional manual checks | [`.agents/contracts/performance-direction.md`](.agents/contracts/performance-direction.md) |
 | Canon, props, screens and reference roles | [`.agents/contracts/element-identification.md`](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [`.agents/contracts/audio-video-alignment.md`](.agents/contracts/audio-video-alignment.md) |
 | Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [`.agents/contracts/video-to-video-inputs.md`](.agents/contracts/video-to-video-inputs.md) |
@@ -121,7 +147,7 @@ seed-prompt-studio/
 ├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 40 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 44 prompt-composition skills + sync-skills (maintenance)
 ├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -134,7 +160,7 @@ seed-prompt-studio/
 ## Maintenance
 
 Shared skills are maintained in an upstream source checkout. Run the sync from
-any supported agent to mirror the 24 allowlisted skill bundles into this repo:
+any supported agent to mirror the 21 allowlisted skill bundles into this repo:
 
 | Agent | Command |
 | --- | --- |
@@ -150,7 +176,9 @@ runs when invoked explicitly. The local `template-factory`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
 `seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
 `seedance-shot-design`, `seedance-effects-studio`, `seedream-handcrafted-3d`,
-`seedream-woodblock-poster`, `seedream-character-outfit`, and `seedance-ai-avatar` forks and all contracts are locally maintained and are never overwritten by a
+`seedream-woodblock-poster`, `seedream-character-outfit`, `seedance-ai-avatar`,
+`acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
+`scene-craft`, and `blocking-map` forks and all contracts are locally maintained and are never overwritten by a
 sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result
 uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs
@@ -158,3 +186,10 @@ one skill only. A sync leaves each skill's `agents/` folder alone and scans the
 result for references to tools and skills this workspace does not ship, stopping
 until they are scrubbed. The sync source defaults to a sibling checkout at
 `../ark-director` and can be relocated with `SKILLS_SOURCE`.
+
+Performance craft was selectively adapted from
+[Cinema Studio #7](https://github.com/byteplus-sa/seed-cinema-studio/pull/7),
+merged revision `e302ab982bc6714597983733d371e6bbbff0248c`. The adaptation
+preserves manual review, chat-first plans, existing generation authorization,
+native draft settings and protected prompt-only forks. It does not install
+Cinema production stages, a task registry or third-party source archives.

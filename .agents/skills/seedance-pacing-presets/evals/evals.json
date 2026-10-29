@@ -106,10 +106,10 @@
     {
       "id": 9,
       "prompt": "A knight walks through a stone archway in one locked-off Seedance 2.5 shot. His dusty travel cloak should turn into polished ceremonial armour, but only on the parts of his body that have passed the arch, so the change sweeps across him as he walks. Write the timing.",
-      "expected_output": "A progressive-change block with a slowed crossing of about 1.5 s, timed stages by body part, an exclusion of glow and flash effects, and unbroken walking motion, generated as reference-to-video.",
+      "expected_output": "A prompt-only progressive-change block with timing derived from the walking action and readable body-part crossings, excluding glow and flash effects and retaining unbroken motion.",
       "files": [],
       "expectations": [
-        "The walk through the arch is slowed so the crossing lasts about 1.5 s.",
+        "The crossing window follows the intended walk and readability without automatically slowing it to 1.5 s or requiring 0.4 s intervals.",
         "The change is written as timed stages by body part, starting with the leading hand and foot and ending fully changed, each stage with its own timestamp.",
         "The block states the change appears only on parts past the arch and rules out glow, flash, sparkle, dissolve or particle effects.",
         "The block states that his position, stride and direction continue unbroken.",
@@ -150,6 +150,42 @@
         "Preserves the soundtrack and asks which requirement may change before specifying the conflicting bridge.",
         "Does not generate media or invent an unsupported audio reference or parameter.",
         "Keeps any usable picture transition separate from the unresolved sound requirement."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Write only the progressive-change timing for my source-locked runner. She crosses a shadow edge from 3.0 to 3.8 seconds at full stride; her suit changes only on the body parts already past the edge. Preserve that speed and window, without cuts or slow motion.",
+      "expected_output": "A source-timed progression within the supplied crossing window, preserving full stride and spatial continuity without forced slowdown.",
+      "files": [],
+      "expectations": [
+        "Keeps the 3.0-3.8 second crossing window and full stride; does not substitute a 1.5 second crossing or fixed 0.4 second intervals.",
+        "States ordered changing regions from the leading parts to fully changed, only where they cross the edge, with unbroken position and direction.",
+        "Does not add cuts, slow motion, glow or a whole-body instant swap, and does not promise frame-accurate execution.",
+        "Returns prompt text only, leaving generated readability unverified without running tools or requiring review."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "The supplied take visibly swaps the whole costume at once and jumps pose at the doorway. I can change timing: propose a slower progressive-change prompt repair that makes each region crossing the doorway readable.",
+      "expected_output": "An optional failure-specific slowdown and staged-region repair tied to the observed swap and pose jump, not a universal timing rule.",
+      "files": [],
+      "expectations": [
+        "Connects the proposed slowdown to the reported whole-body swap and pose jump and the explicit permission to change timing.",
+        "May suggest about 1.5 seconds with roughly 0.4 second stages as a starting point, not mandatory values or guaranteed frame sync.",
+        "Preserves continuous position and direction and changes only the regions past the doorway.",
+        "Treats the repaired outcome as unverified and does not run generation or require a saved plan."
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Word pacing for my 8-second unbroken shot of a stationary sculpture. From 0-6 seconds the camera simultaneously dollies forward, arcs clockwise and rises at the supplied source speed, then holds above the crown from 6-8 seconds. No retiming or cuts.",
+      "expected_output": "A pacing block preserving all three compatible camera components, the source speed and the final hold without a numeric move cap.",
+      "files": [],
+      "expectations": [
+        "Preserves the simultaneous forward, clockwise and rising path from 0-6 seconds and the hold from 6-8 seconds.",
+        "Does not remove a move, add cuts or introduce a slowdown to enforce a one-or-two-move default.",
+        "Keeps the sculpture stationary and distinguishes camera energy from subject motion.",
+        "Treats timestamps as intended time budgets, not exact synchronization guarantees, and runs no generation."
       ]
     }
   ]

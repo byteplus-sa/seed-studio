@@ -67,7 +67,11 @@ class GenerationPolicyTests(unittest.TestCase):
         policy = read(".agents/contracts/production-policy.md")
         self.assertIn("it never gates handoff or generation", root)
         self.assertIn("Unknown rights, identity, and consent facts stop the work", policy)
-        self.assertIn("Only explicit user choice sets a selected variant", policy)
+        self.assertIn("Under `ask_for_approval`, keep recommendations proposed", policy)
+        self.assertIn("agent decision under `approve_for_me`", policy)
+        self.assertIn("select an inspected candidate", policy)
+        self.assertIn("Explicit user locks and requests to choose personally always win", policy)
+        self.assertIn("not per-submit generation opt-in, rights or consent", policy)
         self.assertIn("When a review was requested", policy)
         self.assertNotIn("This workspace performs no provider submission", policy)
 
@@ -103,8 +107,10 @@ class GenerationPolicyTests(unittest.TestCase):
 
     def test_capabilities_sampling_and_aliases_remain_valid(self):
         policy = read(".agents/contracts/production-policy.md")
-        self.assertIn("default to three sampling variants", policy)
+        self.assertIn("Default mode uses one image sample", policy)
+        self.assertIn("Strict mode proposes three stochastic samples", policy)
         self.assertIn("Explicit requested count wins", policy)
+        self.assertIn("Additional generations require their own exact-package confirmation", policy)
         limits = read(".agents/skills/omnihuman-prompt-20/references/inputs-and-api.md")
         self.assertIn("4-300 s", limits)
         skills = ROOT / ".agents/skills"

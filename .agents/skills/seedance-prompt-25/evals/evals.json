@@ -191,6 +191,30 @@
         "Uses an ordinary 480p first test and identifies it as non-promotable.",
         "Does not reuse its task ID as draft_task_id for a final."
       ]
+    },
+    {
+      "id": 105,
+      "prompt": "Compile this inline plan for Seedance 2.5 without changing it: A and B hurry side by side in a tracking medium two-shot. A reaches twice for B's parcel; B withdraws it both times to keep A listening. On the second reach A says exactly {Give it here.} in English. Keep brisk motion, no fall, no still holds or slow motion. Native dialogue, no music. Do not generate.",
+      "expected_output": "A concise prompt preserving repeated energetic action, readable dialogue and physical continuity, with native draft settings separate.",
+      "files": [],
+      "expectations": [
+        "Preserves both reaches and withdrawals, exact words, English, tracking framing and brisk physical energy.",
+        "Grounds support, contact, interruptions and recovery without inserting a blanket single burst or gentle-body preference.",
+        "Keeps actor energy, camera movement and edit rhythm distinct; no forced cuts or speech holds.",
+        "Returns inline, keeps delivery and playback unverified, and does not require a saved plan or automatic review."
+      ]
+    },
+    {
+      "id": 106,
+      "prompt": "Compile a quiet Seedance 2.5 prompt: in one held medium two-shot A quietly says exactly {Stay until I finish.} in English; B hears the request but keeps folding the tablecloth. Preserve deliberate non-response, no new gesture, no turn or departure. Native room sound only, no music. Chat only.",
+      "expected_output": "A compact quiet performance preserving the held exchange and unresolved ending, without added gestures or coverage.",
+      "files": [],
+      "expectations": [
+        "Preserves the exact line, language and quiet delivery with B's sustained folding.",
+        "Does not add a cut, camera move, reversal, score or forced response to improve energy.",
+        "Suggests checking the listener's sustained task and final attention without claiming playback evidence or running review.",
+        "No saved plan, invented source locator or production record."
+      ]
     }
   ],
   "evaluation_note": "Judge semantic effectiveness. Exact delimiters remain checks only where the selected model grammar requires them; headings and paraphrases are not quality proxies."

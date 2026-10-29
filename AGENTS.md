@@ -2,8 +2,8 @@
 
 Prompt-first workspace for composing Lumina-paste-ready prompts for BytePlus
 Seed-family models (Seedance, Seedream, Seed Audio) and OmniHuman 2.0
-lip-sync video. It writes prompts; review
-is a manual `/prompt-review` the user runs. Generation and media production
+lip-sync video. It writes prompts; default review is one inline preflight,
+not a full checklist pipeline. Generation and media production
 are optional when requested or necessary to complete a user-authorized
 deliverable with available tools.
 
@@ -53,8 +53,10 @@ Load only the contract relevant to the current request:
 
 | Need | Tracked source |
 | --- | --- |
+| Default/strict review depth, independent of decision authority | [Review mode](.agents/contracts/review-mode.md) |
 | Manual `/prompt-review` policy and stable rule IDs | [rules.json](.agents/contracts/rules.json) and [production policy](.agents/contracts/production-policy.md) |
 | Requested camera, lens, lighting, grade, acting, pacing, blocking, medium axes | [Directorial axes](.agents/contracts/seedance-reference.md) |
+| Requested performance plans, cue encoding and fictional action | [Performance direction](.agents/contracts/performance-direction.md) |
 | Canon, props, screens and reference roles | [Element identification](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [Audio-video alignment](.agents/contracts/audio-video-alignment.md) |
 | Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [Video-to-video inputs](.agents/contracts/video-to-video-inputs.md) |
@@ -80,7 +82,9 @@ requested choreography needs more.
 | Seedance 2.0 / 4K legacy grammar | `seedance-prompt-20` |
 | Filipino/Tagalog dialogue direction | `seedance-prompt-25-filipino` |
 | Filipino micro-drama stories and episode briefs | `filipino-micro-drama` |
-| Acting direction and emotional intensity | `seedance-acting-console` |
+| Character goals, tactics, listening and performance beats | `acting-direction` |
+| Encode supplied performance intent for Seedance | `seedance-acting-console` |
+| Requested fictional screen-fight choreography | `seedance-fight-choreography` |
 | Camera / lens / lighting / pacing presets | `seedance-camera-presets`, `seedance-lens-presets`, `seedance-lighting-presets`, `seedance-pacing-presets` |
 | Frame-break pop-out effect (subject bursts over black bars, 3D billboard look) | `seedance-frame-break` |
 | Animation styles / Blender-video edit prompts | `seedance-animation-styles`, `seedance-graybox-world` |
@@ -96,7 +100,7 @@ requested choreography needs more.
 | OmniHuman 2.0 lip-sync prompts (one image + driving audio) | `omnihuman-prompt-20` |
 | UGC ad modes / UGC motion presets | `ugc-ad-modes`, `ugc-motion-presets` |
 | Color grade sentence | `color-grade-palettes` |
-| Scene structure / staging references | `tig-scene-engine`, `tig-blocking-map` |
+| Scene structure / staging references | `scene-craft`, `blocking-map` |
 | Prompt QA (manual; only when the user runs `/prompt-review`) | `prompt-review` |
 
 ## Skills and orchestration
@@ -118,9 +122,37 @@ Recipes such as muxing a song onto a video may be executed by the agent when
 needed for the authorized deliverable; otherwise deliver them as instructions.
 Do not assume unavailable tools or expand into unrelated production work.
 
-Prompt QA is optional and user-triggered. `prompt-review` runs only when the
-user invokes `/prompt-review`; no prompt-writing skill or workflow runs, loads,
-or waits on it.
+Review depth is `review_mode: default` unless explicitly set to `strict`.
+Default uses a compact inline preflight; strict adds validity explanations
+and detailed candidate inspection without invoking manual prompt review.
+`approval_mode: approve_for_me` separately lets the agent make in-scope creative
+decisions; `ask_for_approval` waits for user decisions in either review mode.
+Never infer permission for review sub-agents from either setting.
+Prompt QA runs only when the user invokes `/prompt-review`; no prompt-writing
+skill or workflow runs, loads, or waits on it.
+See [Review mode](.agents/contracts/review-mode.md) for chat-only toggles,
+sampling, final sanity checks and the safeguards that remain in both modes.
+
+For requested performance work, pass the source-bound intention and relevant
+beats from direction to cue encoding, with coverage only when requested.
+Return these in chat; scene files and hashes are not prerequisites. Preserve
+quiet holds, exact dialogue and source performances. The five-element scene
+engine and named fighting styles are opt-in, not universal defaults.
+
+For new, underspecified moving-image work, resolve a compact creative premise
+in chat: intended audience response, what carries attention, and why the ending
+matters. Use supplied intent first; ask about material gaps and offer distinct
+alternatives only while the idea is unresolved. Settled prompt edits do not
+need a new treatment or whole-scene plan.
+
+Carry early sound and edit intent alongside the prompt: what is revealed,
+withheld or sustained, and whether sound or silence supports that moment.
+Suggest brief-specific observable acceptance checks, not approval records.
+Separate actor energy, camera energy and edit rhythm; derive each from the
+brief and readable action. Slow motion, repeated holds, equal durations,
+energetic dialogue and repeated framing are valid when purposeful. No cadence,
+coverage, turn, burst or "wow" quota supersedes that intent. See the existing
+performance contract for this inline handoff and its evidence limits.
 
 Keep skill metadata concise and valid YAML. Move substantial conditional
 modes and examples into focused same-skill references.
@@ -140,9 +172,9 @@ assets or context only when explicitly selected for the current task.
 
 ## Prompt invariants
 
-- Never run `prompt-review` or spawn a review sub-agent on your own. Review
+- Never run `prompt-review` on your own, including in strict mode. Review
   happens only when the user invokes `/prompt-review`; it never gates handoff
-  or generation, and no skill or contract may require it or name it as a step.
+  or generation. Review sub-agents require a separate explicit request.
 - Freeze the exact prompt text before handoff. A generation submit must match
   the prompt the user saw byte for byte.
 - Every new Seedance 2.5 generation starts in native draft mode with explicit
@@ -212,12 +244,14 @@ validator and nonpaid policy regressions:
 
 ```bash
 python3 -B .agents/skills/sync-skills/scripts/verify.py
+python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 python3 -B .agents/skills/sync-skills/scripts/test_generation_policy.py
 bash -n .agents/skills/sync-skills/scripts/sync.sh
 ```
 
 These check repository instructions, not generated media or live model
-behavior. This workspace has no application type-check or build target.
+behavior. Prompt skills ship no runtime code; application lint, type and build
+checks are not applicable.
 
 For produced media, verify output existence, audio/video streams, dimensions,
 duration, and full decode integrity before delivery. When exact original audio
@@ -233,4 +267,6 @@ Maintenance). The command never overwrites the local `template-factory`,
 `seedance-motion-recast`, `seedance-object-swap`, `seedance-restyle`,
 `seedance-frame-break`, `seedance-graybox-world`, `seedance-music-video`,
 `seedance-shot-design`, `seedance-effects-studio`, `seedream-handcrafted-3d`,
-`seedream-woodblock-poster`, `seedream-character-outfit`, and `seedance-ai-avatar` forks and leaves its changes uncommitted for review.
+`seedream-woodblock-poster`, `seedream-character-outfit`, `seedance-ai-avatar`,
+`acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
+`scene-craft`, and `blocking-map` forks and leaves its changes uncommitted for review.

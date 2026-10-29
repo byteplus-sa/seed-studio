@@ -78,8 +78,11 @@ references merely because a tool inspected them.
   prompts. A recipe is not per-submit generation opt-in.
 - Treat `projects/<project>/templates/<template-id>/` as production memory
   when the user requests saved drafts.
-- Never infer approval. A completed draft is `review`; only the user approves
-  the breakdown, the element set, and the final prompts.
+- Apply the caller's separate review and approval modes. Default review uses
+  one inline sanity pass, not repeated checklist reports. Under `approve_for_me`,
+  the agent may accept in-scope breakdown and prompt choices; under
+  `ask_for_approval`, recommend and wait. Preserve explicit user locks and never
+  infer rights or inspected-output approval from a completed draft.
 - Replicate style, composition, and grammar. Do not clone copyrighted
   footage. De-identify real people in analysis.
 - Deliver prompts in chat by default; save drafts only on explicit request.

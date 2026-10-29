@@ -18,7 +18,7 @@
         "preflight"
       ],
       "owner_path": ".agents/contracts/production-policy.md",
-      "summary": "Generation inputs match explicit manifest selections.",
+      "summary": "Generation inputs match inspected, mode-authorized creative selections and explicit user locks; per-submit generation opt-in remains separate.",
       "exceptions": []
     },
     {
@@ -82,6 +82,28 @@
       "exceptions": []
     },
     {
+      "id": "acting.plan_bound",
+      "severity": "error",
+      "applies_to": ["narrative_video"],
+      "owner_path": ".agents/contracts/performance-direction.md",
+      "summary": "During requested manual review, supplied performance intentions, triggers, listening and consequences remain readable in the prompt.",
+      "exceptions": [
+        "Static assets and non-performance work record not_applicable.",
+        "Preservation-only edits inherit performance and use preservation checks."
+      ]
+    },
+    {
+      "id": "fight.readable_exchange",
+      "severity": "error",
+      "applies_to": ["narrative_video"],
+      "owner_path": ".agents/contracts/performance-direction.md",
+      "summary": "During requested manual review, authored screen fights retain actor and prop identities through readable interactions, reactions and settled states.",
+      "exceptions": [
+        "Non-fight work records not_applicable.",
+        "Preservation-only edits retain the existing exchange."
+      ]
+    },
+    {
       "id": "asset.visible_consistency",
       "severity": "error",
       "applies_to": [
@@ -140,7 +162,7 @@
         "preflight"
       ],
       "owner_path": ".agents/contracts/production-policy.md",
-      "summary": "All applicable checks have complete request-bound evidence.",
+      "summary": "When the user invokes manual prompt review, all applicable checks have complete request-bound evidence; review is not a handoff or generation gate.",
       "exceptions": []
     },
     {

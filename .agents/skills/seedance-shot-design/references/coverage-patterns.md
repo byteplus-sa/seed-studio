@@ -7,6 +7,9 @@ Each pattern is an optional artistic technique and a starting structure, not a
 guarantee of an outcome. Adapt the sizes and moves to the energy level, then
 check the take. Wording for a named move belongs to the camera preset skill;
 wording for a named light setup belongs to the lighting preset skill.
+These are not coverage, cadence or turn quotas. Repeated framing, equal lengths,
+all-single coverage and whole-scene holds can carry the intended response.
+Separate actor energy, camera energy and edit rhythm, including during dialogue.
 
 - [Reveal ladder](#reveal-ladder)
 - [Dialogue exchange with variation](#dialogue-exchange-with-variation)
@@ -23,7 +26,7 @@ wording for a named light setup belongs to the lighting preset skill.
 - [Look, point of view, reaction](#look-point-of-view-reaction)
 - [Group in one take](#group-in-one-take)
 - [Uneven terrain](#uneven-terrain)
-- [Failure shapes to avoid](#failure-shapes-to-avoid)
+- [Contextual repairs](#contextual-repairs)
 
 ## Reveal ladder
 
@@ -33,8 +36,8 @@ Use when the viewer must discover something in stages.
   close-up or insert that shows the discovered detail.
 - What changes: size on every cut; add a push-in on the last
   rung so the discovery has motion.
-- Watch for: three equal-length shots with identical eye-level framing. Make the
-  final rung the shortest or the most distinct.
+- Watch for: a final detail that cannot be read. Give it the time and framing
+  it needs; equal lengths and repeated eye level are valid.
 
 ## Dialogue exchange with variation
 
@@ -46,8 +49,9 @@ tripod.
 - What changes: size and angle between singles, and the key side. Light the
   speakers from the same declared source seen from the two camera sides, so each
   speaker's lit side differs without a second source appearing.
-- Watch for: moves on speaking shots. Keep them slow so lips and eyes stay
-  readable; let the angle and light carry the variety.
+- Watch for: moves that hide a required cue or speaker. Energetic dialogue is
+  valid at readable framing and speed; a calm brief can retain slow moves or
+  stillness. Do not lower actor energy simply because speech is present.
 
 ## Power shift
 
@@ -113,8 +117,8 @@ Use when a moment must land.
 
 - Shots: one or two moving shots, then a locked hold on the payoff.
 - What changes: the move stops. Record `contrast_hold` as the `static_reason`.
-- Watch for: a hold with no preceding motion; it reads as inert rather than
-  chosen.
+- Watch for: a hold whose intended attention is unclear. A hold without prior
+  motion can be a purposeful `performance_hold`; no movement prelude is needed.
 
 ## Foreground reveal
 
@@ -152,7 +156,7 @@ Use when the climactic action deserves a three-dimensional look.
 Use to let light carry the emotional arc without changing the room.
 
 - Shots: the same declared sources seen three ways: a side key early, a
-  contre-jour at the turn (a silhouette only on shots without speech), a warm
+  contre-jour at a supplied turn (silhouette when concealment serves the brief), a warm
   rim or practical at the release.
 - What changes: key side relative to the lens and the contrast ratio; the
   sources and the set stay fixed. A new source appears only with a motivating
@@ -179,8 +183,9 @@ Use when the viewer must share a character's discovery.
   The point of view can belong to an object, such as a thrown item.
 - What changes: viewpoint and size across the sequence; the reaction is usually
   the closer or longer shot.
-- Watch for: a point-of-view shot with no looker beside it; the viewer cannot
-  tell whose view it is.
+- Watch for: unclear viewpoint ownership or a missing required response.
+  A standalone POV is valid; naming its owner may suffice. Looker/reaction
+  coverage is an optional repair within the requested scope, not a requirement.
 
 ## Group in one take
 
@@ -189,8 +194,8 @@ singles.
 
 - Shots: one three-shot or group shot that holds the beat, then a single on the
   character who turns it.
-- What changes: featured count and size, with a move kept quiet if lines are
-  spoken.
+- What changes: featured count and size when useful; movement during lines
+  follows intent and readability, not a speech-driven energy cap.
 - Watch for: a group shot where one character is the only one with something to
   play; cut to the single on that character.
 
@@ -203,19 +208,23 @@ kneeling, a child and an adult) and the height gap is the story.
   then a single on the lower one from a low or eye-level angle at the turn.
 - What changes: the foreground mass leaves the frame at the turn. The power
   shift pattern covers the push-in and the angle swap.
-- Watch for: an over-the-hip shot between characters at the same height; use an
-  over-the-shoulder instead. The power shift pattern covers a confrontation
-  between characters at any height.
+- Watch for: framing that hides the required relationship. Preserve source
+  geometry; an over-the-hip shot at equal heights is valid without an invented
+  power imbalance. The power shift pattern is optional when a shift is supplied.
 
-## Failure shapes to avoid
+## Contextual repairs
 
-| Shape | Why it reads as boring | Repair |
+None of these shapes is a defect by itself. Apply a repair only when it serves
+the supplied intent and requested axes; preserve purposeful repetition,
+equal timing, stable light and sustained attention.
+
+| Shape | Question to resolve | Repair when needed |
 | --- | --- | --- |
-| Wide, medium, two-shot, wide at equal length with no move | Size changes, nothing else does | Add one angle change, one motivated move and one light-direction change |
-| "Hold steady" as the default camera line | The static choice is unrecorded and applied everywhere | Record a `static_reason` or give the shot a move |
-| One global lighting sentence for a multi-shot clip | The light never changes meaning | Name source and direction per shot |
+| Wide, medium, two-shot, wide at equal length with no move | Does the supplied rhythm call for a change? | Preserve it when intentional; otherwise propose only motivated changes within requested axes |
+| "Hold steady" as the default camera line | Is stillness intentional? | Record the shared rationale; repeated holds need no added movement |
+| One global lighting sentence for a multi-shot clip | Is source geometry clear? | Carry the same declared source and direction into each shot; no light change is required |
 | A project axis promising dolly and crane work that no shot line uses | The plan was written but never carried | Copy the axis into the shot lines or record the override |
-| More than about seven shots in one clip, or shots under about 0.8 s | Observed in upstream production reviews as cuts the model merges or drops | Respect the shot ceiling and split a long kinetic sequence into several clips; make a shorter cut in post as an assembly cut |
-| A shot stacking more than two simultaneous moves | The camera preset guidance records instability risk | One primary move per shot and at most one secondary |
-| Equal shot lengths with the turn the same length as its neighbors | Nothing marks the turning point | Uneven durations; give the turn a length unlike its neighbors |
+| More than about seven shots in one clip, or shots under about 0.8 s | Limited upstream observations suggest cuts may merge or drop; these numbers are not provider limits | Assess actual beat density and readability; propose separate clips or assembly timing where needed without imposing a shot quota |
+| Overlapping moves lose a required subject or handoff | Is the path incompatible or its result unreadable? | Simplification is an optional failure-specific repair; preserve coherent requested choreography even beyond two moves and ask before changing locks |
+| Equal shot lengths around a supplied turn | Is the supplied change readable? | Use performance evidence within the locks; change duration only when requested or motivated, and do not invent a turn |
 | A move that decorates but has no story reason | Movement without meaning adds noise | State what the move reveals or emphasizes |

@@ -15,8 +15,8 @@ mode selection and caller responsibilities.
 When a multi-shot prompt or shot plan is requested or supplied, a clip that cuts
 is staged by **shot**: each shot is one camera setup with its
 own size, angle, move and light. A clip that never cuts is staged by **stage**
-(see [Scene staging](scene-action.md#scene-staging)): each stage is one state
-change inside a continuous take, and the camera path is stated for the whole
+(see [Scene staging](scene-action.md#scene-staging)): each stage is one event
+or sustained state inside a continuous take, and the camera path is stated for the whole
 take.
 
 | Clip | Stage by | The camera fact lives |
@@ -55,9 +55,9 @@ Rules:
 1. Open each shot line with the camera facts, then the action, then the light.
    Camera moves use the vocabulary in
    [Camera language](audio-performance-camera.md#camera-language).
-2. One primary camera move per shot, plus at most one secondary move. The clip
-   may carry more moves across cuts when that choreography is explicitly
-   requested. Otherwise keep one or two moves for the clip. About seven shots
+2. One primary camera move per shot, plus at most one secondary move unless
+   explicitly requested choreography needs more. Do not impose a clip-wide
+   move count across cuts. About seven shots
    and 0.8 s per shot are planning heuristics, not provider limits.
 3. When lighting is part of the plan, name the scene's light sources once, then
    give each shot a source and a key side. A cut changes which side of a source the camera sees, or a stated event
@@ -100,9 +100,12 @@ the line. Prefer a simple closing beat instead of packing speech, a turn and
 an exit into the final seconds. Re-check the final take even when a selected
 draft is promoted: its picture and soundtrack may differ.
 
-Vary size and angle between
-speakers, and keep moves slow while a line is spoken so the lips and eyes stay
-readable. An explicitly selected Filipino dialogue partner can supplement
+Choose framing and speed for readable speech, action and relevant responses.
+Energetic dialogue can use vigorous actor or camera movement; separate actor
+energy, camera energy and edit rhythm. Repeated framing or a held exchange is
+equally valid. Repair an obscured cue, not the mere presence of movement during
+speech. Preserve exact lines and time for registration and recovery.
+An explicitly selected Filipino dialogue partner can supplement
 delivery direction without choosing a language mix or changing locked text.
 
 ## Examples
