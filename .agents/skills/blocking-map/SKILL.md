@@ -1,9 +1,20 @@
 ---
-name: tig-blocking-map
-description: Tigran's project-agnostic method for giving Seedance character DISPOSITION via a color-coded outline schematic — a "staging reference" (blocking map). Use WHENEVER a user attaches a frame/still and asks for a blocking map / staging reference, whenever a video prompt needs precise multi-character staging (who is where, facing which way), whenever characters jump seats or swap places between shot sizes, or when these terms clearly refer to cinematic staging. Do not trigger for generic software diagrams, architecture, charts, or maps. Figures are ALWAYS bound to letters A, B, C, D... in PROMPT TEXT ONLY — no letters are drawn on the map. The map is GEOMETRY ONLY — it must never bleed style, colors, wardrobe, or location into the shot.
+name: blocking-map
+description: >-
+  Project-agnostic method for giving Seedance character DISPOSITION via a
+  color-coded outline schematic — a "staging reference" (blocking map). Use
+  WHENEVER a user attaches a frame/still and asks for a blocking map / staging
+  reference, whenever a video prompt needs precise multi-character staging (who is
+  where, facing which way), whenever characters jump seats or swap places between
+  shot sizes, when a clip with people must continue but Seedance cannot extend it,
+  or when these terms clearly refer to cinematic staging. Do not trigger for
+  generic software diagrams, architecture, charts, or maps. Figures are ALWAYS
+  bound to letters A, B, C, D... in PROMPT TEXT ONLY — no letters are drawn on the
+  map. The map is GEOMETRY ONLY — it must never bleed style, colors, wardrobe, or
+  location into the shot.
 ---
 
-# TIG BLOCKING MAP v2 — staging reference as character disposition (any project)
+# Blocking Map v2 — staging reference as character disposition (any project)
 
 A **staging reference** is a deliberately schematic, color-coded OUTLINE drawing used to design cinematic positions before video prompting. It tells the model WHO IS WHERE — nothing else. It is built to carry maximum geometry with minimum style mass, because style bleed from the map into the shot is the method's known enemy.
 
@@ -13,14 +24,14 @@ Bleed has three feeds; v2 closes all three:
 
 1. **IMAGE**: figures are thin muted-color OUTLINES, no fills, no color blocks. Line-work reads as "plan"; big flat color fields read as "aesthetic." The grid is faint — it is an authoring tool (see TRAJECTORIES), not a signal to the model.
 2. **TEXT**: the connector block is written in POSITIVE form. Models are weak at negation — "no flat illustration, no vector shapes, no grid" still injects the tokens *flat, vector, grid* into the video prompt and primes the very style being banned. The connector therefore never names the map's graphic style at all; it only asserts where style DOES come from (the location and character references). Graphic vocabulary exists in exactly one place: the diagram GENERATION prompt, which never touches the video context.
-3. **STRUCTURE**: control drawings remain authoring-only by default. Translate positions, crops, paths, facing, and trigger beats into the video prompt. Only explicitly selected conditioning in a supported live mode may attach a staging image; attach eligible identity/location references before it and verify leakage in output QA.
+3. **STRUCTURE**: control drawings remain authoring-only by default. Translate positions, crops, paths, facing, and trigger beats into the video prompt. Board-type images bound as Seedance references (storyboard grids, sketch panels, schematics) have leaked panel numbers, corner labels and the drawn look into the video and raised output-copyright rejections, so text geometry plus character/location element references is the tested route. Attaching the staging image is an untested exception: only on explicit selection in a supported live mode, after the identity/location references, with every take audited by frame samples plus top-left corner crops.
 
 ## THE WORKFLOW — two steps, in order
 
 **STEP 1 — the user uploads a frame → deliver the diagram prompt.**
 The source image is bound to the image-generation tool as a composition reference — verify the result against the source because conditioning does not guarantee an exact match — but it must be SCOPED: the prompt opens with a guard declaring the image is a COMPOSITION-ONLY guide (framing, angle, crop, positions, poses, scale), that its photographic look must NOT be copied, that NOTHING may be added that is not in the image, and that CROPPED BODIES MUST NOT BE COMPLETED (if a figure's head is cut by the frame edge, the drawing cuts it too). The assistant still translates every character's position, pose, facing direction and anchoring geometry into explicit text — the words carry the staging, the image pins the outline. Deliver, always together:
 1. The **diagram-generation prompt** (template below).
-2. The **`@staging_` tag to assign to the RESULT** once generated (e.g. `@staging_[PROJECT]_[scene]_[version]`), plus the **`@loc_` tag** for the source image in the format `@loc_[PROJECT]_[name]_[scene]_[version]` (e.g. `@loc_TROY_battlefield_s07_v1`) — scene and version in the tag keep multiple frames and retakes of the same location from colliding.
+2. The **`@staging_` tag to assign to the RESULT** once generated (e.g. `@staging_[PROJECT]_[scene]_[version]`), plus the **`@loc_` tag** for the source image in the format `@loc_[PROJECT]_[name]_[scene]_[version]` (e.g. `@loc_ATLAS_dock_s07_v1`) — scene and version in the tag keep multiple frames and retakes of the same location from colliding.
 3. A **one-line color key** describing what each color is in the source frame (e.g. "BLUE = the captive soldier, center-foreground").
 Do NOT move to step 2 until asked — diagram first.
 
@@ -59,26 +70,31 @@ ONE PASTE: the connector is self-contained — the LOCKS paragraph is its final 
 
 ```
 @staging_[PROJECT]_[scene]_[version] — POSITION REFERENCE ONLY
-Use this reference solely to read where each figure is placed, its pose, and its facing direction inside @loc_[PROJECT]_[name]_[scene]_[version]. Every visual quality of the shot — style, light, color grade, faces, wardrobe, environment, props — comes exclusively from @loc_[PROJECT]_[name]_[scene]_[version] and the character references. The shot is a fully photoreal live-action frame.
+Use this reference solely to read where each figure is placed, its pose, and its facing direction inside @loc_[PROJECT]_[name]_[scene]_[version]. Every visual quality of the shot — style, light, color grade, faces, wardrobe, environment, props — follows the approved medium and look in the brief and the selected location and character references.
 
 LETTER LEGEND (letters exist only in this prompt; they do not appear on the reference)
 @A = the BLUE figure on the staging reference = [your character reference/tag] → [position: spot, pose, facing].
 @B = the ORANGE figure on the staging reference = [your character reference/tag] → [position].
 [...one line per figure...]
 
-RENDER RULE: place the real, photoreal characters (from their own references) into the real location @loc_[PROJECT]_[name]_[scene]_[version] at the positions this reference defines, and take nothing else from it.
+RENDER RULE: place the approved characters (from their own references) into the approved location @loc_[PROJECT]_[name]_[scene]_[version] at the positions this reference defines, retaining the selected medium and taking nothing else from this position reference.
 
-LOCKS: All style, light, and texture come exclusively from @loc_[PROJECT]_[name]_[scene]_[version] and the character references; @staging_[PROJECT]_[scene]_[version] defines positions only. The colors on the staging reference identify WHO IS WHO on that reference only — wardrobe and grading come from the character and location references. Everyone stays in their staging-locked position until their scripted action.
+LOCKS: All style, light, and texture follow the approved medium and look in the brief and the selected location and character references; @staging_[PROJECT]_[scene]_[version] defines positions only. The colors on the staging reference identify WHO IS WHO on that reference only — wardrobe and grading come from the character and location references. Everyone stays in their staging-locked position until their scripted action.
 ```
 
 OPTIONAL CONDITIONING ORDER: approved location and character references first,
 explicitly selected staging reference last. Otherwise omit the control image.
 
+Use the approved medium, whether live action, animation or another treatment.
+The vocabulary restriction above concerns descriptions of the control map, not
+the approved art direction. Do not erase a selected illustrated look to prevent
+map bleed; ask when the brief and selected references conflict.
+
 ## TAG NAMING
 
-- Format: `@loc_[PROJECT]_[name]_[scene]_[version]` and `@staging_[PROJECT]_[scene]_[version]` (e.g. `@loc_ONERIC_TROYbattlefield_s01_v1`, `@staging_ONERIC_TROYhostage_v1`).
-- `[PROJECT]` is always ALL CAPS (ONERIC). A sub-world prefix inside a name keeps its caps (TROYbattlefield = the Troy sub-world's battlefield inside project Oneric).
-- Pair the staging name with its location name visibly (TROYbattlefield ↔ TROYhostage) so any tag instantly reads as belonging together.
+- Format: `@loc_[PROJECT]_[name]_[scene]_[version]` and `@staging_[PROJECT]_[scene]_[version]` (e.g. `@loc_ATLAS_HARBORdock_s01_v1`, `@staging_ATLAS_HARBORstandoff_v1`).
+- `[PROJECT]` is always ALL CAPS (ATLAS). A sub-world prefix inside a name keeps its caps (HARBORdock = the harbor sub-world's dock inside project Atlas).
+- Pair the staging name with its location name visibly (HARBORdock ↔ HARBORstandoff) so any tag instantly reads as belonging together.
 - Bump `_v2`, `_v3` on every retake; reference only the active version per shot. Tags are arbitrary strings — mixed case is safe; consistency is the only rule.
 
 ## RULES
@@ -94,7 +110,7 @@ explicitly selected staging reference last. Otherwise omit the control image.
 
 ## KNOWN FAILURES
 
-- **Style bleed (map look enters the shot)**: caused by any of the three feeds — color-block fills in the map, graphic vocabulary in the video prompt (even as negations — negation blindness), or the map attached before/instead of strong photo references. Fix at all three layers; see ANTI-BLEED ARCHITECTURE. If bleed persists in a moving-character shot, keep movement language plain and physical ("real, live-action gestures"), never "come alive"; last resort, drop the map from that shot.
+- **Style bleed (map look enters the shot)**: caused by any of the three feeds — color-block fills in the map, map-style vocabulary in the video prompt (even as negations — negation blindness), or the map attached before/instead of strong approved visual references. Fix at all three layers; see ANTI-BLEED ARCHITECTURE. If bleed persists in a moving-character shot, keep movement language concrete ("turns toward the doorway") and consistent with the approved medium, never "come alive"; last resort, drop the map from that shot.
 - **Color → wardrobe bleed** (blue figure → blue tunic): killed by outline-not-fill figures, muted palette, the legend routing identity to the user's character tag (whose own reference controls wardrobe), and the positive locks line routing wardrobe to the character references.
 - **Model invents what isn't in the frame** (completes a cropped body, adds a helmet to a headless torso, adds furniture): killed by the guard lines "do NOT add anything that is not in the attached image" + "do NOT complete cropped bodies," by describing crops explicitly per figure, and by recording the observed defect as an edit boundary using the selected provider's supported syntax.
 - **Prop at wrong height/place** (sword drifts from throat to chest): pin props to anatomy with a positive AND a contrast ("across the THROAT, under the chin — not the chest").
@@ -111,8 +127,8 @@ On the generated DIAGRAM, before assigning the `@staging_` tag:
 6. Framing/crop matches the source frame's composition and aspect.
 
 On the VIDEO result, after using the connector:
-1. Fully photoreal — no flat/graphic look anywhere in the shot.
-2. No white/grid background artifacts, no drawn-line edges.
+1. Matches the approved medium and look, without adopting the control map's style.
+2. No unintended map background, grid or outline artifacts; intended drawn edges in an approved animated look are not defects.
 3. No staging-reference colors in wardrobe, armor, or grade.
 4. No letters or typography in the shot.
 5. Every character in their map-locked position, facing the mapped direction, until their scripted action.
@@ -125,6 +141,26 @@ On the VIDEO result, after using the connector:
 - **Movement maps**: dashed line for a character's cross (A→new mark) — declare start, path, end mark, and WHEN the move happens (tie to a dialogue/action beat).
 
 Compose with `seedance-prompt-25` when writing the surrounding video prompt.
+
+## CONTINUING A CLIP WITH PEOPLE (the extension substitute)
+
+First have the caller check current operation/reference capabilities and the
+authorized likeness route under the local
+[video-to-video input contract](../../contracts/video-to-video-inputs.md). This planning
+skill does not establish a universal privacy rejection, a no-cost guarantee
+or permission to evade an input restriction. When continuation as a new
+generation is selected, carry continuity as follows:
+
+1. Take the previous clip's last frame (`return_last_frame`, or a frame grab) as the STEP 1 source frame and build its blocking map.
+2. In STEP 2, write the text geometry for the next clip: each letter's start position, facing and crop must match that last frame, then its path, end mark and trigger beat.
+3. Choose a supported route from live capability evidence; do not assume
+   first-frame and reference modes are always mutually exclusive:
+   - **Reference route (default):** bind the same character, location and prop element references by role, and use the last frame only to write the text geometry. Never bind the previous clip as a video input and, by default, never the map.
+   - **First-frame route:** use the last frame only when its role, authorized
+     likeness handling and any combination with element references are
+     supported. Do not repackage a rejected identity input to bypass a rights
+     restriction. Return unsupported combinations to the caller.
+4. QA the seam: positions, facing, wardrobe and light match on both sides of the cut.
 
 ## Intentional conditioning representation
 

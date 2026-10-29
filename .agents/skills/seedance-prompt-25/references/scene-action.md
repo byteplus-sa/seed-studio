@@ -10,8 +10,9 @@ mode selection and caller responsibilities.
 ## Scene staging
 
 When a video contains several events, divide the story into **consecutive
-stages**. Give each stage only **one primary state change** and a **clear end
-state** — what should be directly visible at the end.
+stages**. Give each stage **one primary event or sustained state** and a
+**clear end state**, including an intentionally unchanged state. Waiting,
+listening and purposeful stillness do not require a new action or turn.
 
 A requested multi-shot clip uses shots rather than stages; see
 [Shot Staging](shot-staging.md). Stages suit a continuous take or a story that
@@ -93,7 +94,10 @@ Rules:
 - Time ranges must be **consecutive and non-overlapping**.
 - They are a **time budget**, not a precise edit point — actions may occur slightly before or after a boundary.
 - Too little content gives the model too much freedom; too much causes excessive cutting or omitted events.
-- **Never** demand impossible frequencies (e.g., "complete three actions in one second").
+- Check physical support, travel, contact and recovery against available time
+  and required readability. Action count alone is not a failure. Preserve
+  readable rapid actions; identify a concrete conflict or leave feasibility
+  unresolved when timing evidence is missing, rather than inventing a limit.
 
 ## Action description
 
@@ -107,21 +111,23 @@ front foot, and scans the room left to right" is testable.
 - **Physics grounding.** State where weight and balance sit, what stays planted,
   and what the body pushes against or reacts to: ground contact, momentum
   through a turn, inertia carried between actions.
-- **Prefer slow, gentle, continuous motion for the performer's body.** "Slowly
-  raise a hand," "gently lower the head," "naturally sit down." This guidance
-  protects physical plausibility. It does not set the camera's energy or the cut
-  rate; those come from the shot plan.
-- **Avoid high-burst, large-dynamic actions** — sprinting, big jumps, violent
-  rolls — unless the shot explicitly requires them. A kinetic brief, a chase or a
-  music-video beat requires them; state them with grounded physics. A single
-  sudden strike in an otherwise still performance (an ambush, a lunge) also
-  qualifies: write one burst with a still hold before and after it.
+- **Body energy follows intent.** Derive speed, amplitude, interruptions and
+  recovery from the brief's pursuit and physical action. An urgent reach, abrupt
+  withdrawal or excited interruption need not become gentle. Quiet action and
+  purposeful stillness remain valid; neither faster nor slower is a default
+  quality improvement. Separate actor energy, camera energy and edit rhythm.
+- **Ground energetic action.** Describe support, momentum, contact and recovery
+  so repeated bursts or continuous action can remain readable. Speech does not
+  impose a body-energy cap. Slow motion or a single burst with holds is an
+  optional repair for a demonstrated motion failure, not a universal recipe.
+  Preserve locked beats and timing; propose any retiming rather than silently
+  removing action or adding holds.
 - **Describe transitions between actions** for continuity: "use the inertia of
   turning around to naturally raise a hand."
 - **Externalize emotions as physical detail**, never bare emotion labels. Use
   the [Emotional direction](audio-performance-camera.md#emotional-direction) cues below.
-- **Stay inside the stage budget.** Detail only the movements critical to the
-  stage; one primary state change per stage.
+- **Stay inside the stage budget.** Detail only the movements or sustained
+  attention critical to the stage; do not invent a change to fill a hold.
 
 ### Motion grammar (why a shot reads "static")
 

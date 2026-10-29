@@ -187,14 +187,21 @@ Shot 3: [Camera movement and applicable @Video N]. [Subject @Image N] [action wi
 - See the [lens language reference](https://docs.byteplus.com/en/docs/ModelArk/1631633#a395fd3b) for the full taxonomy.
 
 **Complexity rules**:
-- A 15-second generation has limited action capacity. Prefer at most 3 major action beats or 4 tightly related shots when continuity must be exact.
+- A 15-second generation has limited action capacity. Three major action beats
+  or four tightly related shots is a planning example, not a quota or provider
+  limit. Derive capacity from readable action, speech and continuity.
 - If the scene needs several camera cuts, multiple close encounters, a location transition, and a precise end state, split it into separate generated shots and chain continuity with an approved last frame.
 - Preserve one stable travel axis through action coverage. Camera variety should not reverse the characters' physical direction.
 
 **Action description rules**:
 - Describe actions at the body-part level (hands, legs, head, shoulders, back) with range, speed, and force.
-- Prefer slow, gentle, continuous motion: "slowly raise a hand," "gently lower the head," "naturally sit down."
-- Avoid high-burst, large-dynamic actions: sprinting, big jumps, violent rolls.
+- Body speed, amplitude, interruptions and recovery follow the brief's intent
+  and physical action, not a slow-body default. Ground energetic action in
+  weight, support, momentum and contact; purposeful stillness is equally valid.
+- Separate actor energy, camera energy and edit rhythm. Energetic dialogue is
+  valid when words, speaker and relevant responses remain readable. Slower
+  motion or a single burst with holds is an optional remedy for demonstrated
+  failure, never a blanket cap; preserve locked action and timing.
 - Describe transitions between actions for continuity: "use the inertia of turning around to naturally raise a hand."
 - Externalize emotions as physical details. Never write "very sad" or "extremely angry." Use the table below:
 
@@ -209,6 +216,9 @@ Shot 3: [Camera movement and applicable @Video N]. [Subject @Image N] [action wi
 **Dialogue rules**:
 - Put spoken dialogue inside `{curly braces}` or quotes for lip-sync when `generate_audio=true`.
 - Multi-speaker: `{Speaker A, urgent}: Did you hear that? {Speaker B, calm}: Stay behind me.`
+- Carry supplied intentions, triggers, listening and consequences inline;
+  exact dialogue and source performance remain locked. Repeated framing,
+  equal lengths and sustained holds are valid without a turn or coverage quota.
 
 ### 5. Quality and constraints
 

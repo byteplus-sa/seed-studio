@@ -4,7 +4,7 @@ description: >-
   Design the shot plan for a Seedance scene before any prompt is written: shot
   count and duration, the job of each shot, size, angle, camera move, lens
   intent, named light sources and key side, the contrast between neighboring
-  shots, and a variety check (V1-V9) at a chosen energy level (restrained,
+  shots, and contextual craft checks (V1-V10) at a chosen energy level (restrained,
   standard, kinetic). Use for narrative, ad, micro-drama, music-video and
   showcase clips when the user asks for a shot list, coverage, a repair to a flat scene, or
   more dynamic camera work and lighting. Returns a shot plan record and the
@@ -14,8 +14,8 @@ description: >-
 
 # Seedance Shot Design
 
-A Seedance prompt reads flat when nobody decided what the camera and the light
-do for each beat. This skill makes those decisions explicit, one shot at a
+A held setup or subtle action may be intentional, not flat acting. This skill
+makes requested camera and light decisions explicit, one shot at a
 time, before the prompt is written. It is planning only: it never calls a tool,
 never generates media, and never replaces the grammar owned by the prompt
 skill.
@@ -29,8 +29,10 @@ skill.
 | Resolve a named light setup into recipes and phrases | `seedance-lighting-presets` |
 | Speed ramps and montage rhythm | `seedance-pacing-presets` |
 | When cuts land on a song (cut timing, beat contract) | `seedance-music-video` owns the timing; this skill plans what each shot is |
-| Character geometry and blocking | `tig-blocking-map` |
-| Dramatic structure of the scene | `tig-scene-engine` |
+| Character geometry and blocking | `blocking-map` |
+| Dramatic structure of the scene | `scene-craft` |
+| Supplied performance intentions, triggers and listening | `acting-direction` |
+| Supplied fictional-action exchanges and actor/prop states | `seedance-fight-choreography` |
 | Six-part formula, per-shot prompt block, references, audio syntax | `seedance-prompt-25` |
 
 These are prose pointers for the calling agent. This skill decides *which*
@@ -56,9 +58,9 @@ remaining requested axes without inventing unrelated direction.
 In a static-by-design format, variety may come only from light, a product
 insert or B-roll the format allows; ask before leaving the format.
 
-Two further reasons are not exemptions. They justify one held shot inside a
-plan: `performance_hold` (stillness is the beat; quote the beat or cue that needs
-it) and `contrast_hold` (a deliberate hold right after a moving shot).
+Two further reasons justify intentional stillness: `performance_hold` (quote
+the beat or sustained attention it serves) and `contrast_hold` (a deliberate
+hold after movement). A whole scene may stay held; no per-scene count applies.
 
 ## Input and output contract
 
@@ -67,8 +69,16 @@ Input: the scene beats and intended viewer reaction, location and light facts
 any confirmed axes supplied in chat or an existing project brief, and user locks.
 A project file is not required.
 
+For requested performance work, consume the supplied plan or equivalent inline
+intention, triggers, listening tasks, locks and critical criteria. For staged
+fights, consume the actor/prop state and exchange ledger. Missing facts remain
+questions; do not invent motives or invoke another skill.
+
 Output: a shot plan record per [shot plan format](references/shot-plan-format.md)
 and the per-shot facts the Seedance 2.5 prompt carries.
+Carry supplied beat IDs and readable evidence in chat notes. Reserve response
+time and respect crop, occlusion and scale; return conflicts rather than
+silently changing coverage, performance or timing.
 
 ## Procedure
 
@@ -83,22 +93,25 @@ and the per-shot facts the Seedance 2.5 prompt carries.
 
    | Level | Fits | Typical shot length | Camera | Light |
    | --- | --- | --- | --- | --- |
-   | Restrained | Naturalistic, documentary, brand-safe realism, quiet drama | 3-10 s | Slow motivated push, drift or pan; holds as contrast | Motivated window or practical light; soft contrast between shots |
-   | Standard | Most narrative, ad and micro-drama work (default) | 2-6 s | One clear motivated move in about half the shots; one signature move | A named key side per shot; one contrast beat such as backlight or a practical |
+   | Restrained | Naturalistic, documentary, brand-safe realism, quiet drama | 3-10 s | Intentional holds or slow motivated movement | Motivated window or practical light; stable light when appropriate |
+   | Standard | Narrative, ad and micro-drama work when the brief supports it | 2-6 s | Motivated moves or holds according to the supplied beats | Named key side; contrast only when it serves the scene |
    | Kinetic | Action, sport, chase, music video, high-energy ad | 1-3 s | Tracking, whip, handheld, crash zoom, orbit or FPV per beat | Hard contrast, rim or backlight, flicker, colored practicals |
 
-   Restrained lowers the amplitude of moves and light shifts; it does not lower
-   the variety of size, angle and light between shots. Choose kinetic only when
-   the brief supports it, and only for shots without spoken lines.
+   These ranges are optional craft aids, not quotas or duration limits.
+   Preserve source-led repetition and stillness. Separate actor energy, camera
+   energy and edit rhythm. Energetic dialogue is valid when the brief supports
+   it and speaker, words, action and relevant responses remain readable at the
+   planned framing and speed. Speech alone is not an energy ceiling.
 3. **Give every beat a job:** establish, reveal, emphasize, connect, escalate,
    hold or release. A shot with no job is cut or merged into its neighbor.
-4. **Set the shot count and lengths** from the beats. A clip carries at most
-   about 7 shots and none shorter than about 0.8 s (observed in
-   upstream production reviews); split a longer kinetic sequence into
-   several clips. A shorter cut is planned as an assembly cut: generate each
+4. **Set the shot count and lengths** from the beats. About 7 shots and 0.8 s
+   per shot are provisional feasibility heuristics from limited upstream
+   observations, not provider limits or acceptance quotas. If density prevents
+   readable action, propose several clips. A precise short cut can be planned
+   as an assembly cut: generate each
    side at a natural length and trim in post (see the pacing preset skill's
-   assembly-only cuts). Make lengths uneven and give the turn shot a length
-   unlike its neighbors. One shot across a long clip needs a recorded one-take or
+   assembly-only cuts). Derive lengths from the supplied rhythm; variation and
+   a turn shot are optional, never repairs to a locked hold. One shot across a long clip needs a recorded one-take or
    `static_reason`. Size dialogue shots from measured delivery or a
    native-language-informed read with pauses. About 2.2 words/s is an English
    estimate, not a universal gate. Allow for onset (initially 0.5-1.5 s) and
@@ -111,20 +124,24 @@ and the per-shot facts the Seedance 2.5 prompt carries.
    lens, a quality and a contrast. Within the requested axes, assign each shot
    a size, a framing and featured subjects in multi-character scenes (see
    [framing](references/framing.md)), an angle, a move with start and end, and
-   a lens intent as a visible result. Dialogue shots vary size, framing and
-   angle; keep their moves quiet so speech and lips stay readable. A focus pull
+   a lens intent as a visible result. Dialogue coverage may hold, repeat or move
+   vigorously when motivated. Identify the speaker and preserve the cues and
+   lip visibility the brief needs; do not soften the actor merely to quiet the
+   camera. If a move obscures a critical response, change only the conflicting
+   framing, move or timing within authorization. A focus pull
    away from a face has failed in limited upstream probes; offer post
    treatment or a requested blocking/move/cut alternative rather than promising
    reliable prompted defocus.
-6. **Run the variety rules below** and revise until every shot passes or carries
-   a recorded reason. Flag exactly one shot as the turn.
+6. **Apply the relevant craft checks below** within requested axes, recording
+   source-led exceptions. Flag a turn only when the supplied scene has one.
 7. **Tell one light story per scene.** The sources stay fixed in the room. A cut
    changes which side of a source the camera sees, or a motivated event adds or
    removes a source (a door opens, a lamp is switched on, the room lights go
    out). A light cue may land inside a shot, even during a move, when the plan
    records its time and trigger. A shot never invents a source or a cue the
-   scene did not declare. Silhouette is for shots without speech; contre-jour
-   that keeps the face readable is allowed on spoken shots.
+   scene did not declare. Silhouette may accompany speech when concealment is
+   intended and speaker identity and delivery are clear. Where lip or facial
+   evidence is required, keep those features readable, including in contre-jour.
 8. **Write the plan** per [shot plan format](references/shot-plan-format.md).
    Choose recurring structures from
    [coverage patterns](references/coverage-patterns.md).
@@ -133,16 +150,16 @@ and the per-shot facts the Seedance 2.5 prompt carries.
 
 | Rule | Check |
 | --- | --- |
-| V1 Neighbor contrast | Adjacent shots differ in at least two of: size family (wide, medium, close), angle class (eye level, over-the-shoulder, low, high, overhead, first-person) with a recorded reason (extreme wide and wide count as wide; medium and medium close-up as medium; close-up, extreme close-up and insert as close), camera move (moving versus held, or a different type or direction), and key side from the same declared source or a motivated new source. A step within a family, "slightly low", and a reworded light phrase with no new position do not count. |
-| V2 Angle range | At least one shot per scene is not plain eye level (low, high, overhead, first-person or over-the-shoulder) unless a lock or `static_reason` says otherwise. |
-| V3 Motion present | Moving shots (a quiet drift or push counts, on spoken shots too) cover a third of all shots at restrained and half at standard; at kinetic every shot without speech moves, except one `contrast_hold` (lip-synced vocals count as speech). Every clip has at least one motivated move. Each held shot has a `static_reason`; a scene has at most one `performance_hold` and one `contrast_hold`, and in a scene of four or more shots any one reason on more than a third of its shots is a defect. |
+| V1 Neighbor relationship | Compare size, angle, move and key side for what the cut reveals or sustains. Contrast is optional; repeated framing and stable light are valid without a minimum number of changes or an exception count. |
+| V2 Viewpoint purpose | Choose eye level, low, high, overhead, first-person or over-the-shoulder for the supplied intent. No scene needs a non-eye-level shot merely for variety. |
+| V3 Motivated motion or stillness | Derive motion from the supplied scene and requested directing intent. Motion ratios are optional planning aids, not quotas. A whole clip or scene may remain held with a stated rationale; repeated stillness is valid. Do not add moves, cuts or light changes to satisfy a count. |
 | V4 Light named | Every shot names a declared source and a key side. "Cinematic lighting" and "soft fill" without a source and a side are not light facts. |
-| V5 Turn emphasized | The shot flagged as the turn has the largest contrast with its neighbors, and its length differs from theirs. |
-| V6 Move budget | One primary move per shot and at most one secondary, each with a subject, a start and an end. The clip-level cap is the shot ceiling in step 4, not a move count. |
+| V5 Turn readable | When a turn is supplied, choose readable emphasis within the locks. Do not invent a turn, contrast or changed duration for an observational scene. |
+| V6 Move clarity | One primary move per shot and at most one secondary unless explicitly requested choreography needs more, each with a subject, a start and an end. Step 4's shot-density guidance is provisional, not a clip-level quota. |
 | V7 Readable performance | A move never stands in for a cue that cannot be read at that size; match shot size to the cues the beat needs. |
 | V8 Screen direction | Travel and confrontation state the axis and restate it after each cut; a deliberate axis crossing is named. |
-| V9 Uneven timing | Shot lengths are not all within 20% of each other. Cut times fixed by a song map, a pacing axis or a lock are recorded as given: V9 is waived and the turn is marked by contrast instead. |
-| V10 Framing intent | In a scene with two or more characters every shot names its framing and featured subjects, and the framing fits the beat: a scene of three or more shots that cover a conversation does not run on clean singles alone, a trio is not covered by three singles when one three-shot serves, a point-of-view shot sits next to its looker and its reaction shot or records why it stands alone, and an over-the-hip shot is used when the characters are at different heights (over-the-shoulder otherwise) or records why. Framing may inform the derived comparison class (see the plan format), but never overwrites a locked physical angle or viewpoint and is counted only once under V1 and V2. Scenes with one character are exempt. |
+| V9 Intentional timing | Use the scene's speech, listening and action rhythm. Uneven timing is optional; equal lengths and source-locked cuts remain valid without a forced turn or contrast. |
+| V10 Framing intent | In multi-character coverage, name framing and featured subjects so the relevant relationship and responses are readable. Clean singles, a held group shot, repeated framings or an unpaired POV can each serve the brief. Do not demand a framing mix, a reaction close-up or a height-based angle. Preserve physical angle and viewpoint independently; comparison classes are descriptive, not scores. |
 
 ## Inputs and limits
 
@@ -156,7 +173,7 @@ views, or ask for an approved extra view before binding the references.
 ## Evidence and limits
 
 A requested plan carries its facts into the prompt. The V1-V10
-thresholds are craft heuristics and optional artistic technique, drawn from the
+checks are contextual craft guidance and optional artistic technique, drawn from the
 failure shape of earlier upstream prompts: equal-length wide, medium,
 two-shot, wide ladders with no move and no light change, and project axes that
 never reached the shot lines. Framing and V10 follow the source and craft
@@ -173,16 +190,16 @@ Before returning a plan, confirm:
 
 1. Every shot has a job, duration, size, angle, move (or `static_reason`), lens
    intent, source and key side, framing and featured subjects where relevant,
-   and exactly one shot is the turn, within the requested axes.
-2. V1 through V10 pass or carry a recorded reason.
+   and supplied performance beats remain readable, within the requested axes.
+2. V1 through V10 support the supplied intent; no numerical variety score applies.
 3. Locks and confirmed axes are carried, not overwritten.
 4. The shot count and lengths fit the duration, the energy level and any
    dialogue.
 5. No shot stacks competing moves, and no shot invents a light source or an
    undeclared light cue.
-6. A cut shorter than about 0.8 s (a blink cut, a vision flash, a fast
-   intercut) is an assembly cut: the plan names the clips it is cut from, and
-   each clip is generated at a natural length.
+6. Exact blink cuts, vision flashes or fast intercuts belong in assembly when
+   prompted timing cannot meet the brief: name the source clips at natural
+   lengths. The approximate 0.8 s heuristic is not a universal minimum.
 7. Return the plan in chat and identify which prompt carries it; save only on request.
 
 Worked cases are hypothetical teaching repairs in

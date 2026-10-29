@@ -90,6 +90,16 @@ State the creative spine in one sentence: **For [audience/context], show
 not mandatory output syntax. A static asset can use a visual contrast rather
 than a narrative event; a sound-only brief can use a sonic idea.
 
+For new, underspecified moving-image work, complete a brief creative premise
+before treating the direction as settled: intended audience response, what
+carries attention through the piece, and why the ending matters. A held ending
+or unanswered question can be purposeful; no mandatory twist, escalation or
+"wow" image. Use supplied answers first. Ask a focused question about missing
+material intent; when the idea is unresolved, offer distinct proposed directions
+that change the audience's experience, not just the look. Do not invent a motive,
+outcome or approval. Settled edits and minimal subject/action requests remain
+lightweight and do not require a new premise exercise.
+
 For a moving-image brief, flag sound-route decisions that affect the result.
 Native dialogue, picture-only with a separate ambience/score bed, separate
 lip-sync audio and silence serve different needs. Native audio can add unwanted
@@ -97,6 +107,15 @@ music or voices despite exclusions, so propose picture-only when strict control
 matters and the destination supports it. Preserve any accepted audio choice;
 separate lip-sync audio remains opt-in. Leave a grade or film look out unless
 requested. These are scoped proposals, not new mandatory axes or approvals.
+
+Carry early sound and edit intent in the chat handoff: what picture reveals or
+withholds, where attention or a response needs time, and what sound or silence
+does there. Suggest observable acceptance checks tied to those moments, such as
+hearing a latch only after its release is visible or retaining a listener's
+non-response before the cut. Keep these outside the paste-ready prompt when
+they are editorial notes. No final audio asset, saved plan, automatic review,
+production registry or additional tool is required. Final cues follow the
+measured edit; uninspected playback and unheard sound remain unverified.
 
 ## 2. Choose the appropriate depth
 
@@ -106,7 +125,8 @@ requested. These are scoped proposals, not new mandatory axes or approvals.
   standard or kinetic) to the intended reaction. Do not produce alternatives or
   a questionnaire merely because a project is new.
 - **Exploration:** when the user asks for directions, alternatives, or help
-  choosing a concept, offer two materially different treatments. Distinguish
+  choosing a concept, or a material premise remains unresolved, offer two
+  materially different treatments when useful to resolve that choice. Distinguish
   them by central idea, viewpoint, or emotional strategy, not a lens or palette
   swap. Each names its idea, key visible/sonic moment, rationale, and tradeoff.
   Do not generate either or treat a recommendation as selection.
@@ -129,14 +149,14 @@ the format or intended reaction calls for it.
 
 | Axis | Derivation | Composition hint for a calling agent |
 | --- | --- | --- |
-| Structure | Narrative development needs an event and progression; one-off static assets do not | `tig-scene-engine` |
+| Structure | Narrative development needs an event and progression; one-off static assets do not | `scene-craft` |
 | Acting | Specify an observable reaction/tactic only if a performer matters; match detail to framing | `seedance-acting-console` |
 | Camera | Choose viewpoint, framing, and necessary movement to reveal the central idea | `seedance-camera-presets` |
 | Lens | Describe perspective, separation, and context; add optical terms only when useful | `seedance-lens-presets` |
 | Lighting | Motivate a source and guide attention to the story/product truth | `seedance-lighting-presets` |
 | Grade | Support tone and reference fidelity; retain accepted palette | `color-grade-palettes` |
 | Pacing | Give the action enough time; stillness, repetition, contrast, and escalation are choices | `seedance-pacing-presets` |
-| Staging | Define geography only when action or relationships depend on it | `tig-blocking-map` |
+| Staging | Define geography only when action or relationships depend on it | `blocking-map` |
 | Medium | Preserve requested medium; propose only when the idea benefits from that choice | `seedance-animation-styles` |
 | Audio | Honor silent/native/soundtrack requests; separate lip-sync audio remains opt-in | `seed-audio-prompt` / `seed-audio-commercial` |
 
@@ -206,6 +226,10 @@ These are hypothetical teaching cases, not measured generation outcomes.
 
 Before returning, check that the proposal serves the stated reaction, names a
 specific idea, says where the feeling lives, respects constraints, accepted
-choices and any source bible, and omits irrelevant axes. Two treatments appear only when exploration is wanted, and differ in
-mechanism. Unknowns remain labeled; recommendations awaiting a user choice
-remain unapproved. Evaluate the reasoning and usefulness, not exact headings.
+choices and any source bible, and omits irrelevant axes. Offer distinct
+treatments only when exploration is wanted or they help settle an unresolved
+premise; they differ in mechanism. Check audience
+response, attention, ending and any relevant sound/edit acceptance suggestions
+without reopening settled choices. Unknowns remain labeled; recommendations
+awaiting a user choice remain unapproved. Evaluate the reasoning and usefulness,
+not exact headings.

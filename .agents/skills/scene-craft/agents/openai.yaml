@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scene Craft"
+  short_description: "Write or audit scenes within a selected framework"
+  default_prompt: "Use $scene-craft to handle this scene craft task."

@@ -100,8 +100,8 @@ shot_plan:
 | `axis_carry` | Where each confirmed project axis appears (camera, lens, lighting, pacing, energy), or the scene override and its reason |
 | `sources` | Every light source the scene uses, with a fixed world position and the event that switches it on |
 | `cues` | Optional, per source. Each cue has `at_s` (scene time), `change` (`on`, `off`, `dim` or `flicker`), `trigger` (the visible or story event) and, when it lands inside a shot, that shot's `id`. A shot's `light` describes the state at its start and names any cue inside it |
-| `duration_s` | Shot length in seconds; lengths are uneven and the turn differs from its neighbors |
-| `turn` | `true` on exactly one shot |
+| `duration_s` | Shot length from supplied speech, listening, action and rhythm; equal lengths are valid |
+| `turn` | Optional `true` for a supplied turn; omit for sustained or observational scenes |
 | `job` | One of establish, reveal, emphasize, connect, escalate, hold, release |
 | `size` | Extreme wide, wide, medium, medium close-up, close-up, extreme close-up or insert |
 | `framing` | Single, dirty single, two-shot, three-shot, group, over-the-shoulder, over-the-hip, point of view or insert, per [framing](framing.md). Required in a scene with two or more characters |
@@ -115,13 +115,13 @@ shot_plan:
 | `static_reason` | Required with a static hold; a value from the entrypoint table |
 | `lens_intent` | A visible result (sharp plane, soft background, compression), never a number alone |
 | `light` | A declared `source`, the `key_side` relative to the lens, and the quality and contrast |
-| `contrast_with_previous` | Which of size family, angle comparison class, move and key side change; `n/a` for the first shot |
+| `contrast_with_previous` | Optional description of what changes or intentionally repeats; `n/a` for the first shot. No minimum contrast count |
 
 For V1 and V2 only, derive one angle comparison class: use the actual
 non-eye-level angle first; otherwise use first-person for POV or
 over-the-shoulder for OTS/OTH/dirty-single framing, else eye level. Keep
 `angle`, `viewpoint` and `framing` unchanged in the plan and prompt. This
-comparison class is a craft scoring aid, never a replacement camera direction;
+comparison class is a descriptive aid, never a score or replacement camera direction;
 count it once rather than counting framing again. A supplied legacy
 `angle: first-person` or `angle: over-the-shoulder` describes viewpoint or
 framing; retain any separately supplied elevation or tilt when normalizing it.
@@ -147,9 +147,10 @@ delivered) and an `off` cue switches the source instantly. When a fade is
 wanted, write it into the light line ("fades out over about one second"). An
 untimed "partway through" switch lands at an unplanned moment.
 
-A plan with `energy`, `sources`, a `turn`, uneven `duration_s` values and a
-`contrast_with_previous` for every shot after the first is complete enough for
-review.
+A plan contains only requested axes, supplied durations and performance
+readability notes. A turn, uneven timing or neighboring contrast is optional,
+not a requirement even when timing is open. Supplied beat IDs connect
+critical intent, listening and responses to the shots without a new schema.
 
 ## Carrying the plan into the prompt
 

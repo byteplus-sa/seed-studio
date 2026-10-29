@@ -61,6 +61,22 @@ the semantic submitted request, not just its prompt. Missing dispatch or request
 evidence leaves a production review `incomplete`; request it from the caller.
 Filename/content inference is a draft-only fallback with an explicit warning.
 
+Within this user-requested review only, apply `acting.plan_bound` to authored
+performances and `fight.readable_exchange` to authored staged fights. Follow
+[Performance direction](../../contracts/performance-direction.md) and the
+bundled checklist. A plan may be inline; missing material intent is incomplete,
+not permission to invent source evidence or require a production scene file.
+
+For an unfinished new moving-image idea, identify missing audience response,
+attention and ending purpose before judging its direction complete. Offer
+alternatives only to resolve an open premise. Settled prompt edits do not need
+this exercise. Assess supplied sound/edit intent and observable acceptance
+suggestions without requiring final audio assets or a production registry.
+Body energy, camera energy and edit rhythm follow the brief: quiet holds and
+energetic dialogue are both valid when their required evidence is readable.
+Missing evidence remains unresolved; no cadence, coverage, turn or burst quota
+substitutes for that judgment.
+
 For the same request, use generation rules for generate, 2.5 edit rules for a
 2.5 edit, recast rules for a 2.5 recast (motion transfer), restyle rules for a
 2.5 restyle, legacy VFX rules for a supported 2.0 edit, and extension rules for
@@ -131,7 +147,10 @@ For each prompt:
 1. Resolve its explicit model, operation, prompt type, and requested axes; use
    the table only for a warned draft fallback.
 2. Read the corresponding section from `references/review-checklists.md`.
-3. Also load the **universal directing principles** section (applies to all prompts).
+3. Also load the complete [Universal checklist](references/review-checklists.md#universal--all-prompts),
+   including its model-independent performance and staged-fight criteria. Include their
+   applicability guards so static assets and preservation-only edits are not
+   treated as new performances.
 
 ### Step 3 — Review inline or delegate on explicit request
 
@@ -140,7 +159,8 @@ reviewer uses:
 - The full text and explicit review input for each prompt being reviewed.
 - The request hash, change contract, reference evidence, and applicable rule IDs.
 - The applicable checklist section(s) from `references/review-checklists.md`.
-- The universal directing principles.
+- The complete [Universal checklist](references/review-checklists.md#universal--all-prompts),
+  including applicability guards; the policy summary below is not a substitute.
 - Clear instructions on what to check and how to report.
 
 **Batching strategy for explicitly requested delegation:**
@@ -185,6 +205,8 @@ requested_axes: <named axes>
 request_sha256: <canonical request hash>
 required_rule_ids: <IDs supplied by caller>
 reference_evidence: <ordered paths, hashes, roles, and approvals>
+performance_input: <supplied intent, triggers, listening, locks and source locators; inline is valid>
+fight_input: <participant and prop states and readable exchanges, when applicable>
 
 ## Change contract (may change / must preserve)
 
@@ -203,9 +225,11 @@ reference_evidence: <ordered paths, hashes, roles, and approvals>
 
 <paste the applicable checklist section from references/review-checklists.md here>
 
-## Universal directing principles (apply to ALL prompts)
+## Universal checklist (check applicability for every item)
 
-<these are always included — see Universal Directing Principles section below>
+<paste the complete section from references/review-checklists.md#universal--all-prompts,
+including performance and staged-fight criteria and their applicability guards;
+do not substitute the policy summary in SKILL.md>
 
 ## Your task
 
@@ -365,6 +389,10 @@ This is efficient because:
 - The main agent only re-reviews prompts that actually changed.
 
 ## Universal directing principles
+
+This is a policy summary, not the checklist dispatched to the reviewer.
+Include the complete [Universal checklist](references/review-checklists.md#universal--all-prompts)
+in every worker payload.
 
 The workspace policy owner is the tracked production contract, with stable
 rule IDs in `../../contracts/rules.json`. The bundled checklist provides

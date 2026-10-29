@@ -73,21 +73,25 @@ and playback determine whether the result meets the brief.
 
 ## Emotional direction
 
-Emotion words communicate a direction but leave performance open to
-interpretation. For stable control, add **directly visible or audible cues**:
-eye movement, brow tension, mouth movement, breathing, gaze direction, hand
-movement.
+Consume the supplied performance intention, trigger, listening task and locks.
+Encode what the character pursues and what they register through visible or
+audible evidence appropriate to the framing. Do not redo the scene analysis
+or replace intention with an emotion-to-gesture checklist.
 
-> For a single emotional transition, **2–4 clear cues** are usually enough.
-> Use event-triggered stages only when emotion changes several times.
+Two to four cues is a heuristic, not a minimum. Quiet holds, deliberate
+non-response and sustained attention need no invented emotional turn.
+For an isolated prompt, inline intention is sufficient; a whole-scene plan
+or saved record is not required. Use the following templates and vocabulary
+only when they fit the supplied intent.
 
 ### Single emotional transition
 
 ```
-The overall emotion shifts from <starting emotion> to <ending emotion>.
-After <triggering event>, <subject> first shows <immediate observable reaction>.
-Then, <eyes, brows, mouth, breathing, gaze, or hand movement> gradually <changes>.
-Finally, <subject> expresses <target emotion> through <restrained or explicit outward behavior>.
+<Subject> tries to <supplied attempt toward partner or situation>.
+After <supplied trigger>, <subject> registers it through <readable evidence>,
+then maintains or changes the attempt as supplied.
+<Listener> remains engaged or intentionally does not respond as directed.
+Keep <exact dialogue, continuity and timing locks>.
 ```
 
 ### Multi-stage emotion

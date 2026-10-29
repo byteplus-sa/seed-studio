@@ -82,7 +82,7 @@ scene's subject, conflict or product, environment, and intended emotion.
 For optional whole-scene L1, L2 or L3 coverage, use [Scene Density](scene-density.md). Its state coverage replaces the one-panel-per-shot default only for that mode; an explicit panel budget still wins.
 
 **Dynamic panel count.** When an upstream analysis has identified the scene's
-shots or beats — a video or frame-pass breakdown, a `tig-scene-engine` beat
+shots or beats — a video or frame-pass breakdown, a `scene-craft` beat
 list, a shot list, a script/beat sheet, or any story analysis —
 the board defaults to **one panel per identified scene/shot**, regardless of
 any earlier guess or fixed budget. The panel count is dynamic and follows the

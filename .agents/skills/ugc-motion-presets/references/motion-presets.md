@@ -8,7 +8,9 @@ by any measured claim.
 fills the six-part formula slots per the skill's composition rules; cross-cut
 constraints live in [execution-constraints.md](execution-constraints.md).
 
-Duration values are single-pass suggestions for the API `duration` parameter;
+Duration values and beat counts are suggestions, not cadence or coverage
+quotas. Adapt them to the supplied action and intended attention, preserving
+locks and meaningful holds. Duration belongs in the API `duration` parameter;
 ratio defaults to 9:16 everywhere and is omitted from recipes.
 
 ---
@@ -330,8 +332,9 @@ Category path: a static posed subject plus an environment event described with
 motion grammar (direction, speed, amplitude, easing). The event stays behind or
 around the subject — never harming them unless the request intends it. Fresh
 generation from references, or a structured edit over supplied footage with
-`omni_reference_task_type=edit` and the edit-goal grammar. Avoid high-burst
-debris; keep the identity reference dominant in the face.
+`omni_reference_task_type=edit` and the edit-goal grammar. Describe debris
+trajectory and limits so the intended subject stays readable and unharmed;
+keep the identity reference dominant in the face.
 
 ### Atomic <!-- id: atomic -->
 - Category: VFX spectacle
@@ -344,7 +347,7 @@ debris; keep the identity reference dominant in the face.
 - Camera block: front camera at eye level, locked-off
 - Audio: native — low distant rumble swell, wind
 - Duration: 10
-- Flags: environment event behind a static subject; avoid high-burst debris;
+- Flags: environment event behind a static subject; no debris reaches the subject;
   disclosure reminder for ad delivery
 - Persuasion hint: pattern-interrupt hook; angle/CTA owned by ugc-ad-modes
 
@@ -506,7 +509,8 @@ debris; keep the identity reference dominant in the face.
 Category path: single-pass R2V with named camera techniques and the
 spatial-continuity contract — start point, travel axis, boundary, end state.
 Vehicles are visible-identity references. Safety-relevant gear (helmets) is
-always worn visibly. Respect the high-burst caution on jumps.
+always worn visibly. Ground jumps in takeoff, trajectory, contact and recovery
+at the brief's energy; no blanket slowing or single-burst rule.
 
 ### Handheld Run <!-- id: handheld-run -->
 - Category: Action / movement
@@ -530,7 +534,7 @@ always worn visibly. Respect the high-burst caution on jumps.
 - Camera block: static wide from the deck
 - Audio: native — splash, laughter
 - Duration: 10
-- Flags: high-burst caution — splash size and timing described explicitly;
+- Flags: splash size and timing described explicitly at the intended energy;
   the phone's exit from frame must be stated to keep the prop safe
 - Persuasion hint: joy payoff; angle/CTA owned by ugc-ad-modes
 

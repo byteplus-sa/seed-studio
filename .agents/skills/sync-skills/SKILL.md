@@ -17,9 +17,13 @@ for the procedure; Claude Code, Codex and opencode all run it.
 
 ## Scope
 
-The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 24 skills. Never
+The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 21 skills. Never
 sync:
 
+- `acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
+  `scene-craft` and `blocking-map` are locally maintained prompt-only craft
+  adaptations. Preserve chat plans, optional frameworks, source locks and
+  manual-review boundaries; do not mirror their production counterparts.
 - `template-factory` and `seed-audio-commercial` — deliberate local forks
   whose content diverges upstream.
 - `filipino-micro-drama`, `seedream-prop-asset`, `seedream-storyboard`,
@@ -86,6 +90,33 @@ authority never replaces per-submit generation opt-in. After a sync, restore:
   mandatory native video drafts and save-on-request behavior in both modes.
 - Any other synced skill that gains a `prompt-review` reference: remove it.
   Only the `prompt-review` skill itself may name `prompt-review`.
+- `seedance-prompt-25` and its performance reference: preserve inline intent,
+  listener tasks and sustained attention without mandatory saved plans or
+  review gates. `seedance-lens-presets` keeps conditional anamorphic markers,
+  locked framing/medium, and separate optical and output settings.
+- `brief-intake`: preserve compact premise completeness for underspecified new
+  moving-image work (audience response, attention, ending), alternatives only
+  for unresolved intent, and early sound/edit acceptance suggestions in chat.
+- Modern and legacy Seedance compilers plus manual review references: retain
+  brief-led body energy, readable energetic dialogue, optional failure-specific
+  burst remedies, and no cadence, coverage, turn or hold quotas. Keep the
+  local inline creative-comparison procedure; do not restore absent harnesses.
+- `ugc-motion-presets`: keep energy and scene lengths brief-led. Preset beat
+  counts and dynamics flags are not provider requirements; preserve subject
+  safety, debris boundaries and a requested full arc without default compression.
+- `seedance-camera-presets`: preserve source geometry for OTH and standalone POV
+  without mandatory looker/reaction coverage or exception records. Keep coherent
+  requested choreography beyond the default one or two moves; simplification is
+  an optional failure-specific remedy. Restore matching eval expectations.
+- `seedance-pacing-presets`: keep progressive-change timing and stage intervals
+  source- and readability-led. Slowdown is an optional failure-specific remedy,
+  not a fixed cadence. Preserve requested camera paths without a numeric move
+  cap, and restore the source-timing and failure-repair evals.
+
+The craft adoption is pinned to
+[Cinema Studio PR #7](https://github.com/byteplus-sa/seed-cinema-studio/pull/7),
+revision `e302ab982bc6714597983733d371e6bbbff0248c`. Future updates to these
+forks require selective manual comparison, not allowlist expansion or a mirror.
 
 ## Arguments
 
@@ -149,6 +180,7 @@ above. Delete any code file the scan flags rather than editing it.
 
 ```bash
 python3 .agents/skills/sync-skills/scripts/verify.py
+python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
 It checks that frontmatter names match their directories, that relative
@@ -156,6 +188,9 @@ Markdown links resolve, that no `.DS_Store` or `__pycache__` sits under
 `.agents/`, and that no skill mentions a tool or skill this workspace does not
 ship. It must report `forbidden references: 0` before the sync is done. Report
 every problem it lists, and repeat step 2b until it is clean.
+The repository-level regression tests check these local policy repairs and
+eval-data integrity, not actual generated-media quality. They are outside leaf
+skill bundles and do not expand the sync allowlist or change tool policy.
 
 ### 4. Report
 

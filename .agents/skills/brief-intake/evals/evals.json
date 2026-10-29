@@ -125,6 +125,53 @@
     },
     {
       "id": 12,
+      "prompt": "Make a new 12-second video: someone gets a rejection and tells a friend {I'm fine.}. Make it emotional. Nothing else is decided. Chat only; do not generate.",
+      "expected_output": "A focused premise question with distinct proposed readings where useful, not an invented approved scene.",
+      "files": [],
+      "expectations": [
+        "Clarifies intended audience response, what carries attention and why the ending matters before treating the premise as settled.",
+        "May contrast ending the friend's questions with sincere reassurance, labeling both as proposed rather than inventing motive or canon.",
+        "Keeps the exact line and proposes early sound or silence and edit intent only as a proportionate chat handoff.",
+        "Suggests observable acceptance, such as the listener's response surviving the ending, without claiming playback evidence.",
+        "Does not require a document, saved plan, whole-scene workflow, automatic review or generation."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Write one compact chat direction for first-time visitors: a silent eight-second community-dinner film. The viewer notices an empty chair while people make room, and the ending holds that invitation open. Keep the held wide and silence; no alternatives.",
+      "expected_output": "A complete supplied premise carried into one proportionate direction without reopening settled choices.",
+      "files": [],
+      "expectations": [
+        "Uses welcome as audience response, making room as attention, and the open invitation as the ending's purpose.",
+        "Keeps silence and the held wide without adding a score, cut, gesture quota or twist.",
+        "Suggests checking that the chair and space-making remain readable through the held ending.",
+        "Does not offer alternatives, ask redundant premise questions or create files."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "New moving-image project, no brief text yet. I only know it should be memorable. Do not choose a product, audience, plot or ending for me.",
+      "expected_output": "A compact clarification of missing audience, response and intended content, without fabricating a premise or a finished prompt.",
+      "files": [],
+      "expectations": [
+        "Treats empty material intent as unresolved and asks what is being made and for whom.",
+        "Explains that attention and ending need purpose rather than inserting a wow shot or compulsory reversal.",
+        "No invented claims, approval, media evidence, files or automatic review."
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Settled prompt edit only: replace 'red parcel' with 'blue parcel'. Keep every action, word, shot, ending and sound cue. Return inline.",
+      "expected_output": "Only the requested color change, without a fresh creative-premise exercise.",
+      "files": [],
+      "expectations": [
+        "Does not reopen audience, attention or ending decisions or add alternatives.",
+        "Preserves all action, dialogue, timing and sound, and returns chat only.",
+        "No automatic review, registry, save or generation."
+      ]
+    },
+    {
+      "id": 16,
       "prompt": "Use default review and approve_for_me. Create one compact direction for a silent six-second lamp reveal, then continue with its prompt. Keep the supplied product shape.",
       "expected_output": "One selected in-scope direction and prompt without a full checklist or repeated confirmation.",
       "files": [],
@@ -136,7 +183,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": 17,
       "prompt": "Use strict review and approve_for_me for this chat-only prompt. Keep the locked dialogue and choose the camera yourself.",
       "expected_output": "Detailed validity explanations with an agent camera choice, without invoking manual review or waiting for creative approval.",
       "files": [],
