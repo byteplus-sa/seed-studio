@@ -70,6 +70,23 @@ for s in $SKILLS; do
   [ -d ".agents/skills/$s" ] || { echo "ERROR: $s missing here; a sync never creates skill directories — stop and report" >&2; exit 1; }
 done
 
+DESTINATION_SCOPE=()
+for s in $SKILLS; do
+  DESTINATION_SCOPE+=(
+    ".agents/skills/$s"
+    ":(exclude).agents/skills/$s/agents"
+    ":(exclude,glob).agents/skills/$s/**/.DS_Store"
+    ":(exclude,glob).agents/skills/$s/**/__pycache__/**"
+  )
+done
+DESTINATION_DIRTY="$(git status --porcelain=v1 --untracked-files=all --ignored -- "${DESTINATION_SCOPE[@]}")"
+if [ -n "$DESTINATION_DIRTY" ]; then
+  printf '%s\n' "$DESTINATION_DIRTY"
+  echo "ERROR: destination work intersects the sync scope; resolve these paths explicitly before syncing (exit 5)" >&2
+  echo "Nothing copied. SYNC_ALLOW_DIRTY applies only to source changes and cannot bypass this guard." >&2
+  exit 5
+fi
+
 # 3. Source scope check
 SCOPE_PATHS=()
 for s in $SKILLS; do SCOPE_PATHS+=(".agents/skills/$s"); done
