@@ -66,13 +66,21 @@ When the user runs `/prompt-review`, use explicit prompt type, model, operation,
 
 The request hash covers exact prompt bytes, model/operation/effective parameters and ordered reference roles/bindings. Credentials and timestamps are excluded. Changed request content makes an earlier review result stale.
 
-## Handoff and optional provider operations
+## Handoff and optional generation
 
 Without a generation request, deliver prompts for the destination UI and stop.
-For requested generation, follow [generation-transport.md](generation-transport.md).
+When generation is requested,
+follow [generation-transport.md](generation-transport.md) for exact-package,
+per-submit opt-in, not financial approval. No project budget, spending cap,
+cost estimate or spending authorization is required. Cost information is
+optional; this workspace has no task registry or spending ledger.
 Do not introduce a production stage ledger or review-report requirement for
-prompt delivery in either mode. Provider success alone does not establish creative
-quality. Revisions stay within authorization and record the actual changed inputs.
+prompt delivery in either mode.
+
+Provider-side outcomes are diagnostic evidence for revision: rejection is
+evidence to diagnose, not a false positive by default, and reported success
+does not approve an output. Legitimate creative revisions stay within
+authorization and record the exact delta.
 
 ## Generation and review defaults
 
@@ -101,8 +109,9 @@ supported seed variation. Creative alternatives change only requested variables.
 Watermark handling follows the supported destination parameters.
 
 Verify the package once before handoff: ordered references match the bindings
-and the parameter block is valid. When a review was requested, its
-record must match the final request; otherwise no review record is required.
+and the parameter block is complete and within documented limits. When a review
+was requested, its record must match the final request; otherwise no review
+record is required.
 
 ## Reserved upstream rules
 

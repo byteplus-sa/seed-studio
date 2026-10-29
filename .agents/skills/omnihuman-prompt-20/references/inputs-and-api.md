@@ -82,6 +82,8 @@ Vision AI API, signed with AK/SK (HMAC-SHA256, `Service=cv`,
 ## Cost
 
 The published list price as of 2026-10-15 is **0.07 USD per second** of
-output; the video runs for the length of the audio. Estimate cost as audio
-duration in seconds multiplied by the current rate, per take. Multiply by the
-number of takes, including a no-prompt baseline.
+output; the video runs for the length of the audio. Cost information is
+optional, not a prerequisite for prompt delivery or confirmed generation.
+When including an estimate, verify the current rate and multiply by audio
+duration in seconds and the proposed number of takes, including any no-prompt
+baseline. Do not present this dated price as a verified current rate.

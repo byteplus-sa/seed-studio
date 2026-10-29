@@ -18,8 +18,9 @@ not a generation step or a bundled provider integration.
    If unavailable, the caller may use a permitted audio-understanding tool,
    or obtain documented human listening notes. Record which route heard
    the audio; never relabel tool output or human notes as native listening.
-3. Check privacy, budget and explicit offline constraints before any remote
-   analysis. A local command can invoke a remote model; it does not establish
+3. Check privacy and explicit offline constraints before any remote
+   analysis; no budget declaration or financial approval is required.
+   A local command can invoke a remote model; it does not establish
    on-device inference. Do not require provider setup for capable native
    analysis, or require local tools when a permitted capable route exists.
 4. Cover the whole selected soundtrack, including any tail after the picture.

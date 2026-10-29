@@ -11,7 +11,7 @@
         "The prompt orders the actions with sequencing words such as 'first' and 'then'.",
         "The camera move states where it ends, for example focusing on her face.",
         "The prompt does not describe her clothing, hair or the kitchen furniture already in the image.",
-        "The card reports the 9 s duration as within the 4-300 s limit and estimates cost per second."
+        "The card reports the 9 s duration as within the 4-300 s limit; a cost estimate is optional and unavailable pricing does not block delivery."
       ]
     },
     {

@@ -74,7 +74,9 @@ mode selection and caller responsibilities.
 - Start with `resolution: "480p"` and boolean `draft: true`, then promote
   the selected native draft to the recorded delivery resolution.
 - Video generation is billed per successful task completion.
-- Confirm current billing rules on the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106).
+- Cost information is optional; consult the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106)
+  when reporting current billing, not as a prerequisite for prompt delivery or
+  a confirmed submit.
 
 ### When to use Seedance 2.0 instead of 2.5
 

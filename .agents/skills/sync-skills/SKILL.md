@@ -90,6 +90,13 @@ authority never replaces per-submit generation opt-in. After a sync, restore:
   mandatory native video drafts and save-on-request behavior in both modes.
 - Any other synced skill that gains a `prompt-review` reference: remove it.
   Only the `prompt-review` skill itself may name `prompt-review`.
+- Remove inherited project/generation budget declarations, spending caps,
+  cost-estimate prerequisites and financial approval gates. Preserve deliberate
+  per-submit generation opt-in, manual review, native drafts, provider limits,
+  rights, consent and duplicate-submission protection. Cost information stays
+  optional. Keep external provider budget facts if present, but do not restore
+  recommendations to configure caps. Timing, prompt-length, reference-count
+  and panel-count constraints are not financial budgets.
 - `seedance-prompt-25` and its performance reference: preserve inline intent,
   listener tasks and sustained attention without mandatory saved plans or
   review gates. `seedance-lens-presets` keeps conditional anamorphic markers,
@@ -180,6 +187,8 @@ above. Delete any code file the scan flags rather than editing it.
 
 ```bash
 python3 .agents/skills/sync-skills/scripts/verify.py
+python3 -B .agents/skills/sync-skills/scripts/test_generation_policy.py
+bash -n .agents/skills/sync-skills/scripts/sync.sh
 python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
@@ -191,6 +200,12 @@ every problem it lists, and repeat step 2b until it is clean.
 The repository-level regression tests check these local policy repairs and
 eval-data integrity, not actual generated-media quality. They are outside leaf
 skill bundles and do not expand the sync allowlist or change tool policy.
+
+The nonpaid policy regressions check the retained submission safeguards,
+absence of inherited financial prerequisites, JSON validity and eval IDs.
+Representative scenarios live in
+[generation-policy-evals.json](../../contracts/generation-policy-evals.json);
+they describe expected behavior, not paid generation or model benchmark results.
 
 ### 4. Report
 

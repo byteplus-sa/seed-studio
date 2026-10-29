@@ -62,7 +62,7 @@ Keep this metadata in companion notes, not extra fields in `analysis.json`.
 Audio is never heard from frames; follow [audio-analysis.md](references/audio-analysis.md).
 
 No provider setup or upload is needed when native inspection suffices. Optional
-tools must respect privacy, cost, authorization and their own input contracts;
+tools must respect privacy, task scope and their own input contracts;
 do not install local transcription or separation tools just to satisfy a
 checklist. Native host reasoning is not necessarily on-device. For an explicit
 offline request, use only verified on-device perception or human evidence.
@@ -75,7 +75,7 @@ references merely because a tool inspected them.
 - Act as the single manager communicating with the user.
 - Establish scope first. For analysis-only work, stop after the requested
   breakdown or recipe; do not demand element approvals or author unrequested
-  prompts. A recipe is not authorization to generate media or spend credits.
+  prompts. A recipe is not per-submit generation opt-in.
 - Treat `projects/<project>/templates/<template-id>/` as production memory
   when the user requests saved drafts.
 - Apply the caller's separate review and approval modes. Default review uses

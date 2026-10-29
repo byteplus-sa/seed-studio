@@ -12,7 +12,7 @@ September 2026. No native-speaker confirmation.
 | Locked text | Heard | Context | Directing note tried | Result |
 | --- | --- | --- | --- | --- |
 | {Magnanakaw!} | "magnanarko" / "magnanarkay" | Shouted opening word; a second speaker repeats it mid-line | Pronunciation note in the retake | Not fixed; mid-line repetition by the second speaker was closer |
-| {Ten years kang nagpadala, diba?} | "nagpalala" | Smirking, fast delivery | None left (retake budget used) | Open |
+| {Ten years kang nagpadala, diba?} | "nagpalala" | Smirking, fast delivery | No further retake recorded | Open |
 | {Hoy! Who told you...} | "Hey" | Comic outburst at the start of a line | Single note: Filipino interjection "Hoy", not English "Hey" | Fixed in the retake |
 | {Ma'am... ano po'ng result?} | "ano po yung result" | Quiet question | None | Both takes normalized *'ng* to *yung*; meaning intact |
 | {Ang bango mo, apo.} | "bamoy", then "bungo" | Whispered final line | Retake asked for four distinct whispered words | Improved; still soft |
@@ -28,7 +28,7 @@ September 2026. No native-speaker confirmation.
 - One targeted note fixed an English/Tagalog confusion ("Hoy" vs "Hey"). The
   same approach did not fix a long word in a shouted position.
 - Contractions such as *'ng* may be normalized to a fuller spoken form. Decide
-  whether that variant is acceptable before spending a retake.
+  whether that variant is acceptable before proposing another take.
 
 ## Using this log
 

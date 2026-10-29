@@ -51,10 +51,10 @@ Extract or infer:
 - panel budget, including whether the user wants one hero panel or sequence
   coverage.
 
-Ask only when a missing answer would materially change identity, format, cost,
+Ask only when a missing answer would materially change identity, format, scope
 or story meaning. Otherwise state reasonable assumptions and continue. Cost
-belongs to the user's own generation step; propose a low-cost draft size first
-and larger sizes only after composition is accepted.
+information is optional, not a prerequisite for the prompt package. Propose a
+suitable draft size first and larger sizes only after composition is accepted.
 
 ### 3. Break the scene into observable beats
 
