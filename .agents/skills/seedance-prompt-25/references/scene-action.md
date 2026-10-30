@@ -9,10 +9,11 @@ mode selection and caller responsibilities.
 
 ## Scene staging
 
-When a video contains several events, divide the story into **consecutive
-stages**. Give each stage **one primary event or sustained state** and a
-**clear end state**, including an intentionally unchanged state. Waiting,
-listening and purposeful stillness do not require a new action or turn.
+Use consecutive stages when they clarify the story. A shot or stage may contain
+several readable ordered actions or reveals, or a sustained state. Describe the
+critical action, its causal order and the perceptual outcome; do not split an
+exchange merely to give every event its own stage. Deliberate stillness, waiting
+and listening may end unchanged. Preserve the requested rhythm and reveal timing.
 
 A requested multi-shot clip uses shots rather than stages; see
 [Shot Staging](shot-staging.md). Stages suit a continuous take or a story that
@@ -32,13 +33,13 @@ Generate a <video type>. The central subject is <subject>, and the primary event
 
 [Stage 1]
 Initial state: <initial state of characters, props, and scene>.
-Primary event: <one primary action or event>.
+Action: <critical ordered actions, reveal, or sustained state>.
 Camera and light (when requested or supplied): <size, angle, move, and light source for this stage>.
 End state: <character positions, prop ownership, or visible scene state>.
 
 [Stage 2]
 Continue from the previous stage: <state that must remain unchanged>.
-Primary event: <one primary action or event>.
+Action: <critical ordered actions, reveal, or sustained state>.
 Camera and light (when requested or supplied): <size, angle, move, and light source for this stage>.
 End state: <observable state>.
 
@@ -101,16 +102,15 @@ Rules:
 
 ## Action description
 
-The Action slot is the only required part of the six-part formula. Write it as
-granular, physical motion — not as a bare verb. "She enters the lab" is open to
-interpretation; "she steps through the doorway, shifts her weight onto the
-front foot, and scans the room left to right" is testable.
+The Subject and Action slots identify who or what matters and what the audience
+must perceive. Describe critical action or sustained attention concretely; leave
+incidental execution open. "She enters the lab" may be sufficient when entry is
+all that matters. Specify the hand, contact or gaze when it carries the beat.
 
-- **Body-part level.** Describe hands, arms, legs, head, shoulders, back, hips,
-  and feet with range, speed, and force.
-- **Physics grounding.** State where weight and balance sit, what stays planted,
-  and what the body pushes against or reacts to: ground contact, momentum
-  through a turn, inertia carried between actions.
+- **Relevant physical detail.** Name body parts, range, speed or force only
+  when needed to communicate the critical action.
+- **Physics grounding.** Clarify weight, balance, contact, momentum and recovery
+  where they determine continuity or feasibility, not as an exhaustive checklist.
 - **Body energy follows intent.** Derive speed, amplitude, interruptions and
   recovery from the brief's pursuit and physical action. An urgent reach, abrupt
   withdrawal or excited interruption need not become gentle. Quiet action and
@@ -129,11 +129,12 @@ front foot, and scans the room left to right" is testable.
 - **Stay inside the stage budget.** Detail only the movements or sustained
   attention critical to the stage; do not invent a change to fill a hold.
 
-### Motion grammar (why a shot reads "static")
+### Selective motion grammar
 
-A prompt that names *what* moves but not *how* it moves produces a static take.
-For every moving element — subjects, props, effects, light, background — write
-the full motion grammar, not a bare verb:
+When intended movement is underspecified, use the relevant motion grammar
+below for subjects, props, effects, light or background. Describe only the
+axes needed for readability; intentional stillness needs no invented motion,
+loop or light change. A missing motion term alone does not prove a failed take:
 
 | Axis | Question to answer |
 |---|---|
@@ -142,14 +143,14 @@ the full motion grammar, not a bare verb:
 | **Speed** | slow / medium / fast, or a frequency (e.g. "~0.5Hz sway") |
 | **Amplitude** | how far ("~5% of body height", "full spectrum cycle") |
 | **Easing** | constant / sinusoidal / accelerating / smooth |
-| **Loop period** | how often it repeats ("~2s per cycle"), or "continuous" |
+| **Loop period** | only for intended repetition; how often it repeats ("~2s per cycle") |
 
-Also state **camera motion explicitly** — including when the camera is truly
-static and only elements/light move (very common in stylized animation) — and
-**light/color motion** (pulse, strobe, flicker, hue cycle, bloom, shimmer) with
-its rate.
+Separate subject motion from any requested camera path or hold; unrequested
+camera axes remain optional. Specify light or color motion and its rate only
+when the effect needs it. An organic one-off movement needs no easing curve,
+numeric amplitude or loop period.
 
-Example: instead of "the neon figure floats, a rainbow beam shines from its
+Optional repeating-effect example: instead of "the neon figure floats, a rainbow beam shines from its
 head", write "the featureless neon figure floats with a gentle up-down bob
 (~0.5Hz sine, ~5% of body height) in a leaning pose, while a fan-shaped rainbow
 beam projects from its head with the color bands continuously scrolling along
@@ -165,6 +166,8 @@ name each item by size or position. Keep the counted set readable when the
 brief permits it; otherwise account explicitly for off-screen, entering or
 occluded items. Restate counts and relevant positions after a state change.
 Do not reveal a deliberately hidden subject merely to make it countable.
+Track total identity separately from the visible count. Flag contradictory
+totals, unexplained duplication or incompatible positions, not concealment itself.
 
 ```text
 Three ceramic cups stand in a row on the counter from the first frame: small at
@@ -172,6 +175,10 @@ frame-left, medium in the center, large at frame-right. She lifts only the
 medium cup; the small and large cups stay where they are. Three cups in total
 throughout.
 ```
+
+For a reveal: three people total; two visible at the table, the third hidden
+behind the closed door until it opens. The same third person enters, making
+three visible; the reveal does not create a fourth identity.
 
 **Hands.** Bare left/right wording can be ambiguous or mirrored. Name anatomy
 and the visible frame side together: "her right hand, frame-left" for a

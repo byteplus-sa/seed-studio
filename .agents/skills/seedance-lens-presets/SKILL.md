@@ -59,9 +59,19 @@ this skill only resolves the optics axis.
 Focal length, camera position, subject distance, sensor/format, crop, aperture,
 and subject/background separation are distinct. A focal length alone does not
 specify all of them. Do not move a locked camera to achieve a suggested look;
-flag a conflict and offer a bounded alternative. Do not add lighting, weather,
-flare, grain, or a second lens character unless requested or clearly presented
-as a proposal.
+flag a conflict and offer a bounded alternative.
+
+Delegated creative authorship permits custom optical choices without named
+preset, focal-length or aperture requests. State the visible purpose and label
+each invented choice as a proposal, not source fact or user approval. Compatible
+lens characters and ordered transitions are valid; clarify contradictory
+directions in the same interval rather than enforcing preset purity.
+Source-preserving edits and technical conform retain optics and texture outside
+the authorized `may_change` scope. Preserve explicit locks, including ungraded,
+grain-free, deep-focus and flare-free delivery, as well as the brief, rights and
+consent. Delegation changes no generation approval or capability checks.
+Lighting, weather and texture additions must be requested or within delegated
+scope; a lens label alone does not authorize them.
 
 Output resolution is independent of optical style. A request for “4K anamorphic”
 contains an output requirement and a look requirement. Resolve the anamorphic
@@ -129,7 +139,7 @@ move past a foreground element, or the subject stepping into the sharp plane.
 
 | Lens | Canonical visible-result phrase |
 |---|---|
-| **Anamorphic** | Anamorphic character: oval or stretched defocused highlights where the scene has them; a horizontal flare only when requested and motivated by a visible bright source. |
+| **Anamorphic** | Anamorphic character: oval or stretched defocused highlights where the scene has them; a horizontal flare when requested or proposed within delegated scope and motivated by a visible bright source. |
 | **Fisheye** | Fisheye: strong barrel distortion, straight lines bow outward, the edges of the frame curve into a sphere. |
 | **Macro** | Macro: extreme close view, tiny detail fills the frame, the background is a soft, blurred wash behind the subject. |
 | **Telephoto** | Telephoto look: the requested narrow framing and compressed background relationship; preserve the established atmosphere. |
@@ -160,16 +170,18 @@ camcorder format word ("MiniDV") in a Seedance prompt tends to return clean
 cinema footage. For a VHS, MiniDV or camcorder piece, prompt the
 camera behaviour the format implies (handheld at arm's length, an on-camera
 light; whether these cues read as tape is unverified) and apply the scanlines,
-color bleed, noise and frame size in post (the color-grade skill owns post
-looks). The sensor phrase may still serve a Seedream
-still, where it is an unverified heuristic. Add no grain, halation or vignette
-unless the user asks for the look.
+color bleed, noise and frame size in post. The caller uses an available
+post-look capability; this skill neither invokes nor assumes an installed
+color-grade department. The sensor phrase may still serve a Seedream still,
+where it is an unverified heuristic. Grain, halation or vignette may be requested
+or proposed within delegated look scope, never added to a protected source edit
+or conform.
 
 ## Authoring fields — not a provider payload
 
 | Parameter | Type | Meaning |
 |---|---|---|
-| `lens` | string | Named lens character (anamorphic, fisheye, macro, telephoto, clinical sharp, warm halation, vintage haze, auto) |
+| `lens` | string | Named or custom lens character, compatible combination or ordered transition |
 | `focal_length` | string | Numeric focal request (8, 14, 24, 35, 50, 75, 85, 135mm) |
 | `aperture` | string | Aperture request (f/1.4, f/4, f/11) |
 | `sensor` | string | Sensor / body character (vhs, film, digital cinema) |
@@ -177,14 +189,17 @@ unless the user asks for the look.
 | `target_model` | string | `seedance` \| `seedream` \| `both` — where the phrase lands |
 
 These fields organize prompt composition and are not API arguments. The caller
-resolves actual supported parameters separately. Only supply authoring values the user asked for. Do not invent an aperture or
-focal length the user never mentioned. `lens`, `focal_length`, and `aperture`
-are independent axes; a shot can request one, two, or all three.
+resolves actual supported parameters separately. Supply requested values or
+propose useful focal lengths, apertures and custom lens characters within
+delegated authorship. Do not fill every field by default or change optics
+outside an authorized edit scope. `lens`, `focal_length`, and `aperture` are
+independent axes; a shot can use one, two, or all three.
 
 ## Output grammar
 
-Resolve each requested axis to its canonical phrase, then assemble it into a
-single camera/visual line. **Pair the number with the visible result** using
+Resolve each requested or delegated axis to a descriptive phrase, then assemble
+the compatible choices and any ordered changes into the camera/visual line.
+**Pair the number with the visible result** using
 this template:
 
 ```
@@ -264,9 +279,11 @@ Composition:
   exact requested resolution separately. Keep the selected model; if support
   is absent or unknown, the caller resolves a verified alternative without
   treating “4K” as an optics preset or silently changing the model.
-- **One lens intent per shot.** Do not overload a single shot with multiple
-  competing optics (e.g. anamorphic plus fisheye). Choose one intent; split
-  distinct optics across separate shots.
+- **Coherent optics within each interval.** Custom combinations and ordered
+  transitions may share a shot when their visible results are compatible.
+  Name the affected region or focus plane and transition endpoints; clarify
+  contradictory demands on the same region in the same interval. A separate
+  shot is an option, not a compulsory repair for multiple lens characters.
 - **Focal length is not camera position or crop.** State the intended framing
   and depth relationship. A crop or focal-length word alone cannot establish
   that the generated shot preserves or changes perspective as requested.
@@ -283,8 +300,8 @@ Before delivering a prompt built with this skill, verify:
 
 1. **Every numeric optical value is paired with a visible result** — no bare
    "50mm" or "f/1.4" standing alone.
-2. **One lens intent per shot** — no anamorphic-and-fisheye conflicts in a
-   single shot.
+2. **Coherent lens intent**: compatible custom combinations and ordered changes
+   preserve locks; conflicting same-interval results are returned for clarification.
 3. **Anamorphic cues fit the shot** — flare and defocused highlights are
    conditional and do not override focus, lighting, or other approved locks.
 4. **Resolution stays separate from optics** — the caller receives the output

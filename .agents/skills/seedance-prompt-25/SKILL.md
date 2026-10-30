@@ -49,8 +49,8 @@ for promotion and capability mismatch handling.
 Use reference-inputs for R2V; video-editing for edits; video-extension for
 extensions; keyframes-storyboards-blockouts for approved visual conditioning
 and validated blockout manifests; shot-staging for requested or supplied
-multi-shot plans. Add audio-performance-camera only for
-applicable dialogue, acting, UI, or camera detail.
+multi-shot plans. Add audio-performance-camera for audio ownership and
+applicable dialogue, sound, acting, UI, or camera detail.
 
 Read only the mode-specific resources needed for the request. Reference paths
 mentioned in prose are relative to this skill directory unless a link says otherwise.
@@ -114,7 +114,8 @@ they conflict.
 
 Only **Subject + Action** is required. Every other part is optional — omit what
 does not apply. Summarize the main action first; add detail only to critical
-movements. Write the Action slot as granular physical detail — see
+movements. Describe critical action and perceptual outcomes; permit readable
+ordered actions, reveals and deliberate stillness — see
 [Action description](references/scene-action.md#action-description). **Do not describe the same action
 twice.** Generation parameters (duration, resolution, aspect ratio) belong in
 the generation interface or API, not in the prompt.
@@ -239,7 +240,7 @@ Before generation, verify:
 2. **Reference roles**: Does every reference state what to use and what not to use?
 3. **Subject binding**: Is every required canonical character, product, and prop named and bound to a reference, with incidental objects handled by the prop threshold?
 4. **Scene selection**: Are references selected by scene, not forced to appear all at once?
-5. **Stage structure**: Does each stage contain one primary event or sustained state and a clear end state? Purposeful waiting or listening may remain unchanged without a forced turn.
+5. **Stage structure**: Are critical ordered actions, reveals or a sustained state readable within the shot or stage? Purposeful waiting or listening may remain unchanged without a forced turn.
 6. **Consistency**: Do character count, clothing, prop ownership, and spatial relationships stay consistent?
 7. **Editing master**: For editing, is the sole editing master, edit scope, target quantity, and content to preserve defined?
 8. **Emotion & camera**: Are abstract emotions and cinematography terms paired with visible/audible cues?
@@ -249,7 +250,7 @@ Before generation, verify:
 12. **Extension boundary**: For extension, are the boundary image, motion trend, and audio continuity checked?
 13. **One-click video**: Are material roles, image order, motion amount, editing style, and audio defined?
 14. **Seamless transitions**: Are the two videos' roles, trigger action, transition process, and arrival state defined?
-15. **Action granularity**: Is the primary action described at the body-part level with range, speed, force, and physics grounding — not as a bare verb?
+15. **Action granularity**: Is critical action concrete, with body-part detail or physics grounding only where needed for readability, leaving incidental execution open?
 16. **Motion acceptance**: Does every critical movement have an observable
     direction, relationship, contact, or end-state criterion? Could camera
     movement falsely appear to satisfy required subject movement?
@@ -258,6 +259,11 @@ Before generation, verify:
     generic surfaces plain, with exact copy reserved for post?
 18. **Manifest currency**: When a blockout manifest exists, do its source,
     previz, selection, and reference hashes match the generation package?
+19. **Audio ownership**: Preserve requested native diegetic sound in wordless
+    scenes, exact masters or controlled post sound, and purposeful silence.
+    Speech-free does not imply picture-only. Confirm supported destination
+    controls and keep missing route decisions unresolved; see
+    [Choosing the audio route](references/audio-performance-camera.md#choosing-the-audio-route).
 
 ## Usage limitations
 

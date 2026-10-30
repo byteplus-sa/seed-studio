@@ -122,7 +122,7 @@ flowchart LR
 | **omnihuman-prompt-20** | Write OmniHuman 2.0 lip-sync prompts for one image plus one driving audio track: speaking state, camera end states, ordered gestures, group-shot speaker choice, long-audio segmentation, input checks and symptom fixes. |
 | **ugc-ad-modes** | Write hooks, scripts and Seedance prompts for nine ad modes using supplied product facts, audience objections, supported claims and accurate CTAs. |
 | **ugc-motion-presets** | Turn a named UGC motion preset (Atomic, Outfit Switch, Eating Zoom, Yacht, ...) into a canonical Seedance prompt block with reference bindings, duration, and constraint flags. |
-| **color-grade-palettes** | Map a named color grade palette or film look into a canonical grade sentence for the Seedance Visual Style slot or the Seedream `Style:` section. |
+| **color-grade-palettes** | Compose requested or delegated custom palette sentences, preserving ungraded conform and source locks. |
 | **blocking-map** | Plan multi-character geometry while preserving the approved medium; control drawings remain optional, explicitly selected references. |
 | **scene-craft** | Write and audit scenes using an explicitly selected framework; the five-element engine is optional, not a universal defect gate. |
 

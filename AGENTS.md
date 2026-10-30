@@ -64,9 +64,12 @@ Load only the contract relevant to the current request:
 
 ## Routing
 
-Compose only the axes the user requested. One grade per clip, one dominant lighting
-direction per shot, and one or two camera moves per shot unless the explicitly
-requested choreography needs more.
+Compose requested axes and in-scope proposals under delegated creative
+authorship, including custom looks, compatible light and camera variations, and
+ordered transitions. Camera simplicity is a heuristic, not a move-count cap.
+Preserve explicit locks, the brief, rights, consent and verified capabilities;
+source-preserving edits and conform change only authorized axes. Return actual
+simultaneous contradictions for clarification without imposing recipe purity.
 
 | Intent | Route |
 | --- | --- |

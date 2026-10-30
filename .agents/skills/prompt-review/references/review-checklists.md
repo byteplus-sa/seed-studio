@@ -141,10 +141,10 @@ This check does not make manual `/prompt-review` mandatory.
 
 3. **No double-description.** The same action is not described in multiple sections.
 
-4. **Action granularity.** The Action slot describes motion at the body-part
-   level (hands, arms, legs, head, shoulders, back, hips, feet) with range,
-   speed, and force, grounded in weight, balance, momentum, and contact — not
-   as bare verbs. Speed, amplitude, interruptions and recovery follow the
+4. **Action granularity.** Describe critical action and perceptual outcomes,
+   with body-part detail, range, speed, force, contact or recovery only where
+   needed for readability and feasibility; leave incidental execution open.
+   Speed, amplitude, interruptions and recovery follow the
    supplied intent. Do not penalize energetic action or dialogue merely for
    being fast; assess physical grounding and readable evidence.
 
@@ -186,9 +186,10 @@ This check does not make manual `/prompt-review` mandatory.
 
 ### Scene staging
 
-15. **Stage structure.** Multi-event stories use consecutive stages. Each has
-    one primary event or sustained state and a clear end state. Waiting or
-    listening may remain unchanged; do not demand a turn to fill a hold.
+15. **Stage structure.** Use consecutive stages when helpful. A shot or stage
+    may carry readable ordered actions, reveals or a sustained state. Check
+    causal order and perceptual outcomes, not a per-shot single-event quota.
+    Waiting or listening may remain unchanged; do not demand a turn to fill a hold.
 
 16. **Natural duration.** Each scene is generated at its natural duration (4-30s),
     not padded to 30s. 30s single-pass or extension is the exception, not the default.
@@ -202,6 +203,22 @@ This check does not make manual `/prompt-review` mandatory.
     timing evidence, leave feasibility unresolved rather than inventing a limit.
 
 ### Audio syntax
+
+**Audio ownership.** Check the chosen route against the brief: requested native
+diegetic sound, including wordless action/ambience; an exact master or controlled
+post soundtrack; or purposeful silence. Speech-free alone does not require
+picture-only. Native sound specifies wanted effects/sync and unwanted voices or
+music; negative wording is not proof of compliance. Post-owned sound uses
+picture-only where supported, preserves exact masters and places critical hits
+in assembly; a bed is not automatically frame-synced. Silence adds no bed and
+requires verified removal if native audio cannot be disabled. Confirm supported
+destination controls, reference roles, rights and approvals. Missing or conflicting
+ownership stays unresolved. A contradicted route or reliance on wording alone to
+guarantee silence is MAJOR. Require destination playback and listening for
+unwanted audio, sync and master fidelity, again after promotion. Reject
+noncompliant audio or propose an authorized repair, not automatic muting of
+requested native sound. Mixed ownership names each layer's source. This manual
+review does not authorize generation or post-production in this workspace.
 
 19. **Audio bracket syntax.** Dialogue in `{}`, music in `()`, SFX in `<>`, subtitles
     in `【】`. All audio content uses the correct bracket type.
@@ -223,9 +240,10 @@ This check does not make manual `/prompt-review` mandatory.
 
 ### Camera language
 
-24. **Coherent camera direction.** Use one or two clear camera movements per shot when
-    requested, with the subject, beginning, and endpoint of each stated. Avoid
-    competing simultaneous moves within a shot; preserve a requested static camera.
+24. **Coherent camera direction.** Assess requested or delegated choreography by
+    compatible paths and readable handoffs, with subject, beginning and endpoint
+    stated. Move simplicity is a heuristic, not a count limit. Return genuine
+    simultaneous conflicts; preserve a requested static camera and source locks.
 
 24a. **Requested shot plan carried.** When the user requests or supplies a shot
     plan, each shot carries its duration, purpose, framing, camera move or
@@ -295,7 +313,7 @@ This check does not make manual `/prompt-review` mandatory.
 34. **Subject binding**: every required canonical character/product/prop named and bound to a
     reference.
 35. **Scene selection**: references selected by scene, not forced to appear all at once.
-36. **Stage structure**: each stage has one primary event or sustained state and a clear end state, including purposeful unchanged attention.
+36. **Stage structure**: critical ordered actions, reveals or a sustained state remain readable within each shot or stage, including purposeful unchanged attention.
 37. **Consistency**: character count, clothing, prop ownership, spatial relationships
     stay consistent.
 38. **Editing master**: for editing, sole editing master, edit scope, target quantity,
@@ -328,21 +346,24 @@ anatomical side plus frame side for critical hand actions, and plain generic
 surfaces where generated lettering would be a defect. These are authoring
 heuristics, not guarantees of model control. Respect intentional occlusion,
 entrances and exits; do not expose a hidden subject merely to count it.
+Track total identity separately from visible count. Contradictory totals,
+unexplained duplication or incompatible positions are MAJOR; a count stated
+once with unambiguous continuity is not. Preserve locked reveal timing.
 
 ### Motion grammar (stylized animation & reverse-engineered takes)
 
-47. **Every moving element has motion grammar.** Each element that moves is
-    described with motion type (translate/rotate/scale/parallax/drift/float-bob/
-    pulse/flicker/color-cycle/twinkle/shimmer/sway/wave/slide/zoom/rotation),
-    direction, speed, amplitude, easing, and loop period — not as a bare verb.
-    A prompt that names *what* moves but not *how* it moves produces a static
-    take.
+47. **Selective motion grammar.** Require only the axes needed for critical
+    action and readability. Amplitude, easing and rates are optional unless
+    material to intent; loop periods apply only to intended repetition.
+    Organic one-off motion and deliberate stillness need no invented loop or
+    light change. Honor selected motion masters. Missing incidental axes
+    alone are not a finding or evidence of a failed take.
 
-48. **Camera motion stated explicitly.** The prompt states camera motion — and
-    explicitly says when the camera is static and only elements/light move.
+48. **Camera motion distinguished.** Preserve a requested camera path or hold
+    separately from subject motion; unrequested camera axes remain optional.
 
-49. **Light/color motion stated.** Any pulse, strobe, flicker, hue cycle, bloom,
-    or shimmer is described with its rate (e.g. "~1Hz chromatic shimmer").
+49. **Light/color motion stated when relevant.** Describe the intended visible
+    effect and rate only when it matters; do not invent light motion for stillness.
 
 ### Storyboard grid reference
 
@@ -1565,13 +1586,15 @@ Source skill: `seedance-music-video`
    or hybrid — with address mode (direct / indirect / none).
 
 2. **Treatment serves intent.** Preserve approved visual choices. Format and
-   style follow the desired audience effect and available track evidence; genre
+   style are brief-derived, following the desired audience effect and available
+   track evidence. Custom treatments and coherent hybrids are valid; genre
    recipes are optional examples, not compulsory locks or a ban on coherent hybrids.
 
 ### Song map
 
-3. **One event per section.** Each song section has one primary visual
-   assignment and a visible end state.
+3. **Readable section intent.** A section may carry ordered events, reveals or
+   sustained attention. Check causal order and perceptual outcomes without a
+   single-event quota; preserve locked action, reveal timing and stillness.
 
 4. **Repeated sections have an intentional relationship.** Escalation, restraint,
    repetition or counterpoint follows supplied audible changes or the requested
@@ -1594,10 +1617,11 @@ Source skill: `seedance-music-video`
 7. **Lip-sync lines verbatim in `{...}`.** Match the audio master exactly —
    no paraphrasing, no reordering, no omitted lines.
 
-8. **Timestamped lyric timeline used when coverage is critical.** Each lyric
-   line is bound to its own `[X-Ys] { line }` beat slot — not grouped into
-   large blocks. Applies to rap, fast vocal delivery, and any verse where
-   complete lyric coverage is a hard requirement.
+8. **Lyric timing follows audio evidence.** When coverage or synchronization
+   requires per-line timing, use audio-measured `[X-Ys] { line }` slots, retaining
+   raw measurements separately from proposed edits. With unavailable audio or
+   unverified timings, use ordered cues and label timing provisional. Genre or
+   fast delivery alone does not require timestamps or justify invented timings.
 
 9. **"No line skipped" mandate present.** When the timestamped timeline is
    used, the prompt includes an explicit instruction that no line may be
@@ -1622,8 +1646,10 @@ Source skill: `seedance-music-video`
 13. **Right-sized (4–30s).** One song section per pass, or an explicit
     continuous one-take. Not padded to fill 30s.
 
-14. **Style remains coherent.** A closing summary is optional. Judge consistent
-    visual decisions and preservation of the brief, not a required style-seal phrase.
+14. **Treatment summary is optional.** When useful, summarize brief-derived
+    continuity, coherent hybrid choices and deliberate section transitions.
+    Preserve an approved single-style treatment; judge fidelity and readable
+    transitions, not a mandatory genre lock or style-seal phrase.
 
 ### Rap-specific (when applicable)
 
