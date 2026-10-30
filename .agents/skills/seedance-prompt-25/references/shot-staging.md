@@ -15,9 +15,9 @@ mode selection and caller responsibilities.
 When a multi-shot prompt or shot plan is requested or supplied, a clip that cuts
 is staged by **shot**: each shot is one camera setup with its
 own size, angle, move and light. A clip that never cuts is staged by **stage**
-(see [Scene staging](scene-action.md#scene-staging)): each stage is one event
-or sustained state inside a continuous take, and the camera path is stated for the whole
-take.
+(see [Scene staging](scene-action.md#scene-staging)). A shot or stage may carry
+readable ordered actions, reveals or a sustained state; it is not a single-event
+container. Preserve any requested camera path or hold for the continuous take.
 
 | Clip | Stage by | The camera fact lives |
 |---|---|---|
@@ -33,14 +33,16 @@ Preserve those planned facts rather than flattening them into one global setup.
 
 State the subjects and shared scene once, then one line per shot. Include grade,
 camera and light facts only when requested or supplied; the full template below
-illustrates a shot plan containing all three axes.
+illustrates a shot plan containing all three axes. Scope brief-derived look
+transitions to their intended shots or intervals; preserve locked palettes
+and unchanged looks.
 
 ```text
 <Subjects with reference bindings and the shared scene, stated once.>
-The visuals feature <one grade for the clip>.
+The visuals feature <brief-derived treatment, with any scoped look transitions>.
 
 Shot 1 (0-3 s): <size>, <angle>; <camera move with subject, start and end>.
-<Subject> <body-part-level action for this beat>. Light: <source, key side
+<Subject> <critical action, ordered events or sustained state>. Light: <source, key side
 relative to the lens, quality, colour temperature when it matters>.
 Shot 2 (3-6 s): <size>, <angle>; <camera move>. <Subject> <action>. Light:
 <source, key side, quality>.
@@ -55,9 +57,10 @@ Rules:
 1. Open each shot line with the camera facts, then the action, then the light.
    Camera moves use the vocabulary in
    [Camera language](audio-performance-camera.md#camera-language).
-2. One primary camera move per shot, plus at most one secondary move unless
-   explicitly requested choreography needs more. Do not impose a clip-wide
-   move count across cuts. About seven shots
+2. One or two camera moves is a simplicity heuristic, not a cap on requested
+   or delegated choreography. Preserve compatible paths and readable handoffs,
+   including a requested static camera; return genuine simultaneous conflicts.
+   Do not impose a clip-wide move count across cuts. About seven shots
    and 0.8 s per shot are planning heuristics, not provider limits.
 3. When lighting is part of the plan, name the scene's light sources once, then
    give each shot a source and a key side. A cut changes which side of a source the camera sees, or a stated event

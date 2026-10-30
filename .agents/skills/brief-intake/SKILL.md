@@ -37,11 +37,11 @@ Read the supplied brief and existing confirmed decisions first. Extract:
 | Constraints | Runtime, format, available references, delivery needs, forbidden changes |
 | Tone/genre references | What useful quality is being borrowed, and which convention should be avoided? |
 | Confirmed decisions | Which axes and identities are already accepted? |
-| Where the feeling lives | Which channel carries the inner state (performance, sound, light, framing, edit) rather than literal effects? |
+| Where the feeling lives | Which channels carry the intended feeling: performance, sound, light, framing, edit, literal effects or a combination? |
 | Source bible | Is there a source text, script, brand book or prior canon whose lines and details must survive every stage? |
 | Quality bar | Whose reaction is the bar: a named person, the user's own taste, or a past version of the user? |
 | Sound plan | Is the deliverable silent, on-camera dialogue, ambience or score, and is a separate sound bed acceptable? |
-| Look | Is a grade or capture-format look requested, or should the original model colours remain? |
+| Look | Is this preservation/conform, a requested look, or delegated art direction that can propose a custom palette, lens or capture-format look? |
 | On-screen copy | Which captions, title, CTA or end card should be listed separately for post? |
 
 When a tone or genre reference is a **concrete brand video ad or other footage**
@@ -69,17 +69,27 @@ result. With no usable brief, ask what is being made, for whom, and the intended
 reaction; develop reversible suggestions while runtime or format is pending.
 Label assumptions instead of inventing audience research or product facts.
 
+For delegated creative authorship, invent in-scope fictional staging, actions,
+imagery, performance intentions and visual metaphors that serve the brief.
+Label additions as creative proposals, not established source facts or user
+approvals. Preserve factual claims, supplied scripts, identities, source edits
+and explicit locks. A source-preserving task changes only its authorized
+`may_change` scope; creative delegation does not reopen protected material.
+Missing facts, rights or consent remain unresolved. Missing technical move or
+preset names need not block an otherwise clear creative brief.
+
 Three questions sharpen a dramatic brief without adding a questionnaire.
 Answer them from the brief when you can and ask only when the answer changes
 the result:
 
-- **Where does the feeling live?** Prefer suggestion over spectacle. Pain,
-  power or fear carried by the performance, a sound and the light usually
-  lands harder than a literal effect; keep one brief stylized image when the
-  idea needs a picture (a burned-texture hand instead of fire).
+- **Where does the feeling live?** Suggestion, spectacle, absurdity, intimacy
+  and counterpoint are equal tools. Choose their scale and frequency from
+  intent, without a ceiling on stylized imagery or a minimum spectacle quota.
+  Preserve quiet observation when requested; maximalism need not be reduced
+  to a single symbolic image. Fast, loud or saturated is not inherently better.
 - **Is there a counterpoint?** A location, prop or sound that plays against
-  the genre can state the world's rules without dialogue (a science-fiction
-  test held in a library says this world has no computers). Propose one only
+  the genre can suggest a fictional world's rules without dialogue (a test
+  held in a library may suggest an improvised lab, not prove there are no computers). Propose one only
   when it serves the reaction.
 - **What is the bible?** When a source exists, list the lines, images and
   details that must survive, and recheck them at script, generation, edit and
@@ -96,17 +106,26 @@ carries attention through the piece, and why the ending matters. A held ending
 or unanswered question can be purposeful; no mandatory twist, escalation or
 "wow" image. Use supplied answers first. Ask a focused question about missing
 material intent; when the idea is unresolved, offer distinct proposed directions
-that change the audience's experience, not just the look. Do not invent a motive,
-outcome or approval. Settled edits and minimal subject/action requests remain
+that change the audience's experience, not just the look. Do not present a proposed
+fictional motive or outcome as source fact or approval. Settled edits and minimal subject/action requests remain
 lightweight and do not require a new premise exercise.
 
 For a moving-image brief, flag sound-route decisions that affect the result.
-Native dialogue, picture-only with a separate ambience/score bed, separate
-lip-sync audio and silence serve different needs. Native audio can add unwanted
+Choose by sound ownership: native dialogue or requested diegetic sound in
+wordless scenes, picture-only for an exact master or controlled post sound,
+and purposeful silence serve different needs. Native audio can add unwanted
 music or voices despite exclusions, so propose picture-only when strict control
-matters and the destination supports it. Preserve any accepted audio choice;
-separate lip-sync audio remains opt-in. Leave a grade or film look out unless
-requested. These are scoped proposals, not new mandatory axes or approvals.
+matters and confirm supported destination controls. If sound ownership is
+unresolved, ask which route is wanted; wordless does not imply picture-only.
+Preserve any accepted audio choice; separate lip-sync audio remains opt-in.
+For delegated art direction, a custom
+palette, lens character or film look may be proposed without a named preset.
+Neutral or ungraded is equally valid. For technical conform or source-preserving
+edits, retain original colours and optics without added grade, grain, halation
+or vignette unless that axis is authorized to change. Preserve approved palettes,
+lens locks and explicit ungraded delivery. State which look belongs in the
+generation prompt and which is a destination post treatment. These are scoped
+chat proposals, not new mandatory axes, saved plans or approvals.
 
 Carry early sound and edit intent in the chat handoff: what picture reveals or
 withholds, where attention or a response needs time, and what sound or silence
@@ -152,9 +171,9 @@ the format or intended reaction calls for it.
 | Structure | Narrative development needs an event and progression; one-off static assets do not | `scene-craft` |
 | Acting | Specify an observable reaction/tactic only if a performer matters; match detail to framing | `seedance-acting-console` |
 | Camera | Choose viewpoint, framing, and necessary movement to reveal the central idea | `seedance-camera-presets` |
-| Lens | Describe perspective, separation, and context; add optical terms only when useful | `seedance-lens-presets` |
+| Lens | In delegated art direction, propose custom perspective, separation and optical character; preserve source optics and lens locks in scoped edits | `seedance-lens-presets` |
 | Lighting | Motivate a source and guide attention to the story/product truth | `seedance-lighting-presets` |
-| Grade | Support tone and reference fidelity; retain accepted palette | `color-grade-palettes` |
+| Grade | Propose a custom look within delegated art direction; preserve approved palettes and ungraded conform/source edits; disclose prompt versus post route | `color-grade-palettes` |
 | Pacing | Give the action enough time; stillness, repetition, contrast, and escalation are choices | `seedance-pacing-presets` |
 | Staging | Define geography only when action or relationships depend on it | `blocking-map` |
 | Medium | Preserve requested medium; propose only when the idea benefits from that choice | `seedance-animation-styles` |

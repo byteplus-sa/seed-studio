@@ -42,6 +42,15 @@ only.
 
 ## Preset bank
 
+Resolve requested lighting or propose custom lighting within delegated creative
+authorship; a named preset is not required. Label each new source, look or
+texture as a proposal, not a source fact or user approval. An empty brief or
+unclear scope needs clarification before adding sources. Source-preserving
+edits and technical conform change only the authorized `may_change` axes.
+Preserve approved continuity and explicit locks, including practicals-only,
+no hidden fill, ungraded and grain-free delivery. Creative delegation never
+supplies rights, consent, generation approval or verified capabilities.
+
 Each preset carries three pieces: a **causal intent** (what the light does to
 the scene — where sources sit, where shadows fall, how the subject separates),
 a canonical **Seedream `Lighting:` recipe**, and a canonical **Seedance
@@ -63,8 +72,8 @@ actually produce.
 ### Relight-style directions
 
 Composable directional keys. Each combines with a **quality** (soft or hard)
-and an optional **gel color** (named or hex). For a fully custom recipe, pick
-one direction and compose the quality, color, and ratio yourself.
+and an optional **gel color** (named or hex). For a fully custom recipe, name
+each compatible source's direction, quality, color, role and relative strength.
 
 | Direction | Causal intent | Seedream `Lighting:` recipe |
 |---|---|---|
@@ -108,8 +117,11 @@ take, and reach the look through the prompt rather than a post grade.
 | Vision, revelation | High-key | Bright, warm, overexposed field that breaks the scene's darkness for a moment |
 | Relief, release | The scene's earlier key | A motivated source returns, or a door opens and adds light; the shadows soften |
 
-A change of feeling inside a scene is a light cue on a declared source (on,
-off, dim or flicker) planned in the shot plan, not a new invented source.
+A change of feeling may use a cue on a declared source (on, off, dim or
+flicker), or a new source proposed within requested or delegated lighting scope.
+Declare that source in the scene and any supplied shot plan before writing its
+cue; preserve protected source lighting and do not silently introduce a lamp
+to change mood. Return proposals in chat; no new production records are needed.
 
 ### Night needs stating
 
@@ -154,7 +166,7 @@ brightness        — bright | dimmed | a rough level (e.g. "dimmed to a single 
 target_model      — seedream | seedance | both
 subject           — the subject being lit
 time_of_day       — optional: golden hour, blue hour, night, noon, dawn, dusk
-cue               — optional requested timed change on a declared source: at_s or a range,
+cue               — optional requested or delegated timed change on a declared source: at_s or a range,
                      on | off | dim | flicker, and the visible result after it
 ```
 
@@ -228,12 +240,20 @@ in the `Lighting:` section only — never in `Style:` or `Subject:`.
   cost: **Overhead Fall on a romantic field scene kills the warmth**; **Soft
   Cross adds a hidden off-camera source that destroys a candlelit Practicals
   scene**. Choose the preset the scene's diegetic light would actually produce.
-- **One dominant direction.** Never mix contradictory keys in the same shot
-  (e.g. "backlit golden hour" with "hard top light"). Pick one intent and let
-  the phrase support it.
-- **Consistency across chained scenes.** Repeat the same lighting phrase
-  verbatim in every scene in a chain and keep the same reference bundle so
-  lighting does not drift across scene boundaries.
+- **Compatible source-motivated lighting.** Backlight and overhead light may
+  coexist when their sources, roles and shadow effects are compatible. Clarify
+  contradictory demands on the same subject or region in the same interval,
+  such as a face both unreadable in silhouette and fully lit. Multiple sources
+  alone are not a conflict; do not add hidden fill to a practicals-only lock.
+- **Continuity across chained scenes.** Preserve approved continuity and
+  reference bindings wherever scenes must match. Reuse stable phrases for
+  unchanged light; requested or delegated ordered changes may differ across
+  shots or scenes. State source, scope, timing and transition endpoints, and
+  keep protected regions and intervals unchanged.
+- **Scoped look proposals.** A color grade, grain, halation or vignette may be
+  requested or proposed within delegated look scope, never imposed by a lighting
+  preset. Preserve ungraded, grain-free and source-edit locks; describe a post
+  treatment separately from the prompt's physical lighting.
 - **Watermark false by default.** Set `watermark: false` on all generation
   unless the user explicitly requests the AIGC watermark.
 - **No empty phrasing.** Never write "well lit, bright" or "good lighting".
@@ -247,10 +267,10 @@ Before handing off a lighting block, verify:
 1. The preset is from the bank, or the custom recipe follows the direction/quality/color-temperature recipe.
 2. Seedream output puts the lighting in the `Lighting:` section only.
 3. Seedance output puts the lighting phrase in the Visual Style slot ("The visuals feature ... lighting"); when a shot plan supplies lighting, each shot line preserves its key side.
-4. Exactly one dominant lighting direction is named.
+4. Each source has a compatible direction and role; same-interval contradictions are returned for clarification.
 5. Every phrase names direction, quality (soft or hard), and color temperature or gel.
 6. Practicals and Silhouette outputs add no hidden off-camera fill source.
 7. No "well lit", "bright", or "good lighting" empty phrasing appears.
-8. The phrase is stable and reusable verbatim across chained scenes that must match; per-shot key sides may differ within a scene.
-9. A requested light change has a time or range, a declared source and a visible
+8. Approved continuity stays stable where scenes must match; authorized ordered changes name their scope and endpoints.
+9. A requested or delegated light change has a time or range, a declared source and a visible
    result. A night phrase states the actual sky, exposure and motivated sources.

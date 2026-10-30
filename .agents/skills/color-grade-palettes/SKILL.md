@@ -1,31 +1,36 @@
 ---
 name: color-grade-palettes
-description: >
-  Map a named color grade palette or film look into a canonical grade sentence
-  for the Seedance 2.5 Visual Style slot or the Seedream Style: section, with
-  an optional post-grade filter expression for cross-shot matching in the
-  destination workflow. Use this
-  skill for color grading, palette selection, look and grade choices, teal and
-  orange, bleach bypass, film looks, LUT-style grades, and cinematic grades.
-  The prompt grade is the source of truth; the filter expression is only for
-  matching in the destination workflow. Golden hour here means the warm grade
-  palette; for golden-hour
-  physical lighting (sun position and light), use seedance-lighting-presets.
+description: Compose palette sentences and optional matching expressions. Use for requested grading or delegated art direction, including custom looks. Preserve ungraded conform and source locks. Never generates.
 ---
 
 # Color Grade Palettes
 
-This skill turns a named color grade palette or film look into a **canonical
+This skill turns a named or custom color grade palette or film look into a **canonical
 grade sentence** that drops into the **Seedance 2.5 Visual Style slot** of the
 six-part formula, or into the **Seedream `Style:` section**. It is
 **prompt-composition only** — it never calls any tools and never runs a
 generation. When `post_grade` is requested it also emits a short filter
 expression for cross-shot matching in the destination workflow.
 
-> **The prompt grade is the source of truth.** The grade is baked into the
-> prompt at generation time. A filter-based re-grade is never an alternative to the
-> prompt grade — it only matches or refines a baked-in grade so separate takes
-> of the same palette line up in the destination workflow.
+**Resolve look authority before choosing a palette.** Delegated creative
+authorship permits a custom palette or film-look proposal without a named
+preset. Explain its visible purpose; a proposal is not user approval. Preserve
+approved palettes and explicit locks under the caller's approval mode.
+Neutral, muted, monochrome and saturated treatments are choices, not saturation
+or intensity quotas.
+
+For technical conform or source-preserving edits, retain original colours
+without added grade, grain, halation or vignette unless that axis is authorized
+to change. Explicit ungraded delivery wins over broad creative delegation.
+With no selected look, omit both the grade sentence and matching expression.
+Keep colour-management requirements separate from creative grading; the caller
+must preserve the source's range, colour space and bit depth through conform.
+Golden hour here is a grade, not physical lighting.
+
+For a selected generation-time look, the prompt grade is the source of truth.
+The optional `post_grade` expression only matches or refines takes of that
+look in the destination workflow. It does not authorize re-grading a locked
+master or require regenerating source footage for a conform-only request.
 
 ## Source authority
 
@@ -45,9 +50,10 @@ where they conflict. The base prompt grammar lives in `seedance-prompt-25` and
 ## Palette bank
 
 Each entry has a **canonical grade sentence** (drop-in, natural inside a
-prompt) and a one-line **tonal recipe** describing the intent. Use the sentence
-verbatim for reproducibility; adjust only the visible specifics (e.g. which
-highlights) when the scene requires it.
+prompt) and a one-line **tonal recipe** describing the intent. The bank is an
+optional starting point: adapt it or propose a custom descriptive look for
+delegated authorship. Reuse an approved sentence verbatim when its look is locked;
+the recipes do not limit the available palettes.
 
 ### Core palettes (9)
 
@@ -87,7 +93,7 @@ highlights) when the scene requires it.
 
 | Parameter | Type | Meaning |
 |---|---|---|
-| `palette` | string (required) | A palette name from the bank, or a plain descriptive grade with no invented film name |
+| `palette` | optional string | A named palette or custom descriptive proposal, never an invented real film stock. May be derived under delegated authorship; unset after that decision means no grade. |
 | `target_model` | `seedance` \| `seedream` \| `both` | Where the grade sentence lands: Visual Style slot, `Style:` section, or both |
 | `reference` | optional string | A style-reference image; the grade is expressed as `use the muted palette, soft grain, diffused highlights of @Image N` |
 | `post_grade` | optional bool | When true, also emit a matching post-grade filter expression for the destination workflow |
@@ -190,15 +196,18 @@ Kodak Portra 400:
 
 ## Edge cases / guardrails
 
-- **Never stack two conflicting grades in one prompt.** One grade direction
-  per prompt; a teal-and-orange sentence plus a warm-golden sentence fights the
-  model and reads muddy.
-- **Enforce one project-wide palette.** The same palette is used in every scene
-  of a project for cross-shot consistency. Record it in `project.md` / `scene.md`
-  alongside the grade language so later scenes reuse the identical phrase.
-- **B&W needs explicit language.** "Black and white" alone is not enough —
-  use contrast, silver mid-tones, and grain phrasing (e.g. Classic B&W or
-  Ilford HP5) so the result is not flat gray.
+- **Preservation is not open authorship.** Conform/source-preserving work adds
+  no look outside authorized changes. Preserve explicit ungraded delivery.
+- **Resolve actual colour conflicts.** Compatible ingredients or ordered
+  per-scene looks may form one coherent treatment. Name their spatial or temporal
+  scope; do not apply contradictory instructions to the same region and interval.
+- **Preserve approved look scope.** Reuse the locked palette and exact phrase.
+  Delegated authorship may propose deliberate look transitions; do not silently
+  change a project-wide palette lock. Return choices in chat unless saving is
+  requested.
+- **B&W needs tonal intent.** Describe the requested contrast and mid-tones.
+  Grain, deep blacks and bright whites are options, not requirements for every
+  monochrome image; preserve a requested low-contrast or grain-free look.
 - **Prompt grade is the source of truth.** A filter-based re-grade is only for
   matching/refinement in the destination workflow, never a substitute for the prompt grade
   and never applied against a differently graded take.
@@ -207,20 +216,20 @@ Kodak Portra 400:
   observational.
 - **Watermark false by default.** Set `watermark: false` on all image, video,
   and audio generation unless the user explicitly requests the AIGC watermark.
-- **Chained scene sequences repeat the same grade phrase.** When scenes chain
-  via `return_last_frame` / `first_frame`, repeat the exact same grade sentence
-  in every scene so continuity holds across the chain.
+- **Chained scenes preserve the intended look continuity.** For an unchanged
+  look, repeat its exact sentence. For an authorized transition, describe the
+  boundary and endpoint; actual output continuity remains unverified here.
 - **Do not invent film names.** If the palette is not from the bank, write a
   plain descriptive grade (e.g. "cool desaturated blue-gray") instead of
   inventing a brand or stock that does not exist.
 
 ## Self-check checklist
 
-1. Palette is from the bank, or a plain descriptive grade with no invented film name.
-2. Exactly one grade direction is present; no second or conflicting palette words.
+1. Look authority is clear: a named or custom proposal is in scope, or preservation/conform and explicit ungraded delivery omit grading.
+2. Look ingredients and ordered changes are coherent within their scope; no contradictory same-region, same-interval instructions.
 3. The grade sentence is placed in the Visual Style slot (Seedance) or `Style:` section (Seedream), not in the subject or action line.
 4. No conflicting color words appear elsewhere in the prompt.
-5. B&W palettes include explicit contrast / silver / grain language, not just "black and white".
+5. B&W tonal intent is explicit; grain and contrast follow the requested look, not a quota.
 6. Film-stock keywords appear only in `Style:` / visual style, never in the subject description.
 7. A post-grade filter expression appears only when `post_grade` is requested, and it is labeled as matching-only in the destination workflow.
-8. When grading across a chained scene sequence, the same grade phrase repeats verbatim in every scene.
+8. Chained scenes repeat locked looks verbatim or carry authorized transition boundaries, not accidental palette drift.

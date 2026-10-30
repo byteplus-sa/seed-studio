@@ -4,6 +4,7 @@ Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) f
 mode selection and caller responsibilities.
 
 - [Special audio and text syntax](#special-audio-and-text-syntax)
+- [Choosing the audio route](#choosing-the-audio-route)
 - [Emotional direction](#emotional-direction)
 - [Scripted dialogue for all speaking characters](#scripted-dialogue-for-all-speaking-characters)
 - [Describing screen and UI layout positively](#describing-screen-and-ui-layout-positively)
@@ -63,13 +64,36 @@ No subtitles.
 No audio at all.
 ```
 
-A no-music or no-speech sentence is a request, not proof of silence. Upstream
-observations include native audio adding unwanted voices or music. When the
-brief requires an ambience-only or score-led piece, propose picture-only video
-with a separate approved sound bed; set audio generation off only when the
-selected destination supports it and the user accepts that route. Keep an
-accepted native-dialogue route and separate lip-sync audio opt-in. Listening
-and playback determine whether the result meets the brief.
+A no-music or no-speech sentence is a request, not proof of silence. Choose
+the route below before relying on it.
+
+## Choosing the audio route
+
+Resolve sound ownership from the brief before choosing `generate_audio`.
+Wordless does not mean picture-only. Native audio can add unwanted speech,
+chants or music; negative wording is not a guarantee.
+
+| Sound ownership | Route |
+| --- | --- |
+| Requested native dialogue, lip-sync, diegetic action or ambience, including wordless scenes | Native audio (`generate_audio: true` where supported); specify wanted voices/effects, synchronization and exclusions |
+| Exact supplied master or controlled post soundtrack | Preserve the master unchanged; use picture-only generation where supported and place the approved master/bed in post |
+| Purposeful silence | Disable native audio where supported; otherwise propose authorized removal in post and verify silence; do not add a bed |
+| Ownership unspecified or contradictory | Ask a focused question; keep the route unresolved rather than infer it from absent dialogue |
+
+For mixed ownership, name which layers are native and which are post. Keep an
+accepted native route; changing it needs the user's acceptance. Separate lip-sync
+audio remains opt-in. Confirm supported destination controls and reference roles;
+return capability conflicts without pretending an unavailable switch exists.
+Keep rights, consent and source approvals unchanged. This is a prompt handoff,
+not authorization to generate media or perform post-production here.
+
+Describe critical native contact sounds in `<>`, for example
+`<the latch clicks as the door closes>`. Exclude unwanted voices and score, then
+require playback and listening in the destination workflow. If unwanted audio
+remains, reject it or propose an authorized repair, not automatic muting of
+requested native sound. A post bed is not automatically frame-synced; place
+critical hits in assembly. Re-check a promoted final rather than assume its
+soundtrack matches the draft. Exact masters must not be regenerated.
 
 ## Emotional direction
 
