@@ -228,10 +228,12 @@ in the `Lighting:` section only — never in `Style:` or `Subject:`.
 
 ## Edge cases and guardrails
 
-- **Lighting is emergent.** Prompt-side direction only, not a rig. The model
-  approximates the setup; inspect generated shots before locking a look.
-  For a requested A/B, keep prompt and references fixed and reuse a seed only
-  when the destination supports it. Never promise exact light physics.
+- **Lighting is emergent.** Prompt-side direction only, not a rig. Inspect
+  actual results before locking a look. An A/B is optional and needs
+  generation authorization. Keep prompt and references fixed and reuse a
+  seed only when the selected model and destination tool support it; omit
+  unsupported or unknown seed controls. Never promise exact light physics
+  or reproducibility.
 - **Relight is not available prompt-side.** Changing lighting on an
   already-generated image or video requires regenerating from a revised
   prompt. There is no prompt-side relight toggle; write an image-edit prompt

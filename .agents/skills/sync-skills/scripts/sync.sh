@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Mirror allowlisted skill bundles from the upstream source checkout.
+# Update allowlisted skill bundles from the upstream source checkout.
 #
 # Usage: sync.sh plan|apply [all | skill-name ...]
 #   plan   preflight, resolve the skill set, check the source scope, list diffs;
@@ -20,13 +20,13 @@
 # the synced skills for them and exits 4 until they are scrubbed.
 #
 # Exit codes: 0 ok, 1 error, 2 usage, 3 dirty source scope needs confirmation,
-# 4 synced skills contain forbidden references that must be scrubbed.
+# 4 scrub required, 5 dirty destination, 6 destination-only ownership unresolved.
 set -euo pipefail
 
 ALLOWLIST="brief-intake prompt-review seedance-prompt-25 seedance-prompt-25-filipino seedance-prompt-20 seedance-animation-styles seedance-camera-presets seedance-lens-presets seedance-lighting-presets seedance-pacing-presets seedance-motion-design seedance-restoration seedance-vfx-prompt seedream-prompt seedream-character-sheet seedream-location-asset seed-audio-prompt ugc-ad-modes ugc-motion-presets color-grade-palettes omnihuman-prompt-20"
 EXCLUDES=(--exclude='.DS_Store' --exclude='__pycache__')
-DIFF_EXCLUDES=("${EXCLUDES[@]}" --exclude='agents')
 RSYNC_EXCLUDES=("${EXCLUDES[@]}" --exclude='/agents')
+RSYNC_OPTIONS=(-a --checksum --omit-dir-times "${RSYNC_EXCLUDES[@]}")
 
 MODE="${1:-}"
 case "$MODE" in
@@ -45,7 +45,11 @@ if [ ! -f "$SRC/.agents/skills/seedance-prompt-25/SKILL.md" ]; then
   exit 1
 fi
 echo "source ok: $SRC"
-echo "source revision: $(git -C "$SRC" rev-parse --short HEAD)"
+SOURCE_REVISION="$(git -C "$SRC" rev-parse --short HEAD)" || {
+  echo "ERROR: source revision unavailable; nothing copied" >&2
+  exit 1
+}
+echo "source revision: $SOURCE_REVISION"
 echo "--- this repo working-tree changes:"
 git status --short
 
@@ -109,25 +113,40 @@ fi
 OTHER_DIRTY="$(git -C "$SRC" status --short | wc -l | tr -d ' ')"
 echo "source dirty paths overall: $OTHER_DIRTY (informational)"
 
+OWNERSHIP_STATUS=0
+python3 -B "$SCRIPT_DIR/ownership.py" "$SRC" "$ROOT" $SKILLS || OWNERSHIP_STATUS=$?
+case "$OWNERSHIP_STATUS" in
+  0|6) ;;
+  *) exit 1 ;;
+esac
+
 # 4. Diff, and sync when applying
 echo "--- skills:"
 CHANGED=""
 for s in $SKILLS; do
-  if diff -rq "${DIFF_EXCLUDES[@]}" "$SRC/.agents/skills/$s" ".agents/skills/$s" >/dev/null 2>&1; then
+  if ! PREVIEW="$(rsync "${RSYNC_OPTIONS[@]}" --dry-run --itemize-changes "$SRC/.agents/skills/$s/" ".agents/skills/$s/")"; then
+    echo "ERROR: preview failed for $s; nothing copied" >&2
+    exit 1
+  fi
+  if [ -z "$PREVIEW" ]; then
     echo "unchanged  $s"
   else
     echo "updated    $s"
-    diff -rq "${DIFF_EXCLUDES[@]}" "$SRC/.agents/skills/$s" ".agents/skills/$s" 2>/dev/null | sed 's/^/    /' || true
+    printf '%s\n' "$PREVIEW" | sed 's/^/    /'
     CHANGED="$CHANGED $s"
     if [ "$MODE" = "plan" ]; then
       N="$(python3 "$SCRIPT_DIR/leaks.py" --count "$SRC/.agents/skills/$s")"
       [ "$N" != "0" ] && echo "    would bring in $N reference(s) to tools or skills not shipped here; scrub after applying"
-    else
-      rsync -a --delete "${RSYNC_EXCLUDES[@]}" "$SRC/.agents/skills/$s/" ".agents/skills/$s/"
     fi
   fi
 done
+if [ "$OWNERSHIP_STATUS" != "0" ]; then
+  exit "$OWNERSHIP_STATUS"
+fi
 if [ "$MODE" = "apply" ] && [ -n "$CHANGED" ]; then
+  for s in $CHANGED; do
+    rsync "${RSYNC_OPTIONS[@]}" "$SRC/.agents/skills/$s/" ".agents/skills/$s/"
+  done
   echo "--- scan of synced skills for references this workspace does not ship:"
   SCAN_ARGS=()
   for s in $CHANGED; do SCAN_ARGS+=(".agents/skills/$s"); done
