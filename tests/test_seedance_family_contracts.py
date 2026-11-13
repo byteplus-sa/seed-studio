@@ -9,6 +9,51 @@ class SeedanceFamilyContractsTests(unittest.TestCase):
     def text(self, relative):
         return " ".join((SKILLS / relative).read_text().lower().split())
 
+    def test_remaining_board_owners_reject_origin_laundering(self):
+        for path in (
+            "seedance-prompt-20/SKILL.md",
+            "seedream-storyboard/SKILL.md",
+            "seedream-storyboard/references/scene-density.md",
+        ):
+            with self.subTest(path=path):
+                text = self.text(path)
+                for concept in (
+                    "grids", "panels", "crops", "animatics", "planning-only",
+                    "crop", "cleanup", "approval", "selection", "hash",
+                    "board-derived regeneration", "do not change planning origin",
+                    "translate", "text", "historical",
+                ):
+                    self.assertIn(concept, text)
+                for stale in (
+                    "submit only the promoted panel",
+                    "submit only the two promoted panels",
+                    "submit the approved panel",
+                    "promote only approved panels to video keyframes",
+                    "a storyboard panel may later become a keyframe",
+                    "bind the whole grid in a seedance prompt only when",
+                    "when a board is bound to a seedance prompt",
+                    "hand a board that conditions a seedance prompt",
+                    "approved-panel and explicit supported-conditioning rules",
+                ):
+                    self.assertNotIn(stale, text)
+
+    def test_remaining_board_owners_preserve_independent_eligible_inputs(self):
+        for path in (
+            "seedance-prompt-20/SKILL.md",
+            "seedream-storyboard/SKILL.md",
+            "seedream-storyboard/references/scene-density.md",
+        ):
+            with self.subTest(path=path):
+                text = self.text(path)
+                for concept in (
+                    "independently authored", "text-free", "non-board",
+                    "production still", "independent animated blockout",
+                    "exact", "model", "operation", "transport", "role",
+                    "rights", "source lineage", "qa",
+                ):
+                    self.assertIn(concept, text)
+                self.assertIn("preserve historical", text)
+
     def test_studio_02_adapter_and_review_never_promote_board_origin_to_conditioning(self):
         paths = (
             "seedance-prompt-25/SKILL.md",

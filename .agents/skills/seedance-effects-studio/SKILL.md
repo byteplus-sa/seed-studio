@@ -154,17 +154,44 @@ Recipes: [effects-product-and-spectacle.md](references/effects-product-and-spect
 5. **Handoff.** Deliver the exact paste-ready prompt, ordered reference roles,
    parameter suggestions, missing inputs, destination post needs and material
    evidence limits. Do not promise exact counts, cut frames or identity.
-   Every new Seedance 2.5 generation, including video edits, starts with
-   `resolution: "480p"` and boolean `draft: true`. Keep delivery resolution
-   separate; the caller inspects and selects the native draft before promotion
-   by `draft_task_id`. Missing draft controls need resolution, not an ordinary
-   480p substitute. Other video models without native draft mode use a clearly
-   labeled ordinary 480p test.
+   Apply [Preview evidence](#preview-evidence) to the selected operation;
+   keep delivery resolution separate from its evidenced preview controls.
    Freeze the text; a revision is a new version with its named change.
 6. **Returned take, when supplied.** Compare its signature mechanics against
    the recipe's acceptance observations, state how it was inspected, and
    propose one concrete repair. Technical inspection and sampled frames do
    not establish full visual quality or audio quality.
+
+## Preview evidence
+
+Preserve the selected exact model and operation. Previously covered exact standard
+Seedance 2.5 and access-confirmed Premium bindings require explicit
+`resolution: "480p"` and boolean `draft: true` for every new generation,
+including tests, edits, extensions, opt-in probes and creative retries, in
+default and strict review. Missing legacy Draft controls are a capability
+mismatch, not permission to drop `draft` or substitute ordinary 480p.
+
+Other exact bindings use a verified operation profile independently bound to
+provider, transport, tool schema revision and validity. Native preview uses
+evidenced native controls; promotion support is a separate check. Do not inherit
+480p or boolean Draft. A verified non-native operation uses the evidenced ordinary
+preview, for example ordinary 720p even when 480p is also supported, clearly
+non-promotable. Never infer support from a family substring.
+
+Native promotion requires the exact selected successful native task, unchanged
+creative inputs and reference hashes, matching valid model/operation/profile/transport,
+supported promotion controls such as `draft_task_id`, and final inspection.
+Failed, unselected or mismatched tasks cannot be promoted. Ordinary task IDs
+cannot be promoted; an inspected, selected successful ordinary preview precedes a
+separately confirmed fresh final with unchanged creative inputs, supported output
+settings and its own final inspection.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing.
+
+Keep per-submit confirmation, rights and selection separate; no automatic review.
+Prompt-only authoring does not authorize generation. Preserve historical task
+identity and selection records; relabeling cannot make an ordinary task native.
+The caller owns execution under [Generation transport](../../contracts/generation-transport.md).
 
 ## Input routes
 
@@ -197,8 +224,8 @@ the local video-to-video contract.
   the recipe when the user requests a total count. Prompt counts remain
   probabilistic.
 - **No hidden workflow.** This leaf neither submits nor prepares requests,
-  creates projects or saves files automatically. It states native draft
-  settings in the parameter note; the caller owns execution and selection.
+  creates projects or saves files automatically. It states applicable verified
+  preview settings in the parameter note; the caller owns execution and selection.
 - **Evidence stays bounded.** Check each recipe's intended style coverage on
   the current output; a recipe's presence is not proof it works.
 

@@ -13,6 +13,54 @@ CALLERS = (
 
 
 class SeedanceFamilyRoutingTests(unittest.TestCase):
+    def test_legacy_and_storyboard_handoffs_have_no_board_reference_tokens(self):
+        for skill, end in (
+            ("seedance-prompt-20", "### Model IDs"),
+            ("seedream-storyboard", "## Render style"),
+        ):
+            content = (SKILLS / skill / "SKILL.md").read_text()
+            heading = (
+                "### Storyboard-to-video handoff"
+                if skill == "seedance-prompt-20" else "### Seedance handoff"
+            )
+            handoff = content.split(heading, 1)[1].split(end, 1)[0].lower()
+            with self.subTest(skill=skill):
+                self.assertIn("translate", handoff)
+                self.assertIn("planning-only", handoff)
+                self.assertIn("first", handoff)
+                self.assertIn("r2v", handoff)
+                self.assertNotIn("@image 1: approved storyboard panel", handoff)
+                self.assertNotIn("bind the grid", handoff)
+                self.assertNotIn("promoted panel", handoff)
+
+    def test_remaining_board_narrative_evals_cover_positive_edge_and_failure_cases(self):
+        scenarios = {
+            101: ("selected", "crop", "first-frame", "hash"),
+            102: ("selected", "grid", "r2v", "hash"),
+            103: ("board-derived regeneration", "cleanup", "text-free"),
+            104: ("independently authored", "non-board", "production still"),
+            105: ("independent animated blockout", "motion", "source lineage"),
+            106: ("historical", "records"),
+            107: ("no assets", "unknown", "no generation"),
+            108: ("independent", "wrong", "rights", "unresolved"),
+        }
+        for skill in ("seedance-prompt-20", "seedream-storyboard"):
+            data = json.loads((SKILLS / skill / "evals/evals.json").read_text())
+            cases = {case["id"]: case for case in data["evals"]}
+            self.assertEqual(len(cases), len(data["evals"]))
+            for case_id, concepts in scenarios.items():
+                with self.subTest(skill=skill, case=case_id):
+                    self.assertIn(case_id, cases)
+                    case = cases[case_id]
+                    for concept in concepts:
+                        self.assertIn(concept, case["prompt"].lower())
+                    self.assertEqual(case["files"], [])
+                    self.assertTrue(case["expected_output"].strip())
+                    self.assertGreaterEqual(len(case["expectations"]), 3)
+                    expectations = " ".join(case["expectations"]).lower()
+                    self.assertIn("no", expectations)
+                    self.assertIn("planning-only", expectations)
+
     def test_studio_02_board_guidance_routes_to_text_not_uploaded_planning_assets(self):
         parameter = (SKILLS / "seedance-prompt-25/references/parameter-reference.md").read_text()
         handoff = parameter.split("### Storyboard-to-video handoff", 1)[1].split(

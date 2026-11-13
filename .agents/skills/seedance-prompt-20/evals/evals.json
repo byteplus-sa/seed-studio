@@ -50,14 +50,14 @@
     {
       "id": 5,
       "prompt": "Prepare a Seedance video request from an approved storyboard panel plus approved character, kitchen-location, and branded-jar sheets. Identity must remain explicit, but the opening frame does not need pixel-perfect locking. The storyboard manifest records an older rejected jar variant. Decide the image mode and perform the handoff preflight.",
-      "expected_output": "A blocked R2V handoff that treats the storyboard as a composition anchor, keeps canonical assets separate, and returns the stale panel to review until it is regenerated or corrected against the approved jar.",
+      "expected_output": "A text-staging R2V draft omitting the planning-only panel. Flag its stale jar provenance for storyboard review, but do not treat correction or regeneration as video eligibility.",
       "files": [],
       "expectations": [
-        "The output selects R2V rather than mixing first_frame with reference_image roles.",
-        "The output assigns separate indexed roles to the panel, character, location, and prop assets.",
+        "The output proposes R2V only with verified exact role support, never mixed first_frame and reference_image roles.",
+        "The output translates board composition into text and indexes only eligible canonical assets, not the panel.",
         "The output identifies the rejected jar variant as stale provenance.",
-        "The output returns the dependent panel to review and does not submit video generation.",
-        "The output requires paths, hashes, selected variants, roles, and approval states in the shot manifest."
+        "The output returns the dependent panel to storyboard review and does not submit video generation or promote the corrected board.",
+        "The output preserves selected variants, roles, rights and source lineage; hashes or approval do not change planning origin."
       ]
     },
     {
@@ -81,6 +81,102 @@
         "Does not introduce camera variety, body motion, a tactic switch or a resolution.",
         "Keeps the language and words, quiet delivery and patient attention.",
         "Does not require a non-eye-level angle, changed duration or minimum burst count."
+      ]
+    },
+    {
+      "id": 101,
+      "category": "planning-origin",
+      "prompt": "Explicit legacy Seedance 2.0. Use my selected rights-cleared storyboard crop as first-frame input. Approval and current hash are recorded; the crop has no labels.",
+      "expected_output": "Reject board-origin conditioning and translate the selected staging into legacy prompt text without changing the model.",
+      "files": [],
+      "expectations": [
+        "The crop remains planning-only despite selection, rights, approval, current hashes and absent labels.",
+        "No first_frame binding, upload, submission or new approval is inferred.",
+        "Preserves staging in text and offers an independently authored non-board production still as an unselected alternative."
+      ]
+    },
+    {
+      "id": 102,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 R2V accepts reference_image. Bind this selected grid with current hash and a style override; all character sheets are approved.",
+      "expected_output": "Omit the grid; carry its staging in text and retain only independently eligible canonical references.",
+      "files": [],
+      "expectations": [
+        "The selected grid is planning-only even with exact reference_image support and a style override.",
+        "No grid reference token, upload or submission is emitted.",
+        "Keeps approved identity descriptors and ordered eligible canonical references."
+      ]
+    },
+    {
+      "id": 103,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0. After crop and cleanup, I made a text-free standalone image using the panel prompt and board as a reference. This board-derived regeneration is approved as a production still.",
+      "expected_output": "The derivative remains board-origin, not an independent production still; translate its staging into text.",
+      "files": [],
+      "expectations": [
+        "Crop, cleanup, text-free rendering, renamed roles and board-derived regeneration remain planning-only.",
+        "No conditioning eligibility is granted by approval or a new hash.",
+        "Explains independent source lineage without generating a replacement or rewriting history."
+      ]
+    },
+    {
+      "id": 104,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 first-frame: use my independently authored, selected, text-free non-board production still. Exact model/operation/transport role support, current canonical hashes, rights, consent and source lineage are verified.",
+      "expected_output": "Return a first-frame prompt package using the independently eligible still, without imposing a blanket visual-reference ban.",
+      "files": [],
+      "expectations": [
+        "Distinguishes the independent still from planning-only boards and checks artifact QA.",
+        "Uses only the verified first_frame role and preserves canonical identities and ordered references.",
+        "No generation or approval of an unseen output; caller confirmation and final inspection remain separate."
+      ]
+    },
+    {
+      "id": 105,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 motion reference: I selected an independent animated blockout with verified exact motion role, rights, source lineage and current hashes. It was independently animated geometry, not a storyboard animatic.",
+      "expected_output": "Return motion-reference wording mapping blockout subjects, with appearance separate and temporal QA still required.",
+      "files": [],
+      "expectations": [
+        "Keeps storyboard animatics planning-only while allowing the independently eligible blockout.",
+        "Checks exact operation/transport role, source lineage, rights and artifact-specific QA; no appearance transfer.",
+        "No submission or claim that sparse frames prove motion quality."
+      ]
+    },
+    {
+      "id": 106,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 historical panel-linked task succeeded. Preserve its records, task identity, hashes and selection. May I use that selected panel again for a new shot?",
+      "expected_output": "Preserve historical records unchanged, but deny new conditioning authority from prior board-linked success.",
+      "files": [],
+      "expectations": [
+        "The panel remains planning-only for new requests despite historical success.",
+        "No rewrite of task identity, prior selection, hashes or approvals.",
+        "Translate staging into new prompt text and keep execution confirmation separate."
+      ]
+    },
+    {
+      "id": 107,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 chat-only staging draft: no assets, unknown exact operation role evidence and no generation. No scene beat has been supplied yet.",
+      "expected_output": "Ask for the missing beat and return unresolved settings, without inventing references, model support or a production still.",
+      "files": [],
+      "expectations": [
+        "No assets, role support, generation, files or approvals are invented.",
+        "Planning-only intent may be authored in text when the missing beat is supplied.",
+        "Preserves the explicit legacy selection and marks capability and reference evidence unresolved."
+      ]
+    },
+    {
+      "id": 108,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0: an independent production still has wrong transport role evidence and unresolved rights. Its source lineage is missing. Please bind it anyway; it is text-free.",
+      "expected_output": "Do not bind the still; independence is necessary but does not replace exact role, rights or lineage evidence.",
+      "files": [],
+      "expectations": [
+        "Keeps planning-only boards excluded without claiming all independent stills are eligible.",
+        "Missing lineage, unresolved rights and wrong-destination role evidence prevent conditioning handoff.",
+        "No upload, submission, silent model change or invented authorization; usable text intent may still be returned."
       ]
     }
   ]

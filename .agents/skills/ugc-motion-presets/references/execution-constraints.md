@@ -11,13 +11,46 @@ tool/API values — they never appear in prompt text.
 | Parameter | Value and notes |
 |---|---|
 | `duration` | Integer seconds, 4–30; `-1` for auto. Integer only — no sub-second values. |
-| `resolution` | Explicit `480p` with boolean `draft: true` for every new Seedance 2.5 generation. Keep the requested UGC delivery target separate for promotion by `draft_task_id` after the caller inspects and selects the draft. Standard 2.5 caps at 1080p; a 4K request needs legacy 2.0 or confirmed access and destination support for whitelist-only 2.5 Premium. |
+| `resolution` | Use [Preview evidence](#preview-evidence) for the selected exact operation; keep the UGC delivery target separate. Standard 2.5 caps at 1080p; for 4K, offer legacy 2.0 or access-confirmed Premium as unselected alternatives, never change the model silently. |
 | `ratio` | `9:16` default for UGC unless the request says otherwise. Locked to the first image on first/last-frame tasks and auto-derived from the source on edit tasks — never set it there. |
 | Locked camera | State locked-off selfie/posing and spectacle framing in the prompt. Use a camera-lock parameter only if the destination exposes one. |
 | `generate_audio` | Enables the native audio track the recipes describe. |
 | `watermark` | `false` by default (the tool supports the parameter). |
 | `return_last_frame` | `true` chains a scene into the next one's `first_frame` — used by multi-shot and long lifestyle recipes. |
 | `priority` | 0–9; leave unset unless the caller specifies. |
+
+## Preview evidence
+
+Preserve the selected exact model and operation. Previously covered exact standard
+Seedance 2.5 and access-confirmed Premium bindings require explicit
+`resolution: "480p"` and boolean `draft: true` for every new generation,
+including tests, edits, extensions, opt-in probes and creative retries, in
+default and strict review. Missing legacy Draft controls are a capability
+mismatch, not permission to drop `draft` or substitute ordinary 480p.
+
+Other exact bindings use a verified operation profile independently bound to
+provider, transport, tool schema revision and validity. Native preview uses
+evidenced native controls; promotion support is a separate check. Do not inherit
+480p or boolean Draft. A verified non-native operation uses the evidenced ordinary
+preview, for example ordinary 720p even when 480p is also supported, clearly
+non-promotable. Never infer support from a family substring.
+
+Native promotion requires the exact selected successful native task, unchanged
+creative inputs and reference hashes, matching valid model/operation/profile/transport,
+supported promotion controls such as `draft_task_id`, and final inspection.
+Failed, unselected or mismatched tasks cannot be promoted. Ordinary task IDs
+cannot be promoted; an inspected, selected successful ordinary preview precedes a
+separately confirmed fresh final with unchanged creative inputs, supported output
+settings and its own final inspection.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing.
+
+Keep per-submit confirmation, rights and selection separate; no automatic review.
+Prompt-only authoring does not authorize generation. Preserve historical task
+identity and selection records; relabeling cannot make an ordinary task native.
+The caller owns execution under [Generation transport](../../../contracts/generation-transport.md).
+The remaining parameter tables are versioned recipe notes, not evidence for
+another exact model, operation or transport.
 
 ## Task types
 
