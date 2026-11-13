@@ -11,9 +11,10 @@ disable-model-invocation: true
 
 # Sync skills from the upstream source
 
-Mirror the allowlisted skill bundles from the upstream checkout into this
-repo. Never commit — leave all changes for review. This is the single source
-for the procedure; Claude Code, Codex and opencode all run it.
+Preview and update the allowlisted skill bundles from the upstream checkout
+into this repo without deleting destination files. Leave all changes
+uncommitted for review. This is the single source for the procedure;
+Claude Code, Codex and opencode all run it.
 
 ## Scope
 
@@ -56,6 +57,11 @@ A sync copies upstream wording verbatim, and upstream is not prompt-only.
   deleted, so local-only `agents/` folders and local policy edits such as
   `policy: allow_implicit_invocation: false` in `prompt-review/agents/openai.yaml`
   survive.
+- **Ownership gate:** [scripts/ownership.py](scripts/ownership.py) inventories
+  whole selected bundles, including references and evals. Destination-only
+  files and directories block both `plan` and `apply` with exit 6, even when
+  committed and clean. Absence upstream does not establish permission to
+  delete a local overlay. No sync option bypasses this gate.
 - **Caught automatically:** references to tools and skills this workspace does
   not ship (`ark-mcp`, `showcase-html`, MCP tool names, `seed_understand`,
   deleted-skill names, upstream scripts), and code files inside a skill. The
@@ -146,8 +152,11 @@ It checks the source (default `../ark-director`, overridden by
 changes, validates the names, checks the source scope, and lists which skills
 would change. It copies nothing.
 
-- **Exit 1** — stop and report the error. Never sync from another path
-  unless the user sets `SKILLS_SOURCE`.
+- **Exit 1** - stop and report the error. Missing directories, symlinks in
+  selected content or bundle paths, unsupported file types, file/directory
+  conflicts, and inventory or rsync preview failures stop before copying.
+  Excluded metadata and cache paths are not inventoried. Never sync from
+  another path unless the user sets `SKILLS_SOURCE`.
 - **Exit 5** — modified, staged, untracked or ignored destination paths
   intersect the selected bundles. Stop before copying anything, list the
   paths, and ask the user how to preserve or resolve that work. Both `plan`
@@ -155,6 +164,15 @@ would change. It copies nothing.
   Never automatically stash, commit, discard or overwrite it. Resolve only
   with explicit authorization, then rerun `plan`. Excluded `agents/`
   metadata and cache files are preserved and do not block the sync.
+- **Exit 6** - destination-only paths have unresolved ownership. Report every
+  listed path and leave the entire selection untouched. A clean committed
+  overlay and an upstream deletion look the same without pinned ancestry.
+  Prefer a selective manual merge that retains local files, or ask the owner
+  for an explicit decision per path. Never infer deletion permission from
+  approval to sync. In particular, preserve
+  `seedream-location-asset/references/lighting-states-and-plates.md`.
+  Rerun `plan` only after the authorized resolution; do not expand the
+  allowlist, stash work, or remove files just to clear this gate.
 - **Exit 3** — dirty source paths intersect the sync scope; the sync would
   copy unreviewed upstream work. The plan is still printed. List those paths
   and ask the user to confirm before applying.
@@ -176,10 +194,18 @@ After the user confirmed a dirty **source** scope, prefix `SYNC_ALLOW_DIRTY=1`.
 This never bypasses the destination guard, which checks all selected bundles
 before any copy. Do not edit selected bundles concurrently with the sync;
 the preflight is not a lock against external editors.
-`rsync --delete` mirrors each changed bundle, so renamed or removed reference
-files disappear here too, except each skill's `agents/` folder, which is left
-alone. The script never creates a skill directory and never touches
-`.agents/contracts/`.
+The ownership inventory and checksum-based rsync dry runs complete for every
+selected bundle before any write. Apply uses the same checksum comparison
+without deletion flags: upstream additions and shared-path updates are copied,
+but upstream removals and renames require explicit manual ownership resolution.
+Each skill's `agents/` folder is left alone. The script never creates a skill
+directory and never touches `.agents/contracts/`.
+
+Shared-path wording differences still require review and the local repairs
+below; this is not a three-way merge and cannot identify committed same-path
+forks by ancestry. Copy-time I/O failures can leave partial updates. Stop and
+inspect the diff rather than automatically retrying, restoring, or discarding
+work. A successful preview is not a transaction or a concurrency lock.
 
 After copying, `apply` scans the synced skills and lists every forbidden
 reference as `file:line`. **Exit 4** means the sync is not finished: the copy is
@@ -210,6 +236,10 @@ every problem it lists, and repeat step 2b until it is clean.
 The repository-level regression tests check these local policy repairs and
 eval-data integrity, not actual generated-media quality. They are outside leaf
 skill bundles and do not expand the sync allowlist or change tool policy.
+`tests/test_sync_overlay_preservation.py` runs the sync only inside temporary
+Git source/destination repositories. It covers clean committed overlays,
+dirty destinations, upstream-only changes, unchanged bundles, symlinks,
+type conflicts and preflight failures without syncing real checkouts.
 
 The nonpaid policy regressions check the retained submission safeguards,
 absence of inherited financial prerequisites, JSON validity and eval IDs.
