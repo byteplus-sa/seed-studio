@@ -8,7 +8,7 @@ description: >-
   standard, kinetic). Use for narrative, ad, micro-drama, music-video and
   showcase clips when the user asks for a shot list, coverage, a repair to a flat scene, or
   more dynamic camera work and lighting. Returns a shot plan record and the
-  per-shot facts a Seedance 2.5 prompt carries. Not for static assets,
+  per-shot facts a Seedance prompt carries. Not for static assets,
   source-preserving edits (object swap, restyle, recast), or task submission.
 ---
 
@@ -33,7 +33,8 @@ skill.
 | Dramatic structure of the scene | `scene-craft` |
 | Supplied performance intentions, triggers and listening | `acting-direction` |
 | Supplied fictional-action exchanges and actor/prop states | `seedance-fight-choreography` |
-| Six-part formula, per-shot prompt block, references, audio syntax | `seedance-prompt-25` |
+| Generic creative composition | `seedance-prompt` |
+| Explicit versioned syntax and evidenced settings | Selected `seedance-prompt-25` or `seedance-prompt-20` adapter |
 
 These are prose pointers for the calling agent. This skill decides *which*
 choices a shot needs; the preset skills decide *how* each one is worded.
@@ -75,7 +76,7 @@ fights, consume the actor/prop state and exchange ledger. Missing facts remain
 questions; do not invent motives or invoke another skill.
 
 Output: a shot plan record per [shot plan format](references/shot-plan-format.md)
-and the per-shot facts the Seedance 2.5 prompt carries.
+and the per-shot facts the Seedance prompt carries without selecting a model.
 Carry supplied beat IDs and readable evidence in chat notes. Reserve response
 time and respect crop, occlusion and scale; return conflicts rather than
 silently changing coverage, performance or timing.
@@ -155,7 +156,7 @@ silently changing coverage, performance or timing.
 | V3 Motivated motion or stillness | Derive motion from the supplied scene and requested directing intent. Motion ratios are optional planning aids, not quotas. A whole clip or scene may remain held with a stated rationale; repeated stillness is valid. Do not add moves, cuts or light changes to satisfy a count. |
 | V4 Light named | Every shot names a declared source and a key side. "Cinematic lighting" and "soft fill" without a source and a side are not light facts. |
 | V5 Turn readable | When a turn is supplied, choose readable emphasis within the locks. Do not invent a turn, contrast or changed duration for an observational scene. |
-| V6 Move clarity | One primary move per shot and at most one secondary unless explicitly requested choreography needs more, each with a subject, a start and an end. Step 4's shot-density guidance is provisional, not a clip-level quota. |
+| V6 Move clarity | Preserve compatible requested paths with subject, start, end and readable handoffs; return simultaneous conflicts. Move count is a heuristic, not a quota. |
 | V7 Readable performance | A move never stands in for a cue that cannot be read at that size; match shot size to the cues the beat needs. |
 | V8 Screen direction | Travel and confrontation state the axis and restate it after each cut; a deliberate axis crossing is named. |
 | V9 Intentional timing | Use the scene's speech, listening and action rhythm. Uneven timing is optional; equal lengths and source-locked cuts remain valid without a forced turn or contrast. |
@@ -182,7 +183,8 @@ or a measured video-quality gain.
 Timestamps are a time budget, not frame-accurate cut points, and the model may
 merge or reorder cuts. Judge the take by watching it. A 480p Draft
 (`draft=true`) is the cheap way to check shot structure and motion before a
-final render.
+final render only for a matching evidenced native-Draft operation. Other models
+need their own verified preview policy; unknown controls remain unresolved.
 
 ## Checklist
 

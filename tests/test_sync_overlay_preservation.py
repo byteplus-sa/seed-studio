@@ -372,6 +372,36 @@ class SyncOverlayPreservationTests(unittest.TestCase):
         self.assertEqual(result.returncode, 4, result.stdout + result.stderr)
         self.assertIn("SCRUB REQUIRED", result.stderr)
 
+    def test_family_leaf_is_not_allowlisted_or_modified(self):
+        self.write(self.destination, "seedance-prompt", "SKILL.md", "Neutral leaf\n")
+        self.commit(self.destination)
+        before = self.snapshot(self.destination)
+        self.assert_refused_without_writes(
+            self.sync(skills=("seedance-prompt",)), before, 1,
+        )
+
+    def test_committed_family_eval_overlay_blocks_both_modes(self):
+        self.write(
+            self.destination, "seedance-prompt-25",
+            "evals/family-local.json", '{"local": true}\n',
+        )
+        self.commit(self.destination)
+        self.write(self.source, PROMPT, "SKILL.md", "Upstream change\n")
+        self.commit(self.source)
+        before = self.snapshot(self.destination)
+        for mode in ("plan", "apply"):
+            result = self.sync(
+                mode, skills=(PROMPT, "seedance-prompt-25"), SYNC_ALLOW_DIRTY="1",
+            )
+            self.assert_refused_without_writes(result, before, 6)
+
+    def test_sync_contract_requires_manual_comparison_of_shared_path_overlays(self):
+        text = (SCRIPTS.parent / "SKILL.md").read_text().lower()
+        self.assertIn("model-neutral overlay", text)
+        self.assertIn("same-path", text)
+        self.assertIn("selective manual comparison", text)
+        self.assertIn("seedance-prompt", text)
+
 
 if __name__ == "__main__":
     unittest.main()

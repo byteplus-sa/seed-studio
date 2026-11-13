@@ -215,6 +215,61 @@
         "Suggests checking the listener's sustained task and final attention without claiming playback evidence or running review.",
         "No saved plan, invented source locator or production record."
       ]
+    },
+    {
+      "id": 301,
+      "prompt": "Generic Seedance prompt only for a kite lifting. The exact model, provider, operation and destination are unknown. Return creative text without selecting a model.",
+      "expected_output": "Neutral creative text with capability settings unresolved, no invented preview or promotion.",
+      "files": [],
+      "expectations": [
+        "Uses neutral creative composition rather than silently selecting 2.5.",
+        "Unknown support blocks execution, not prompt-only writing.",
+        "No invented parameters, submit, assets or persistence."
+      ]
+    },
+    {
+      "id": 302,
+      "prompt": "Prepare settings only. My new model's verified profile supports ordinary 720p preview and explicitly no native Draft. Do not use 480p or another model.",
+      "expected_output": "Supported ordinary 720p preview, non-promotable, with a fresh final generation plan.",
+      "files": [],
+      "expectations": [
+        "Does not infer Draft from a family name or add draft true.",
+        "Does not force 480p or switch model.",
+        "No draft_task_id promotion or actual submission."
+      ]
+    },
+    {
+      "id": 303,
+      "prompt": "Prepare a standard 2.5 edit, but capability evidence is expired, names another provider and transport, and has a remote parameter schema. The operation and tool revision also differ.",
+      "expected_output": "Rejects evidence applicability and leaves execution unresolved without silently dropping native Draft.",
+      "files": [],
+      "expectations": [
+        "Checks provider, exact model, operation, transport, tool revision and validity independently.",
+        "Malformed or remote schemas do not establish supported parameters.",
+        "No submit, file writes or inferred native policy for an unknown binding."
+      ]
+    },
+    {
+      "id": 304,
+      "prompt": "The selected native Draft succeeded but reference hashes changed and its profile expired. Can I promote it by just updating the metadata?",
+      "expected_output": "No promotion under altered or expired evidence; historical selection and original records remain unchanged.",
+      "files": [],
+      "expectations": [
+        "Requires unchanged creative inputs and reference hashes with matching valid profile.",
+        "Does not convert historical ordinary tasks or failed/unselected tasks into native Draft.",
+        "Preserves original records and requires final inspection for any valid new final."
+      ]
+    },
+    {
+      "id": 305,
+      "prompt": "Prepare a 2.5 request with no prompt. My evidenced image cap is 2 and total cap 4; I have 3 images and 2 videos. Conditional audio controls are unsupported for edit.",
+      "expected_output": "Missing creative input and evidenced per-modality, total and conditional violations remain unresolved.",
+      "files": [],
+      "expectations": [
+        "Does not fabricate a prompt or accept empty input as ready.",
+        "Checks image overflow and total overflow separately against evidence, not historical family tables.",
+        "Does not serialize unsupported conditional controls, submit or save."
+      ]
     }
   ],
   "evaluation_note": "Judge semantic effectiveness. Exact delimiters remain checks only where the selected model grammar requires them; headings and paraphrases are not quality proxies."

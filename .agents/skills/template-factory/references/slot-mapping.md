@@ -3,7 +3,10 @@
 How each `VideoBreakdown` field maps into Seedream and Seedance prompt slots.
 This keeps the mapping reproducible and prevents slot drift.
 
-## Seedance 2.5 six-part formula (via `seedance-prompt-25`)
+## Seedance creative composition (via `seedance-prompt`)
+
+Preserve the selected model; explicit versioned syntax belongs to its adapter,
+not the breakdown's genre or language.
 
 | Six-part slot | Source field(s) | Notes |
 | --- | --- | --- |
@@ -11,8 +14,8 @@ This keeps the mapping reproducible and prevents slot drift.
 | Action | `shots[].action` + `shots[].motion` imperative wording | Per-shot stages with end states; motion wording is the anti-static fix |
 | Scene | `elements[]` location descriptors | `@Image` binding |
 | Visual style | `shots[].lighting`, requested shot-specific choices, then `visual_style` defaults | Shot lighting wins for that shot; order: lighting → lens → grade → film |
-| Camera | `camera` + per-shot `shots[].camera` + `shots[].motion.camera_motion` | ≤2 moves per shot |
-| Audio | `shots[].audio` + verified `audio` | `( )` music, `< >` SFX, `{ }` dialogue; transcribe only verified dialogue; `No audio at all` only when silence is verified |
+| Camera | `camera` + per-shot `shots[].camera` + `shots[].motion.camera_motion` | Preserve compatible paths, ordered phases and source speed; no numeric move cap |
+| Audio | `shots[].audio` + verified `audio` | Preserve native/post/master/silent ownership; transcribe only verified dialogue and use the selected adapter's syntax |
 
 ## Per-shot scope
 
@@ -27,9 +30,10 @@ those values are unknown.
 
 ## Reference binding order (Seedance)
 
-1. Build the eligible input set: approved element references, and any
-   explicitly selected production panel. Omit analysis sketches by default;
-   translate their choreography into text.
+1. Build the eligible input set from approved element references and
+   independently selected text-free production stills, subject to capability
+   checks. Storyboard panels, grids, crops and analysis sketches stay
+   planning-only; translate their choreography into text and omit conditioning.
 2. Assign `@Image N` in the exact paste order, with one role per input.
    Intentional control-image conditioning requires explicit user selection.
 

@@ -2,7 +2,7 @@
 name: seedance-lens-presets
 description: >
   Turns a lens, focal length, aperture, or sensor request into a canonical
-  visible-result phrase for Seedance 2.5 prompts or the Seedream style.
+  visible-result phrase for Seedance prompts or the Seedream style.
   Trigger words: lens, focal length, 35mm, 50mm, 85mm, wide angle, telephoto,
   anamorphic, fisheye, macro, aperture, f-stop, f/1.4, depth of field, bokeh,
   shallow DOF, deep focus, or a lens intent from a shot plan. Keep optical look
@@ -42,8 +42,8 @@ physical-photography concept; it informs the heuristics but does not establish
 generative-model behavior.
 
 The base prompt grammar this skill composes into lives in the
-`seedance-prompt-25` skill (six-part formula, camera language, emotional
-direction) and the `seedream-prompt` skill (Subject / Setting / Style / Lighting
+`seedance-prompt` skill (generic creative composition; explicit versioned syntax
+uses the selected adapter) and the `seedream-prompt` skill (Subject / Setting / Style / Lighting
 / Composition structure). Compose with those skills for the surrounding grammar;
 this skill only resolves the optics axis.
 
@@ -120,19 +120,21 @@ an exact shape or near-to-far focus outcome.
 
 ### Focus changes: rack focus and focus loss
 
-This skill owns focus-change wording. In six upstream 480p text-to-video
-takes across three wordings, the face stayed sharp. Treat that as limited evidence rather than a universal model limit: a
+This skill owns focus-change wording. In six historical upstream 2.5 480p
+text-to-video takes across three wordings, the face stayed sharp. Treat that as
+limited evidence scoped to that model and operation, not a universal model limit: a
 face asked to drift out of focus often stays sharp while the model softens the
 background instead.
 
 | Change | Status | What to write |
 |---|---|---|
-| Face sharp, then focus left behind on the background (rack away from a face, focus loss during a move) | **Post only** | Generate with ordinary focus on the face; add the defocus ramp in post, or carry the change with light, a move or a cut |
-| Foreground object sharp, then focus pulls onto a face behind it | Unverified hypothesis; check a 480p draft | `Rack focus: focus starts on <foreground object>, sharp, with <subject> soft behind it; at <N>s focus shifts smoothly to <subject>, the <foreground object> blurring as <subject>'s face turns sharp.` |
-| Between two objects with no face | Unverified hypothesis; check a 480p draft | The same template with both planes named as visible objects |
+| Face sharp, then focus left behind on the background (rack away from a face, focus loss during a move) | Unverified outside the historical cases | Preserve requested focus intent; offer a post defocus ramp when reliability matters or a matching inspected take failed |
+| Foreground object sharp, then focus pulls onto a face behind it | Unverified target; optionally inspect a supported preview | `Rack focus: focus starts on <foreground object>, sharp, with <subject> soft behind it; at <N>s focus shifts smoothly to <subject>, the <foreground object> blurring as <subject>'s face turns sharp.` |
+| Between two objects with no face | Unverified target; optionally inspect a supported preview | The same template with both planes named as visible objects |
 
-Do not spend more tries on wording when a draft keeps the face sharp; the
-repair is in post. An attention shift inside one frame can also be staged: a
+If an inspected matching take keeps the face sharp, offer post repair rather
+than promising a wording fix. Further tests are opt-in, not prohibited.
+An attention shift inside one frame can also be staged: a
 move past a foreground element, or the subject stepping into the sharp plane.
 
 ### Lens character
@@ -158,19 +160,19 @@ have a flare. The label does not authorize inventing either feature.
 
 | Sensor | Canonical visible-result phrase |
 |---|---|
-| **VHS** | VHS camcorder look: low resolution, visible scanlines, colors bleeding into each other, soft analog noise. For Seedance video, plan these as a post treatment. |
+| **VHS** | VHS camcorder look: low resolution, visible scanlines, colors bleeding into each other, soft analog noise. Preserve these targets; offer post for exact or demonstrated unmet fidelity. |
 | **Film** | Film stock look: visible grain, gentle halation around highlights, natural tonal range. |
 | **Digital Cinema** | Digital cinema look: clean, crisp image with high dynamic range and minimal noise or grain. |
 
 Sensor character is a texture and tone choice, not a resolution guarantee.
 Pair it with the actual output resolution set in the generation interface.
 
-**Tape and camcorder looks are post treatments for Seedance video.** A
-camcorder format word ("MiniDV") in a Seedance prompt tends to return clean
-cinema footage. For a VHS, MiniDV or camcorder piece, prompt the
-camera behaviour the format implies (handheld at arm's length, an on-camera
-light; whether these cues read as tape is unverified) and apply the scanlines,
-color bleed, noise and frame size in post. The caller uses an available
+**Tape and camcorder looks have a post alternative.** Historical upstream 2.5
+text-to-video observations returned clean cinema footage for "MiniDV"; that
+does not prove a family-wide limitation. Preserve requested scanlines, color
+bleed, noise and frame size as visible targets. Camera behavior such as handheld
+at arm's length or an on-camera light is optional within the requested scope,
+not a substitute imposed on the look. If post treatment is selected, the caller uses an available
 post-look capability; this skill neither invokes nor assumes an installed
 color-grade department. The sensor phrase may still serve a Seedream still,
 where it is an unverified heuristic. Grain, halation or vignette may be requested

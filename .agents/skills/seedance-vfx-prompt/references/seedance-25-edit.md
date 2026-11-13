@@ -16,11 +16,15 @@ video-to-video editing, combine this skill's VFX discipline with the
 | Need | Model | `omni_reference_task_type` | Notes |
 |---|---|---|---|
 | Full-duration edit (match source length) | Seedance 2.5 (`dreamina-seedance-2-5-260628`) | `edit` | Preferred. Duration auto-locks to ~source length (up to 30s). |
-| 4K output / Fast / Mini | Seedance 2.0 (`dreamina-seedance-2-0-260128`) | `edit_video` | 2.0 edit **caps output at ~5s** in practice regardless of source length — do not use for edits longer than ~5s. |
+| Explicit legacy edit / Fast / Mini | Seedance 2.0 (`dreamina-seedance-2-0-260128`) | `edit_video` | Earlier client tests returned about 5s; historical observation, not an operation-wide duration limit. Verify current support before selection. |
 | Video extension | 2.5 | `extend` | Native forward/backward extension. |
 
 > 2.5 accepts `auto | reference | edit | extend`. It **rejects `edit_video`**
 > (that value is 2.0-only) with `InvalidParameter`. 2.0 uses `edit_video`.
+
+This matrix records historical model/operation observations, not family
+capabilities. A 4K requirement does not authorize a model switch. Bind current
+provider, exact model, operation, transport and tool revision before settings.
 
 ### Canonical 2.5 edit structure
 
@@ -134,11 +138,32 @@ only identity, environment, and runtime:
   <subject>" guard.
 - New script in `{}` with delivery style; lips sync the NEW words; emotion is
   externalised as posture/gesture/jaw/eyes, not bare labels.
-- Camera: ≤ 2 moves in one take, each dual-anchored (semantic + "At about
-  0:NN"), orbit expanded with direction and foreground/background parallax.
+- Camera: preserve compatible requested paths and ordered phases, with subject
+  and endpoints; add timing only where needed and expand orbit through visible
+  direction and parallax.
 
-Keep the camera block to two moves — three or more reads as unstable in one
-continuous take.
+Earlier instability is scoped to its inspected model, operation and take;
+three moves alone are not a defect or a family cap. Clarify simultaneous
+contradictions without silently dropping requested choreography.
+
+### Evidence-scoped technical conform
+
+Conform is not a grade or permission to restyle protected footage. Before
+proposing a conversion, inspect the actual stream's dimensions, frame timestamps,
+range, primaries, transfer, matrix and pixel format, plus intended delivery.
+Record model, operation and measured source provenance separately from requested
+settings. A resolution or model name alone does not establish color encoding.
+
+For a measured limited-range BT.709 SDR stream with BT.709 primaries, transfer
+and matrix and a compatible 8-bit YUV pixel format, a delivery recipe may
+preserve that interpretation and tag matching output. That recipe applies only
+when all measured fields and destination requirements match. HDR transfer,
+full range or a different matrix requires a separately supported conversion,
+not copied SDR tags. Unknown fields remain unresolved; conflicting container,
+bitstream or decoder reports require clarification before conversion. Merely
+relabeling tags does not convert pixel values. Preserve original media and sound;
+derive a separate copy only with authorization and verify timing, decoded
+picture and audio after conform.
 
 ### Routing vs overlay dubbing
 

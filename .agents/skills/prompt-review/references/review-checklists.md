@@ -5,6 +5,18 @@ repo. Use only when the user explicitly invokes `/prompt-review`; it never
 gates prompt handoff or generation. Each section is self-contained for that
 manual review.
 
+## Model-first dispatch
+
+Resolve model and operation first, then requested axes, genre and language.
+An unknown model permits provisional creative findings, but capability review
+stays incomplete. Missing or empty prompts stay incomplete, not passed.
+Use only the selected version's base checklist; Filipino or music-video
+guidance is additive and does not select 2.5. Reviews are findings-only unless
+repair is separately authorized, including for unfrozen inputs.
+Reference counts, duration and preview controls below are historical snapshots,
+not family limits. Confirm exact model, provider, operation, transport, tool
+schema revision and validity before calling them supported.
+
 ## Table of contents
 
 - [Universal — all prompts](#universal--all-prompts)
@@ -127,7 +139,8 @@ text, regardless of review depth or delivery target. Plain 480p is not native
 Draft mode. A missing control is a capability mismatch to resolve, not a
 fallback. Inspect and select the draft before promotion by `draft_task_id`;
 changed creative inputs require a new draft. Other models without native
-Draft support use a clearly labeled ordinary, non-promotable 480p test.
+Draft support use only an evidenced ordinary preview resolution, clearly
+non-promotable. Unknown preview support blocks execution, not prompt writing.
 This check does not make manual `/prompt-review` mandatory.
 
 ### Formula check
@@ -181,8 +194,9 @@ This check does not make manual `/prompt-review` mandatory.
     current source hashes, supported tool/mode inputs, and leakage QA; labels or
     extraction instructions alone do not grant eligibility.
 
-14. **Reference count limits.** ≤ 30 images, ≤ 10 videos, ≤ 10 audio. Recommended:
-    1-8 image subjects, 1-5 video subjects (5-10s each), only directly relevant audio.
+14. **Reference count limits.** Verify per-modality and total limits for the
+    selected model/operation. The earlier 30-image, 10-video, 10-audio snapshot
+    and recommended subject counts do not establish a family quota.
 
 ### Scene staging
 
@@ -273,9 +287,10 @@ review does not authorize generation or post-production in this workspace.
     vision flashes belong in assembly when prompted timing cannot meet the
     brief; 0.8 s is a provisional heuristic, not a universal minimum.
     A prompt that asks the model to skip an
-    action it describes is a MAJOR finding. A prompt that asks a subject to
-    drift out of focus during a move is a MINOR finding: that defocus is
-    added in post. A single burst with holds or slower motion is an optional
+    action it describes is a MAJOR finding. Requested focus loss is an
+    unverified visible target, not a MINOR finding by itself; limited earlier
+    T2V face-focus failures motivate an optional post alternative.
+    A single burst with holds or slower motion is an optional
     remedy for a demonstrated failure, not a cap or MINOR finding by itself.
     Preserve repeated action and locked timing; assess readable support,
     momentum, contact and recovery rather than counting bursts.
@@ -536,11 +551,10 @@ and record why.
 
 ### Limits and rights
 
-8. **Reference counts.** Within hard limits (≤ 30 images, ≤ 10 videos, ≤ 10
-   audio) and the recommended range: 1–8 image subjects and one motion video.
-   Exceeding a hard limit is CRITICAL. More than eight mapped subjects, or
-   references above the recommended range, is MAJOR unless the prompt notes
-   the trade-off; suggest splitting into shots and assembling in post.
+8. **Reference counts.** Count each modality and total against current
+   model/operation evidence. Exceeding a verified hard limit is CRITICAL;
+   unknown limits are incomplete. Historical recommended counts alone are not
+   MAJOR findings; optional splitting needs a readability reason and agreement.
 
 9. **Video-to-video inputs.** Apply the shared items under
    [Video-to-video inputs](#video-to-video-inputs-swap-recast-restyle).
@@ -571,7 +585,7 @@ V3. **Source rights.** The package notes the user's confirmed rights for the
     footage and the people in it. A missing confirmation is CRITICAL. Do not
     suggest wording that routes around a provider rejection.
 
-V4. **Exact source timing (swap and restyle).** Preserve the source span,
+V4. **Exact source timing (swap, recast and restyle).** Preserve the fractional source span,
     frame timestamps, cuts and playback speed. Do not require 8n+1 frames or
     whole-second rounding from a prior probe. Adapt only a separate copy for
     a verified destination requirement, with user agreement and the timing
@@ -947,8 +961,9 @@ Source skill: `seedance-vfx-prompt`
 
 Source skill: `seedance-prompt-25-filipino`
 
-Use as an additional checklist alongside Seedance 2.5 when the scene contains Tagalog,
-Filipino, or Taglish dialogue.
+Use as an additional language checklist after the selected model and operation
+when the scene contains Tagalog, Filipino, or Taglish dialogue. Never import
+2.5-only parameters into a legacy or unknown-model request.
 
 ### Words, register and scope
 

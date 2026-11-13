@@ -8,15 +8,21 @@ description: >
   keyframe sequences, storyboard grids, coarse and fine blockout references,
   one-click video, seamless transitions, audio bracket syntax, dialogue
   language reinforcement, emotional direction, and camera language. Use this
-  skill for Seedance 2.5 prompts, multi-reference asset orchestration, scene
+  skill for explicitly selected Seedance 2.5 prompts and syntax, multi-reference asset orchestration, scene
   staging, video editing, extension, and corrections to generated motion or
   continuity. For legacy Seedance 2.0 prompts, use seedance-prompt-20 instead.
-  For 4K through legacy 2.0 or Fast/Mini speed variants, use
-  `seedance-prompt-20`; whitelist-only 2.5 Premium requires confirmed access
+  Generic creative requests use seedance-prompt without selecting a model.
+  Legacy 2.0 and Fast/Mini remain explicit alternatives, not automatic 4K routing;
+  whitelist-only 2.5 Premium requires confirmed access
   and destination support.
 ---
 
 # Seedance Prompt
+
+This is the retained explicit 2.5 adapter. Generic Seedance creative composition
+uses `seedance-prompt`; preserve model selection and return unverified settings
+separately. The model limits below are versioned snapshots, not family-wide
+capabilities or authorization to switch models.
 
 Write production-grade prompts for the BytePlus Seedance 2.5 video generation
 model. Seedance 2.5 generates **up to 30 seconds** of video with native audio in

@@ -1,9 +1,14 @@
 ---
 name: seedance-prompt-20
-description: Write and revise production-grade Seedance 2.0 video prompts with reference-role classification, subject definitions, spatial continuity, shot sequencing, camera direction, native audio, and constraints. Use this skill for Seedance 2.0 prompts, shot lists, chase or action blocking, scene geography, reference-driven video, and corrections to generated motion or continuity. For Seedance 2.5 prompts, compose with seedance-prompt-25 instead.
+description: Write and revise explicitly selected Seedance 2.0 prompts and legacy syntax with reference roles, subject definitions, spatial continuity, shots, native audio and constraints. Not the generic Seedance creative entrypoint; use seedance-prompt for unversioned prompt requests. Explicit 2.5 syntax stays in seedance-prompt-25.
 ---
 
 # Seedance 2.0 Prompt
+
+Use this retained adapter for explicit legacy 2.0 requests. Generic craft
+composition uses `seedance-prompt` without selecting a model. A 4K requirement
+alone does not authorize changing the selected model; return capability gaps
+and unselected alternatives separately.
 
 > **For Seedance 2.5 prompts, the `seedance-prompt-25` skill covers those.** This skill
 > is for the legacy Seedance 2.0 model. The 2.5 model has a different prompt anatomy

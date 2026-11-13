@@ -9,6 +9,14 @@ mode selection and caller responsibilities.
 
 ## Quick reference card
 
+These tables are a versioned snapshot, not live capability evidence. Verify
+the exact model, provider, operation, transport, tool schema revision and
+explicit validity interval independently against the intended destination.
+Evidence includes supported roles, per-modality and total reference limits,
+self-contained parameter schemas and conditional constraints. Unknown support
+is unresolved, not false or a default copied from a related model.
+Studio defines no runtime profile adapter or production catalog.
+
 ### Model IDs
 
 | Variant | Model ID |
@@ -80,7 +88,7 @@ mode selection and caller responsibilities.
 
 ### When to use Seedance 2.0 instead of 2.5
 
-Fall back to `seedance-prompt-20` and the 2.0 model (`dreamina-seedance-2-0-260128`) when:
+Offer `seedance-prompt-20` and the 2.0 model as unselected alternatives when:
 
 - You need **4K output resolution** — standard 2.5 caps at 1080p; whitelist-only 2.5 Premium is a separate access-dependent option.
 - You need **Fast or Mini speed variants** — 2.5 has no Fast/Mini; 2.0 Fast/Mini are cheaper and faster for prototyping.
@@ -129,7 +137,8 @@ approval states in the shot manifest before submission.
 
 ## Native draft first
 
-Every new Seedance 2.5 generation, including edits, extensions and creative
+For the previously covered standard 2.5 and access-confirmed Premium bindings,
+every new generation, including edits, extensions and creative
 retries, starts with explicit `resolution: "480p"` and boolean `draft: true`.
 Keep these controls in the destination parameter block, not prompt text.
 Review depth does not change this rule. A requested 720p or 1080p final is a
@@ -141,12 +150,23 @@ settings. The final is separately paid and inspected. Do not resend or change
 prompt text, references, duration, ratio or audio parameters in promotion.
 Changing any creative input requires a new native draft first.
 
+Promotion also requires the exact selected successful native task, unchanged
+reference hashes and creative inputs, matching exact model, operation, transport
+and profile, evidence still within expiry, and final inspection. Do not turn a
+historical ordinary task into native Draft by changing metadata or a profile.
+Failed, unselected, expired or mismatched tasks are not promotable.
+
 A plain 480p output is not a native draft and cannot be promoted by naming its
 task ID. If a selected Seedance 2.5 UI/tool does not expose native draft mode,
 resolve the capability mismatch before submission rather than dropping
 `draft: true`. Do not invent a control the interface cannot accept.
-For other video models without native draft mode, use an ordinary 480p first
-test, clearly labeled non-promotable, and a fresh generation for the final.
+For a new model use its verified operation profile only. An explicitly
+non-native model uses a supported ordinary preview at its evidenced resolution,
+clearly non-promotable, and a fresh generation for the final. Do not force
+480p or infer native Draft from a model-name substring. Unknown preview or
+promotion support blocks execution, not prompt-only creative writing.
+Missing, malformed, expired or wrong-destination evidence remains unresolved;
+do not invent parameters or silently drop `draft` to resolve a conflict.
 
 ## Guide disclaimer
 

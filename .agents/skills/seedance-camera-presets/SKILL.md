@@ -4,7 +4,7 @@ description: >
   Turn a named camera move or preset — dolly, pan, tilt, orbit, crane, jib,
   tracking, handheld, FPV, aerial, bullet time, dolly zoom, crash zoom, whip
   pan, one-take, or static — into a canonical, drop-in Camera block for the
-  Seedance 2.5 six-part prompt formula. Use when the user asks for a camera
+  Seedance creative prompt. Use when the user asks for a camera
   preset, camera movement style, or a shot's camera treatment, and when a shot
   plan names a move to word.
   Bullet time here is the camera-orbit technique (freeze + orbit); speed-ramp
@@ -17,13 +17,13 @@ description: >
 # Seedance Camera Presets
 
 This skill turns a named camera preset, movement style, or camera personality into a
-canonical, drop-in **Camera block** for the Seedance 2.5 six-part prompt formula
+canonical, drop-in **Camera block** for the Seedance creative prompt formula
 (Subject + Action + Scene + Visual Style + Camera + Audio). It is a
 **prompt-composition-only** skill: it never calls any tools, and
 it never runs generation. The base prompt grammar — the six-part formula,
-`@Image N` / `@Video N` reference-role syntax, `At Ns` timestamp syntax, and
-audio bracket syntax — is defined in `seedance-prompt-25` and is **not
-redefined here**. Compose with `seedance-prompt-25` for the full prompt
+reference-role syntax, timestamps and audio syntax come from the selected
+adapter. Generic composition uses `seedance-prompt`; explicit 2.5 syntax
+remains in `seedance-prompt-25`. Compose with `seedance-prompt` for the full prompt
 contract; this skill only adds the preset bank on top.
 
 The output of this skill is always a **Camera block** — one or two sentences
@@ -40,7 +40,7 @@ sources accessed 2026-08-13:
 - [BytePlus ModelArk prompt guide](https://docs.byteplus.com/en/docs/ModelArk/2607689) — official prompt guidance
 - [Seedance 2.5 launch blog](https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5) — official announcement
 
-**The base grammar is defined in `seedance-prompt-25`.** This skill adds the
+**Generic creative composition is defined in `seedance-prompt`.** This skill adds the
 preset bank and Camera-block composition rules; it does not restate or replace
 the six-part formula, reference-role syntax, or audio syntax from that skill.
 
@@ -269,8 +269,8 @@ lock, and matches the style of a full Seedance 2.5 prompt.
   preset apply to anything the reference does not cover. Repeating the motion
   can conflict with the reference itself.
 - **Generation parameters stay in the API.** Duration, resolution, aspect
-  ratio, and watermark never go in the prompt. Keep `watermark: false` by
-  default.
+  ratio, and watermark never go in the prompt. Include watermark controls only
+  when supported by the selected operation and requested.
 - **Numeric optics are advisory.** Focal length, aperture, and shutter values
   may be included, but always pair them with the intended **visible result**
   (e.g. `shallow depth of field — background soft with compressed bokeh`), per
@@ -278,7 +278,7 @@ lock, and matches the style of a full Seedance 2.5 prompt.
 
 ## Self-check checklist
 
-Before a Camera block is submitted as part of a Seedance 2.5 prompt, verify:
+Before returning a Camera block for the selected Seedance model, verify:
 
 1. The move is a named preset or a clear custom path, with compatible compound
    components or ordered phases as needed. Describe uncommon terms through
@@ -290,8 +290,8 @@ Before a Camera block is submitted as part of a Seedance 2.5 prompt, verify:
 4. No numeric aperture or focal value appears alone without a visible result.
 5. Official shot sizes and angles are distinguished from common film-language
    additions; framing and Dutch-angle wording remain unverified heuristics.
-6. Any timestamp uses `At Ns` syntax and is reserved for a critical beat or
-   transition — not paced frame-by-frame.
+6. Any timestamp uses the selected adapter's supported syntax and is reserved
+   for a critical beat or transition, not paced frame-by-frame.
 7. A whip pan or other transition includes the trigger time, direction,
    occluding element, and the composition or motion that continues after.
 8. A one-take shot lists subjects, spaces, and events in order.
@@ -301,4 +301,4 @@ Before a Camera block is submitted as part of a Seedance 2.5 prompt, verify:
     together when position matters.
 
 A Camera block that passes all ten checks is ready to be composed into the
-full prompt by `seedance-prompt-25`.
+full prompt by `seedance-prompt`, with versioned syntax only when selected.

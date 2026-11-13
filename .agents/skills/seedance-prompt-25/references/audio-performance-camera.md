@@ -43,6 +43,9 @@ Dialogue language: authentic Los Angeles English. The young man says in natural 
 
 Seedance 2.5 natively supports these languages: Chinese, English, Spanish,
 Indonesian, Malay, Thai, Arabic, Portuguese, Vietnamese, Japanese, and Korean.
+This is a historical language snapshot for this version, not current evidence
+for every model and operation. Preserve the selected model; unknown language
+support does not select another adapter or mandate separate audio.
 **Languages outside this list** — such as Tagalog/Filipino, Hindi, Bengali, or
 Swahili — may require additional pronunciation and intonation annotation in
 the prompt, or an **audio-first pipeline** (when the user requests lip-synced
@@ -54,7 +57,7 @@ For **Tagalog/Filipino or Taglish** dialogue, compose with the partner skill
 (stress markers, glottal-stop notation, syllable breakdown), intonation
 direction (flat baseline, L-H/H-L phrase accents, question/statement contours),
 Taglish code-switching guidance, and an optional audio-first pipeline. Compose
-with it whenever the scene contains Filipino dialogue.
+with it only for requested language guidance, after resolving model and operation.
 
 ### Direct audio controls
 
@@ -185,6 +188,11 @@ selfie PiP). When a screen UI mockup reference image is also provided as
 together to lock the layout.
 
 ## Camera language
+
+Camera paths, focus and lighting are visible targets, not hard family quotas.
+Historical 2.5 T2V observations about face focus or timed cues do not establish
+support or failure for another model, operation or reference bundle. Preserve
+compatible choreography and source locks; clarify actual simultaneous conflicts.
 
 For a requested or supplied shot plan, keep each shot's size, angle and move on
 its own line; see [Shot Staging](shot-staging.md). Do not add camera axes to a
