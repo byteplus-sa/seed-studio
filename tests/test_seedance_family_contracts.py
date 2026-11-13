@@ -1,4 +1,5 @@
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -8,6 +9,94 @@ SKILLS = Path(__file__).resolve().parents[1] / ".agents/skills"
 class SeedanceFamilyContractsTests(unittest.TestCase):
     def text(self, relative):
         return " ".join((SKILLS / relative).read_text().lower().split())
+
+    def factory_storyboard_delegate(self):
+        entrypoint = (SKILLS / "template-factory/SKILL.md").read_text()
+        link = re.search(
+            r"Author storyboard prompts per \[storyboard-prompts\.md\]\(([^)]+)\)",
+            entrypoint,
+        )
+        self.assertIsNotNone(link)
+        delegate = SKILLS / "template-factory" / link.group(1)
+        self.assertEqual(
+            delegate, SKILLS / "template-factory/references/storyboard-prompts.md",
+        )
+        return " ".join(delegate.read_text().lower().split())
+
+    def assert_factory_planning_handoff(self, text):
+        board = r"(?:panel|storyboard|board|grid cell|thumbnail)"
+        redraw = r"(?:re-?author|redraw|repaint|rebuild|regenerat\w*|fresh render)"
+        anchor = (
+            r"(?:video keyframe|first[- ]frame|last[- ]frame|"
+            r"opening reference|closing anchor|r2v|motion reference)"
+        )
+        routes = (
+            (
+                rf"{board}[^.!?]*\b(?:must|should|can|may)\b[^.!?]*"
+                rf"(?:become|serve|use|{redraw})[^.!?]*{anchor}"
+            ),
+            rf"{redraw}[^.!?]*{board}[^.!?]*\b(?:as|for|into)\b[^.!?]*{anchor}",
+            (
+                rf"\b(?:attach|bind|feed|upload|use)\b[^.!?]*{redraw}"
+                rf"[^.!?]*\b(?:as|for|into)\b[^.!?]*{anchor}"
+            ),
+        )
+        for route in routes:
+            self.assertIsNone(re.search(route, text), "board-redraw conditioning route")
+        for concept in (
+            "planning-image authoring only", "regenerating from a panel prompt",
+            "preserves planning origin", "planning-only", "animatics",
+            "first/last-frame", "r2v", "motion", "translate", "text",
+        ):
+            self.assertIn(concept, text)
+
+    def test_factory_loaded_delegate_matches_board_owner_and_video_slot_handoff(self):
+        delegate = self.factory_storyboard_delegate()
+        self.assert_factory_planning_handoff(delegate)
+        for path in (
+            "seedream-storyboard/SKILL.md",
+            "template-factory/references/slot-mapping.md",
+        ):
+            with self.subTest(path=path):
+                owner = self.text(path)
+                for concept in ("planning-only", "panels", "grids", "crops",
+                                "translate", "text", "production still"):
+                    self.assertIn(concept, owner)
+        self.assertIn(
+            "regenerating a standalone from its panel prompt is not independence",
+            self.text("seedream-storyboard/SKILL.md"),
+        )
+
+    def test_factory_handoff_rejects_alternate_redraw_routes_even_with_origin_fence(self):
+        delegate = self.factory_storyboard_delegate()
+        self.assert_factory_planning_handoff(delegate)
+        for directive in (
+            "Repaint the selected thumbnail without labels as the opening reference.",
+            "Rebuild the grid cell in full color for a last-frame closing anchor.",
+            "A cleaned board may serve as an R2V reference after selection.",
+            "Regenerate the panel from its saved prompt as the motion reference.",
+            "Attach the fresh render from the recorded beat as the first-frame image.",
+        ):
+            with (
+                self.subTest(directive=directive),
+                self.assertRaisesRegex(AssertionError, "board-redraw conditioning route"),
+            ):
+                self.assert_factory_planning_handoff(
+                    f"{delegate} {directive.lower()}",
+                )
+
+    def test_factory_preserves_independent_stills_and_blockouts_with_existing_gates(self):
+        delegate = self.factory_storyboard_delegate()
+        self.assert_factory_planning_handoff(delegate)
+        for text in (delegate, self.text("seedream-storyboard/SKILL.md")):
+            for concept in (
+                "independently authored", "selected", "text-free", "non-board",
+                "production still", "independent animated blockout", "exact",
+                "model", "operation", "transport", "role", "rights", "consent",
+                "current canonical hashes", "source lineage", "artifact-specific qa",
+                "motion and appearance", "preserve historical",
+            ):
+                self.assertIn(concept, text)
 
     def test_remaining_board_owners_reject_origin_laundering(self):
         for path in (
