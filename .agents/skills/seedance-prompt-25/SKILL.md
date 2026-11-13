@@ -45,16 +45,28 @@ for each critical action beat.
 
 ## Procedure and reference loading
 
-For every new generation, including edits, extensions and retries, provide
-explicit `resolution: "480p"` and boolean `draft: true` in the parameter block,
-never in prompt text. This is native draft mode, not ordinary low-resolution
-generation, and applies regardless of review depth or final delivery target.
+For previously covered exact standard Seedance 2.5 and access-confirmed Premium
+bindings, every new generation, including edits, extensions, probes and retries,
+uses explicit `resolution: "480p"` and boolean `draft: true` in the parameter
+block, never in prompt text, regardless of review depth or final delivery target.
+New exact model/operation bindings, including other 2.5 variants, use only a
+verified profile independently bound to provider, transport, tool schema revision
+and validity. New native operations use evidenced native controls. Verified
+non-native operations use an ordinary preview at the evidenced resolution, even
+when 480p is also supported, clearly non-promotable; a final is a separately
+confirmed fresh generation. Do not infer Draft from a family substring.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing. Promotion requires the
+exact selected successful native task, unchanged creative inputs and reference
+hashes, matching valid profile/transport and final inspection. Preserve historical
+task identity and selections.
 Read [Parameter Reference](references/parameter-reference.md#native-draft-first)
 for promotion and capability mismatch handling.
 
 Use reference-inputs for R2V; video-editing for edits; video-extension for
-extensions; keyframes-storyboards-blockouts for approved visual conditioning
-and validated blockout manifests; shot-staging for requested or supplied
+extensions; keyframes-storyboards-blockouts for independent production stills,
+planning-only storyboard translation and validated blockout manifests;
+shot-staging for requested or supplied
 multi-shot plans. Add audio-performance-camera for audio ownership and
 applicable dialogue, sound, acting, UI, or camera detail.
 
@@ -251,7 +263,7 @@ Before generation, verify:
 7. **Editing master**: For editing, is the sole editing master, edit scope, target quantity, and content to preserve defined?
 8. **Emotion & camera**: Are abstract emotions and cinematography terms paired with visible/audible cues?
 9. **First/last frames**: Are first/last frames assigned one role per image? Do first and last share aspect ratio?
-10. **Storyboards & blockouts**: Does the storyboard state which structure to inherit, call every board mark (panel numbers, badges, dividers, captions) a planning annotation, and forbid numbers or text in every frame including all four corners — at the binding, per shot, and in the closing constraint? For blockouts, is coarse vs fine identified? Is a video-lock master treated as the sole motion authority, re-dressed not re-imagined?
+10. **Storyboards & blockouts**: Are storyboard grids, panels, crops and animatics planning-only, translated into text and omitted from every conditioning role? Selection, hash checks or promotion labels never change board origin. Independently authored, selected text-free production stills remain eligible subject to exact role support, rights and approval. For blockouts, is coarse vs fine identified? Is a video-lock master treated as the sole motion authority, re-dressed not re-imagined?
 11. **Auto-lock rules**: Do editing, first/last-frame, and extension follow their locked aspect-ratio and duration rules?
 12. **Extension boundary**: For extension, are the boundary image, motion trend, and audio continuity checked?
 13. **One-click video**: Are material roles, image order, motion amount, editing style, and audio defined?
@@ -292,7 +304,12 @@ Before generation, verify:
 
 A sketch or blockout stays `control_only: true` while it is analysis-only. To
 use intentional conditioning, first obtain explicit selection of a derived
-composition or motion reference. Record its exact selected manifest, current
+non-board composition or motion reference. Storyboard grids, panels, crops and
+animatics remain planning-only in every mode; board origin cannot change through
+selection, hash checks, cropping, a style override or a promotion label.
+An independent production still must be independently authored, text-free,
+selected and eligible for its exact role, not renamed planning imagery.
+Record the eligible input's exact selected manifest, current
 SHA-256, `reference_image` or `reference_video` role, and `control_only: false`.
 Confirm live model/mode support. Flipping the flag alone never grants approval;
 the caller applies the [production policy](../../contracts/production-policy.md).

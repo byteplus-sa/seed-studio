@@ -7,15 +7,21 @@ mode selection and caller responsibilities.
 
 ## Keyframes, storyboards, and blockouts
 
-These are specialized prompt grammars, not automatic input eligibility. Translate
-control-only drawings to text and omit them by default. An intentional storyboard,
-sketch, or blockout conditioning path requires explicit user-selected inputs,
-current canonical hashes, a compatible live tool mode, and artifact-specific QA.
+These are specialized prompt grammars, not automatic input eligibility.
+Storyboard grids, panels, crops and animatics are planning-only in every
+conditioning role. Translate their staging into text and omit the planning assets.
+Selection, current hashes, mode support, style overrides and promotion labels
+never change board origin. An independent production still must be independently
+authored, selected and text-free, not a cleaned, cropped or renamed planning panel.
+Eligible non-board composition or animated blockout conditioning requires
+explicit selection, current canonical hashes, compatible live tool roles,
+rights and artifact-specific QA.
 A declared motion-master reference remains a selected conditioning input, not a
 shortcut around review. Image text cannot itself enable an unsupported API role.
 
 ### First and last frames in R2V mode
 
+Use only eligible independent production stills as anchor images.
 State `@Image 1 is the first frame` and `@Image 2 is the last frame` directly in
 multimodal reference mode only when current tool evidence supports this grammar
 and ordered image-role combination. This text does not override API constraints.
@@ -43,7 +49,7 @@ ownership, scene layout, and camera direction>.
 
 ### Multi-keyframe sequences
 
-When separate images define different stages:
+When eligible independent production stills define different stages:
 
 ```
 Use @Image 1 through @Image N as keyframes in this order.
@@ -64,27 +70,20 @@ and axis of action> throughout.
 
 ### Storyboard grids
 
-- Communicate overall story, shot order, and approximate compositions — **not strict reproduction**.
-- **Prefer ≤ 15 panels.** Use clean line art or simple diagrams; minimize text labels.
-- State the reading order, then describe each panel.
-- **Treat every board mark as a leak risk.** Panel numbers, badges, dividers,
-  arrows, and captions are annotations on the planning sheet, not objects in
-  the scene. A single "do not copy panel numbers" clause is not enough: boards
-  with corner numerals have produced takes with the same white digits baked into
-  the top-left corner of every shot. Say it three times — at the binding, in
-  the per-shot frame description, and in the closing constraint — and name the
-  corners explicitly.
-- Refer to shots by reading position ("the first panel", "the top-right
-  panel"), not by the numerals printed on the board.
+Use grids to plan story, shot order and approximate compositions, not as video
+inputs. Translate approved staging into text without a board binding or upload.
+For planning, prefer <= 15 readable panels with clean line art or simple diagrams
+and minimal labels. State reading order and describe each panel by position.
+Panel numbers, badges, dividers, arrows, captions, paper and sketch style are
+planning annotations, never scene content. A style override or leakage check
+does not make a board eligible. Preserve historical board-linked takes, hashes
+and selections without rewriting them or reusing them as new conditioning authority.
+The earlier guide reported boards with corner numerals producing takes with
+the same white digits baked into the top-left corner of every shot. That
+historical observation is not current conditioning permission or evidence that
+any wording guarantees their removal.
 
 ```
-@Image 1 is a planning sheet only: an <N-panel storyboard grid> that gives shot order and
-approximate composition. Read it <left to right, top to bottom>; the first panel is Shot 1.
-Everything drawn on the sheet that is not part of the scene — panel numbers, digits, letters,
-badges, corner labels, arrows, captions, divider lines, borders, paper, and the <line-art or
-sketch style> — is an annotation for the director and must never appear in the video.
-@Image 2 defines <Subject A>'s <appearance and clothing>.
-
 Shot 1: <shot size, subject action, and scene state>, one clean full-frame image.
 Shot 2: <shot size, subject action, camera movement, or transition>, one clean full-frame image.
 ...
@@ -96,18 +95,18 @@ badges, labels, captions, subtitles, or on-screen text anywhere, including all f
 and no grid, split screen, or panel borders.
 ```
 
-> **Optional monochrome conditioning.** A sketch remains control-only unless
-> the user explicitly selects it for a supported conditioning mode. Omit it by
-> default and express scene order, positions, and motion in text. If deliberately
-> attached, bind its index, reading order, and limited composition role; state
-> the desired final style positively and inspect the output for lines, labels,
-> colors, or paper texture leaking into the video. A style override reduces
-> ambiguity but does not guarantee that the board's appearance is suppressed.
+An independently authored text-free production still may supplement this text
+only after selection and verification of its exact role. Cleaning marks off a
+planning panel does not create an independent production still.
 
 ### Blockout references
 
 Two categories — first determine whether the blockout is a **motion skeleton**
 (coarse) or a **complete model** (fine):
+
+These animated non-board references are distinct from storyboard animatics.
+The planning-only boundary does not remove eligible independent blockout motion
+masters or their selection, hash, support and inspection requirements.
 
 | Type | Best For | Material Requirements | Prompt Focus |
 |---|---|---|---|

@@ -13,6 +13,46 @@ CALLERS = (
 
 
 class SeedanceFamilyRoutingTests(unittest.TestCase):
+    def test_studio_02_board_guidance_routes_to_text_not_uploaded_planning_assets(self):
+        parameter = (SKILLS / "seedance-prompt-25/references/parameter-reference.md").read_text()
+        handoff = parameter.split("### Storyboard-to-video handoff", 1)[1].split(
+            "## Native draft first", 1
+        )[0].lower()
+        self.assertIn("planning-only", handoff)
+        self.assertIn("independently authored", handoff)
+        self.assertIn("first-frame", handoff)
+        self.assertIn("r2v", handoff)
+        self.assertNotIn("promoted panel", handoff)
+        self.assertNotIn("@image 1: approved storyboard panel", handoff)
+        reference = (SKILLS / "seedance-prompt-25/references/keyframes-storyboards-blockouts.md").read_text()
+        board = reference.split("### Storyboard grids", 1)[1].split(
+            "### Blockout references", 1
+        )[0].lower()
+        self.assertIn("translate", board)
+        self.assertNotIn("@image", board)
+        self.assertIn("historical", board)
+        self.assertIn("@Video 1 is a coarse blockout reference", reference)
+
+    def test_studio_02_board_evals_include_selected_crop_grid_independent_still_and_history(self):
+        data = json.loads((SKILLS / "seedance-prompt-25/evals/evals.json").read_text())
+        cases = {case["id"]: case for case in data["evals"]}
+        scenarios = {
+            306: ("selected", "crop", "first-frame", "hash"),
+            307: ("selected", "grid", "r2v", "hash"),
+            308: ("independently authored", "production still", "first-frame"),
+            309: ("historical", "panel", "records"),
+        }
+        for case_id, concepts in scenarios.items():
+            with self.subTest(case=case_id):
+                self.assertIn(case_id, cases)
+                case = cases[case_id]
+                for concept in concepts:
+                    self.assertIn(concept, case["prompt"].lower())
+                self.assertEqual(case["files"], [])
+                self.assertTrue(case["expected_output"].strip())
+                self.assertGreaterEqual(len(case["expectations"]), 3)
+        self.assertEqual(len(data["evals"]), len(cases))
+
     def test_generic_craft_callers_name_neutral_leaf(self):
         for skill in CALLERS:
             with self.subTest(skill=skill):

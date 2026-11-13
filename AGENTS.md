@@ -191,9 +191,14 @@ assets or context only when explicitly selected for the current task.
   mismatch to resolve, not permission to silently send ordinary 480p.
   New models use only a verified exact model/operation profile, independently
   bound to provider, transport, tool schema revision and validity. Verified
-  non-native operations use a supported ordinary preview, clearly non-promotable;
-  unknown controls block execution, not prompt-only writing. Do not infer native
-  Draft from a family substring or force unsupported 480p.
+  new native operations use their evidenced native controls, not inherited
+  480p settings. Verified non-native operations use an ordinary preview at the
+  evidenced resolution, even when 480p is also supported, clearly non-promotable;
+  the final is a separately confirmed fresh generation. This includes new exact
+  2.5 bindings outside the previously covered set. Missing, malformed, expired,
+  wrong-destination or unknown evidence leaves execution unresolved, not
+  prompt-only writing. Do not infer native Draft from a family substring or
+  force unsupported 480p.
   Promotion requires the exact successful selected native task, unchanged
   creative inputs and reference hashes, matching valid profile/transport and
   final inspection. Preserve historical task identity and selection records.

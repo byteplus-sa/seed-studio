@@ -86,6 +86,62 @@
         "Keeps the original task and selection history unchanged.",
         "Returns settings only and requires a new inspected selected Draft."
       ]
+    },
+    {
+      "id": 104,
+      "prompt": "Prepare an Original-route full-take recast of consented picture [0, 8.375) seconds and original sound [0, 9.000) seconds, with a locked audible 0.625-second decay tail at 48 kHz. All targets and picture support are verified. No probe, trimming, padding, retiming or rounding. Prompt only.",
+      "expected_output": "Preserves the independent picture and complete sound spans, including the 30000-sample tail; unsupported combined delivery stays unresolved.",
+      "files": [],
+      "expectations": [
+        "Retains original masters, offsets and fractional spans without cutting delivered audio to picture length.",
+        "No -shortest conform, padding, picture extension, rounding or probe is authorized.",
+        "Leaves incompatible delivery unresolved and separates technical audio equality from actual full listening and visible sync.",
+        "No media preparation, generation, upload or file writes occur."
+      ]
+    },
+    {
+      "id": 105,
+      "prompt": "Prepare an Original-route recast with equal picture and sound spans [0, 8.375) seconds. Source rights, voice consent, targets and controls are verified. Keep both spans unchanged. No adaptation or probe. Prompt only.",
+      "expected_output": "Keeps equal full spans and original sound without an unnecessary derived excerpt.",
+      "files": [],
+      "expectations": [
+        "Keeps original picture and sound unchanged, with measured offsets and no invented tail.",
+        "Equal spans need no trim, pad, rounding or derived audio file.",
+        "Retains full listening and sync checks without claiming them performed; no media operations or persistence."
+      ]
+    },
+    {
+      "id": 106,
+      "prompt": "Prepare a full-take Original-route recast with picture [0, 9.000) and sound [0, 8.375) seconds on their measured source timeline. Keep the sound ending as recorded. No padding, picture trimming, retiming or probe. Rights and targets are confirmed. Prompt only.",
+      "expected_output": "Preserves the shorter original sound span independently and leaves any required destination adaptation unresolved.",
+      "files": [],
+      "expectations": [
+        "Retains original masters and independent end times rather than forcing equal lengths.",
+        "No automatic apad, invented silence, picture trimming or frozen extension.",
+        "Reports unsupported combined delivery as unresolved, with no media operations or persistence."
+      ]
+    },
+    {
+      "id": 107,
+      "prompt": "I authorize only a separate probe copy: picture and sound windows [2.125, 4.500) seconds with their measured original offsets. No other adaptation is authorized. The full source picture ends at 8.375 and its sound ends at 9.000 with a locked tail. Prepare instructions only; no media operations.",
+      "expected_output": "Describes matching probe excerpts for only the exact authorized windows while preserving full masters and delivered full-take audio.",
+      "files": [],
+      "expectations": [
+        "Keeps original full picture and sound including the tail intact.",
+        "Records exact authorized picture and sound excerpt windows and offsets; no full-take trimming is implied.",
+        "No generation, extraction, upload or persistence occurs; the later full take retains its independent spans."
+      ]
+    },
+    {
+      "id": 108,
+      "prompt": "Our full take has 8.375 seconds of picture and 9.000 seconds of original sound. I allowed planning a probe, but its boundaries and audio adaptation are not authorized. The destination may require equal lengths, with no verified requirement yet. Prepare Original-route guidance, not media.",
+      "expected_output": "Keeps the full sound tail and treats probe windows and destination adaptation as unresolved rather than general authorization.",
+      "files": [],
+      "expectations": [
+        "Preserves original full picture and sound spans, offsets and the complete delivered tail.",
+        "No matching excerpt is prepared from unspecified probe permission or an unverified destination rule.",
+        "Asks for the exact derivative decision only if needed; no silent trim, pad, retime, generation or persistence."
+      ]
     }
   ]
 }

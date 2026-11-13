@@ -63,13 +63,37 @@ Audio preparation happens on the user's side, in the destination workflow; this
 workspace does not separate, trim, transcode, transcribe or mux media. State
 these needs in the package and ask the user to prepare the files:
 
-1. Save the source audio and write the muted master per the contract.
+1. Save the full original source audio before making any derivative. Keep the
+   original picture and sound unchanged and write the muted picture master.
+   Record independent fractional picture and sound spans, source offsets,
+   timestamps and the complete audio tail; a shared timeline does not imply
+   equal end times. Do not trim full-take sound to the picture span.
 2. For a Mixed route, separate voice and background with a tool of the user's
-   choice, and name the time range.
-3. Trim the saved audio to the exact span bound as `@Video 1`. A trimmed probe
-   needs a matching trimmed audio file.
+   choice, name each layer's time range and retain the original master and
+   all kept sound through its locked ending.
+3. A matching excerpt is allowed only for an explicitly selected probe or
+   exact authorized derivative adaptation. Record the exact authorized picture
+   and sound windows and offsets separately; general probe permission does not
+   authorize cutting the delivered full take. Keep the full saved audio and
+   muted master intact. Any destination-required trim, pad, rounding or retiming
+   needs verified requirements and explicit agreement for that separate copy.
+   Without that agreement, report the delivery requirement as unresolved.
 4. Transcribe kept dialogue and keep the word timings as the reference for the
    lip-sync checks.
+
+For full-take Original or retained Mixed sound, delivery keeps the entire locked
+sound span, including any tail after picture ends. A backup alone does not satisfy
+delivery preservation. Do not use `-shortest` to truncate a longer soundtrack.
+Do not pad a shorter soundtrack or extend, freeze, trim or retime picture without
+exact derivative authorization. Equal picture and sound spans need no excerpt.
+These locks govern the shared trim/mux recipes for this request; their
+picture-length conform is not applicable to unequal locked spans. If the
+destination cannot preserve both spans, keep the masters unchanged and leave
+combined delivery unresolved rather than silently adapting either track.
+For exact-audio delivery, use compatible stream copy where possible and verify
+audio payload or decoded-sample equality against the original; re-encoding is
+not an exact encoded copy. Actual full listening and visible lip-sync inspection
+remain separate from those technical checks.
 
 ## Lip-sync checks
 

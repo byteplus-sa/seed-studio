@@ -133,14 +133,24 @@ Source skill: `seedance-prompt-25`
 
 ### Native draft first
 
-Every new Seedance 2.5 generation, edit, extension, probe and creative retry
-has explicit `resolution: "480p"` and boolean `draft: true` outside prompt
-text, regardless of review depth or delivery target. Plain 480p is not native
-Draft mode. A missing control is a capability mismatch to resolve, not a
-fallback. Inspect and select the draft before promotion by `draft_task_id`;
-changed creative inputs require a new draft. Other models without native
-Draft support use only an evidenced ordinary preview resolution, clearly
-non-promotable. Unknown preview support blocks execution, not prompt writing.
+Previously covered exact standard Seedance 2.5 and access-confirmed Premium
+bindings require explicit `resolution: "480p"` and boolean `draft: true` outside
+prompt text for every new generation, edit, extension, probe and creative retry,
+regardless of review depth or delivery target. Plain 480p is not native Draft.
+A missing required native control is a capability mismatch, not a fallback.
+New exact model/operation bindings, including other 2.5 variants, use only a
+verified profile independently bound to provider, transport, tool schema revision
+and validity. New native operations use evidenced native controls. Verified
+non-native operations use an ordinary preview at the evidenced resolution,
+even when 480p is also supported, clearly non-promotable; a final requires
+separately confirmed fresh generation. Do not infer Draft from a family substring.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing.
+Promotion by `draft_task_id` requires the exact selected successful native task,
+unchanged creative inputs and reference hashes, matching valid profile/transport
+and final inspection. Changed creative inputs require a new native draft.
+Preserve historical task identity, hashes and selections; relabeling cannot make
+an ordinary task native.
 This check does not make manual `/prompt-review` mandatory.
 
 ### Formula check
@@ -190,9 +200,13 @@ This check does not make manual `/prompt-review` mandatory.
     the reference (which can conflict).
 
 13. **Control-only references (`references.control_only`).** Translate to text
-    and omit by default. Intentional conditioning requires explicit user selection,
-    current source hashes, supported tool/mode inputs, and leakage QA; labels or
-    extraction instructions alone do not grant eligibility.
+    and omit by default. Storyboard grids, panels, crops and animatics remain
+    planning-only in every conditioning role. Selection, current hashes, mode
+    support, style overrides or promotion labels cannot change board origin.
+    Independent production stills must be independently authored, selected and
+    text-free, not cleaned or renamed planning imagery. Eligible non-board
+    conditioning requires selection, current source hashes, supported tool/mode
+    inputs, rights and QA; labels alone do not grant eligibility.
 
 14. **Reference count limits.** Verify per-modality and total limits for the
     selected model/operation. The earlier 30-image, 10-video, 10-audio snapshot
@@ -336,8 +350,9 @@ review does not authorize generation or post-production in this workspace.
 39. **Emotion & camera**: abstract emotions and cinematography terms paired with
     visible/audible cues.
 40. **First/last frames**: one role per image; first and last share aspect ratio.
-41. **Storyboards & blockouts**: storyboard states which structure to inherit;
-    blockouts identify coarse vs fine.
+41. **Storyboards & blockouts**: board staging is translated into text and
+    planning assets are absent from video inputs; eligible independent animated
+    blockouts identify coarse vs fine and retain their motion authority.
 42. **Auto-lock rules**: editing, first/last-frame, and extension follow locked
     aspect-ratio and duration rules.
 43. **Extension boundary**: boundary image, motion trend, and audio continuity checked.
@@ -382,17 +397,15 @@ once with unambiguous continuity is not. Preserve locked reveal timing.
 
 ### Storyboard grid reference
 
-50. **Eligible storyboard conditioning.** Omit control sketches by default.
-    Only after explicit selection, source-hash checks, and live mode compatibility
-    may a storyboard grid be bound to an `@Image N` with the reading
-    order (left-to-right, top-to-bottom) AND a positive style override — the
-    prompt must state the board is used ONLY for scene order and composition and
-    that the output must render in the target style, not copy the board's
-    rendering medium. The bare "Do not use the grid's sketch lines, panel
-    numbers, or divider lines" exclusion only removes the board's *markup* — it
-    does not stop the model from copying the *medium* (line art, paper texture,
-    monochrome shading). It locks shot order and composition only; color,
-    motion, and timing stay in the prompt text.
+50. **Planning-only storyboard boundary.** Grids, panels, crops and animatics
+    cannot be bound as first/last-frame, R2V, composition or motion inputs.
+    Explicit selection, current hashes, compatible mode support, cleanup and
+    style overrides do not change their origin. Translate approved shot order,
+    staging and continuity into text; report a proposed board binding as a
+    finding without repairing the prompt. An independently authored, selected
+    text-free production still remains eligible with verified role support,
+    rights and approval. Preserve historical board-linked records and hashes;
+    review does not rewrite them or authorize new conditioning.
 
 ### Revision diff
 
@@ -632,9 +645,10 @@ medium. Mark N/A any item whose feature is absent and record why.
 
 6. **Route and limits.** The operation matches the route the user chose and
    what the destination UI offers (`model.supported_mode`); an unverified route is
-   labeled provisional. Every proposed 2.5 probe uses explicit
-   `resolution: "480p"` and boolean `draft: true`; missing controls must be
-   resolved before execution. Draft settings are not a quality guarantee. Image counts,
+   labeled provisional. Apply the exact-binding preview policy under
+   [Native draft first](#native-draft-first), not a family-wide 480p rule;
+   missing required controls remain unresolved before execution.
+   Draft settings are not a quality guarantee. Image counts,
    roles, ratio and duration follow verified destination limits; no default
    trim or rounding of exact source timing.
 
@@ -681,9 +695,11 @@ Source skill: `seedance-prompt-20`
 7. **Classification.** Each reference is classified as: Visible identity, Visible
    environment, Motion/camera reference, or Control-only reference.
 
-8. **Control-only handling.** Control-only images are preferably translated to text.
-   If kept, labeled as control-only with extraction instructions and visual
-   reproduction prohibition.
+8. **Control-only handling.** Translate planning boards, panels, crops and
+   animatics into text and omit them from every video input. Independently
+   authored text-free production stills and eligible non-board controls require
+   explicit selection, current hashes and exact role support; extraction
+   instructions do not change planning origin.
 
 9. **Face restriction.** No direct uploads of real human faces. Uses model outputs,
    preset digital characters, or authorized real-person assets.
@@ -905,9 +921,9 @@ Source skill: `seedance-vfx-prompt`
     waxy, smoothed, or warped."
 
 28. **Supported model/mode (`model.supported_mode`).** Resolve operation and
-    model first. A new 2.5 face-containing edit starts with explicit
-    `resolution: "480p"` and boolean `draft: true`; 720p/1080p are later
-    promotion targets after draft inspection and selection;
+    model first. Follow the exact-binding preview policy under
+    [Native draft first](#native-draft-first); 720p/1080p are later promotion
+    targets only for eligible selected native tasks, not ordinary previews;
     only an explicitly selected supported legacy path may use 4K. Face/detail
     fidelity is an output-QA criterion, not a guaranteed property of resolution.
 
@@ -1511,11 +1527,12 @@ Source skills: `seedream-storyboard`, plus `template-factory` (storyboard prompt
    not a fixed budget. A user-specified smaller count is honored only when
    explicit, with omitted shots recorded as motion notes.
 
-3. **Storyboard handoff eligibility.** Sketches guide authoring and are omitted
-   from video inputs by default. A selected production panel or intentional
-   conditioning exception needs current source hashes, explicit approval, live
-   mode compatibility, and leakage QA. A board's style is a creative choice;
-   it is not guaranteed to remain absent from the output.
+3. **Storyboard handoff eligibility.** Storyboard grids, panels, crops and
+   animatics stay planning-only, never video conditioning. Selection, hashes,
+   cleanup, style overrides and promotion labels cannot change planning origin.
+   Translate staging into text. An independently authored, selected text-free
+   production still is a separate eligible asset subject to verified role
+   support, rights and approval. Historical board-linked records remain unchanged.
 
 4. **Explicit canon.** Recurring identities, locations, props, and style are in an
    explicit canon section.

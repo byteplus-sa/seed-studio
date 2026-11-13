@@ -9,6 +9,65 @@ class SeedanceFamilyContractsTests(unittest.TestCase):
     def text(self, relative):
         return " ".join((SKILLS / relative).read_text().lower().split())
 
+    def test_studio_02_adapter_and_review_never_promote_board_origin_to_conditioning(self):
+        paths = (
+            "seedance-prompt-25/SKILL.md",
+            "seedance-prompt-25/references/parameter-reference.md",
+            "seedance-prompt-25/references/keyframes-storyboards-blockouts.md",
+            "prompt-review/references/review-checklists.md",
+        )
+        for path in paths:
+            with self.subTest(path=path):
+                text = self.text(path)
+                for concept in ("grids", "panels", "crops", "animatics",
+                                "planning-only", "independent", "production still",
+                                "selection", "hash", "origin"):
+                    self.assertIn(concept, text)
+                for stale in ("submit only the promoted panel",
+                              "submit the approved panel",
+                              "eligible storyboard conditioning",
+                              "optional monochrome conditioning",
+                              "@image 1 is a planning sheet",
+                              "intentional conditioning exception"):
+                    self.assertNotIn(stale, text)
+
+    def test_studio_03_full_take_preserves_separate_picture_and_sound_spans(self):
+        text = self.text("seedance-motion-recast/references/audio-and-lipsync.md")
+        for concept in ("picture", "sound", "independent", "fractional",
+                        "offset", "audio tail", "full", "delivery", "unresolved",
+                        "retain", "original", "explicit", "derivative"):
+            self.assertIn(concept, text)
+        self.assertNotIn("trim the saved audio to the exact span bound", text)
+        self.assertIn("do not use `-shortest`", text)
+        self.assertIn("do not pad", text)
+        self.assertIn("matching excerpt", text)
+        self.assertIn("exact authorized", text)
+        self.assertIn("listening", text)
+        self.assertIn("voice consent", text)
+
+    def test_studio_03_audio_span_evals_cover_tails_equal_shorter_and_authorized_probe(self):
+        data = json.loads((SKILLS / "seedance-motion-recast/evals/evals.json").read_text())
+        cases = {case["id"]: case for case in data["evals"]}
+        scenarios = {
+            104: ("8.375", "9.000", "no probe"),
+            105: ("8.375", "8.375", "equal"),
+            106: ("9.000", "8.375", "no padding"),
+            107: ("2.125", "4.500", "only"),
+            108: ("full take", "probe", "not authorized"),
+        }
+        for case_id, concepts in scenarios.items():
+            with self.subTest(case=case_id):
+                self.assertIn(case_id, cases)
+                case = cases[case_id]
+                for concept in concepts:
+                    self.assertIn(concept, case["prompt"].lower())
+                expectations = " ".join(case["expectations"]).lower()
+                self.assertIn("original", expectations)
+                self.assertIn("no", expectations)
+                self.assertTrue(case["expected_output"].strip())
+                self.assertEqual(case["files"], [])
+                self.assertGreaterEqual(len(case["expectations"]), 3)
+
     def test_recast_preserves_fractional_source_and_audio_tail(self):
         for relative in ("seedance-motion-recast/SKILL.md",
                          "seedance-motion-recast/references/recast-grammar.md"):

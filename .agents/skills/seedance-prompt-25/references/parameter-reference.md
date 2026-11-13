@@ -79,8 +79,10 @@ Studio defines no runtime profile adapter or production catalog.
 - Multi-round extensions up to 180s (beta).
 
 ### Cost ladder
-- Start with `resolution: "480p"` and boolean `draft: true`, then promote
-  the selected native draft to the recorded delivery resolution.
+- For previously covered exact standard 2.5 and access-confirmed Premium
+  bindings, start with `resolution: "480p"` and boolean `draft: true`, then
+  promote the selected native draft. New bindings follow the verified profile
+  under [Native draft first](#native-draft-first), not this historical ladder.
 - Video generation is billed per successful task completion.
 - Cost information is optional; consult the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106)
   when reporting current billing, not as a prerequisite for prompt delivery or
@@ -108,23 +110,25 @@ Offer `seedance-prompt-20` and the 2.0 model as unselected alternatives when:
 
 ### Storyboard-to-video handoff
 
-Storyboards are optional. Use a storyboard panel as a derivative composition
-and continuity anchor when composition must be reviewed before motion;
-otherwise generate video directly from canonical Element references (R2V)
-or text-to-video. Character, location, and prop sheets remain the source of
-truth. Require explicit approval before using a panel as a video input.
+Storyboards are optional and planning-only. Storyboard grids, panels, crops and
+animatics never become video conditioning inputs, including first/last-frame,
+R2V and motion roles. Translate their staging and continuity into text.
+Selection, current hashes, mode support, style overrides and promotion labels
+do not change planning origin. Character, location and prop sheets remain
+the source of truth. An independent production still must be independently
+authored, selected and text-free, not a cropped, cleaned or renamed board panel.
 
 | Need | Mode | Reference rule |
 |---|---|---|
-| Reproduce the exact approved opening frame | First-frame | Submit only the promoted panel |
-| Lock approved start and end states | First + last frame | Submit only the two promoted panels |
-| Preserve explicit references while following storyboard composition | R2V | Submit the approved panel and canonical asset set as separate indexed references |
+| Use an approved opening still | First-frame | Submit only an independently authored, selected text-free production still with verified role support |
+| Lock approved start and end states | First + last frame | Submit only two eligible independent production stills, one role per image, with matching ratios |
+| Follow storyboard staging while preserving explicit references | R2V | Translate board staging into text; submit only eligible canonical assets and independent production stills |
 | Generate video without a storyboard | R2V or T2V | Submit canonical Element references only (R2V) or text-only prompt (T2V) |
 
-For R2V, index the panel and canonical assets separately:
+For supported R2V, index eligible independent stills and canonical assets separately:
 
 ```text
-@Image 1: approved storyboard panel — composition, blocking, lighting, and visible state
+@Image 1: independently authored production still — selected composition and visible state
 @Image 2: approved character sheet — identity and wardrobe only
 @Image 3: approved location sheet — geometry and production design only
 @Image 4: approved prop sheet — shape, materials, and markings only
@@ -134,10 +138,12 @@ These modes are mutually exclusive. Do not combine first/last-frame roles with
 an R2V bundle unless the live model explicitly confirms that combination. Record
 the chosen mode, ordered reference roles, paths, hashes, selected variants, and
 approval states in the shot manifest before submission.
+Preserve historical board-linked task identities, hashes and selection records;
+they are history, not eligibility for a new request.
 
 ## Native draft first
 
-For the previously covered standard 2.5 and access-confirmed Premium bindings,
+For the previously covered exact standard 2.5 and access-confirmed Premium bindings,
 every new generation, including edits, extensions and creative
 retries, starts with explicit `resolution: "480p"` and boolean `draft: true`.
 Keep these controls in the destination parameter block, not prompt text.
@@ -157,12 +163,15 @@ historical ordinary task into native Draft by changing metadata or a profile.
 Failed, unselected, expired or mismatched tasks are not promotable.
 
 A plain 480p output is not a native draft and cannot be promoted by naming its
-task ID. If a selected Seedance 2.5 UI/tool does not expose native draft mode,
+task ID. If a previously covered exact binding's UI/tool does not expose native draft mode,
 resolve the capability mismatch before submission rather than dropping
 `draft: true`. Do not invent a control the interface cannot accept.
-For a new model use its verified operation profile only. An explicitly
-non-native model uses a supported ordinary preview at its evidenced resolution,
-clearly non-promotable, and a fresh generation for the final. Do not force
+For a new exact model, including a 2.5 variant outside the previously covered set,
+use its verified operation profile only, independently bound to provider,
+transport, tool schema revision and validity. New native operations use their
+evidenced native controls. A verified non-native operation uses an ordinary
+preview at the evidenced resolution, even when 480p is also supported,
+clearly non-promotable, and a separately confirmed fresh generation for the final. Do not force
 480p or infer native Draft from a model-name substring. Unknown preview or
 promotion support blocks execution, not prompt-only creative writing.
 Missing, malformed, expired or wrong-destination evidence remains unresolved;

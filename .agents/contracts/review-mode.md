@@ -28,11 +28,21 @@ personally overrides automatic selection for that choice.
   capability evidence for the same tool/model/operation; refresh on change,
   uncertainty or an error, not for every unchanged prompt.
 - Use one image sample unless a count or alternatives were requested.
-  Every new Seedance 2.5 request uses native `resolution: "480p"` and boolean
-  `draft: true`, regardless of review mode or delivery target. Inspect and
-  select the draft before separately confirmed promotion by `draft_task_id`.
-  Changed creative inputs require a new native draft. Other video models
-  without native draft support use an ordinary non-promotable 480p test.
+  Previously covered exact standard Seedance 2.5 and access-confirmed Premium
+  bindings use native `resolution: "480p"` and boolean `draft: true` for every
+  new generation, regardless of review mode or delivery target. New exact
+  model/operation bindings, including other 2.5 variants, use only a verified
+  profile independently bound to provider, transport, tool schema revision and
+  validity. New native operations use evidenced native controls; verified
+  non-native operations use an ordinary preview at the evidenced resolution,
+  even when 480p is also supported, clearly non-promotable. A final then needs
+  separately confirmed fresh generation, not `draft_task_id`.
+  Missing, malformed, expired, wrong-destination or unknown evidence leaves
+  execution unresolved, not prompt-only creative writing. Do not infer Draft
+  from a family substring. Promotion requires the exact selected successful
+  native task, unchanged creative inputs and reference hashes, matching valid
+  profile/transport and final inspection. Changed creative inputs require a
+  new native draft; preserve historical task identity and selections.
 - Under `approve_for_me`, select a suitable creative direction and inspect
   actual candidate output before selecting it. Keep a short reason, not a
   comprehensive scoring report. Do not invent user approval or claim an
