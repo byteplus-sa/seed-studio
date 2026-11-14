@@ -99,9 +99,12 @@ image maps to which dancer.
 
 ## Plan B: full-frame edit variant
 
-Use this only if the verification probe shows R2V keeps source appearance. Edit
+Use this only if an inspected take shows R2V keeps source appearance and the
+user selects this alternative. No verification probe is mandatory. Edit
 mode treats `@Video 1` as the editing master, locks duration and aspect ratio
-to the source, and prefers 1–5 reference images.
+to the source; image limits require evidence for that model and operation.
+Preserve fractional source timing and the audio tail; any adaptation uses a
+separate copy and needs explicit agreement.
 
 ```text
 [Edit Goal]
@@ -203,12 +206,13 @@ grade, and fine digital grain.
 Silent output. Sound is added in post.
 ```
 
-Parameters for the first ladder rung: default R2V route,
+Parameters for the first full-duration native Draft: selected supported R2V route,
 `omni_reference_task_type: auto`, `resolution: "480p"`, `draft: true`, `ratio: 9:16`,
-`duration` set to the key beat trimmed from the source (for example the
-0:03–0:08 spin and orbit, 5 s), `generate_audio: false`, `watermark: false`.
-The probe binds the muted 0:03–0:08 beat, trimmed on the user's side, as
-`@Video 1`. Two dancers and a location image go beyond the verified
-single-person case, so this probe is the route check. Once the user accepts the
-take, they mux the same 0:03–0:08 window of the saved pop track and add market
+`duration` preserving the full 8.0 s span if supported, `generate_audio: false`,
+`watermark: false` only when supported. Preserve fractional timestamps for
+other source lengths and retain the audio tail. Two dancers and a location
+image go beyond the historical single-person case; this result is unverified,
+not a reason to require a shortened probe. A 0:03–0:08 probe is optional only
+after explicit selection, with its matching source and audio window recorded.
+Once the user accepts the full take, they mux the saved pop track and add market
 ambience in post if the brief asks for it.

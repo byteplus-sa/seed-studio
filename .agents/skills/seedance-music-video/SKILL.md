@@ -1,7 +1,7 @@
 ---
 name: seedance-music-video
 description: >-
-  Write Seedance 2.5 music-video prompts from a song, artist brief, or requested
+  Write Seedance music-video prompts from a song, artist brief, or requested
   format. Map song sections, beat density, performer intent, camera, lyric timing,
   capability-checked timing references, native versus supplied audio, and natural
   scene duration into the six-part formula. Cover rap, dance, performance, narrative, abstract, vertical, and custom
@@ -11,7 +11,9 @@ description: >-
 
 # Seedance Music Video
 
-Write ready-to-use Seedance 2.5 prompts for music videos. The music is the
+Write ready-to-use Seedance prompts for music videos. Generic creative
+composition uses `seedance-prompt`; preserve the selected model and use
+`seedance-prompt-25` only for explicitly requested 2.5 syntax. The music is the
 fixed brief: every visual decision is planned backward from the track's
 sections, beats, and energy. Make the format, the song map, the beat contract,
 and the brief-derived treatment visible in the prompt, not just the scene content.
@@ -400,7 +402,8 @@ remain valid. Re-check mouth timing for any lip-synced performance.
 
 ### 5. Right-size the scenes
 
-Generate per section at its natural duration (4–30s), not per 30-second block.
+Plan each section at its natural duration within the selected model/operation's
+evidenced limits, not a family-wide 4–30s assumption.
 One song section, one primary event, one visible end state per generation.
 Chain approved sections via `return_last_frame` / `first_frame` with a shared
 reference bundle and assemble in post. Reserve a 30s single-pass or native
@@ -429,7 +432,8 @@ camera passes through in order.
 
 ### 7. Compose with the six-part formula
 
-Assemble the treatment into the `seedance-prompt-25` formula:
+Assemble the treatment into the `seedance-prompt` creative formula. Braces,
+reference roles and timing settings must match the selected versioned adapter:
 
 > **Subject + Action or Event + Scene and Environment + Visual Style + Camera Movement/Cut + Audio**
 

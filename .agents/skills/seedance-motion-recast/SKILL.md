@@ -8,7 +8,7 @@ description: >-
   explicit mapping or disposition for every visible source subject, bleed and
   extra-people guards, Virtual Portrait asset:// references for realistic
   people, consent gates for real people, a muted source master with audio
-  added in post, named look presets, and a 480p key-beat probe ladder.
+  added in post, named look presets, and optional selected key-beat probes.
   Inspects the source clip itself. Use to recast performers, localize a take
   for another market, or rebuild its world around the same performance.
   Prompt-only: never generates or submits. Not for replacing one element while
@@ -90,19 +90,25 @@ targets.
    Never crop, blur, stylize, recompose or swap inputs to get a real likeness or
    real footage past the check. Offer an invented cast or generated or
    owned-talent source footage, and revise only on the user's explicit decision.
-5. **Stay within recommended reference ranges**: 1–8 distinct subjects in R2V,
-   1–5 reference images in edit mode, source under 20 s for edit. Above those,
-   warn the user that stability drops and propose splitting into shots.
+5. **Check evidenced reference limits** for the exact model and operation.
+   Earlier 1–8 subjects in R2V and 1–5 images in edit are planning
+   recommendations, not family quotas. Count each modality and the total;
+   unknown limits remain unresolved before execution.
 6. **No baked text.** Keep generated footage free of captions, taglines, CTAs,
    end cards and legible signage copy; add text in post.
 7. **Bind the muted master.** `@Video 1` is the muted master,
    `generate_audio` is `false`, and there are no `@Audio` bindings. Sound
    returns in post through the stated route in
    [audio and lip-sync](references/audio-and-lipsync.md).
-8. **Test ladder**: every new Seedance 2.5 test uses `resolution: "480p"`
+8. **Probes are opt-in**: do not require a key-beat probe for a new case.
+   The first full-duration take preserves the source unless the user selects
+   a shorter probe. Every new supported standard Seedance 2.5 test uses `resolution: "480p"`
    and boolean `draft: true`, including an agreed key-beat probe and the
    full-duration take. Preserve the source span unless a shorter probe is
-   approved. The caller inspects and selects the full-duration native draft
+   approved. Preserve fractional source timing, frame timestamps and the audio tail.
+   Adapt a separate copy only for an evidenced destination requirement with
+   explicit user agreement; retain original picture and sound.
+   The caller inspects and selects the full-duration native draft
    before promotion by `draft_task_id`; changed inputs need another draft.
    Resolve a missing draft control rather than substituting ordinary 480p.
 
@@ -115,17 +121,21 @@ source clothing or accessories carried over). It bound `@Video 1` as an
 `asset://` video, because Seedance rejects a raw video showing a person, and
 ran with `generate_audio: false`. The probe used one character, a single
 source person, a text-described location and no product reference; treat
-multi-subject, location-image and moving-camera cases as new and start them
-with their own 480p probe.
+multi-subject, location-image and moving-camera cases as unverified. Offer an
+optional probe only when useful; selection and submission require authorization.
 
 - **Default route (verified for the case above): multimodal R2V.** Bind the
   source as `@Video 1` with role `reference_video`, stated as a motion-only
   reference (an `asset://` video when the source shows a person). Bind targets
   as `reference_image`. Set `omni_reference_task_type` to `auto`, `ratio` to
-  the source ratio, `duration` to the whole-second source length (4–30 s; ask
-  the user to trim to whole seconds first) and `generate_audio` to `false`. A
+  the source ratio, and preserve its exact fractional span. Serialize `duration`
+  only if the selected operation supports that representation; otherwise
+  report the capability gap, not an instruction to round or trim.
+  Set `generate_audio` to `false` where supported. A
   5 s request returned 121 frames at 24 fps (5.04 s); the user trims or pads to
-  the picture when muxing. These are parameter-block values for the destination
+  the picture only with agreement and measured timing notes, preserving the audio
+  tail. This historical result is not an accepted drift tolerance.
+  These are parameter-block values for the destination
   UI, never prompt text.
 - **Fallback plan B: full-frame edit.** If the probe output keeps the source's
   people, clothing or location, switch to the edit operation the destination UI
@@ -133,9 +143,10 @@ with their own 480p probe.
   [recast grammar](references/recast-grammar.md#plan-b-full-frame-edit-variant).
   Its scope sentence is "replace all subjects and the environment", always
   followed by the per-subject mapping. Edit mode locks duration and aspect
-  ratio to the source and prefers 1–5 reference images.
-- An explicit `reference` task type, if the destination UI lists it, is a second
-  probe before plan B. Change one variable per probe.
+  ratio to the source. Verify current image limits for that exact operation.
+- An explicit `reference` task type, if the destination UI lists it, is an
+  optional alternative after an observed failure. Change one variable per
+  authorized retry; do not require a probe sequence.
 
 Confirm the model ID and the accepted parameters in the destination UI or the
 current documentation before finalizing the parameter block; do not assume a
@@ -205,5 +216,5 @@ only one of prompt wording, reference bundle or route per retry.
 - [ ] Guards: exact people count, wardrobe only from references, residual originals
 - [ ] Style block present; no overlay text, captions or legible signage requested
 - [ ] Post-audio route stated, with lip-sync checks when someone speaks on screen
-- [ ] A case beyond the verified single-person probe starts with its own 480p probe
-- [ ] Ladder rung stated: key-beat 480p probe, full-duration 480p, or final
+- [ ] Untested cases remain unverified, not subject to mandatory probes
+- [ ] Take stated: full-duration native Draft, explicitly selected probe, or final

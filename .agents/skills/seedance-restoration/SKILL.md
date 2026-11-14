@@ -66,12 +66,14 @@ Output: a Seedance 2.5 structured-edit prompt with the source bound as `@Video 1
    prompt's vocabulary word-for-word.
 2. **Inspect the source.** Probe duration, fps, resolution, and aspect. Read the
    defect mix from the footage and the diagnosis.
-3. **Trim to the 30s ceiling — and center the defect.** Seedance 2.5 caps edits
-   at 30s. If the source is longer, trim to ≤29s before handoff; the edit
-   auto-locks duration to ~input (±0.3s). **For a localized defect, never leave
-   it at a clip boundary.** A defect sitting in the final second can be dropped
-   or altered by the duration drift (and re-introduced by any last-frame pad you
-   add to splice). Re-center the defect with ≥1s of clean margin on both sides.
+3. **Preserve exact source timing.** Retain fractional duration, frame
+   timestamps, cuts, playback speed and the audio tail. Check the selected
+   model/operation's evidenced duration limit; no historical drift is an
+   acceptance tolerance. If the source exceeds that limit, propose separate
+   segments with explicit user agreement and retain the original. For a
+   localized defect, clean context on both sides can help; extending or
+   re-centering its window is optional, not permission to drop the final frames.
+   Report measured output mismatches before splicing or padding.
 4. **Choose an escalation level** (below) based on how much cleanup is wanted and
    what the last take under-delivered on. For localized tears/bands/waves, use the
    dedicated framing in [Localized transient defects](#localized-transient-defects-scans-tears-bands-waves) rather than the grain ladder.
@@ -129,7 +131,11 @@ frame. They need different vocabulary and a different mental model:
 
 ### Template (scan-line tear / rolling band)
 
-Deliver with the parameter block: `omni_reference_task_type="edit"`, `generate_audio: false`, `resolution` 1080p.
+First-pass parameter block for the supported standard 2.5 edit:
+`omni_reference_task_type="edit"`, `generate_audio: false`,
+`resolution: "480p"`, `draft: true`. A 1080p final delivery target is separate:
+inspect and select the successful native Draft before `draft_task_id` promotion.
+Changed creative inputs require a new Draft; inspect the final independently.
 
 ```text
 [Edit Goal]
@@ -159,7 +165,11 @@ duplicated copy.
 
 ## Canonical prompt template (Seedance 2.5 edit)
 
-Deliver with the parameter block: `omni_reference_task_type="edit"`, `generate_audio: false`, `resolution` 1080p.
+First-pass parameter block for the supported standard 2.5 edit:
+`omni_reference_task_type="edit"`, `generate_audio: false`,
+`resolution: "480p"`, `draft: true`. A 1080p final delivery target is separate:
+inspect and select the successful native Draft before `draft_task_id` promotion.
+Changed creative inputs require a new Draft; inspect the final independently.
 
 ```text
 [Edit Goal]
@@ -244,8 +254,8 @@ direction.
 7. `[Content to Preserve]` locks identity, motion, timing, camera, and lighting.
 8. Grounding and face-protection locks are present when people are in frame.
 9. No `[Target Material Role]` section (single `@Video 1` source only).
-10. Source trimmed to ≤29s, and any localized defect is **centered** with ≥1s
-    clean margin on both sides — never at the clip boundary.
+10. Exact fractional source span and audio tail preserved; evidenced limits
+    and any explicitly selected segmentation recorded without overwriting originals.
 11. The Seedance output was **verified by re-inspection** (defect gone, content
     intact, no new artifacts) before splicing.
 12. Original audio re-mux happens in the destination workflow.

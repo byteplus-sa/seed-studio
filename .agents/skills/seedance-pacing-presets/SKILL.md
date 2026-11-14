@@ -4,7 +4,7 @@ description: >
   Turn a named pacing or rhythm preset — speed ramp, slow motion, slow-mo,
   bullet time, ramp up, flash in/out, impact moment, montage, montage pacing,
   cut rhythm, timing, or speed up — into a canonical, timestamped motion,
-  cut, and pacing block for the Seedance 2.5 prompt. Use when the user or a
+  cut, and pacing block for a Seedance prompt. Use when the user or a
   supplied shot plan asks
   to direct a scene's rhythm, tempo, or editing energy rather than only its
   content. Bullet time here is the freeze/slow-mo speed ramp; the camera-orbit
@@ -15,13 +15,15 @@ description: >
 # Seedance Pacing Presets
 
 This skill maps a named pacing or rhythm preset into a timestamped
-**motion / cut / pacing block** for the Seedance 2.5 prompt, so the scene's
+**motion / cut / pacing block** for a Seedance prompt, so the scene's
 rhythm — not just its content — is directed. It is a **prompt-composition-only**
 skill: it never calls any tools and never runs generation.
 The base prompt grammar — the six-part formula, `At Ns` timestamp syntax, the
 bounce-speed-ramp technique contract, the audio bracket syntax `()<>{}【】`,
 and scene-staging rules — is defined in `seedance-prompt-25` and is **not
-redefined here**. Compose with `seedance-prompt-25` for the full prompt contract;
+redefined here**. Generic composition uses `seedance-prompt`; use the retained
+`seedance-prompt-25` syntax only for explicit 2.5 requests. Compose with
+`seedance-prompt` for the full creative prompt contract;
 this skill only adds the pacing preset bank on top.
 
 The output of this skill is always a **pacing block** — a timestamped
@@ -43,7 +45,7 @@ speed-ramp grammar. All sources accessed 2026-08-13:
 - [BytePlus ModelArk prompt guide](https://docs.byteplus.com/en/docs/ModelArk/2607689) — official prompt guidance
 - [Seedance 2.5 launch blog](https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5) — official announcement
 
-**The base grammar is defined in `seedance-prompt-25`.** This skill adds the
+**Generic creative composition is defined in `seedance-prompt`.** This skill adds the
 pacing preset bank and block-composition rules; it does not restate or replace
 the six-part formula, timestamp rules, reference-role syntax, or audio syntax
 from that skill.
@@ -180,14 +182,14 @@ Fill these knobs when composing a pacing block. At least one of `ramp`,
 | `assembly_cut` | Blink Cut, Intercut or Vision Flash | Planned outside the prompt block in the same-skill assembly reference, so it does not count toward the required pacing knobs; generate each side as its own clip, never in one prompt. |
 | `pacing` | Montage cut rhythm from the bank | Required for multi-shot scenes; one per prompt: Chaotic, Dynamic, Calm, Single Shot. |
 | `beat` | What lands on the beat (optional) | The action, moment, or object that must land at the timestamp. Name it explicitly so the model can place it. |
-| `duration` | Total clip length in seconds | Right-size to the scene's natural length, **4-30s** for 2.5. Do not pad to 30s. Pass to the generation interface, not the prompt. |
+| `duration` | Total clip length in seconds | Preserve natural or exact source duration; verify limits for the selected model/operation. The earlier 4-30s range is a 2.5 snapshot, not a family rule. Keep it outside prompt text. |
 | `cut_list` | Optional ordered shot timings | List of `N-M seconds: <shot description>` entries. Time ranges must be consecutive and non-overlapping. |
 | `audio_sync` | Align cuts to a Seed Audio master timeline | bool. When true, cut on the audio beats; with dialogue, generate Seed Audio first and align pacing to its actual timing (audio-first contract). |
 | `scene_type` | Single continuous take vs multi-shot montage | `single` for one unbroken shot (no cuts), `montage` for multiple cuts. Drives whether a `pacing` choice is required. |
 
 ## Output grammar
 
-The pacing block composes with the `seedance-prompt-25` six-part formula and
+The pacing block composes with `seedance-prompt` creative structure and
 scene staging. Insert the ramp/pacing phrasing as timestamped lines in the
 Action or Camera description, and use the audio bracket syntax for any beat
 audio.
@@ -241,39 +243,41 @@ list first; end-to-end production is out of scope in this workspace.
   approved shot list (storyboard prompts via `template-factory`) rather than
   one raw prompt. A montage without an ordered cut list lets the model cut or
   reorder arbitrarily.
-- **30s single-pass or native extension only for continuous seamless motion.**
-  Reserve them for a genuine single continuous take or audio-driven long
+- **Long single-pass or supported extension for continuous seamless motion.**
+  Consider them for a genuine single continuous take or audio-driven long
   dialogue where seamless motion across scene boundaries matters more than
   per-scene iteration. Otherwise right-size each scene to its natural
   duration.
-- **Per-scene natural duration 4-30s — do not pad.** Set `duration` to the
+- **Per-scene natural duration — do not pad.** The historical 2.5 range is
+  not a family limit; verify the selected model and operation. Set `duration` to the
   length the scene actually needs (7s for a single beat, 12s for a short
-  dialogue exchange, 20s for a multi-stage action). 30s is the ceiling, not the
-  target.
+  dialogue exchange, 20s for a multi-stage action). An evidenced ceiling is
+  not a duration target.
 - **Dialogue scenes: align pacing to audio.** When dialogue exists with
   `generate_audio: true`, the pacing timestamps should align to the spoken
   beats. For lip-sync-critical scenes, optionally compose with
   `seed-audio-prompt` to generate the Seed Audio track first, then align pacing
   timestamps to the actual audio timing.
 - **Generation parameters stay in the API.** Duration, resolution, aspect
-  ratio, and watermark never go in the prompt. Keep `watermark: false` by
-  default.
+  ratio, and watermark never go in the prompt. Include watermark controls only
+  when supported by the selected operation and requested.
 - **One ramp, one pacing.** Do not stack multiple speed ramps or montage
   pacings in the same block; if the scene changes rhythm several times, split it
   into stages or separate takes.
 
 ## Self-check checklist
 
-Before a pacing block is submitted as part of a Seedance 2.5 prompt, verify:
+Before returning a pacing block for the selected Seedance model, verify:
 
 1. Pacing uses timestamped phrasing (`At <N>s`, `<start>-<end>s`), not vague
    "later" or "then" timing.
 2. The requested ramp, pacing, time treatment or transition comes from its bank.
 3. The pacing block names the beat that lands (subject, action, and end state).
 4. No frame-accurate or impossible-frequency promises are made.
-5. Dialogue scenes align pacing to spoken beats; lip-sync-critical scenes pair
-   with `seed-audio-prompt`.
-6. `duration` is within 4-30s and not padded to fill 30s.
+5. Dialogue scenes align pacing to supplied or measured spoken beats; a separate
+   audio-first route requires explicit selection, not dialogue alone.
+6. `duration` preserves natural or exact source timing within evidenced limits,
+   without padding to a historical ceiling.
 7. Any cut list uses consecutive, non-overlapping time ranges with ordered shot
    content.
 8. Generation parameters (duration, resolution, aspect ratio) are absent from
@@ -288,4 +292,4 @@ Before a pacing block is submitted as part of a Seedance 2.5 prompt, verify:
     failure-specific timing remedy kept optional and compatible with locks.
 
 A pacing block that passes all ten checks is ready to be composed into the
-full prompt by `seedance-prompt-25`.
+full prompt by `seedance-prompt`, with the selected adapter's syntax.

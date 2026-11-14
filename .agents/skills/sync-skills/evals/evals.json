@@ -1,0 +1,38 @@
+{
+  "skill_name": "sync-skills",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Sync a clean committed bundle whose destination-only family eval is missing upstream, with SYNC_ALLOW_DIRTY=1.",
+      "expected_output": "Ownership gate refuses before any copy; local eval and history survive.",
+      "files": [],
+      "expectations": [
+        "Reports exit 6 for unresolved destination-only ownership in both plan and apply.",
+        "Does not delete the local eval or bypass the guard with dirty-source approval.",
+        "No staging, commit, stash or unrelated checkout changes."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Sync prompt-review, whose clean committed same-path files carry Studio's model-neutral manual-review overlay. Upstream wording removes it.",
+      "expected_output": "Stops before mirroring and proposes selective manual comparison preserving the local contracts.",
+      "files": [],
+      "expectations": [
+        "Does not claim the script detects same-path committed semantic differences.",
+        "Preserves model-first findings-only manual review and source-timing rules.",
+        "No overwrite, allowlist expansion or automatic commit."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "There are no requested sync changes. Keep the neutral leaf and alias local, and do not run maintenance implicitly.",
+      "expected_output": "No sync invoked and existing files remain unchanged.",
+      "files": [],
+      "expectations": [
+        "Does not add seedance-prompt to the allowlist.",
+        "Does not touch aliases or the upstream revision.",
+        "No tools, file writes or commits."
+      ]
+    }
+  ]
+}

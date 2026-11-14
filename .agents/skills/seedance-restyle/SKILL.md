@@ -81,11 +81,9 @@ block, the post-audio route, and the test-ladder rung.
    binding; sound returns in post.
 7. **No baked text.** Source signage becomes abstract shapes in the style;
    captions and copy are added in post.
-8. **Test ladder**: every new Seedance 2.5 test uses `resolution: "480p"`
-   and boolean `draft: true`, including an agreed hardest-beat probe and the
-   full clip. The caller inspects and selects the full-clip native draft before
-   promotion by `draft_task_id`; changed inputs need another native draft.
-   Resolve a missing draft control rather than substituting ordinary 480p.
+8. **Test ladder**: apply [Preview evidence](#preview-evidence) to the selected
+   exact operation for an agreed hardest-beat probe and the full clip. A probe
+   is optional and cannot approve the full clip or supply its final lineage.
 9. **Keep the same place.** A restyle changes how the background looks, never
    where the scene is: a city street stays a city street, with the same kind of
    buildings, furniture and plants. Never name a different location unless the
@@ -98,14 +96,45 @@ block, the post-audio route, and the test-ladder rung.
     destination requirement, with the user's agreement and the timing change
     recorded. Keep the original video and audio untouched.
 
+## Preview evidence
+
+Preserve the selected exact model and operation. Previously covered exact standard
+Seedance 2.5 and access-confirmed Premium bindings require explicit
+`resolution: "480p"` and boolean `draft: true` for every new generation,
+including tests, edits, extensions, opt-in probes and creative retries, in
+default and strict review. Missing legacy Draft controls are a capability
+mismatch, not permission to drop `draft` or substitute ordinary 480p.
+
+Other exact bindings use a verified operation profile independently bound to
+provider, transport, tool schema revision and validity. Native preview uses
+evidenced native controls; promotion support is a separate check. Do not inherit
+480p or boolean Draft. A verified non-native operation uses the evidenced ordinary
+preview, for example ordinary 720p even when 480p is also supported, clearly
+non-promotable. Never infer support from a family substring.
+
+Native promotion requires the exact selected successful native task, unchanged
+creative inputs and reference hashes, matching valid model/operation/profile/transport,
+supported promotion controls such as `draft_task_id`, and final inspection.
+Failed, unselected or mismatched tasks cannot be promoted. Ordinary task IDs
+cannot be promoted; an inspected, selected successful ordinary preview precedes a
+separately confirmed fresh final with unchanged creative inputs, supported output
+settings and its own final inspection.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing.
+
+Keep per-submit confirmation, rights and selection separate; no automatic review.
+Prompt-only authoring does not authorize generation. Preserve historical task
+identity and selection records; relabeling cannot make an ordinary task native.
+The caller owns execution under [Generation transport](../../contracts/generation-transport.md).
+
 ## Routes
 
 Route support and restyle quality are separate checks. Verify the selected
 model, operation, image roles, resolution and timing constraints in the current
 destination UI or documentation. Do not generalize success or failure from one
-source, medium or resolution to another. A native probe uses explicit
-`resolution: "480p"` and boolean `draft: true`; resolve missing draft controls
-before submission. It can test the current source but is not proof that other
+source, medium or resolution to another. An authorized probe uses only the
+selected operation's evidenced preview controls, not defaults from linked
+worked examples. It can test the current source but is not proof that other
 styles or final-resolution output will behave identically.
 
 **If the request allows no image input,** compose a text-only whole-frame

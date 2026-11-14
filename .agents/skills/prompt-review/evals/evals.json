@@ -71,6 +71,66 @@
         "Flags B's travel distance and return within the locked second as the concrete physical conflict.",
         "Proposes authorized retiming or a changed staging approach for B rather than silently changing its locks."
       ]
+    },
+    {
+      "id": 101,
+      "routing_class": "should",
+      "prompt": "/prompt-review this Seedance 2.0 generate prompt with Filipino dialogue. Requested acting only, exact words locked; report findings, do not repair. The draft has no request hash.",
+      "expected_output": "Selected 2.0 base plus applicable Filipino guidance, findings-only with production evidence incomplete.",
+      "files": [],
+      "expectations": [
+        "Does not select 2.5 from Filipino language or import native Draft controls.",
+        "Keeps exact words and returns findings without repairs or persistence.",
+        "Missing production hash stays incomplete, not invented."
+      ]
+    },
+    {
+      "id": 102,
+      "routing_class": "near",
+      "prompt": "/prompt-review a generic Seedance song prompt with unknown model and operation. No capability evidence; assess creative intent only.",
+      "expected_output": "Provisional creative findings; unknown capability and production review stay incomplete.",
+      "files": [],
+      "expectations": [
+        "Genre does not select a model or parameter policy.",
+        "Does not invent native Draft, 480p support or reference quotas.",
+        "Returns findings only without generation or saves."
+      ]
+    },
+    {
+      "id": 103,
+      "routing_class": "should-not",
+      "prompt": "Write a Seedream portrait prompt in strict review mode. Do not invoke /prompt-review or create a video prompt.",
+      "expected_output": "Image prompt route only; strict mode does not invoke manual prompt review.",
+      "files": [],
+      "expectations": [
+        "No automatic manual-review report or sub-agent.",
+        "Does not route an image task to Seedance.",
+        "No generation or persistence."
+      ]
+    },
+    {
+      "id": 104,
+      "routing_class": "near",
+      "prompt": "/prompt-review, but no prompt text or selected model is available.",
+      "expected_output": "Incomplete review with a focused request for missing text and dispatch evidence.",
+      "files": [],
+      "expectations": [
+        "Empty input is not PASS.",
+        "Does not invent a hash, prompt or selected model.",
+        "No repairs, generation or files."
+      ]
+    },
+    {
+      "id": 105,
+      "routing_class": "should",
+      "prompt": "/prompt-review this frozen standard Seedance 2.5 edit. The prompt changes a locked face; report only. Existing hash and old selection must stay unchanged.",
+      "expected_output": "A preservation finding without altering snapshot or task history.",
+      "files": [],
+      "expectations": [
+        "Flags the contradicted locked face.",
+        "Preserves original bytes, hash and selection history despite severity.",
+        "Repair requires separate explicit authorization and a new version."
+      ]
     }
   ]
 }

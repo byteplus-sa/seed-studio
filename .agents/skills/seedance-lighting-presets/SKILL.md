@@ -35,8 +35,8 @@ All sources accessed 2026-08-13. When the official guides are updated, prefer
 the live pages over this skill where they conflict.
 
 The base prompt grammar lives in the partner skills `seedream-prompt` (Lighting
-section, avoiding-the-AI-look lighting guidance) and `seedance-prompt-25`
-(six-part formula, Visual Style slot, camera and audio syntax). Compose with
+section, avoiding-the-AI-look lighting guidance) and `seedance-prompt`
+(generic creative structure; selected versioned adapters own syntax). Compose with
 those skills when writing a full prompt; this skill supplies the lighting block
 only.
 
@@ -125,8 +125,9 @@ to change mood. Return proposals in chat; no new production records are needed.
 
 ### Night needs stating
 
-A bare "night" or "moonlight" often does not make Seedance footage read as
-night. State what the viewer sees: a black sky, low
+Earlier upstream 2.5 text-to-video observations did not always make "night"
+or "moonlight" read as night. This is not a family-wide failure claim.
+State what the viewer sees: a black sky, low
 exposure, the one source that lights the subject (a small pale moon, a
 streetlamp, a lit window) and what falls to black. Describe the moon or lamp
 by its visible shape and size ("a small, round, pale moon") rather than
@@ -144,7 +145,8 @@ records its time, change and trigger.
 | Dim | `From <N>s to <M>s, <declared source> fades down to <visible result>.` |
 | Flicker | `At <N>s, <declared source> flickers <twice / rapidly for about one second>, then <holds steady / goes out>.` |
 
-Upstream drafts observed close timing for some cues, but this is not a
+Historical upstream 2.5 drafts observed close timing for some cues; model,
+operation and inspected intervals limit that evidence. This is not a
 frame-accurate control. Write a fade as a time range and check actual timing
 in a draft. Plain wording ("the lamp goes out") already produces the change; the
 timestamp adds control of when it lands and of the hold after it. An untimed
@@ -234,10 +236,11 @@ in the `Lighting:` section only — never in `Style:` or `Subject:`.
   seed only when the selected model and destination tool support it; omit
   unsupported or unknown seed controls. Never promise exact light physics
   or reproducibility.
-- **Relight is not available prompt-side.** Changing lighting on an
-  already-generated image or video requires regenerating from a revised
-  prompt. There is no prompt-side relight toggle; write an image-edit prompt
-  only when the user requests one.
+- **Relight support is operation-specific.** Do not infer a family-wide
+  prohibition or invent a relight toggle. For an authorized image/video edit,
+  preserve the source and write only the requested lighting change; the caller
+  verifies the selected model and operation before execution. Write an
+  image-edit prompt only when the user requests one.
 - **Match the preset to scene intent.** A mismatched preset has a visible
   cost: **Overhead Fall on a romantic field scene kills the warmth**; **Soft
   Cross adds a hidden off-camera source that destroys a candlelit Practicals

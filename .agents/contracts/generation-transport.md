@@ -67,25 +67,38 @@ report. Neither approval mode authorizes submission: creative selection
 does not replace the exact-package confirmation below. Strict mode does not
 invoke manual prompt review or require a review record.
 
-Every new Seedance 2.5 request uses native draft mode: explicit
+Previously covered exact standard Seedance 2.5 and access-confirmed Premium
+bindings use native draft mode for every new generation: explicit
 `resolution: "480p"` and boolean `draft: true`. This applies to first tests,
-edits, extensions and creative retries, regardless of review depth or delivery
-resolution. Never substitute an ordinary 480p request for native draft mode.
+edits, extensions and creative retries, as well as probes, regardless of review
+depth or delivery resolution. Never substitute ordinary 480p for their native draft mode.
 If the selected transport cannot expose it, resolve the capability mismatch or
 stay prompt-only; do not silently drop the flag.
 
-After the caller inspects and explicitly selects a successful draft, prepare
-promotion using its `draft_task_id` and supported output settings. Confirm
+New exact model/operation bindings, including other 2.5 variants, use only a
+verified profile independently bound to provider, transport, tool schema revision
+and validity. New native operations use their evidenced native controls.
+Verified non-native operations use an ordinary preview at the evidenced
+resolution, even when 480p is also supported, clearly non-promotable. Do not
+infer native Draft from a family substring or force unsupported 480p.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing.
+
+After the caller inspects and explicitly selects a successful native draft, prepare
+promotion using its `draft_task_id` and supported output settings. Require the
+exact selected task, unchanged reference hashes and creative inputs, matching
+valid model/operation/profile/transport and final inspection. Preserve historical
+task identity and selection records; relabeling cannot make an ordinary task native.
+Confirm
 promotion separately; it is another generation request. Do not resend or change the
 prompt, references, duration, ratio or audio settings during promotion. A
 creative change requires a new native draft. Inspect the final output again.
 Record the returned draft task ID in chat so it can be reused without another
 first test; save provenance only when requested.
 
-For other video models without native draft mode, use an ordinary 480p first
-test and label it non-promotable. Do not add an unsupported draft flag; a final
-is then a fresh generation. If 480p is unsupported too, explain the limitation
-and ask before using another resolution.
+For verified ordinary previews, do not add an unsupported draft flag or promote
+their task ID; a final is a separately confirmed fresh generation with its own
+supported settings and final inspection.
 
 1. The user has been shown the exact prompt and the ordered references.
 2. The submitted prompt and reference order are byte-identical to what the

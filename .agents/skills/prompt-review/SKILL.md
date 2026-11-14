@@ -4,7 +4,8 @@ description: >-
   Manual review (/prompt-review) of BytePlus Seedance, Seedream, and Seed Audio
   prompts inline, with explicit model, operation, change
   contract, and request hash. Return rule findings and complete or incomplete
-  status; fix and re-review changed prompts. Use for video, VFX, Filipino dialogue,
+  status, findings-only by default. Repair only on a separate explicit request.
+  Use for video, VFX, Filipino dialogue,
   image/character/location/prop/UI/card/storyboard prompts, music, SFX, or ambience.
   Runs only when the user invokes /prompt-review. Exclude
   manifest-only edits, generated-media review, and frozen snapshots unless
@@ -20,17 +21,19 @@ The caller checks validity and returns the prompt without waiting on review.
 Approval authority is separate: `approve_for_me` does not request this review.
 Run detailed review inline. Delegate only when the user explicitly requests a
 review sub-agent, not because strict mode or general parallelism is enabled.
-Fix only eligible drafts under the frozen snapshot boundary below.
+Review is findings-only by default, including unfrozen drafts. Repair requires
+separate explicit authorization; fix only eligible drafts within that scope
+under the frozen snapshot boundary below.
 
 ## Core concept
 
 ```
 User invokes /prompt-review on one or more prompts
-  → identify each prompt's type (Seedance 2.5, Seed Audio, Seedream, etc.)
+  → resolve model and operation first, then language and requested axes
   → load the matching review checklist from references/review-checklists.md
   → review inline (delegate only if explicitly requested)
   → record findings (issues by severity with suggested fixes)
-  → main agent reports frozen-input findings or fixes eligible drafts
+  → main agent reports findings; repairs only under separate explicit scope
   → re-review only the changed prompts if any fixes were applied
 ```
 
@@ -95,7 +98,11 @@ energetic dialogue are both valid when their required evidence is readable.
 Missing evidence remains unresolved; no cadence, coverage, turn or burst quota
 substitutes for that judgment.
 
-For the same request, use generation rules for generate, 2.5 edit rules for a
+Resolve model and operation first. An unknown model permits a provisional
+creative assessment, but capability and production review remain incomplete.
+Generic Seedance creative wording comes from `seedance-prompt`; versioned
+syntax uses the explicitly selected adapter. Do not infer 2.5 from language,
+genre, filename or 4K delivery. For the same request, use generation rules for generate, 2.5 edit rules for a
 2.5 edit, recast rules for a 2.5 recast (motion transfer), restyle rules for a
 2.5 restyle, legacy VFX rules for a supported 2.0 edit, and extension rules for
 extend. Language and named-axis checklists are additive only when applicable.
@@ -115,7 +122,7 @@ Use explicit input first; filenames below are fallback hints, not authority:
 | Seedance 2.5 recast (motion transfer) | explicit model + recast operation | Seedance 2.5 recast section + `seedance-motion-recast` |
 | Seedance 2.5 restyle | explicit model + restyle operation | Seedance 2.5 restyle section + `seedance-restyle` |
 | Seedance VFX (video-to-video edit, legacy path) | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-vfx-prompt` |
-| Seedance Filipino dialogue | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-25` + `seedance-prompt-25-filipino` |
+| Seedance Filipino dialogue | explicit selected model and operation, then language | Selected model/operation section + applicable Filipino language guidance |
 | Seed Audio (dialogue/music/SFX/ambience) | `prompt_dlg_*`, `prompt_mus_*`, `prompt_sfx_*`, `prompt_amb_*`, `prompt_mix_*` | `seed-audio-prompt` |
 | Seedream image generation | `prompt_concept_*`, `prompt_sNN_kf*` | `seedream-prompt` |
 | Seedream character sheet | `prompt_char_*` | `seedream-character-sheet` |
@@ -135,12 +142,13 @@ The "Checklist source" column is a provenance label only — this skill never lo
 a sibling; the applicable checklist is always read from this skill's own bundled
 `references/review-checklists.md`.
 
-When a prompt could match multiple types (e.g., a Seedance 2.5 prompt with Filipino
-dialogue), stack the checklists — the sub-agent checks against all applicable skills.
+Language and genre are additive after the model/operation dispatch. A 2.0
+Filipino prompt gets the 2.0 base and applicable language guidance, not 2.5
+parameters. Review inline; explicit delegation alone permits a sub-agent.
 
 UGC intermediate outputs (hooks, scripts) are reviewed at **Stage 1** (before
 composition into a final Seedance prompt). The final composed Seedance prompt is
-reviewed at **Stage 2** against the Seedance 2.5 + Universal checklists. UGC
+reviewed at **Stage 2** against the selected model/operation + Universal checklists. UGC
 compliance audit runs **before Stage 1** — if it returns CRITICAL, stop the pipeline.
 
 ## Workflow
@@ -341,10 +349,10 @@ When the sub-agent returns findings:
 
 1. **Read all findings** for each prompt.
 2. **Triage by severity:**
-   - CRITICAL issues — fix; the prompt is likely to fail or drift if used as is.
-   - MAJOR issues — resolve. A user-requested creative change requires a new
+   - CRITICAL issues — report unresolved; repair needs explicit authorization.
+   - MAJOR issues — report unresolved. A user-requested creative change requires a new
      applicability decision and review, not a fake pass.
-   - MINOR issues — fix opportunistically; surface to the user.
+   - MINOR issues — surface to the user; do not repair opportunistically.
 3. **Deduplicate** — if multiple sub-agents found the same issue (e.g., a universal
    principle violation), merge into one finding.
 4. **Cross-check** — if the sub-agent flagged something that you believe is actually
@@ -352,7 +360,8 @@ When the sub-agent returns findings:
 
 ### Step 6 — Apply fixes
 
-Apply the frozen snapshot boundary to each input independently:
+Only after a separate explicit repair request, apply the frozen snapshot
+boundary to each input independently:
 
 1. Frozen or unknown-state inputs stay findings-only; report unresolved issues
    without editing them. Severity never overrides immutability.

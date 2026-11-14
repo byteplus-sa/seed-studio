@@ -120,9 +120,29 @@ character count, identity, handedness, screen direction, location landmarks,
 and prop state unless a numbered panel explicitly changes them.
 ```
 
-Prefer `2048x2048` or wider for a 3×3 grid so each panel stays legible. A
-panel that must become a video keyframe should be re-authored as a standalone
-image prompt using the same canon and its recorded panel section.
+Prefer `2048x2048` or wider for a 3×3 grid so each panel stays legible. If an
+individual planning panel is needed, re-author it as a standalone image prompt
+using the same canon and its recorded panel section, for planning-image
+authoring only.
+
+### Seedance handoff
+
+Regenerating from a panel prompt preserves planning origin, even with the same
+canon, full color, no labels or borders, fidelity inspection and selection.
+Storyboard grids, panels, crops and animatics remain planning-only in every
+conditioning role, including first/last-frame, R2V and motion. Crop, cleanup,
+approval, current hashes and a standalone-production-panel label do not create
+independence. Translate approved shot order, staging, blocking and continuity
+into text; omit board bindings and uploads from the video handoff.
+
+Independently authored, selected, text-free non-board production stills and
+independent animated blockouts remain eligible only with verified exact
+model/operation/transport roles, rights, consent where applicable, current
+canonical hashes, source lineage and artifact-specific QA. Independent blockout
+motion and appearance have separate authorities; storyboard animatics remain
+excluded. Preserve historical board-linked tasks, hashes and selection records
+unchanged. This resource authors planning prompts and caller handoff notes, not
+video generation or approval.
 
 ## Multi-panel prompt — separate images
 

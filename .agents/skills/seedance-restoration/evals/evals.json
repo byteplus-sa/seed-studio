@@ -1,0 +1,49 @@
+{
+  "skill_name": "seedance-restoration",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a standard Seedance 2.5 restoration prompt for inspected scratches on our authorized 8.375-second fractional archival clip. Final target 1080p. No probe or source trim; preserve the original audio tail.",
+      "expected_output": "Exact source preservation with separate first-pass native 480p Draft and later inspected 1080p promotion.",
+      "files": [],
+      "expectations": [
+        "Keeps fractional timing, motion, scene and audio tail; no automatic trimming or padding.",
+        "First-pass settings are resolution 480p and boolean draft true; 1080p is only a final delivery target.",
+        "Original audio is post-owned, not a regenerated copy; no generation or files."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Restore the damaged film. No source, frames or diagnosis are available.",
+      "expected_output": "Material diagnosis remains unresolved; requests source evidence without guessing a defect.",
+      "files": [],
+      "expectations": [
+        "Does not invent inspected damage or source duration.",
+        "Requests accessible source or supplied frame evidence.",
+        "Does not generate or write a production package."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The restoration task says succeeded, but no playback was inspected. The source defect crosses the final frame. Can we splice and pad the end?",
+      "expected_output": "Technical success is not quality evidence; keeps tail intact until inspection and authorized repair.",
+      "files": [],
+      "expectations": [
+        "Does not certify defect removal from task success.",
+        "Requires inspection of the defect and final frames before splicing.",
+        "Does not pad or truncate the source or claim a blanket timing tolerance."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I selected the clean native Draft, then changed the scratch-removal wording. Prepare promotion settings without replacing the original take.",
+      "expected_output": "Changed inputs require a new native Draft rather than promotion under old selection.",
+      "files": [],
+      "expectations": [
+        "Does not attach changed wording to draft_task_id promotion.",
+        "Preserves original prompt, take and selection history.",
+        "New Draft needs inspection and selection; no submission."
+      ]
+    }
+  ]
+}

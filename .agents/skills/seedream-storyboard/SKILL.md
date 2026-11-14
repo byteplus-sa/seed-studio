@@ -66,10 +66,14 @@ Keep these artifacts distinct:
 
 - **Storyboard panel:** communicates a decisive story and staging state.
 - **Look frame:** locks style, palette, lighting, and materials.
-- **Video keyframe:** a polished image promoted as a generation anchor.
+- **Video keyframe:** an independently eligible non-board production still
+  selected as a generation anchor, not a promoted storyboard panel.
 
-A storyboard panel may later become a keyframe only after actual fidelity
-inspection and selection under the caller's approval mode.
+A storyboard panel remains planning-only after fidelity inspection or selection.
+These references author and revise Seedream planning images; their panel
+continuity anchors and standalone-panel recipes never grant Seedance conditioning
+eligibility. For every video handoff, apply [Seedance handoff](#seedance-handoff)
+instead of earlier panel-promotion or supported-grid exceptions.
 
 ## Core rules
 
@@ -112,29 +116,26 @@ inspection and selection under the caller's approval mode.
 
 A multi-panel storyboard can be delivered in one of two modes. The choice
 affects prompt structure, model selection, output file count, and how panels
-are reviewed and promoted.
+are reviewed and revised.
 
 | Mode | Output | Default? | Best for |
 |---|---|---|---|
 | **Single-image grid** | One image containing all panels arranged in a grid | Yes | Quick overview, pitch boards, editorial review, sharing a whole scene at a glance |
-| **Separate images** | One image per panel (N files) | No | High-resolution per-panel detail, individual editing, video keyframe promotion, continuity-critical sequences |
+| **Separate images** | One image per panel (N files) | No | High-resolution per-panel detail, individual editing, continuity-critical sequences |
 
 ### When to use each
 
 - **Default to single-image grid** for multi-panel boards unless the user asks
   for separate images or the downstream workflow requires individual panels.
 - **Switch to separate images** when: the user requests per-panel editing,
-  panels need to be promoted individually to video keyframes, the panel count is
-  small and each panel needs high-fidelity detail, or the user explicitly says
+  the panel count is small and each panel needs high-fidelity detail, or the user explicitly says
   "one image per panel" or "separate panels."
-- **A single-image grid cannot be directly promoted to a video keyframe.** To
-  promote a panel from a grid, the user crops it or generates that panel as a
-  standalone image from the same canon and the panel's prompt section.
-- **Keep a sketch grid control-only by default.** Translate its composition,
-  shot order, and blocking into prompt text. Bind the whole grid in a Seedance
-  prompt only when the user explicitly chooses it as conditioning, the
-  destination mode accepts its `reference_image` role, and the Seedance prompt
-  carries the planning-sheet guard in [Seedance handoff](#seedance-handoff).
+- **Grids and separate panels remain planning-only.** Cropping a grid cell or
+  regenerating it from the same canon and panel prompt does not create an
+  independent video keyframe.
+- **Translate storyboard staging to text for video.** A selected grid with a
+  supported `reference_image` role is still ineligible for Seedance conditioning;
+  selection and leakage guards do not change its origin.
 - **A one-panel board is always a single image** regardless of mode — the mode
   distinction applies only when the board has two or more narrative panels.
 
@@ -158,16 +159,25 @@ numbers, watermarks, or decorative borders.
 
 ### Seedance handoff
 
-Panel numbers, dividers, and sketch lines are annotations on a planning sheet,
-not scene content. When a board is bound to a Seedance prompt, tell the Seedance
-prompt writer to: bind the grid as a planning sheet only; name every board mark
-(numbers, digits, badges, dividers, captions, sketch style) as an annotation
-that must never appear in the video, including all four frame corners; refer to
-shots by reading position ("the first panel"), not by the printed numerals; and
-end each shot line with "one clean full-frame image". A single "do not copy
-panel numbers" clause has not been enough: boards with corner numerals have
-leaked the same digits into every generated shot. When the board will condition
-a Seedance prompt, prefer a numberless grid or separate images.
+Storyboard grids, panels, crops and animatics are planning-only in every video
+conditioning role, including first/last-frame, R2V and motion. Crop, cleanup,
+approval, selection, current hashes and board-derived regeneration do not change
+planning origin. Translate approved shot order, staging, blocking and continuity
+into text, not a board binding or upload. A numberless or text-free board is
+still a board; regenerating a standalone from its panel prompt is not independence.
+
+Independently authored, selected, text-free non-board production stills and
+independent animated blockouts remain eligible only with verified exact
+model/operation/transport roles, rights, consent where applicable, current
+canonical hashes, source lineage and artifact-specific QA. Independent first-frame
+stills use only supported roles; R2V uses eligible canonical assets and any
+eligible independent stills, with board staging in text. Independent blockout
+motion and appearance have separate authorities; storyboard animatics are excluded.
+This leaf returns caller handoff notes, not video generation or approval.
+
+Preserve historical board-linked tasks, hashes and selection records unchanged.
+Earlier reports of corner numerals leaking into video are historical observations,
+not evidence that any negative wording makes board conditioning eligible.
 
 ## Render style
 
@@ -256,7 +266,8 @@ prompts, and any image comes from the user's generation step.
 
 - Compose with `seedream-character-sheet` / `seedream-location-asset` /
   `seedream-prop-asset` for canonical Element references in every panel.
-- Hand a board that conditions a Seedance prompt to `seedance-prompt-25`
-  (keyframes, storyboards, blockouts) together with the Seedance handoff notes.
+- Hand translated board staging and independently eligible reference notes
+  to the caller for the selected Seedance adapter; boards themselves stay
+  planning-only.
 - Inside a reference-video reverse-engineering package, `template-factory`
   authors the storyboard prompts; use this skill for standalone boards.

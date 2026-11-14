@@ -81,9 +81,10 @@ simultaneous contradictions for clarification without imposing recipe purity.
 | Motion recast of a source clip (new cast and world, same motion) | `seedance-motion-recast` |
 | Object swap in existing footage (one character, outfit, product, prop or location) | `seedance-object-swap` |
 | Restyle a whole clip into a new visual medium (same cast, place and motion) | `seedance-restyle` |
+| Generic Seedance creative prompt writing or refinement, without selecting a model | `seedance-prompt` |
 | Seedance 2.5 prompt grammar | `seedance-prompt-25` |
-| Seedance 2.0 / 4K legacy grammar | `seedance-prompt-20` |
-| Filipino/Tagalog dialogue direction | `seedance-prompt-25-filipino` |
+| Explicitly selected Seedance 2.0 legacy grammar; 4K alone does not select it | `seedance-prompt-20` |
+| Requested Filipino/Tagalog guidance after model/operation resolution | `seedance-prompt-25-filipino` |
 | Filipino micro-drama stories and episode briefs | `filipino-micro-drama` |
 | Character goals, tactics, listening and performance beats | `acting-direction` |
 | Encode supplied performance intent for Seedance | `seedance-acting-console` |
@@ -180,15 +181,36 @@ assets or context only when explicitly selected for the current task.
   or generation. Review sub-agents require a separate explicit request.
 - Freeze the exact prompt text before handoff. A generation submit must match
   the prompt the user saw byte for byte.
-- Every new Seedance 2.5 generation starts in native draft mode with explicit
+- Previously covered exact standard Seedance 2.5 and access-confirmed Premium
+  bindings start every new generation in native draft mode with explicit
   `resolution: "480p"` and boolean `draft: true`, including edits, extensions,
   retries and first tests. A delivery target does not skip this first pass.
   Keep these settings outside prompt text. The caller inspects and selects the
   draft before promotion by `draft_task_id`; changed creative inputs need a new
   native draft. A tool or UI that cannot expose draft mode is a capability
   mismatch to resolve, not permission to silently send ordinary 480p.
-  Other video models without native draft mode use an ordinary 480p test,
-  clearly labeled non-promotable. Do not invent unsupported parameters.
+  New models use only a verified exact model/operation profile, independently
+  bound to provider, transport, tool schema revision and validity. Verified
+  new native operations use their evidenced native controls, not inherited
+  480p settings. Verified non-native operations use an ordinary preview at the
+  evidenced resolution, even when 480p is also supported, clearly non-promotable;
+  the final is a separately confirmed fresh generation. This includes new exact
+  2.5 bindings outside the previously covered set. Missing, malformed, expired,
+  wrong-destination or unknown evidence leaves execution unresolved, not
+  prompt-only writing. Do not infer native Draft from a family substring or
+  force unsupported 480p.
+  Promotion requires the exact successful selected native task, unchanged
+  creative inputs and reference hashes, matching valid profile/transport and
+  final inspection. Preserve historical task identity and selection records.
+- Recast, swap, restyle and restoration preserve fractional source spans,
+  timestamps, cuts, playback speed and audio tails. Probes are opt-in; adapt
+  only a separate copy for a verified destination requirement with agreement.
+  Storyboard grids, panels and crops stay planning-only, not conditioning.
+- Manual review resolves model and operation before genre and language, and
+  returns findings-only unless repair is separately authorized. Quotas and
+  focus/light observations remain scoped to their evidence; technical conform
+  uses measured range, primaries, transfer, matrix and pixel format, not model
+  labels or generic SDR recipes.
 - Prefer an agent video pass when the client can watch the source, or local
   `ffmpeg`/`ffprobe` frame extraction read with image perception. When native
   perception is insufficient, the caller may use a capable available analysis
@@ -273,3 +295,9 @@ Maintenance). The command never overwrites the local `template-factory`,
 `seedream-woodblock-poster`, `seedream-character-outfit`, `seedance-ai-avatar`,
 `acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
 `scene-craft`, and `blocking-map` forks and leaves its changes uncommitted for review.
+
+The model-neutral `seedance-prompt` leaf and alias are local and outside the
+sync allowlist. Before copying shared-path wording, selectively compare affected
+bundles and preserve the local family overlay; the script cannot identify clean
+committed same-path semantic differences. Studio has no production catalog or
+runtime generation adapter.

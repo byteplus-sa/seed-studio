@@ -73,6 +73,24 @@ A sync copies upstream wording verbatim, and upstream is not prompt-only.
 
 ## Local edits to re-apply after a sync
 
+### Model-neutral overlay protection
+
+Before applying a sync, compare the complete selected bundles, including
+same-path references and evals, against the local model-neutral overlay.
+The script protects dirty destinations and destination-only files, not clean
+committed same-path wording differences. Stop before copying affected bundles
+and use selective manual comparison and an authorized merge that preserves
+these contracts; do not rely on restoring them after an overwrite.
+
+Keep `seedance-prompt` local and outside the unchanged allowlist, including its
+new alias. Generic craft callers use that neutral leaf; versioned 2.0/2.5
+adapters remain explicit. Preserve model-first manual findings-only review,
+fractional source timing and audio tails, opt-in probes, restoration first-Draft
+versus final settings, evidence-scoped quotas and measured-stream conform.
+Do not import runtime adapters, a catalog or production/provider machinery
+into Studio. Keep upstream provenance and historical records unchanged.
+No dirty-source override bypasses destination or ownership protection.
+
 Prompt review is manual and isolated in both depth modes. Strict adds validity
 detail and candidate inspection, not pipeline invocation. Creative approval
 authority never replaces per-submit generation opt-in. After a sync, restore:

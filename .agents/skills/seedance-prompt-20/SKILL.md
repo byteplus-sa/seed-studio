@@ -1,9 +1,14 @@
 ---
 name: seedance-prompt-20
-description: Write and revise production-grade Seedance 2.0 video prompts with reference-role classification, subject definitions, spatial continuity, shot sequencing, camera direction, native audio, and constraints. Use this skill for Seedance 2.0 prompts, shot lists, chase or action blocking, scene geography, reference-driven video, and corrections to generated motion or continuity. For Seedance 2.5 prompts, compose with seedance-prompt-25 instead.
+description: Write and revise explicitly selected Seedance 2.0 prompts and legacy syntax with reference roles, subject definitions, spatial continuity, shots, native audio and constraints. Not the generic Seedance creative entrypoint; use seedance-prompt for unversioned prompt requests. Explicit 2.5 syntax stays in seedance-prompt-25.
 ---
 
 # Seedance 2.0 Prompt
+
+Use this retained adapter for explicit legacy 2.0 requests. Generic craft
+composition uses `seedance-prompt` without selecting a model. A 4K requirement
+alone does not authorize changing the selected model; return capability gaps
+and unselected alternatives separately.
 
 > **For Seedance 2.5 prompts, the `seedance-prompt-25` skill covers those.** This skill
 > is for the legacy Seedance 2.0 model. The 2.5 model has a different prompt anatomy
@@ -64,7 +69,11 @@ Classify each reference by how it may influence visible output:
 - **Motion or camera reference** — movement language to transfer without copying pixels.
 - **Control-only reference** — route map, blocking diagram, timing chart, or other planning material that must not appear.
 
-Every supplied image can leak visible pixels, colors, lines, labels, or composition into the result. For a control-only image, prefer translating its information into concise textual choreography and omitting the image from the request. If the user explicitly requires the image to remain in the bundle, label it as control-only, state exactly what information to extract, prohibit visual reproduction, and disclose that leakage remains possible.
+Every supplied image can leak visible pixels, colors, lines, labels, or
+composition into the result. Translate control-only planning information into
+textual choreography and omit the planning image from the video request.
+Explicit selection or leakage guards do not make board-origin images eligible;
+apply [Storyboard-to-video handoff](#storyboard-to-video-handoff).
 
 Reference content can overpower negative wording. If a character sheet contains an aura, weapon, logo, extra face, or visual effect that must not appear, clean or replace the reference instead of relying only on "no aura" or similar constraints.
 
@@ -302,45 +311,55 @@ Constraints: keep Girl @Image 1's face and clothing stable without deformation; 
 
 ### Storyboard-to-video handoff
 
-Storyboards are optional. Use a storyboard panel as a derivative composition
-and continuity anchor when composition must be reviewed before motion;
-otherwise generate video directly from canonical Element references (R2V) or
-text-to-video. Character, location, and prop sheets remain the source of
-truth. Require explicit approval before using a panel as a video input, and
-verify that its recorded source-asset variants and hashes still match the
-current approved assets.
+Storyboards are optional and planning-only, including explicit legacy 2.0
+requests. Storyboard grids, panels, crops and animatics are never video inputs
+in first/last-frame, R2V or motion roles. Crop, cleanup, approval, selection,
+current hashes and board-derived regeneration do not change planning origin.
+Translate staging and continuity into text; omit the board and its derivatives
+from conditioning. Character, location and prop sheets remain the source of truth.
+
+Independently authored, selected, text-free non-board production stills and
+independent animated blockouts remain eligible only with verified exact
+model/operation/transport roles, rights, consent where applicable, current
+canonical hashes, source lineage and artifact-specific QA. A standalone image
+regenerated from a board or its panel prompt is still a board derivative.
+Independent blockouts are animated non-board geometry, not storyboard animatics;
+map their motion separately from appearance and require temporal inspection.
 
 Choose the mode from the production need:
 
 | Need | Mode | Reference rule |
 |---|---|---|
-| Reproduce the exact approved opening frame | I2V | Submit only the promoted panel as `first_frame` |
-| Lock approved start and end states | FLF2V | Submit only the two promoted panels as `first_frame` and `last_frame` |
-| Preserve explicit character, location, and prop references while following storyboard composition | R2V | Submit the approved panel and the smallest sufficient canonical asset set as `reference_image` inputs |
+| Use an approved independent opening still | I2V | Only an eligible independent production still as `first_frame` |
+| Lock approved start and end states | FLF2V | Only two eligible independent production stills as `first_frame` and `last_frame`, with matching ratios |
+| Preserve explicit references while following storyboard staging | R2V | Translate staging into text; bind only eligible canonical assets and independent production stills as `reference_image` |
+| Inherit independently animated blocking | Verified motion-reference operation | Only an eligible independent animated blockout in its exact supported role; appearance remains separate |
 | Generate video without a storyboard | R2V or T2V | Submit canonical Element references only (R2V) or text-only prompt (T2V) |
 
 These modes are mutually exclusive. Do not combine I2V or FLF2V frame roles
 with an R2V bundle unless the live model and tool explicitly confirm that
 combination.
 
-For R2V, index the panel and canonical assets separately:
+For supported R2V, index eligible independent stills and canonical assets separately:
 
 ```text
 Asset preparation:
-@Image 1: approved storyboard panel — composition, blocking, lighting, and visible state
+@Image 1: independently authored production still - selected composition and visible state
 @Image 2: approved character sheet — identity and wardrobe only
 @Image 3: approved location sheet — geometry and production design only
 @Image 4: approved prop sheet — shape, materials, and markings only
 ```
 
-Bind the panel where composition matters and each canonical asset where its
-identity must persist. If an asset changed after the panel was generated,
-return the panel to review instead of silently combining stale composition with
-new identity. Omit rough boards, contact sheets, and control diagrams from the
-request; translate their useful choreography to text.
+Bind each eligible asset only where its role applies. If canonical assets
+changed, recheck dependent stills and text instead of combining stale lineage
+with a new identity. Board review may repair planning, never conditioning
+eligibility. A prompt package does not submit, upload or approve unseen results.
 
 Record the chosen mode, ordered reference roles, paths, hashes, selected
-variants, and approval states in the shot manifest before submission.
+variants, source lineage, rights and approval states in the chat package or
+requested shot manifest before any caller-confirmed submission.
+Preserve historical board-linked task identities, hashes and selection records;
+prior success grants no new conditioning authority.
 
 ### Model IDs
 | Variant | Model ID |
@@ -379,8 +398,8 @@ Model IDs are version-dated and change on release. Always copy the live ID from 
 - Storyboarding is optional. Generate storyboard panels from those approved assets when composition,
   blocking, or shot-to-shot continuity must be reviewed before motion; otherwise generate video
   directly from canonical Element references (R2V) or text-to-video.
-- Promote only approved panels to video keyframes; a panel still in `review` is
-  not a production video input.
+- Keep every storyboard panel planning-only after review or selection. Use only
+  independently eligible production stills or blockouts for video conditioning.
 - Reuse the same reference bundle across every shot in a scene (seed guidance above).
 - Preserve a written locked-decisions and requested-delta record for every retry.
 - Change only one of {prompt wording, reference bundle, motion design} per retry when practical.

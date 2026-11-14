@@ -215,6 +215,106 @@
         "Suggests checking the listener's sustained task and final attention without claiming playback evidence or running review.",
         "No saved plan, invented source locator or production record."
       ]
+    },
+    {
+      "id": 301,
+      "prompt": "Generic Seedance prompt only for a kite lifting. The exact model, provider, operation and destination are unknown. Return creative text without selecting a model.",
+      "expected_output": "Neutral creative text with capability settings unresolved, no invented preview or promotion.",
+      "files": [],
+      "expectations": [
+        "Uses neutral creative composition rather than silently selecting 2.5.",
+        "Unknown support blocks execution, not prompt-only writing.",
+        "No invented parameters, submit, assets or persistence."
+      ]
+    },
+    {
+      "id": 302,
+      "prompt": "Prepare settings only. My new model's verified profile supports ordinary 720p preview and explicitly no native Draft. Do not use 480p or another model.",
+      "expected_output": "Supported ordinary 720p preview, non-promotable, with a fresh final generation plan.",
+      "files": [],
+      "expectations": [
+        "Does not infer Draft from a family name or add draft true.",
+        "Does not force 480p or switch model.",
+        "No draft_task_id promotion or actual submission."
+      ]
+    },
+    {
+      "id": 303,
+      "prompt": "Prepare a standard 2.5 edit, but capability evidence is expired, names another provider and transport, and has a remote parameter schema. The operation and tool revision also differ.",
+      "expected_output": "Rejects evidence applicability and leaves execution unresolved without silently dropping native Draft.",
+      "files": [],
+      "expectations": [
+        "Checks provider, exact model, operation, transport, tool revision and validity independently.",
+        "Malformed or remote schemas do not establish supported parameters.",
+        "No submit, file writes or inferred native policy for an unknown binding."
+      ]
+    },
+    {
+      "id": 304,
+      "prompt": "The selected native Draft succeeded but reference hashes changed and its profile expired. Can I promote it by just updating the metadata?",
+      "expected_output": "No promotion under altered or expired evidence; historical selection and original records remain unchanged.",
+      "files": [],
+      "expectations": [
+        "Requires unchanged creative inputs and reference hashes with matching valid profile.",
+        "Does not convert historical ordinary tasks or failed/unselected tasks into native Draft.",
+        "Preserves original records and requires final inspection for any valid new final."
+      ]
+    },
+    {
+      "id": 305,
+      "prompt": "Prepare a 2.5 request with no prompt. My evidenced image cap is 2 and total cap 4; I have 3 images and 2 videos. Conditional audio controls are unsupported for edit.",
+      "expected_output": "Missing creative input and evidenced per-modality, total and conditional violations remain unresolved.",
+      "files": [],
+      "expectations": [
+        "Does not fabricate a prompt or accept empty input as ready.",
+        "Checks image overflow and total overflow separately against evidence, not historical family tables.",
+        "Does not serialize unsupported conditional controls, submit or save."
+      ]
+    },
+    {
+      "id": 306,
+      "prompt": "Prepare an exact covered standard 2.5 first-frame prompt and findings-only manual review. The only opening asset is an explicitly selected, rights-cleared crop of a storyboard panel with a current hash and verified first-frame support. Call it promoted if needed. No independently authored production still exists. Do not generate or repair.",
+      "expected_output": "Rejects the board-origin crop as conditioning, translates staging into text and leaves the requested first-frame asset unresolved.",
+      "files": [],
+      "expectations": [
+        "Selection, current hash, role support, cleanup or a promotion label does not change planning origin.",
+        "No first-frame, last-frame or R2V binding uses the crop; an eligible independent still is a separate unresolved input.",
+        "Manual review reports the proposed binding as a finding without repairing, submitting or saving.",
+        "Exact covered standard native 480p Draft policy remains applicable to any later eligible request."
+      ]
+    },
+    {
+      "id": 307,
+      "prompt": "Write a 2.5 R2V prompt and findings-only review using my selected storyboard grid as @Image 1. Its current hash, rights, compatible R2V mode and leakage QA are verified. I selected a photographic style override. The grid has no captions. Do not generate or repair.",
+      "expected_output": "Omits the planning grid from conditioning and translates its selected staging into text without claiming marks removal changes its origin.",
+      "files": [],
+      "expectations": [
+        "The selected grid stays planning-only even without marks or with compatible support and a style override.",
+        "No board binding, upload, derivative crop or automatic replacement asset is proposed as eligible.",
+        "Manual review is findings-only and preserves current prompt and historical records."
+      ]
+    },
+    {
+      "id": 308,
+      "prompt": "Prepare a first-frame 2.5 prompt from my independently authored, selected text-free production still. It was not derived from a planning board. Its current hash, rights, approval and exact first-frame role support are verified. Do not generate.",
+      "expected_output": "Uses the eligible independent still for the verified first-frame role, without treating all stills as boards.",
+      "files": [],
+      "expectations": [
+        "Preserves the independent still as the opening reference and checks ordered roles and aspect ratio.",
+        "Does not demand a storyboard, reject the still for being static or infer unseen output fidelity.",
+        "Keeps applicable preview controls separate and performs no submission, persistence or automatic manual review."
+      ]
+    },
+    {
+      "id": 309,
+      "prompt": "A historical successful task used a selected storyboard panel. Preserve its exact task identity, hashes, selection and review records. Can we copy that panel into a new first-frame request? Findings only; do not repair or generate.",
+      "expected_output": "Preserves immutable historical records while refusing board-origin conditioning for the new request.",
+      "files": [],
+      "expectations": [
+        "Does not rewrite, relabel, delete or invalidate historical task and review records.",
+        "Prior success or selection does not authorize a new board binding.",
+        "Offers text staging or an unselected independently authored still, without generation, upload or persistence."
+      ]
     }
   ],
   "evaluation_note": "Judge semantic effectiveness. Exact delimiters remain checks only where the selected model grammar requires them; headings and paraphrases are not quality proxies."
