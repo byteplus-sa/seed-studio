@@ -135,9 +135,19 @@ prop state unless a numbered panel explicitly changes them.
 
 Parameter block: one output image (`max_images: 1`, or omit it). Use a large
 enough output size to keep each panel legible — for a 3×3 grid prefer `2048x2048` or wider. Each panel is
-lower-resolution than a dedicated single-panel generation; if a panel needs to
-become a video keyframe, the user generates it as a standalone image using the
-same canon and its prompt section.
+lower-resolution than a dedicated single-panel generation. If more planning
+detail is needed, author a standalone panel prompt using the same canon and
+its recorded prompt section, for planning-image authoring only.
+
+Regenerating a standalone panel preserves planning origin. Grids, panels,
+crops and animatics remain planning-only; redraws, removed labels, full color,
+inspection and selection do not grant video conditioning eligibility.
+For a video handoff, translate the board staging into text and apply
+[the owner's Seedance handoff](../SKILL.md#seedance-handoff). Independently
+authored non-board production stills and independent animated blockouts remain
+subject to that handoff's exact-role, rights, applicable consent, current hashes,
+source lineage and artifact-specific QA gates. Preserve historical board-linked
+tasks and selection records unchanged.
 
 #### 9b. Separate images (one image per panel)
 

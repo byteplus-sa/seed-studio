@@ -16,33 +16,59 @@ class SeedanceFamilyContractsTests(unittest.TestCase):
             r"Author storyboard prompts per \[storyboard-prompts\.md\]\(([^)]+)\)",
             entrypoint,
         )
-        self.assertIsNotNone(link)
+        if link is None:
+            self.fail("Factory storyboard delegate link is missing")
         delegate = SKILLS / "template-factory" / link.group(1)
         self.assertEqual(
             delegate, SKILLS / "template-factory/references/storyboard-prompts.md",
         )
         return " ".join(delegate.read_text().lower().split())
 
-    def assert_factory_planning_handoff(self, text):
-        board = r"(?:panel|storyboard|board|grid cell|thumbnail)"
+    def assert_no_named_board_routes(self, text):
+        board = r"(?<!non-)\b(?:panel|storyboard|board|grid cell|thumbnail)\b"
         redraw = r"(?:re-?author|redraw|repaint|rebuild|regenerat\w*|fresh render)"
         anchor = (
             r"(?:video keyframe|first[- ]frame|last[- ]frame|"
             r"opening reference|closing anchor|r2v|motion reference)"
         )
+        binding = r"\b(?:attach|bind|feed|upload|use)\b"
         routes = (
             (
-                rf"{board}[^.!?]*\b(?:must|should|can|may)\b[^.!?]*"
-                rf"(?:become|serve|use|{redraw})[^.!?]*{anchor}"
+                rf"{board}.*?\b(?:must|should|can|may)\b.*?"
+                rf"(?:become|serve|use|{redraw}).*?{anchor}"
             ),
-            rf"{redraw}[^.!?]*{board}[^.!?]*\b(?:as|for|into)\b[^.!?]*{anchor}",
-            (
-                rf"\b(?:attach|bind|feed|upload|use)\b[^.!?]*{redraw}"
-                rf"[^.!?]*\b(?:as|for|into)\b[^.!?]*{anchor}"
-            ),
+            rf"{redraw}.*?{board}.*?\b(?:as|for|into)\b.*?{anchor}",
+            rf"{binding}.*?(?:{board}|{redraw}).*?{anchor}",
         )
-        for route in routes:
-            self.assertIsNone(re.search(route, text), "board-redraw conditioning route")
+        prohibition = r"\b(?:never|do not|don't|cannot|can't|must not|should not|may not)\s*$"
+        negated_match = r"\b(?:not|never|cannot|can't|don't)\b"
+        previous_redraw = False
+        clauses = re.split(
+            r"[.!?;]|\b(?:but|however|instead)\b",
+            " ".join(text.lower().split()),
+        )
+        for clause in clauses:
+            active_routes = list(routes)
+            if previous_redraw:
+                active_routes.append(
+                    rf"{binding}.*?\b(?:it|the result|that render)\b.*?{anchor}",
+                )
+            for route in active_routes:
+                for match in re.finditer(route, clause):
+                    prohibited = (
+                        re.search(prohibition, clause[:match.start()]) is not None
+                        or re.search(negated_match, match.group()) is not None
+                    )
+                    self.assertTrue(prohibited, "board-redraw conditioning route")
+            redraw_match = re.search(rf"{redraw}.*{board}", clause)
+            previous_redraw = (
+                redraw_match is not None
+                and re.search(prohibition, clause[:redraw_match.start()]) is None
+                and re.search(negated_match, redraw_match.group()) is None
+            )
+
+    def assert_factory_planning_handoff(self, text):
+        self.assert_no_named_board_routes(text)
         for concept in (
             "planning-image authoring only", "regenerating from a panel prompt",
             "preserves planning origin", "planning-only", "animatics",
@@ -84,6 +110,94 @@ class SeedanceFamilyContractsTests(unittest.TestCase):
                 self.assert_factory_planning_handoff(
                     f"{delegate} {directive.lower()}",
                 )
+
+    def test_factory_handoff_rejects_direct_and_adjacent_sentence_board_bindings(self):
+        delegate = self.factory_storyboard_delegate()
+        for directive in (
+            "Bind the selected storyboard panel as the first-frame image.",
+            "Upload the grid cell as an R2V reference.",
+            "Use the thumbnail as the opening reference.",
+            (
+                "Regenerate the selected panel from its recorded prompt. "
+                "Bind the result as the last-frame image."
+            ),
+            (
+                "Repaint the thumbnail in full color. "
+                "Use it as the motion reference."
+            ),
+            (
+                "Never bind the storyboard panel as the first-frame image, "
+                "use the storyboard panel as the last-frame image."
+            ),
+        ):
+            with (
+                self.subTest(directive=directive),
+                self.assertRaisesRegex(AssertionError, "board-redraw conditioning route"),
+            ):
+                self.assert_factory_planning_handoff(
+                    f"{delegate} {directive.lower()}",
+                )
+
+    def test_factory_handoff_accepts_safe_prohibitions_and_independent_inputs(self):
+        delegate = self.factory_storyboard_delegate()
+        for directive in (
+            "Never regenerate the selected panel as the first-frame image.",
+            "Do not repaint the thumbnail as the opening reference.",
+            "The board must not serve as an R2V reference.",
+            "Never bind the storyboard panel as the first-frame image.",
+            (
+                "Regenerate the selected panel for planning-image authoring only. "
+                "Do not bind the result as the last-frame image."
+            ),
+            (
+                "Use the independently authored non-board production still "
+                "as the first-frame image."
+            ),
+            "Use the independent animated blockout as the motion reference.",
+            (
+                "Never regenerate the selected panel. "
+                "Bind the independently authored production still as the first-frame image."
+            ),
+            (
+                "Never regenerate the selected panel as the first-frame image; "
+                "instead use the independent animated blockout as the motion reference."
+            ),
+        ):
+            with self.subTest(directive=directive):
+                self.assert_factory_planning_handoff(
+                    f"{delegate} {directive.lower()}",
+                )
+
+    def test_storyboard_loaded_panel_recipe_is_planning_only(self):
+        entrypoint = (SKILLS / "seedream-storyboard/SKILL.md").read_text()
+        link = re.search(
+            r"\[Panel And Grid Prompts\]\(([^)]+)\)", entrypoint,
+        )
+        if link is None:
+            self.fail("Storyboard panel recipe link is missing")
+        delegate = SKILLS / "seedream-storyboard" / link.group(1)
+        self.assertEqual(
+            delegate,
+            SKILLS / "seedream-storyboard/references/panel-and-grid-prompts.md",
+        )
+        text = " ".join(delegate.read_text().lower().split())
+        self.assertNotIn("become a video keyframe", text)
+        for concept in (
+            "planning-image authoring only", "preserves planning origin",
+            "../skill.md#seedance-handoff", "independent",
+        ):
+            self.assertIn(concept, text)
+        self.assert_no_named_board_routes(text)
+        for concept in (
+            "exact", "model", "operation", "transport", "rights", "consent",
+            "hashes", "lineage", "qa", "historical",
+        ):
+            self.assertIn(concept, self.text("seedream-storyboard/SKILL.md"))
+
+    def test_named_board_route_controls_accept_empty_and_unrelated_text(self):
+        for text in ("", " ", "Preserve the source timing.", "Version 2.5 remains selected."):
+            with self.subTest(text=text):
+                self.assert_no_named_board_routes(text)
 
     def test_factory_preserves_independent_stills_and_blockouts_with_existing_gates(self):
         delegate = self.factory_storyboard_delegate()
