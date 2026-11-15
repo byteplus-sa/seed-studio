@@ -1,6 +1,6 @@
 # Keyframes Storyboards Blockouts
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
 
 - [Keyframes, storyboards, and blockouts](#keyframes-storyboards-and-blockouts)
@@ -25,9 +25,9 @@ Use only eligible independent production stills as anchor images.
 State `@Image 1 is the first frame` and `@Image 2 is the last frame` directly in
 multimodal reference mode only when current tool evidence supports this grammar
 and ordered image-role combination. This text does not override API constraints.
-For supported first-frame modes, the system locks
-the aspect ratio to the first image. First and last images **must share the same
-aspect ratio**.
+Verify first/last-frame controls and ratio compatibility for the exact
+operation. The earlier standard-2.5 guidance locked ratio to the first image
+and required matching anchor ratios; this is not a family-wide guarantee.
 
 - Describe each anchor image **separately** — do not combine into one sentence.
 - Additional references supplement **only** their specified attributes and must
@@ -49,7 +49,8 @@ ownership, scene layout, and camera direction>.
 
 ### Multi-keyframe sequences
 
-When eligible independent production stills define different stages:
+When eligible independent production stills define different stages and the
+exact destination supports the ordered keyframe roles and count:
 
 ```
 Use @Image 1 through @Image N as keyframes in this order.
@@ -72,8 +73,9 @@ and axis of action> throughout.
 
 Use grids to plan story, shot order and approximate compositions, not as video
 inputs. Translate approved staging into text without a board binding or upload.
-For planning, prefer <= 15 readable panels with clean line art or simple diagrams
-and minimal labels. State reading order and describe each panel by position.
+For planning, keep panels readable with clean line art or simple diagrams
+and minimal labels. Panel count follows readability, not a provider quota.
+State reading order and describe each panel by position.
 Panel numbers, badges, dividers, arrows, captions, paper and sketch style are
 planning annotations, never scene content. A style override or leakage check
 does not make a board eligible. Preserve historical board-linked takes, hashes
@@ -190,6 +192,7 @@ keeps contact / rotates with travel / reaches the final relationship> during
 <time window>. Camera movement cannot substitute for this subject action.
 ```
 
+The 1:1 wording above is the requested preservation target, not a guarantee.
 After generation, verify these criteria through temporal inspection of the
 actual video. Contact sheets can confirm appearance at selected moments but
 cannot establish trajectory, speed, contact, reaching, or camera continuity.

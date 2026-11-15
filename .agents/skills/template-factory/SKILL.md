@@ -36,7 +36,7 @@ shot-based v1.0 schema, separate source-motion pass and chat-first handoff.
 | Measured edit ledger (optional) | [measured-edit-ledger.md](references/measured-edit-ledger.md) | For edit-structure remakes: confirmed cuts, evidence, timing drivers and bounded revision dependencies |
 | Seedream element prompts | `seedream-character-sheet`, `seedream-location-asset`, `seedream-prompt` | Characters, locations, props above the threshold |
 | Storyboard prompts | [storyboard-prompts.md](references/storyboard-prompts.md) | One panel per shot by default; sketch grid default |
-| Seedance 2.5 prompts | `seedance-prompt-25` + [slot-mapping.md](references/slot-mapping.md) | Per-shot natural duration; ordered `@Image N` bindings |
+| Seedance 2.5 prompts | `seedance-prompt` + [slot-mapping.md](references/slot-mapping.md) | Per-shot natural duration; ordered `@Image N` bindings |
 | Reusable recipe (optional) | [template-schema.json](references/template-schema.json) | Locked grammar + replaceable inputs + adaptation rules |
 
 ## Input handling (capability-driven)
@@ -168,7 +168,7 @@ storyboard is a prompt deliverable — the user pastes it into Lumina.
 ### 6. Seedance prompts
 
 Compose the Seedance 2.5 six-part prompt per [slot-mapping.md](references/slot-mapping.md)
-via `seedance-prompt-25`:
+via `seedance-prompt`:
 
 - Subject and Scene from element descriptors, copied word for word and bound
   to `@Image N`.
@@ -236,7 +236,7 @@ URLs into the recipe.
 | Location plates | `seedream-location-asset` |
 | Props and other invented imagery | `seedream-prompt` |
 | Storyboard prompts | [storyboard-prompts.md](references/storyboard-prompts.md) |
-| Seedance prompt grammar | `seedance-prompt-25` |
+| Seedance prompt grammar | `seedance-prompt` |
 | Filipino / Tagalog dialogue | `seedance-prompt-25-filipino` |
 | Acting, camera, lens, lighting, pacing axes | `seedance-acting-console`, `seedance-{camera,lens,lighting,pacing}-presets` |
 | Grade sentence | `color-grade-palettes` |

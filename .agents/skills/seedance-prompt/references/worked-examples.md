@@ -1,7 +1,11 @@
 # Worked Examples
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
+
+These are hypothetical teaching examples, not measured generation outcomes.
+Their durations and reference notation do not establish exact-model capability.
+Keep delivery settings outside prompt text and verify the selected operation.
 
 - [Full example: T2V 30-second one-take](#full-example-t2v-30-second-one-take)
 - [Full example: R2V multi-reference concert](#full-example-r2v-multi-reference-concert)
@@ -24,7 +28,7 @@ the arena, showing the packed audience, light boards, glow sticks, and cheering 
 ## Full example: R2V multi-reference concert
 
 ```
-A 30-second concert sequence in 16:9 landscape, with cinematic realism, authentic concert hall
+A concert sequence with cinematic realism, authentic concert hall
 lighting and shadows, warm golden stage lighting, and the atmosphere of a formal classical concert.
 
 Use @Image 1 for the venue.
@@ -32,9 +36,19 @@ Reference @Image 2 for the pianist.
 Reference @Image 3 for the cello.
 Reference @Image 4 for the violin.
 The lead vocalist must strictly follow @Image 5.
-Reference @Images 6 to 10 for the rest of the orchestra.
-Reference @Images 11 to 14 for the choir.
-Reference @Images 15 to 18 for the audience seating.
+@Image 6 defines the percussionist.
+@Image 7 defines the horn player.
+@Image 8 defines the clarinet player.
+@Image 9 defines the flutist.
+@Image 10 defines the conductor.
+@Image 11 defines the choir's left row.
+@Image 12 defines the choir's center row.
+@Image 13 defines the choir's right row.
+@Image 14 defines the choir's rear row.
+@Image 15 defines the audience seating at frame-left.
+@Image 16 defines the center audience seating.
+@Image 17 defines the audience seating at frame-right.
+@Image 18 defines the balcony seating.
 
 The lead vocalist walks from center stage toward the front edge. The pianist is positioned by the
 piano. The orchestra is arranged on both sides and toward the rear. The choir stands at the back

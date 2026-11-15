@@ -139,14 +139,21 @@ class SeedanceCapabilityProfilesTests(unittest.TestCase):
             ".agents/contracts/production-policy.md",
             ".agents/contracts/review-mode.md",
             ".agents/contracts/generation-transport.md",
-            ".agents/skills/seedance-prompt-25/SKILL.md",
-            ".agents/skills/seedance-prompt-25/references/parameter-reference.md",
+            ".agents/skills/seedance-prompt/SKILL.md",
+            ".agents/skills/seedance-prompt/references/parameter-reference.md",
             ".agents/skills/prompt-review/references/review-checklists.md",
         )
         surfaces = {
             path: " ".join((ROOT / path).read_text().lower().split())
             for path in paths
         }
+        entrypoint = ".agents/skills/seedance-prompt/SKILL.md"
+        parameters = ".agents/skills/seedance-prompt/references/parameter-reference.md"
+        self.assertIn(
+            "[parameter reference](references/parameter-reference.md)",
+            surfaces[entrypoint],
+        )
+        surfaces[entrypoint] += " " + surfaces[parameters]
         catalog = json.loads((ROOT / ".agents/contracts/rules.json").read_text())
         rule = next(rule for rule in catalog["rules"]
                     if rule["id"] == "seedance.draft_promotion")
@@ -194,7 +201,7 @@ class SeedanceCapabilityProfilesTests(unittest.TestCase):
                     self.assertIn(concept, text)
 
     def test_unknown_profile_blocks_execution_not_creative_writing(self):
-        text = self.text("seedance-prompt-25/references/parameter-reference.md")
+        text = self.text("seedance-prompt/references/parameter-reference.md")
         for concept in ("exact model", "provider", "operation", "transport",
                         "tool schema revision", "validity", "unknown",
                         "prompt-only", "non-promotable"):
@@ -203,14 +210,14 @@ class SeedanceCapabilityProfilesTests(unittest.TestCase):
                          "use an ordinary 480p", text)
 
     def test_promotion_requires_matching_selected_native_task(self):
-        text = self.text("seedance-prompt-25/references/parameter-reference.md")
+        text = self.text("seedance-prompt/references/parameter-reference.md")
         for concept in ("successful", "selected", "reference hashes",
                         "expiry", "profile", "final", "inspect"):
             self.assertIn(concept, text)
         self.assertIn("plain 480p output is not a native draft", text)
 
     def test_limits_are_bound_to_evidence_not_family_name(self):
-        text = self.text("seedance-prompt-25/references/parameter-reference.md")
+        text = self.text("seedance-prompt/references/parameter-reference.md")
         self.assertIn("per-modality", text)
         self.assertIn("conditional", text)
         self.assertIn("snapshot", text)

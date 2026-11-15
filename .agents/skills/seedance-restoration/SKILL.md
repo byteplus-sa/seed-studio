@@ -30,7 +30,7 @@ Use this skill when the user wants to:
 Do **not** use for deterministic VOD AI enhancement or classical denoiser
 filters — this skill is the Seedance generative-edit route. For the
 general edit grammar and the full six-part formula, compose with
-`seedance-prompt-25`; submission and the generation lifecycle belong to the
+`seedance-prompt`; submission and the generation lifecycle belong to the
 caller outside this workspace.
 
 > **Known ceiling.** Seedance re-renders the picture; aggressive cleanup trades

@@ -171,7 +171,7 @@ preparation recipes as conditional on these checks, not default trim instruction
    post-audio route, apply the audio checks.
 
 The canonical 2.5 edit blocks and face-protection lines come from
-`seedance-prompt-25` and `seedance-vfx-prompt`. These are composition hints;
+`seedance-prompt` and `seedance-vfx-prompt`. These are composition hints;
 this leaf does not load sibling skills.
 
 ## Prompt-only boundary and failure behavior

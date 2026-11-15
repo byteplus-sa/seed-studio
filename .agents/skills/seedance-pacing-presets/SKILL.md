@@ -20,10 +20,9 @@ rhythm — not just its content — is directed. It is a **prompt-composition-on
 skill: it never calls any tools and never runs generation.
 The base prompt grammar — the six-part formula, `At Ns` timestamp syntax, the
 bounce-speed-ramp technique contract, the audio bracket syntax `()<>{}【】`,
-and scene-staging rules — is defined in `seedance-prompt-25` and is **not
-redefined here**. Generic composition uses `seedance-prompt`; use the retained
-`seedance-prompt-25` syntax only for explicit 2.5 requests. Compose with
-`seedance-prompt` for the full creative prompt contract;
+and scene-staging rules — is defined in `seedance-prompt` and is **not
+redefined here**. Special syntax requires evidence for the selected exact
+model and destination. Compose with `seedance-prompt` for the full creative prompt contract;
 this skill only adds the pacing preset bank on top.
 
 The output of this skill is always a **pacing block** — a timestamped
@@ -202,7 +201,7 @@ At <N>s, <ramp behavior with subject, beat, and end state>.
 Audio: <(music)> <{dialogue}> <sfx>, cut <on / against> the beat.
 ```
 
-Timestamp syntax follows `seedance-prompt-25`: **exact moments use `At N
+Timestamp syntax follows `seedance-prompt`: **exact moments use `At N
 seconds`, time ranges are written bare** (e.g. `5-9 seconds, ...`). Do not
 write `At 5-9 seconds` — that hybrid form is not in the canonical grammar.
 
@@ -223,7 +222,7 @@ Audio: <the crate smacks hard against the wall> on the impact, then the alley fa
 This block names the ramp (Impact, then Slow Motion, then Flash Out), names the
 beat that lands (the crate impact), gives each ramp a timestamp and an end
 state, and stays within a natural 12-second duration. It composes with
-`seedance-prompt-25` scene staging for multi-stage scenes, with
+`seedance-prompt` scene staging for multi-stage scenes, with
 `seedance-camera-presets` for the camera treatment, and with
 `template-factory` storyboard prompts when the scene needs an approved shot
 list first; end-to-end production is out of scope in this workspace.
@@ -292,4 +291,4 @@ Before returning a pacing block for the selected Seedance model, verify:
     failure-specific timing remedy kept optional and compatible with locks.
 
 A pacing block that passes all ten checks is ready to be composed into the
-full prompt by `seedance-prompt`, with the selected adapter's syntax.
+full prompt by `seedance-prompt`, with verified destination syntax.

@@ -81,9 +81,7 @@ simultaneous contradictions for clarification without imposing recipe purity.
 | Motion recast of a source clip (new cast and world, same motion) | `seedance-motion-recast` |
 | Object swap in existing footage (one character, outfit, product, prop or location) | `seedance-object-swap` |
 | Restyle a whole clip into a new visual medium (same cast, place and motion) | `seedance-restyle` |
-| Generic Seedance creative prompt writing or refinement, without selecting a model | `seedance-prompt` |
-| Seedance 2.5 prompt grammar | `seedance-prompt-25` |
-| Explicitly selected Seedance 2.0 legacy grammar; 4K alone does not select it | `seedance-prompt-20` |
+| Seedance prompt writing, refinement, editing or extension for any selected model; preserve exact model and source locks | `seedance-prompt` |
 | Requested Filipino/Tagalog guidance after model/operation resolution | `seedance-prompt-25-filipino` |
 | Filipino micro-drama stories and episode briefs | `filipino-micro-drama` |
 | Character goals, tactics, listening and performance beats | `acting-direction` |
@@ -296,8 +294,8 @@ Maintenance). The command never overwrites the local `template-factory`,
 `acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
 `scene-craft`, and `blocking-map` forks and leaves its changes uncommitted for review.
 
-The model-neutral `seedance-prompt` leaf and alias are local and outside the
-sync allowlist. Before copying shared-path wording, selectively compare affected
+The consolidated `seedance-prompt` leaf, references, evals and alias are local
+and outside the sync allowlist. Before copying shared-path wording, selectively compare affected
 bundles and preserve the local family overlay; the script cannot identify clean
 committed same-path semantic differences. Studio has no production catalog or
 runtime generation adapter.

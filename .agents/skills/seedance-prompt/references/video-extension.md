@@ -1,6 +1,6 @@
 # Video Extension
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
 
 - [Video extension](#video-extension)
@@ -8,12 +8,19 @@ mode selection and caller responsibilities.
 ## Video extension
 
 Video extension creates content beyond the boundary of a source video.
+These 2.5-based examples apply only when the selected exact model, operation
+and destination support the requested direction and reference combination.
+Preserve the original fractional span, cuts, playback speed and independent
+audio tail. No trimming, padding, retiming or probes are implied. Any required
+destination adaptation needs agreement and a separate derivative.
+Name which sound continues across the boundary, which new sound is authorized,
+and which source or master remains unchanged; listen on both sides afterward.
 - **Forward extension**: extension's first frame continues from the source's last frame.
 - **Backward extension**: extension's last frame connects to the source's first frame.
 
 ### Forward extension
 
-```
+```text
 @Video 1 is the source video to extend forward.
 
 Extend @Video 1 forward. The first frame of the extended segment directly continues from the last
@@ -72,8 +79,10 @@ Keep each subject as the same continuous instance throughout.
 <Materials that should appear only after the source video begins> must not appear early.
 ```
 
-> Boundary frames connect naturally at a visual level; they will **not** be
-> pixel-identical. Inspect both sides of the boundary during review.
+> Boundary frames should connect naturally but are not guaranteed pixel-identical.
+> Preserve exact-boundary user locks; feasibility remains unresolved until
+> verified for the selected operation and actual output. Inspect both sides
+> of the boundary without treating uncertainty as permission to relax a lock.
 
 ### Backward extension with additional references
 

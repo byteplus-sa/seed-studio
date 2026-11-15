@@ -5,8 +5,8 @@ This keeps the mapping reproducible and prevents slot drift.
 
 ## Seedance creative composition (via `seedance-prompt`)
 
-Preserve the selected model; explicit versioned syntax belongs to its adapter,
-not the breakdown's genre or language.
+Preserve the selected model; special syntax requires exact operation and
+destination evidence, not the breakdown's genre or language.
 
 | Six-part slot | Source field(s) | Notes |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ not the breakdown's genre or language.
 | Scene | `elements[]` location descriptors | `@Image` binding |
 | Visual style | `shots[].lighting`, requested shot-specific choices, then `visual_style` defaults | Shot lighting wins for that shot; order: lighting → lens → grade → film |
 | Camera | `camera` + per-shot `shots[].camera` + `shots[].motion.camera_motion` | Preserve compatible paths, ordered phases and source speed; no numeric move cap |
-| Audio | `shots[].audio` + verified `audio` | Preserve native/post/master/silent ownership; transcribe only verified dialogue and use the selected adapter's syntax |
+| Audio | `shots[].audio` + verified `audio` | Preserve native/post/master/silent ownership; transcribe only verified dialogue and use verified destination syntax |
 
 ## Per-shot scope
 

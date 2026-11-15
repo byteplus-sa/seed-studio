@@ -214,7 +214,7 @@ class SeedanceFamilyContractsTests(unittest.TestCase):
 
     def test_remaining_board_owners_reject_origin_laundering(self):
         for path in (
-            "seedance-prompt-20/SKILL.md",
+            "seedance-prompt/references/parameter-reference.md",
             "seedream-storyboard/SKILL.md",
             "seedream-storyboard/references/scene-density.md",
         ):
@@ -242,7 +242,7 @@ class SeedanceFamilyContractsTests(unittest.TestCase):
 
     def test_remaining_board_owners_preserve_independent_eligible_inputs(self):
         for path in (
-            "seedance-prompt-20/SKILL.md",
+            "seedance-prompt/references/parameter-reference.md",
             "seedream-storyboard/SKILL.md",
             "seedream-storyboard/references/scene-density.md",
         ):
@@ -257,11 +257,11 @@ class SeedanceFamilyContractsTests(unittest.TestCase):
                     self.assertIn(concept, text)
                 self.assertIn("preserve historical", text)
 
-    def test_studio_02_adapter_and_review_never_promote_board_origin_to_conditioning(self):
+    def test_studio_02_consolidated_references_and_review_keep_board_origin(self):
         paths = (
-            "seedance-prompt-25/SKILL.md",
-            "seedance-prompt-25/references/parameter-reference.md",
-            "seedance-prompt-25/references/keyframes-storyboards-blockouts.md",
+            "seedance-prompt/references/reference-inputs.md",
+            "seedance-prompt/references/parameter-reference.md",
+            "seedance-prompt/references/keyframes-storyboards-blockouts.md",
             "prompt-review/references/review-checklists.md",
         )
         for path in paths:

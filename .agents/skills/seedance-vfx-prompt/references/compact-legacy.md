@@ -63,7 +63,10 @@ mixed inputs ≤ 12; generation duration 4–15s. A source clip plus a
 texture-reference photo fits easily. If a request needs more inputs than
 allowed, flag it and say what to prioritize.
 
-> **Seedance 2.5 limits**: 2.5 raises these to 30 images / 10 videos / 10
-> audios and 30s generation duration. If your request exceeds the 2.0 limits
-> above, route to `seedance-prompt-25` and use the 2.5 model
-> (`dreamina-seedance-2-5-260628`).
+> **Seedance 2.5 alternative**: Historical standard 2.5 guidance described
+> 30 images / 10 videos / 10 audios and 30s generation for
+> `dreamina-seedance-2-5-260628`. Preserve the selected model; exceeding an
+> evidenced limit leaves the request unresolved, not permission to switch.
+> Any alternative remains unselected until authorized and verified for the
+> exact model, operation and destination. `seedance-prompt` owns the general
+> prompt package for either selected binding.

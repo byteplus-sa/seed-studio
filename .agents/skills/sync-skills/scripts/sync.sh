@@ -23,7 +23,7 @@
 # 4 scrub required, 5 dirty destination, 6 destination-only ownership unresolved.
 set -euo pipefail
 
-ALLOWLIST="brief-intake prompt-review seedance-prompt-25 seedance-prompt-25-filipino seedance-prompt-20 seedance-animation-styles seedance-camera-presets seedance-lens-presets seedance-lighting-presets seedance-pacing-presets seedance-motion-design seedance-restoration seedance-vfx-prompt seedream-prompt seedream-character-sheet seedream-location-asset seed-audio-prompt ugc-ad-modes ugc-motion-presets color-grade-palettes omnihuman-prompt-20"
+ALLOWLIST="brief-intake prompt-review seedance-prompt-25-filipino seedance-animation-styles seedance-camera-presets seedance-lens-presets seedance-lighting-presets seedance-pacing-presets seedance-motion-design seedance-restoration seedance-vfx-prompt seedream-prompt seedream-character-sheet seedream-location-asset seed-audio-prompt ugc-ad-modes ugc-motion-presets color-grade-palettes omnihuman-prompt-20"
 EXCLUDES=(--exclude='.DS_Store' --exclude='__pycache__')
 RSYNC_EXCLUDES=("${EXCLUDES[@]}" --exclude='/agents')
 RSYNC_OPTIONS=(-a --checksum --omit-dir-times "${RSYNC_EXCLUDES[@]}")
@@ -40,7 +40,7 @@ cd "$ROOT"
 
 # 1. Preflight
 SRC="${SKILLS_SOURCE:-../ark-director}"
-if [ ! -f "$SRC/.agents/skills/seedance-prompt-25/SKILL.md" ]; then
+if [ ! -d "$SRC/.agents/skills" ]; then
   echo "ERROR: upstream checkout not found at $SRC — stop and report" >&2
   exit 1
 fi

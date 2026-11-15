@@ -36,7 +36,7 @@ the live pages over this skill where they conflict.
 
 The base prompt grammar lives in the partner skills `seedream-prompt` (Lighting
 section, avoiding-the-AI-look lighting guidance) and `seedance-prompt`
-(generic creative structure; selected versioned adapters own syntax). Compose with
+(consolidated creative structure; special syntax requires exact-model evidence). Compose with
 those skills when writing a full prompt; this skill supplies the lighting block
 only.
 

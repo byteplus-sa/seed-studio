@@ -164,10 +164,10 @@ micro-interaction numbers (150–300ms is a UI duration, not a film beat):
 - **Give motion weight.** Anticipate before a settle, settle into a hold, and
   let the fastest element carry the most energy.
 
-For every moving element, write the full motion grammar — motion type,
-direction, speed, amplitude, easing, loop period — not a bare verb (see
-`seedance-prompt-25`, "Motion grammar"). State camera motion explicitly,
-including when the camera is truly locked-off and only the plates move.
+For each moving element, describe the axes that make its intended action
+readable: motion type, direction, speed or amplitude as needed (see
+`seedance-prompt`, "Selective motion grammar"). Easing and loop periods apply
+only to intended repetition. Preserve requested camera paths and holds.
 
 ### 6. Compress reality, don't fake it
 
@@ -193,8 +193,8 @@ text-lock discipline from drifting across later shots.
 
 The plate classification decides *what* Seedance animates; the mode decides
 *how*. Match synthesized or intentionally non-exact visual plates to one mode
-(generic structure via `seedance-prompt`; explicit versioned syntax via the
-selected adapter). Exact type and UI remain deterministic post
+(structure via `seedance-prompt`; special syntax and roles require exact
+operation and destination evidence). Exact type and UI remain deterministic post
 layers unless the user explicitly accepts model-driven fidelity risk:
 
 | Plate set | Mode | Notes |
@@ -207,7 +207,7 @@ layers unless the user explicitly accepts model-driven fidelity risk:
 Prefer **one-click video** when the deliverable is a self-contained paced ad from
 a stack of visual plates. Prefer **first/last frame** when only the open and
 close compositions matter and the middle is a continuous, model-driven move.
-Record the chosen mode and ordered roles in `shot.md` (see `seedance-prompt-25`
+Record the chosen mode and ordered roles in chat or a requested shot manifest (see `seedance-prompt`
 storyboard-to-video handoff).
 
 ## Output formats
@@ -234,7 +234,7 @@ and exclusions.>
 ### Full motion-design prompt
 
 Use when the user asks for a complete Seedance 2.5 prompt. The full-prompt form
-overlays the six-part formula (see `seedance-prompt-25` for the grammar). The
+overlays the six-part formula (see `seedance-prompt` for the grammar). The
 `[Motion Design]` block is this skill's front-matter for the **Subject + Action**
 slot — the message and the moment it lands — plus the attention hierarchy. It is
 **not** the Visual Style slot, which stays lighting → lens → grade → sensor.
@@ -256,7 +256,7 @@ hierarchy: the hero claim moves first, the CTA lands last.>
 viewer concludes.
 
 [Visual Style]
-<Lighting → lens → grade → sensor/film look, composed via `seedance-prompt-25`
+<Lighting → lens → grade → sensor/film look, composed via `seedance-prompt`
 and axis presets. Include only when the user names a look.>
 
 [Motion Language]
@@ -278,12 +278,12 @@ requested.>
 and exclusions.>
 ```
 
-For multi-beat reveals, use `seedance-prompt-25`'s `[Stage N]` grammar (one
-primary event + a clear end state per stage) rather than inventing a shot list.
+For multi-beat reveals, use `seedance-prompt`'s optional stage grammar when it
+clarifies ordered events or a sustained state. Preserve a supplied shot list.
 
-Right-size `duration` (4–30s) to the piece; set aspect ratio from the delivery
-format; `watermark: false` unless requested. Parameter defaults live in
-`seedance-prompt-25`'s quick reference.
+Keep duration and aspect ratio aligned with the brief, separate from creative
+text. Verify all controls against the selected exact model, operation and
+destination; the parameter reference is historical, not a source of defaults.
 
 Return the prompt directly. Do not add production workflow, tool selection,
 asset management, approval gates, or generation instructions unless the user
@@ -293,8 +293,8 @@ explicitly asks for them.
 
 This skill is prompt-only. It **never calls generation tools.** It composes:
 
-- **`seedance-prompt`** — generic creative composition without selecting a model.
-  Explicit 2.5 syntax stays in `seedance-prompt-25`; reference roles, duration,
+- **`seedance-prompt`** — consolidated creative composition without selecting a model.
+  Special syntax, reference roles, duration,
   preview and audio controls require evidence for the selected operation.
 - **`seedream-prompt`** — author synthesized
   photographic, illustrative, texture, and keyframe plates. Do not ask it to
@@ -380,7 +380,7 @@ Before returning the prompt (and before any generation task), verify:
 7. **Reference discipline.** `@Image N` indices are stable, roles are stated,
    and the submitted array matches the bindings 1:1.
 8. **Composition respected.** The skill composes in prose with
-   `seedance-prompt`, the explicitly selected versioned adapter, `seedream-prompt`, and
+   `seedance-prompt`, `seedream-prompt`, and
    `seed-audio-prompt`; it does not call any tools.
 9. **The design seal** is compact and does not contradict the treatment or the
    text-lock discipline.

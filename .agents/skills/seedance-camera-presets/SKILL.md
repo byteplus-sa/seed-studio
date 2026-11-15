@@ -21,9 +21,9 @@ canonical, drop-in **Camera block** for the Seedance creative prompt formula
 (Subject + Action + Scene + Visual Style + Camera + Audio). It is a
 **prompt-composition-only** skill: it never calls any tools, and
 it never runs generation. The base prompt grammar — the six-part formula,
-reference-role syntax, timestamps and audio syntax come from the selected
-adapter. Generic composition uses `seedance-prompt`; explicit 2.5 syntax
-remains in `seedance-prompt-25`. Compose with `seedance-prompt` for the full prompt
+reference-role syntax, timestamps and audio syntax come from `seedance-prompt`,
+with special syntax verified for the selected model and destination.
+Compose with that consolidated leaf for the full prompt
 contract; this skill only adds the preset bank on top.
 
 The output of this skill is always a **Camera block** — one or two sentences
@@ -84,7 +84,7 @@ new provider parameters or guarantees of execution.
 ### Technique presets
 
 These are the named cinematic techniques. Each row states the official
-"What to Specify" contract from the `seedance-prompt-25` popular-techniques
+"What to Specify" contract from the `seedance-prompt` popular-techniques
 table, then gives a canonical phrase template that satisfies it.
 
 | Preset | What to specify | Canonical phrase template |
@@ -103,7 +103,7 @@ wording and its evidence. Limited upstream drafts kept a face sharp; offer
 post defocus when a reliable pull away from a face is required.
 
 For a technique not in the table, follow the uncommon-cinematography-terms
-recipe from `seedance-prompt-25`:
+recipe from `seedance-prompt`:
 
 > **Cinematography Term + Target Subject + Visual Change + Foreground/Background Relationship + Direction or Speed**
 
@@ -290,7 +290,7 @@ Before returning a Camera block for the selected Seedance model, verify:
 4. No numeric aperture or focal value appears alone without a visible result.
 5. Official shot sizes and angles are distinguished from common film-language
    additions; framing and Dutch-angle wording remain unverified heuristics.
-6. Any timestamp uses the selected adapter's supported syntax and is reserved
+6. Any timestamp uses verified destination syntax and is reserved
    for a critical beat or transition, not paced frame-by-frame.
 7. A whip pan or other transition includes the trigger time, direction,
    occluding element, and the composition or motion that continues after.
@@ -301,4 +301,4 @@ Before returning a Camera block for the selected Seedance model, verify:
     together when position matters.
 
 A Camera block that passes all ten checks is ready to be composed into the
-full prompt by `seedance-prompt`, with versioned syntax only when selected.
+full prompt by `seedance-prompt`, with special syntax only when verified.

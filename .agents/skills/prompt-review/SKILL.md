@@ -100,8 +100,8 @@ substitutes for that judgment.
 
 Resolve model and operation first. An unknown model permits a provisional
 creative assessment, but capability and production review remain incomplete.
-Generic Seedance creative wording comes from `seedance-prompt`; versioned
-syntax uses the explicitly selected adapter. Do not infer 2.5 from language,
+Seedance creative wording comes from `seedance-prompt`; special syntax and
+controls require exact operation and destination evidence. Do not infer 2.5 from language,
 genre, filename or 4K delivery. For the same request, use generation rules for generate, 2.5 edit rules for a
 2.5 edit, recast rules for a 2.5 recast (motion transfer), restyle rules for a
 2.5 restyle, legacy VFX rules for a supported 2.0 edit, and extension rules for
@@ -115,8 +115,7 @@ Use explicit input first; filenames below are fallback hints, not authority:
 
 | Prompt type | File prefix | Checklist source |
 |---|---|---|
-| Seedance 2.5 video | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-25` |
-| Seedance 2.0 video (4K/Fast/Mini) | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt-20` |
+| Seedance video, any selected exact model | `prompt_sNN_shNNN_tNN_vNN.md` | `seedance-prompt`; apply only the evidenced model/operation checklist |
 | Seedance 2.5 edit | explicit model + edit operation | Seedance 2.5 edit section |
 | Seedance 2.5 object swap | explicit model + edit operation replacing one element | Seedance 2.5 edit section (object swap items) + `seedance-object-swap` |
 | Seedance 2.5 recast (motion transfer) | explicit model + recast operation | Seedance 2.5 recast section + `seedance-motion-recast` |

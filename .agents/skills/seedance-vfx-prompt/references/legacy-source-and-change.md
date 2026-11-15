@@ -13,7 +13,7 @@ mode selection and caller responsibilities.
 ## 1. Asset preparation (always first)
 
 List every reference asset the user provides, using the same `@Video N`,
-`@Image N`, `@Audio N` index convention as the general `seedance-prompt-20` skill.
+`@Image N`, `@Audio N` index convention as the general `seedance-prompt` skill.
 For VFX, the source clip being edited is always `@Video 1`.
 
 ```text
@@ -48,10 +48,10 @@ they're starting from before writing.
 
 ## 2. Subject definitions
 
-Define every distinct subject that appears in the references using the `Define`
-keyword, exactly as the general `seedance-prompt-20` skill requires. Use 2-3 clear,
-stable static features (clothing, hairstyle, appearance, category) to uniquely
-identify each subject.
+Define distinct subjects with stable labels, consistent with the general
+`seedance-prompt` guidance. The `Define` wording below is a readable convention,
+not a required parser keyword. Use relevant static features (clothing,
+hairstyle, appearance, category) to distinguish subjects without a feature quota.
 
 ```text
 Subject definitions:

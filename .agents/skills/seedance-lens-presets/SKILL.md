@@ -42,8 +42,8 @@ physical-photography concept; it informs the heuristics but does not establish
 generative-model behavior.
 
 The base prompt grammar this skill composes into lives in the
-`seedance-prompt` skill (generic creative composition; explicit versioned syntax
-uses the selected adapter) and the `seedream-prompt` skill (Subject / Setting / Style / Lighting
+`seedance-prompt` skill (consolidated creative composition; special syntax
+requires exact-model evidence) and the `seedream-prompt` skill (Subject / Setting / Style / Lighting
 / Composition structure). Compose with those skills for the surrounding grammar;
 this skill only resolves the optics axis.
 

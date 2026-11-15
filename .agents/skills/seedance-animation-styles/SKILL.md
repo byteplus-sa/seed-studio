@@ -198,7 +198,7 @@ Use when the user only wants animation-style wording:
 ### Full animation prompt
 
 Use when the user asks for a complete Seedance prompt. The full-prompt form uses
-the six-part formula (see `seedance-prompt-25` for the grammar); the
+the six-part formula (see `seedance-prompt` for the grammar); the
 `[Animation Medium]` block drops into the **Visual Style** slot:
 
 ```text

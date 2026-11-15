@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Prompt"
+  short_description: "2.5-based composition, references, edits and extensions"
+  default_prompt: "Use $seedance-prompt to write or refine this video prompt, including references, source edits or extensions, while preserving the selected exact model, source locks and sound ownership. Return the prompt package without generating media."

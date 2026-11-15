@@ -50,7 +50,7 @@ review. Source-preserving edits inherit performance; quiet holds and deliberate
 non-response need no extra motion, cuts or emotional turn.
 
 Use a preset skill for a concrete requested axis or an in-scope proposal under
-delegated direction. For ordinary shots, `seedance-prompt-25` alone can suffice;
+delegated direction. For ordinary shots, `seedance-prompt` alone can suffice;
 delegation does not require a preset stack or whole-scene plan. Use
 `seedance-shot-design` for requested or delegated coverage and carry supplied
 choices into each shot without reopening locked axes.

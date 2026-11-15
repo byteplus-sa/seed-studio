@@ -12,8 +12,8 @@ description: >-
 # Seedance Music Video
 
 Write ready-to-use Seedance prompts for music videos. Generic creative
-composition uses `seedance-prompt`; preserve the selected model and use
-`seedance-prompt-25` only for explicitly requested 2.5 syntax. The music is the
+composition uses `seedance-prompt`; preserve the selected model and verify
+special syntax for its exact operation and destination. The music is the
 fixed brief: every visual decision is planned backward from the track's
 sections, beats, and energy. Make the format, the song map, the beat contract,
 and the brief-derived treatment visible in the prompt, not just the scene content.
@@ -48,7 +48,7 @@ playback quality or user approval.
 
 - Official Seedance 2.5 prompt guide, launch blog, and ModelArk docs — audio
   bracket syntax, `@Audio N` timing-authority contract, the one-take singer
-  example, timestamp grammar, and limitations. See `seedance-prompt-25`.
+  example, timestamp grammar, and limitations. See `seedance-prompt`.
 - Music-video craft and beat-sync practice — format taxonomy, song-section
   energy mapping, and section-relative cut density (sources below).
 - Genre conventions — per-genre visual recipes, vertical-vs-landscape norms.
@@ -433,7 +433,7 @@ camera passes through in order.
 ### 7. Compose with the six-part formula
 
 Assemble the treatment into the `seedance-prompt` creative formula. Braces,
-reference roles and timing settings must match the selected versioned adapter:
+reference roles and timing settings require exact operation and destination evidence:
 
 > **Subject + Action or Event + Scene and Environment + Visual Style + Camera Movement/Cut + Audio**
 

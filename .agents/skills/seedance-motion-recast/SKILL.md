@@ -180,7 +180,7 @@ current documentation before finalizing the parameter block; do not assume a
 Load only the references the request needs. A stylized medium such as
 claymation or toy miniature may also use the `seedance-animation-styles`
 recipes by name; the six-part formula and reference syntax stay with
-`seedance-prompt-25`. These are composition hints; this leaf does not load
+`seedance-prompt`. These are composition hints; this leaf does not load
 sibling skills.
 
 ## Prompt-only boundary and failure behavior

@@ -33,7 +33,7 @@ Source lineage does not establish a successful result for the current input.
 
 | Need | Composition hint |
 | --- | --- |
-| General Seedance grammar | `seedance-prompt-25` |
+| General Seedance grammar | `seedance-prompt` |
 | Whole-clip medium change | `seedance-restyle` |
 | Swap one kept element | `seedance-object-swap` |
 | Identity, real products and reference roles | [Element identification](../../contracts/element-identification.md) |

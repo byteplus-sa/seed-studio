@@ -33,8 +33,7 @@ skill.
 | Dramatic structure of the scene | `scene-craft` |
 | Supplied performance intentions, triggers and listening | `acting-direction` |
 | Supplied fictional-action exchanges and actor/prop states | `seedance-fight-choreography` |
-| Generic creative composition | `seedance-prompt` |
-| Explicit versioned syntax and evidenced settings | Selected `seedance-prompt-25` or `seedance-prompt-20` adapter |
+| Seedance creative composition for any selected model; separately verified syntax and settings | `seedance-prompt` |
 
 These are prose pointers for the calling agent. This skill decides *which*
 choices a shot needs; the preset skills decide *how* each one is worded.

@@ -76,8 +76,8 @@ A paste-ready commercial soundscape prompt with:
 
 - **Plain TTS or single-voice narration** — use `seed-audio-prompt` directly
   without the commercial story structure.
-- **Video generation** — use Seedance skills (`seedance-prompt-25` for 2.5,
-  `seedance-prompt-20` for 2.0). If the dialogue track is for a Seedance video
+- **Video generation** — use `seedance-prompt` for the video prompt.
+  If the dialogue track is for a Seedance video
   and the user has explicitly requested lip-synced audio, write the audio
   prompt first, keep `duration ≤ video_duration`, and have the user supply the
   generated audio as the `reference_audio` binding. When the user has not

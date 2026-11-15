@@ -6,6 +6,21 @@ observed. In real work, cite the reviewed artifact and describe only visible
 symptoms. Keep one testable hypothesis and the smallest change that addresses
 it; preserve unrelated creative locks. A failed take is not permission to retry.
 
+## Revision contract
+
+For an authorized revision, identify the following in chat before rewriting:
+
+```text
+Locked decisions: <approved identity, action, camera, environment and sound>
+Requested delta: <the behavior to change>
+Acceptance criteria: <observable checks for the next authorized take>
+Known rejections: <observed failures that must not return>
+```
+
+Use supplied decisions and evidence; do not invent prior outcomes or require
+a saved record. A proposed repair does not authorize generation or change
+unrelated locks. Manual review runs only when explicitly requested.
+
 ## Identity drift during a turn
 
 - **Brief:** An approved courier turns toward the exit; retain her face and jacket.
@@ -21,7 +36,8 @@ it; preserve unrelated creative locks. A failed take is not permission to retry.
   details and the unchanged destination. Do not conclude that removing a
   reference guarantees success; review the next authorized take.
 
-A changed reference bundle needs current bindings and renewed review. If the
+A changed reference bundle needs current bindings, selection, rights and
+artifact-specific checks; it does not trigger automatic manual review. If the
 actual evidence instead shows an occlusion or contradictory costume reference,
 repair that cause rather than applying this example mechanically.
 

@@ -1,6 +1,6 @@
 # Reference Inputs
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
 
 - [Reference materials](#reference-materials)
@@ -10,23 +10,19 @@ mode selection and caller responsibilities.
 
 ### Limits and recommended ranges
 
-Seedance 2.5 accepts up to **50 reference materials** per generation.
-
-| Material Type | Input Limit | Recommended Range |
-|---|---|---|
-| Images | Up to 30, each ≤ 4K | Prefer 1–8 distinct subjects |
-| Videos | Up to 10, combined ≤ 30s | Prefer 1–5 subjects, 5–10s each |
-| Audio | Up to 10, combined ≤ 30s | Keep only directly relevant dialogue/voice/ambience/music |
-| Video Editing | Source video + reference images | Source < 20s, 1–5 reference images |
-
-You may push beyond recommended ranges (9–12 subjects in images, 6–10 in
-audio/video, 6–8 editing refs), but **stability decreases** as count grows. If
->5 subjects need multiple views, use **separate images per view** — independent
-view images are more stable than collages.
+Use only relevant references. Verify per-modality and total limits, allowed
+combinations, file properties and roles for the exact model, operation and
+destination. The [parameter snapshot](parameter-reference.md) is historical,
+not family-wide capability evidence. Additional subjects and views can create
+ambiguity; consider separate views with explicit identity mapping rather than
+assuming a collage or a fixed subject quota will work.
 
 ### Role definition syntax
 
-After uploading references, specify exactly what each one contributes. Add
+For each selected reference, specify exactly what it contributes. The caller
+owns any authorized upload. The `@Image N`, `@Video N` and `@Audio N` examples
+use ordered typed indices; verify their spelling and binding against the
+destination instead of treating guide syntax as universal. Add
 exclusions only when a person, background, or composition could unintentionally
 leak into the output.
 
@@ -79,11 +75,32 @@ Classify each reference by how it may influence visible output:
 - **Control-only reference** — route map, blocking diagram, timing chart, or other planning material that must not appear.
 
 Every supplied image can leak visible pixels, colors, lines, labels, or
-composition into the result. For a control-only image, prefer translating its
-information into concise textual choreography and omitting the image. Reference
+composition into the result. For a control-only image, translate its information
+into concise textual choreography and omit the planning image. Reference
 content can overpower negative wording — if a character sheet contains an aura,
 weapon, logo, or extra face that must not appear, clean or replace the reference
 rather than relying on "no aura" constraints.
+
+Storyboard grids, panels, crops and animatics remain planning-only; approval,
+cleanup or regeneration cannot change their origin. Independently authored
+production stills and animated blockouts need their own selected role, rights,
+consent, lineage, current hashes and artifact-specific QA.
+
+### Stable subject definitions
+
+Use stable labels to distinguish recurring subjects. Two or three static
+features can help, but the goal is unambiguous identity, not a feature quota.
+Do not define an identity by a changing expression or pose.
+
+```text
+Define the courier with the red jacket and short dark hair in @Image 1 as Courier.
+Define the porter with the blue apron in @Image 2 as Porter.
+Courier crosses the threshold; Porter remains beside the interior desk.
+```
+
+Reuse the labels and bind assets only where their authority applies. Reassert
+critical references after a cut when it prevents ambiguity; an inventory
+alone does not establish identity, ownership or travel direction across shots.
 
 ## Multi-reference workflow (5 steps)
 

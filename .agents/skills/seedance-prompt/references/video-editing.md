@@ -1,6 +1,6 @@
 # Video Editing
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
 
 - [Video editing](#video-editing)
@@ -8,9 +8,16 @@ mode selection and caller responsibilities.
 ## Video editing
 
 When editing, first define the source video as the **sole editing master**, then
-specify edit target, scope, target material, and content to preserve. The output
-preserves the input's aspect ratio and approximately preserves duration (±0.3s
-from transition-frame handling).
+specify edit target, scope, target material, and content to preserve. These
+2.5-based templates express editing intent, not guaranteed pixel preservation.
+Verify editing support, reference roles and parameter controls for the selected
+exact model, operation and destination.
+
+Preserve fractional picture spans, timestamps, cuts, playback speed and the
+independent audio tail. Do not trim, round, pad or retime the source. A measured
+destination requirement can justify an agreed separate derivative, never an
+automatic adaptation. Probes are opt-in. Inspect actual output timing and
+sound; a historical drift observation is not blanket acceptance of drift.
 
 ### General editing pattern
 
@@ -89,8 +96,10 @@ area, keep all other content from @Video 1 unchanged.
 
 ### Audio editing
 
-Dialogue, language, voice, background music, and sound effects can be edited
-**separately** from visuals.
+When the exact operation supports it, request dialogue, language, voice,
+background music or sound-effects changes separately from visuals. Preserve
+unselected sound layers and exact approved masters; do not infer audio-edit
+or language support from the model family.
 
 ```
 Edit @Video 1. Remove only the original background music. Keep the character dialogue, lip sync,

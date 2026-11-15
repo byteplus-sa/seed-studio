@@ -1,6 +1,6 @@
 # Parameter Reference
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
 
 - [Quick reference card](#quick-reference-card)
@@ -26,11 +26,20 @@ Studio defines no runtime profile adapter or production catalog.
 | Seedance 2.0 Fast (legacy) | `dreamina-seedance-2-0-fast-260128` |
 | Seedance 2.0 Mini (legacy) | `dreamina-seedance-2-0-mini-260615` |
 
-**Submission boundary:** this workspace writes prompts only — the user pastes the prompt and the parameter block into the destination UI. Every parameter in this reference is a submission value, never prompt text.
+**Submission boundary:** this leaf does not generate, upload or submit. The
+caller owns separately authorized execution; every parameter in this reference
+is a submission value, never prompt text.
 
-> The model ID `dreamina-seedance-2-5-260628` is live on BytePlus ModelArk. Confirm the current ID on the [Model list](https://docs.byteplus.com/en/docs/ModelArk/1330310) before finalizing the parameter block.
+> The snapshot documents `dreamina-seedance-2-5-260628`; it is not a live
+> availability check. Verify the selected ID against the
+> [Model list](https://docs.byteplus.com/en/docs/ModelArk/1330310) without
+> replacing an explicit model selection.
 
-### Reference limits
+### Historical standard 2.5 reference limits
+
+The following snapshot applies only to the documented standard 2.5 binding
+above. It does not establish support for Premium, Flash, another operation or
+another destination. Verify current limits and combinations before use.
 
 | Material | Max | Recommended |
 |---|---|---|
@@ -41,6 +50,10 @@ Studio defines no runtime profile adapter or production catalog.
 
 ### Audio syntax
 
+These are 2.5 guide conventions, not universal parser tokens. Confirm the
+selected destination accepts them; otherwise use plain language. Subtitle
+notation is documented for context only: requested captions stay in post.
+
 | Content | Syntax |
 |---|---|
 | Music | `()` |
@@ -48,11 +61,11 @@ Studio defines no runtime profile adapter or production catalog.
 | Dialogue | `{}` |
 | Subtitles | `【】` |
 
-### Parameter auto-lock summary
+### Historical standard 2.5 parameter auto-lock summary
 
 | Task | Aspect Ratio | Duration |
 |---|---|---|
-| Video editing | Locked to input | Locked to ~input (±0.3s) |
+| Video editing | Input-led; verify controls | Input-led; measure output drift |
 | First/last-frame | Locked to first image | Settable |
 | Video extension | Locked to input | Settable |
 
@@ -71,41 +84,41 @@ Studio defines no runtime profile adapter or production catalog.
 ### Reproducibility
 - `seed`: use only if the destination exposes it. The upstream 2.5 client checked on 2026-10-06 did not; reuse the approved prompt and references without promising identical output.
 - `camera_fixed`: do not assume the destination exposes it. The upstream 2.5 client checked on 2026-10-06 did not; state the locked camera in the prompt.
-- `return_last_frame`: set to `true` to chain multi-shot continuity.
+- `return_last_frame`: use only with verified support for the selected exact
+  model, operation and destination. A continuation also needs an eligible
+  returned image and verified next-shot role compatibility.
 
-### Output duration
-- 4–30s per generation (up from 4–15s in 2.0).
-- Output resolution: 480p, 720p, or 1080p. For 4K output, use legacy Seedance 2.0 via `seedance-prompt-20`, or whitelist-only 2.5 Premium only when the caller confirms access and support in the destination.
-- Multi-round extensions up to 180s (beta).
+### Historical output snapshot
 
-### Cost ladder
-- For previously covered exact standard 2.5 and access-confirmed Premium
-  bindings, start with `resolution: "480p"` and boolean `draft: true`, then
-  promote the selected native draft. New bindings follow the verified profile
-  under [Native draft first](#native-draft-first), not this historical ladder.
-- Video generation is billed per successful task completion.
-- Cost information is optional; consult the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106)
-  when reporting current billing, not as a prerequisite for prompt delivery or
-  a confirmed submit.
+The standard 2.5 documentation described 4-30s generation and 480p, 720p or
+1080p output; multi-round extension up to 180s was beta. These are not a
+creative default, a retiming rule or current evidence for another binding.
+Preserve fractional source spans and audio tails. Any supported adaptation
+uses a separate copy and requires agreement; never round or trim the original.
 
-### When to use Seedance 2.0 instead of 2.5
-
-Offer `seedance-prompt-20` and the 2.0 model as unselected alternatives when:
-
-- You need **4K output resolution** — standard 2.5 caps at 1080p; whitelist-only 2.5 Premium is a separate access-dependent option.
-- You need **Fast or Mini speed variants** — 2.5 has no Fast/Mini; 2.0 Fast/Mini are cheaper and faster for prototyping.
-- You need the lowest possible cost per generation for quick iteration.
+A locked 4K target or speed requirement does not select a different model.
+Return missing exact-model support as unresolved. Any alternative stays
+unselected until the caller obtains authorization and destination evidence.
+Cost information is optional, not a prompt or submit prerequisite; consult
+the [Pricing page](https://docs.byteplus.com/en/docs/ModelArk/1544106) when requested.
 
 ### Languages
-- 10+ languages supported natively: Chinese, English, Spanish, Indonesian, Malay, Thai, Arabic, Portuguese, Vietnamese, Japanese, Korean.
-- For non-Chinese dialogue, use the dialogue language reinforcement formula.
-- For **Tagalog/Filipino or Taglish** (not in the supported list), compose with the partner skill `seedance-prompt-25-filipino` for pronunciation, intonation, and audio-first pipeline guidance.
+
+Keep the requested language, register and exact approved dialogue. A language
+list in an older guide does not verify native voice or lip-sync support for
+the selected model, operation and destination. Unknown support is unresolved,
+not a mandate for separate audio or model substitution.
+For requested Tagalog/Filipino or Taglish guidance, the caller may compose the
+`seedance-prompt-25-filipino` specialist; this leaf does not load it.
 
 ### Consistency rules
-- Lock character sheets, prop sheets, and scene sheets with Seedream before spending video credits.
-- Storyboarding is optional. Generate storyboard panels from approved assets when composition must be reviewed before motion; otherwise generate video directly from canonical Element references (R2V) or text-to-video.
-- Reuse the same reference bundle across every shot in a scene.
-- Preserve a written locked-decisions and requested-delta record for every retry.
+- Preserve selected references and canonical descriptors. Missing assets stay
+  unresolved slots; asset creation is not a prerequisite for prompt-only text.
+- Storyboarding is optional and planning-only. The caller owns any separately
+  requested preparation; this leaf does not generate planning or production assets.
+- Reuse stable reference authority across shots, binding only relevant assets.
+- Keep locked decisions, requested delta and acceptance criteria in chat.
+  Save a record only when requested; a revision does not authorize a retry.
 - Change only one of {prompt wording, reference bundle, motion design} per retry when practical.
 
 ### Storyboard-to-video handoff
@@ -113,16 +126,25 @@ Offer `seedance-prompt-20` and the 2.0 model as unselected alternatives when:
 Storyboards are optional and planning-only. Storyboard grids, panels, crops and
 animatics never become video conditioning inputs, including first/last-frame,
 R2V and motion roles. Translate their staging and continuity into text.
-Selection, current hashes, mode support, style overrides and promotion labels
-do not change planning origin. Character, location and prop sheets remain
+Crop, cleanup, approval, selection, current hashes, mode support, style overrides,
+promotion labels and board-derived regeneration do not change planning origin.
+Character, location and prop sheets remain
 the source of truth. An independent production still must be independently
 authored, selected and text-free, not a cropped, cleaned or renamed board panel.
+Independently authored, selected, text-free non-board production stills and
+independent animated blockouts require verified exact model, operation,
+transport and role support, rights, consent where applicable, current canonical
+hashes, source lineage and artifact-specific QA. Independent blockouts are
+animated geometry, not storyboard animatics; inspect motion separately from
+appearance. A standalone image regenerated from a panel prompt remains
+board-derived.
 
 | Need | Mode | Reference rule |
 |---|---|---|
 | Use an approved opening still | First-frame | Submit only an independently authored, selected text-free production still with verified role support |
 | Lock approved start and end states | First + last frame | Submit only two eligible independent production stills, one role per image, with matching ratios |
 | Follow storyboard staging while preserving explicit references | R2V | Translate board staging into text; submit only eligible canonical assets and independent production stills |
+| Inherit independently animated blocking | Verified motion-reference operation | Only an eligible independent animated blockout; appearance remains separate |
 | Generate video without a storyboard | R2V or T2V | Submit canonical Element references only (R2V) or text-only prompt (T2V) |
 
 For supported R2V, index eligible independent stills and canonical assets separately:
@@ -137,7 +159,7 @@ For supported R2V, index eligible independent stills and canonical assets separa
 These modes are mutually exclusive. Do not combine first/last-frame roles with
 an R2V bundle unless the live model explicitly confirms that combination. Record
 the chosen mode, ordered reference roles, paths, hashes, selected variants, and
-approval states in the shot manifest before submission.
+approval states in chat or a requested shot manifest before caller-confirmed submission.
 Preserve historical board-linked task identities, hashes and selection records;
 they are history, not eligibility for a new request.
 

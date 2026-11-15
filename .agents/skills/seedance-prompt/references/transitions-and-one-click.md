@@ -1,7 +1,12 @@
 # Transitions And One Click
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
+
+These are 2.5-based creative templates, not universal operation support.
+Verify exact model, operation, destination and ordered reference combinations.
+Preserve source portions, fractional spans and audio tails; any adaptation
+needs agreement and a separate copy. Captions and exact graphics remain post work.
 
 - [One-click video](#one-click-video)
 - [Seamless video transitions](#seamless-video-transitions)
@@ -20,7 +25,7 @@ Do **not** write only "turn these materials into a video."
 @Image 1 is used for <character, product, scene, or opening image>.
 @Image 2 is used for <character, product, scene, or process image>.
 @Image 3 is used for <character, product, scene, or ending image>.
-@Video 1 is used only for <editing rhythm, transitions, subtitle treatment, or music style>.
+@Video 1 is used only for <editing rhythm, transitions, or music style>.
 Do not use its character identities or scene (optional).
 
 [Arrangement]
@@ -29,10 +34,10 @@ Show the images in <upload order, a specified order, or a model-selected themati
 
 [Image Motion]
 Apply <subtle live motion, parallax, push-in/pull-out, lateral movement, or local action> to each
-image. Keep <subject appearance, product structure, text, or background relationships> stable.
+image. Keep <subject appearance, product structure, or background relationships> stable.
 
 [Final Style]
-Use <editing rhythm, transition style, subtitle or graphic treatment, and color style>.
+Use <editing rhythm, transition style, and color style>.
 
 [Audio]
 Include <dialogue, ambience, sound effects, or music>.
