@@ -28,8 +28,8 @@ Use this skill when the user wants to:
 - chain VFX shots where the last frame of one becomes the first frame of the next
 
 Do **not** use this skill for:
-- text-to-video generation from a blank prompt (use `seedance-prompt-25` for 2.5, `seedance-prompt-20` for 2.0)
-- image-to-video from a still frame (use `seedance-prompt-25` for 2.5, `seedance-prompt-20` for 2.0)
+- text-to-video generation from a blank prompt (use `seedance-prompt`)
+- image-to-video from a still frame (use `seedance-prompt`)
 - character sheet or location still generation (use Seedream skills)
 - rebuilding the whole cast, wardrobe and world while keeping only the source
   motion, camera and timing — that is a motion-recast task
@@ -42,9 +42,9 @@ Do **not** use this skill for:
 > **Version note**: Seedance 2.5 structured editing is the default. The legacy
 > methodology (sections 1–11 in the references) applies when 2.0 is explicitly
 > selected. For Seedance 2.5 video-to-video editing see
-> [Seedance 2.5 editing](references/seedance-25-edit.md#seedance-25-editing) below; the `seedance-prompt-25`
-> skill remains the authority for 2.5 T2V/R2V and native extension. For 2.0
-> T2V/R2V prompts, use `seedance-prompt-20`.
+> [Seedance 2.5 editing](references/seedance-25-edit.md#seedance-25-editing) below; the `seedance-prompt`
+> skill remains the general prompt authority for T2V/R2V, editing and extension
+> for any selected exact model, with operation support verified separately.
 
 > **2.5 resolution guard**: Seedance 2.5 supports 480p/720p/1080p output. The
 > 4K face-protection methodology below is 2.0-only. For face-critical structured
@@ -53,8 +53,7 @@ Do **not** use this skill for:
 
 This skill is designed to partner with:
 - the destination UI: prompts are handed off paste-ready; end-to-end submission, poll, and save are outside this workspace
-- `seedance-prompt-20` for Seedance 2.0 text-to-video and image-to-video generation
-- `seedance-prompt-25` for Seedance 2.5 text-to-video, R2V, and structured editing
+- `seedance-prompt` for general Seedance prompts, reference roles and structured editing
 - `seedream-*` skills for generating reference images used in VFX prompts
 
 
@@ -106,7 +105,7 @@ source footage.
 
 The `@Video N` source-clip binding plus the `Locks:` heading enforce this
 discipline. VFX prompts use the same natural-language heading style as the
-general `seedance-prompt-20` skill — short descriptive words followed by a colon,
+general `seedance-prompt` skill — short descriptive words followed by a colon,
 never decorative delimiters.
 
 A VFX prompt is only as good as the source footage. **Shoot each clip already
@@ -118,7 +117,7 @@ hold.
 ## Recommended prompt structure — VFX Edit
 
 Legacy Seedance 2.0 VFX prompts follow the same heading convention as the general
-`seedance-prompt-20` skill: short natural-language headings with a colon, no
+`seedance-prompt` skill: short natural-language headings with a colon, no
 decorative delimiters. Assemble in this order. Omit a heading only when it does
 not apply to the task.
 

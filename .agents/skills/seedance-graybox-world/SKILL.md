@@ -7,7 +7,7 @@ description: >-
   lighting, environment, atmosphere, style — while preserving the Blender-authored
   geometry, motion, camera path, timing, and cuts exactly. Use when the user
   supplies a Blender video (or its frames) and wants it finished, restyled,
-  relit, or re-surfaced. Not for new text-to-video shots (seedance-prompt-25)
+  relit, or re-surfaced. Not for new text-to-video shots (seedance-prompt)
   or general non-Blender footage edits (seedance-vfx-prompt).
 ---
 
@@ -42,7 +42,7 @@ render, swap its environment.
 
 Do **not** use for:
 
-- new text-to-video or image-to-video shots (use `seedance-prompt-25`)
+- new text-to-video or image-to-video shots (use `seedance-prompt`)
 - general edits on non-Blender footage (use `seedance-vfx-prompt`)
 - still images, character sheets, or location plates (use the Seedream skills)
 - exact typography, UI, logos, or overlays — out of scope in this workspace
@@ -198,7 +198,7 @@ keeping geometry, motion, camera, framing, timing, and cuts exactly as they are.
 
 ## Compose with
 
-- `seedance-prompt-25` — the 2.5 structured-edit grammar and full six-part
+- `seedance-prompt` — the 2.5 structured-edit grammar and full six-part
   formula; this skill supplies the Blender-source edit block only.
 - `seedance-vfx-prompt` — general edit taxonomy and the legacy 2.0 path when
   the user explicitly needs 4K or Fast/Mini.

@@ -18,9 +18,14 @@ Claude Code, Codex and opencode all run it.
 
 ## Scope
 
-The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 21 skills. Never
+The allowlist lives in [scripts/sync.sh](scripts/sync.sh) — 19 skills. Never
 sync:
 
+- `seedance-prompt` is the locally maintained consolidated prompt bundle,
+  including its references and evals. The retired `seedance-prompt-20` and
+  `seedance-prompt-25` bundles and aliases must not be restored. They are not
+  allowlisted; exact-name references to them trigger the leak scan without
+  blocking the retained `seedance-prompt-25-filipino` specialist.
 - `acting-direction`, `seedance-acting-console`, `seedance-fight-choreography`,
   `scene-craft` and `blocking-map` are locally maintained prompt-only craft
   adaptations. Preserve chat plans, optional frameworks, source locks and
@@ -73,6 +78,24 @@ A sync copies upstream wording verbatim, and upstream is not prompt-only.
 
 ## Local edits to re-apply after a sync
 
+### Model-neutral overlay protection
+
+Before applying a sync, compare the complete selected bundles, including
+same-path references and evals, against the local model-neutral overlay.
+The script protects dirty destinations and destination-only files, not clean
+committed same-path wording differences. Stop before copying affected bundles
+and use selective manual comparison and an authorized merge that preserves
+these contracts; do not rely on restoring them after an overwrite.
+
+Keep `seedance-prompt` local and outside the allowlist, including its
+alias. All general Seedance callers use that consolidated leaf, preserving
+the selected exact model and operation evidence. Preserve model-first manual findings-only review,
+fractional source timing and audio tails, opt-in probes, restoration first-Draft
+versus final settings, evidence-scoped quotas and measured-stream conform.
+Do not import runtime adapters, a catalog or production/provider machinery
+into Studio. Keep upstream provenance and historical records unchanged.
+No dirty-source override bypasses destination or ownership protection.
+
 Prompt review is manual and isolated in both depth modes. Strict adds validity
 detail and candidate inspection, not pipeline invocation. Creative approval
 authority never replaces per-submit generation opt-in. After a sync, restore:
@@ -81,7 +104,7 @@ authority never replaces per-submit generation opt-in. After a sync, restore:
   "Manual review (/prompt-review)" description and user-invoked trigger.
   Also remove upstream's `scripts/` folder and its references: this workspace
   ships no code in skills.
-- `seedance-prompt-25`, `seedance-vfx-prompt`, `seedream-prompt`,
+- `seedance-vfx-prompt`, `seedream-prompt`,
   `seed-audio-prompt`: the "Submission boundary" paragraph must not mention a
   "hash-bound prompt review" or a review stage.
 - `seedance-prompt-25-filipino`: the caller-ownership sentence must not say
@@ -103,14 +126,14 @@ authority never replaces per-submit generation opt-in. After a sync, restore:
   optional. Keep external provider budget facts if present, but do not restore
   recommendations to configure caps. Timing, prompt-length, reference-count
   and panel-count constraints are not financial budgets.
-- `seedance-prompt-25` and its performance reference: preserve inline intent,
+- The local `seedance-prompt` and its performance reference: preserve inline intent,
   listener tasks and sustained attention without mandatory saved plans or
   review gates. `seedance-lens-presets` keeps conditional anamorphic markers,
   locked framing/medium, and separate optical and output settings.
 - `brief-intake`: preserve compact premise completeness for underspecified new
   moving-image work (audience response, attention, ending), alternatives only
   for unresolved intent, and early sound/edit acceptance suggestions in chat.
-- Modern and legacy Seedance compilers plus manual review references: retain
+- The consolidated Seedance compiler plus manual review references: retain
   brief-led body energy, readable energetic dialogue, optional failure-specific
   burst remedies, and no cadence, coverage, turn or hold quotas. Keep the
   local inline creative-comparison procedure; do not restore absent harnesses.

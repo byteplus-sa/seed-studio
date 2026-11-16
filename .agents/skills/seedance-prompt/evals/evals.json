@@ -1,0 +1,631 @@
+{
+  "skill_name": "seedance-prompt",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a generic Seedance prompt for a ceramic cup turning slowly on a shelf. Keep my selected exact model dreamina-seedance-2-0-260128. No tool calls.",
+      "expected_output": "Reusable shot direction, the selected model retained in separate settings and unresolved execution facts labeled.",
+      "files": [],
+      "expectations": [
+        "The selected exact model is preserved without substitution.",
+        "Subject action, camera and intended end state follow the brief.",
+        "No tools, writes, generation or automatic adapter loading occur."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use my selected Seedance 2.5 Flash model dreamina-seedance-2-5-flash-261115 for the same restrained pottery shot. I do not have current operation or tool-schema evidence.",
+      "expected_output": "Useful creative direction with unresolved controls, not inherited standard-2.5 capabilities.",
+      "files": [],
+      "expectations": [
+        "Flash remains selected and no default replaces it.",
+        "Draft, duration, references, audio and delivery support are not inferred from the name.",
+        "No submission, profile fabrication or paid capability probe is performed."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My brief is empty. Write the Seedance prompt without choosing a subject, language or production format for me.",
+      "expected_output": "A focused request for the material missing brief choices.",
+      "files": [],
+      "expectations": [
+        "Missing subject/action or purpose is clarified.",
+        "No subject, market, cast, language or format is invented as a default.",
+        "No files, generation or production setup are created."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Make a Seedream image prompt for a still botanical poster, not a Seedance video prompt.",
+      "expected_output": "A narrow out-of-scope handoff rather than a video workflow.",
+      "files": [],
+      "expectations": [
+        "The image request is not treated as a Seedance shot.",
+        "No camera-motion, Draft or video-review gates are imposed.",
+        "The leaf does not load or execute an image skill."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Refine this new Seedance shot: a groundskeeper lifts a latch, native metal clicks, no dialogue and no score. Do not generate separate audio.",
+      "expected_output": "Wordless direction preserving requested native contact sound.",
+      "files": [],
+      "expectations": [
+        "Native latch clicks remain the requested sound ownership.",
+        "Dialogue absence does not force post audio or muting.",
+        "No music, separate audio call or unsupported audio parameter is added."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Write a completely silent Seedance shot of a leaf settling on a pond. Keep the camera still.",
+      "expected_output": "Still camera and purposeful silence retained.",
+      "files": [],
+      "expectations": [
+        "Silence is explicit rather than an automatic ambience or music bed.",
+        "The requested still camera is not replaced by a move quota.",
+        "Execution audio controls are separate and unresolved unless evidenced."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I approved a storyboard panel crop of a shop entrance. Use its staging to write a generic Seedance prompt; I have no separately authored clean keyframe.",
+      "expected_output": "Staging translated into text with an unresolved eligible reference slot.",
+      "files": [],
+      "expectations": [
+        "The panel crop remains planning-only despite approval.",
+        "It is not placed in any first-frame or reference-image conditioning role.",
+        "No keyframe is generated or uploaded to fill the missing slot."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "The new shot has a coherent dolly-in, gentle orbit and gradual rise. Keep all three camera components and the planned focus transition.",
+      "expected_output": "Coherent compound camera and focus intent without a family-wide move cap.",
+      "files": [],
+      "expectations": [
+        "All requested coherent components and focus intent are preserved.",
+        "No two-move limit or unsupported-family verdict is imposed.",
+        "Simplification is proposed only for a concrete simultaneous contradiction."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Write a restrained baker-customer shot with the exact Spanish line 'Buenos dias.' Do not infer another language or change the copy.",
+      "expected_output": "Approved dialogue retained with language support kept separate from creative text.",
+      "files": [],
+      "expectations": [
+        "The supplied line remains verbatim.",
+        "Installed market packs do not change language or register.",
+        "Native voice/lip-sync support is not claimed without applicable evidence."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Keep Flash explicitly selected and my locked 4K final target. We have no verified profile for that target. Just give the creative prompt.",
+      "expected_output": "Creative direction with the execution conflict unresolved and alternatives unselected.",
+      "files": [],
+      "expectations": [
+        "Neither model nor locked final target changes silently.",
+        "No generic-family API ID, fabricated support or ordinary-preview substitute appears.",
+        "Alternative models or workflows remain proposals, with no tool calls."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "I have a 7.37-second source clip with a long audio tail. Replace only its umbrella color, no trims, retiming or additional probes.",
+      "expected_output": "A source-preserving edit prompt that changes only umbrella color with timing and source locks retained.",
+      "files": [],
+      "expectations": [
+        "The source edit is not expanded into a new generation workflow by this leaf.",
+        "7.37-second timing and the original audio tail remain unchanged.",
+        "No rounding, trimming, padding, probe, upload or write is authorized."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "My real-person face asset is Active, but the voice asset is pending. Write a presenter prompt only; do not use the raw voice recording for submission.",
+      "expected_output": "Presenter direction and a separate unresolved voice authorization, without media binding or side effects.",
+      "files": [],
+      "expectations": [
+        "Face approval does not imply independent voice authorization.",
+        "No raw recording, disguised identity or pending voice asset is submitted.",
+        "Prompt-only writing remains possible without fabricated approval records."
+      ]
+    },
+    {
+      "id": 2001,
+      "prompt": "Write a 15-second Seedance 2.0 prompt where a rider on a giant eagle is already fleeing through a forest. A wyvern must suddenly emerge from behind, remain behind during the chase, stop at the inland tree line, and never appear on the beach. I also have a route map image that is only a path guide and must not appear in the video.",
+      "expected_output": "A structured multimodal prompt with an explicit spatial continuity contract, repeated lead-pursuer order, a forest-boundary stop, and safe handling of the control-only map.",
+      "files": [],
+      "expectations": [
+        "The output defines an ordered travel axis from forest interior to tree line to beach.",
+        "The output states in every relevant shot that the eagle leads and the wyvern remains behind.",
+        "The output identifies the route map as control-only and recommends omitting it after translating its choreography to text.",
+        "The output states that the wyvern stops inside the forest and is absent from beach frames."
+      ]
+    },
+    {
+      "id": 2002,
+      "prompt": "Revise an approved chase prompt. Keep the rear-entry monster reveal, dynamic chase cameras, natural rider motion, forest-boundary stop, and intense-to-calm sound arc. Change only the ending so the hero travels from the forest into the beach and then along the sand instead of flying out over open water.",
+      "expected_output": "A revision contract that preserves approved decisions and changes only the final geographic trajectory.",
+      "files": [],
+      "expectations": [
+        "The output separates locked decisions from the requested delta.",
+        "The output defines the final trajectory as forest to tree line to sand to along the beach.",
+        "The output forbids offshore approach, beach-to-forest reversal, and departure over open water.",
+        "The output retains the approved audio and pursuer-boundary behavior."
+      ]
+    },
+    {
+      "id": 2003,
+      "prompt": "Create one 15-second Seedance clip containing seven camera cuts, six close attacks, three obstacle types, a forest-to-city transition, a landing, dialogue, and a precise final pose.",
+      "expected_output": "A feasibility response grounded in readable action, travel and dialogue timing; uncertain fit stays unresolved without an invented action quota.",
+      "files": [],
+      "expectations": [
+        "The output identifies concrete timing or continuity conflicts, or leaves feasibility unresolved when evidence is missing.",
+        "Separate shots or fewer beats are unselected proposals, not automatic changes justified by action or camera counts.",
+        "Any proposed chaining preserves continuity through eligible references with verified exact roles; no generation is performed."
+      ]
+    },
+    {
+      "id": 2004,
+      "prompt": "Use this fantasy character sheet as the identity reference, but the generated character must have no powers, aura, glow, weapon, or energy trail. The supplied sheet visibly contains a bright magical aura and glowing particles.",
+      "expected_output": "A reference preflight warning that the visible aura conflicts with the requested result and should be cleaned before generation.",
+      "files": [],
+      "expectations": [
+        "The output identifies the contradiction between the reference and the no-powers requirement.",
+        "The output recommends cleaning or replacing the reference rather than relying only on negative constraints.",
+        "The output preserves identity traits while removing the conflicting visual effects."
+      ]
+    },
+    {
+      "id": 2005,
+      "prompt": "Prepare a Seedance video request from an approved storyboard panel plus approved character, kitchen-location, and branded-jar sheets. Identity must remain explicit, but the opening frame does not need pixel-perfect locking. The storyboard manifest records an older rejected jar variant. Decide the image mode and perform the handoff preflight.",
+      "expected_output": "A text-staging R2V draft omitting the planning-only panel. Flag its stale jar provenance for storyboard review, but do not treat correction or regeneration as video eligibility.",
+      "files": [],
+      "expectations": [
+        "The output proposes R2V only with verified exact role support, never mixed first_frame and reference_image roles.",
+        "The output translates board composition into text and indexes only eligible canonical assets, not the panel.",
+        "The output identifies the rejected jar variant as stale provenance.",
+        "The output returns the dependent panel to storyboard review and does not submit video generation or promote the corrected board.",
+        "The output preserves selected variants, roles, rights and source lineage; hashes or approval do not change planning origin."
+      ]
+    },
+    {
+      "id": 2006,
+      "prompt": "Legacy Seedance 2.0, chat only. In one tracking medium two-shot, two couriers run side by side. A abruptly reaches for the parcel twice as B pulls it back to keep A listening; A says exactly {Give it here.} in English during the second reach. Keep both on their feet, the brisk pace and both reaches. No holds, slow motion or new ending.",
+      "expected_output": "A consolidated prompt preserving the selected 2.0 model, energetic dialogue and repeated action with physical continuity and readable responses.",
+      "files": [],
+      "expectations": [
+        "Keeps both reaches and withdrawals, brisk pace and exact dialogue without slow-body or single-burst defaults.",
+        "Specifies weight, contact and recovery sufficient to understand the action while preserving the tracking two-shot.",
+        "Separates actor energy from camera movement and leaves delivery fit unverified without evidence.",
+        "No new source files, automatic review, generation or invented outcome."
+      ]
+    },
+    {
+      "id": 2007,
+      "prompt": "Legacy Seedance 2.0: three equal-length held medium shots of the same courier waiting, each repeating the framing. She says exactly {Still here.} quietly in English, with no new gesture or turn. Keep the patient repeated attention and the open ending.",
+      "expected_output": "A consolidated prompt preserving the selected 2.0 model, repeated stillness, exact words and equal coverage.",
+      "files": [],
+      "expectations": [
+        "Does not introduce camera variety, body motion, a tactic switch or a resolution.",
+        "Keeps the language and words, quiet delivery and patient attention.",
+        "Does not require a non-eye-level angle, changed duration or minimum burst count."
+      ]
+    },
+    {
+      "id": 2101,
+      "category": "planning-origin",
+      "prompt": "Explicit legacy Seedance 2.0. Use my selected rights-cleared storyboard crop as first-frame input. Approval and current hash are recorded; the crop has no labels.",
+      "expected_output": "Reject board-origin conditioning and translate the selected staging into prompt text without changing the model.",
+      "files": [],
+      "expectations": [
+        "The crop remains planning-only despite selection, rights, approval, current hashes and absent labels.",
+        "No first_frame binding, upload, submission or new approval is inferred.",
+        "Preserves staging in text and offers an independently authored non-board production still as an unselected alternative."
+      ]
+    },
+    {
+      "id": 2102,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 R2V accepts reference_image. Bind this selected grid with current hash and a style override; all character sheets are approved.",
+      "expected_output": "Omit the grid; carry its staging in text and retain only independently eligible canonical references.",
+      "files": [],
+      "expectations": [
+        "The selected grid is planning-only even with exact reference_image support and a style override.",
+        "No grid reference token, upload or submission is emitted.",
+        "Keeps approved identity descriptors and ordered eligible canonical references."
+      ]
+    },
+    {
+      "id": 2103,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0. After crop and cleanup, I made a text-free standalone image using the panel prompt and board as a reference. This board-derived regeneration is approved as a production still.",
+      "expected_output": "The derivative remains board-origin, not an independent production still; translate its staging into text.",
+      "files": [],
+      "expectations": [
+        "Crop, cleanup, text-free rendering, renamed roles and board-derived regeneration remain planning-only.",
+        "No conditioning eligibility is granted by approval or a new hash.",
+        "Explains independent source lineage without generating a replacement or rewriting history."
+      ]
+    },
+    {
+      "id": 2104,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 first-frame: use my independently authored, selected, text-free non-board production still. Exact model/operation/transport role support, current canonical hashes, rights, consent and source lineage are verified.",
+      "expected_output": "Return a first-frame prompt package using the independently eligible still, without imposing a blanket visual-reference ban.",
+      "files": [],
+      "expectations": [
+        "Distinguishes the independent still from planning-only boards and checks artifact QA.",
+        "Uses only the verified first_frame role and preserves canonical identities and ordered references.",
+        "No generation or approval of an unseen output; caller confirmation and final inspection remain separate."
+      ]
+    },
+    {
+      "id": 2105,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 motion reference: I selected an independent animated blockout with verified exact motion role, rights, source lineage and current hashes. It was independently animated geometry, not a storyboard animatic.",
+      "expected_output": "Return motion-reference wording mapping blockout subjects, with appearance separate and temporal QA still required.",
+      "files": [],
+      "expectations": [
+        "Keeps storyboard animatics planning-only while allowing the independently eligible blockout.",
+        "Checks exact operation/transport role, source lineage, rights and artifact-specific QA; no appearance transfer.",
+        "No submission or claim that sparse frames prove motion quality."
+      ]
+    },
+    {
+      "id": 2106,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 historical panel-linked task succeeded. Preserve its records, task identity, hashes and selection. May I use that selected panel again for a new shot?",
+      "expected_output": "Preserve historical records unchanged, but deny new conditioning authority from prior board-linked success.",
+      "files": [],
+      "expectations": [
+        "The panel remains planning-only for new requests despite historical success.",
+        "No rewrite of task identity, prior selection, hashes or approvals.",
+        "Translate staging into new prompt text and keep execution confirmation separate."
+      ]
+    },
+    {
+      "id": 2107,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0 chat-only staging draft: no assets, unknown exact operation role evidence and no generation. No scene beat has been supplied yet.",
+      "expected_output": "Ask for the missing beat and return unresolved settings, without inventing references, model support or a production still.",
+      "files": [],
+      "expectations": [
+        "No assets, role support, generation, files or approvals are invented.",
+        "Planning-only intent may be authored in text when the missing beat is supplied.",
+        "Preserves the explicit legacy selection and marks capability and reference evidence unresolved."
+      ]
+    },
+    {
+      "id": 2108,
+      "category": "planning-origin",
+      "prompt": "Legacy 2.0: an independent production still has wrong transport role evidence and unresolved rights. Its source lineage is missing. Please bind it anyway; it is text-free.",
+      "expected_output": "Do not bind the still; independence is necessary but does not replace exact role, rights or lineage evidence.",
+      "files": [],
+      "expectations": [
+        "Keeps planning-only boards excluded without claiming all independent stills are eligible.",
+        "Missing lineage, unresolved rights and wrong-destination role evidence prevent conditioning handoff.",
+        "No upload, submission, silent model change or invented authorization; usable text intent may still be returned."
+      ]
+    },
+    {
+      "id": 2501,
+      "prompt": "Write a 30-second Seedance 2.5 prompt for a flower shop order-packing process. Two characters — a Florist and a Store Assistant — arrange, wrap, and hand off a bouquet across three stages. I have reference images for both characters and the shop interior.",
+      "expected_output": "A clear three-stage flower-shop action with reference roles, coherent handoffs and observable end states; any readable format is acceptable.",
+      "files": [],
+      "expectations": [
+        "The central flower-shop objective is clear without requiring a named heading.",
+        "The three requested stages form a causal sequence with plausible actions for the requested duration.",
+        "Each stage makes the active person, physical action and resulting state clear.",
+        "Identity, clothing, prop ownership and travel direction remain coherent across stages.",
+        "Reference bindings identify the intended person or location; exclusions appear only for a plausible leakage risk."
+      ]
+    },
+    {
+      "id": 2502,
+      "prompt": "I have 8 reference images for a museum conservation video: 4 characters (Conservator, Registrar, Exhibition Installer, Guide), 2 props (Sample Case, Record Board), and 2 scenes (Conservation Lab, Gallery). Plus a motion reference video and an audio reference. Write a Seedance 2.5 prompt that organizes all these references correctly.",
+      "expected_output": "A multi-reference prompt that follows the 5-step workflow: define roles, map subjects individually, group by type, build subject profiles, and select references by scene.",
+      "files": [],
+      "expectations": [
+        "Each supplied reference has an unambiguous subject or motion/audio role.",
+        "The mapping remains readable with eight images and the motion/audio references; no specific grouping headings are required.",
+        "Different characters remain distinguishable without indiscriminate repetition of negative clauses.",
+        "Recurring identities preserve their relevant established details.",
+        "Scene-specific input choices include only relevant assets.",
+        "Actions and end states remain clear across changes in scene."
+      ]
+    },
+    {
+      "id": 2503,
+      "prompt": "I have a video of a desk with a yellow folding desk lamp. I want to replace only the lamp with a white one from a reference image. The lamp's arm rotations, hand occlusions, and exit timing must be preserved. Write a Seedance 2.5 editing prompt.",
+      "expected_output": "A structured editing prompt using the subject replacement pattern with Timeline Inheritance.",
+      "files": [],
+      "expectations": [
+        "The output defines @Video 1 as the sole editing master.",
+        "The white-lamp reference controls the target lamp while preserving unrelated subjects and the existing shot.",
+        "The output states that the target inherits every appearance, motion, occlusion, and exit of the original without requiring a particular heading.",
+        "The output specifies edit scope as replacing only the yellow lamp and preserving all other content.",
+        "The output preserves source ratio, fractional timing and audio tails, while operation controls remain evidence-dependent."
+      ]
+    },
+    {
+      "id": 2504,
+      "prompt": "I have a 10-second video of a gardener in a greenhouse. I need to extend it backward — show the empty greenhouse with morning mist drifting before the gardener arrives. The last frame of the extension must connect to the first frame of the source video. Write a Seedance 2.5 backward extension prompt.",
+      "expected_output": "A backward extension prompt that describes the preceding action first, then defines the source video's first frame as the explicit end state.",
+      "files": [],
+      "expectations": [
+        "The output declares @Video 1 as the source video to extend backward.",
+        "The output describes the preceding action before the source video begins.",
+        "The output defines the last frame of the extension as connecting to the first frame of @Video 1 with specific pose, prop, and background matching.",
+        "The output includes a continuity maintenance clause for identity, clothing, key props, and axis of action.",
+        "The extension preserves continuous subject identity and reaches the supplied opening state without duplication or an unexplained discontinuity."
+      ]
+    },
+    {
+      "id": 2505,
+      "prompt": "Write a Seedance 2.5 prompt for a scene where a barista greets a customer in Japanese, a bell rings in the distance, soft piano music plays, and a subtitle appears saying 'Chapter One: Departure'. The dialogue must be in natural conversational Japanese.",
+      "expected_output": "A Japanese dialogue prompt using music, sound-effects and dialogue syntax, with the requested subtitle preserved as a post-production note outside generated footage.",
+      "files": [],
+      "expectations": [
+        "The output retains the requested soft piano music, using () only when accepted by the destination.",
+        "The output retains the distant bell, using <> only when accepted by the destination.",
+        "The output separates Japanese dialogue from other sound layers; braces are optional unless verified syntax requires them.",
+        "The requested subtitle text is preserved in a separate post-production note; the generated-video prompt does not ask for subtitles.",
+        "The output specifies the dialogue language as Japanese before the dialogue line."
+      ]
+    },
+    {
+      "id": 2506,
+      "prompt": "I have a coarse 3D blockout video showing a character walking path, cart direction, camera movements, and two cuts. I want to use it as a motion reference and define the real characters, props, and scenes with separate images. Write a Seedance 2.5 prompt using the blockout.",
+      "expected_output": "A coarse blockout prompt that maps each blockout subject to its real counterpart and states which temporal/spatial info to inherit.",
+      "files": [],
+      "expectations": [
+        "The output declares @Video 1 as a coarse blockout reference.",
+        "The output maps blockout geometric subjects to real subjects (e.g., 'The tall cylinder in @Video 1 corresponds to <Guide>').",
+        "The output states 'Do not use its blockout appearance, materials, or scene'.",
+        "The output defines character/prop/scene appearances with separate @Image references.",
+        "The output specifies which temporal info to keep from the blockout (motion path, blocking, camera, cuts)."
+      ]
+    },
+    {
+      "id": 2507,
+      "prompt": "Write a Seedance 2.5 prompt where a chef tastes an overcooked dish and shifts from confidence to quiet disappointment. The emotion must be shown through observable physical cues, not abstract words.",
+      "expected_output": "An emotional direction prompt expressing the supplied transition through relevant observable cues without a fixed cue count.",
+      "files": [],
+      "expectations": [
+        "The tasting event causes an understandable emotional transition with a readable final state; no named template is required.",
+        "The output pairs the emotion word 'disappointment' with observable cues like chewing slowing, eyebrows drawing in, shoulders dropping.",
+        "The output does not use bare abstract emotion words without physical cues.",
+        "The output describes the final expression through restrained or explicit outward behavior."
+      ]
+    },
+    {
+      "id": 2508,
+      "prompt": "I have a shot plan for a 12-second clip: Shot 1 high wide with a slow crane down to table height, window light from screen-left; Shot 2 medium close-up with a slow push-in on the door handle, the same window now cross-lighting the hand; Shot 3 low-angle close-up held static, contre-jour from the open door. Characters are @Image 1 (mother) and @Image 2 (boy). Write the Seedance 2.5 prompt.",
+      "expected_output": "A six-part prompt with one shared opening, a per-shot block carrying each shot's size, angle, move and light fact, bindings for both characters.",
+      "files": [],
+      "expectations": [
+        "Each shot line states size, angle, the move with start and end, and the light source and direction exactly as planned.",
+        "The shared opening binds @Image 1 and @Image 2 individually and states the shared scene once; no unrequested grade is added.",
+        "Time ranges are consecutive and non-overlapping and are not treated as frame-accurate cut points.",
+        "The static third shot is kept static and the other two shots keep their planned moves; no extra moves are added."
+      ]
+    },
+    {
+      "id": 2509,
+      "prompt": "Write a minimal Seedance 2.5 prompt for a paper boat drifting on a puddle. Only describe subject and action.",
+      "expected_output": "A concise subject-and-action prompt with no unrequested camera, light, lens, grade or shot plan.",
+      "files": [],
+      "expectations": [
+        "Contains a paper boat drifting on a puddle.",
+        "Does not require a camera or light stance, shot plan, or static-reason record.",
+        "Does not add unrequested directorial axes."
+      ]
+    },
+    {
+      "id": 2510,
+      "prompt": "Write a minimal prompt for exactly three ceramic cups on a counter. A front-facing host lifts only the center cup with her right hand, visible on frame-left. Keep the other cups stationary. Do not add camera or lighting direction.",
+      "expected_output": "Exact count, stable positions, anatomical and frame-side hand cue, plain surfaces, and only requested axes.",
+      "files": [],
+      "expectations": [
+        "Three cups remain accounted for; lifting one does not create a spare cup.",
+        "The right-hand cue includes frame-left for this front-facing pose.",
+        "No camera, lighting, grade or mandatory shot plan is invented."
+      ]
+    },
+    {
+      "id": 2511,
+      "prompt": "Write a four-second dialogue shot. The approved line is: We have waited all morning and now the doors are finally open for everyone. Do not change any words.",
+      "expected_output": "Flags that the approved line exceeds the timing budget and proposes more duration without rewriting it.",
+      "files": [],
+      "expectations": [
+        "Counts speech time and allows onset plus final tail.",
+        "Does not silently shorten or paraphrase the approved line.",
+        "Offers longer timing or asks for a script decision rather than promising impossible alignment."
+      ]
+    },
+    {
+      "id": 2512,
+      "prompt": "Write a Seedance prompt for a wordless riverside scene with only wind and birds, no music. I am open to separate sound if that is more reliable.",
+      "expected_output": "Explains native-audio leakage risk and proposes picture-only video plus a separate ambience bed.",
+      "files": [],
+      "expectations": [
+        "Does not promise that a no-music sentence guarantees no music.",
+        "Makes picture-only an explicit proposed route with destination-capability verification.",
+        "Does not run generation or make prompt review a gate."
+      ]
+    },
+    {
+      "id": 2601,
+      "prompt": "Prepare a request for the previously covered exact standard Seedance 2.5 binding dreamina-seedance-2-5-260628, with current matching destination evidence, for a new eight-second shot of a paper kite lifting from a field. The delivery target is 1080p and review mode is default. Give the first-test parameter block only. Do not generate.",
+      "expected_output": "An explicit native 480p draft request, with 1080p retained only as the later delivery target.",
+      "files": [],
+      "expectations": [
+        "Sets resolution to 480p and draft to boolean true outside prompt text.",
+        "Does not treat default review mode or 1080p delivery as permission to skip the first draft.",
+        "Leaves generation and draft selection to the caller without running automatic prompt review."
+      ]
+    },
+    {
+      "id": 2602,
+      "prompt": "The selected native draft from the previously covered exact standard Seedance 2.5 binding dreamina-seedance-2-5-260628 has valid matching destination evidence and is ready for 1080p. Promote it, but also change the kite from red to blue. Prepare settings only; do not submit.",
+      "expected_output": "A new native 480p draft for the changed creative input, not a promotion that modifies the selected draft.",
+      "files": [],
+      "expectations": [
+        "Explains that changing the prompt requires a new draft.",
+        "Uses resolution 480p and boolean draft true for the changed version.",
+        "Does not attach changed creative inputs to draft_task_id promotion."
+      ]
+    },
+    {
+      "id": 2603,
+      "prompt": "Prepare an edit for the previously covered exact standard Seedance 2.5 binding dreamina-seedance-2-5-260628 replacing only a desk lamp. The connected UI exposes resolution 480p but no native draft control. Should I submit plain 480p as the first draft?",
+      "expected_output": "A capability mismatch explanation; keep the native draft requirement and resolve the interface before submission.",
+      "files": [],
+      "expectations": [
+        "Does not label ordinary 480p as a native draft or silently drop draft true.",
+        "Does not invent a UI control or claim a submitted result.",
+        "Preserves the edit scope while leaving submission unresolved."
+      ]
+    },
+    {
+      "id": 2604,
+      "prompt": "The required model is legacy Seedance 2.0 dreamina-seedance-2-0-260128. Current exact operation and destination evidence verifies ordinary 480p preview and no native draft mode. Prepare the first test at 480p and explain how a later final differs.",
+      "expected_output": "An ordinary 480p test explicitly distinguished from native draft mode; the final is a fresh generation.",
+      "files": [],
+      "expectations": [
+        "Does not invent draft true for a model without native draft support.",
+        "Uses an ordinary 480p first test and identifies it as non-promotable.",
+        "Does not reuse its task ID as draft_task_id for a final."
+      ]
+    },
+    {
+      "id": 2605,
+      "prompt": "Compile this inline plan for Seedance 2.5 without changing it: A and B hurry side by side in a tracking medium two-shot. A reaches twice for B's parcel; B withdraws it both times to keep A listening. On the second reach A says exactly {Give it here.} in English. Keep brisk motion, no fall, no still holds or slow motion. Native dialogue, no music. Do not generate.",
+      "expected_output": "A concise prompt preserving repeated energetic action, readable dialogue and physical continuity, with any verified settings separate.",
+      "files": [],
+      "expectations": [
+        "Preserves both reaches and withdrawals, exact words, English, tracking framing and brisk physical energy.",
+        "Grounds support, contact, interruptions and recovery without inserting a blanket single burst or gentle-body preference.",
+        "Keeps actor energy, camera movement and edit rhythm distinct; no forced cuts or speech holds.",
+        "Returns inline, keeps delivery and playback unverified, and does not require a saved plan or automatic review."
+      ]
+    },
+    {
+      "id": 2606,
+      "prompt": "Compile a quiet Seedance 2.5 prompt: in one held medium two-shot A quietly says exactly {Stay until I finish.} in English; B hears the request but keeps folding the tablecloth. Preserve deliberate non-response, no new gesture, no turn or departure. Native room sound only, no music. Chat only.",
+      "expected_output": "A compact quiet performance preserving the held exchange and unresolved ending, without added gestures or coverage.",
+      "files": [],
+      "expectations": [
+        "Preserves the exact line, language and quiet delivery with B's sustained folding.",
+        "Does not add a cut, camera move, reversal, score or forced response to improve energy.",
+        "Suggests checking the listener's sustained task and final attention without claiming playback evidence or running review.",
+        "No saved plan, invented source locator or production record."
+      ]
+    },
+    {
+      "id": 2801,
+      "prompt": "Generic Seedance prompt only for a kite lifting. The exact model, provider, operation and destination are unknown. Return creative text without selecting a model.",
+      "expected_output": "Neutral creative text with capability settings unresolved, no invented preview or promotion.",
+      "files": [],
+      "expectations": [
+        "Uses neutral creative composition rather than silently selecting 2.5.",
+        "Unknown support blocks execution, not prompt-only writing.",
+        "No invented parameters, submit, assets or persistence."
+      ]
+    },
+    {
+      "id": 2802,
+      "prompt": "Prepare settings only. My new model's verified profile supports ordinary 720p preview and explicitly no native Draft. Do not use 480p or another model.",
+      "expected_output": "Supported ordinary 720p preview, non-promotable, with a fresh final generation plan.",
+      "files": [],
+      "expectations": [
+        "Does not infer Draft from a family name or add draft true.",
+        "Does not force 480p or switch model.",
+        "No draft_task_id promotion or actual submission."
+      ]
+    },
+    {
+      "id": 2803,
+      "prompt": "Prepare a standard 2.5 edit, but capability evidence is expired, names another provider and transport, and has a remote parameter schema. The operation and tool revision also differ.",
+      "expected_output": "Rejects evidence applicability and leaves execution unresolved without silently dropping native Draft.",
+      "files": [],
+      "expectations": [
+        "Checks provider, exact model, operation, transport, tool revision and validity independently.",
+        "Malformed or remote schemas do not establish supported parameters.",
+        "No submit, file writes or inferred native policy for an unknown binding."
+      ]
+    },
+    {
+      "id": 2804,
+      "prompt": "The selected native Draft succeeded but reference hashes changed and its profile expired. Can I promote it by just updating the metadata?",
+      "expected_output": "No promotion under altered or expired evidence; historical selection and original records remain unchanged.",
+      "files": [],
+      "expectations": [
+        "Requires unchanged creative inputs and reference hashes with matching valid profile.",
+        "Does not convert historical ordinary tasks or failed/unselected tasks into native Draft.",
+        "Preserves original records and requires final inspection for any valid new final."
+      ]
+    },
+    {
+      "id": 2805,
+      "prompt": "Prepare a 2.5 request with no prompt. My evidenced image cap is 2 and total cap 4; I have 3 images and 2 videos. Conditional audio controls are unsupported for edit.",
+      "expected_output": "Missing creative input and evidenced per-modality, total and conditional violations remain unresolved.",
+      "files": [],
+      "expectations": [
+        "Does not fabricate a prompt or accept empty input as ready.",
+        "Checks image overflow and total overflow separately against evidence, not historical family tables.",
+        "Does not serialize unsupported conditional controls, submit or save."
+      ]
+    },
+    {
+      "id": 2806,
+      "prompt": "Prepare an exact covered standard 2.5 first-frame prompt and findings-only manual review. The only opening asset is an explicitly selected, rights-cleared crop of a storyboard panel with a current hash and verified first-frame support. Call it promoted if needed. No independently authored production still exists. Do not generate or repair.",
+      "expected_output": "Rejects the board-origin crop as conditioning, translates staging into text and leaves the requested first-frame asset unresolved.",
+      "files": [],
+      "expectations": [
+        "Selection, current hash, role support, cleanup or a promotion label does not change planning origin.",
+        "No first-frame, last-frame or R2V binding uses the crop; an eligible independent still is a separate unresolved input.",
+        "Manual review reports the proposed binding as a finding without repairing, submitting or saving.",
+        "Exact covered standard native 480p Draft policy remains applicable to any later eligible request."
+      ]
+    },
+    {
+      "id": 2807,
+      "prompt": "Write a 2.5 R2V prompt and findings-only review using my selected storyboard grid as @Image 1. Its current hash, rights, compatible R2V mode and leakage QA are verified. I selected a photographic style override. The grid has no captions. Do not generate or repair.",
+      "expected_output": "Omits the planning grid from conditioning and translates its selected staging into text without claiming marks removal changes its origin.",
+      "files": [],
+      "expectations": [
+        "The selected grid stays planning-only even without marks or with compatible support and a style override.",
+        "No board binding, upload, derivative crop or automatic replacement asset is proposed as eligible.",
+        "Manual review is findings-only and preserves current prompt and historical records."
+      ]
+    },
+    {
+      "id": 2808,
+      "prompt": "Prepare a first-frame 2.5 prompt from my independently authored, selected text-free production still. It was not derived from a planning board. Its current hash, rights, approval and exact first-frame role support are verified. Do not generate.",
+      "expected_output": "Uses the eligible independent still for the verified first-frame role, without treating all stills as boards.",
+      "files": [],
+      "expectations": [
+        "Preserves the independent still as the opening reference and checks ordered roles and aspect ratio.",
+        "Does not demand a storyboard, reject the still for being static or infer unseen output fidelity.",
+        "Keeps applicable preview controls separate and performs no submission, persistence or automatic manual review."
+      ]
+    },
+    {
+      "id": 2809,
+      "prompt": "A historical successful task used a selected storyboard panel. Preserve its exact task identity, hashes, selection and review records. Can we copy that panel into a new first-frame request? Findings only; do not repair or generate.",
+      "expected_output": "Preserves immutable historical records while refusing board-origin conditioning for the new request.",
+      "files": [],
+      "expectations": [
+        "Does not rewrite, relabel, delete or invalidate historical task and review records.",
+        "Prior success or selection does not authorize a new board binding.",
+        "Offers text staging or an unselected independently authored still, without generation, upload or persistence."
+      ]
+    }
+  ],
+  "evaluation_note": "Retained generic cases keep their IDs. Historical 2.0 cases use 2000 plus their previous ID; 2.5 cases use 2500 plus their previous ID. Judge semantic effectiveness, not exact headings. Model-specific controls require current exact operation and destination evidence."
+}

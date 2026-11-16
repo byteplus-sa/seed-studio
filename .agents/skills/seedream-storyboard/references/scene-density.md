@@ -22,4 +22,17 @@ An explicit panel count wins over the level. Count the proposed panels before wr
 
 Copy a supplied shot plan's framing, featured subjects, camera and requested light into the panel plan. Describe one frozen moment per panel and keep camera travel in motion notes. Name anatomy and frame side explicitly. Reuse the same approved element references across a shot's states; track prop ownership, wardrobe, damage, eyelines and travel direction.
 
-Separate panels carry no labels or borders. Grids follow the existing grid layout contract. Later video use follows the entrypoint's approved-panel and explicit supported-conditioning rules; density grants no approval.
+Separate panels carry no labels or borders. Grids follow the existing grid
+layout contract. Density changes planning coverage, never video eligibility.
+Storyboard grids, panels, crops and animatics remain planning-only. Crop,
+cleanup, approval, selection, current hashes and board-derived regeneration
+do not change planning origin. Translate staging and motion notes into text;
+omit boards and their derivatives from every video conditioning role.
+
+Only independently authored, selected, text-free non-board production stills
+and independent animated blockouts remain conditional video candidates under
+the entrypoint's exact model/operation/transport role checks, rights, consent
+where applicable, current canonical hashes, source lineage and artifact-specific
+QA. A standalone regenerated from a panel prompt is not independent.
+Preserve historical tasks, hashes and selection records; density grants no
+new authority to them and does not authorize submission.

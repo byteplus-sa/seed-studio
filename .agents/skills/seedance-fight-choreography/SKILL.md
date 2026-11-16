@@ -30,12 +30,43 @@ it does not supply a new winner, emotional arc or compulsory fighting style.
   likeness handling, any separately requested generation, media inspection
   and approval. This skill grants none of them and requires no review gate,
   task registry or production files. Return plans in chat; save only on request.
-  For new Seedance 2.5 requests, the caller must use native Draft mode with
-  explicit `resolution: "480p"` and boolean `draft: true`, including edits and
-  retries. Never fall back to ordinary 480p or promise a final from this plan.
+  Parameter handoff follows [Preview evidence](#preview-evidence) for the
+  selected exact operation. Never promise a final from this text plan.
 - Do not bind storyboards, panels, sheets or animatics as video references.
   Blocking maps are analysis-only by default; carry geometry in text.
   Caller-selected conditioning requires separate approval and live support.
+
+## Preview evidence
+
+Preserve the selected exact model and operation. Previously covered exact standard
+Seedance 2.5 and access-confirmed Premium bindings require explicit
+`resolution: "480p"` and boolean `draft: true` for every new generation,
+including tests, edits, extensions, opt-in probes and creative retries, in
+default and strict review. Missing legacy Draft controls are a capability
+mismatch, not permission to drop `draft` or substitute ordinary 480p.
+
+Other exact bindings use a verified operation profile independently bound to
+provider, transport, tool schema revision and validity. Native preview uses
+evidenced native controls; promotion support is a separate check. Do not inherit
+480p or boolean Draft. A verified non-native operation uses the evidenced ordinary
+preview, for example ordinary 720p even when 480p is also supported, clearly
+non-promotable. Never infer support from a family substring.
+
+Native promotion requires the exact selected successful native task, unchanged
+creative inputs and reference hashes, matching valid model/operation/profile/transport,
+supported promotion controls such as `draft_task_id`, and final inspection.
+Failed, unselected or mismatched tasks cannot be promoted. Ordinary task IDs
+cannot be promoted; an inspected, selected successful ordinary preview precedes a
+separately confirmed fresh final with unchanged creative inputs, supported output
+settings and its own final inspection.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing.
+
+Keep per-submit confirmation, rights and selection separate; no automatic review.
+Prompt-only authoring does not authorize generation. Preserve historical task
+identity and selection records; relabeling cannot make an ordinary task native.
+The caller owns execution under [Generation transport](../../contracts/generation-transport.md).
+Consume only caller-supplied evidence; this leaf does not query capabilities.
 
 ## Read By Need
 
@@ -95,7 +126,7 @@ substitute a different craft framework.
 | `seedance-shot-design` | Shot IDs, durations, size, angle, move, lens intent, named light sources and locks | Visibility needs, action windows and proposed coverage changes for its owner to resolve |
 | `seedance-acting-console` | Supplied tactic and framing-readable cue block | Beat triggers and visible reaction channels; no replacement emotion template |
 | `blocking-map` | Actor-to-mark mapping, facing, paths, crops, obstacles and camera axis | Start/end geometry and occlusion questions, not a reference attachment |
-| `seedance-prompt-25` | Prompt operation, subject bindings, approved shot facts and locked audio context | One action block per shot/stage, state invariants and observable acceptance criteria for its six-part grammar |
+| `seedance-prompt` | Prompt operation, subject bindings, approved shot facts and locked audio context | One action block per shot/stage, state invariants and observable acceptance criteria for its six-part grammar |
 
 Keep supplied actor IDs stable across all contracts. Diagram letters are text
 handles, not wardrobe, on-screen text or newly approved identities.
@@ -109,7 +140,7 @@ Use the compact record in the choreography contract. Always return:
 3. Paste-ready action text grouped by existing shot or stage. Describe each
    action once, carry the selected medium, and retain supplied dialogue
    verbatim when included. Leave final reference tokens, parameter packaging
-   and audio grammar to `seedance-prompt-25`.
+   and audio grammar to `seedance-prompt`.
 4. Text QA findings and caller acceptance checks, with evidence limits.
 
 For a repair, identify the failed beat, its prior state and the smallest

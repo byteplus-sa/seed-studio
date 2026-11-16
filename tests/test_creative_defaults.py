@@ -18,8 +18,7 @@ class CreativeDefaultsTests(unittest.TestCase):
 
     def test_compilers_and_review_do_not_soften_body_energy(self):
         paths = [
-            "seedance-prompt-25/references/scene-action.md",
-            "seedance-prompt-20/SKILL.md",
+            "seedance-prompt/references/scene-action.md",
             "prompt-review/references/review-checklists.md",
         ]
         for relative in paths:
@@ -50,8 +49,8 @@ class CreativeDefaultsTests(unittest.TestCase):
 
     def test_stage_checks_allow_sustained_state_without_a_turn(self):
         for relative in [
-            "seedance-prompt-25/SKILL.md",
-            "seedance-prompt-25/references/scene-action.md",
+            "seedance-prompt/SKILL.md",
+            "seedance-prompt/references/scene-action.md",
             "prompt-review/references/review-checklists.md",
         ]:
             with self.subTest(path=relative):
@@ -64,7 +63,7 @@ class CreativeDefaultsTests(unittest.TestCase):
             "seedance-shot-design/SKILL.md",
             "seedance-shot-design/references/coverage-patterns.md",
             "seedance-shot-design/references/worked-repairs.md",
-            "seedance-prompt-25/references/shot-staging.md",
+            "seedance-prompt/references/shot-staging.md",
         ]
         forbidden = (
             r"only for shots without spoken lines|"
@@ -286,7 +285,7 @@ class CreativeDefaultsTests(unittest.TestCase):
 
     def test_action_frequency_requires_physical_or_readability_evidence(self):
         for relative in [
-            "seedance-prompt-25/references/scene-action.md",
+            "seedance-prompt/references/scene-action.md",
             "prompt-review/references/review-checklists.md",
         ]:
             with self.subTest(path=relative):
@@ -351,8 +350,7 @@ class CreativeDefaultsTests(unittest.TestCase):
             "brief-intake": {12, 13, 14, 15},
             "seedance-shot-design": {19, 20, 21, 22},
             "seedance-acting-console": {15, 16, 17},
-            "seedance-prompt-25": {105, 106},
-            "seedance-prompt-20": {6, 7},
+            "seedance-prompt": {2605, 2606, 2006, 2007},
             "prompt-review": {1, 2, 3, 4, 5, 6},
             "ugc-motion-presets": {7, 9},
             "seedance-camera-presets": {14, 15, 16, 17},

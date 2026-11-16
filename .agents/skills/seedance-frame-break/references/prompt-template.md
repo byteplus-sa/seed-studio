@@ -3,7 +3,9 @@
 Focused reference for `seedance-frame-break`. Read
 [the entrypoint](../SKILL.md) for the technique and the preflight checklist.
 The six-part formula, reference-role syntax, timestamp rules and audio brackets
-belong to `seedance-prompt-25`; this file only fills them for the pop-out look.
+belong to `seedance-prompt`; this file only fills them for the pop-out look.
+Use bracket conventions only with verified exact model, operation and
+destination support; otherwise use plain language with the same sound ownership.
 
 - [Fill-in template](#fill-in-template)
 - [Slot rules](#slot-rules)
@@ -29,7 +31,7 @@ Frame and layer order, back to front: (1) <backdrop> fills only the central wind
 
 Camera: locked-off wide-angle camera on a tripod, no movement, no zoom, no cuts; the subject stays in place and only the extending limb or hem grows toward the lens.
 
-Audio: <requested sound arc using the seedance-prompt-25 brackets>. <No music, or the requested music.>
+Audio: <requested sound arc using verified destination syntax or plain language>. <No music, or the requested music.>
 
 No on-screen text, captions, logos or watermarks; no held props; the bars stay plain black and unmarked.
 ```
@@ -50,7 +52,7 @@ No on-screen text, captions, logos or watermarks; no held props; the bars stay p
 | Bars, early sentence | Said once right after the main idea: fixed graphics, perfectly straight horizontal inner edges, same height in every frame. |
 | Frame and layer order | Back to front, with the bars as flat static graphics under the subject, the constant-height phrase repeated, the rule that whatever covers them never changes them, and the window stated as the large majority of the frame height. Avoid the word letterbox. |
 | Scale | Scale grows only for the extending limb or hem. Keep the surrounding bar edge readable; a one-third-frame limit is a staging suggestion, not a validated failure boundary. |
-| Audio | State the sound arc and whether music is wanted, using the `()` music, `<>` sound-effect and `{}` dialogue brackets from `seedance-prompt-25`. Verify by listening, since effects-only requests may still produce light music or a chime. |
+| Audio | State the sound arc and whether music is wanted. The `()` music, `<>` sound-effect and `{}` dialogue brackets from `seedance-prompt` are conditional on verified destination support. Verify by listening, since effects-only requests may still produce light music or a chime. |
 | Closing exclusions | One or two lines. Necessary exclusions are allowed; positive direction comes first. |
 
 Stage times are budgets scaled to the clip duration the user selects in the

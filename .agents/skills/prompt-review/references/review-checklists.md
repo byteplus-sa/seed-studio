@@ -5,6 +5,31 @@ repo. Use only when the user explicitly invokes `/prompt-review`; it never
 gates prompt handoff or generation. Each section is self-contained for that
 manual review.
 
+## Model-first dispatch
+
+Resolve model and operation first, then requested axes, genre and language.
+An unknown model permits provisional creative findings, but capability review
+stays incomplete. Missing or empty prompts stay incomplete, not passed.
+Use only the selected version's base checklist; Filipino or music-video
+guidance is additive and does not select 2.5. Reviews are findings-only unless
+repair is separately authorized, including for unfrozen inputs.
+Reference counts, duration and preview controls below are historical snapshots,
+not family limits. Confirm exact model, provider, operation, transport, tool
+schema revision and validity before calling them supported.
+
+For all Seedance sections below, assess semantic completeness, not template
+conformance. Section order, headings, `Define`, feature counts, grouping and
+profile blocks are optional composition aids. Inline prose is valid when
+subject identity, ordered reference roles, action, continuity, sound and
+applicable preservation locks are unambiguous. Special syntax, including
+indexed tokens and audio brackets, requires verified exact model, operation
+and destination evidence when that syntax is used. Plain language needs no
+bracket-syntax evidence. Missing required capability evidence still leaves
+production review incomplete. Every applicable check remains required: assess
+each one and report missing evidence, broken locks, unsupported controls and
+exceeded verified limits. Do not mark real requirements optional merely because
+their example headings or syntax are optional.
+
 ## Table of contents
 
 - [Universal — all prompts](#universal--all-prompts)
@@ -117,17 +142,28 @@ change the production policy. Source metadata: `rule-provenance.json`.
 
 ## Seedance 2.5
 
-Source skill: `seedance-prompt-25`
+Source skill: `seedance-prompt`
 
 ### Native draft first
 
-Every new Seedance 2.5 generation, edit, extension, probe and creative retry
-has explicit `resolution: "480p"` and boolean `draft: true` outside prompt
-text, regardless of review depth or delivery target. Plain 480p is not native
-Draft mode. A missing control is a capability mismatch to resolve, not a
-fallback. Inspect and select the draft before promotion by `draft_task_id`;
-changed creative inputs require a new draft. Other models without native
-Draft support use a clearly labeled ordinary, non-promotable 480p test.
+Previously covered exact standard Seedance 2.5 and access-confirmed Premium
+bindings require explicit `resolution: "480p"` and boolean `draft: true` outside
+prompt text for every new generation, edit, extension, probe and creative retry,
+regardless of review depth or delivery target. Plain 480p is not native Draft.
+A missing required native control is a capability mismatch, not a fallback.
+New exact model/operation bindings, including other 2.5 variants, use only a
+verified profile independently bound to provider, transport, tool schema revision
+and validity. New native operations use evidenced native controls. Verified
+non-native operations use an ordinary preview at the evidenced resolution,
+even when 480p is also supported, clearly non-promotable; a final requires
+separately confirmed fresh generation. Do not infer Draft from a family substring.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved, not prompt-only creative writing.
+Promotion by `draft_task_id` requires the exact selected successful native task,
+unchanged creative inputs and reference hashes, matching valid profile/transport
+and final inspection. Changed creative inputs require a new native draft.
+Preserve historical task identity, hashes and selections; relabeling cannot make
+an ordinary task native.
 This check does not make manual `/prompt-review` mandatory.
 
 ### Formula check
@@ -135,9 +171,9 @@ This check does not make manual `/prompt-review` mandatory.
 1. **Subject + Action present.** The prompt contains at minimum a clear subject and a
    primary action or event. These are the only required parts.
 
-2. **Six-part formula.** The prompt follows: Subject + Action/Event + Scene/Environment
-   (optional) + Visual Style (optional) + Camera Movement/Cut (optional) + Audio
-   (optional). Parts are in this order.
+2. **Flexible formula.** Subject, action/event, scene/environment, visual style,
+   camera and audio may use any clear section order or inline prose. Include
+   supplied, requested or necessary details; do not flag order alone.
 
 3. **No double-description.** The same action is not described in multiple sections.
 
@@ -157,11 +193,13 @@ This check does not make manual `/prompt-review` mandatory.
 6. **Individual naming.** Each subject is named and bound individually. The prompt
    does not use lazy groupings like "@Images 1 through 4 define four characters."
 
-7. **Grouped by type.** References are organized as [Characters], [Props], [Scenes],
-   [Motion and Audio] sections.
+7. **Optional grouping.** Type groups such as [Characters], [Props], [Scenes],
+   [Motion and Audio] can clarify many references. Inline mappings are equally
+   valid when each role and ownership are clear.
 
-8. **Centralized profiles.** Important subjects have a centralized profile block with
-   stable attributes that is referenced in each scene.
+8. **Optional profiles.** Centralized profiles can clarify recurring subjects
+   across scenes. Stable attributes, reference bindings and prop ownership
+   remain consistent whether expressed inline or in profile blocks.
 
 9. **Per-scene selection.** Each scene names only the references it uses — not all
    materials at once.
@@ -177,12 +215,17 @@ This check does not make manual `/prompt-review` mandatory.
     the reference (which can conflict).
 
 13. **Control-only references (`references.control_only`).** Translate to text
-    and omit by default. Intentional conditioning requires explicit user selection,
-    current source hashes, supported tool/mode inputs, and leakage QA; labels or
-    extraction instructions alone do not grant eligibility.
+    and omit by default. Storyboard grids, panels, crops and animatics remain
+    planning-only in every conditioning role. Selection, current hashes, mode
+    support, style overrides or promotion labels cannot change board origin.
+    Independent production stills must be independently authored, selected and
+    text-free, not cleaned or renamed planning imagery. Eligible non-board
+    conditioning requires selection, current source hashes, supported tool/mode
+    inputs, rights and QA; labels alone do not grant eligibility.
 
-14. **Reference count limits.** ≤ 30 images, ≤ 10 videos, ≤ 10 audio. Recommended:
-    1-8 image subjects, 1-5 video subjects (5-10s each), only directly relevant audio.
+14. **Reference count limits.** Verify per-modality and total limits for the
+    selected model/operation. The earlier 30-image, 10-video, 10-audio snapshot
+    and recommended subject counts do not establish a family quota.
 
 ### Scene staging
 
@@ -220,14 +263,18 @@ noncompliant audio or propose an authorized repair, not automatic muting of
 requested native sound. Mixed ownership names each layer's source. This manual
 review does not authorize generation or post-production in this workspace.
 
-19. **Audio bracket syntax.** Dialogue in `{}`, music in `()`, SFX in `<>`, subtitles
-    in `【】`. All audio content uses the correct bracket type.
+19. **Verified audio syntax only.** Bracket conventions for dialogue `{}`,
+    music `()` and SFX `<>` apply only when verified for the exact model,
+    operation and destination. Plain language is valid without that evidence;
+    do not claim unsupported syntax or audio controls work. Subtitles and
+    overlays belong in post, not generated footage.
 
-20. **Dialogue language reinforcement.** Non-Chinese dialogue includes: Dialogue
-    Language + Regional Variety/Accent + Delivery Style + Speaker + `{dialogue}`.
+20. **Dialogue intent.** Preserve requested language, regional variety/accent,
+    delivery style, speaker attribution and approved words. A "Dialogue
+    Language" prefix and a fixed field order are optional, not parser rules.
 
 21. **Same dialogue in both prompts.** If audio-first pipeline is used, the exact
-    dialogue text in the Seed Audio prompt matches the `{curly brace}` text in the
+    dialogue text in the Seed Audio prompt matches the spoken text in the
     Seedance prompt. No paraphrasing, reordering, or omitted lines.
 
 ### Emotional direction
@@ -273,9 +320,10 @@ review does not authorize generation or post-production in this workspace.
     vision flashes belong in assembly when prompted timing cannot meet the
     brief; 0.8 s is a provisional heuristic, not a universal minimum.
     A prompt that asks the model to skip an
-    action it describes is a MAJOR finding. A prompt that asks a subject to
-    drift out of focus during a move is a MINOR finding: that defocus is
-    added in post. A single burst with holds or slower motion is an optional
+    action it describes is a MAJOR finding. Requested focus loss is an
+    unverified visible target, not a MINOR finding by itself; limited earlier
+    T2V face-focus failures motivate an optional post alternative.
+    A single burst with holds or slower motion is an optional
     remedy for a demonstrated failure, not a cap or MINOR finding by itself.
     Preserve repeated action and locked timing; assess readable support,
     momentum, contact and recovery rather than counting bursts.
@@ -321,8 +369,9 @@ review does not authorize generation or post-production in this workspace.
 39. **Emotion & camera**: abstract emotions and cinematography terms paired with
     visible/audible cues.
 40. **First/last frames**: one role per image; first and last share aspect ratio.
-41. **Storyboards & blockouts**: storyboard states which structure to inherit;
-    blockouts identify coarse vs fine.
+41. **Storyboards & blockouts**: board staging is translated into text and
+    planning assets are absent from video inputs; eligible independent animated
+    blockouts identify coarse vs fine and retain their motion authority.
 42. **Auto-lock rules**: editing, first/last-frame, and extension follow locked
     aspect-ratio and duration rules.
 43. **Extension boundary**: boundary image, motion trend, and audio continuity checked.
@@ -367,17 +416,15 @@ once with unambiguous continuity is not. Preserve locked reveal timing.
 
 ### Storyboard grid reference
 
-50. **Eligible storyboard conditioning.** Omit control sketches by default.
-    Only after explicit selection, source-hash checks, and live mode compatibility
-    may a storyboard grid be bound to an `@Image N` with the reading
-    order (left-to-right, top-to-bottom) AND a positive style override — the
-    prompt must state the board is used ONLY for scene order and composition and
-    that the output must render in the target style, not copy the board's
-    rendering medium. The bare "Do not use the grid's sketch lines, panel
-    numbers, or divider lines" exclusion only removes the board's *markup* — it
-    does not stop the model from copying the *medium* (line art, paper texture,
-    monochrome shading). It locks shot order and composition only; color,
-    motion, and timing stay in the prompt text.
+50. **Planning-only storyboard boundary.** Grids, panels, crops and animatics
+    cannot be bound as first/last-frame, R2V, composition or motion inputs.
+    Explicit selection, current hashes, compatible mode support, cleanup and
+    style overrides do not change their origin. Translate approved shot order,
+    staging and continuity into text; report a proposed board binding as a
+    finding without repairing the prompt. An independently authored, selected
+    text-free production still remains eligible with verified role support,
+    rights and approval. Preserve historical board-linked records and hashes;
+    review does not rewrite them or authorize new conditioning.
 
 ### Revision diff
 
@@ -392,27 +439,30 @@ once with unambiguous continuity is not. Preserve locked reveal timing.
 
 ## Seedance 2.5 edit (video-to-video)
 
-Source skills: `seedance-prompt-25` (editing) + `seedance-vfx-prompt` (2.5 section).
+Source skills: `seedance-prompt` (editing) + `seedance-vfx-prompt` (2.5 section).
 
 Apply "Universal — all prompts" first, then this section. Mark N/A any item
 whose feature is absent (no references → skip material mapping).
 
 ### Editing task
 
-1. `[Edit Goal] Edit @Video 1 …` present and one-sentence; submit with
-   `omni_reference_task_type="edit"` (2.5 values: `auto | reference | edit |
-   extend` — `edit_video` is 2.0-only and is rejected).
-2. `[Source Video Role]` declares `@Video 1` as the sole editing master and
-   lists what it defines (subjects, scene, actions, camera, event order).
-3. `[Target Material Role]` (or `[Target Reference Role]` in an object swap)
-   present iff references are used: each `@Image N` mapped to one target, and
-   the image's unowned content excluded ("Do not use its background/people").
+The headings below are optional examples; inline prose carrying
+the same editing contract is valid. Settings require exact destination evidence.
+
+1. **Edit goal.** Identify the editing operation and source explicitly, e.g.
+   `Edit @Video 1 …`. Use `omni_reference_task_type="edit"` only for a verified
+   binding supporting that control; do not import a legacy `edit_video` value.
+2. **Source video role.** Declare `@Video 1` as the sole editing master and
+   list what it defines (subjects, scene, actions, camera, event order).
+3. **Target material role.** When references are used, each `@Image N` is
+   mapped to one target, and the image's unowned content is excluded
+   ("Do not use its background/people").
    Exempt what the target class owns: a character reference owns its person, a
    location reference owns its background. Single-person sheets directed to
    use the close-up panel only.
-4. `[Edit Scope]` states what changes and, for what must not change, a positive
+4. **Edit scope.** State what changes and, for what must not change, a positive
    "exactly one <subject> — never a second or duplicated copy" guard.
-5. `[Content to Preserve]` lists identity/motion/timing/camera/lighting to keep.
+5. **Content to preserve.** List identity/motion/timing/camera/lighting to keep.
 
 ### Preservation locks (only where MUST PRESERVE says so)
 
@@ -427,11 +477,14 @@ whose feature is absent (no references → skip material mapping).
 
 ### Audio / lip-sync
 
-10. New dialogue in `{}` with language + regional variety + delivery style +
-    speaker; lips directed to the NEW words. CJK punctuation: `……` not `——`.
-11. Same-content contract (language swap): target `{}` line is the source line
+10. Preserve requested language, regional variety, delivery style and speaker;
+    direct lips to the new approved words. Use bracket syntax only when
+    verified for the exact model, operation and destination; plain language
+    is valid otherwise. Do not alter approved punctuation to fit a template.
+11. Same-content contract (language swap): target spoken line is the source line
     translated, no paraphrase/omission.
-12. Diegetic audio only; SFX in `<>`, music in `()`; no non-diegetic score.
+12. Diegetic audio only; use SFX/music brackets only under item 10's verified
+    syntax condition; no non-diegetic score.
 
 ### Camera (only when the edit intentionally re-stages the camera)
 
@@ -536,11 +589,10 @@ and record why.
 
 ### Limits and rights
 
-8. **Reference counts.** Within hard limits (≤ 30 images, ≤ 10 videos, ≤ 10
-   audio) and the recommended range: 1–8 image subjects and one motion video.
-   Exceeding a hard limit is CRITICAL. More than eight mapped subjects, or
-   references above the recommended range, is MAJOR unless the prompt notes
-   the trade-off; suggest splitting into shots and assembling in post.
+8. **Reference counts.** Count each modality and total against current
+   model/operation evidence. Exceeding a verified hard limit is CRITICAL;
+   unknown limits are incomplete. Historical recommended counts alone are not
+   MAJOR findings; optional splitting needs a readability reason and agreement.
 
 9. **Video-to-video inputs.** Apply the shared items under
    [Video-to-video inputs](#video-to-video-inputs-swap-recast-restyle).
@@ -571,7 +623,7 @@ V3. **Source rights.** The package notes the user's confirmed rights for the
     footage and the people in it. A missing confirmation is CRITICAL. Do not
     suggest wording that routes around a provider rejection.
 
-V4. **Exact source timing (swap and restyle).** Preserve the source span,
+V4. **Exact source timing (swap, recast and restyle).** Preserve the fractional source span,
     frame timestamps, cuts and playback speed. Do not require 8n+1 frames or
     whole-second rounding from a prior probe. Adapt only a separate copy for
     a verified destination requirement, with user agreement and the timing
@@ -618,9 +670,10 @@ medium. Mark N/A any item whose feature is absent and record why.
 
 6. **Route and limits.** The operation matches the route the user chose and
    what the destination UI offers (`model.supported_mode`); an unverified route is
-   labeled provisional. Every proposed 2.5 probe uses explicit
-   `resolution: "480p"` and boolean `draft: true`; missing controls must be
-   resolved before execution. Draft settings are not a quality guarantee. Image counts,
+   labeled provisional. Apply the exact-binding preview policy under
+   [Native draft first](#native-draft-first), not a family-wide 480p rule;
+   missing required controls remain unresolved before execution.
+   Draft settings are not a quality guarantee. Image counts,
    roles, ratio and duration follow verified destination limits; no default
    trim or rounding of exact source timing.
 
@@ -639,26 +692,29 @@ medium. Mark N/A any item whose feature is absent and record why.
 
 ## Seedance 2.0
 
-Source skill: `seedance-prompt-20`
+Source skill: `seedance-prompt`
 
 ### Structure
 
-1. **Section order.** Prompt assembles in this order: Asset preparation → Subject
-   definitions → Prompt (with task type) → Shot 1/2/3 → Quality and constraints.
+1. **Flexible structure.** Section order and headings are optional. Subject,
+   action, reference roles and applicable constraints must remain clear,
+   including when the action precedes the asset mapping.
 
-2. **Asset preparation first.** References are labeled with `@Image N`, `@Video N`,
-   `@Audio N` (sequential, space separator) before any prompt body.
+2. **Ordered reference bindings.** Bind references directly in the prompt to
+   their subjects and roles, with indices matching the ordered input bundle.
+   Use the destination's verified notation; mapping may appear inline.
 
 3. **Reference limits.** ≤ 9 images, ≤ 3 videos, ≤ 3 audio (15 total). Audio cannot
    be sent alone. Combined video duration ≤ 15s, combined audio duration ≤ 15s.
 
 ### Subject definitions
 
-4. **Define keyword.** Uses `Define` keyword with 2-3 stable static features
-   (clothing, hairstyle, appearance, category). Static only — no mutable attributes
-   like expression or pose.
+4. **Stable identity.** `Define` is optional; inline subject bindings are valid.
+   Use distinctive static features where needed, not a feature quota.
+   Identity uses no mutable attributes like expression or pose.
 
-5. **Label reuse.** The same `@Image N` / `@Video N` label is reused in every shot.
+5. **Label reuse.** Keep each subject's reference binding consistent across
+   shots; repeat it where needed to prevent ambiguity, not as a fixed quota.
 
 6. **No Asset IDs.** Uses `@Image 1` / `@Video 1` format, not Asset IDs.
 
@@ -667,9 +723,11 @@ Source skill: `seedance-prompt-20`
 7. **Classification.** Each reference is classified as: Visible identity, Visible
    environment, Motion/camera reference, or Control-only reference.
 
-8. **Control-only handling.** Control-only images are preferably translated to text.
-   If kept, labeled as control-only with extraction instructions and visual
-   reproduction prohibition.
+8. **Control-only handling.** Translate planning boards, panels, crops and
+   animatics into text and omit them from every video input. Independently
+   authored text-free production stills and eligible non-board controls require
+   explicit selection, current hashes and exact role support; extraction
+   instructions do not change planning origin.
 
 9. **Face restriction.** No direct uploads of real human faces. Uses model outputs,
    preset digital characters, or authorized real-person assets.
@@ -685,15 +743,16 @@ Source skill: `seedance-prompt-20`
 
 ### Shots
 
-12. **Timeline storyboard.** Uses `Shot 1 / Shot 2 / Shot 3` format. Each shot
-    covers one coherent unit of action.
+12. **Readable sequence.** A continuous take need not use shot headings.
+    Requested shots or stages carry ordered actions or a sustained state;
+    check continuity rather than a fixed shot format.
 
-13. **Per-shot references repeated.** Every shot repeats applicable `@Image N`,
-    `@Video N`, `@Audio N` references inline.
+13. **Per-shot authority.** Each shot's applicable references and roles stay
+    unambiguous. Repeat critical bindings when a cut could reset relationships.
 
-14. **Per-shot description order.** (1) Camera movement/transition, (2) Subject
-    actions/expressions, (3) Position/spatial changes, (4) Lighting & color tone,
-    (5) Audio.
+14. **Per-shot content.** Preserve requested camera, action, spatial changes,
+    lighting, color and audio in any clear order; missing requested content,
+    not its position in the text, is a finding.
 
 15. **Coherent camera movement.** Use one or two clear requested movements per
     shot, with sequence and endpoints; avoid competing simultaneous directions.
@@ -714,8 +773,9 @@ Source skill: `seedance-prompt-20`
 19. **Emotion externalization.** Emotions are externalized as physical details,
     never bare labels.
 
-20. **Dialogue format.** Spoken text in `{curly braces}` or quotes for lip-sync.
-    Multi-speaker format with speaker labels.
+20. **Dialogue attribution.** Preserve exact spoken words and identify each
+    speaker. Bracket syntax requires verified exact model, operation and
+    destination support; plain language with clear attribution is valid.
 
 ### Timing
 
@@ -807,8 +867,9 @@ Source skill: `seedance-vfx-prompt`
 
 ### Subject definitions
 
-6. **Define keyword.** Uses `Define` with 2-3 core static features. Bound as
-   `<Label>@Video 1`.
+6. **Stable subject binding.** Bind the source identity using stable labels
+   and relevant static features. `Define` and separate definitions are
+   optional; inline bindings are valid without a feature quota.
 
 ### Locks (preservation)
 
@@ -891,9 +952,9 @@ Source skill: `seedance-vfx-prompt`
     waxy, smoothed, or warped."
 
 28. **Supported model/mode (`model.supported_mode`).** Resolve operation and
-    model first. A new 2.5 face-containing edit starts with explicit
-    `resolution: "480p"` and boolean `draft: true`; 720p/1080p are later
-    promotion targets after draft inspection and selection;
+    model first. Follow the exact-binding preview policy under
+    [Native draft first](#native-draft-first); 720p/1080p are later promotion
+    targets only for eligible selected native tasks, not ordinary previews;
     only an explicitly selected supported legacy path may use 4K. Face/detail
     fidelity is an output-QA criterion, not a guaranteed property of resolution.
 
@@ -947,8 +1008,9 @@ Source skill: `seedance-vfx-prompt`
 
 Source skill: `seedance-prompt-25-filipino`
 
-Use as an additional checklist alongside Seedance 2.5 when the scene contains Tagalog,
-Filipino, or Taglish dialogue.
+Use as an additional language checklist after the selected model and operation
+when the scene contains Tagalog, Filipino, or Taglish dialogue. Never import
+2.5-only parameters into a legacy or unknown-model request.
 
 ### Words, register and scope
 
@@ -968,7 +1030,8 @@ Filipino, or Taglish dialogue.
    hypothesis, not a proven mispronunciation.
 5. **No universal phonology recipe.** Do not force a default stress, flat contour,
    consonant substitution or one regional accent across Filipino speakers.
-6. **Notes separate from speech.** Preserve exact spoken text inside braces.
+6. **Notes separate from speech.** Preserve exact spoken text, using braces
+   only with verified destination syntax.
    Annotation or phonetic respelling inside dialogue requires explicit scope.
 7. **Cues serve intent.** Use concise, observable delivery rather than a dictionary
    or a prescribed pitch sequence. Verify actual pronunciation by listening;
@@ -1124,8 +1187,8 @@ Source skill: `seed-audio-prompt`
 
 ### Audio-video alignment (when used with Seedance)
 
-49. **Same dialogue text in both prompts.** Exact lines match between Seed Audio
-    `text_prompt` and Seedance `{curly braces}`.
+49. **Same dialogue text in both prompts.** Exact spoken lines match between
+    Seed Audio `text_prompt` and Seedance, independent of optional brackets.
 
 50. **Audio duration ≤ video duration.**
 
@@ -1496,11 +1559,12 @@ Source skills: `seedream-storyboard`, plus `template-factory` (storyboard prompt
    not a fixed budget. A user-specified smaller count is honored only when
    explicit, with omitted shots recorded as motion notes.
 
-3. **Storyboard handoff eligibility.** Sketches guide authoring and are omitted
-   from video inputs by default. A selected production panel or intentional
-   conditioning exception needs current source hashes, explicit approval, live
-   mode compatibility, and leakage QA. A board's style is a creative choice;
-   it is not guaranteed to remain absent from the output.
+3. **Storyboard handoff eligibility.** Storyboard grids, panels, crops and
+   animatics stay planning-only, never video conditioning. Selection, hashes,
+   cleanup, style overrides and promotion labels cannot change planning origin.
+   Translate staging into text. An independently authored, selected text-free
+   production still is a separate eligible asset subject to verified role
+   support, rights and approval. Historical board-linked records remain unchanged.
 
 4. **Explicit canon.** Recurring identities, locations, props, and style are in an
    explicit canon section.
@@ -1614,11 +1678,13 @@ Source skill: `seedance-music-video`
    scene as `@Video 1`. Confirm current-song permissions, never infer them
    from a prior project or supplied file.
 
-7. **Lip-sync lines verbatim in `{...}`.** Match the audio master exactly —
+7. **Lip-sync lines verbatim.** Use `{...}` only with verified destination
+   syntax; plain-language attribution is valid. Match the audio master exactly —
    no paraphrasing, no reordering, no omitted lines.
 
 8. **Lyric timing follows audio evidence.** When coverage or synchronization
-   requires per-line timing, use audio-measured `[X-Ys] { line }` slots, retaining
+   requires per-line timing, use audio-measured slots (e.g. `[X-Ys] { line }`
+   only with verified syntax), retaining
    raw measurements separately from proposed edits. With unavailable audio or
    unverified timings, use ordered cues and label timing provisional. Genre or
    fast delivery alone does not require timestamps or justify invented timings.

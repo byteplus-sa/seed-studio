@@ -56,13 +56,13 @@
     {
       "id": 5,
       "prompt": "Write a Seedance 2.5 pacing block for a 15-second dialogue scene. Two characters exchange two lines each over a table. The pacing should align to an audio master generated first by Seed Audio, with cuts landing on the dialogue beats.",
-      "expected_output": "A dialogue-scene pacing block that is audio-first: notes the Seed Audio master, aligns cuts to the audio timeline, and keeps the dialogue lines verbatim inside curly braces.",
+      "expected_output": "A pacing block using the explicitly selected audio-first route; missing master timings and exact lines stay unresolved, not invented.",
       "files": [],
       "expectations": [
-        "The output notes the audio-first contract: Seed Audio is generated first and used as reference_audio.",
-        "The output aligns the pacing timestamps to the audio master's dialogue beats.",
-        "The output places the exact dialogue lines inside {} curly braces.",
-        "The output uses the same verbatim dialogue text that would appear in the Seed Audio prompt.",
+        "Audio-first is selected by this request, not mandated by dialogue alone.",
+        "Only supplied or measured master timings are used; missing evidence stays unresolved.",
+        "Does not invent exact dialogue lines that were not supplied.",
+        "Uses reference_audio only if the selected model and operation support it.",
         "The output keeps the scene within the 15-second duration."
       ]
     },
@@ -119,12 +119,12 @@
     {
       "id": 10,
       "prompt": "Write a Chaotic montage pacing block for an 8-second energy-drink clip: twelve shots of skaters, sparks, a crowd and a can, each about half a second, all in one Seedance prompt.",
-      "expected_output": "A Chaotic block that keeps each in-clip shot at about a second or more, explains that shots under about 0.8 s merge, and moves the faster strobe into an assembly cut from separately generated clips.",
+      "expected_output": "Preserves requested rhythm as an uncertain target; explains limited historical cut-density evidence and offers assembly for precise half-second cuts.",
       "files": [],
       "expectations": [
-        "The output explains that shots shorter than about 0.8 s are merged or dropped inside one clip.",
-        "The in-prompt cut list has fewer shots, each about one second or longer, with consecutive, non-overlapping ranges.",
-        "The half-second strobe is planned as an assembly cut from separately generated clips.",
+        "Does not claim 0.8s as a family-wide minimum or observed failure for this request.",
+        "Does not silently remove shots or alter locked timing; any simplification is a proposed alternative.",
+        "Offers assembly when exact timing cannot be established for the selected model and operation.",
         "No shot puts readable text or the can's label art into generated video as an exact graphic."
       ]
     },

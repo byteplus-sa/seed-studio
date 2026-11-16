@@ -8,7 +8,7 @@
         "preflight"
       ],
       "owner_path": ".agents/contracts/production-policy.md",
-      "summary": "Every new Seedance 2.5 generation uses explicit 480p and boolean draft true before inspection, selection, and promotion by draft_task_id. Other models without native Draft support use ordinary non-promotable 480p tests.",
+      "summary": "Previously covered exact standard Seedance 2.5 and access-confirmed Premium bindings require explicit 480p and boolean draft true for every new generation. New exact model/operation bindings use only verified profiles independently bound to provider, transport, tool schema revision and validity: native controls are evidenced; ordinary previews use the evidenced resolution, even when 480p is supported, remain non-promotable and need separately confirmed fresh finals. Never infer Draft from a family substring. Missing, malformed, expired, wrong-destination or unknown evidence leaves execution unresolved, not prompt-only writing. Promotion requires the exact selected successful native task, unchanged creative inputs and reference hashes, matching valid profile/transport and final inspection; preserve historical records.",
       "exceptions": []
     },
     {

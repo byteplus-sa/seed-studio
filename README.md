@@ -52,12 +52,25 @@ See [Review mode](.agents/contracts/review-mode.md).
 
 ## How it works
 
-Seedance 2.5 starts every new generation in native draft mode:
+Previously covered exact standard Seedance 2.5 and access-confirmed Premium
+bindings start every new generation in native draft mode:
 `resolution: "480p"` plus boolean `draft: true`, not plain 480p. The caller
 inspects and selects the draft before a separately authorized promotion by
 `draft_task_id` to the delivery resolution. This includes edits, extensions
-and creative retries and does not make prompt review automatic. Other video
-models without native draft mode use a clearly labeled ordinary 480p test.
+and creative retries and does not make prompt review automatic. New models use
+their independently verified exact model/operation profile, provider, transport,
+tool revision and validity. Verified non-native operations use a supported
+ordinary preview labeled non-promotable; unknown controls block execution, not
+creative prompt writing. Model names do not establish Draft or 480p support.
+Promotion requires the selected successful native task, unchanged creative
+inputs/reference hashes and matching unexpired profile, followed by final inspection.
+
+All Seedance prompts use `seedance-prompt` without changing the selected model.
+Its 2.5-based conventions retain useful 2.0 continuity and revision practices;
+API controls require exact-model and destination evidence. Manual
+review resolves model/operation before genre/language and returns findings only;
+repairs need separate authorization. Source edits preserve fractional timing
+and audio tails, with shorter probes only on explicit selection.
 
 ```mermaid
 flowchart LR
@@ -84,13 +97,12 @@ flowchart LR
 | **brief-intake** | Shape intent-led briefs and treatments; preserve confirmed decisions. |
 | **prompt-review** | Manual user-invoked review of Seedance, Seedream and Seed Audio prompts; review sub-agents require a separate explicit request. |
 | **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — paste-ready. |
-| **seedance-prompt-25** | Write production-grade Seedance 2.5 video prompts with the six-part formula, 50-material multimodal referencing, variable-duration staging (4-30s), timestamp pacing, structured editing, extension, keyframes, storyboards, and blockouts. |
+| **seedance-prompt** | Consolidated 2.5-based composition, references, edits and extensions with useful 2.0 continuity and revision practices; flexible shot staging and sound ownership, selected models and source locks preserved, no execution. |
 | **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, Virtual Portrait identities, a muted source with audio in post, and style presets. |
 | **seedance-object-swap** | Write Seedance 2.5 object-swap prompts that replace one character, outfit, product, prop or location in existing footage and keep the rest as filmed: five-part swap contract, contact windows, Virtual Portrait identities, and swap checks. |
 | **seedance-restyle** | Write Seedance 2.5 restyle prompts that redraw a whole clip in a new medium (anime, watercolor, claymation, pixel art and more) while keeping its performance, camera and cuts; style catalog, optional same-place environment reference, and restyle checks. |
 | **seedance-prompt-25-filipino** | Opt-in Filipino dialogue support preserving approved words and requested language, register, code-switching and subtitle choices; separate accent notes, listening-based pronunciation review and opt-in separate lip-sync audio. |
 | **filipino-micro-drama** | Opt-in Filipino-market micro-drama stories and episode briefs with genre formulas and cultural context, preserving approved words and requested language, register, code-switching and subtitle choices. Story material only. |
-| **seedance-prompt-20** | Legacy Seedance 2.0 prompt skill for 4K output (unsupported by 2.5), Fast/Mini speed variants, or lower cost per generation. |
 | **acting-direction** | Return source-bound performance plans in chat: goals, tactics, listening, triggers and readable consequences. |
 | **seedance-acting-console** | Encode supplied performance intent as concise Seedance cues without repeating scene analysis. |
 | **seedance-fight-choreography** | Plan requested fictional screen fights with stable actors, prop ownership and readable exchanges; no generation or real-world instruction. |
@@ -103,7 +115,7 @@ flowchart LR
 | **seedance-lens-presets** | Translate a lens, focal length, aperture, or sensor request into a canonical visible-result phrase for Seedance prompts or Seedream style. |
 | **seedance-lighting-presets** | Translate a named lighting setup into a canonical Seedream `Lighting:` recipe and a matching Seedance visual-style lighting phrase. |
 | **seedance-pacing-presets** | Turn a named pacing preset (speed ramp, slow motion, bullet time, montage, cut rhythm, impact moment) into a timestamped motion, cut, and pacing block. |
-| **seedance-motion-design** | Write Seedance 2.5 motion-design prompts for marketing deliverables; exact typography and UI are out of scope in this workspace. |
+| **seedance-motion-design** | Write Seedance motion-design prompts; storyboard panels stay planning-only and exact typography/UI stay in post. |
 | **seedance-music-video** | Develop track-informed music-video treatments with intentional escalation, restraint, repetition or counterpoint and optional evidence-based synchronization. |
 | **seedance-restoration** | Write Seedance video-to-video restoration prompts that remove grain, noise, scratch lines, dust, and flicker from aged footage while preserving the shot. |
 | **seedance-vfx-prompt** | Write structured video-to-video VFX prompts with the `@Video N` / `@Image N` reference grammar, VFX taxonomy, relighting, layered space, and timing triggers. |
@@ -147,7 +159,7 @@ seed-prompt-studio/
 ├── CLAUDE.md -> AGENTS.md          # symlink so Claude Code loads the same contract
 ├── .agents/
 │   ├── contracts/                  # prompt-only policy, axes, descriptors, rule IDs
-│   └── skills/                     # 44 prompt-composition skills + sync-skills (maintenance)
+│   └── skills/                     # 43 prompt-composition skills + sync-skills (maintenance)
 ├── .claude/skills/<skill> -> ../../.agents/skills/<skill>   # per-skill symlinks for Claude Code
 ├── .opencode/command/
 │   └── sync-skills.md              # opencode /sync-skills wrapper around the shared skill
@@ -160,7 +172,7 @@ seed-prompt-studio/
 ## Maintenance
 
 Shared skills are maintained in an upstream source checkout. Run the sync from
-any supported agent to mirror the 21 allowlisted skill bundles into this repo:
+any supported agent to sync the 19 allowlisted skill bundles into this repo:
 
 | Agent | Command |
 | --- | --- |
@@ -181,7 +193,7 @@ runs when invoked explicitly. The local `template-factory`,
 `scene-craft`, and `blocking-map` forks and all contracts are locally maintained and are never overwritten by a
 sync. The command previews
 changes, asks before copying unreviewed upstream work, and leaves the result
-uncommitted for review. A scoped run — `/sync-skills seedance-prompt-25` — syncs
+uncommitted for review. A scoped run — `/sync-skills seedream-prompt` — syncs
 one skill only. A sync leaves each skill's `agents/` folder alone and scans the
 result for references to tools and skills this workspace does not ship, stopping
 until they are scrubbed. The sync source defaults to a sibling checkout at
@@ -193,3 +205,14 @@ merged revision `e302ab982bc6714597983733d371e6bbbff0248c`. The adaptation
 preserves manual review, chat-first plans, existing generation authorization,
 native draft settings and protected prompt-only forks. It does not install
 Cinema production stages, a task registry or third-party source archives.
+
+The consolidated leaf and its `.claude/skills/seedance-prompt` alias remain local
+and outside the sync allowlist. Retired version-specific prompt bundles are
+not syncable, and references to them trigger the forbidden-reference scan.
+Model-neutral same-path references
+and evals require selective manual comparison before copying; existing dirty
+destination and destination-only ownership guards remain in force.
+Studio introduces no runtime adapter or production catalog. Historical task,
+selection and upstream provenance records are preserved. Conform is not a
+creative grade: it requires measured range, primaries, transfer, matrix and
+pixel format, with unknown or conflicting metadata unresolved.

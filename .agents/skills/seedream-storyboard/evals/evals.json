@@ -56,20 +56,20 @@
     {
       "id": 5,
       "prompt": "Write a storyboard panel prompt from approved character, kitchen-location, and branded-jar sheets. The character and location are approved, but the jar sheet is still in review. Do not write anything for video yet.",
-      "expected_output": "An asset-bound storyboard prompt that lists its ordered references and marks the panel as an unlocked draft, ineligible for video handoff, because one source asset is not approved.",
+      "expected_output": "An asset-bound storyboard prompt with ordered references and an unresolved jar. The panel is an unlocked planning draft; even later approval does not make it video conditioning.",
       "files": [],
       "expectations": [
         "The output binds the character, location, and jar to separate exact @Image N roles.",
         "The output lists each reference's role and approval state in the ordered reference list.",
         "The output marks the jar as unresolved or in review and keeps the panel an unlocked draft.",
-        "The output states that video handoff is not yet eligible because the jar is unapproved.",
+        "The output states that the panel remains planning-only even after jar approval; later video staging is text, not panel conditioning.",
         "The output does not write a Seedance prompt or claim any generation happened."
       ]
     },
     {
       "id": 6,
       "prompt": "Create the storyboard prompt for my 30-second strawberry jam commercial. I only want one panel for the scene, but I want three visual options to choose from before we use it for Seedance.",
-      "expected_output": "A one-panel storyboard centered on one hero beat, with a note that the user generates three samples (v01-v03) of the same p010 prompt, and a selection gate before video handoff.",
+      "expected_output": "One hero-beat panel with three requested alternatives of p010. Selection approves planning only; later video staging is translated to text.",
       "files": [],
       "expectations": [
         "The output creates exactly one narrative panel identified as p010.",
@@ -77,18 +77,18 @@
         "The output presents v01, v02, and v03 as alternatives of p010 rather than separate story beats.",
         "The output keeps the same subjects, decisive moment, and continuity contract across the three samples, varying only composition or emphasis when variation is requested.",
         "The output records omitted action or transitions as motion notes instead of adding panels.",
-        "The output recommends I2V or R2V and keeps video handoff ineligible until the user explicitly selects a variant."
+        "The output keeps all panel variants planning-only after selection; I2V needs an independent eligible still, while R2V carries board staging in text."
       ]
     },
     {
       "id": 7,
       "prompt": "I'll use your 6-panel storyboard grid as a reference in a Seedance prompt. What do I need to watch for?",
-      "expected_output": "A handoff note that treats the grid as a planning sheet and guards against panel numbers and sketch marks appearing in the video.",
+      "expected_output": "Reject grid conditioning and translate its shot order and blocking into text, preserving the board for planning.",
       "files": [],
       "expectations": [
-        "The output says the grid is a planning sheet only and names panel numbers, dividers and sketch style as annotations that must never appear in the video.",
-        "The output asks for the ban to cover all four frame corners and for shots to be referred to by reading position.",
-        "The output prefers a numberless grid or separate images when the board will condition a Seedance prompt.",
+        "The output keeps the grid planning-only and omits it from all video conditioning roles.",
+        "The output translates approved staging into shot text, without grid bindings or board-image uploads.",
+        "The output explains that number removal, cropping, separate-panel regeneration, selection and hashes do not change planning origin.",
         "The output does not generate or submit anything."
       ]
     },
@@ -174,6 +174,102 @@
         "Provides prompt-only handoff if no verified usable transport exists."
       ],
       "files": []
+    },
+    {
+      "id": 101,
+      "category": "planning-origin",
+      "prompt": "Use my selected storyboard crop as Seedance first-frame input. The rights-cleared crop is label-free and its current hash and approval are recorded.",
+      "expected_output": "The crop remains planning-only; translate its staging to text without a video reference binding.",
+      "files": [],
+      "expectations": [
+        "Crop, absent labels, rights, approval, selection and current hash do not make the panel an independent still.",
+        "No first_frame binding, upload or submission; the panel remains planning-only.",
+        "Offers an independently authored non-board production still only as an unselected alternative."
+      ]
+    },
+    {
+      "id": 102,
+      "category": "planning-origin",
+      "prompt": "This selected grid is supported as R2V reference_image by my destination and has a current hash. Use its six cells for the Seedance shot sequence.",
+      "expected_output": "Keep the grid out of video inputs and hand off six text staging notes instead.",
+      "files": [],
+      "expectations": [
+        "The grid stays planning-only despite role compatibility, selection and hashes.",
+        "No board reference tokens, upload, generation or automatic manual review.",
+        "Carries shot order and blocking into text while preserving approved canon."
+      ]
+    },
+    {
+      "id": 103,
+      "category": "planning-origin",
+      "prompt": "After cleanup of a grid crop, I generated a text-free standalone using that board and its panel prompt. Approve this board-derived regeneration as a video keyframe.",
+      "expected_output": "Reject conditioning eligibility for the board-derived image, without undoing its planning selection.",
+      "files": [],
+      "expectations": [
+        "Cleanup, crop and board-derived regeneration remain planning-only, even when text-free.",
+        "No new video authority from approval, a new hash or a production-still label.",
+        "Requires genuinely independent source lineage and translates the useful staging to text."
+      ]
+    },
+    {
+      "id": 104,
+      "category": "planning-origin",
+      "prompt": "Alongside my board, I selected an independently authored text-free non-board production still. Exact Seedance model/operation/transport first-frame role, rights, consent, current canonical hashes and source lineage are verified.",
+      "expected_output": "Distinguish the eligible independent still from the board and return a caller handoff with artifact-specific QA.",
+      "files": [],
+      "expectations": [
+        "The board remains planning-only; an independently eligible still may use the verified first_frame role.",
+        "Checks selection, exact support, rights, lineage, current hashes and still QA without promoting the panel.",
+        "No generation or approval of unseen media; preserves selected model and reference order."
+      ]
+    },
+    {
+      "id": 105,
+      "category": "planning-origin",
+      "prompt": "I have an independent animated blockout, not a board animatic. Its exact motion role, current hashes, source lineage, rights and selection are verified for the selected Seedance operation and transport.",
+      "expected_output": "An independent blockout is a conditional motion-reference candidate, not a planning-panel promotion.",
+      "files": [],
+      "expectations": [
+        "Storyboard animatics remain planning-only while independently animated non-board geometry may be eligible.",
+        "Requires exact supported motion role, rights, source lineage, selection and temporal QA.",
+        "No blockout generation, upload or claim that a contact sheet proves motion; appearance authority remains separate."
+      ]
+    },
+    {
+      "id": 106,
+      "category": "planning-origin",
+      "prompt": "My historical successful Seedance task used panel p010. Preserve all records, task IDs, hashes and selected variants. Does that make the panel eligible for another generation?",
+      "expected_output": "Preserve historical provenance unchanged but deny new panel conditioning authority.",
+      "files": [],
+      "expectations": [
+        "The panel remains planning-only for every new request regardless of historical success.",
+        "No rewrite of historical tasks, selections, hashes or approval states.",
+        "Translate staging to text and require independent eligibility for any future production reference."
+      ]
+    },
+    {
+      "id": 107,
+      "category": "planning-origin",
+      "prompt": "One-panel storyboard in chat only: no assets or scene beat yet, unknown Seedance role evidence and no generation. Keep the normal defaults.",
+      "expected_output": "Ask for the missing beat, keep one-panel planning intent and unresolved references, and do not invent an image.",
+      "files": [],
+      "expectations": [
+        "No generated assets, approval, reference bindings, files or extra calls are invented.",
+        "Keeps planning-only purpose, one-panel scope and default review without automatic prompt-review.",
+        "Unknown video role evidence stays unresolved; it does not prevent later text staging once the beat is supplied."
+      ]
+    },
+    {
+      "id": 108,
+      "category": "planning-origin",
+      "prompt": "My independent still has wrong-operation role evidence, missing source lineage and unresolved rights. It is selected and text-free; approve it for Seedance anyway.",
+      "expected_output": "Keep the reference handoff unresolved; independence and selection do not supply rights or exact supported roles.",
+      "files": [],
+      "expectations": [
+        "Keeps boards planning-only without a blanket ban on genuinely eligible independent stills.",
+        "Wrong-operation support, missing lineage and unresolved rights prevent conditioning handoff.",
+        "No generation, upload, model substitution or invented authorization; preserve any usable text staging."
+      ]
     }
   ]
 }

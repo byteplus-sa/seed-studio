@@ -84,19 +84,33 @@ authorization and record the exact delta.
 
 ## Generation and review defaults
 
-Every new Seedance 2.5 generation starts with explicit `resolution: "480p"`
-and boolean `draft: true`, including edits, extensions and creative retries.
+Previously covered exact standard Seedance 2.5 and access-confirmed Premium
+bindings start every new generation with explicit `resolution: "480p"` and
+boolean `draft: true`, including edits, extensions, probes and creative retries.
 Plain 480p is not native draft mode. This first-test policy is independent of
-review depth and final delivery resolution. Parameter notes follow it even
-when the output is prompt-only; authoring does not authorize submission.
+review depth and final delivery resolution. Parameter notes follow applicable
+policy even when the output is prompt-only; authoring does not authorize submission.
 
 The caller inspects and selects a successful native draft before a separately
 authorized promotion using `draft_task_id` and supported output settings.
 Changed prompt text, references, duration, ratio or audio settings require a
 new native draft, not a modified promotion. Re-check the final output.
-Resolve a missing draft control in a Seedance 2.5 tool/UI instead of silently
-submitting non-draft 480p. Other video models without native draft mode use
-an ordinary, non-promotable 480p test; a final is a fresh generation.
+Resolve a missing draft control for a previously covered binding instead of
+silently submitting non-draft 480p.
+
+New exact bindings, including 2.5 variants outside the previously covered set,
+use only a verified model/operation profile independently bound to provider,
+transport, tool schema revision and validity. New native operations use their
+evidenced native controls. Verified non-native operations use an ordinary preview
+at the evidenced resolution, even when 480p is also supported, clearly
+non-promotable; a final is a separately confirmed fresh generation. Do not
+infer native Draft from a family substring or force unsupported 480p.
+Missing, malformed, expired, wrong-destination or unknown evidence leaves
+execution unresolved without blocking prompt-only creative writing.
+Promotion requires the exact selected successful native task, unchanged creative
+inputs and reference hashes, matching valid model/operation/profile/transport
+and final inspection. Preserve historical task identity and selection records;
+an ordinary task cannot become native Draft through relabeling.
 
 Prefer per-shot prompts at natural duration over compressed timelines. Continuous single-take extension is exceptional; flag every seam. Separate lip-sync audio remains opt-in; follow [audio-video-alignment.md](audio-video-alignment.md).
 

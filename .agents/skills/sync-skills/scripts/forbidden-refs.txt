@@ -8,6 +8,7 @@
 # deliberately not listed.
 
 # --- Skills that are not installed here
+\bseedance-prompt-(?:20|25)(?![\w-])
 \bblender-to-seedance\b
 \bblender-(animation-rigging|compositing-nodes|geometry-nodes|modeling-modifiers|physics-simulation|python-scripting|scene-rendering|shader-nodes)\b
 \bshowcase-html\b

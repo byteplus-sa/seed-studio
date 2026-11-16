@@ -4,14 +4,14 @@
     {
       "id": 1,
       "prompt": "Here's an 8-second 9:16 clip we shot of two of our own dancers on a rooftop. Keep the choreography and the camera exactly, but make it our two approved characters Mara and Theo dancing in the approved night-market location.",
-      "expected_output": "A recast prompt package: a disposition for both source dancers built from observable descriptors, Mara and Theo bound to separate front and profile Virtual Portrait images, the location bound with its people excluded, the muted master as an asset:// @Video 1, a Motion Authority block that excludes source appearance, people-count and wardrobe guards, a stated post-audio route, the route stated as verified only for the tested single-person case, and a first ladder rung that is a 480p key-beat probe.",
+      "expected_output": "A full-span recast prompt package with individual dispositions, approved references, source motion authority and post-audio ownership. The historical single-person case does not require a shortened probe for this new case.",
       "files": [],
       "expectations": [
         "Each source dancer is mapped individually by screen position, clothing and action; the prompt never says replace everyone.",
         "@Video 1 is bound as motion, camera path, cuts and timing only, with its people, clothing and location excluded.",
         "Each character uses separate per-view reference images from approved elements, recommended for Virtual Portrait upload and bound as asset://; no collage.",
         "The Guards block fixes exactly two people and wardrobe from each character's own reference.",
-        "The route is stated as verified only for the tested single-person case, and because this two-dancer, location-image case is new the first block proposed is a 480p probe of the key beat, not a full-duration or final-resolution take.",
+        "The route is verified only for the historical single-person case; the two-dancer case remains unverified, with a full-duration native Draft first and a shorter probe only on explicit selection.",
         "@Video 1 is the muted master, bound as an asset:// video because it shows people, with generate_audio false and no @Audio binding; the source music returns through a stated post-audio route.",
         "The package is delivered in chat as a paste-ready block; the skill does not generate, upload or submit anything."
       ]
@@ -44,14 +44,103 @@
     {
       "id": 4,
       "prompt": "This 12-second clip shows nine friends at a picnic plus some people walking by in the background. Recast all nine friends as our nine approved characters and move it to a beach.",
-      "expected_output": "An individual disposition for each of the nine featured friends, a group background-extra disposition with an approximate count and region for the passers-by, a reference-count warning because nine mapped characters exceed the recommended 1-8 distinct subjects, and a proposal to split the clip into shots or move some friends to background extras.",
+      "expected_output": "An individual disposition for all nine friends and background passers-by, with counts checked against selected model/operation evidence. Historical recommendations do not authorize reducing the cast.",
       "files": [],
       "expectations": [
         "Each of the nine featured friends receives an individual mapping line with an observable descriptor.",
         "The passers-by receive an explicit background-extra disposition with an approximate count and region; no visible subject is left without a disposition.",
-        "The agent warns the user about the reference count and stability before proceeding, rather than silently dropping subjects or views.",
-        "The agent proposes a split into shots or a reduction to background extras, and never merges several characters into one collage image.",
+        "Reference limits stay unresolved without current evidence; no failure is inferred from nine characters alone.",
+        "Splitting is an optional remedy for a demonstrated readability or verified capacity problem, never a silent reduction of subjects or a collage.",
         "The Guards block states the exact featured-people count per cut."
+      ]
+    },
+    {
+      "id": 101,
+      "prompt": "Recast our consented 8.375-second fractional source with its 0.625-second audio tail. No probe, trimming, padding or rounding. All targets are approved. Prompt only.",
+      "expected_output": "Preserves the exact span, timestamps and audio tail with a full-duration Draft plan and unresolved unsupported settings.",
+      "files": [],
+      "expectations": [
+        "Does not trim, round or require a probe.",
+        "Preserves original picture and audio and marks any destination timing gap unresolved.",
+        "Does not generate, upload or write files."
+      ]
+    },
+    {
+      "id": 102,
+      "prompt": "Recast it. No source clip, approved targets or rights evidence are available.",
+      "expected_output": "Asks for material source and authorization evidence without inventing a disposition or passing package.",
+      "files": [],
+      "expectations": [
+        "Missing source and rights remain unresolved.",
+        "Does not invent subjects, timing or references.",
+        "No generation, upload or persistence."
+      ]
+    },
+    {
+      "id": 103,
+      "prompt": "The native recast Draft was selected, but I changed Theo's wardrobe reference. Can I promote that task and keep the old selection?",
+      "expected_output": "A new Draft is required for changed creative inputs; historical selection is preserved.",
+      "files": [],
+      "expectations": [
+        "Does not promote the changed reference bundle through the old task.",
+        "Keeps the original task and selection history unchanged.",
+        "Returns settings only and requires a new inspected selected Draft."
+      ]
+    },
+    {
+      "id": 104,
+      "prompt": "Prepare an Original-route full-take recast of consented picture [0, 8.375) seconds and original sound [0, 9.000) seconds, with a locked audible 0.625-second decay tail at 48 kHz. All targets and picture support are verified. No probe, trimming, padding, retiming or rounding. Prompt only.",
+      "expected_output": "Preserves the independent picture and complete sound spans, including the 30000-sample tail; unsupported combined delivery stays unresolved.",
+      "files": [],
+      "expectations": [
+        "Retains original masters, offsets and fractional spans without cutting delivered audio to picture length.",
+        "No -shortest conform, padding, picture extension, rounding or probe is authorized.",
+        "Leaves incompatible delivery unresolved and separates technical audio equality from actual full listening and visible sync.",
+        "No media preparation, generation, upload or file writes occur."
+      ]
+    },
+    {
+      "id": 105,
+      "prompt": "Prepare an Original-route recast with equal picture and sound spans [0, 8.375) seconds. Source rights, voice consent, targets and controls are verified. Keep both spans unchanged. No adaptation or probe. Prompt only.",
+      "expected_output": "Keeps equal full spans and original sound without an unnecessary derived excerpt.",
+      "files": [],
+      "expectations": [
+        "Keeps original picture and sound unchanged, with measured offsets and no invented tail.",
+        "Equal spans need no trim, pad, rounding or derived audio file.",
+        "Retains full listening and sync checks without claiming them performed; no media operations or persistence."
+      ]
+    },
+    {
+      "id": 106,
+      "prompt": "Prepare a full-take Original-route recast with picture [0, 9.000) and sound [0, 8.375) seconds on their measured source timeline. Keep the sound ending as recorded. No padding, picture trimming, retiming or probe. Rights and targets are confirmed. Prompt only.",
+      "expected_output": "Preserves the shorter original sound span independently and leaves any required destination adaptation unresolved.",
+      "files": [],
+      "expectations": [
+        "Retains original masters and independent end times rather than forcing equal lengths.",
+        "No automatic apad, invented silence, picture trimming or frozen extension.",
+        "Reports unsupported combined delivery as unresolved, with no media operations or persistence."
+      ]
+    },
+    {
+      "id": 107,
+      "prompt": "I authorize only a separate probe copy: picture and sound windows [2.125, 4.500) seconds with their measured original offsets. No other adaptation is authorized. The full source picture ends at 8.375 and its sound ends at 9.000 with a locked tail. Prepare instructions only; no media operations.",
+      "expected_output": "Describes matching probe excerpts for only the exact authorized windows while preserving full masters and delivered full-take audio.",
+      "files": [],
+      "expectations": [
+        "Keeps original full picture and sound including the tail intact.",
+        "Records exact authorized picture and sound excerpt windows and offsets; no full-take trimming is implied.",
+        "No generation, extraction, upload or persistence occurs; the later full take retains its independent spans."
+      ]
+    },
+    {
+      "id": 108,
+      "prompt": "Our full take has 8.375 seconds of picture and 9.000 seconds of original sound. I allowed planning a probe, but its boundaries and audio adaptation are not authorized. The destination may require equal lengths, with no verified requirement yet. Prepare Original-route guidance, not media.",
+      "expected_output": "Keeps the full sound tail and treats probe windows and destination adaptation as unresolved rather than general authorization.",
+      "files": [],
+      "expectations": [
+        "Preserves original full picture and sound spans, offsets and the complete delivered tail.",
+        "No matching excerpt is prepared from unspecified probe permission or an unverified destination rule.",
+        "Asks for the exact derivative decision only if needed; no silent trim, pad, retime, generation or persistence."
       ]
     }
   ]

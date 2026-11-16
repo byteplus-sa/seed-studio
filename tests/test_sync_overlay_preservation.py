@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -35,9 +36,9 @@ class SyncOverlayPreservationTests(unittest.TestCase):
         for repository in (self.source, self.destination):
             repository.mkdir()
             self.git(repository, "init", "--quiet")
-            for skill in (LOCATION, PROMPT, "seedance-prompt-25"):
+            for skill in (LOCATION, PROMPT, "seedance-prompt"):
                 self.write(repository, skill, "SKILL.md", f"# {skill}\n")
-        for skill in (LOCATION, PROMPT, "seedance-prompt-25"):
+        for skill in (LOCATION, PROMPT, "seedance-prompt"):
             shutil.copy2(
                 self.bundle(self.source, skill) / "SKILL.md",
                 self.bundle(self.destination, skill) / "SKILL.md",
@@ -371,6 +372,96 @@ class SyncOverlayPreservationTests(unittest.TestCase):
         result = self.sync()
         self.assertEqual(result.returncode, 4, result.stdout + result.stderr)
         self.assertIn("SCRUB REQUIRED", result.stderr)
+
+    def test_family_leaf_is_not_allowlisted_or_modified(self):
+        self.write(self.destination, "seedance-prompt", "SKILL.md", "Neutral leaf\n")
+        self.commit(self.destination)
+        before = self.snapshot(self.destination)
+        self.assert_refused_without_writes(
+            self.sync(skills=("seedance-prompt",)), before, 1,
+        )
+
+    def test_retired_prompt_bundles_are_rejected_even_when_present_upstream(self):
+        for skill in ("seedance-prompt-20", "seedance-prompt-25"):
+            for repository in (self.source, self.destination):
+                self.write(repository, skill, "SKILL.md", "Retired prompt\n")
+                self.commit(repository)
+            before = self.snapshot(self.destination)
+            for mode in ("plan", "apply"):
+                with self.subTest(skill=skill, mode=mode):
+                    result = self.sync(mode, skills=(skill,), SYNC_ALLOW_DIRTY="1")
+                    self.assert_refused_without_writes(result, before, 1)
+                    self.assertIn("not allowlisted", result.stderr)
+
+    def test_retired_prompt_callers_require_scrubbing_but_specialists_survive(self):
+        for skill in ("seedance-prompt-20", "seedance-prompt-25"):
+            with self.subTest(skill=skill):
+                self.setUp()
+                self.write(self.source, LOCATION, "SKILL.md", f"Compose with `{skill}`\n")
+                self.commit(self.source)
+                result = self.sync()
+                self.assertEqual(result.returncode, 4, result.stdout + result.stderr)
+        self.setUp()
+        self.write(
+            self.source, LOCATION, "SKILL.md",
+            "Compose with `seedance-prompt-25-filipino`\n",
+        )
+        self.commit(self.source)
+        result = self.sync()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_full_sync_ignores_retired_upstream_bundles_and_local_generic_overlay(self):
+        text = (SCRIPTS / "sync.sh").read_text()
+        allowlist = re.search(r'^ALLOWLIST="([^"]+)"', text, re.MULTILINE).group(1).split()
+        for skill in allowlist:
+            for repository in (self.source, self.destination):
+                self.write(repository, skill, "SKILL.md", f"# {skill}\n")
+        for skill in ("seedance-prompt-20", "seedance-prompt-25"):
+            self.write(self.source, skill, "SKILL.md", "Retired upstream bundle\n")
+        self.write(self.source, "seedance-prompt", "SKILL.md", "Upstream generic\n")
+        self.write(self.destination, "seedance-prompt", "SKILL.md", "Local overlay\n")
+        for repository in (self.source, self.destination):
+            self.commit(repository)
+        before = self.snapshot(self.destination)
+        for mode in ("plan", "apply"):
+            result = self.sync(mode, skills=("all",), SYNC_ALLOW_DIRTY="1")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self.snapshot(self.destination), before)
+            self.assertIn("19 skills", result.stdout)
+        for skill in ("seedance-prompt-20", "seedance-prompt-25"):
+            self.assertFalse(self.bundle(self.destination, skill).exists())
+        self.assertEqual(
+            (self.bundle(self.destination, "seedance-prompt") / "SKILL.md").read_text(),
+            "Local overlay\n",
+        )
+
+    def test_committed_specialist_eval_overlay_blocks_both_modes(self):
+        for repository in (self.source, self.destination):
+            self.write(
+                repository, "seedance-prompt-25-filipino", "SKILL.md",
+                "Language specialist\n",
+            )
+            self.commit(repository)
+        self.write(
+            self.destination, "seedance-prompt-25-filipino",
+            "evals/family-local.json", '{"local": true}\n',
+        )
+        self.commit(self.destination)
+        self.write(self.source, PROMPT, "SKILL.md", "Upstream change\n")
+        self.commit(self.source)
+        before = self.snapshot(self.destination)
+        for mode in ("plan", "apply"):
+            result = self.sync(
+                mode, skills=(PROMPT, "seedance-prompt-25-filipino"), SYNC_ALLOW_DIRTY="1",
+            )
+            self.assert_refused_without_writes(result, before, 6)
+
+    def test_sync_contract_requires_manual_comparison_of_shared_path_overlays(self):
+        text = (SCRIPTS.parent / "SKILL.md").read_text().lower()
+        self.assertIn("model-neutral overlay", text)
+        self.assertIn("same-path", text)
+        self.assertIn("selective manual comparison", text)
+        self.assertIn("seedance-prompt", text)
 
 
 if __name__ == "__main__":

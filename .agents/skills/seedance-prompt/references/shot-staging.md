@@ -1,6 +1,6 @@
 # Shot Staging
 
-Focused reference for `seedance-prompt-25`. Read [the entrypoint](../SKILL.md) for
+Focused reference for `seedance-prompt`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
 
 - [Shots or stages](#shots-or-stages)
@@ -23,7 +23,7 @@ container. Preserve any requested camera path or hold for the continuous take.
 |---|---|---|
 | Several cuts, one scene | Shot | On every shot line |
 | One continuous take | Stage | In the take's camera path, ordered by space and event |
-| A held reaction or a static-by-design format | Single shot | In one stated hold with its reason recorded |
+| A held reaction or a static-by-design format | Single shot | In the requested hold; no separate justification record |
 
 The six-part formula requires only Subject and Action. Camera, light and other
 axes remain optional unless requested or supplied in an accepted shot plan.
@@ -60,16 +60,16 @@ Rules:
 2. One or two camera moves is a simplicity heuristic, not a cap on requested
    or delegated choreography. Preserve compatible paths and readable handoffs,
    including a requested static camera; return genuine simultaneous conflicts.
-   Do not impose a clip-wide move count across cuts. About seven shots
-   and 0.8 s per shot are planning heuristics, not provider limits.
+   Do not impose a clip-wide move count across cuts. Shot count and duration
+   follow readable action and source locks, not numeric quotas.
 3. When lighting is part of the plan, name the scene's light sources once, then
    give each shot a source and a key side. A cut changes which side of a source the camera sees, or a stated event
    adds a source; it never introduces a source the scene did not declare.
 4. Describe an action once, in the shot where it happens. Do not repeat it in the
    shared opening.
-5. A cut resets relationships. Restate the invariants that matter in each shot:
-   head count, screen direction, prop ownership and wardrobe. Bind each reference
-   once in the opening and name the subject in the shot lines.
+5. A cut can reset relationships. Restate the invariants that matter in each shot:
+   head count, screen direction, prop ownership and wardrobe. Map references
+   in the opening and reassert relevant bindings when a cut creates ambiguity.
 6. Time ranges are consecutive and non-overlapping and are a time budget, not
    frame-accurate cut points. Use bare ranges inside the shot line parentheses.
 7. Keep generation parameters (duration, resolution, aspect ratio) out of the
@@ -94,9 +94,10 @@ presets; fill it from a supplied plan or the user's request.
 Place a spoken line inside the shot that frames the speaker. About 2.2 words/s
 is an English planning estimate, not a universal gate. Use measured delivery
 or a native-language-informed read; without evidence, timing is provisional.
-Upstream draft runs observed speech starting 0.5-1.5 s late; this is limited
-evidence, not a timing guarantee. Budget onset, spoken delivery with pauses,
-and at least 0.4 s of tail after the final word separately. Supplied audio or the
+Earlier guidance reported delayed speech onset under limited conditions;
+without the actual artifact this is not verified performance evidence.
+Budget onset, spoken delivery with pauses,
+and the needed tail after the final word separately. Supplied audio or the
 actual delivery determines alignment. If exact words do not fit, propose a
 longer shot or a user-approved script revision rather than silently shortening
 the line. Prefer a simple closing beat instead of packing speech, a turn and
@@ -156,7 +157,7 @@ Before submitting a cutting clip, confirm:
 
 1. Each shot carries the requested size, angle, move or static hold and light
    facts from the supplied shot plan; unrequested axes stay optional.
-2. The shot count and lengths fit the duration. Treat the suggested shot ceiling
-   as a heuristic; preserve requested one-take or hold choices.
+2. The shot count and lengths fit the duration based on action and delivery
+   evidence; preserve requested one-take or hold choices.
 3. Every spoken line fits inside its shot with the margin above.
 4. No shot stacks competing moves.

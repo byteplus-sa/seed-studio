@@ -68,13 +68,13 @@
     {
       "id": 6,
       "prompt": "Write a Seedance 2.5 prompt for a handheld found-footage clip of a diner at night, shot on a VHS sensor — scanlines, color bleed, soft low-fi look.",
-      "expected_output": "A Seedance prompt whose visual-style line renders the VHS sensor character as visible markers: low resolution feel, scanlines, color bleed, soft dated look.",
+      "expected_output": "A prompt preserving the requested VHS visible targets, with historical 2.5 uncertainty and a separately proposed post alternative.",
       "files": [],
       "expectations": [
         "The output names the VHS sensor or tape character in the visual-style line.",
         "The output includes visible VHS markers such as scanlines, color bleed, or soft blur.",
         "The output pairs the sensor character with the subject and scene, not isolated as a file-format claim.",
-        "The output does not combine the VHS look with a second competing sensor or lens character.",
+        "Compatible requested lens characters are allowed; no unrelated look or source change is imposed.",
         "The output keeps the optics phrase in the visual-style or camera line."
       ]
     },
@@ -123,7 +123,7 @@
         "The line names the knife as the starting sharp plane and the woman's face as the ending sharp plane, each as a visible result.",
         "The focus change has a time or a clear start and end.",
         "The output marks a pull onto a face as unverified and suggests checking it in a 480p draft.",
-        "It contrasts this with a pull away from a face, which belongs in post.",
+        "A pull away from a face is an uncertain target with a post alternative, not a family-wide prohibition.",
         "No numeric aperture or focal length appears without a visible result."
       ]
     },
@@ -149,6 +149,17 @@
         "Places vertical oval highlights only in defocused areas.",
         "Does not change camera position, lights or texture locks.",
         "Makes no claim of exact optical simulation."
+      ]
+    },
+    {
+      "id": 101,
+      "prompt": "Our selected new Seedance model has no focus result evidence. Keep a requested rack away from the face and three compatible camera components. Do not reuse a 2.5 test as proof.",
+      "expected_output": "Keeps focus and camera intent as unverified targets with optional post repair.",
+      "files": [],
+      "expectations": [
+        "Does not forbid requested focus loss from historical 2.5 T2V failures.",
+        "Preserves compatible camera path and does not impose a move-count cap.",
+        "No model switch, generation or new optical API fields."
       ]
     }
   ]

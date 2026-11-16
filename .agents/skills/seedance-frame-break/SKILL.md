@@ -11,7 +11,7 @@ description: >-
   3D billboard, a character bursting out of black bars, or a product hero ad
   whose product breaks the frame. Prompt-only: never generates or submits. Not
   for ordinary cinematic letterbox, general camera moves
-  (seedance-camera-presets), the base prompt grammar (seedance-prompt-25),
+  (seedance-camera-presets), the base prompt grammar (seedance-prompt),
   edits to existing footage, or on-screen text.
 ---
 
@@ -29,7 +29,7 @@ Lumina or another Seedance UI and never generates, uploads or submits anything.
 
 | Concern | Owner |
 | --- | --- |
-| Six-part formula, `@Image N` roles, timestamp rules, audio brackets | `seedance-prompt-25` |
+| Six-part formula, `@Image N` roles, timestamp rules, audio brackets | `seedance-prompt` |
 | Locked-off camera wording | `seedance-camera-presets` |
 | Identity reference for a character | `seedream-character-sheet` |
 | Medium and material rules for a stylised subject | `seedance-animation-styles` |
@@ -127,7 +127,9 @@ example.
    majority of the frame height and the subject is full-body inside it,
    except during the named break-outs.
 5. **Camera.** Locked off, no movement, zoom or cuts; only the subject moves.
-6. **Audio.** Requested sound arc in the `seedance-prompt-25` bracket syntax.
+6. **Audio.** Preserve the requested sound arc. Use `seedance-prompt` bracket
+   conventions only with verified exact model, operation and destination
+   support; otherwise use plain language. Verify the result by listening.
    When no music is wanted, name only the requested sounds and disclose that
    a native-audio exclusion may still leak music. A picture-only take with
    separately added sound is an option for a strict music-free brief; the

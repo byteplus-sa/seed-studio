@@ -52,7 +52,7 @@ different formula for each episode unless the user asks otherwise.
 
 - Story and dialogue only. Delivery, pronunciation direction and prompt
   syntax for Seedance belong to `seedance-prompt-25-filipino` and
-  `seedance-prompt-25`. Generation, assembly, cards and subtitle files are
+  `seedance-prompt`. Generation, assembly, cards and subtitle files are
   user-side work in the destination workflow; this leaf never generates media,
   submits tasks or renders text.
 - Conflict stays non-injurious: a slap is a sharp contact or a cut on contact,

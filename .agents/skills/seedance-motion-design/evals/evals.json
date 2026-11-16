@@ -1,0 +1,38 @@
+{
+  "skill_name": "seedance-motion-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a generic Seedance product-motion prompt. We have approved text-free product stills and a numbered sketch board for planning. Keep three compatible camera phases and exact graphics in post.",
+      "expected_output": "Neutral creative prompt with only eligible stills bound and board choreography translated into text.",
+      "files": [],
+      "expectations": [
+        "Does not bind the numbered storyboard, panels or grid as video conditioning.",
+        "Keeps compatible requested camera phases without a two-move cap.",
+        "Exact graphics stay in post; no model selected, generation or files."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Make an explainer prompt, but no message, source plates or target model is provided.",
+      "expected_output": "Focused clarification of message and fidelity needs, with unknown capability settings unresolved.",
+      "files": [],
+      "expectations": [
+        "Does not invent approved plates, exact copy or product claims.",
+        "Does not require a storyboard or choose 2.5 by category.",
+        "No tools, submission or persistence."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Keep the camera physically fixed while it physically orbits the product during the same interval. All source lighting and graphics are locked.",
+      "expected_output": "Identifies the simultaneous path conflict and asks which camera requirement may change.",
+      "files": [],
+      "expectations": [
+        "Names the physical fixed-versus-orbit contradiction, not a move-count violation.",
+        "Preserves lighting, exact graphics and all nonconflicting source locks.",
+        "Does not silently remove a requirement or generate."
+      ]
+    }
+  ]
+}

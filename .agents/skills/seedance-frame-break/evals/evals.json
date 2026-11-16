@@ -16,7 +16,7 @@
         "The upper bar has its own stage with a limb or hem that can reach it and an explicit End state.",
         "The camera is locked off with no movement, zoom or cuts, and only the subject moves; no lens, lighting or grade wording is added that the user did not ask for.",
         "There are no held props and no on-screen text, captions, logos or watermarks, and the clip duration is not repeated in the prompt text.",
-        "The audio block states whether music is wanted and uses the (), <> and {} brackets from seedance-prompt-25; the backdrop is calmer and darker than the subject with colours that differ from it.",
+        "The audio block states whether music is wanted and uses the (), <> and {} conventions only with verified destination support, otherwise plain language; the backdrop is calmer and darker than the subject with colours that differ from it.",
         "The prompt states once that the central window is the large majority of the frame height, asks for about 12 percent bars, and does not have the subject walk or lean closer so that torso or legs reach a bar.",
         "The package is delivered in chat with the exact prompt frozen and is not submitted; no pixel script, review step or generation tool is named."
       ]
@@ -107,7 +107,7 @@
       "files": [],
       "expectations": [
         "The response does not write a frame-break prompt and explains that frame break requires the subject to be drawn in front of the bars.",
-        "The dolly-in is routed to seedance-camera-presets and the base prompt to seedance-prompt-25."
+        "The dolly-in is routed to seedance-camera-presets and the base prompt to seedance-prompt."
       ]
     },
     {
