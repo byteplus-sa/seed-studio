@@ -125,8 +125,13 @@ consent stay separate from creative approval.
 
 ## Samples and saving
 
-Suggest three stochastic samples with the same prompt and references, varying
-only the seed; an explicit user count overrides this.
+Default review mode uses one image; strict mode proposes three stochastic
+samples when applicable. An explicit requested count or creative alternatives
+wins. Keep comparison prompts, ordered references and effective settings
+identical except supported seed variation; never assume seed support or
+pixel reproducibility. A prompt-only request does not authorize generation,
+and each submit still needs confirmation. Strict mode does not enable
+automatic review invocation.
 
 Each outfit is a new element and the parent is never edited. Tell the user to
 save results as new files. When the user asks for a saved record, use:

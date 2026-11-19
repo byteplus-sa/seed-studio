@@ -91,12 +91,21 @@ This is a **deletion** edit, not a full regeneration. Use the Seedream
 image-editing structure from `seedream-prompt` and position the edit with one
 of its two forms:
 
-- **Precise coordinates** (Seedream 5.0 Pro): a `<bbox>x1 y1 x2 y2</bbox>` tag
-  around the entire head in the full-body panel. The coordinates come from the
-  user's annotation tool; this skill only supplies a starting estimate.
+- **Precise coordinates**: verify the selected exact model, operation and
+  destination support; this is not Pro-only or family-wide. For a UI that
+  explicitly supports raw tags, a `<bbox>x1 y1 x2 y2</bbox>` tag locates the
+  entire head in the full-body panel. Coordinates come from the actual image
+  and annotation tool, not an assumed sheet layout.
 - **Free-form marker**: the user draws a colored frame around the head on the
   source sheet and the prompt names that frame. Use this when the destination
   UI has no coordinate input.
+
+For a caller-owned MCP submission, put the source sheet first in `images` and supply
+structured `bbox={x1,y1,x2,y2}` integers on the 0-999 scale. Remove raw tags
+from the templates below; the adapter adds markup, so never duplicate it.
+The guide's natural-language `bbox=[xmin,ymin,xmax,ymax]` layout boxes use
+0-1000 separately; a valid endpoint 1000 maps to 999 only at the structured
+adapter boundary. Unknown support remains unresolved, not a silent model switch.
 
 Box the whole head (hair and headwear included), not just the facial features.
 Do not box the entire panel unless absolutely necessary.
@@ -168,6 +177,10 @@ The `<bbox>454 22 549 204</bbox>` in the templates is a starting estimate on a
 of the panel divider lines. Treat it as a placeholder: tell the user to replace
 it with coordinates from their annotation tool and widen it if a face remains
 in the center panel. Substitute the real values before handoff.
+Validate the source scale and dimensions; reject inverted, degenerate and
+out-of-range boxes instead of clamping invalid input. Recompute after cropping
+or reframing. If references are reordered, rewrite all image bindings and
+keep the actual edit target first for structured edits.
 
 ## Acceptance Check
 
