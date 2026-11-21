@@ -79,13 +79,12 @@
     },
     {
       "id": 8,
-      "prompt": "A selfie-style demo ad: a creator holds the phone at arm's length and shows how to use a pocket blender. Give one compact direction. Include a lighting stance.",
-      "expected_output": "A proportionate direction that treats the locked selfie frame as the format and puts variety in light, props and demonstration beats.",
+      "prompt": "A creator carries a phone at arm’s length while walking to the counter, then shows how to use a pocket blender. Give one compact direction including lighting.",
+      "expected_output": "A moving selfie with readable demonstration beats and motivated light.",
       "files": [],
       "expectations": [
-        "Recognizes the selfie frame as static by design and preserves that format.",
-        "Does not impose a crane, orbit or whip pan on the selfie frame.",
-        "Still names a light stance and the beats of the demonstration."
+        "The camera travels with the creator toward the counter while preserving arm’s-length framing.",
+        "Names a lighting stance and a visible demonstration beat."
       ]
     },
     {

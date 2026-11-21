@@ -16,9 +16,18 @@ Creative approval is separate from generation opt-in.
 Direct HTTP/curl is also supported when explicitly requested
 and secure caller-managed runtime configuration already exists; it is never an
 automatic fallback. Without a usable selected transport or generation request,
-the agent stays prompt-only. The agent never stores credentials or
-writes production files. See
+the agent stays prompt-only. The agent never stores credentials. Prompt skills
+do not execute media work; the caller retains the root contract's permission
+to produce explicitly authorized deliverables with available tools. See
 [`generation-transport.md`](.agents/contracts/generation-transport.md).
+
+Satisfactory native audio can be delivered unchanged. Finalization alone does
+not authorize audio editing or require an FFmpeg/post-audio pass. Do not mute
+native sound to create post work. Explicit silence, exact supplied songs and
+requested audio edits remain scoped capabilities; read-only diagnostics and
+listening remain distinct from editing. Native generation and source-audio
+preservation require exact destination evidence, not a model-family assumption.
+See [Audio-video alignment](.agents/contracts/audio-video-alignment.md).
 
 ## Review modes
 
@@ -47,7 +56,7 @@ See [Review mode](.agents/contracts/review-mode.md).
 |---|---|
 | Prompt composition skills for Seed-family models | A generation pipeline — you paste prompts into the destination UI, or opt in to a confirmed submit through your own `ark-mcp` / `arkcli`, or explicitly requested direct HTTP |
 | An optional, user-invoked review (`/prompt-review`) | A renderer — static and motion graphics are out of scope |
-| Chat-first delivery of paste-ready prompt blocks | A 3D or assembly tool — 3D, compositing, and editing are out of scope |
+| Chat-first delivery of paste-ready prompt blocks | A bundled media editor or 3D tool; authorized caller-owned media work uses available tools, not prompt leaves |
 | Optional local prompt drafts under `projects/` | A production canvas — no stage machinery, no task registry |
 
 ## How it works
@@ -98,7 +107,7 @@ flowchart LR
 | **prompt-review** | Manual user-invoked review of Seedance, Seedream and Seed Audio prompts; review sub-agents require a separate explicit request. |
 | **template-factory** | Reverse-engineer a reference video into a prompt package: structured breakdown, Seedream element prompts (characters, locations, props), storyboard prompts, and Seedance 2.5 video prompts — paste-ready. |
 | **seedance-prompt** | Consolidated 2.5-based composition, references, edits and extensions with useful 2.0 continuity and revision practices; flexible shot staging and sound ownership, selected models and source locks preserved, no execution. |
-| **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, Virtual Portrait identities, a muted source with audio in post, and style presets. |
+| **seedance-motion-recast** | Write Seedance 2.5 motion-transfer prompts that keep a source clip's motion, camera, cuts and timing while rebuilding cast, wardrobe, product, location and style from references; per-subject mapping, guards, Virtual Portrait identities, unchanged audio and scoped sound choices, and style presets. |
 | **seedance-object-swap** | Write Seedance 2.5 object-swap prompts that replace one character, outfit, product, prop or location in existing footage and keep the rest as filmed: five-part swap contract, contact windows, Virtual Portrait identities, and swap checks. |
 | **seedance-restyle** | Write Seedance 2.5 restyle prompts that redraw a whole clip in a new medium (anime, watercolor, claymation, pixel art and more) while keeping its performance, camera and cuts; style catalog, optional same-place environment reference, and restyle checks. |
 | **seedance-prompt-25-filipino** | Opt-in Filipino dialogue support preserving approved words and requested language, register, code-switching and subtitle choices; separate accent notes, listening-based pronunciation review and opt-in separate lip-sync audio. |
@@ -148,7 +157,7 @@ flowchart LR
 | Performance plans, cue handoffs and optional manual checks | [`.agents/contracts/performance-direction.md`](.agents/contracts/performance-direction.md) |
 | Canon, props, screens and reference roles | [`.agents/contracts/element-identification.md`](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [`.agents/contracts/audio-video-alignment.md`](.agents/contracts/audio-video-alignment.md) |
-| Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [`.agents/contracts/video-to-video-inputs.md`](.agents/contracts/video-to-video-inputs.md) |
+| Source footage, Virtual Portrait identities and audio preservation for swap, recast and restyle | [`.agents/contracts/video-to-video-inputs.md`](.agents/contracts/video-to-video-inputs.md) |
 | Optional generation via `ark-mcp` / `arkcli` or explicitly requested direct HTTP | [`.agents/contracts/generation-transport.md`](.agents/contracts/generation-transport.md) |
 
 ## Repository structure

@@ -8,8 +8,8 @@ description: >-
   positions, motion, camera path, cuts and timing. Covers the style catalog, the
   style-only reference role, medium-matched authorized identity anchors,
   an environment-image recipe that restyles the background while keeping the
-  same place, edit and reference routes, a muted source master with audio added
-  in post, a 480p probe ladder, and restyle checks. Use to turn live action into
+  same place, edit and reference routes, unchanged audio and scoped sound
+  choices, a 480p probe ladder, and restyle checks. Use to turn live action into
   animation, change the medium of an animated clip, or match a house style.
   Prompt-only: never generates or submits. Not for replacing the cast or world
   (seedance-motion-recast), swapping one element (seedance-object-swap), or
@@ -42,17 +42,17 @@ Input:
 - A source clip inspected per the
   [video-to-video inputs contract](../../contracts/video-to-video-inputs.md),
   with rights the user has confirmed for the footage and the people in it.
-- The muted master and the saved source audio, prepared by the user.
+- Original picture and sound retained unchanged.
 - One style: a catalog ID from the [style catalog](references/style-catalog.md),
   or one to three custom style reference images (user-owned or approved
   generated frames).
 - Optional identity anchors: verified identity views of recurring
   characters, designed in the target style.
-- The post-audio route.
+- Sound intent: unchanged native sound, exact source/master, silence or a scoped edit.
 
 Output: a restyle package delivered in chat, with ordered bindings and roles,
 the content inventory, the style block, the prompt, the route and parameter
-block, the post-audio route, and the test-ladder rung.
+block, the sound intent, and the test-ladder rung.
 
 ## Hard rules
 
@@ -74,8 +74,11 @@ block, the post-audio route, and the test-ladder rung.
    the account and operation. Unknown identity or eligibility stays unresolved.
    Follow the [video-to-video inputs contract](../../contracts/video-to-video-inputs.md)
    and [production policy](../../contracts/production-policy.md).
-6. **Bind the muted master** with `generate_audio: false` and no `@Audio`
-   binding; sound returns in post.
+6. **Preserve audio.** Bind the compatible original source as `@Video 1`.
+   Native audio may remain unchanged; no mute/extract/mux pass is required.
+   Verify exact operation support for source-audio preservation or generation.
+   Any required preparation needs independently verified constraints and
+   explicit authorization for a separate copy.
 7. **No baked text.** Source signage becomes abstract shapes in the style;
    captions and copy are added in post.
 8. **Test ladder**: apply [Preview evidence](#preview-evidence) to the selected
@@ -178,8 +181,8 @@ The source retains layout authority; disclose any geometry mismatch before use.
 ## Procedure
 
 1. **Route check.** The request changes the look, not the cast or one element.
-2. **Source intake.** Inspect the source, confirm rights, and describe a muted
-   copy preserving exact timing. Propose a trim only for a requested span or
+2. **Source intake.** Inspect the source, confirm rights, and preserve original
+   picture and sound. Propose a trim only for a requested span or
    a verified destination constraint, with the user's agreement.
 3. **Content inventory.** List subjects with observable descriptors, key
    props, set layout, cuts, fast-motion windows and on-screen text.
@@ -194,8 +197,8 @@ The source retains layout authority; disclose any geometry mismatch before use.
 7. **Deliver** bindings, inventory, style block, prompt, parameter block, audio
    route and rung in chat.
 8. **Acceptance checks.** When the user shares or describes the output, run
-   [restyle checks](references/restyle-qa.md); after the user muxes the
-   post-audio route, apply the audio checks.
+   [restyle checks](references/restyle-qa.md), including actual listening.
+   Missing evidence remains unresolved; checks do not authorize audio repair.
 
 Medium recipes in `seedance-animation-styles` and look presets in
 `seedance-motion-recast` share vocabulary with this catalog; Seedream sheet and
@@ -218,7 +221,7 @@ the
 - [ ] Request changes the medium, not the cast or one element; other requests
       routed elsewhere
 - [ ] Source inspected; footage rights confirmed
-- [ ] Muted master bound as `@Video 1`; `generate_audio: false`; audio saved
+- [ ] Compatible original source bound as `@Video 1`; audio retained unchanged
 - [ ] Content inventory covers every subject, key prop, cut and text surface
 - [ ] Same place and layout preserved; optional environment image approved
       and checked for medium coverage, geometry and stray objects
@@ -232,4 +235,4 @@ the
 - [ ] Source text disposition stated; no new copy requested
 - [ ] Route and supported ladder rung stated; current case verified without
       treating a probe as a guarantee for other inputs or resolutions
-- [ ] Post-audio route stated
+- [ ] Sound intent and capability checked; any audio change explicitly authorized

@@ -15,7 +15,7 @@ routing, rules and the prompt-only boundary.
 
 | Input | Owns | Supplies none of |
 | --- | --- | --- |
-| `@Video 1` muted master | Subjects and their count, their screen positions, actions, poses, props, the furniture they use, camera path, cuts, timing, and which place the scene is in | Rendering medium, surface texture, grade |
+| `@Video 1` original source | Subjects and their count, their screen positions, actions, poses, props, the furniture they use, camera path, cuts, timing, and which place the scene is in | Rendering medium, surface texture, grade |
 | Optional environment `@Image N` | How the same place looks in the target medium: street, buildings, sky, background furniture | People, source layout, the place itself (it must depict the source's place), props the shot lacks |
 | Style `@Image N` | Medium, palette, line quality, texture, light quality | Subjects, layout, characters, text |
 | Identity anchor `@Image N` | One character's design in the target medium | Pose, background, lighting of the sheet |
@@ -62,7 +62,7 @@ whole performance from @Video 1.
 <catalog fragment or custom recipe>
 
 [Audio]
-Silent output. Sound is added in post.
+<Sound intent from the brief: native sound, exact source, or explicit silence/edit.>
 ```
 
 Optional blocks, added before `[Edit Scope]`:
@@ -122,7 +122,7 @@ foreground; <background extras>. No lettering appears anywhere.
 <catalog fragment or custom recipe>
 
 [Audio]
-Silent output. Sound is added in post.
+<Sound intent from the brief: native sound, exact source, or explicit silence/edit.>
 ```
 
 If an approved environment image is bound, add the optional Environment
@@ -182,7 +182,8 @@ navy jacket over a cream top and a small gold hoop earring sits at a small round
 café table with a Paris street, a green plant and a wooden bench behind her.
 She holds a red can in her right hand beside a white espresso cup, lifts it to
 her lips at about 0:01, drinks until about 0:03, and sets it down by about
-0:04.5. Rights: generated clip, confirmed by the user. Post-audio route: original.
+0:04.5. Rights: generated clip, confirmed by the user. The brief explicitly
+locks the original sound unchanged.
 
 Environment image (Seedream text-to-image, 2048x1152, empty set, same place):
 
@@ -232,16 +233,19 @@ Keep her identity cues, the can, the cup, the table position, the static camera 
 Plasticine claymation throughout: visible thumbprints, fingerprint ridges and tool marks, a matte clay sheen, soft warm key light on a small tabletop set, and slightly stepped stop-motion cadence.
 
 [Audio]
-Silent output. Sound is added in post.
+Keep the source sound and its timing unchanged.
 ```
 
 Candidate parameter block, only when supported:
-`omni_reference_task_type: edit`, `generate_audio: false`,
+`omni_reference_task_type: edit`,
 `resolution: "480p"`, `draft: true`, `watermark: false`; omit `ratio` and `duration` only when
-the destination inherits both from the source.
+the destination inherits both from the source. Verify audio-preservation support
+independently. Native sound needs no finishing pass when it satisfies the brief;
+an exact-source lock must not be replaced by generated similar sound.
 
 Acceptance criteria: the whole frame reads as clay while the same terrace
 geometry, people, props, motion and exact timing survive. Check for reference
 leakage; the environment image must not replace the source layout. No output
-frame count or quality is guaranteed. Once the user accepts the take, they
-mux the saved source audio and check synchronization.
+frame count or quality is guaranteed. If exact-source delivery needs separate
+assembly, disclose it for a scoped decision rather than automatically muting or
+muxing. Check audio equality, listening and visible synchronization separately.

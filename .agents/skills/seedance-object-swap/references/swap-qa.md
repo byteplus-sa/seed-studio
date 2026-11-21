@@ -4,12 +4,12 @@ Focused reference for `seedance-object-swap`. Read [the entrypoint](../SKILL.md)
 for routing and the prompt-only boundary.
 
 - [Picture checks](#picture-checks)
-- [Audio checks after mux](#audio-checks-after-mux)
+- [Audio checks](#audio-checks)
 - [Failures and repairs](#failures-and-repairs)
 
 ## Picture checks
 
-Inspect the silent output side by side with the source, frame by frame around
+Inspect the output side by side with the source, frame by frame around
 each contact window and cut. Note each item as pass, fail or not applicable.
 
 - **Residual original.** No frame shows the original element, a blend of old
@@ -34,23 +34,28 @@ each contact window and cut. Note each item as pass, fail or not applicable.
   halo.
 - **Everything else untouched.** Faces, wardrobe, accessories, other props,
   background, camera, cuts and mouth movement match `@Video 1`.
-- **Technical.** The output decodes cleanly and has no audio stream. Compare
+- **Technical.** The output decodes cleanly; streams match the sound intent. Compare
   duration, frame timestamps, cuts and playback speed with the exact source
   span; a different frame rate does not authorize retiming. Report mismatches,
   not a blanket 0.3 s tolerance or 8n+1 guarantee. Any input adaptation needs
   a verified destination requirement, user agreement and a separate copy with
   its timing change recorded.
 
-## Audio checks after mux
+## Audio checks
 
-Apply after the user muxes the post-audio route, following the
-[video-to-video inputs contract](../../../contracts/video-to-video-inputs.md#post-audio).
+Inspect native or explicitly assembled sound, following the
+[video-to-video inputs contract](../../../contracts/video-to-video-inputs.md#audio-preservation).
+No mux or repair is a prerequisite to these read-only checks.
 
-- The final duration equals the picture duration; any padding or trim is noted.
+- Preserve independent picture and sound spans, offsets and the complete audio
+  tail. Do not force equal duration, pad or trim; incompatible delivery remains
+  unresolved until an exact adaptation is authorized.
 - Two or three sync points (set-downs, hits, plosives) land on the picture.
-- On-screen speech stays on the mouths. A visible offset routes to the
-  re-voiced route or a new take.
+- On-screen speech stays on the mouths. Report visible offset; a re-voice or
+  new take needs explicit authorization.
 - Listen in full; waveforms and loudness readings do not replace listening.
+- Missing listening evidence remains unresolved. Exact-source sound requires
+  audio payload or decoded-sample equality separately from audible continuity.
 
 ## Failures and repairs
 

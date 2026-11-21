@@ -98,11 +98,14 @@ timing from @Video 1 unchanged. <Grounding and face-protection lines when people
 are visible.>
 ```
 
-Deliver with the parameter block: `omni_reference_task_type="edit"`, `generate_audio: false` when the
-source is silent (Blender previews usually are), `resolution` 480p/720p/1080p.
-Duration auto-locks to the source (±0.3s) — do not set it. If the source exceeds
-30s, ask the user to trim it to ≤29s before you write the prompt; if it exceeds
-one clip, ask the user to split it on shot boundaries.
+Deliver a parameter block using independently verified exact-operation controls.
+Use `generate_audio: false` only when supported and preserving confirmed source
+silence or fulfilling explicit silence. Native audio may remain unchanged when
+it satisfies the brief; do not infer source passthrough from generation support.
+Preserve fractional picture and sound spans, offsets and tails. Any required
+source adaptation needs verified destination constraints and explicit authorization
+for a separate copy; no automatic trim, split, pad or accepted timing drift.
+Preview and promotion settings follow the root generation contract.
 
 ## Recipes
 
@@ -185,9 +188,10 @@ keeping geometry, motion, camera, framing, timing, and cuts exactly as they are.
   re-staging, no re-timing. The camera path and cuts are locks.
 - **Geometry stays.** Do not add, remove, or reshape objects unless the user
   explicitly requests it; carry the quantity guard on any preserved subject.
-- **Audio follows the source.** Blender previews are usually silent — write
-  `No audio at all`; if the source has audio the user wants kept, say so and
-  keep it. Never invent a score.
+- **Audio follows the source and brief.** Verify source silence rather than
+  assuming it from a Blender label. Preserve existing audio unchanged; exact
+  preservation requires independent capability evidence. No invented score,
+  automatic mute/extract/mux sequence or finishing pass.
 - **Preserve the character medium.** Keep the supplied facial design, materials
   and grounding when changing the environment. Use pores and skin detail only
   for an approved photoreal look. Preserve clay, drawn or flat-shaded surfaces
@@ -215,5 +219,6 @@ keeping geometry, motion, camera, framing, timing, and cuts exactly as they are.
 6. Lighting is stated physically and matches the new environment.
 7. Audio follows the source (silent stays silent); no invented score.
 8. People carry grounding and face-protection locks.
-9. Source is within the duration ceiling; longer sources are trimmed or split on shot boundaries by the user.
+9. Source fits verified limits; any separate adaptation is explicitly authorized,
+   with original picture and sound retained unchanged.
 10. The prompt contains the edit block, not a production workflow or generation instructions.

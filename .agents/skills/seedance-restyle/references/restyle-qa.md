@@ -4,12 +4,12 @@ Focused reference for `seedance-restyle`. Read [the entrypoint](../SKILL.md)
 for routing and the prompt-only boundary.
 
 - [Picture checks](#picture-checks)
-- [Audio checks after mux](#audio-checks-after-mux)
+- [Audio checks](#audio-checks)
 - [Failures and repairs](#failures-and-repairs)
 
 ## Picture checks
 
-Play the silent output at full speed, then step through it beside the source.
+Play the output at full speed, then step through it beside the source.
 Note each item as pass, fail or not applicable.
 
 - **Medium coverage.** Every person, prop, surface, sky and effect is in the
@@ -26,23 +26,29 @@ Note each item as pass, fail or not applicable.
   match the source. Stepped styles still hit beat poses.
 - **No lettering.** No generated text, logos or signage copy; source text
   surfaces show abstract shapes.
-- **Technical.** Clean decode and no audio stream. Compare duration, frame
+- **Technical.** Clean decode and streams matching sound intent. Compare duration, frame
   timestamps, cut boundaries and playback speed with the exact source span.
   A different output frame rate does not authorize retiming. Report any
   mismatch; no blanket 0.3 s tolerance, whole-second rounding or 8n+1 guarantee.
   Any input adaptation needs a verified destination requirement, user agreement
   and a separate copy with its timing change recorded.
 
-## Audio checks after mux
+## Audio checks
 
-Apply after the user muxes the post-audio route, following the
-[video-to-video inputs contract](../../../contracts/video-to-video-inputs.md#post-audio).
+Inspect native or explicitly assembled sound, following the
+[video-to-video inputs contract](../../../contracts/video-to-video-inputs.md#audio-preservation).
+No mux or repair is a prerequisite to these read-only checks.
 
-- The final duration equals the picture; any padding or trim is noted.
+- Preserve independent picture and sound spans, offsets and the complete audio
+  tail. Do not force equal duration, pad or trim; incompatible delivery remains
+  unresolved until an exact adaptation is authorized.
 - Two or three sync points land on the picture.
 - On-screen speech stays on the redrawn mouths. Simplified mouths in drawn
-  styles tolerate less precision; a visible offset still routes to the
-  re-voiced route or a new take.
+  styles still need inspection. Report visible offset; a re-voice or a new take
+  needs explicit authorization.
+- Listen in full; unavailable listening leaves sound quality unresolved.
+  Exact-source sound requires audio payload or decoded-sample equality
+  separately from audible continuity and visible mouth timing.
 
 ## Failures and repairs
 

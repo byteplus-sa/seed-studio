@@ -251,9 +251,9 @@ This check does not make manual `/prompt-review` mandatory.
 diegetic sound, including wordless action/ambience; an exact master or controlled
 post soundtrack; or purposeful silence. Speech-free alone does not require
 picture-only. Native sound specifies wanted effects/sync and unwanted voices or
-music; negative wording is not proof of compliance. Post-owned sound uses
-picture-only where supported, preserves exact masters and places critical hits
-in assembly; a bed is not automatically frame-synced. Silence adds no bed and
+music; negative wording is not proof of compliance. Explicitly post-owned sound
+may use picture-only where supported; preserve exact masters and scope any
+necessary assembly. A bed is not automatically frame-synced. Silence adds no bed and
 requires verified removal if native audio cannot be disabled. Confirm supported
 destination controls, reference roles, rights and approvals. Missing or conflicting
 ownership stays unresolved. A contradicted route or reliance on wording alone to
@@ -261,7 +261,10 @@ guarantee silence is MAJOR. Require destination playback and listening for
 unwanted audio, sync and master fidelity, again after promotion. Reject
 noncompliant audio or propose an authorized repair, not automatic muting of
 requested native sound. Mixed ownership names each layer's source. This manual
-review does not authorize generation or post-production in this workspace.
+review does not authorize generation or post-production. Satisfactory native
+audio can remain unchanged without a finishing pass. Finalization alone does
+not authorize normalization, ducking, fades, word-level splicing or replacement.
+Unavailable listening evidence stays unresolved; it does not justify a repair.
 
 19. **Verified audio syntax only.** Bracket conventions for dialogue `{}`,
     music `()` and SFX `<>` apply only when verified for the exact model,
@@ -483,8 +486,9 @@ the same editing contract is valid. Settings require exact destination evidence.
     is valid otherwise. Do not alter approved punctuation to fit a template.
 11. Same-content contract (language swap): target spoken line is the source line
     translated, no paraphrase/omission.
-12. Diegetic audio only; use SFX/music brackets only under item 10's verified
-    syntax condition; no non-diegetic score.
+12. Preserve the brief's native or supplied sound unchanged unless an audio
+    change is explicitly authorized. Use SFX/music brackets only under item
+    10's verified syntax condition; do not suppress a requested score.
 
 ### Camera (only when the edit intentionally re-stages the camera)
 
@@ -501,9 +505,9 @@ the same editing contract is valid. Settings require exact destination evidence.
 
 ### Object swap (only when one named element is replaced)
 
-Source skill: `seedance-object-swap`. Object swaps use a muted master
-(V1 below), so audio items 10–12 are N/A; the silent `[Audio]` line is
-correct.
+Source skill: `seedance-object-swap`. Apply audio items 10-12 only to the
+selected sound intent and verified operation. An unchanged native soundtrack
+is valid; silence and separate audio are not prerequisites (V1 below).
 
 16. **Residual original (`swap.residual_original`).** The original object is
     identified by observable descriptors (position, colour, material, who holds
@@ -575,12 +579,14 @@ and record why.
    person count per cut is stated, background extras are given as a count or
    density, and no additional people appear. Missing either guard is MAJOR.
 
-6. **Audio route (`recast.audio_route`).** The prompt's audio block states a
-   silent output with sound added in post, and the package states one
-   post-audio route (original, new, mixed or re-voiced) with lip-sync checks
-   when someone speaks on screen. An unstated route is MAJOR. Native audio or a
-   supplied `@Audio` track appears only as a user-requested exception for the
-   named take, noted in the package.
+6. **Audio route (`recast.audio_route`).** Keep acceptable native or supplied
+   audio unchanged. State sound intent and preserve exact-source locks;
+   explicit silence or audio edits remain scoped choices. Verify the selected
+   controls and reference roles independently. No native-audio exception,
+   separate soundtrack or finishing pass is required. Unknown preservation
+   support is incomplete, not permission to mute or regenerate a locked master.
+   Lip-sync checks apply when someone speaks on screen; repairs need explicit
+   authorization.
 
 7. **No overlay text.** No captions, taglines, CTAs, end cards or readable brand
    copy are requested (Universal item 13). Source on-screen text has a stated
@@ -603,13 +609,15 @@ Shared by the object swap items, the recast section and the restyle section.
 Policy source: the
 [video-to-video inputs contract](../../../contracts/video-to-video-inputs.md).
 
-V1. **Muted source (`v2v.muted_source`).** `@Video 1` is the muted master,
-    `generate_audio` is `false`, and no `@Audio` binding is present, unless the
-    user explicitly requested native audio for this take and the package notes
-    that exception. A source with audio bound as `@Video 1`, or a package with
-    no post-audio route, is MAJOR. Check the source representation against the selected
-    destination and the identity evidence in V2. A documented mismatch is
-    MAJOR. Missing evidence leaves the binding unresolved.
+V1. **Audio preservation (`v2v.audio_preservation`).** Keep acceptable native
+    or supplied audio unchanged; a source with sound is not a defect by itself.
+    No mute/extract/mux sequence is mandatory. Required source preparation needs
+    independently verified exact model/operation/transport constraints and
+    explicit authorization for a separate copy. Unknown support is incomplete.
+    Check explicit silence, exact-source locks and any authorized edits against
+    their scope; generation support does not prove exact passthrough. Preserve
+    independent spans and audio tails, without automatic padding or truncation.
+    Check source eligibility under V2 before binding.
 
 V2. **Identity eligibility (`v2v.virtual_portrait_identity`).** For each source
     and target, check that an invented Virtual Portrait is eligible or that
@@ -637,8 +645,9 @@ Apply "Universal — all prompts", the general Seedance 2.5 reference items and,
 for the edit route, Seedance 2.5 edit items 1, 2, 4 and 5. Edit item 3 is
 replaced by restyle item 3 (`[Style Reference Role]`, `[Identity Anchors]`);
 edit item 9 is N/A because the photoreal face line contradicts drawn and
-crafted styles (use it only for a capture look); edit items 10–12 are N/A
-because the output is silent (V1). A restyle keeps the source's subjects,
+crafted styles (use it only for a capture look); edit items 10-12 apply only
+to the selected sound intent, not an assumed silent output (V1).
+A restyle keeps the source's subjects,
 layout, actions, camera, cuts and timing and changes only the rendering
 medium. Mark N/A any item whose feature is absent and record why.
 
@@ -929,17 +938,17 @@ Source skill: `seedance-vfx-prompt`
     on real plate, demands 100% match of source composition at landing.
 
 23. **Lip-sync window checked.** If lip-sync preservation: line quoted verbatim,
-    anchored twice (in change/action and in audio), `SFX and source dialogue only`
-    requested, "lips matching the source exactly" in Locks, line fits surviving
+    anchored twice (in change/action and in audio), all locked sound preserved,
+    "lips matching the source exactly" in Locks, line fits surviving
     dialogue window.
 
 ### Audio
 
-24. **Diegetic only.** Only sound that physically exists in the new world. Preserves
-    source-clip diegetic sounds that still make sense.
+24. **Sound preservation.** Keep native or supplied sound unchanged within the
+    source locks; a visual edit does not authorize removing soundtrack layers.
 
-25. **No non-diegetic audio.** Does not request background music, score, or voiceover
-    unless part of source footage.
+25. **Scoped changes.** New or changed background music, score or voiceover
+    needs explicit scope and verified controls. No automatic post bed.
 
 ### Quality and constraints
 
@@ -1017,6 +1026,9 @@ when the scene contains Tagalog, Filipino, or Taglish dialogue. Never import
 2. **Smallest relevant repair.** Separate wording, delivery, pronunciation and
    timing problems. Change vocabulary only when authorized and appropriate to
    the speaker, relationship, region and period; literary language is valid.
+   A heard defect does not authorize word-level audio surgery. Offer a prompt
+   cue or retake proposal; media edits need explicit audio-edit authorization
+   and a new generation needs its own submit confirmation.
 3. **Register grounded.** Do not impose modern Manila Taglish, contractions,
    honorifics or a fixed sentence length on every speaker. Preserve intentional
    code-switching and politeness.
@@ -1183,17 +1195,20 @@ Source skill: `seed-audio-prompt`
 
 48. **Long requests split.** If requested generation > 120s, split before sending.
 
-### Audio-video alignment (when used with Seedance)
+### Audio-video alignment (for explicitly selected separate lip-sync audio)
 
 49. **Same dialogue text in both prompts.** Exact spoken lines match between
     Seed Audio `text_prompt` and Seedance, independent of optional brackets.
 
-50. **Audio duration ≤ video duration.**
+50. **Reference timing.** Check the selected role's evidenced duration limits
+    without trimming source masters. Full delivery preserves independent picture
+    and sound spans and tails; an input limit does not authorize conforming them.
 
 51. **Shot timestamps align to audio.** Seedance shot time ranges match actual audio
     timing.
 
-52. **Audio as reference_audio.** Delivered as the ordered `reference_audio` binding (`@Audio 1`).
+52. **Supported audio binding.** Use the ordered `reference_audio` binding
+    (`@Audio 1`) only when that role is selected and verified for the destination.
 
 ### Brand-name pronunciation
 

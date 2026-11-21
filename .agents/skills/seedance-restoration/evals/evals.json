@@ -9,7 +9,7 @@
       "expectations": [
         "Keeps fractional timing, motion, scene and audio tail; no automatic trimming or padding.",
         "First-pass settings are resolution 480p and boolean draft true; 1080p is only a final delivery target.",
-        "Original audio is post-owned, not a regenerated copy; no generation or files."
+        "Keeps original audio unchanged, not a regenerated copy; no mandatory mux or suppression. Any required preparation needs independent capability evidence and explicit authorization; no generation or files."
       ]
     },
     {

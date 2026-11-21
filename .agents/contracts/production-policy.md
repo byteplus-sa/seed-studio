@@ -68,6 +68,13 @@ The request hash covers exact prompt bytes, model/operation/effective parameters
 
 ## Handoff and optional generation
 
+Native audio may be delivered unchanged when it satisfies the brief.
+Finalization alone does not authorize audio edits, suppression of native sound,
+or a mandatory FFmpeg/post-audio pass. Explicit silence, exact supplied masters,
+requested audio edits and read-only inspection follow
+[audio-video alignment](audio-video-alignment.md). Report defects or missing
+listening evidence rather than silently processing the soundtrack.
+
 Without a generation request, deliver prompts for the destination UI and stop.
 When generation is requested,
 follow [generation-transport.md](generation-transport.md) for exact-package,

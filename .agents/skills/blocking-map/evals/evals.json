@@ -63,6 +63,26 @@
         "Does not reject approved ink contours as a defect merely because they are drawn.",
         "Checks for unintended map colors, grid artifacts and labels, not for absence of the approved style."
       ]
+    },
+    {
+      "id": 6,
+      "prompt": "Text-only staging, in one take: Mina at screen left faces the door on screen right, opens it and steps back to screen left. On her nod Jo crosses from the doorway toward camera, stopping foreground center. Write the video direction.",
+      "expected_output": "A complete prompt-ready blocking paragraph in the first response.",
+      "files": [],
+      "expectations": [
+        "Keeps Mina and Jo distinct, with their starts, facing where supplied, trigger, paths and endpoints.",
+        "Delivers text without asking for a still, diagram, color legend or another turn."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Mina is facing camera. Jo steps to her left, then they swap places. By “her left” I could mean actor-left or screen-left. Keep the remaining beats.",
+      "expected_output": "Clarifies the reference frame or marks only the affected placement unresolved.",
+      "files": [],
+      "expectations": [
+        "Keeps their identities and swap order.",
+        "Asks which left is intended without demanding a map or inventing a binding."
+      ]
     }
   ]
 }

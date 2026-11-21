@@ -59,7 +59,7 @@ crossing, and cut.
 <preset fragment or free text, in lighting -> lens -> grade -> sensor order>
 
 [Audio]
-Silent output. Sound is added in post.
+<Sound intent from the brief: native sound, exact source, or explicit silence/edit.>
 ```
 
 Rules for the blocks:
@@ -73,8 +73,9 @@ Rules for the blocks:
   from the guard catalog only for risks present in this source.
 - **Style** never contradicts the location or character references. If the
   preset changes the medium, it applies to every mapped element.
-- **Audio** is always the silent line; `@Video 1` is the muted master and the
-  post-audio route lives in the package, not the prompt.
+- **Audio** follows the brief. Keep acceptable native sound unchanged; do not
+  impose a separate bed. The package records exact-source locks, any requested
+  silence/edit and verified controls without promising unsupported preservation.
 
 ## Mapping syntax
 
@@ -135,7 +136,7 @@ the source subject mapped to them, including timing, path, and speed changes.
 <preset fragment>
 
 [Audio]
-Silent output. Sound is added in post.
+<Sound intent from the brief: native sound, exact source, or explicit silence/edit.>
 ```
 
 The scope sentence "replace all subjects and the environment" is never used
@@ -149,14 +150,15 @@ Source: 8.0 s, 9:16, 30 fps, one continuous shot with a slow push-in and a
 half orbit to the right at about 0:05. Two dancers on a concrete parking-garage
 rooftop at dusk. Screen-left: red windbreaker, white sneakers, starts an arm
 wave. Screen-right: black hoodie, grey cap, mirrors the wave, then both spin at
-about 0:04. No other people. Source audio: a pop track, no dialogue, saved
-from the source; `@Video 1` is the muted master. Post-audio route: original.
+about 0:04. No other people. Source audio: a pop track, no dialogue.
+The brief explicitly locks the original track unchanged; `@Video 1` is the
+compatible original source. Exact preservation needs independent capability evidence.
 
 Targets (all approved):
 
 | Binding | Element | View |
 | --- | --- | --- |
-| `@Video 1` | muted source master (`asset://` video) | motion only |
+| `@Video 1` | original source (`asset://` video) | motion and timing; exact sound lock stated separately |
 | `@Image 1` | `char-mara` Virtual Portrait | front |
 | `@Image 2` | `char-mara` Virtual Portrait | left profile |
 | `@Image 3` | `char-theo` Virtual Portrait | front |
@@ -203,16 +205,18 @@ blue fill from the sky, reflections on the wet paving, a gentle teal-and-amber
 grade, and fine digital grain.
 
 [Audio]
-Silent output. Sound is added in post.
+Keep the source pop track and its timing unchanged.
 ```
 
 Parameters for the first full-duration native Draft: selected supported R2V route,
 `omni_reference_task_type: auto`, `resolution: "480p"`, `draft: true`, `ratio: 9:16`,
-`duration` preserving the full 8.0 s span if supported, `generate_audio: false`,
+`duration` preserving the full 8.0 s span if supported,
 `watermark: false` only when supported. Preserve fractional timestamps for
 other source lengths and retain the audio tail. Two dancers and a location
 image go beyond the historical single-person case; this result is unverified,
 not a reason to require a shortened probe. A 0:03–0:08 probe is optional only
 after explicit selection, with its matching source and audio window recorded.
-Once the user accepts the full take, they mux the saved pop track and add market
-ambience in post if the brief asks for it.
+Audio controls follow verified support for the exact-source lock. If preservation
+requires separate assembly, disclose that need and obtain a scoped decision;
+do not automatically extract, mute or mux. No market ambience is added unless
+explicitly requested. Verify exact audio equality and listening separately.

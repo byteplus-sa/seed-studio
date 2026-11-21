@@ -4,12 +4,12 @@
     {
       "id": 1,
       "prompt": "Turn our 10-second office comedy clip into 2D anime. Same two coworkers, same gags, same camera. We own the footage.",
-      "expected_output": "A restyle package with the cel-anime-2d fragment, both coworkers inventoried by observable descriptors, the same office preserved, and an optional environment reference only when justified by current inputs or selected by the user. The muted master is @Video 1 with exact source timing, generate_audio false and an original-audio post route; propose a supported low-resolution probe of the hardest beat.",
+      "expected_output": "A restyle package with the cel-anime-2d fragment, both coworkers inventoried by observable descriptors, the same office preserved, and an optional environment reference only when justified by current inputs or selected by the user. The compatible original source is @Video 1 with exact timing and unchanged sound; verify audio-preservation support independently, without an automatic preparation pass.",
       "files": [],
       "expectations": [
         "The edit scope redraws every person, object and surface in the style and states exactly two people.",
         "Each coworker keeps identity cues (hair shape, wardrobe colours) described from the source, not by name.",
-        "@Video 1 is the muted master, generate_audio is false and the saved source audio is the stated post-audio route.",
+        "No mandatory mute/extract/mux sequence or native-audio exception. Sound remains unchanged; unknown exact-preservation support stays unresolved.",
         "Classifies each visible person and verifies their source eligibility. A real performer requires consent and the separate authorized real-person route. Unknown or rejected identities remain unbound.",
         "The prompt preserves the same office and layout; an environment image is optional, not required from a prior claymation result.",
         "If an environment image is selected, the package requires approval and checks its medium coverage, source geometry and stray objects before binding it.",
@@ -84,6 +84,16 @@
         "Use the real presenter’s verified handle without converting it to a Virtual Portrait or requiring an asset URI.",
         "Leave the unverified real-person source unbound despite consent.",
         "Use the ordinary supported source video input for the courtyard, without an identity registration."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Restyle the authorized fountain footage as watercolor. The edited take has satisfactory supported native water sounds. Deliver the existing sound unchanged.",
+      "expected_output": "A visual restyle with the native sound retained.",
+      "files": [],
+      "expectations": [
+        "No picture-only request, soundtrack extraction, replacement bed or post pass.",
+        "Keeps source identity and timeline requirements independent of the sound choice."
       ]
     }
   ]

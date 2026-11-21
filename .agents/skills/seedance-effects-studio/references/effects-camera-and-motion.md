@@ -2,6 +2,11 @@
 
 Prompt-composition recipes. Start-frame descriptions are required inputs, not instructions to generate. Parameters are suggestions for destination settings; `Post` is a destination handoff. Validate each returned take against its recipe; no prior result verifies the current input.
 
+Audio follows the brief and independently verified exact-operation controls.
+Satisfactory native audio stays unchanged; silence or separate sound edits
+require explicit scope. Optional sound suggestions may be native prompt direction,
+not a requirement for a post bed. Visual post work preserves sound and its tail.
+
 ## Menu rows
 
 | id | label | route | duration | start photo |
@@ -21,7 +26,7 @@ Prompt-composition recipes. Start-frame descriptions are required inputs, not in
 ### `wild-ride` - Wild ride
 **Look:** One unbroken camera orbit around a vehicle doing a tyre-smoking burnout, sweeping from ground level up to overhead and back down while a person leans out of the window.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame (the user's vehicle photo). No second image: Seedance 2.5 cannot mix a first-frame image with `reference_image` inputs, so the vehicle's identity comes from the photo alone.
-**Parameters:** duration 10 s; ratio follows the photo (the originals were 9:16 and 4:3); `generate_audio` false by default, true is justified only for an engine and tyre-squeal sting, in which case the prompt adds `Audio includes engine roar and tyre squeal, no music, no speech.`.
+**Parameters:** duration 10 s; ratio follows the photo (the originals were 9:16 and 4:3); audio follows the brief. For requested engine and tyre sound, use `Audio includes engine roar and tyre squeal, no music, no speech.` with supported native controls.
 **Start photo:** A vehicle with exactly one person visible in or leaning from a window, ideally a low three-quarter rear or side view on an open road or plaza with room for smoke and a crowd. Bad inputs: vehicle fully cropped, interior-only shots, person fully inside, more than one person hanging out, a dense parking lot with no clear space to orbit.
 **Beats (from the originals):**
 - 0-2.5 s: ground-level rear three-quarter wide, camera tracks the sliding vehicle in a full burnout, person leaning out of the driver window, thick tyre smoke, city towers behind.
@@ -47,7 +52,7 @@ The vehicle keeps {wheel_count} wheels and one body shape throughout, and the pe
 - `{crowd_line}`: "A small crowd of about {N} onlookers stands behind red-and-white barriers." only if the photo shows space for one; else omit.
 - `{wheel_count}`: count from the photo (four for a car).
 - `{opening_view}`: the angle the photo already shows (for example "front three-quarter with the driver side nearest the camera"); never contradict the first frame. When the photo shows a parked car, write that it launches from standstill into the burnout and the smoke builds from the first second.
-**Post:** none. Optional engine/tyre ambience bed via Seed Audio if native audio stays off.
+**Post:** none. Separate engine/tyre audio only when explicitly requested.
 **QA:**
 - One continuous clip, no hard cut anywhere (whips with blur are acceptable).
 - Camera visibly goes low, then overhead, then low again, rotating the same direction throughout.
@@ -62,7 +67,7 @@ The vehicle keeps {wheel_count} wheels and one body shape throughout, and the pe
 ### `incline` - Incline
 **Look:** The whole room tilts like a ship's deck and loose objects and animals slide past a subject who stays calmly in place.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame; no other image roles.
-**Parameters:** duration 7 s; ratio follows the photo (originals 4:3 and 9:16); `generate_audio` false by default (a soft rolling-and-scraping sting would help but is optional).
+**Parameters:** duration 7 s; ratio follows the photo (originals 4:3 and 9:16); audio follows the brief, with rolling and scraping as optional native sound direction.
 **Start photo:** A person posed calmly, seated or standing, in a wide enough shot to show a visible floor with some empty floor space and a few background items (desk, sofa, vending machine). Bad inputs: tight portrait, no visible floor, a person mid-action or mid-pose, an empty void background, a busy crowd.
 **Beats (from the originals):**
 - 0-1.5 s: level locked wide, subject doing a calm activity (typing, holding a cup, shielding eyes).
@@ -102,7 +107,7 @@ Exactly {slider_count} sliding things appear in total: {slider_names}. Every sig
 ### `street-colossus` - Street colossus
 **Look:** A person as a skyscraper-height giant striding through a real city avenue while tiny pedestrians and taxis give the scale.
 **Route:** `i2v-first-frame`. Required opening still: an extreme low-angle view of the same person at building height on a city street, outfit and face kept, feet planted on the road, tiny pedestrians and taxis below. The raw portrait may not establish city scale. Describe this missing input instead of generating it. `@Image 1` is that approved opening frame.
-**Parameters:** duration 10 s; ratio follows the start frame (originals 3:4 and 16:9); `generate_audio` false by default (distant sirens and traffic hum would help but belong in a Seed Audio bed).
+**Parameters:** duration 10 s; ratio follows the start frame (originals 3:4 and 16:9); audio follows the brief, with distant sirens and traffic hum as optional native sound direction.
 **Start photo:** Full-body or three-quarter standing person, clear outfit silhouette, face visible and facing forward. Bad inputs: seated or cropped at the knees, heavy occlusion by bags or coats, a face turned away, strong outdoor perspective that would fight the worm's-eye view.
 **Beats (from the originals):**
 - 0-3.7 s: extreme low worm's-eye wide, slow backward track; the giant strides toward camera at skyscraper height, small pedestrians run, taxis line the street.
@@ -142,7 +147,7 @@ The giant's face, hair and outfit are identical in all three shots, and the buil
 ### `tracking` - Tracking
 **Look:** A computer-vision HUD: thin white tracking brackets, connecting lines and coordinate readouts glued to a moving performer, over a tilted, glitch-cut, low-frame-rate shot.
 **Route:** `composite`: a Seedance `i2v-first-frame` clip (`@Image 1` is the first frame, the user's performer photo) followed by a deterministic the destination workflow overlay and an FFmpeg frame-rate pass.
-**Parameters:** duration 5 s; ratio 16:9 recommended (originals 16:9), otherwise follows the photo; `generate_audio` false by default.
+**Parameters:** duration 5 s; ratio 16:9 recommended (originals 16:9), otherwise follows the photo; audio follows the brief and verified controls.
 **Start photo:** A performer in motion or posed with face, both hands and any held object clear and unobstructed (rapper with a mic, dancer). Bad inputs: face hidden by a hat shadow, hands out of frame, several overlapping people, a flat locked-off setting with no depth.
 **Beats (from the originals):**
 - 0-1.3 s: low dutch angle, slow rotation around the lead performer raising both hands; teal haze, tangled cables.
@@ -176,7 +181,7 @@ Rolling dutch-angle camera. 0-1s: low dutch angle, slowly orbiting counter-clock
 ### `bullet-time` - Bullet time
 **Look:** A server trips and sends food flying, time freezes, and the camera makes one full 360-degree orbit around the calm seated subject before everything snaps back and ends on a smirk.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame (the user's seated photo); the server and the flying food are invented by the prompt.
-**Parameters:** duration 15 s; ratio follows the photo (originals 3:4 and 16:9); `generate_audio` false by default (a low whoosh and a pause in ambience at the freeze would help, so an optional Seed Audio bed in post is preferred).
+**Parameters:** duration 15 s; ratio follows the photo (originals 3:4 and 16:9); audio follows the brief, with a low whoosh and ambience pause as optional native sound direction.
 **Start photo:** A person seated at a table or booth, facing the camera in a medium shot, holding a drink with a straw, with clear space behind and around the table for an orbit. Bad inputs: standing person, extreme close-up, cluttered table covered in objects, a person in profile, a wall directly behind that blocks the orbit.
 **Beats (from the originals):**
 - 0-2 s: static eye-level ultra-wide; subject sips with eyes closed; server walks up behind carrying a tray of eggs, bacon and a coffee pot.
@@ -214,7 +219,7 @@ At 13s, hard cut to a tight longer-lens close-up with shallow focus of {subject}
 ### `high-flip` - High flip
 **Look:** The camera cranes up over the hero, rolls upside down through a top-down view and lands in a completely different scene with a different person.
 **Route:** `i2v-first-and-last`. `@Image 1` is the supplied opening scene; `@Image 2` is the destination scene with the described character, wardrobe and location. Use a supplied destination image if suitable; otherwise describe the missing last frame. Both images share the first image ratio.
-**Parameters:** duration 9 s; the ratio locks to the FIRST image, and both images must share it, so generate or crop the last image to the first image's ratio (originals 16:9 and 9:16); `generate_audio` false by default.
+**Parameters:** duration 9 s; the ratio locks to the FIRST image, and both images must share it, so generate or crop the last image to the first image's ratio (originals 16:9 and 9:16); audio follows the brief and verified controls.
 **Start photo:** A full-body or seated person at eye level or slight low angle with open headroom above, in a distinctive location with a clear ground plane. Bad inputs: ceiling directly above the subject, extreme close-up, a top-down photo, a busy crowd, a tilted horizon.
 **Beats (from the originals):**
 - 0-0.6 s: opens out of focus, then snaps sharp.
@@ -248,7 +253,7 @@ Scene A contains only {subject_a} and scene B contains only {subject_b} and {cro
 ### `floating-fall` - Floating fall
 **Look:** The subject falls backward in slow motion while their belongings hang weightless and the camera glides through crisp macro shots of each item before the fall completes.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame (the user's photo); the held items are read from it.
-**Parameters:** duration 12 s; ratio follows the photo (originals 16:9 and 4:3); `generate_audio` false by default (a soft slow-motion swell is optional and belongs in a Seed Audio bed).
+**Parameters:** duration 12 s; ratio follows the photo (originals 16:9 and 4:3); audio follows the brief, with a soft slow-motion swell as optional native sound direction.
 **Start photo:** A person walking or standing in the open with two to four clear carried or worn items (drink bottle, popcorn tub, sunglasses, bag), on a street or rooftop with ground space behind them for the fall and room for a bystander. Bad inputs: hands empty, items occluded, tight crop above the waist, indoor clutter, a crowded pavement.
 **Beats (from the originals):**
 - 0-1 s: low-angle forward track on the legs and feet of a walking person (adapted: the user's photo replaces this opening, so the clip starts low and tracking back).
@@ -286,7 +291,7 @@ Exactly {item_count} items float and land; every item keeps the shape and colour
 ### `moonwalk` - Moonwalk
 **Look:** A person walks endlessly in profile on a handmade paper-theatre set while Moon, Sun and Earth props slide in and the ball under their feet changes planet.
 **Route:** `i2v-first-and-last`. Required first still: person in profile on a grey cratered moon-ball, pale blue sheer curtain, hung silver stars and one gold ringed star. Required last still: same stance, framing and outfit on a blue-green Earth globe, gold glitter arch, warm string lights and a cloud with gold lightning cut-outs. Both images use the same 4:3 ratio.
-**Parameters:** duration 15 s; ratio 4:3 - the ratio locks to the FIRST image, and both images must share it; `generate_audio` false by default (a soft music-box bed would suit it but is added in post to avoid baked music).
+**Parameters:** duration 15 s; ratio 4:3 - the ratio locks to the FIRST image, and both images must share it; audio follows the brief, with a music-box cue as optional native sound direction.
 **Start photo:** Full-body person in a clean side-on or three-quarter stance, mid-stride, clear outfit silhouette and shoes. Bad inputs: cropped legs, bulky coat hiding the gait, front-facing static pose, other people, a hat or crown that the user does not want kept (the originals show no crown).
 **Beats (from the originals):**
 - 0-4 s: locked full-length side-on stage shot, subject walks in place facing frame-left on the grey moon-ball before a pale blue sheer curtain.
@@ -320,7 +325,7 @@ Props slide vertically and never pop; {subject} keeps the outfit, shoes and stan
 ### `studio-slide` - Studio slide
 **Look:** Three copies of the same fashion model at different scales and depths slide past one another in one lateral camera move against a flat solid-colour backdrop.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame (the user's single-person photo); the copies are created by the prompt. The recipe specifies three copies; check that count on the current output; the originals show more copies at the edges.
-**Parameters:** duration 8 s; ratio follows the photo (originals 16:9 and 4:3); `generate_audio` false by default.
+**Parameters:** duration 8 s; ratio follows the photo (originals 16:9 and 4:3); audio follows the brief and verified controls.
 **Start photo:** Clean full-body fashion photo of a single person against a plain, evenly lit solid-colour seamless backdrop, face visible, accessories (bag, cap, necklace) clear. Bad inputs: textured or gradient background, props or furniture, cropped limbs, a second person, a heavily patterned outfit that will drift between copies.
 **Beats (from the originals):**
 - 0-0.5 s: extreme close-up of half the face with a hand lifting the cap; a tiny full-body copy far away.

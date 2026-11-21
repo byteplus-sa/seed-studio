@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "Here's an 8-second 9:16 clip we shot of two of our own dancers on a rooftop. Keep the choreography and the camera exactly, but make it our two approved characters Mara and Theo dancing in the approved night-market location.",
-      "expected_output": "A full-span recast prompt package with individual dispositions, approved references, source motion authority and post-audio ownership. The historical single-person case does not require a shortened probe for this new case.",
+      "expected_output": "A full-span recast prompt package with individual dispositions, approved references, source motion authority and unchanged sound unless an audio change is explicitly selected. The historical single-person case does not require a shortened probe for this new case.",
       "files": [],
       "expectations": [
         "Each source dancer is mapped individually by screen position, clothing and action; the prompt never says replace everyone.",
@@ -12,7 +12,7 @@
         "Each character uses separate per-view reference images from approved elements, with a verified route for each identity and no collage.",
         "The Guards block fixes exactly two people and wardrobe from each character's own reference.",
         "The route is verified only for the historical single-person case; the two-dancer case remains unverified, with a full-duration native Draft first and a shorter probe only on explicit selection.",
-        "@Video 1 is the muted master, bound through the verified source and identity route, with generate_audio false and no @Audio binding; the source music returns through a stated post-audio route.",
+        "@Video 1 is the compatible original source, bound through the verified source and identity route. No mute/extract/mux sequence is imposed; exact-source preservation and native-generation support require independent evidence.",
         "The package is delivered in chat as a paste-ready block; the skill does not generate, upload or submit anything."
       ]
     },
@@ -141,6 +141,17 @@
         "Preserves original full picture and sound spans, offsets and the complete delivered tail.",
         "No matching excerpt is prepared from unspecified probe permission or an unverified destination rule.",
         "Asks for the exact derivative decision only if needed; no silent trim, pad, retime, generation or persistence."
+      ]
+    },
+    {
+      "id": 109,
+      "prompt": "Use this exact authorized recording, including the final word at 2.3 seconds. Picture ends at 2.0 seconds, audio spans 0–2.5 seconds. Delivery supports both independent ends. No audio changes.",
+      "expected_output": "An exact-track plan that preserves the final word and both independent stream spans.",
+      "files": [],
+      "expectations": [
+        "Measures stream starts and ends before assembly and preserves the 2.5-second sound tail.",
+        "Uses compatible stream copy for authorized assembly, verifies decoded sample equality and presentation timing, and listens for the final word.",
+        "If the destination loses the tail, reports the combined deliverable unresolved rather than trimming or padding."
       ]
     }
   ]

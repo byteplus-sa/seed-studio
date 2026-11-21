@@ -22,8 +22,8 @@ Approval authority is separate: `approve_for_me` does not request this review.
 Run detailed review inline. Delegate only when the user explicitly requests a
 review sub-agent, not because strict mode or general parallelism is enabled.
 Review is findings-only by default, including unfrozen drafts. Repair requires
-separate explicit authorization; fix only eligible drafts within that scope
-under the frozen snapshot boundary below.
+separate explicit authorization; the main agent fixes only eligible drafts
+within that scope under the frozen snapshot boundary below.
 
 ## Core concept
 
@@ -256,8 +256,8 @@ boundary to each input independently:
    and review its new request hash. Never transfer the original's approval or
    selection to it. Preserve the original and check it remains unchanged.
 3. For an unfrozen draft within the repair scope, apply only targeted fixes.
-   Edit existing files only when file editing is in the user's scope.
    Keep chat-only drafts in chat; do not create files without a save request.
+   Edit an existing draft file only when file editing is in the user's scope.
 4. Preserve structure and formatting, and report which drafts or new versions
    changed separately from the frozen originals that were only reviewed.
 

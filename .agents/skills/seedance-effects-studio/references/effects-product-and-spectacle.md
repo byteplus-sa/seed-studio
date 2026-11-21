@@ -2,6 +2,11 @@
 
 Prompt-composition recipes. Start-frame descriptions are required inputs, not instructions to generate. Parameters are suggestions for destination settings; `Post` is a destination handoff. Validate each returned take against its recipe; no prior result verifies the current input.
 
+Audio follows the brief and independently verified exact-operation controls.
+Satisfactory native audio stays unchanged; silence or separate sound edits
+require explicit scope. Optional sound suggestions may be native prompt direction,
+not a requirement for a post bed. Visual post work preserves sound and its tail.
+
 ## Menu rows
 
 | id | label | route | duration | start photo |
@@ -45,7 +50,7 @@ The clip ends with the thief mid-stride in the centre of frame, product in both 
 - `{seat_description}`: read from the photo (for example "a black leather back seat").
 - `{street_view}`: what the window shows, read from the photo.
 - `{thief_outfit}`: written once and reused unchanged in Shot 2; default "a light-blue short-sleeved shirt with a striped tie, a red baseball cap, large dark sunglasses, red shorts, white socks and blue sandals".
-- The Audio sentence is included only if `generate_audio` is true; with native audio off, omit it.
+- Include the Audio sentence for supported native sound; omit it for explicitly selected silence or separate sound.
 - Hand naming: the thief faces the glass, so as seen from inside the car the thief's right hand is on frame-left; use "right hand (frame-left side as seen from inside the car)" every time.
 - Branded product: the label comes from the real photo or an authorized real asset (official pack shot or a user-supplied download), never from Seedream or prompt text. If no usable real image exists, ask the user; do not generate a label.
 **Post:** none. Optional: if the exact label must read cleanly after the cut, cover that moment with an the destination workflow pack-shot insert built from the real asset.
@@ -62,7 +67,7 @@ The clip ends with the thief mid-stride in the centre of frame, product in both 
 
 **Look:** A person walks left to right on a white floor and each giant flight-ticket card that sweeps in wipes the backdrop above it into a new city.
 **Route:** `i2v-first-frame`. Image role: `first_frame` only (the full-body photo); the cities, tickets and optional outfits are text-described. A deterministic text overlay is optional (see Post).
-**Parameters:** duration 9 s (use 10 s if the final wave is cut short); ratio follows the photo (9:16 or 3:4 were seen); `generate_audio` false.
+**Parameters:** duration 9 s (use 10 s if the final wave is cut short); ratio follows the photo (9:16 or 3:4 were seen); audio follows the brief and verified controls.
 **Start photo:** Full-body person standing on a plain white or light studio floor with a visible ground shadow, empty space around and above, feet visible. Bad inputs: cropped legs, busy background, floor in a strong colour or pattern, subject facing the camera squarely with arms occupied.
 **Beats (from the originals):**
 - 0-1.7 s: plain white studio; subject walks in profile, soft shadow.
@@ -100,7 +105,7 @@ At 8.3s the subject slows, stops, turns to face the camera and raises the left h
 
 **Look:** A building-sized creature wearing a copy of the subject's outfit crashes in behind a calmly walking subject, looms around them and bounds out of frame.
 **Route:** `i2v-first-frame`. Image role: `first_frame` only (the walking photo). The creature is text-described; do not prompt a dab pose (it never appears in the originals).
-**Parameters:** duration 10 s; ratio follows the photo (4:3 and 16:9 were seen); `generate_audio` false by default (the originals had no audio); true is acceptable for the landing thud if the prompt keeps to sound effects and ambience.
+**Parameters:** duration 10 s; ratio follows the photo (4:3 and 16:9 were seen); audio follows the brief, with landing thud as optional native sound direction. Historical silent examples do not require silent generation.
 **Start photo:** Full-body or three-quarter person walking toward the camera in daylight, open ground and visible sky, eye-level wide framing with room above and behind. Bad inputs: tight portrait, indoor ceiling, crowded foreground, subject far from the lens or facing away.
 **Beats (from the originals):**
 - 0-1 s: subject walks toward the camera; empty sky behind.
@@ -138,7 +143,7 @@ At 1s exactly one colossal invented creature, {creature_design}, drops from abov
 
 **Look:** A rider hovers down a city street standing on two flapping pigeons like roller skates, filmed on a low circular-fisheye tracking camera.
 **Route:** `composite`. Seedance image role: `first_frame` only (the street photo). The circular fisheye look is applied deterministically with FFmpeg afterwards because a rectilinear first frame fights a native fisheye request.
-**Parameters:** duration 8 s; ratio follows the photo (16:9 seen; the fisheye post output is square or follows the photo); `generate_audio` false.
+**Parameters:** duration 8 s; ratio follows the photo (16:9 seen; the fisheye post output is square or follows the photo); audio follows the brief and verified controls.
 **Start photo:** Full-body person standing on a city pavement or street, feet visible with clear ground below, space ahead. Bad inputs: cropped feet, sitting or crouching pose, crowded foreground, indoor floor with no street reading.
 **Beats (from the originals; the shared gallery shows puffins, dolphins and dogs, none pigeons, so the page was thin for this slug):**
 - 0-1.5 s: rider glides forward, arms flung out, a bird flapping under each boot, beside a curved glass tower; pedestrians whip past with motion blur.
@@ -171,7 +176,7 @@ At 0s exactly two grey city pigeons sweep in from the frame edges at ground leve
 
 **Look:** A rider stands on the back of one running dachshund as if it were a skateboard, carves, jumps a ledge and rides away, filmed on a low circular-fisheye tracking camera.
 **Route:** `composite`. Seedance image role: `first_frame` only (the street photo). Circular fisheye is applied deterministically with FFmpeg afterwards.
-**Parameters:** duration 8 s; ratio follows the photo (4:3 and 1:1 were seen); `generate_audio` false.
+**Parameters:** duration 8 s; ratio follows the photo (4:3 and 1:1 were seen); audio follows the brief and verified controls.
 **Start photo:** Full-body person on a street, promenade or plaza with smooth ground, feet visible, ideally with a low ledge or planter somewhere ahead. Bad inputs: cropped feet, rough or cluttered ground, rider seated, no ground visible.
 **Beats (from the originals; shared gallery, page thin for this slug):**
 - 0-1 s: rider lands on a running brown dachshund on a wet dusk promenade, bent-knee skate stance, arms out.
@@ -240,7 +245,7 @@ The clip ends on the hero centred in the smoke, two warriors flanking the hero, 
 
 **Look:** A battered knight in a misty poppy field drops the helmet, is revealed face-last by a slow tilt up, then lies fallen among the flowers.
 **Route:** `composite`. Seedance image role: `reference_image` for the portrait in both shots (identity only), and no `first_frame`. First_frame cannot mix with reference_image, and a first_frame portrait would open on the face, which kills the legs-first, face-last reveal and puts a face-forward portrait where the scene needs boots; so the portrait is an identity reference and the opening is text-described. Provider privacy restrictions apply (`InputImageSensitiveContentDetected.PrivacyInformation`); verify current capabilities and stop to diagnose a rejection, without assuming another role permits the same input. Unvalidated alternative, only when supported and authorized: build three Seedream stills from the portrait (a legs-and-torso frame with the face out of frame, a face-and-shoulders frame, a fallen high-angle frame); shot A is `i2v-first-and-last` (legs frame first, face frame last: `@Image 1 is the first frame and @Image 2 is the last frame`, with the face kept out of view before 5 s), shot B is `i2v-first-frame` on the fallen frame, and the two are joined by the FFmpeg hard cut as before. Two Seedance generations (shot A, shot B) are joined with an FFmpeg hard cut so the cut lands exactly where wanted.
-**Parameters:** two separate requests, each with its own frozen prompt: Shot A duration 7 s, Shot B duration 4 s (11 s total; trim shot B in post if wanted); ratio chosen to match the portrait orientation (9:16 for vertical, 16:9 for landscape) because no first frame locks it; `generate_audio` false by default (a helm thud and wind sting would help; keep it to sound effects).
+**Parameters:** two separate requests, each with its own frozen prompt: Shot A duration 7 s, Shot B duration 4 s (11 s total; trim shot B in post if wanted); ratio chosen to match the portrait orientation (9:16 for vertical, 16:9 for landscape) because no first frame locks it; audio follows the brief, with helm thud and wind as optional native sound direction.
 **Start photo:** A clear face-forward portrait or head-and-shoulders photo in even light with hair and face unobstructed. Bad inputs: sunglasses, a hat or heavy shadow, a very small face, group photos, heavy filters. Likeness: use only the user's own photo or a photo they have consent for; real-face handling follows the repo's real-person contract.
 **Beats (from the originals):**
 - 0-1.5 s: ground-level close-up of armoured legs and a long white cape in dewy red poppies at blue-hour dusk; the knight takes a slow step, a helmet hangs from one hand.
@@ -282,7 +287,7 @@ The same knight in {armour_block} lies on the back among red poppies in a misty 
 
 **Look:** A figure in an empty twilight field runs toward a glowing castle revealed by a rising pullback, with a winding stream and fireworks.
 **Route:** `i2v-first-frame`. Image role: `first_frame` only (the empty-field photo); castle, stream, sheep and fireworks are text-described and must not be in the photo.
-**Parameters:** duration 15 s; ratio follows the photo (4:3 seen); `generate_audio` false by default (distant fireworks and wind would be the only useful sting).
+**Parameters:** duration 15 s; ratio follows the photo (4:3 seen); audio follows the brief, with distant fireworks and wind as optional native sound direction.
 **Start photo:** Person in profile or three-quarter, full or near-full body, in an empty open meadow at dusk with space ahead and an empty horizon; a distinctive dress or costume helps. Bad inputs: buildings or trees on the horizon, a seated or crouching pose, a tight crop, an indoor setting.
 **Beats (from the originals):**
 - 0-3 s: subject in profile, pink-tinted clouds; sheep run across in front of the subject.
@@ -316,7 +321,7 @@ The clip ends on the high wide view: castle lit, last firework fading, the runne
 
 **Look:** One person hangs motionless in mid-air in a busy street while pedestrians and traffic flow past at normal speed.
 **Route:** `i2v-first-frame`. Image role: `first_frame` only (the mid-air photo); the surrounding traffic and crowd are text-described additions to what the photo already shows.
-**Parameters:** duration 7 s; ratio follows the photo (9:16 seen); `generate_audio` false (a Seed Audio street bed in post avoids speech or music baked into native audio).
+**Parameters:** duration 7 s; ratio follows the photo (9:16 seen); audio follows the brief, with traffic and footsteps as optional native sound direction.
 **Start photo:** Full-body person captured mid-jump, mid-stride or in a mid-air pose (leg kicked out, splits, arms wide) on a busy city street or plaza, ground and background readable, ideally with a visible cast shadow. Bad inputs: a grounded stance, motion blur on the subject, a tight crop, an empty location, night scenes with an unreadable shadow.
 **Beats (from the originals):**
 - 0-7 s: camera locked; the subject holds the exact photographed airborne pose for the whole clip.
@@ -338,7 +343,7 @@ At 0s exactly one {vehicle_a} passes behind the subject from left to right and l
 - `{pedestrian_count}`: a number word of at least three, default six.
 - `{crosser_clothing}`: any clothing colour different from the subject's.
 - If the photo already shows people or vehicles, keep them and reduce the added counts to match.
-**Post:** optional Seed Audio street bed (traffic and footsteps, no speech or music) mixed in FFmpeg.
+**Post:** no audio pass required. Separate street audio or mixing only when explicitly requested.
 **QA:**
 - Subject pose, height off the ground, hair and cast shadow stay identical across all 7 s.
 - Camera locked.

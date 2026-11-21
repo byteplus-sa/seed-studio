@@ -4,15 +4,15 @@
     {
       "id": 1,
       "prompt": "This is our own 8-second UGC clip: a guy on a couch drinks from a green energy-drink can, sets it down, and talks to camera. Swap the can for our approved Volt Zero packshot and keep everything else, including his voice.",
-      "expected_output": "A product swap package: the muted master as @Video 1 (using the verified source and identity route) with the source audio saved for an original-audio post route, the packshot as @Image 1 with background and lighting excluded, the five-part swap contract with per-cut count, contact windows for grip, drink and set-down, generate_audio false, edit task type, and a 480p contact-window probe as the first rung.",
+      "expected_output": "A product swap package: the compatible original source as @Video 1 (using the verified source and identity route), exact source voice locked, the packshot as @Image 1 with background and lighting excluded, the five-part swap contract with per-cut count, and contact windows for grip, drink and set-down. Audio controls and preview settings follow exact-operation evidence; a shorter probe is optional.",
       "files": [],
       "expectations": [
         "The original can is identified by observable descriptors (colour, which hand, first appearance), never as 'the product'.",
         "The prompt states that the entire video contains exactly one target can and includes a Timeline Inheritance clause.",
-        "@Video 1 is the muted master, generate_audio is false, no @Audio binding is used, and the original-audio post route is stated for his voice.",
+        "Keeps the exact source voice unchanged; verifies preservation support independently and reports a gap rather than automatically muting, extracting, muxing or regenerating similar voice.",
         "Classifies each visible person and verifies their source eligibility. A real performer requires consent and the separate authorized real-person route. Unknown or rejected identities remain unbound.",
         "Grip, mouth contact and set-down windows are listed with approximate times.",
-        "The first proposed block is a 480p probe, and the package is delivered in chat as a paste-ready block; the skill does not generate, upload or submit anything."
+        "The full-span draft follows exact-operation evidence; a shorter probe requires explicit selection. The package is delivered in chat; the skill does not generate, upload or submit anything."
       ]
     },
     {
@@ -46,7 +46,7 @@
       "files": [],
       "expectations": [
         "Preserves exact source timing and the final-frame set-down; does not change the input to 121 or 113 frames.",
-        "Uses the muted source and original-audio post route, with contact and timeline inheritance preserved.",
+        "Uses the compatible original source with exact audio, contact and timeline inheritance preserved; any required adaptation needs independent evidence and explicit authorization.",
         "Checks actual output timing rather than promising equal frame counts or accepting a blanket 0.3-second loss."
       ]
     },
@@ -59,6 +59,16 @@
         "Distinguishes this verified destination requirement from a universal frame-count rule.",
         "Does not silently trim, pad or retime; explains the timing tradeoff and asks for agreement before making a separate copy.",
         "Preserves the original video and audio and records any agreed adaptation; does not promise exact model output timing."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Swap the vase for a jug. The source has sound, but I want this take explicitly silent; preserve the original file. The destination has a verified silent-output mode.",
+      "expected_output": "Use the selected silent-output route and retain the original source.",
+      "files": [],
+      "expectations": [
+        "Selects the supported silent-output control and adds no music, dialogue or post bed.",
+        "Keeps the original source file untouched and checks the result for unintended sound."
       ]
     }
   ]
