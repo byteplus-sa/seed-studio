@@ -607,14 +607,15 @@ V1. **Muted source (`v2v.muted_source`).** `@Video 1` is the muted master,
     `generate_audio` is `false`, and no `@Audio` binding is present, unless the
     user explicitly requested native audio for this take and the package notes
     that exception. A source with audio bound as `@Video 1`, or a package with
-    no post-audio route, is MAJOR. A source video that shows a person is bound
-    as an `asset://` video; a raw upload of one is rejected by the provider, so
-    flag it as MAJOR.
+    no post-audio route, is MAJOR. Check the source representation against the selected
+    destination and the identity evidence in V2. A documented mismatch is
+    MAJOR. Missing evidence leaves the binding unresolved.
 
 V2. **Identity eligibility (`v2v.virtual_portrait_identity`).** For each source
     and target, check that an invented Virtual Portrait is eligible or that
     a real performer has consent and a verified real-person route. Leave
     unknown or rejected roles unresolved. Use binding positions in prompts.
+
 V3. **Source rights.** The package notes the user's confirmed rights for the
     footage and the people in it. A missing confirmation is CRITICAL. Do not
     suggest wording that routes around a provider rejection.

@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "This is our own 8-second UGC clip: a guy on a couch drinks from a green energy-drink can, sets it down, and talks to camera. Swap the can for our approved Volt Zero packshot and keep everything else, including his voice.",
-      "expected_output": "A product swap package: the muted master as @Video 1 (an asset:// video, since the clip shows a person) with the source audio saved for an original-audio post route, the packshot as @Image 1 with background and lighting excluded, the five-part swap contract with per-cut count, contact windows for grip, drink and set-down, generate_audio false, edit task type, and a 480p contact-window probe as the first rung.",
+      "expected_output": "A product swap package: the muted master as @Video 1 (using the verified source and identity route) with the source audio saved for an original-audio post route, the packshot as @Image 1 with background and lighting excluded, the five-part swap contract with per-cut count, contact windows for grip, drink and set-down, generate_audio false, edit task type, and a 480p contact-window probe as the first rung.",
       "files": [],
       "expectations": [
         "The original can is identified by observable descriptors (colour, which hand, first appearance), never as 'the product'.",

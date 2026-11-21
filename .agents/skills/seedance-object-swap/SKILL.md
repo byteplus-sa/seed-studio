@@ -123,8 +123,8 @@ The caller owns execution under [Generation transport](../../contracts/generatio
 Seedance 2.5 edit. These are parameter-block values for the destination UI,
 never prompt text:
 
-- `videos`: the muted master as `@Video 1`, first in order; an `asset://` video
-  when the source shows a person.
+- `videos`: the muted master as `@Video 1`, first in order, using the verified source
+  representation for this destination and each person in the footage.
 - `images`: target views as `reference_image`, in binding order.
 - `omni_reference_task_type`: `edit` when supported, not an assumed
   `edit_video` alias. Verify the current model and destination's accepted

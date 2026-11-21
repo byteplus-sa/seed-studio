@@ -12,7 +12,7 @@
         "Each character uses separate per-view reference images from approved elements, with a verified route for each identity and no collage.",
         "The Guards block fixes exactly two people and wardrobe from each character's own reference.",
         "The route is verified only for the historical single-person case; the two-dancer case remains unverified, with a full-duration native Draft first and a shorter probe only on explicit selection.",
-        "@Video 1 is the muted master, bound as an asset:// video because it shows people, with generate_audio false and no @Audio binding; the source music returns through a stated post-audio route.",
+        "@Video 1 is the muted master, bound through the verified source and identity route, with generate_audio false and no @Audio binding; the source music returns through a stated post-audio route.",
         "The package is delivered in chat as a paste-ready block; the skill does not generate, upload or submit anything."
       ]
     },

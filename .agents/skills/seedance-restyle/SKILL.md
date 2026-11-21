@@ -154,8 +154,8 @@ These are parameter-block values for the destination UI, never prompt text:
   than rounding or promising this route fixes it. Consider this route when a
   current Route A result fails the requested coverage or timing.
 
-Both routes bind `@Video 1` as an `asset://` video when the source shows a
-person. When used, bind the environment image, then style images and identity
+For either route, bind `@Video 1` only in a representation accepted by the
+verified source and identity route. When used, bind the environment image, then style images and identity
 anchors, as `reference_image` after `@Video 1`; prefer 1–5 images for Route A
 within the verified limit; `watermark: false` when supported.
 Confirm the model ID and the accepted parameters in the destination UI or the

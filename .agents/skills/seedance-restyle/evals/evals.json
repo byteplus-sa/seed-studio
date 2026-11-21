@@ -73,6 +73,18 @@
         "Asks for agreement before any separate adapted copy and records the verified constraint and proposed timing change.",
         "Leaves exact timing unresolved or offers another verified compatible destination rather than guaranteeing a reference route fixes it."
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Give me a restyle binding plan for four separate clips. One contains an eligible invented character with an approved Virtual Portrait. One contains a consenting presenter whose provider-approved route accepts the supplied clip handle. One has a consenting presenter but no verified route. The fourth is an empty courtyard. The people and production permissions are otherwise identified.",
+      "expected_output": "Four distinct source dispositions, preserving the verified identity and input requirements for each clip.",
+      "files": [],
+      "expectations": [
+        "Use the approved Virtual Portrait binding for the eligible invented subject.",
+        "Use the real presenter’s verified handle without converting it to a Virtual Portrait or requiring an asset URI.",
+        "Leave the unverified real-person source unbound despite consent.",
+        "Use the ordinary supported source video input for the courtyard, without an identity registration."
+      ]
     }
   ]
 }

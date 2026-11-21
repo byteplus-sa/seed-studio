@@ -110,7 +110,7 @@ The default route is verified on one case. An upstream 480p, 5 s probe on
 2026-10-03 rebuilt cast and world from a Virtual Portrait `asset://` image
 while keeping the source's motion, timing and static camera (one person, no
 source clothing or accessories carried over). It bound `@Video 1` as an
-`asset://` video, because Seedance rejects a raw video showing a person, and
+`asset://` video for that specific binding and
 ran with `generate_audio: false`. The probe used one character, a single
 source person, a text-described location and no product reference; treat
 multi-subject, location-image and moving-camera cases as unverified. Offer an
@@ -118,7 +118,8 @@ optional probe only when useful; selection and submission require authorization.
 
 - **Default route (verified for the case above): multimodal R2V.** Bind the
   source as `@Video 1` with role `reference_video`, stated as a motion-only
-  reference (an `asset://` video when the source shows a person). Bind targets
+  reference. Verify that the source representation is authorized for the
+  performers and supported by this destination before binding it. Bind targets
   as `reference_image`. Set `omni_reference_task_type` to `auto`, `ratio` to
   the source ratio, and preserve its exact fractional span. Serialize `duration`
   only if the selected operation supports that representation; otherwise
