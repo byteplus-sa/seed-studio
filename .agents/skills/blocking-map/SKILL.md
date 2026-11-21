@@ -8,9 +8,8 @@ description: >-
   where, facing which way), whenever characters jump seats or swap places between
   shot sizes, when a clip with people must continue but Seedance cannot extend it,
   or when these terms clearly refer to cinematic staging. Do not trigger for
-  generic software diagrams, architecture, charts, or maps. Figures are ALWAYS
-  bound to letters A, B, C, D... in PROMPT TEXT ONLY — no letters are drawn on the
-  map. The map is GEOMETRY ONLY — it must never bleed style, colors, wardrobe, or
+  generic software diagrams, architecture, charts, or maps. A text staging brief can go straight to prompt-ready positions
+  and movement. On an illustrated map, use letter IDs in prompt text only. The map is GEOMETRY ONLY — it must never bleed style, colors, wardrobe, or
   location into the shot.
 ---
 
@@ -26,14 +25,25 @@ Bleed has three feeds; v2 closes all three:
 2. **TEXT**: the connector block is written in POSITIVE form. Models are weak at negation — "no flat illustration, no vector shapes, no grid" still injects the tokens *flat, vector, grid* into the video prompt and primes the very style being banned. The connector therefore never names the map's graphic style at all; it only asserts where style DOES come from (the location and character references). Graphic vocabulary exists in exactly one place: the diagram GENERATION prompt, which never touches the video context.
 3. **STRUCTURE**: control drawings remain authoring-only by default. Translate positions, crops, paths, facing, and trigger beats into the video prompt. Board-type images bound as Seedance references (storyboard grids, sketch panels, schematics) have leaked panel numbers, corner labels and the drawn look into the video and raised output-copyright rejections, so text geometry plus character/location element references is the tested route. Attaching the staging image is an untested exception: only on explicit selection in a supported live mode, after the identity/location references, with every take audited by frame samples plus top-left corner crops.
 
-## THE WORKFLOW — two steps, in order
+## Choose the staging deliverable
+
+For a video prompt or text-only blocking request, give the staging in the current
+response. Identify each person, screen-relative start, facing and relevant crop;
+describe the cue, path and endpoint in action order. Use the supplied frame if
+there is one. A diagram, upload, color legend and second request are unnecessary.
+If “left” could mean screen-left or the actor’s left and changes who crosses
+whom, ask that specific question or mark the affected position unresolved.
+Keep the established positions and actions in the meantime.
+
+For an explicit illustrated map request, follow the two steps below.
 
 **STEP 1 — the user uploads a frame → deliver the diagram prompt.**
 The source image is bound to the image-generation tool as a composition reference — verify the result against the source because conditioning does not guarantee an exact match — but it must be SCOPED: the prompt opens with a guard declaring the image is a COMPOSITION-ONLY guide (framing, angle, crop, positions, poses, scale), that its photographic look must NOT be copied, that NOTHING may be added that is not in the image, and that CROPPED BODIES MUST NOT BE COMPLETED (if a figure's head is cut by the frame edge, the drawing cuts it too). The assistant still translates every character's position, pose, facing direction and anchoring geometry into explicit text — the words carry the staging, the image pins the outline. Deliver, always together:
 1. The **diagram-generation prompt** (template below).
 2. The **`@staging_` tag to assign to the RESULT** once generated (e.g. `@staging_[PROJECT]_[scene]_[version]`), plus the **`@loc_` tag** for the source image in the format `@loc_[PROJECT]_[name]_[scene]_[version]` (e.g. `@loc_ATLAS_dock_s07_v1`) — scene and version in the tag keep multiple frames and retakes of the same location from colliding.
 3. A **one-line color key** describing what each color is in the source frame (e.g. "BLUE = the captive soldier, center-foreground").
-Do NOT move to step 2 until asked — diagram first.
+When the user requests only the drawing, deliver the diagram instructions here.
+When they request both the diagram and video-prompt geometry, deliver both together.
 
 **STEP 2 — when asked, deliver text geometry**: bind each letter to the user's
 character, then state start position, facing, crop, path, end position, and trigger

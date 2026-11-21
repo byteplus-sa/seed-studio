@@ -1,19 +1,18 @@
 # Video-to-Video Inputs
 
-This contract covers identity references, source footage, the muted source
-master and post audio for Seedance video-to-video prompts: Motion Transfer
+This contract covers identity references, source footage and audio preservation
+for Seedance video-to-video prompts: Motion Transfer
 (`seedance-motion-recast`), Object Swap (`seedance-object-swap`) and Restyle
 (`seedance-restyle`). These skills write prompts only. In prompt-only mode,
-every upload, asset registration, trim, submission and mux below is a step the
-user takes in their own tools, and the prompt package states what each step
-needs. When the user explicitly asks to generate,
-[generation transport](generation-transport.md) governs submission; asset
-registration, trimming and muxing stay user-side.
+the package describes only the steps required by the selected, verified route.
+The calling agent owns authorized execution under
+[generation transport](generation-transport.md) and the root permissions;
+this contract does not expand a leaf's prompt-only boundary.
 
 - [Human likeness: Virtual Portrait assets](#human-likeness-virtual-portrait-assets)
 - [Source footage](#source-footage)
-- [Muted source master](#muted-source-master)
-- [Post audio](#post-audio)
+- [Audio preservation](#audio-preservation)
+- [Scoped audio changes](#scoped-audio-changes)
 - [Provider rejections](#provider-rejections)
 
 ## Human likeness: Virtual Portrait assets
@@ -72,11 +71,14 @@ them.
   video pass when the client can; otherwise read local `ffprobe` output and
   `ffmpeg` frame extractions as images. Never claim to have watched footage
   you could not access.
-- **Length.** Sources run 4–30 s. Edit routes (Object Swap, Restyle) are most
-  stable under 20 s; split longer takes into shots.
-- **Trim by route.** The package tells the user which span to trim to, and the
-  muted master and saved audio come from that trimmed file so all three share
-  one timeline.
+- **Length.** Verify the exact destination's supported source length. Earlier
+  4-30 s limits and under-20 s edit recommendations are not universal constraints.
+  Preserve the selected span; splitting needs explicit agreement.
+- **Source preparation.** Bind the original source without preprocessing when
+  compatible. Any required preparation needs independently verified exact model,
+  operation and transport constraints plus explicit authorization for a separate
+  copy. Record the reason, change, original hashes and independent picture/audio
+  spans and offsets. Unknown requirements stay unresolved.
   - *Reference routes* use currently supported duration increments. Do not
     round or trim the source silently; explain any required timeline
     adaptation and obtain approval for the specific span.
@@ -92,74 +94,80 @@ them.
   A registered target image does not authorize a source video. An unresolved
   or rejected source stays unbound. For footage without people, use the
   ordinary source input when the selected operation supports it.
-User-side trim recipe, for the package (the agent does not run it):
 
-```bash
-ffmpeg -ss <start> -i <source>.mp4 -t <approved-duration> -map 0:v:0 -map 0:a:0? \
-  -c:v libx264 -crf 16 -preset slow -c:a pcm_s24le <stem>_trim.mov
-```
+## Audio preservation
 
-For a reference route, use its currently supported duration increment. Any
-source timeline change must be explicit and authorized.
+Preserve generated or supplied audio unchanged by default. Native audio is
+sufficient when it satisfies the brief, without an exception or mandatory
+mute/extract/mux sequence. Finalization alone does not authorize audio editing.
+Do not disable native sound solely to build a bed in post.
 
-## Muted source master
+Source-audio passthrough and native generation are different capabilities and
+are not guaranteed for every model or operation. Verify the selected exact
+model, operation, transport and reference roles independently before choosing
+controls. If an exact-source lock cannot be met, report it as unresolved;
+generated similar sound is not an exact copy. A verified input restriction may
+justify an adapted source only with explicit authorization for that separate
+copy, never a routine preprocessing step or a promise of preservation.
 
-The user submits only a muted master, never the source with its audio, and
-keeps the audio as a separate file for post.
+State the brief's sound intent in the package: unchanged native sound, exact
+source/master, explicit silence, or a specified audio edit. Bind an `@Audio`
+reference only when its role is selected and supported. Keep separate lip-sync
+audio opt-in under [audio-video alignment](audio-video-alignment.md).
 
-1. The parameter block sets `generate_audio: false` and binds no `@Audio`
-   input.
-2. The prompt's audio block reads:
+## Scoped audio changes
 
-   ```text
-   [Audio]
-   Silent output. Sound is added in post.
-   ```
-
-3. The package names the post-audio route (below).
-
-User-side recipe (skip the first command when the source has no audio
-stream):
-
-```bash
-ffmpeg -i <source>.mp4 -map 0:a:0 -vn -c:a pcm_s24le <stem>_audio.wav
-ffmpeg -i <source>.mp4 -map 0:v:0 -an -c:v copy <stem>_muted.mp4
-```
-
-Native audio generation, or a supplied `@Audio` track for opt-in lip-sync (see
-the [audio-video alignment contract](audio-video-alignment.md)), is not the
-default for these workflows. Use it only when the user explicitly asks for it on
-a named take, write it as its own prompt block, and note the exception in the
-package.
-
-## Post audio
-
-Pick one route per shot from the brief and state it in the package.
+Only an explicit request or approval selects these capabilities. Existing
+acceptable audio requires none of them.
 
 | Route | Use when | Method |
 | --- | --- | --- |
-| **Original** | Timing is preserved and the source sound stays | The user muxes the saved source audio |
-| **New** | The brief asks for new music, SFX, ambience or voice | A Seed Audio prompt (`seed-audio-prompt`) or an approved library track, then mux |
-| **Mixed** | Keep one layer (usually dialogue) and replace the rest | The user separates the saved audio into stems in their audio tool and mixes the kept stem with the new one |
-| **Re-voiced** | New words or a new voice over the same picture | A Seed Audio TA2A prompt (`seed-audio-prompt`); lip-sync work follows the [audio-video alignment contract](audio-video-alignment.md) and is opt-in |
+| **Original** | Exact source sound is required | Retain it unchanged; if separate assembly is necessary, disclose the method and use compatible stream copy within the authorized scope |
+| **New** | New music, SFX, ambience or voice is requested | Use supported native generation or an explicitly selected separate track |
+| **Mixed** | Only named sound layers may change | Describe the authorized separation/mix; preserve all locked layers |
+| **Re-voiced** | New words or voice are requested | Scope the new performance and verify voice consent and lip-sync support |
+| **Silent** | The user requests silence | Use a supported silent-output control or scoped removal; never add a bed |
 
-User-side mux recipe:
+For authorized assembly, preserve source masters and use compatible stream copy
+where possible. Disclose necessary transcoding; obtain approval for any changed
+sound or timeline. Do not pad, fade, normalize or truncate audio automatically.
+Do not use `-shortest` to remove a longer audio tail or force shorter sound to
+picture length. If the destination cannot preserve independent spans, retain
+both masters and leave combined delivery unresolved.
+
+Before assembling, measure the selected picture and audio streams on their
+presentation timeline, including start offsets and the last displayed frame or
+audible sample. Agree on the container and independent end times first. If the
+approved delivery cannot represent them, pause before muxing.
+
+For a single approved picture stream starting at zero in `picture.mov` and a
+single exact PCM recording starting at the same zero in `recording.wav`, this
+authorized MOV example retains both independent ends when their codecs and the
+destination player support them. A different start offset, multiple intended
+tracks, or an incompatible container requires separate mapping and verification.
 
 ```bash
-ffmpeg -i <generated>.mp4 -i <audio>.wav -map 0:v:0 -map 1:a:0 \
-  -c:v copy -af apad -c:a aac -b:a 192k -shortest <final>.mp4
+ffmpeg -n -i picture.mov -i recording.wav -map 0:v:0 -map 1:a:0 -c copy delivery.mov
 ```
 
 Checks to hand over with the package:
 
 - Measure decoded frame timestamps and duration against the approved source
-  or requested timeline. Report differences and reconcile audio explicitly;
+  or requested timeline. Preserve independent audio spans and tails. Report
+  differences and request a scoped decision;
   do not assume a previous run's frame-count behavior holds.
 - Output frame rate may differ from the source. Audio aligns by time; check two
   or three sync points (hits, claps, plosives) by playback.
 - When a person speaks on screen, the mouth follows the source mouth motion.
-  Check plosives and open vowels. A visible drift routes to Re-voiced or to a
-  new take; it is never accepted silently.
+  Check plosives and open vowels. Report visible drift; a re-voice, word splice
+  or new take needs separate explicit authorization.
+- Read-only stream checks and full decode do not replace actual listening.
+  If listening is unavailable, mark sound quality unresolved, not repaired.
+- For exact sound, compare the full decoded samples in the same lossless
+  representation, channel order and sample rate. Verify stream start, sample
+  count, end time and offset relative to picture as separate timing checks.
+  Stream-copy packet equality alone cannot demonstrate sync. Listen through
+  the final word or cue and inspect visible mouth timing.
 - Voice reuse or timbre cloning of a real person needs that person's confirmed
   voice consent, separate from footage rights.
 

@@ -193,6 +193,16 @@
         "Asks which lock may change and leaves the contradictory path unresolved.",
         "Does not invent a cut, rotate the statue instead, save a plan or run generation."
       ]
+    },
+    {
+      "id": 18,
+      "prompt": "In one take, start on the clock. On the chime whip right to the bell and hold the bell in frame.",
+      "expected_output": "One continuous rightward whip pan motivated by the chime.",
+      "files": [],
+      "expectations": [
+        "Starts on the clock, pans right on the chime and holds on the bell.",
+        "Preserves the same take without inserting a cut, second scene or required occluder."
+      ]
     }
   ]
 }

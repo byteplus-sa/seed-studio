@@ -7,8 +7,8 @@ description: >-
   from locked reference images. Covers the motion-only authority split, an
   explicit mapping or disposition for every visible source subject, bleed and
   extra-people guards, eligible identity references for realistic
-  people, consent gates for real people, a muted source master with audio
-  added in post, named look presets, and optional selected key-beat probes.
+  people, consent gates for real people, unchanged audio and scoped sound
+  choices, named look presets, and optional selected key-beat probes.
   Inspects the source clip itself. Use to recast performers, localize a take
   for another market, or rebuild its world around the same performance.
   Prompt-only: never generates or submits. Not for replacing one element while
@@ -45,19 +45,19 @@ Input:
 - A source clip inspected per the
   [video-to-video inputs contract](../../contracts/video-to-video-inputs.md)
   (duration, fps, aspect ratio, audio presence, cuts, confirmed footage
-  rights), and its muted master and saved source audio, prepared by the user.
+  rights), with original picture and sound retained unchanged.
 - The agent's own inspection of the source: an agent video pass when the client
   can watch it, or local frame extraction read as images when it cannot (see
   [multi-subject mapping](references/multi-subject-mapping.md)). Open
   ambiguities block prompt writing.
 - Approved target elements (character, product, prop, location sheets or
   authorized images the user supplies), one image per view. Classify invented and real likenesses separately (rule 3).
-- The requested style (a named preset or free text) and post-audio route.
+- The requested style (a named preset or free text) and sound intent.
 
 Output: a recast prompt package delivered in chat, containing the ordered
 `@Video`/`@Image` bindings with roles, the disposition table for every source
 subject, the prompt text, the selected route and parameter block, the
-reference-count check, the post-audio route and the test-ladder rung it
+reference-count check, the sound intent and the test-ladder rung it
 targets.
 
 ## Hard rules
@@ -88,9 +88,11 @@ targets.
    unknown limits remain unresolved before execution.
 6. **No baked text.** Keep generated footage free of captions, taglines, CTAs,
    end cards and legible signage copy; add text in post.
-7. **Bind the muted master.** `@Video 1` is the muted master,
-   `generate_audio` is `false`, and there are no `@Audio` bindings. Sound
-   returns in post through the stated route in
+7. **Preserve audio.** Bind the compatible original source as `@Video 1`.
+   Native audio may remain unchanged; no mute/extract/mux pass is required.
+   Verify exact operation support for the brief's sound intent. Any required
+   source adaptation needs independently verified constraints and explicit
+   authorization for a separate copy. See
    [audio and lip-sync](references/audio-and-lipsync.md).
 8. **Probes are opt-in**: do not require a key-beat probe for a new case.
    The first full-duration take preserves the source unless the user selects
@@ -124,7 +126,7 @@ optional probe only when useful; selection and submission require authorization.
   the source ratio, and preserve its exact fractional span. Serialize `duration`
   only if the selected operation supports that representation; otherwise
   report the capability gap, not an instruction to round or trim.
-  Set `generate_audio` to `false` where supported. A
+  Choose audio controls from the brief and verified operation support. A
   5 s request returned 121 frames at 24 fps (5.04 s); the user trims or pads to
   the picture only with agreement and measured timing notes, preserving the audio
   tail. This historical result is not an accepted drift tolerance.
@@ -149,9 +151,9 @@ current documentation before finalizing the parameter block; do not assume a
 
 1. **Route check.** Confirm the request is a recast, not a region edit.
 2. **Gates and intake.** Confirm footage rights and real-person consent for the
-   source and every target before asking for references, tell the user how to
-   trim and mute the source, and identify the eligible route separately for every
-   source and target likeness (rule 3).
+   source and every target before asking for references. Preserve the original
+   source unless a required adaptation is verified and authorized. Check each
+   source and target likeness separately (rule 3).
 3. **Source analysis.** Inspect the source yourself. Build the disposition
    table and per-cut presence.
    Read [multi-subject mapping](references/multi-subject-mapping.md).
@@ -160,15 +162,15 @@ current documentation before finalizing the parameter block; do not assume a
 5. **Prompt.** Assemble the template in
    [recast grammar](references/recast-grammar.md). Add guards from
    [guards and failures](references/guards-and-failures.md), a look from
-   [style presets](references/style-presets.md), and the silent audio line and
-   post-audio route from [audio and lip-sync](references/audio-and-lipsync.md).
+   [style presets](references/style-presets.md), and sound intent from
+   [audio and lip-sync](references/audio-and-lipsync.md).
 6. **Deliver.** Deliver bindings, dispositions, prompt, route, parameter block,
-   post-audio route and ladder rung in chat.
+   sound intent and ladder rung in chat.
 7. **Acceptance checks.** When the user pastes the prompt and shares or
    describes the result, apply the checks in
-   [guards and failures](references/guards-and-failures.md); after the user
-   muxes the post-audio route, apply the lip-sync checks when someone speaks
-   on screen.
+   [guards and failures](references/guards-and-failures.md). Inspect the delivered
+   sound by listening and apply lip-sync checks when someone speaks on screen;
+   checks do not authorize audio repair.
 
 Load only the references the request needs. A stylized medium such as
 claymation or toy miniature may also use the `seedance-animation-styles`
@@ -196,7 +198,7 @@ only one of prompt wording, reference bundle or route per retry.
       edits routed to `seedance-object-swap`, `seedance-restyle` and
       `seedance-vfx-prompt`
 - [ ] Source inspected: duration, fps, ratio, audio, cuts; footage rights confirmed
-- [ ] Muted master bound as `@Video 1`; source audio saved; `generate_audio: false`
+- [ ] Compatible original source bound as `@Video 1`; sound intent and support checked
 - [ ] Each source and target likeness has a verified eligible route or is explicitly unresolved.
 - [ ] Real-person consent and likeness approvals noted, or invented cast used
 - [ ] Source ambiguities resolved; the inspection covers every cut
@@ -207,6 +209,7 @@ only one of prompt wording, reference bundle or route per retry.
 - [ ] Motion Authority names what `@Video 1` supplies and excludes its appearance
 - [ ] Guards: exact people count, wardrobe only from references, residual originals
 - [ ] Style block present; no overlay text, captions or legible signage requested
-- [ ] Post-audio route stated, with lip-sync checks when someone speaks on screen
+- [ ] Audio retained unchanged unless an explicit scoped change is authorized
+- [ ] Lip-sync checks when someone speaks on screen; unavailable evidence unresolved
 - [ ] Untested cases remain unverified, not subject to mandatory probes
 - [ ] Take stated: full-duration native Draft, explicitly selected probe, or final

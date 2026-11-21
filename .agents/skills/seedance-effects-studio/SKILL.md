@@ -37,7 +37,7 @@ Source lineage does not establish a successful result for the current input.
 | Whole-clip medium change | `seedance-restyle` |
 | Swap one kept element | `seedance-object-swap` |
 | Identity, real products and reference roles | [Element identification](../../contracts/element-identification.md) |
-| Source inspection, muted master and original post audio | [Video-to-video inputs](../../contracts/video-to-video-inputs.md) |
+| Source inspection and audio preservation | [Video-to-video inputs](../../contracts/video-to-video-inputs.md) |
 | Exact text, logos, HUD, UI or fixed layouts | Added in post by the destination workflow; out of scope for this leaf |
 
 Sibling names are composition hints, not instructions to load another skill.
@@ -200,7 +200,7 @@ The caller owns execution under [Generation transport](../../contracts/generatio
 | `i2v-first-frame` | One `@Image 1` as opening frame | Ratio follows that image |
 | `i2v-first-and-last` | Opening and ending images | Matching ratio; both frames needed |
 | `reference-images` | Identity or appearance references | State roles and ignored pose/background; do not mix with first-frame roles |
-| `v2v-restyle` | Source `@Video 1`, empty environment `@Image 1` when needed | Muted source and original audio restored in post under local video-to-video contract |
+| `v2v-restyle` | Source `@Video 1`, empty environment `@Image 1` when needed | Original source and sound intent under local video-to-video contract; no automatic preprocessing |
 | `composite` | Recipe's footage roles | Full effect requires destination post work |
 
 Recipes are unvalidated on current inputs. The caller verifies current
@@ -215,10 +215,13 @@ the local video-to-video contract.
 
 - **No overlay text in generation.** Captions, city names, labels, tickets,
   readable UI, logos and HUD copy are destination post needs.
-- **Audio follows the brief.** Recipes generally recommend native audio off.
-  Remove conditional audio lines when off; when requested, use explicit sound
-  brackets and the requested arc. Review the current output's audio against
-  the brief; prompt wording alone does not validate a clean audio master.
+- **Audio follows the brief.** Satisfactory native audio remains unchanged;
+  wordless scenes do not require a post bed. Verify exact-operation audio
+  controls; do not assume generation or source passthrough support. Explicit
+  silence, exact-source sound and requested edits remain scoped choices.
+  Review by listening; report defects or unavailable evidence, without automatic
+  muting, replacement or processing. Visual post work must preserve sound unless
+  its change is explicitly authorized.
 - **Counts and continuity are observable.** State copy counts at each change;
   all copies share one face and outfit. Count foreground arrivals too; adapt
   the recipe when the user requests a total count. Prompt counts remain

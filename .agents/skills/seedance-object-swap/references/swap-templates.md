@@ -14,12 +14,13 @@ each template needs.
 
 ## Shared rules
 
-Fill every `<...>` from source inspection. Every template
-ends with the same audio block, because `@Video 1` is the muted master:
+Fill every `<...>` from source inspection. Sound follows the brief and verified
+operation support. Native audio may remain unchanged; no preparation or post
+soundtrack is required by this template:
 
 ```text
 [Audio]
-Silent output. Sound is added in post.
+<Sound intent from the brief: native sound, exact source, or explicit silence/edit.>
 ```
 
 Add the face-protection line whenever a face stays visible:
@@ -206,13 +207,13 @@ Keep every person's identity, performance, mouth movement and lighting from
 
 Hypothetical example; no result evidence is attached.
 
-Source: `@Video 1`, the 6 s, 16:9 muted master of a static medium shot at a
+Source: `@Video 1`, the original 6 s, 16:9 clip of a static medium shot at a
 café terrace. A woman in a denim jacket and gold hoop earrings lifts a red
 aluminium soda can from the table at about 0:01, drinks at 0:02–0:04 while her
 fingers wrap the can's front, and sets it down at about 0:05. One can is
 visible throughout; no cuts. Target: `@Image 1`, the approved packshot of
 `@slim-can-black`, a matte-black slim 330 ml can with a copper ring-pull and a
-vertical copper wordmark. Post-audio route: original.
+vertical copper wordmark. The brief explicitly locks the original sound unchanged.
 
 ```text
 [Edit Goal]
@@ -259,11 +260,12 @@ left, with a soft copper highlight on the ring-pull. Real human skin with pores
 and catchlights — never waxy, smoothed, or warped.
 
 [Audio]
-Silent output. Sound is added in post.
+Keep the source sound and its timing unchanged.
 ```
 
 Parameter block: `omni_reference_task_type: edit`, `@Video 1` first and
-`@Image 1` second, `generate_audio: false`, `resolution: "480p"` and
-`draft: true` for the native draft probe. Once the user
-accepts the take, they mux the saved source audio so the set-down sound lands
-at 0:05.
+`@Image 1` second, `resolution: "480p"` and `draft: true` for the native draft;
+a shorter probe needs explicit selection. Audio controls require independent
+evidence for exact-source preservation. A necessary assembly step is disclosed
+and scoped, not an automatic mux. Check that the set-down sound lands at 0:05,
+with audio equality separate from listening and visible sync.

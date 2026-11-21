@@ -36,6 +36,15 @@ and skills for these operations. Other generation approval, reference,
 security, and verification requirements still apply. Unrelated 3D, Blender,
 and deterministic graphics workflows remain out of scope.
 
+Preserve generated or supplied audio unchanged by default. Satisfactory native
+audio suffices for delivery; finalization alone does not authorize audio editing
+or require an FFmpeg pass. Do not suppress native audio to create post work.
+Explicit silence, exact supplied sound and requested audio edits remain scoped
+capabilities under [Audio-video alignment](.agents/contracts/audio-video-alignment.md).
+Read-only diagnostics remain available. Source preparation needs independently
+verified destination requirements and explicit authorization for a separate copy;
+native generation and source-audio preservation are not supported by assumption.
+
 Deliver prompts in chat by default. Save a draft under
 `projects/<name>/prompts/` only when the user explicitly asks.
 
@@ -59,7 +68,7 @@ Load only the contract relevant to the current request:
 | Requested performance plans, cue encoding and fictional action | [Performance direction](.agents/contracts/performance-direction.md) |
 | Canon, props, screens and reference roles | [Element identification](.agents/contracts/element-identification.md) |
 | Dialogue synchronization and assembly | [Audio-video alignment](.agents/contracts/audio-video-alignment.md) |
-| Source footage, Virtual Portrait identities, muted master and post audio for swap, recast and restyle | [Video-to-video inputs](.agents/contracts/video-to-video-inputs.md) |
+| Source footage, Virtual Portrait identities and audio preservation for swap, recast and restyle | [Video-to-video inputs](.agents/contracts/video-to-video-inputs.md) |
 | Explicit request to generate or submit a prompt | [Generation transport](.agents/contracts/generation-transport.md) |
 
 ## Routing
@@ -120,8 +129,9 @@ explicitly requested direct HTTP/curl with existing runtime authentication.
 Prompt leaves and `template-factory` produce prompts; the calling agent owns
 authorized submission and media production. No installed media-processing
 skill is required to use available tools for the operations permitted above.
-Recipes such as muxing a song onto a video may be executed by the agent when
-needed for the authorized deliverable; otherwise deliver them as instructions.
+Recipes such as muxing an explicitly requested exact song onto a video may be
+executed by the caller within that scope; otherwise deliver them as instructions.
+A general request to finalize is not an audio-edit request.
 Do not assume unavailable tools or expand into unrelated production work.
 
 Review depth is `review_mode: default` unless explicitly set to `strict`.

@@ -2,6 +2,11 @@
 
 Prompt-composition recipes. Start-frame descriptions are required inputs, not instructions to generate. Parameters are suggestions for destination settings; `Post` is a destination handoff. Validate each returned take against its recipe; no prior result verifies the current input.
 
+Audio follows the brief and independently verified exact-operation controls.
+Satisfactory native audio stays unchanged; silence or separate sound edits
+require explicit scope. Optional sound suggestions may be native prompt direction,
+not a requirement for a post bed. Visual post work preserves sound and its tail.
+
 ## Menu rows
 
 | id | label | route | duration | start photo |
@@ -20,7 +25,7 @@ Prompt-composition recipes. Start-frame descriptions are required inputs, not in
 
 **Look:** The street and skyline peel up and fold over a calm, upright subject until the whole city hangs inverted overhead.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame; no other image roles.
-**Parameters:** 8 s; ratio follows the photo (16:9 and 9:16 both seen); `generate_audio` false (a low rumble sting would help but bakes easily into music, so use a Seed Audio bed in post).
+**Parameters:** 8 s; ratio follows the photo (16:9 and 9:16 both seen); audio follows the brief, with a low rumble as optional native sound direction.
 **Start photo:** Full or three-quarter-body person centered in an open, geometrically legible space with a clear ground plane (street, crosswalk, plaza) and tall surroundings, sharp daylight. Bad: motion blur, cropped legs, crowds, a person leaning on or touching the ground plane's edge, tiny subject.
 **Beats (from the originals):**
 - 0-2s: grounded eye-level shot, subject standing or walking, buildings start to lean.
@@ -63,7 +68,7 @@ The visuals feature natural daylight, photorealistic detail and the color grade 
 
 **Look:** Rigid buildings and bridges behind the subject bend like liquid and curl into a giant wave while the person stays crisp and unchanged.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame.
-**Parameters:** 7 s; ratio follows the photo (16:9 and 3:4 both seen); `generate_audio` false.
+**Parameters:** 7 s; ratio follows the photo (16:9 and 3:4 both seen); audio follows the brief and verified controls.
 **Start photo:** Person in the foreground in a low-angle wide frame, with a large rigid structure (bridge, tower, skyscraper) filling the upper frame and open sky so the warped geometry reads. Bad: structure cropped to a sliver, flat high-angle view, dense crowds, no sky.
 **Beats (from the originals):**
 - 0-2s: low-angle wide shot, subject poses or walks toward camera; structure looks normal.
@@ -101,7 +106,7 @@ The visuals feature crisp natural daylight, photorealistic materials and clear s
 
 **Look:** The person's outfit and body sag into a glossy, color-matched puddle on the pavement, leaving only a hat or shoes floating in it.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame.
-**Parameters:** 7 s; ratio follows the photo (1:1 and 4:3 seen); `generate_audio` false (a soft wet-drip sting could help, add it in post).
+**Parameters:** 7 s; ratio follows the photo (1:1 and 4:3 seen); audio follows the brief, with wet-drip sound as optional native sound direction.
 **Start photo:** Full-body, standing, well-lit outfit with distinct colors and accessories (hat, bag, boots) on a flat, uncluttered ground, locked-off framing. Bad: seated pose, busy ground, a body cropped at the knees, groups without a stated per-person color list.
 **Beats (from the originals):**
 - 0-2s: subject poses with small gaze or hand movement; camera locked off.
@@ -140,7 +145,7 @@ The visuals feature glossy liquid with sharp reflections of the sky, rich satura
 
 **Look:** A copy of the subject wrapped head to toe in living fire walks in and shakes hands with the untouched original.
 **Route:** `i2v-first-frame`. `@Image 1` is the first frame; no other image roles.
-**Parameters:** 7 s; ratio follows the photo (3:4 and 4:3 seen); `generate_audio` optional true, with the `{audio_line}` sentence added to the prompt, because fire crackle genuinely sells the effect; with false, delete that line; if the take bakes music or speech, regenerate with false and add the bed in post.
+**Parameters:** 7 s; ratio follows the photo (3:4 and 4:3 seen); audio follows the brief. Include `{audio_line}` for supported native fire sound. If unwanted music or speech occurs, report it and obtain a scoped decision before any edit or regeneration.
 **Start photo:** Standing or walking person fully visible head to footwear, medium-full body, with empty space on one side for the double to appear, ideally dusk or night on a street. Bad: cropped body, crowd, no free side, strong back light that hides the outfit.
 **Beats (from the originals):**
 - 0-1s: subject walks toward the camera, camera pulls back keeping the subject centered.
@@ -170,7 +175,7 @@ The visuals feature warm firelight against the cool {ambient_light}, natural fil
 - `{double_hand}` and `{subject_hand}`: name by anatomy plus frame side, for example "its right hand, on the frame-left side of its body" and "{pronoun} right hand, on the frame-right side of the body" with {pronoun} read as her or his from the photo; the facing pair clasps right hand to right hand.
 - `{audio_line}`: used only when `generate_audio` is true: "Audio includes fire crackle and a low flame whoosh, with ambience only, no music and no speech."; when `generate_audio` is false, delete the line.
 - `{ambient_light}`: read ("blue night street light").
-**Post:** none. Optional crackle bed via Seed Audio if native audio is off. When native audio is on, measure the track for baked music or speech.
+**Post:** none. Separate crackle audio only when explicitly requested. Listen for unwanted music or speech; measurements alone do not establish sound quality.
 **QA:**
 - Exactly two people are visible from 3s on, exactly one on fire.
 - Double's outfit matches the original's, and both faces stay readable.
@@ -183,7 +188,7 @@ The visuals feature warm firelight against the cool {ambient_light}, natural fil
 
 **Look:** The subject and the world dissolve into glowing iridescent point clouds, with strobing cuts to a black void.
 **Route:** `composite`. Generated clip with `@Image 1` as the first frame (single image role), plus an optional destination HUD-label overlay in post.
-**Parameters:** 5 s; 16:9 or the photo's ratio; `generate_audio` false. The originals run at only 8 fps; keep native 24 fps and, if the stutter look is wanted, drop to 8 fps in post with FFmpeg.
+**Parameters:** 5 s; 16:9 or the photo's ratio; audio follows the brief and verified controls. The originals run at only 8 fps; keep native 24 fps and, if the stutter look is wanted, drop to 8 fps in post with FFmpeg while preserving sound unchanged.
 **Start photo:** One clear subject or action in a moody, dark environment (night street, wave), high contrast against a dark background. Bad: bright flat daylight, several equal subjects, a subject lost in clutter.
 **Beats (from the originals):**
 - 0-1.5s: real scene with a silver particle-scan overlay, flicker frames and tiny HUD boxes.
@@ -219,7 +224,7 @@ The visuals feature luminous cyan, silver and iridescent particles on dark tones
 
 **Look:** A neon-cyan point-cloud flythrough of the location solidifies into the real photographed scene with the person scanned into place.
 **Route:** `i2v-first-and-last`. `@Image 1` is a black-and-cyan point-cloud ground plane; `@Image 2` is the supplied final photo. Both are required; last-frame-only input is unsupported. Verify current destination capabilities before submission.
-**Parameters:** 7 s; ratio locks to the first image, so generate it at the photo's ratio (16:9 by default, 9:16 for a portrait photo) and omit `ratio`; `generate_audio` false (a rising electronic hum would help; add it in post).
+**Parameters:** 7 s; ratio locks to the first image, so generate it at the photo's ratio (16:9 by default, 9:16 for a portrait photo) and omit `ratio`; audio follows the brief, with a rising electronic hum as optional native sound direction.
 **Start photo:** Required first-frame design: "vertical digital scan scene on a pure black background: a bright glowing cyan line marks the far edge of a flat ground plane across the lower third of the frame, and below it a field of luminous cyan points forms a flat grid-like terrain that recedes into darkness, with a soft cyan glow along the edge; nothing printed or written anywhere", at the photo's ratio. Last frame (the user's photo): person in a wide outdoor location with distinct foreground posts or rails and a skyline or tree line, so the scan has geometry to trace. Bad: indoor flat wall, close-up face, cluttered scene without clear objects, heavy overexposure.
 **Beats (from the originals):**
 - 0-0.5s: black frame with a bright cyan ground edge rising from the bottom.
@@ -258,7 +263,7 @@ Camera: wide-angle first-person dolly forward at low height, fast at the start, 
 
 **Look:** One unbroken dive from orbit through clouds and over the city that lands in front of the person in the photo.
 **Route:** `i2v-first-and-last`. `@Image 1` is the first frame, a Seedream-generated low-orbit planet frame at the photo's ratio; `@Image 2` is the last frame (the user's street photo). The live tool rejects a last-frame-only request before any cost, so the generated first frame is part of the recipe. Verified 2026-10-08 (scene-25).
-**Parameters:** 10 s; ratio locks to the first image, so generate it at the photo's ratio (16:9 by default, 9:16 for a portrait photo) and omit `ratio`; `generate_audio` false (a rushing-air sting then street ambience would help; add it in post). The dive is about 6 s and the settled shot about 4 s.
+**Parameters:** 10 s; ratio locks to the first image, so generate it at the photo's ratio (16:9 by default, 9:16 for a portrait photo) and omit `ratio`; audio follows the brief, with rushing air then street ambience as optional native sound direction. The dive is about 6 s and the settled shot about 4 s.
 **Start photo:** Required first-frame design: "photorealistic view from low Earth orbit looking down at a slight angle: black space fills the top third of the frame, the curved bright blue edge of the planet with a thin glowing atmosphere crosses the middle, and below it lie deep blue ocean and patches of white cloud; nothing printed or written anywhere". Last frame (the user's photo): street-level eye-level medium or full shot of a person standing on a sidewalk or intersection, photoreal daylight, with the street receding behind or beside them. Bad: indoor, night, close-up face, a location implausible from above (interior courtyard, forest trail).
 **Beats (from the originals):**
 - 0-1s: low Earth orbit, black space, bright blue curved limb, patchy clouds; the dive starts.
@@ -299,7 +304,7 @@ The visuals feature photorealistic daylight, a motion-blurred descent and the sh
 
 **Look:** A person held perfectly still against a wall of dark blue water while fish and jellyfish drift past in slow motion.
 **Route:** `i2v-first-frame`. Opening still must show the person with their face, hair, clothing and pose unchanged in front of a dark blue aquarium wall holding empty deep blue water. If the supplied photo lacks this setting, list a fitted opening still as a missing input.
-**Parameters:** 8 s (the examples run 12 s); review identity continuity over the requested duration; ratio follows the photo (4:3 and 9:16 seen); `generate_audio` false (an underwater hum is a post bed).
+**Parameters:** 8 s (the examples run 12 s); review identity continuity over the requested duration; ratio follows the photo (4:3 and 9:16 seen); audio follows the brief, with underwater hum as optional native sound direction.
 **Start photo:** Medium or waist-up person facing slightly off camera, simple clothing, even lighting. Bad: busy colorful background, strong motion blur, backlit silhouette, hands near the face.
 **Beats (from the originals):**
 - 0-2s: subject stands centered or left looking to the side; fish and jellyfish already drift in the water wall.
@@ -333,7 +338,7 @@ The visuals feature deep blue low-key light, a moody hypnotic mood and soft high
 
 **Look:** Stacked generic retro-desktop error panels, swarming cursors and solid blue full-screen layers strobe over blue-toned CRT footage.
 **Route:** `composite`. Generated clip with `@Image 1` as the first frame (single image role) containing only abstract panel shapes, plus a destination overlay in post for all readable error text.
-**Parameters:** 5 s; 16:9 or the photo's ratio; `generate_audio` false. The originals run at 10 fps; keep native 24 fps and, if the stutter look is wanted, drop to 10 fps in post with FFmpeg.
+**Parameters:** 5 s; 16:9 or the photo's ratio; audio follows the brief and verified controls. The originals run at 10 fps; keep native 24 fps and, if the stutter look is wanted, drop to 10 fps in post with FFmpeg while preserving sound unchanged.
 **Start photo:** High-contrast, cool or blue-toned action or street shot (skateboarder, crouching crew), subject clearly readable and moving, with empty negative space for panels. Bad: warm flat portrait, subject filling the frame edge to edge, no motion.
 **Beats (from the originals):**
 - 0-1s: heavy blue duotone with CRT feel; solid blue full-screen panels, stacked generic error panels and scattered cursors.

@@ -44,13 +44,12 @@
     },
     {
       "id": 4,
-      "prompt": "A selfie-style UGC demo ad where the creator holds the phone at arm's length and talks to camera for 10 seconds. Make the camera work more dynamic.",
-      "expected_output": "A plan that recognizes the format is static by design, records format_static_by_design as the static_reason, and keeps the frame locked while adding variety only through allowed levers such as light and a short insert, or asks whether the user wants to leave the format.",
+      "prompt": "In a 10-second walking selfie, the creator carries the phone at arm’s length through a showroom. Plan the reveal as the creator turns toward the display.",
+      "expected_output": "A continuous moving selfie preserving the creator’s framing and the reveal.",
       "files": [],
       "assertions": [
-        "The output records format_static_by_design (or an equivalent recorded reason) instead of adding large camera moves.",
-        "The output does not add a whip pan, orbit or crane to the selfie frame.",
-        "Any variety offered comes from light, a product insert or a framing change the format allows, or the output asks before leaving the format."
+        "The phone travels with the creator, and the background moves relative to them.",
+        "The turn reveals the display without imposing a tripod or an unrelated cut."
       ]
     },
     {
@@ -80,13 +79,12 @@
     },
     {
       "id": 7,
-      "prompt": "A talking-head take: our approved presenter sits at a desk and speaks to camera for 15 seconds. Make the camera work more dynamic.",
-      "expected_output": "A recognition that the talking-head format is static by design, with format_static_by_design recorded, no large camera moves added to the presenter frame, and any variety limited to what the format allows or a question before leaving the format.",
+      "prompt": "Plan a 15-second desk review. The approved frame is a fixed tripod medium shot of the presenter and the box. Keep this composition throughout.",
+      "expected_output": "A continuous tripod shot with the action readable within the approved framing.",
       "files": [],
       "assertions": [
-        "The output records format_static_by_design (or an equivalent recorded reason) for the talking-head take.",
-        "The output does not add a crane, orbit, whip pan or fast push to the presenter frame.",
-        "Any variety offered comes from B-roll cutaways, light or an insert the format allows, or the output asks before leaving the format."
+        "Keeps the camera position and framing fixed throughout.",
+        "The presenter can open the box within the same shot; no cut or camera move is introduced."
       ]
     },
     {

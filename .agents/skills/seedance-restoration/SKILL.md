@@ -85,9 +85,13 @@ Output: a Seedance 2.5 structured-edit prompt with the source bound as `@Video 1
    same three things: the defect is gone, the people/scene/camera are intact, and
    no new artifacts were introduced. Only build on a verified-clean clip; a
    reported `succeeded` is not proof the tear/wave/grain actually left.
-7. **Original audio re-mux** happens in the destination workflow. Seedance
-   regenerates native audio; for "keep everything the same," the user muxes the
-   source audio back onto the restored video outside this workspace.
+7. **Preserve sound unchanged.** A picture-restoration request does not authorize
+   an audio edit. Native audio is sufficient when it satisfies the brief; exact
+   source sound remains locked when required. Verify preservation support for
+   the exact operation independently; report a gap rather than automatically
+   extracting, muting or muxing. Any required input preparation needs verified
+   constraints and explicit authorization for a separate copy under
+   [audio-video alignment](../../contracts/audio-video-alignment.md).
 
 ## Escalation ladder
 
@@ -132,10 +136,11 @@ frame. They need different vocabulary and a different mental model:
 ### Template (scan-line tear / rolling band)
 
 First-pass parameter block for the supported standard 2.5 edit:
-`omni_reference_task_type="edit"`, `generate_audio: false`,
+`omni_reference_task_type="edit"`,
 `resolution: "480p"`, `draft: true`. A 1080p final delivery target is separate:
 inspect and select the successful native Draft before `draft_task_id` promotion.
 Changed creative inputs require a new Draft; inspect the final independently.
+Audio controls follow the brief and verified exact-operation capabilities.
 
 ```text
 [Edit Goal]
@@ -166,10 +171,11 @@ duplicated copy.
 ## Canonical prompt template (Seedance 2.5 edit)
 
 First-pass parameter block for the supported standard 2.5 edit:
-`omni_reference_task_type="edit"`, `generate_audio: false`,
+`omni_reference_task_type="edit"`,
 `resolution: "480p"`, `draft: true`. A 1080p final delivery target is separate:
 inspect and select the successful native Draft before `draft_task_id` promotion.
 Changed creative inputs require a new Draft; inspect the final independently.
+Audio controls follow the brief and verified exact-operation capabilities.
 
 ```text
 [Edit Goal]
@@ -231,8 +237,8 @@ direction.
   boolean `draft: true` for each new Seedance 2.5 test. Inspect and select the
   native draft before promotion by `draft_task_id` to the delivery resolution
   (standard 2.5 has no 4K). Missing draft controls are a capability mismatch,
-  not permission to substitute ordinary 480p. Use `generate_audio: false` (since the source audio is re-muxed
-  afterward — skip the re-mux if you instead keep native audio), `watermark: false`
+  not permission to substitute ordinary 480p. Choose audio controls only from
+  verified support for the brief's sound intent; use `watermark: false`
   only when the tool supports the parameter. Duration auto-locks to the input —
   do not set it.
 - **Temporal denoising with a no-ghosting guard.** Always pair the temporal
@@ -258,4 +264,5 @@ direction.
     and any explicitly selected segmentation recorded without overwriting originals.
 11. The Seedance output was **verified by re-inspection** (defect gone, content
     intact, no new artifacts) before splicing.
-12. Original audio re-mux happens in the destination workflow.
+12. Audio retained unchanged; any necessary adaptation is separately authorized.
+    Listening and exact-audio equality checks are distinct from technical decode.

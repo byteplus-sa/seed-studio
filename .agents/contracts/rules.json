@@ -312,23 +312,19 @@
         "recast"
       ],
       "owner_path": ".agents/skills/prompt-review/references/review-checklists.md",
-      "summary": "A recast submits the muted master silently and states one post-audio route with lip-sync expectations that agree with it.",
-      "exceptions": [
-        "A user-requested native-audio or lip-sync exception for a named take, noted in the package."
-      ]
+      "summary": "A recast keeps acceptable native or supplied audio unchanged, preserves exact-source locks and states any explicitly requested silence or audio edit with independently verified controls and lip-sync expectations.",
+      "exceptions": []
     },
     {
-      "id": "v2v.muted_source",
+      "id": "v2v.audio_preservation",
       "severity": "error",
       "applies_to": [
         "editing",
         "recast"
       ],
       "owner_path": ".agents/contracts/video-to-video-inputs.md",
-      "summary": "A video-to-video prompt binds the muted source master with generate_audio false and states a post-audio route.",
-      "exceptions": [
-        "A user-requested native-audio exception for a named take, noted in the package."
-      ]
+      "summary": "A video-to-video prompt preserves native or supplied audio unchanged without mandatory mute/extract/mux; required source preparation needs independently verified exact-operation constraints and explicit authorization for a separate copy.",
+      "exceptions": []
     },
     {
       "id": "v2v.virtual_portrait_identity",

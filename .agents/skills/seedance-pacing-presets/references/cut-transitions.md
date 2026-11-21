@@ -24,11 +24,9 @@ entries: record the boundary window separately from consecutive shot ranges.
 
 A match cut needs an observable match, not just two related topics. A jump cut
 skips action within a setup; a smash cut creates a strong contrast. A wipe is
-a picture replacement, not a subject morph. A whip pan is both a camera move
-and a boundary: use the camera preset skill's whip-pan template (trigger time,
-direction, full-frame occluder, continuing movement) and resolve the camera
-path once in the complete prompt rather than duplicating contradictory camera
-blocks. A cut that must last less than about 0.8 s, or a blink, intercut or
+a picture replacement, not a subject morph. A continuous whip pan stays in the same take and lands on the new
+subject. Only a requested whip-pan transition crosses a shot boundary. For a
+hidden cut, name its cue, occluder and continuing direction across the cut. A cut that must last less than about 0.8 s, or a blink, intercut or
 vision flash, is an assembly cut, not a prompt boundary.
 
 ## Audio bridges

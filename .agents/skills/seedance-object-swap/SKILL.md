@@ -7,8 +7,8 @@ description: >-
   performance, camera path, cuts, lighting and event order. Covers the
   five-part swap contract (identification, object count, Timeline Inheritance,
   residual-original guard, preservation), contact and occlusion windows,
-  verified identity references for realistic people, a muted source
-  master with audio added in post, and swap checks. Use for product placement,
+  verified identity references for realistic people, unchanged audio
+  and scoped sound choices, and swap checks. Use for product placement,
   competitor-to-own SKU swaps, wardrobe changes, single-character replacement
   or location swaps on a kept take. Prompt-only: never generates or submits.
   Not for rebuilding the whole cast or world around the source motion
@@ -53,16 +53,15 @@ Input:
   [video-to-video inputs contract](../../contracts/video-to-video-inputs.md):
   duration, frame rate, ratio, audio streams, cuts, and footage rights the user
   has confirmed.
-- The muted master and the saved source audio, prepared by the user from the
-  same contract.
+- Original picture and sound retained unchanged under the same contract.
 - One approved target element. A character target uses the verified identity route in rule 2; a real brand or labeled product uses the official or
   authorized asset per
   [element identification](../../contracts/element-identification.md).
-- The post-audio route (original, new, mixed or re-voiced).
+- Sound intent: unchanged native sound, exact source/master, silence or a scoped edit.
 
 Output: a swap prompt package delivered in chat, with ordered
 `@Video 1`/`@Image N` bindings and roles, the five-part contract facts,
-contact windows, the prompt, the parameter block, the post-audio route, and
+contact windows, the prompt, the parameter block, the sound intent, and
 the test-ladder rung.
 
 ## Hard rules
@@ -76,9 +75,11 @@ the test-ladder rung.
    the account and operation. Unknown identity or eligibility stays unresolved.
    Follow the [video-to-video inputs contract](../../contracts/video-to-video-inputs.md)
    and [production policy](../../contracts/production-policy.md).
-3. **Bind the muted master.** `@Video 1` is the muted master;
-   `generate_audio` is `false`; there are no `@Audio` bindings. Sound returns in
-   post through the stated route.
+3. **Preserve audio.** Bind the compatible original source as `@Video 1`.
+   Native audio may remain unchanged; no mute/extract/mux pass is required.
+   Verify exact operation support for source-audio preservation or generation.
+   Any required preparation needs independently verified constraints and
+   explicit authorization for a separate copy, not a preset assumption.
 4. **Reference budget**: 1–5 target images, one view per image, no collage.
    Several views of one target state that the output contains only one.
 5. **No baked text.** A label printed on a product is part of the product;
@@ -123,7 +124,7 @@ The caller owns execution under [Generation transport](../../contracts/generatio
 Seedance 2.5 edit. These are parameter-block values for the destination UI,
 never prompt text:
 
-- `videos`: the muted master as `@Video 1`, first in order, using the verified source
+- `videos`: the compatible original source as `@Video 1`, first in order, using the verified source
   representation for this destination and each person in the footage.
 - `images`: target views as `reference_image`, in binding order.
 - `omni_reference_task_type`: `edit` when supported, not an assumed
@@ -136,7 +137,8 @@ never prompt text:
   whole-second duration. Adapt a separate copy only to a verified destination
   requirement, with the user's agreement and the timing change recorded.
   Preserve the original video and audio.
-- `generate_audio: false`, `watermark: false` when supported; preview resolution
+- Audio controls follow sound intent and verified support. `watermark: false`
+  when supported; preview resolution
   and native controls follow the selected operation's evidence above. Record
   delivery resolution separately.
 
@@ -150,8 +152,8 @@ preparation recipes as conditional on these checks, not default trim instruction
 ## Procedure
 
 1. **Route check.** One element class changes; everything else is kept.
-2. **Source intake.** Inspect the source, confirm rights, and describe a muted
-   copy preserving exact timing ([video-to-video inputs](../../contracts/video-to-video-inputs.md)).
+2. **Source intake.** Inspect the source, confirm rights, and preserve original
+   picture and sound ([video-to-video inputs](../../contracts/video-to-video-inputs.md)).
    Propose trimming only for a requested span or verified destination constraint,
    with the user's agreement.
 3. **Facts.** Inspect the source and note descriptors, counts and contact
@@ -161,9 +163,9 @@ preparation recipes as conditional on these checks, not default trim instruction
    [swap templates](references/swap-templates.md).
 6. **Deliver.** Deliver bindings, facts, prompt, parameter block, audio route
    and rung in chat.
-7. **Acceptance checks.** When the user shares or describes the silent output,
-   apply [swap checks](references/swap-qa.md); after the user muxes the
-   post-audio route, apply the audio checks.
+7. **Acceptance checks.** When the user shares or describes the output,
+   apply [swap checks](references/swap-qa.md), including actual listening.
+   Missing evidence remains unresolved; checks do not authorize audio repair.
 
 The canonical 2.5 edit blocks and face-protection lines come from
 `seedance-prompt` and `seedance-vfx-prompt`. These are composition hints;
@@ -187,7 +189,7 @@ route per retry.
 
 - [ ] One element class changes; recast and restyle requests routed elsewhere
 - [ ] Source inspected; footage rights confirmed
-- [ ] Muted master bound as `@Video 1`; source audio saved; `generate_audio: false`
+- [ ] Compatible original source bound as `@Video 1`; audio retained unchanged
 - [ ] Exact source timing preserved; any adaptation tied to a verified
       destination requirement, agreed and recorded on a separate copy
 - [ ] Original identified by observable descriptors and first appearance
@@ -199,5 +201,5 @@ route per retry.
 - [ ] Every source and target identity has a verified eligible route or is explicitly unresolved
 - [ ] Target reference states what to ignore in the image
 - [ ] 1–5 target images, one view each
-- [ ] Post-audio route stated
+- [ ] Sound intent and capability checked; any audio change explicitly authorized
 - [ ] Ladder rung stated
