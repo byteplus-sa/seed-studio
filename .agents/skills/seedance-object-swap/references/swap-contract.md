@@ -90,7 +90,7 @@ so the reference role excludes only what the target does not own: the
 reference's pose and lighting for a character, its people, vehicles and
 signage for a location.
 
-**Character.** The target identity is a Virtual Portrait asset bound by
+**Character.** The target uses its authorized identity route and is bound by
 position, for example `@Image 1` (close-up) and `@Image 2` (full body). The
 image defines only face, hair, build, wardrobe and accessories; the
 performance, gaze and timing stay with `@Video 1`. Name the source person's

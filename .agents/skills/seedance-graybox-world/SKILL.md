@@ -188,9 +188,11 @@ keeping geometry, motion, camera, framing, timing, and cuts exactly as they are.
 - **Audio follows the source.** Blender previews are usually silent — write
   `No audio at all`; if the source has audio the user wants kept, say so and
   keep it. Never invent a score.
-- **People get protection.** Real human skin with pores and catchlights — never
-  waxy, smoothed, or warped; subjects stay grounded with no cut-out edge or
-  halo.
+- **Preserve the character medium.** Keep the supplied facial design, materials
+  and grounding when changing the environment. Use pores and skin detail only
+  for an approved photoreal look. Preserve clay, drawn or flat-shaded surfaces
+  when the selected medium calls for them.
+
 - **One source reference.** Bind `@Video 1` only; add `@Image N` solely as a
   target-appearance reference with its role stated, never as a second master.
 - **One look per clip.** Do not combine competing grades, lighting presets, or
@@ -201,7 +203,7 @@ keeping geometry, motion, camera, framing, timing, and cuts exactly as they are.
 - `seedance-prompt` — the 2.5 structured-edit grammar and full six-part
   formula; this skill supplies the Blender-source edit block only.
 - `seedance-vfx-prompt` — general edit taxonomy and the legacy 2.0 path when
-  the user explicitly needs 4K or Fast/Mini.
+  the user selected that exact model and the edit operation is supported.
 
 ## Self-check
 

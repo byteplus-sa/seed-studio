@@ -116,4 +116,9 @@ elements.
 
 ## Reference eligibility
 
-Elements define persistent identity/design. Approved derivative panels define composition and continuity, with recorded source hashes. Changed source hashes invalidate a panel's previous eligibility. Analysis sketches, blocking maps, and rough control boards remain analysis-only by default; translate their movement into text. An explicitly requested supported grid-conditioning mode needs a separately selected composition reference and documented role, never inferred approval of a control image.
+Storyboard grids, panels, crops and board-derived frames are planning material.
+Carry their approved staging, motion and continuity into video prompts as text.
+Selection, clean-up or a new hash does not make them video conditioning inputs.
+For a bound still or blockout, verify independent production origin, rights,
+selection, current source hashes and support for the exact reference role.
+Boards may still reference prior panels when authoring the board itself.

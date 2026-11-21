@@ -127,7 +127,7 @@ outfit**, so identity and costume stay consistent across generations.
 Use this canonical neutral-expression phrase verbatim in every character sheet:
 
 ```text
-Relaxed neutral expression in all panels: mouth relaxed and closed, eyes looking straight into camera, no smile, no frown, no raised brows, no emotion.
+Visible faces have a relaxed neutral expression, mouth closed and brows at rest. In frontal views the eyes look into the camera. In the back view the head faces away.
 ```
 
 **Never put held props in the character sheet.** Anything the character holds,
@@ -265,7 +265,7 @@ Task:
 Text-to-Image (T2I)
 
 Subject:
-Character reference sheet, single character [name / description]. Same person in all panels, consistent identity. Relaxed neutral expression in all panels: mouth relaxed and closed, eyes looking straight into camera, no smile, no frown, no raised brows, no emotion. Three-panel sheet only: one full-body back view, one full-body front view, and one face close-up panel. Worn outfit elements only — hat, helmet, always-worn eyewear, jewelry — nothing held in the hands, no props, no weapons.
+Character reference sheet, single character [name / description]. Same person in all panels, consistent identity. Visible faces have a relaxed neutral expression, mouth closed and brows at rest. In frontal views the eyes look into the camera. In the back view the head faces away. Three-panel sheet only: one full-body back view, one full-body front view, and one face close-up panel. Worn outfit elements only — hat, helmet, always-worn eyewear, jewelry — nothing held in the hands, no props, no weapons.
 
 Setting:
 Clean plain gray studio background, consistent across all three panels. No props, no held objects, no furniture, no background variation.
@@ -293,7 +293,7 @@ Task:
 Text-to-Image (T2I)
 
 Subject:
-3-view character reference sheet for a film character. The same man in all three views: youthful attractive man in his early 30s, warm olive-brown skin, dark thick curly hair, thin mustache with a small soul-patch under the lip, faint stubble along the jaw, two small silver hoop earrings on the left ear, thin silver chain necklace, subtly asymmetrical face, a small subtle healed scar near the right eye. Age-of-sail pirate costume: faded mustard-yellow durag tied at the back with the tails hanging down, small shark tooth pendant attached to the durag above the left temple, open off-white linen shirt, worn dark leather vest, wide sash belt, baggy dark breeches, scuffed leather boots, weathered and dirty fabrics. Relaxed neutral expression in all panels: mouth relaxed and closed, eyes looking straight into camera, no smile, no frown, no raised brows, no emotion. Three panels only: full-body back view, full-body front view, and frontal face close-up.
+3-view character reference sheet for a film character. The same man in all three views: youthful attractive man in his early 30s, warm olive-brown skin, dark thick curly hair, thin mustache with a small soul-patch under the lip, faint stubble along the jaw, two small silver hoop earrings on the left ear, thin silver chain necklace, subtly asymmetrical face, a small subtle healed scar near the right eye. Age-of-sail pirate costume: faded mustard-yellow durag tied at the back with the tails hanging down, small shark tooth pendant attached to the durag above the left temple, open off-white linen shirt, worn dark leather vest, wide sash belt, baggy dark breeches, scuffed leather boots, weathered and dirty fabrics. Visible faces have a relaxed neutral expression, mouth closed and brows at rest. In frontal views the eyes look into the camera. In the back view the head faces away. Three panels only: full-body back view, full-body front view, and frontal face close-up.
 
 Setting:
 Plain gray seamless studio backdrop, consistent across all three panels, with thin subtle vertical divider lines separating the panels.

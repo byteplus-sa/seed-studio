@@ -70,8 +70,7 @@ else
   echo "scoped run: $SKILLS"
 fi
 for s in $SKILLS; do
-  [ -d "$SRC/.agents/skills/$s" ] || { echo "ERROR: $s missing from source — stop and report" >&2; exit 1; }
-  [ -d ".agents/skills/$s" ] || { echo "ERROR: $s missing here; a sync never creates skill directories — stop and report" >&2; exit 1; }
+  [ -f "$SRC/.agents/skills/$s/SKILL.md" ] || { echo "ERROR: $s missing source entrypoint — stop and report" >&2; exit 1; }
 done
 
 DESTINATION_SCOPE=()
@@ -90,6 +89,10 @@ if [ -n "$DESTINATION_DIRTY" ]; then
   echo "Nothing copied. SYNC_ALLOW_DIRTY applies only to source changes and cannot bypass this guard." >&2
   exit 5
 fi
+
+for s in $SKILLS; do
+  [ -f ".agents/skills/$s/SKILL.md" ] || { echo "ERROR: $s missing destination entrypoint; a sync never creates a new bundle — stop and report" >&2; exit 1; }
+done
 
 # 3. Source scope check
 SCOPE_PATHS=()

@@ -7,7 +7,7 @@ description: >-
   performance, camera path, cuts, lighting and event order. Covers the
   five-part swap contract (identification, object count, Timeline Inheritance,
   residual-original guard, preservation), contact and occlusion windows,
-  Virtual Portrait asset:// references for realistic people, a muted source
+  verified identity references for realistic people, a muted source
   master with audio added in post, and swap checks. Use for product placement,
   competitor-to-own SKU swaps, wardrobe changes, single-character replacement
   or location swaps on a kept take. Prompt-only: never generates or submits.
@@ -39,7 +39,7 @@ most of the frame changes, the job is a Motion Transfer.
 
 | Class | Target reference | Typical scope |
 | --- | --- | --- |
-| Character | Virtual Portrait `asset://` views | One person replaced; others kept |
+| Character | Verified identity views | One person replaced; others kept |
 | Outfit | Garment packshot, flat-lay or mannequin view | One garment on one person |
 | Product | Official or authorized packshot | One product, including grip and labels |
 | Prop or object | Prop sheet view | One object, including its path and contacts |
@@ -55,8 +55,7 @@ Input:
   has confirmed.
 - The muted master and the saved source audio, prepared by the user from the
   same contract.
-- One approved target element. A character target is a Virtual Portrait asset
-  the user uploads; a real brand or labeled product uses the official or
+- One approved target element. A character target uses the verified identity route in rule 2; a real brand or labeled product uses the official or
   authorized asset per
   [element identification](../../contracts/element-identification.md).
 - The post-audio route (original, new, mixed or re-voiced).
@@ -71,15 +70,12 @@ the test-ladder rung.
 1. **State the five-part contract**: identification, object count, Timeline
    Inheritance, residual-original guard and preservation. Read
    [swap contract](references/swap-contract.md).
-2. **Realistic people are Virtual Portraits.** Recommend that the user upload
-   every realistic human likeness (the target character, and the source clip
-   when it shows a person) to the Virtual Portrait library and bind it as
-   `asset://`, per the
-   [video-to-video inputs contract](../../contracts/video-to-video-inputs.md).
-   Rights and consent follow the
-   [production policy](../../contracts/production-policy.md): unknown rights,
-   identity and consent facts stop the work, a creative choice never supplies
-   them, and calling the job a test does not either.
+2. **Check each source and target identity.** Virtual Portrait is for eligible
+   invented characters. An identifiable real person requires confirmed consent,
+   footage and likeness rights, and a separately verified real-person route for
+   the account and operation. Unknown identity or eligibility stays unresolved.
+   Follow the [video-to-video inputs contract](../../contracts/video-to-video-inputs.md)
+   and [production policy](../../contracts/production-policy.md).
 3. **Bind the muted master.** `@Video 1` is the muted master;
    `generate_audio` is `false`; there are no `@Audio` bindings. Sound returns in
    post through the stated route.
@@ -127,8 +123,8 @@ The caller owns execution under [Generation transport](../../contracts/generatio
 Seedance 2.5 edit. These are parameter-block values for the destination UI,
 never prompt text:
 
-- `videos`: the muted master as `@Video 1`, first in order; an `asset://` video
-  when the source shows a person.
+- `videos`: the muted master as `@Video 1`, first in order, using the verified source
+  representation for this destination and each person in the footage.
 - `images`: target views as `reference_image`, in binding order.
 - `omni_reference_task_type`: `edit` when supported, not an assumed
   `edit_video` alias. Verify the current model and destination's accepted
@@ -160,8 +156,7 @@ preparation recipes as conditional on these checks, not default trim instruction
    with the user's agreement.
 3. **Facts.** Inspect the source and note descriptors, counts and contact
    windows. Uncertain facts stay open questions.
-4. **Target.** Confirm the approved element. For a character, recommend the
-   Virtual Portrait upload and bind the views the user supplies.
+4. **Target.** Confirm the approved element. For a character, verify the identity route before binding the supplied views.
 5. **Prompt.** Fill the class template in
    [swap templates](references/swap-templates.md).
 6. **Deliver.** Deliver bindings, facts, prompt, parameter block, audio route
@@ -201,7 +196,7 @@ route per retry.
 - [ ] Residual-original guard phrased positively
 - [ ] Contact and occlusion windows listed with approximate times
 - [ ] Preservation list names faces, accessories, hands, camera and lighting
-- [ ] Realistic people (target and source) recommended for Virtual Portrait upload and bound as `asset://`
+- [ ] Every source and target identity has a verified eligible route or is explicitly unresolved
 - [ ] Target reference states what to ignore in the image
 - [ ] 1–5 target images, one view each
 - [ ] Post-audio route stated

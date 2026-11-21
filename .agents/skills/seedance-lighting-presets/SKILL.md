@@ -259,8 +259,7 @@ in the `Lighting:` section only — never in `Style:` or `Subject:`.
   requested or proposed within delegated look scope, never imposed by a lighting
   preset. Preserve ungraded, grain-free and source-edit locks; describe a post
   treatment separately from the prompt's physical lighting.
-- **Watermark false by default.** Set `watermark: false` on all generation
-  unless the user explicitly requests the AIGC watermark.
+- Leave watermark handling to the caller using the selected destination’s supported controls.
 - **No empty phrasing.** Never write "well lit, bright" or "good lighting".
   Both the Seedream `Lighting:` section and the Seedance Visual Style slot
   require direction, quality, and color temperature.

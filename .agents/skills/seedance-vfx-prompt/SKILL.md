@@ -46,10 +46,10 @@ Do **not** use this skill for:
 > skill remains the general prompt authority for T2V/R2V, editing and extension
 > for any selected exact model, with operation support verified separately.
 
-> **2.5 resolution guard**: Seedance 2.5 supports 480p/720p/1080p output. The
-> 4K face-protection methodology below is 2.0-only. For face-critical structured
-> edits on 2.5, weigh 1080p fidelity against 2.0's 4K path. For 4K output,
-> stay on 2.0.
+> **Resolution.** Preserve the selected model. Check ordinary generation,
+> native Draft and promotion separately for the exact operation and destination.
+> A requested 4K deliverable is not evidence that a binding supports it. Use
+> the legacy 4K method only for an explicitly selected and verified 2.0 path.
 
 This skill is designed to partner with:
 - the destination UI: prompts are handed off paste-ready; end-to-end submission, poll, and save are outside this workspace
@@ -82,8 +82,7 @@ mentioned in prose are relative to this skill directory unless a link says other
 The caller owns production authorization and the exact request preflight. A
 leaf returns its prompt package without loading sibling skills. An explicitly
 declared orchestrator may coordinate the submission stage. Missing required inputs remain unresolved; a draft
-or technical success does not establish user approval. Preserve optional timing,
-the three-image sampling default where applicable, and the requested delta.
+or technical success does not establish user approval. Preserve the requested changes and any supplied timing.
 
 ## Source authority
 

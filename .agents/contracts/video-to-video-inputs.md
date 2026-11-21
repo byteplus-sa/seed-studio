@@ -18,13 +18,13 @@ registration, trimming and muxing stay user-side.
 
 ## Human likeness: Virtual Portrait assets
 
-When a video-to-video job involves a realistic human likeness, recommend that
-the user upload those assets to the BytePlus private Virtual Portrait library
-and bind them as `asset://<asset_id>` references. This covers performers in
-the source footage, target characters, and AI avatars or other photoreal
-invented people. Seedance rejects realistic faces in raw image and video
-inputs (see [Provider rejections](#provider-rejections)).
-
+Classify each person in source footage and target references separately. Use
+Virtual Portrait only for an invented likeness eligible for the selected
+binding. For an identifiable real person, confirm likeness and performance
+rights and verify a separate provider-authorized real-person route for this
+account and operation. Consent alone does not establish eligibility. An
+unknown identity, missing authorization or rejected asset stays unresolved.
+The following registration steps apply only to eligible invented people.
 - **Where.** In the ModelArk console: Model Playground > My assets > Virtual
   Portrait. The library is isolated by project, and an asset works only with an
   endpoint in the same project. The account needs Advanced Creation Rights, and
@@ -46,10 +46,9 @@ inputs (see [Provider rejections](#provider-rejections)).
   accepted. For a real performer whose likeness is rejected, BytePlus's
   separate authorized real-person asset route (invite-only, verified with the
   person's own liveness check) applies; it sits outside this workspace.
-- **Package.** List each identity reference with its binding position and mark
-  it as a Virtual Portrait asset for the user to upload. The agent never
-  registers assets, never asks for credentials, and never writes asset IDs or
-  `asset://` URIs into prompts, packages or saved files.
+- **Package.** Identify the verified route and binding position for each
+  eligible source or target. The user handles any external registration.
+  Keep actual asset identifiers and credentials out of prompts and records.
 - **Prompt wording.** Refer to each asset by its binding position
   (`@Image 1`), never by asset ID. A short production label tied to that
   binding (`Mara: @Image 1 and @Image 2`) may name the character in later
@@ -57,8 +56,7 @@ inputs (see [Provider rejections](#provider-rejections)).
 
 Non-identity references (products, props, locations, style frames) need no
 asset library; choose views without people. When a garment or product exists
-only on a model, use a flat-lay, mannequin or packshot view, or upload that
-model as a Virtual Portrait.
+only on a model, use a flat-lay, mannequin or packshot view, or verify the appropriate identity route for that person.
 
 Rights and consent for real people still follow the
 [production policy](production-policy.md); the asset route does not replace
@@ -88,14 +86,12 @@ them.
     previous run. If the current route requires it, disclose the timing change
     and obtain authorization; measure output duration rather than promising
     exact frame-count preservation.
-- **Source videos that show a person are `asset://` videos.** Seedance rejects
-  a realistic person in a video input, including an invented person in a
-  text-generated clip, with `InputVideoSensitiveContentDetected.PrivacyInformation`
-  before a task is created, and image assets of that person do not clear it.
-  Recommend that the user upload the muted master as a video asset in the
-  Virtual Portrait library and bind `@Video 1` as its `asset://` URI. A source
-  with no people binds as an ordinary upload.
-
+- **Source video identity.** Check every visible person against the identity
+  rules above, including performers who will later be replaced. For mixed
+  casts, verify that the destination accepts the full source and all roles.
+  A registered target image does not authorize a source video. An unresolved
+  or rejected source stays unbound. For footage without people, use the
+  ordinary source input when the selected operation supports it.
 User-side trim recipe, for the package (the agent does not run it):
 
 ```bash

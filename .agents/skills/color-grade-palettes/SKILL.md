@@ -214,8 +214,7 @@ Kodak Portra 400:
 - **Film-stock words belong in `Style:` / visual style**, not in the subject
   line. Put the grade sentence in its slot and keep subject descriptions
   observational.
-- **Watermark false by default.** Set `watermark: false` on all image, video,
-  and audio generation unless the user explicitly requests the AIGC watermark.
+- Leave watermark handling to the caller using the selected destination’s supported controls.
 - **Chained scenes preserve the intended look continuity.** For an unchanged
   look, repeat its exact sentence. For an authorized transition, describe the
   boundary and endpoint; actual output continuity remains unverified here.

@@ -6,7 +6,7 @@ description: >-
   cuts and timing while rebuilding cast, wardrobe, product, location and style
   from locked reference images. Covers the motion-only authority split, an
   explicit mapping or disposition for every visible source subject, bleed and
-  extra-people guards, Virtual Portrait asset:// references for realistic
+  extra-people guards, eligible identity references for realistic
   people, consent gates for real people, a muted source master with audio
   added in post, named look presets, and optional selected key-beat probes.
   Inspects the source clip itself. Use to recast performers, localize a take
@@ -51,8 +51,7 @@ Input:
   [multi-subject mapping](references/multi-subject-mapping.md)). Open
   ambiguities block prompt writing.
 - Approved target elements (character, product, prop, location sheets or
-  authorized images the user supplies), one image per view. Realistic people
-  are Virtual Portrait `asset://` assets the user uploads (rule 3).
+  authorized images the user supplies), one image per view. Classify invented and real likenesses separately (rule 3).
 - The requested style (a named preset or free text) and post-audio route.
 
 Output: a recast prompt package delivered in chat, containing the ordered
@@ -70,19 +69,12 @@ targets.
    authorized images the user supplies). Use separate images per view; never
    collages or turnaround strips. The user attaches them in the order the
    package lists.
-3. **Realistic people are Virtual Portraits, and real people pass the consent
-   gates.** Recommend that the user upload every realistic human likeness (each
-   new character, AI avatars included, and the source clip when it shows a
-   person) to the Virtual Portrait library and bind it as `asset://`, per the
-   [video-to-video inputs contract](../../contracts/video-to-video-inputs.md).
-   A real, identifiable person as a target also needs the user's confirmed
-   consent and real-likeness generation approval; identifiable performers in
-   the source need confirmed consent for reuse of their performance. Note each
-   confirmation in the package. Unknown facts stop the work; a creative choice
-   never supplies them, and calling the job a test does not either. Offer an
-   invented cast or a consenting performer instead. See the
-   [production policy](../../contracts/production-policy.md) and
-   [element identification](../../contracts/element-identification.md).
+3. **Check each source and target identity.** Virtual Portrait is for eligible
+   invented characters. An identifiable real person requires confirmed consent,
+   footage and likeness rights, and a separately verified real-person route for
+   the account and operation. Unknown identity or eligibility stays unresolved.
+   Follow the [video-to-video inputs contract](../../contracts/video-to-video-inputs.md)
+   and [production policy](../../contracts/production-policy.md).
 4. **Privacy and moderation rejections are diagnosed, not routed around.** When
    the user reports a `PrivacyInformation` or other sensitive-content rejection,
    stop and ask for the request ID and the flagged inputs, and follow the
@@ -118,7 +110,7 @@ The default route is verified on one case. An upstream 480p, 5 s probe on
 2026-10-03 rebuilt cast and world from a Virtual Portrait `asset://` image
 while keeping the source's motion, timing and static camera (one person, no
 source clothing or accessories carried over). It bound `@Video 1` as an
-`asset://` video, because Seedance rejects a raw video showing a person, and
+`asset://` video for that specific binding and
 ran with `generate_audio: false`. The probe used one character, a single
 source person, a text-described location and no product reference; treat
 multi-subject, location-image and moving-camera cases as unverified. Offer an
@@ -126,7 +118,8 @@ optional probe only when useful; selection and submission require authorization.
 
 - **Default route (verified for the case above): multimodal R2V.** Bind the
   source as `@Video 1` with role `reference_video`, stated as a motion-only
-  reference (an `asset://` video when the source shows a person). Bind targets
+  reference. Verify that the source representation is authorized for the
+  performers and supported by this destination before binding it. Bind targets
   as `reference_image`. Set `omni_reference_task_type` to `auto`, `ratio` to
   the source ratio, and preserve its exact fractional span. Serialize `duration`
   only if the selected operation supports that representation; otherwise
@@ -157,8 +150,8 @@ current documentation before finalizing the parameter block; do not assume a
 1. **Route check.** Confirm the request is a recast, not a region edit.
 2. **Gates and intake.** Confirm footage rights and real-person consent for the
    source and every target before asking for references, tell the user how to
-   trim and mute the source, and recommend the Virtual Portrait upload for every
-   realistic likeness (rule 3).
+   trim and mute the source, and identify the eligible route separately for every
+   source and target likeness (rule 3).
 3. **Source analysis.** Inspect the source yourself. Build the disposition
    table and per-cut presence.
    Read [multi-subject mapping](references/multi-subject-mapping.md).
@@ -204,8 +197,7 @@ only one of prompt wording, reference bundle or route per retry.
       `seedance-vfx-prompt`
 - [ ] Source inspected: duration, fps, ratio, audio, cuts; footage rights confirmed
 - [ ] Muted master bound as `@Video 1`; source audio saved; `generate_audio: false`
-- [ ] Realistic people (new characters and a source showing a person)
-      recommended for Virtual Portrait upload and bound as `asset://`
+- [ ] Each source and target likeness has a verified eligible route or is explicitly unresolved.
 - [ ] Real-person consent and likeness approvals noted, or invented cast used
 - [ ] Source ambiguities resolved; the inspection covers every cut
 - [ ] Every visible source subject and swappable object has a disposition

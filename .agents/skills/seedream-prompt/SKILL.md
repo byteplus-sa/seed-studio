@@ -94,8 +94,9 @@ reference, such as a commercial scene or a clean isolated packshot.
 Use Seedream for synthesized photographic, illustrative, material, texture, or
 expressive design content. When exact copy, data, UI, logo placement, pricing,
 CTA, product order, or pixel geometry carries the deliverable, create or select
-the text-free image layer here and finish the exact graphic through a
-deterministic HTML-entrypoint route. Do not ask Seedream to recreate a layout that
+the text-free image layer here. Return its prompt in chat and list the exact
+graphics for the destination team to finish. A supplied design brief is
+sufficient for a prompt-only handoff. Do not ask Seedream to recreate a layout that
 the caller can render exactly. A hybrid keeps this generated layer's prompt,
 review, selection, and hash evidence separately from the deterministic
 render record.

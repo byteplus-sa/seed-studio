@@ -607,17 +607,14 @@ V1. **Muted source (`v2v.muted_source`).** `@Video 1` is the muted master,
     `generate_audio` is `false`, and no `@Audio` binding is present, unless the
     user explicitly requested native audio for this take and the package notes
     that exception. A source with audio bound as `@Video 1`, or a package with
-    no post-audio route, is MAJOR. A source video that shows a person is bound
-    as an `asset://` video; a raw upload of one is rejected by the provider, so
-    flag it as MAJOR.
+    no post-audio route, is MAJOR. Check the source representation against the selected
+    destination and the identity evidence in V2. A documented mismatch is
+    MAJOR. Missing evidence leaves the binding unresolved.
 
-V2. **Virtual Portrait identities (`v2v.virtual_portrait_identity`).** Every
-    realistic human likeness (a target character, an AI avatar, or a performer
-    in the source) is recommended for Virtual Portrait upload and bound as an
-    `asset://` reference by binding position, never by asset ID. A raw face or
-    character image is MAJOR. A real, identifiable person as a target without
-    the user's confirmed consent is CRITICAL and blocks the prompt, per the
-    [production policy](../../../contracts/production-policy.md).
+V2. **Identity eligibility (`v2v.virtual_portrait_identity`).** For each source
+    and target, check that an invented Virtual Portrait is eligible or that
+    a real performer has consent and a verified real-person route. Leave
+    unknown or rejected roles unresolved. Use binding positions in prompts.
 
 V3. **Source rights.** The package notes the user's confirmed rights for the
     footage and the people in it. A missing confirmation is CRITICAL. Do not
@@ -661,7 +658,7 @@ medium. Mark N/A any item whose feature is absent and record why.
    is MAJOR. Studio, artist or franchise names, or frames from copyrighted
    productions, are CRITICAL.
 
-4. **Identity anchors.** Anchors, when used, are Virtual Portraits designed in
+4. **Identity anchors.** Eligible anchors, when used, are designed in
    the target medium and mapped to a source subject by observable descriptor.
    A photoreal anchor under a drawn or crafted style is MAJOR.
 
@@ -948,14 +945,15 @@ Source skill: `seedance-vfx-prompt`
 
 26. **NON-IP.** No recognizable real persons, no copyrighted characters, no brand logos.
 
-27. **Face protection.** "Real human skin with pores, stubble, and catchlights — never
-    waxy, smoothed, or warped."
+27. **Face protection.** Preserve the selected medium and the source identity.
+    Use skin texture and catchlights for a photoreal target. For an approved
+    stylized target, check the chosen material and facial design.
 
 28. **Supported model/mode (`model.supported_mode`).** Resolve operation and
     model first. Follow the exact-binding preview policy under
-    [Native draft first](#native-draft-first); 720p/1080p are later promotion
-    targets only for eligible selected native tasks, not ordinary previews;
-    only an explicitly selected supported legacy path may use 4K. Face/detail
+    [Native draft first](#native-draft-first). Check the evidenced resolutions
+    for ordinary creation, native Draft and promotion separately. A request for
+    4K never selects a different model or waives a required Draft. Face/detail
     fidelity is an output-QA criterion, not a guaranteed property of resolution.
 
 ### Creature/element integration (if applicable)

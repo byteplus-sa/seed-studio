@@ -3,10 +3,10 @@
 Focused reference for `seed-audio-commercial`. Read [the entrypoint](../SKILL.md) for
 mode selection and caller responsibilities.
 
-- [Full example: Jollibee Chickenjoy (Taglish)](#full-example-jollibee-chickenjoy-taglish)
+- [Full example: Fictional Ember Kitchen chicken meal (Taglish)](#full-example-fictional-ember-kitchen-chicken-meal-taglish)
 - [Full example: Lola Maria's Ube Halaya (Taglish, 30s spot)](#full-example-lola-marias-ube-halaya-taglish-30s-spot)
 
-## Full example: Jollibee Chickenjoy (Taglish)
+## Full example: Fictional Ember Kitchen chicken meal (Taglish)
 
 This is a production-grade prompt previously generated and verified upstream in
 T2A mode (110.6-second dramatic commercial). Use it as a reference for
@@ -37,17 +37,17 @@ Nanay (late 50s, female, warm gentle Filipino accent, nurturing, slightly raspy 
 
 Marco, forcing cheer: "Opo, Ma. Nandito lang... nag-iisip."
 
-Nanay, knowing and tender: "Kumain ka na ba? Go get some Chickenjoy, anak. Parang nandito lang kami."
+Nanay, knowing and tender: "Kumain ka na ba? Go get some Ember Chicken, anak. Parang nandito lang kami."
 
 [The piano shifts warmer. The drone softens.]
 
-Marco whispers, voice tightening: "Chickenjoy..."
+Marco whispers, voice tightening: "Ember Chicken..."
 
 [Footsteps on wet pavement. A door opens — rain muffles. A distant storefront jingle plays ahead.]
 
 [A door chime. Warm chatter replaces rain. A busy store hum.]
 
-Crew member (young female, cheerful Filipino English, bright energetic, warm service tone) says brightly: "Welcome po! One Chickenjoy meal, sir?"
+Crew member (young female, cheerful Filipino English, bright energetic, warm service tone) says brightly: "Welcome po! One Ember Chicken meal, sir?"
 
 Marco, steadier: "Oo, please. Salamat."
 
@@ -65,7 +65,7 @@ Marco, smiling, warm and steady: "Salamat, Ma. Okay na ako."
 
 [The guitar brightens. Light rhythmic percussion enters — uplifting.]
 
-Announcer (deep, warm, confident male, professional comforting broadcaster) says with warm authority: "Chickenjoy. Crispy. Juicy. Langhap-sarap. Because no matter how far you go — home is just one bite away."
+Announcer (deep, warm, confident male, professional comforting broadcaster) says with warm authority: "Ember Chicken. Crispy. Juicy. Warm to the last bite. Because no matter how far you go — home is just one bite away."
 
 [The jingle plays its final bright notes and resolves cleanly.]
 

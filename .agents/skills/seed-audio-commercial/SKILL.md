@@ -38,7 +38,7 @@ mentioned in prose are relative to this skill directory unless a link says
 otherwise.
 
 - [Commercial Sound Patterns](references/commercial-sound-patterns.md) — Commercial music direction patterns; SFX patterns for food commercials; Ambience transition patterns; Story arc template (5 acts).
-- [Worked Examples](references/worked-examples.md) — Full example: Jollibee Chickenjoy (Taglish); Full example: Lola Maria's Ube Halaya (Taglish, 30s spot).
+- [Worked Examples](references/worked-examples.md) — Full example: Fictional Ember Kitchen chicken meal (Taglish); Full example: Lola Maria's Ube Halaya (Taglish, 30s spot).
 
 ## Submission boundary and failure behavior
 
@@ -103,8 +103,8 @@ Collect or propose:
 
 | Field | Example | Required |
 |---|---|---|
-| Brand | Jollibee | Yes |
-| Product | Chickenjoy (crispy fried chicken) | Yes |
+| Brand | Ember Kitchen (fictional) | Yes |
+| Product | Ember Chicken (crispy fried chicken) | Yes |
 | Tone | dramatic, emotional, nostalgic | Yes |
 | Language | English, Taglish, Spanish, etc. | Yes |
 | Target duration | ~60–120s (max 120s per prompt) | Yes |

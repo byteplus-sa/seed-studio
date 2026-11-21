@@ -108,9 +108,11 @@ For a hybrid, choose one dominant treatment and state how the secondary
 influence appears. **Default when unspecified:** pick the treatment that best
 carries the message with the least text the model must animate.
 
-### 2. Author and classify the plates first
+### 2. Classify the plates and name their finishing owner
 
-Before writing any motion, enumerate every on-screen word, number, chart, logo,
+For a prompt-only request, return text-free footage direction and a finishing
+handoff. Require an existing plate only when the requested prompt binds it.
+For the finishing handoff, enumerate every on-screen word, number, chart, logo,
 screen, product, and keyframe, then route by fidelity:
 
 - **Logo lockups, headlines, taglines, numbers, prices, CTAs, kinetic type** →
@@ -324,7 +326,8 @@ This skill is prompt-only. It **never calls generation tools.** It composes:
   is which.
 - **1:1 match.** The ordered reference array submitted to the tool must equal
   the `@Image N` bindings in the prompt snapshot — same files, same order, same
-  roles. Record the count and order in `shot.md`.
+  roles. Report the count and order in chat. Save them in `shot.md` only
+  when the user requests a saved handoff.
 
 ## Custom-mode procedure
 
@@ -362,10 +365,10 @@ For a motion-design request outside the worked examples:
 
 Before returning the prompt (and before any generation task), verify:
 
-1. **Exact graphics first.** Every exact word, number, chart, logo, and UI screen
-   is authored deterministically and reserved for final composition. Seedream
-   supplies synthesized imagery only; nothing exact is left to the video model
-   to render.
+1. **Exact graphics handoff.** List exact words, charts, logos and UI for
+   downstream finishing. The text-free footage prompt can be delivered before
+   those graphics exist. Check the actual assets for any explicit binding.
+
 2. **Motion has a job.** Every animation signals, orients, reassures, or
    converts. Decorative-only motion is cut.
 3. **Attention hierarchy.** The hero claim or hook moves first; the CTA lands
