@@ -118,8 +118,8 @@ Repair semantic errors by revisiting evidence, not inventing schema-valid
 values. Keep partial coverage explicitly incomplete.
 
 Write `breakdown.md` (readable) and keep `analysis.json` beside it when the
-user requests saved drafts. **Gate A: the user reviews the breakdown** before
-any prompt authoring. Revise and re-present until approved.
+user requests saved drafts. Use the selected approval mode for the breakdown. In delegated mode, proceed
+within the agreed scope. In user-approval mode, present it and wait.
 
 ### 3. Motion review
 
@@ -155,8 +155,8 @@ one exists. Exact typography, logos, UI, title cards, posters, product
 layouts, and price/CTA treatments are out of scope in this workspace — say so
 instead of improvising a prompt for that element.
 
-Present the element prompt set; the user approves it before storyboard and
-Seedance prompts depend on it.
+Before relying on the element set, resolve it under the selected approval
+mode. A creative selection does not authorize a generation submission.
 
 ### 5. Storyboard prompts
 
@@ -174,7 +174,8 @@ via `seedance-prompt`:
   to `@Image N`.
 - Action from `shots[].action` plus the motion-review imperative wording.
 - Visual style ordered lighting → lens → grade → film look.
-- Camera from the breakdown and per-shot camera fields; ≤2 moves per shot.
+- Camera from the breakdown and per-shot camera fields. Retain compatible
+  components and order distinct phases as they occur in the source.
 - Audio in bracket syntax; dialogue verbatim in `{braces}`; `No audio at all`
   when the source is silent.
 

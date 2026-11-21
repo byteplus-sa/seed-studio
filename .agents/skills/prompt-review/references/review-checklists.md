@@ -611,14 +611,10 @@ V1. **Muted source (`v2v.muted_source`).** `@Video 1` is the muted master,
     as an `asset://` video; a raw upload of one is rejected by the provider, so
     flag it as MAJOR.
 
-V2. **Virtual Portrait identities (`v2v.virtual_portrait_identity`).** Every
-    realistic human likeness (a target character, an AI avatar, or a performer
-    in the source) is recommended for Virtual Portrait upload and bound as an
-    `asset://` reference by binding position, never by asset ID. A raw face or
-    character image is MAJOR. A real, identifiable person as a target without
-    the user's confirmed consent is CRITICAL and blocks the prompt, per the
-    [production policy](../../../contracts/production-policy.md).
-
+V2. **Identity eligibility (`v2v.virtual_portrait_identity`).** For each source
+    and target, check that an invented Virtual Portrait is eligible or that
+    a real performer has consent and a verified real-person route. Leave
+    unknown or rejected roles unresolved. Use binding positions in prompts.
 V3. **Source rights.** The package notes the user's confirmed rights for the
     footage and the people in it. A missing confirmation is CRITICAL. Do not
     suggest wording that routes around a provider rejection.
@@ -661,7 +657,7 @@ medium. Mark N/A any item whose feature is absent and record why.
    is MAJOR. Studio, artist or franchise names, or frames from copyrighted
    productions, are CRITICAL.
 
-4. **Identity anchors.** Anchors, when used, are Virtual Portraits designed in
+4. **Identity anchors.** Eligible anchors, when used, are designed in
    the target medium and mapped to a source subject by observable descriptor.
    A photoreal anchor under a drawn or crafted style is MAJOR.
 

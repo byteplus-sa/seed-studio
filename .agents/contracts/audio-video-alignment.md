@@ -10,8 +10,8 @@ Use natural scene windows within the selected model's supported limits.
    correct reference in each applicable performance shot; B-roll need not sing.
 2. Inspect actual source duration, timestamps and phrase timing. Record master
    offsets and excerpt boundaries; do not invent timing or pad to a model maximum.
-3. Persist source paths, hashes, measured durations and alignment evidence in the
-   owning manifest. Identify ASR-derived, supplied and listening-verified evidence.
+3. Return measured durations, source references and alignment evidence in chat.
+   When the user requests a saved record, include paths and hashes in its manifest. Identify ASR-derived, supplied and listening-verified evidence.
 4. Use prompt timing when requested or needed for synchronization. Keep raw
    evidence distinct from simplified display windows.
 5. Replacing an audio reference requires corresponding prompt and binding updates.

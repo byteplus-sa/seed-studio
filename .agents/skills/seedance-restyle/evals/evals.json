@@ -10,7 +10,7 @@
         "The edit scope redraws every person, object and surface in the style and states exactly two people.",
         "Each coworker keeps identity cues (hair shape, wardrobe colours) described from the source, not by name.",
         "@Video 1 is the muted master, generate_audio is false and the saved source audio is the stated post-audio route.",
-        "Because the clip shows people, the package recommends uploading the muted master to the Virtual Portrait library and binding @Video 1 as asset://.",
+        "Classifies each visible person and verifies their source eligibility. A real performer requires consent and the separate authorized real-person route. Unknown or rejected identities remain unbound.",
         "The prompt preserves the same office and layout; an environment image is optional, not required from a prior claymation result.",
         "If an environment image is selected, the package requires approval and checks its medium coverage, source geometry and stray objects before binding it.",
         "The package preserves exact source timing and does not request 8n+1 trimming or whole-second rounding without a verified destination requirement and user agreement.",
@@ -37,7 +37,7 @@
       "expectations": [
         "The studio name is not used in the prompt; a descriptive stylized 3D fragment replaces it.",
         "Replacing the interviewer is routed to Object Swap or Motion Transfer rather than folded into the restyle prompt.",
-        "Any realistic person, including the interviewee in the source, is recommended for Virtual Portrait upload and bound as an asset:// reference.",
+        "The interviewee needs consent and a verified real-person route. Virtual Portrait is limited to eligible invented characters.",
         "Before writing any prompt, the agent asks the user to confirm rights for the street interview footage and the people in it."
       ]
     },

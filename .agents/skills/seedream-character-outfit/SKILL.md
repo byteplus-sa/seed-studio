@@ -97,7 +97,8 @@ Lighting, Composition, Constraints.
   anywhere on the sheet. Image models carry the source clothing over unless told
   otherwise.
 - State layered garments with sleeves so back and front agree.
-- Keep the canonical neutral-expression phrase, the matte-skin and anti-AI-look
+- Keep frontal gaze in camera-facing views and the head facing away in the
+  back view. Keep the canonical neutral-expression phrase, the matte-skin and anti-AI-look
   wording, and the empty-hands constraint from `seedream-character-sheet`.
 - Match the parent's panel layout, size and background. Read the size from the
   parent file; do not assume 16:9.

@@ -338,7 +338,7 @@
         "recast"
       ],
       "owner_path": ".agents/contracts/video-to-video-inputs.md",
-      "summary": "Every realistic human likeness is recommended for Virtual Portrait upload and bound as an asset:// reference by binding position.",
+      "summary": "Classify every source and target likeness. Bind eligible invented Virtual Portraits by position. Real performers require consent and a verified real-person route; unresolved identities stay unbound.",
       "exceptions": []
     },
     {

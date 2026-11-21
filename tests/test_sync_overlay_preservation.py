@@ -97,6 +97,21 @@ class SyncOverlayPreservationTests(unittest.TestCase):
             self.assertEqual(result.returncode, code, output)
         self.assertEqual(self.snapshot(self.destination), before, output)
 
+    def test_selected_bundle_requires_an_entrypoint_on_both_sides(self):
+        for repository, expected in ((self.source, "source"), (self.destination, "destination")):
+            with self.subTest(expected=expected):
+                entry = self.bundle(repository) / "SKILL.md"
+                content = entry.read_bytes()
+                self.write(repository, LOCATION, "reference.md", "Fixture resource")
+                entry.unlink()
+                self.commit(repository)
+                before = self.snapshot(self.destination)
+                result = self.sync(mode="plan")
+                self.assert_refused_without_writes(result, before, 1)
+                self.assertIn(f"missing {expected} entrypoint", result.stderr)
+                entry.write_bytes(content)
+                self.commit(repository)
+
     def add_committed_overlay(self, relative="references/local lighting.md"):
         path = self.write(
             self.destination, LOCATION, relative, "Destination-owned lighting\n",

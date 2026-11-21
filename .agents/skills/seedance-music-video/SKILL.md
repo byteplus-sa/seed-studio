@@ -119,7 +119,7 @@ which shots matter, and where the performer sits in the frame:
 - **Conceptual** — no plot; one governing visual rule, image, or metaphor that
   encodes the track, executed with mechanical rigor.
 - **Lyric** — the lyrics are the primary visual; word-level sync to the vocal.
-  The model renders provisional captions; exact text is set in post.
+  Generate a text-free background and supply the word timing to the editor.
 - **Visualizer** — abstract, audio-reactive imagery with no performer and no
   lyrics; the visuals "image the sound" (waveforms, particles, geometry).
 - **Hybrid** — combines performance with narrative or concept. One possible
@@ -410,10 +410,10 @@ reference bundle and assemble in post. Reserve a 30s single-pass or native
 extension for a genuine continuous take (one unbroken performance) where
 seamless motion across section boundaries matters more than per-scene iteration.
 
-When the user asks for a lyric video, keep the imagery simple and legible so
-the text stays readable; direct word-level pops on the beat via `【word】`, and
-keep the type treatment provisional — the exact lyrics and kinetic timing are
-set in post.
+For lyric videos, generate text-free imagery with clear space for type. Give
+the editor a separate cue sheet with the exact words, beat or time anchors
+and the requested word-level animation. Keep sung words in the performance
+prompt when needed for lip sync.
 
 ### 6. Direct the performer
 
@@ -482,8 +482,9 @@ brief, source locks or verified capability.
 
 ## Exclusion rules
 
-- Do not use a blanket "no music" — it contradicts the point of a music video;
-  use it only inside a specific ambient scene that must stay silent.
+- For silent picture or assembly with a supplied master, use the verified
+  silent-output control where available. Describe the intended soundtrack
+  only when generated audio is requested.
 - Do not use exclusions as a substitute for positive audio and beat direction.
 - Exclude only likely contradictions: a real artist's face or voice, readable
   logos, an unwanted second vocal, or a palette change that violates a user lock.

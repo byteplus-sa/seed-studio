@@ -163,7 +163,7 @@ must look the same across takes:
 
 1. Write a Seedream sheet prompt for the character in the target medium; the
    user generates and approves it.
-2. Recommend that the user upload the approved views as a Virtual Portrait
+2. For an eligible invented character, use the approved views as a Virtual Portrait
    subject named for the medium (`"Mara (claymation)"`), per the
    [video-to-video inputs contract](../../../contracts/video-to-video-inputs.md).
 3. Bind it after the style images and map it to the source subject by

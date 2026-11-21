@@ -124,7 +124,7 @@ The visuals feature the natural daylight and street palette of <city>,
 - **Changes:** location, cast and local dressing, all through approved
   references for that market.
 - **Keeps:** motion, product identity, beats and the product's screen position.
-- **Note:** every realistic recast talent is a Virtual Portrait asset and
+- **Note:** each recast subject needs an eligible identity binding and
   follows the consent gates; local-language copy is added in post, never
   generated.
 

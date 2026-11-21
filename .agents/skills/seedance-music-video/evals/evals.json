@@ -43,13 +43,13 @@
     {
       "id": 4,
       "prompt": "Write a 15-second Seedance lyric-video prompt for an upbeat pop song. The lyrics should pop word by word on the beat, and the exact final text will be set in post-production. Keep the imagery simple and legible behind the type.",
-      "expected_output": "A lyric-video prompt whose type treatment is provisional in-model, with simple legible imagery and a clear post-production handoff for exact text.",
+      "expected_output": "A text-free picture prompt with a separate post-production handoff for exact lyrics and beat-synced type.",
       "files": [],
       "expectations": [
-        "The prompt treats the lyrics as the primary visual and uses the 【 】 subtitle syntax for provisional captions.",
+        "The picture prompt leaves readable space for lyrics. All visible lettering is reserved for the editor.",
         "The imagery is kept simple and legible so the text stays readable.",
         "The prompt states that exact final lyric text is set in post-production, not guaranteed by the model.",
-        "Word-level pops are directed on the beat."
+        "The separate editor cue sheet places word-level pops on the beat."
       ]
     },
     {

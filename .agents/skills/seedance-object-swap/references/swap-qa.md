@@ -26,7 +26,7 @@ each contact window and cut. Note each item as pass, fail or not applicable.
   a post correction, and never accept invented copy.
 - **Scale and lighting.** The target sits at the intended scale with the
   surroundings' key direction, reflections and contact shadow.
-- **Character identity.** A swapped character matches the Virtual Portrait on
+- **Character identity.** A swapped character matches its approved identity reference on
   every appearance, including profiles and after occlusions, and wears only the
   referenced wardrobe.
 - **Location integration.** The new environment holds its layout across the

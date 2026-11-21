@@ -99,7 +99,7 @@ preserve list so they neither vanish nor migrate onto the new garment.
 
 ## Character swap
 
-`@Image 1` and `@Image 2` are Virtual Portrait `asset://` views of the target.
+`@Image 1` and `@Image 2` are approved views of the target bound through its verified identity route.
 
 ```text
 [Edit Goal]

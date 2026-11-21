@@ -21,12 +21,11 @@ source locks and the requested address mode, audio and lip-sync contract.
   (literal, amplified, or disjunct).
 - **Conceptual**: choose one governing visual rule that encodes the track, then
   execute it with mechanical rigor; do not add a plot unless the rule needs it.
-- **Lyric**: keep imagery simple and legible; the type is the star. Use `【 】`
-  for provisional captions and set exact lyrics in post. Direct word-level
-  pops on the beat (`【word】` on each accent), hold every word long enough to
-  read, keep to one or two fonts, and dim the background so the text stays
-  readable. Type cadence follows the actual phrase and requested effect;
-  a chorus does not automatically require faster motion.
+- **Lyric**: generate text-free imagery that leaves room and contrast for type.
+  Give the editor the exact lyrics, accent timing and legible hold lengths in a
+  separate finishing cue sheet. Set typography and word pops in post. Type
+  cadence follows the actual phrase. A chorus does not automatically require faster motion.
+
 - **Visualizer**: no performer, no story, no lyrics; audio-reactive shapes,
   waveforms, particles, or geometry that shift with the sections.
 - **Hybrid**: state which sections carry performance and which carry the

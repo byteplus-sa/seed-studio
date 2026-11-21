@@ -6,7 +6,7 @@ description: >-
   miniature, stylized 3D, pixel art, woodblock, film noir and 20+ more, or a
   custom style reference image) while keeping its performance, subject
   positions, motion, camera path, cuts and timing. Covers the style catalog, the
-  style-only reference role, medium-matched Virtual Portrait identity anchors,
+  style-only reference role, medium-matched authorized identity anchors,
   an environment-image recipe that restyles the background while keeping the
   same place, edit and reference routes, a muted source master with audio added
   in post, a 480p probe ladder, and restyle checks. Use to turn live action into
@@ -46,7 +46,7 @@ Input:
 - One style: a catalog ID from the [style catalog](references/style-catalog.md),
   or one to three custom style reference images (user-owned or approved
   generated frames).
-- Optional identity anchors: Virtual Portrait `asset://` views of recurring
+- Optional identity anchors: verified identity views of recurring
   characters, designed in the target style.
 - The post-audio route.
 
@@ -68,15 +68,12 @@ block, the post-audio route, and the test-ladder rung.
 4. **No studio, artist or franchise names**, and no frames from copyrighted
    productions as style references. Copyright IP enters only as an asset the
    user is authorized to use.
-5. **Realistic people are Virtual Portraits.** Recommend that the user upload
-   the source clip, when it shows a person, and any identity anchors to the
-   Virtual Portrait library and bind them as `asset://`, per the
-   [video-to-video inputs contract](../../contracts/video-to-video-inputs.md).
-   Rights and consent follow the
-   [production policy](../../contracts/production-policy.md): unknown rights,
-   identity and consent facts stop the work, and a creative choice never
-   supplies them. Identity anchors are designed in the target medium: a photoreal sheet under
-   a drawn style leaks photoreal skin.
+5. **Check each source and target identity.** Virtual Portrait is for eligible
+   invented characters. An identifiable real person requires confirmed consent,
+   footage and likeness rights, and a separately verified real-person route for
+   the account and operation. Unknown identity or eligibility stays unresolved.
+   Follow the [video-to-video inputs contract](../../contracts/video-to-video-inputs.md)
+   and [production policy](../../contracts/production-policy.md).
 6. **Bind the muted master** with `generate_audio: false` and no `@Audio`
    binding; sound returns in post.
 7. **No baked text.** Source signage becomes abstract shapes in the style;
@@ -191,7 +188,7 @@ The source retains layout authority; disclose any geometry mismatch before use.
    Offer an environment image only when warranted by the current inputs,
    a supplied failure or the user's selection (see Environment image).
 5. **Anchors.** For recurring characters, write medium-matched sheet prompts
-   and recommend the Virtual Portrait upload of the approved views.
+   and bind approved views only after verifying the character’s identity route.
 6. **Prompt.** Assemble the route template in
    [restyle grammar](references/restyle-grammar.md).
 7. **Deliver** bindings, inventory, style block, prompt, parameter block, audio
@@ -230,8 +227,7 @@ the
 - [ ] One style with a medium lock that names people, props, set and effects
 - [ ] Style image role limited to medium, palette, line, texture and light
 - [ ] No studio, artist or franchise names
-- [ ] Source showing a person and any identity anchors recommended for Virtual
-      Portrait upload; anchors designed in the target medium
+- [ ] Source performers and target anchors have individually verified identity routes; anchors match the target medium
 - [ ] Stop-motion cadence note present when the style steps motion
 - [ ] Source text disposition stated; no new copy requested
 - [ ] Route and supported ladder rung stated; current case verified without
