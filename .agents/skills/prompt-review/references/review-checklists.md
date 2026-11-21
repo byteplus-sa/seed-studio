@@ -944,14 +944,15 @@ Source skill: `seedance-vfx-prompt`
 
 26. **NON-IP.** No recognizable real persons, no copyrighted characters, no brand logos.
 
-27. **Face protection.** "Real human skin with pores, stubble, and catchlights — never
-    waxy, smoothed, or warped."
+27. **Face protection.** Preserve the selected medium and the source identity.
+    Use skin texture and catchlights for a photoreal target. For an approved
+    stylized target, check the chosen material and facial design.
 
 28. **Supported model/mode (`model.supported_mode`).** Resolve operation and
     model first. Follow the exact-binding preview policy under
-    [Native draft first](#native-draft-first); 720p/1080p are later promotion
-    targets only for eligible selected native tasks, not ordinary previews;
-    only an explicitly selected supported legacy path may use 4K. Face/detail
+    [Native draft first](#native-draft-first). Check the evidenced resolutions
+    for ordinary creation, native Draft and promotion separately. A request for
+    4K never selects a different model or waives a required Draft. Face/detail
     fidelity is an output-QA criterion, not a guaranteed property of resolution.
 
 ### Creature/element integration (if applicable)
